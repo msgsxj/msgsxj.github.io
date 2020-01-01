@@ -19,7 +19,7 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('http://www.msgsxj.cn').hostname,
+    hostname: new URL('msgsxj.cn').hostname,
     root: '/',
     scheme: 'Mist',
     version: '7.6.0',
@@ -49,12 +49,12 @@
   <meta name="description" content="前言: 本文主要是关于Latent Dirichlet Allocation模型, 这是一类能够从文档集合中挖掘出抽象主题的模型, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Latent Dirichlet Allocation">
-<meta property="og:url" content="http://www.msgsxj.cn/2018/10/16/Latent-Dirichlet-Allocation/index.html">
+<meta property="og:url" content="msgsxj.cn/2018/10/16/Latent-Dirichlet-Allocation/index.html">
 <meta property="og:site_name" content="msgsxj&#39;blog">
 <meta property="og:description" content="前言: 本文主要是关于Latent Dirichlet Allocation模型, 这是一类能够从文档集合中挖掘出抽象主题的模型, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.msgsxj.cn/pictures/bayes%20in%20ml/LDA_plate_model_1.png">
-<meta property="og:image" content="http://www.msgsxj.cn/pictures/bayes%20in%20ml/LDA_plate_model_2.png">
+<meta property="og:image" content="/pictures/bayes%20in%20ml/LDA_plate_model_1.png">
+<meta property="og:image" content="/pictures/bayes%20in%20ml/LDA_plate_model_2.png">
 <meta property="article:published_time" content="2018-10-16T03:08:14.000Z">
 <meta property="article:modified_time" content="2020-01-01T06:33:33.900Z">
 <meta property="article:author" content="msgsxj">
@@ -62,9 +62,9 @@
 <meta property="article:tag" content="LDA模型">
 <meta property="article:tag" content="Dirichlet分布">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.msgsxj.cn/pictures/bayes%20in%20ml/LDA_plate_model_1.png">
+<meta name="twitter:image" content="/pictures/bayes%20in%20ml/LDA_plate_model_1.png">
 
-<link rel="canonical" href="http://www.msgsxj.cn/2018/10/16/Latent-Dirichlet-Allocation/">
+<link rel="canonical" href="msgsxj.cn/2018/10/16/Latent-Dirichlet-Allocation/">
 
 
 <script id="page-configurations">
@@ -233,7 +233,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.msgsxj.cn/2018/10/16/Latent-Dirichlet-Allocation/">
+    <link itemprop="mainEntityOfPage" href="msgsxj.cn/2018/10/16/Latent-Dirichlet-Allocation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -341,8 +341,8 @@
 <li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
 <li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
 </ul>
-<p>这个模型因为属于隐变量模型, 故可用<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/" target="_blank" rel="noopener">EM算法</a>求解: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>: - E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>. - M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</p>
-<p>若后验<span class="math inline">\(P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>难以处理, 则可以用一些近似方法取求得期望, 如<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">变分贝叶斯</a>, <a href="https://msgsxj.cn/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">Laplace近似方法</a>, <a href="https://msgsxj.cn/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/" target="_blank" rel="noopener">期望传播方法</a>, <a href="https://msgsxj.cn/2018/09/18/MCMC/" target="_blank" rel="noopener">MCMC方法</a>等</p>
+<p>这个模型因为属于隐变量模型, 故可用<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>求解: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>: - E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>. - M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</p>
+<p>若后验<span class="math inline">\(P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>难以处理, 则可以用一些近似方法取求得期望, 如<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/">变分贝叶斯</a>, <a href="https://msgsxj.cn/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/">Laplace近似方法</a>, <a href="https://msgsxj.cn/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/">期望传播方法</a>, <a href="https://msgsxj.cn/2018/09/18/MCMC/">MCMC方法</a>等</p>
 <hr />
 <h2 id="lda模型的拓展">LDA模型的拓展</h2>
 <h3 id="phi"><span class="math inline">\(\Phi\)</span></h3>

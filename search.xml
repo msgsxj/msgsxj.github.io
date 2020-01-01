@@ -444,7 +444,7 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
 </blockquote>
 <hr />
 <h3 id="训练集的代表性与拉德马赫复杂度">训练集的代表性与拉德马赫复杂度</h3>
-<p>回顾之前针对二分类问题建立的<a href="https://msgsxj.cn/2018/06/14/VC-bound/" target="_blank" rel="noopener">VC bound</a>:<span class="math display">\[
+<p>回顾之前针对二分类问题建立的<a href="https://msgsxj.cn/2018/06/14/VC-bound/">VC bound</a>:<span class="math display">\[
 \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
 \]</span>注意到要定义训练误差与泛化误差必须要定义损失函数, 这里的损失函数实际上选定了二分类问题的常用的损失函数0-1损失: <span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>; 因此上述VC bound又可以写作:<span class="math display">\[
 \sup_{f\in\mathcal{F}}\left|L_{S}(f)-L_{\mathcal{D}}(f)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
@@ -764,8 +764,8 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
 <li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
 <li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
 </ul>
-<p>这个模型因为属于隐变量模型, 故可用<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/" target="_blank" rel="noopener">EM算法</a>求解: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>: - E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>. - M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</p>
-<p>若后验<span class="math inline">\(P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>难以处理, 则可以用一些近似方法取求得期望, 如<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">变分贝叶斯</a>, <a href="https://msgsxj.cn/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">Laplace近似方法</a>, <a href="https://msgsxj.cn/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/" target="_blank" rel="noopener">期望传播方法</a>, <a href="https://msgsxj.cn/2018/09/18/MCMC/" target="_blank" rel="noopener">MCMC方法</a>等</p>
+<p>这个模型因为属于隐变量模型, 故可用<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>求解: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>: - E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>. - M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</p>
+<p>若后验<span class="math inline">\(P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>难以处理, 则可以用一些近似方法取求得期望, 如<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/">变分贝叶斯</a>, <a href="https://msgsxj.cn/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/">Laplace近似方法</a>, <a href="https://msgsxj.cn/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/">期望传播方法</a>, <a href="https://msgsxj.cn/2018/09/18/MCMC/">MCMC方法</a>等</p>
 <hr />
 <h2 id="lda模型的拓展">LDA模型的拓展</h2>
 <h3 id="phi"><span class="math inline">\(\Phi\)</span></h3>
@@ -816,7 +816,7 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
 <h2 id="期望传播">期望传播</h2>
 <p>下面来看期望传播:</p>
 <ul>
-<li>首先简单回顾变分推断, 变分推断做的是通过最小化KL散度(以EM算法中E步为例, 详见<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">贝叶斯方法</a>的3.1节.):<span class="math display">\[\mathcal{KL}(q(T)\Vert P(T\mid X, \theta))\]</span> <span class="math inline">\(\mathcal{KL}\)</span>散度的定义见<a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence" target="_blank" rel="noopener">维基百科</a>, 这里的<span class="math inline">\(X\)</span>为机器学习中的样本矩阵, 已给定, 不同于变量<span class="math inline">\(x\)</span>; <span class="math inline">\(\theta\)</span>为未知参数; <span class="math inline">\(T\)</span>本为隐变量, 这里为了不和上文<span class="math inline">\(T\)</span>重名, 简记为<span class="math display">\[\mathcal{KL}(q(x)\Vert P(x\mid X, \theta))\]</span>这里做的事情就是从一个相对简单的单分布族<span class="math inline">\(Q\)</span>中找到一个<span class="math inline">\(q(x)\)</span>去逼近复杂分布<span class="math inline">\(P(x\mid X, \theta)\)</span>. 和下文的期望传播以示区别, 这里我们称之为<span class="math inline">\(q(x)\)</span>从左逼近<span class="math inline">\(P(x\mid X, \theta)\)</span>, 这种从左逼近的方法的最大的好处就是不必去考虑关于<span class="math inline">\(X, \theta\)</span>的分布, 即不必计算<span class="math inline">\(P(X, \theta)\)</span>.</li>
+<li>首先简单回顾变分推断, 变分推断做的是通过最小化KL散度(以EM算法中E步为例, 详见<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/">贝叶斯方法</a>的3.1节.):<span class="math display">\[\mathcal{KL}(q(T)\Vert P(T\mid X, \theta))\]</span> <span class="math inline">\(\mathcal{KL}\)</span>散度的定义见<a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence" target="_blank" rel="noopener">维基百科</a>, 这里的<span class="math inline">\(X\)</span>为机器学习中的样本矩阵, 已给定, 不同于变量<span class="math inline">\(x\)</span>; <span class="math inline">\(\theta\)</span>为未知参数; <span class="math inline">\(T\)</span>本为隐变量, 这里为了不和上文<span class="math inline">\(T\)</span>重名, 简记为<span class="math display">\[\mathcal{KL}(q(x)\Vert P(x\mid X, \theta))\]</span>这里做的事情就是从一个相对简单的单分布族<span class="math inline">\(Q\)</span>中找到一个<span class="math inline">\(q(x)\)</span>去逼近复杂分布<span class="math inline">\(P(x\mid X, \theta)\)</span>. 和下文的期望传播以示区别, 这里我们称之为<span class="math inline">\(q(x)\)</span>从左逼近<span class="math inline">\(P(x\mid X, \theta)\)</span>, 这种从左逼近的方法的最大的好处就是不必去考虑关于<span class="math inline">\(X, \theta\)</span>的分布, 即不必计算<span class="math inline">\(P(X, \theta)\)</span>.</li>
 <li>期望传播(Expectation Propagation: EP)做的则是最小化逆过来的KL散度:<span class="math display">\[\mathcal{KL}( P(x\mid X, \theta)\Vert q(x))\]</span>这里我们称之为<span class="math inline">\(q(x)\)</span>从右逼近<span class="math inline">\(P(x\mid X, \theta)\)</span>, 这种从右逼近的方法的好处就是, 若这里的<span class="math inline">\(q(x)\)</span>限定在指数族分布的范围内, 即<span class="math inline">\(q(x\mid\tilde{\theta})=h(x)g(\tilde{\theta} )\exp \left(\tilde{\theta} ^T T(x)\right)\)</span>(<span class="math inline">\(\tilde{\theta}\)</span>与<span class="math inline">\(\theta\)</span>是不同的未知参数), 此时最小化上述<span class="math inline">\(\mathcal{KL}\)</span>散度就等价于充分统计量<span class="math inline">\(T(x)\)</span>关于两个分布<span class="math inline">\(q(x)\)</span>和<span class="math inline">\(P(x\mid X, \theta)\)</span>的期望相等: <span class="math display">\[\begin{aligned} \mathcal{KL}( P(x\mid X, \theta)\Vert q(x)) &amp; =  \int P(x\mid X, \theta)\log\frac{P(x\mid X, \theta)}{q(x)}dx\\\
 &amp; =  \int P(x\mid X, \theta)\log\frac{P(x\mid X, \theta)}{h(x)g(\tilde{\theta} )\exp \left(\tilde{\theta} ^T T(x)\right)}dx\\\
 (let \, P=P(x\mid X, \theta)) \,&amp; = \int P\log Pdx - \int P\log h(x)dx-\int P\log g(\tilde{\theta})dx- \int P\tilde{\theta} ^T T(x)dx\\\
@@ -1012,7 +1012,7 @@ t_d^{k+1}&amp;\sim P(T_d\mid T_1=t_1^{k}, T_2=t_2^{k},..., T_{d-1}=t_{d-1}^{k}, 
     <content><![CDATA[<p>前言:本文主要是关于变分贝叶斯方法, 这是一类用简单分布去逼近目标分布的方法, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3. <a id="more"></a></p>
 <hr />
 <p>本文主要是关于变分推断, 或者说<a href="https://en.wikipedia.org/wiki/Variational_Bayesian_methods" target="_blank" rel="noopener">变分贝叶斯方法</a>, 它是一类用来计算难以计算积分的方法. 本文的定位是对EM算法的有益补充, 因此会结合EM算法去讲一讲什么是变分推断及平均场近似, 并得到EM算法的三种变体.</p>
-<p>关于EM算法可以参见我的另一篇博文<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/" target="_blank" rel="noopener">EM算法</a>, 简单的说,EM算法是专门处理隐变量模型的算法. 下文我们会以隐狄利克雷分配模型(Latent Dirichlet Allocation: LDA)为例来说明本文的主角, 当然这是一个隐变量模型.</p>
+<p>关于EM算法可以参见我的另一篇博文<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>, 简单的说,EM算法是专门处理隐变量模型的算法. 下文我们会以隐狄利克雷分配模型(Latent Dirichlet Allocation: LDA)为例来说明本文的主角, 当然这是一个隐变量模型.</p>
 <hr />
 <h2 id="隐变量模型">隐变量模型</h2>
 <p><a href="https://en.wikipedia.org/wiki/Latent_variable_model" target="_blank" rel="noopener">隐变量模型</a>, 隐变量模型含有未观测到值的变量, 且该隐变量解释了观测到的变量之间的相关性(<a href="https://en.wikipedia.org/wiki/Local_independence" target="_blank" rel="noopener">局部独立性</a>), 简言之引进的隐变量不能没有用, 举个例子来说明这个性质(来自维基百科):</p>
@@ -1062,7 +1062,7 @@ t_d^{k+1}&amp;\sim P(T_d\mid T_1=t_1^{k}, T_2=t_2^{k},..., T_{d-1}=t_{d-1}^{k}, 
 <p>就会发现, 对高年级生<span class="math inline">\(\frac{400}{500}\times\frac{300}{500}=\frac{240}{500}\)</span>; 对低年级生<span class="math inline">\(\frac{100}{500}\times\frac{100}{500}=\frac{20}{500}\)</span>, 此时相关性已经被隐变量解释掉了.</p>
 <hr />
 <h2 id="隐狄利克雷分配模型">隐狄利克雷分配模型</h2>
-<p>下面举个隐变量模型的例子, 隐狄利克雷分配模型. 假如我读过东野圭吾的新参者, 我希望推荐系统能把白夜行也推荐给我. 这里直接给出模型的完整形式, 具体怎么来的请见博文<a href="https://msgsxj.cn/2018/10/16/Latent-Dirichlet-Allocation/" target="_blank" rel="noopener">Latent Dirichlet Allocation</a>的第一节. <span class="math display">\[P(W, Z, \Theta\mid \varphi, \alpha)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>其中:</p>
+<p>下面举个隐变量模型的例子, 隐狄利克雷分配模型. 假如我读过东野圭吾的新参者, 我希望推荐系统能把白夜行也推荐给我. 这里直接给出模型的完整形式, 具体怎么来的请见博文<a href="https://msgsxj.cn/2018/10/16/Latent-Dirichlet-Allocation/">Latent Dirichlet Allocation</a>的第一节. <span class="math display">\[P(W, Z, \Theta\mid \varphi, \alpha)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>其中:</p>
 <ul>
 <li><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>, <span class="math inline">\(T\)</span>给定.</li>
 <li><span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
@@ -1077,7 +1077,7 @@ t_d^{k+1}&amp;\sim P(T_d\mid T_1=t_1^{k}, T_2=t_2^{k},..., T_{d-1}=t_{d-1}^{k}, 
 <hr />
 <h2 id="变分贝叶斯方法">变分贝叶斯方法</h2>
 <h3 id="em算法">EM算法</h3>
-<p>下面尝试用4种方法来解决这个模型, 首先从我们最熟悉的EM算法开始(不熟悉的话可以参见我的另一篇博文<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/" target="_blank" rel="noopener">EM算法</a>): EM算法的目标是极大化对数似然函数<span class="math inline">\(\log P(W\mid\varphi, \alpha)\)</span>, 且每一步迭代又给出隐变量<span class="math inline">\(Z, \Theta\)</span>的概率分布以及<span class="math inline">\(\varphi, \alpha\)</span>的点估计. 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:</p>
+<p>下面尝试用4种方法来解决这个模型, 首先从我们最熟悉的EM算法开始(不熟悉的话可以参见我的另一篇博文<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>): EM算法的目标是极大化对数似然函数<span class="math inline">\(\log P(W\mid\varphi, \alpha)\)</span>, 且每一步迭代又给出隐变量<span class="math inline">\(Z, \Theta\)</span>的概率分布以及<span class="math inline">\(\varphi, \alpha\)</span>的点估计. 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:</p>
 <ul>
 <li>E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>.</li>
 <li>M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
@@ -1237,23 +1237,23 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 <li>在一个给定分布族<span class="math inline">\(Q\)</span>中找到<span class="math inline">\(q(T)\)</span>, 使其逼近<span class="math inline">\(P(T\mid X, \theta)\)</span>, 且一般选用最小化<span class="math inline">\(\mathcal{KL}\)</span>散度<span class="math inline">\(\mathcal{KL}(q(T)\Vert P(T\mid X, \theta))\)</span></li>
 <li>计算目标积分时进行近似计算: <span class="math inline">\(\mathbb{E}_{P(T\mid X, \theta)}\log P(X,T\mid\theta)\approx \mathbb{E}_{q(T)}\log P(X,T\mid\theta)\)</span></li>
 <li>完整版的EM算法则可以视为此时分布族<span class="math inline">\(Q\)</span>取得足够大了, 因而包含<span class="math inline">\(P(T\mid X, \theta)\)</span>, 也就必然有<span class="math inline">\(q(T) = P(T\mid X, \theta)\)</span>; 而一般分布族<span class="math inline">\(Q\)</span>选取可为正态分布, 且其协方差阵为对角阵这样的简单分布.</li>
-<li>此外对变量之间做出额外的独立性假定的方法被称为是平均场近似法, 显然这样的假定能降低计算量, 这种方法、变分推断与EM算法结合可以产生不同的变体, 详见我的另外一篇博文<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">变分贝叶斯方法</a>.</li>
+<li>此外对变量之间做出额外的独立性假定的方法被称为是平均场近似法, 显然这样的假定能降低计算量, 这种方法、变分推断与EM算法结合可以产生不同的变体, 详见我的另外一篇博文<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/">变分贝叶斯方法</a>.</li>
 </ul>
 <p>除了变分推断, 还有三类非常著名的方法同样能够用来计算难以计算的积分, 分别是: <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo" target="_blank" rel="noopener">MCMC</a>, <a href="https://en.wikipedia.org/wiki/Expectation_propagation" target="_blank" rel="noopener">期望传播</a>(Expectation Propagation: EP)及<a href="https://en.wikipedia.org/wiki/Laplace%27s_method" target="_blank" rel="noopener">拉普拉斯近似方法</a>(Laplace Approximation):</p>
 <ul>
-<li>MCMC是一类对分布进行抽样的方法: <span class="math inline">\(T_s \sim P(T\mid X, \theta)\)</span>, 其本质是构建稳态分布恰为所需分布<span class="math inline">\(P(T\mid X, \theta)\)</span>的马尔可夫链. 概率论中的极限理论告诉我们, <span class="math inline">\(\frac{1}{M} \sum_{s=1}^M\log P(X,T_s\mid\Theta)\)</span>会慢慢逼近<span class="math inline">\(\mathbb{E}_{P(T\mid X, \theta)}\log P(X,T\mid\Theta)\)</span>, 因此随着抽样数的增大, 其近似值会越来越精确. 这块内容详见我的另一篇博文<a href="https://msgsxj.cn/2018/09/18/MCMC/" target="_blank" rel="noopener">MCMC</a>.</li>
-<li>期望传播方法可以简单理解为变分贝叶斯中最小化的<span class="math inline">\(\mathcal{KL}\)</span>散度逆过来, 即最小化<span class="math inline">\(\mathcal{KL}(P(T\mid X, \theta)\Vert q(T))\)</span>, 见<a href="https://msgsxj.cn/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/" target="_blank" rel="noopener">期望传播</a>.</li>
-<li>拉普拉斯近似方法本质上是将被积函数视为正态分布, 见<a href="https://msgsxj.cn/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">拉普拉斯方法</a>.</li>
+<li>MCMC是一类对分布进行抽样的方法: <span class="math inline">\(T_s \sim P(T\mid X, \theta)\)</span>, 其本质是构建稳态分布恰为所需分布<span class="math inline">\(P(T\mid X, \theta)\)</span>的马尔可夫链. 概率论中的极限理论告诉我们, <span class="math inline">\(\frac{1}{M} \sum_{s=1}^M\log P(X,T_s\mid\Theta)\)</span>会慢慢逼近<span class="math inline">\(\mathbb{E}_{P(T\mid X, \theta)}\log P(X,T\mid\Theta)\)</span>, 因此随着抽样数的增大, 其近似值会越来越精确. 这块内容详见我的另一篇博文<a href="https://msgsxj.cn/2018/09/18/MCMC/">MCMC</a>.</li>
+<li>期望传播方法可以简单理解为变分贝叶斯中最小化的<span class="math inline">\(\mathcal{KL}\)</span>散度逆过来, 即最小化<span class="math inline">\(\mathcal{KL}(P(T\mid X, \theta)\Vert q(T))\)</span>, 见<a href="https://msgsxj.cn/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/">期望传播</a>.</li>
+<li>拉普拉斯近似方法本质上是将被积函数视为正态分布, 见<a href="https://msgsxj.cn/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/">拉普拉斯方法</a>.</li>
 </ul>
 ]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>EM算法</tag>
         <tag>隐变量模型</tag>
         <tag>Jensen不等式</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>

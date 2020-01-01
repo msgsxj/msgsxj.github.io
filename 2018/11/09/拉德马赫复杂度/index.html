@@ -19,7 +19,7 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('http://www.msgsxj.cn').hostname,
+    hostname: new URL('msgsxj.cn').hostname,
     root: '/',
     scheme: 'Mist',
     version: '7.6.0',
@@ -49,7 +49,7 @@
   <meta name="description" content="前言: 本文主要讲了拉德马赫复杂度, 主要参考了Understanding machine learning一书26章.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="拉德马赫复杂度">
-<meta property="og:url" content="http://www.msgsxj.cn/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/index.html">
+<meta property="og:url" content="msgsxj.cn/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/index.html">
 <meta property="og:site_name" content="msgsxj&#39;blog">
 <meta property="og:description" content="前言: 本文主要讲了拉德马赫复杂度, 主要参考了Understanding machine learning一书26章.">
 <meta property="og:locale" content="zh_CN">
@@ -59,7 +59,7 @@
 <meta property="article:tag" content="拉德马赫复杂度">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://www.msgsxj.cn/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/">
+<link rel="canonical" href="msgsxj.cn/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/">
 
 
 <script id="page-configurations">
@@ -228,7 +228,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.msgsxj.cn/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/">
+    <link itemprop="mainEntityOfPage" href="msgsxj.cn/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -313,7 +313,7 @@
 </blockquote>
 <hr />
 <h3 id="训练集的代表性与拉德马赫复杂度">训练集的代表性与拉德马赫复杂度</h3>
-<p>回顾之前针对二分类问题建立的<a href="https://msgsxj.cn/2018/06/14/VC-bound/" target="_blank" rel="noopener">VC bound</a>:<span class="math display">\[
+<p>回顾之前针对二分类问题建立的<a href="https://msgsxj.cn/2018/06/14/VC-bound/">VC bound</a>:<span class="math display">\[
 \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
 \]</span>注意到要定义训练误差与泛化误差必须要定义损失函数, 这里的损失函数实际上选定了二分类问题的常用的损失函数0-1损失: <span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>; 因此上述VC bound又可以写作:<span class="math display">\[
 \sup_{f\in\mathcal{F}}\left|L_{S}(f)-L_{\mathcal{D}}(f)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
