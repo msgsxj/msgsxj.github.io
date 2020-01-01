@@ -19,7 +19,7 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('msgsxj.cn').hostname,
+    hostname: new URL('https://msgsxj.cn').hostname,
     root: '/',
     scheme: 'Mist',
     version: '7.6.0',
@@ -49,14 +49,14 @@
   <meta name="description" content="前言: 读PRML一书的6.4节, 对图6.4中高斯过程的采用不同核函数模拟实现非常好奇, 同时也惊叹于高斯过程看上是几乎处处连续的性质, 于是尝试用R去模拟高斯过程.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="高斯过程的随机模拟(含R实现)">
-<meta property="og:url" content="msgsxj.cn/2018/09/24/%E9%AB%98%E6%96%AF%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%A8%A1%E6%8B%9F(%E5%90%ABR%E5%AE%9E%E7%8E%B0)/index.html">
+<meta property="og:url" content="https://msgsxj.cn/2018/09/24/%E9%AB%98%E6%96%AF%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%A8%A1%E6%8B%9F(%E5%90%ABR%E5%AE%9E%E7%8E%B0)/index.html">
 <meta property="og:site_name" content="msgsxj&#39;blog">
 <meta property="og:description" content="前言: 读PRML一书的6.4节, 对图6.4中高斯过程的采用不同核函数模拟实现非常好奇, 同时也惊叹于高斯过程看上是几乎处处连续的性质, 于是尝试用R去模拟高斯过程.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="/pictures/R/R_brown_motion.png">
-<meta property="og:image" content="/pictures/R/R_gauss_kernel.png">
-<meta property="og:image" content="/pictures/R/R_gausskernel_2.png">
-<meta property="og:image" content="/pictures/R/R_OUprocess.png">
+<meta property="og:image" content="https://msgsxj.cn/pictures/R/R_brown_motion.png">
+<meta property="og:image" content="https://msgsxj.cn/pictures/R/R_gauss_kernel.png">
+<meta property="og:image" content="https://msgsxj.cn/pictures/R/R_gausskernel_2.png">
+<meta property="og:image" content="https://msgsxj.cn/pictures/R/R_OUprocess.png">
 <meta property="article:published_time" content="2018-09-24T14:15:07.000Z">
 <meta property="article:modified_time" content="2020-01-01T06:42:59.243Z">
 <meta property="article:author" content="msgsxj">
@@ -64,9 +64,9 @@
 <meta property="article:tag" content="高斯过程">
 <meta property="article:tag" content="核函数">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="/pictures/R/R_brown_motion.png">
+<meta name="twitter:image" content="https://msgsxj.cn/pictures/R/R_brown_motion.png">
 
-<link rel="canonical" href="msgsxj.cn/2018/09/24/%E9%AB%98%E6%96%AF%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%A8%A1%E6%8B%9F(%E5%90%ABR%E5%AE%9E%E7%8E%B0)/">
+<link rel="canonical" href="https://msgsxj.cn/2018/09/24/%E9%AB%98%E6%96%AF%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%A8%A1%E6%8B%9F(%E5%90%ABR%E5%AE%9E%E7%8E%B0)/">
 
 
 <script id="page-configurations">
@@ -235,7 +235,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="msgsxj.cn/2018/09/24/%E9%AB%98%E6%96%AF%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%A8%A1%E6%8B%9F(%E5%90%ABR%E5%AE%9E%E7%8E%B0)/">
+    <link itemprop="mainEntityOfPage" href="https://msgsxj.cn/2018/09/24/%E9%AB%98%E6%96%AF%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%A8%A1%E6%8B%9F(%E5%90%ABR%E5%AE%9E%E7%8E%B0)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
