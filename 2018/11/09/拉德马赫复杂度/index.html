@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-fruit.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-fruit.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-fruit.png">
+  <link rel="mask-icon" href="/images/logo.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="前言: 本文主要讲了拉德马赫复杂度, 主要参考了Understanding machine learning一书26章.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="拉德马赫复杂度">
+<meta property="og:url" content="http://yoursite.com/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/index.html">
+<meta property="og:site_name" content="msgsxj&#39;blog">
+<meta property="og:description" content="前言: 本文主要讲了拉德马赫复杂度, 主要参考了Understanding machine learning一书26章.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-11-09T02:34:08.000Z">
+<meta property="article:modified_time" content="2020-01-01T06:24:43.033Z">
+<meta property="article:author" content="msgsxj">
+<meta property="article:tag" content="拉德马赫复杂度">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>拉德马赫复杂度 | msgsxj'blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148974741-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-148974741-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?de439caa3b6ff1c75c24155f1c47fc77";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">msgsxj'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="msgsxj">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="msgsxj'blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          拉德马赫复杂度
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-11-09 10:34:08" itemprop="dateCreated datePublished" datetime="2018-11-09T10:34:08+08:00">2018-11-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-01 14:24:43" itemprop="dateModified" datetime="2020-01-01T14:24:43+08:00">2020-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>前言: 本文主要讲了拉德马赫复杂度, 主要参考了Understanding machine learning一书26章.</p>
+<a id="more"></a>
+<hr />
+<p>首先应当接触以下几个概念:</p>
+<ul>
+<li>领域集(domain set): 通常记为<span class="math inline">\(\mathcal{X}\)</span>, 由概率分布<span class="math inline">\(\mathcal{D}\)</span>从样本空间<span class="math inline">\(Z\)</span>中抽样得到.</li>
+<li>目标函数(target function): 通常记为<span class="math inline">\(f\)</span>, 对于分类问题就是我们希望得到的真实的分类函数.</li>
+<li>标签集(label set): 通常记为<span class="math inline">\(\mathcal{Y}\)</span>, 就二分类问题而言, 标签集为<span class="math inline">\(\{0, 1\}\)</span>. 简化起见, <span class="math inline">\((\mathcal{X}, \mathcal{Y})\)</span>也可以说由概率分布<span class="math inline">\(\mathcal{D}\)</span>从样本空间<span class="math inline">\(Z\)</span>中抽样得到.</li>
+<li>训练数据(training data): 通常记为<span class="math inline">\(S\)</span>, 一般假定由目标函数<span class="math inline">\(f\)</span>生成: <span class="math inline">\(f(x)=y\)</span>. <span class="math inline">\(S=\{(x_{1},y_{1}),....,(x_{m},y_{m})\}\)</span>为一有限序列, 序列中元素以<span class="math inline">\(\mathcal{X}×\mathcal{Y}\)</span>形式成对出现, 记为<span class="math inline">\((x, y)\)</span>, 有时也直接简记为<span class="math inline">\(z\)</span>.</li>
+<li>学习算法: 通常记为<span class="math inline">\(A\)</span>, 即我们构建的、能从数据中学到东西的学习算法, 期望其能从假设类中返回良好的假设.</li>
+<li>假设类: 通常记为<span class="math inline">\(\mathcal{H}\)</span>, 对目标函数<span class="math inline">\(f\)</span>的假设构成的空间, 学习器从中选择.</li>
+<li>预测器(predictor): 通常记为<span class="math inline">\(h\)</span>或者说分类器(classifier), 假设(hypothesis), 即学习器输出的一个函数:<span class="math inline">\(h:\mathcal{X}\to\mathcal{Y}\)</span>, 且应当和目标函数<span class="math inline">\(f\)</span>有相近的表现.</li>
+<li>损失函数(loss function): 通常记为<span class="math inline">\(l(h, (x, y))\)</span>, 其定义在预测器<span class="math inline">\(h\)</span>和单个样本<span class="math inline">\((x, y)\)</span>上. 对于二分类问题, 一个常用的损失函数为<span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>, 即分对了就为0, 分错了就为1.</li>
+<li>代价函数(cost function): 通常记为<span class="math inline">\(L_{S}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在训练集<span class="math inline">\(S\)</span>上的平均损失: <span class="math inline">\(\frac{1}{m}\sum_{i=1}^m l(h, (x_i, y_i))\)</span>, 有时又称为训练误差.</li>
+<li>泛化误差: 通常记为<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在<span class="math inline">\((\mathcal{X}, \mathcal{Y})\)</span>上的平均损失<span class="math inline">\(\mathbb{E}_{z\sim \mathcal{D}}l(h, z)\)</span></li>
+<li><span class="math inline">\(\varepsilon\)</span>-代表性样本: 一个训练集被称为<span class="math inline">\(\varepsilon\)</span>-代表性样本(定义在域<span class="math inline">\(Z\)</span>, 假设类<span class="math inline">\(\mathcal{H}\)</span>, 损失函数<span class="math inline">\(l\)</span>和分布<span class="math inline">\(\mathcal{D}\)</span>上), 如果满足<span class="math display">\[\sup_{h\in\mathcal{H}}|L_{S}(h)-L_{\mathcal{D}}(h)|\le\varepsilon\]</span></li>
+</ul>
+<p>接着应当知道如下基本事实:</p>
+<blockquote>
+<p>如果<span class="math inline">\(S\)</span>是<span class="math inline">\(\varepsilon/2\)</span>-代表性样本, 那么在ERM准则下它是<span class="math inline">\(\varepsilon\)</span>-一致的, 即<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))\le \min_{h\in\mathcal{H}}L_{\mathcal{D}}(h)+\varepsilon\]</span></p>
+</blockquote>
+<hr />
+<h3 id="训练集的代表性与拉德马赫复杂度">训练集的代表性与拉德马赫复杂度</h3>
+<p>回顾之前针对二分类问题建立的<a href="https://msgsxj.cn/2018/06/14/VC-bound/" target="_blank" rel="noopener">VC bound</a>:<span class="math display">\[
+\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
+\]</span>注意到要定义训练误差与泛化误差必须要定义损失函数, 这里的损失函数实际上选定了二分类问题的常用的损失函数0-1损失: <span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>; 因此上述VC bound又可以写作:<span class="math display">\[
+\sup_{f\in\mathcal{F}}\left|L_{S}(f)-L_{\mathcal{D}}(f)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
+\]</span>这里的<span class="math inline">\(\mathcal{F}\)</span>定义为<span class="math inline">\(l \circ \mathcal{H}=\{z\mapsto l(h, z):h\in\mathcal{H}\}\)</span>, 相应的<span class="math inline">\(L_{S}(f)=\frac{1}{m}\sum_{i=1}^m f(z_i)\)</span>, <span class="math inline">\(L_{\mathcal{D}}(f)=\mathbb{E}_{z\sim \mathcal{D}}f(z)\)</span>, 当然这里的<span class="math inline">\(l\)</span>已经固定为0-1损失. 定义训练集<span class="math inline">\(S\)</span>在<span class="math inline">\(\mathcal{F}\)</span>上的代表性为:<span class="math display">\[Rep_{\mathcal{D}}(\mathcal{F}, S)\doteq\sup_{f\in\mathcal{F}}(L_{\mathcal{D}}(f)-L_{S}(f))\]</span>一般来说, 训练误差<span class="math inline">\(L_{S}\)</span>能通过优化达到一个非常接近于0的数值, 比如<a href="https://arxiv.org/abs/1811.03804" target="_blank" rel="noopener">这篇文章</a>说明了用梯度下降训练ResNet能在多项式时间内达到0训练误差, 即达到全局最优; 泛化误差<span class="math inline">\(L_{\mathcal{D}}\)</span>则会略大于训练误差. 显然当<span class="math inline">\(S\)</span>越能代表<span class="math inline">\(\mathcal{D}\)</span>, 上数值会越接近于0. 现在想要仅仅依靠训练集<span class="math inline">\(S\)</span>本身去估计其代表性, 一个自然地想法是将<span class="math inline">\(S\)</span>分成两个不相交的子集<span class="math inline">\(S=S_1\cup S_2\)</span>, <span class="math inline">\(S_1\)</span>作为验证集, <span class="math inline">\(S_2\)</span>作为训练集, 此时训练集代表性的一个近似为:<span class="math display">\[\sup_{f\in\mathcal{F}}(L_{\mathcal{S_1}}(f)-L_{S_2}(f))\]</span>再设多元随机变量<span class="math inline">\(\sigma=(\sigma_1, \sigma_2,...,\sigma_m)\in\{\pm 1\}^m\)</span>, 并令<span class="math inline">\(S_1=\{z_i:\sigma_i=1\}\)</span>, <span class="math inline">\(S_2=\{z_i:\sigma_i=-1\}\)</span>, 那么上式可写成更简单的形式:<span class="math display">\[\frac{1}{m}\sup_{f\in\mathcal{F}}\sum_{i=1}^m \sigma_i f(z_i)\]</span> <strong>拉德马赫复杂度</strong>定义为上式近似对随机变量<span class="math inline">\(\sigma\)</span>的期望:<span class="math display">\[R(\mathcal{F}\circ S)\doteq\frac{1}{m}\mathop{\mathbb{E}}_{\sigma\sim\{\pm 1\}^m} [\sup_{f\in\mathcal{F}}\sum_{i=1}^m \sigma_i f(z_i)]\]</span>可以证明, 在期望意义下, 集合<span class="math inline">\(S\)</span>的代表性不超过2倍的拉德马赫复杂度<span class="math display">\[\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[Rep_{\mathcal{D}}(\mathcal{F}, S)]\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(\mathcal{F}\circ S)]\]</span>证明见Understanding machine learning一书引理26.2.</p>
+<hr />
+<h3 id="数据相关界">数据相关界</h3>
+<p>首先来看一个重要的不等式, 有限偏差集中不等式, 又称<a href="https://en.wikipedia.org/wiki/Doob_martingale#McDiarmid&#39;s_inequality" target="_blank" rel="noopener">McDiarmid 不等式</a>, 这个不等式可见维基, 这个不等式可用来推出一个与训练集<span class="math inline">\(S\)</span>相关的界: &gt; 假设对所有的<span class="math inline">\(z\)</span>和<span class="math inline">\(h\in\mathcal{H}\)</span>, <span class="math inline">\(|l(h, z)|\le c\)</span>, 那么以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(l \circ \mathcal{H}\circ S)]+c\sqrt{\frac{2\log(2/\delta)}{m}}\]</span>以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2R(l \circ \mathcal{H}\circ S)+3c\sqrt{\frac{2\log(4/\delta)}{m}}\]</span> 以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))-L_{\mathcal{D}}(h)\le 2R(l \circ \mathcal{H}\circ S)+4c\sqrt{\frac{2\log(8/\delta)}{m}}\]</span></p>
+<p>有兴趣的朋友不妨试着去推一推, 上述1, 2的界的推导类似于西瓜书定理12.5, 唯一不同的是这里满足在常数为<span class="math inline">\(2c/m\)</span>下的有界偏差条件, 而西瓜书直接为1; 第三个不等式则是多一步霍夫丁不等式.</p>
+<ul>
+<li>注意到第2, 3个界实际上由具体的训练集<span class="math inline">\(S\)</span>计算出来的, 因此这两个界被称为是数据相关界, 这也是与VC bound最大的不同之处.</li>
+<li>第二个界可以用来评估当前分类器<span class="math inline">\(h\)</span>在实际数据集<span class="math inline">\(\mathcal{D}\)</span>上的表现, 即<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>.</li>
+<li>第三个界可以用来评估利用ERM原则得到的分类器<span class="math inline">\(h\)</span>与理论最佳分类器的实际差距, 因此希望这个界越小越好; 显然假设类<span class="math inline">\(\mathcal{H}\)</span>越复杂, 这个界越大, 因此某种意义上这个界能用来评估假设类<span class="math inline">\(\mathcal{H}\)</span>的优劣.</li>
+</ul>
+<hr />
+<h3 id="拉德马赫复杂度的性质">拉德马赫复杂度的性质</h3>
+<p>首先给出拉德马赫复杂度的更一般化定义: 给定一个向量集合<span class="math inline">\(A\in\mathbb{R}^m\)</span> <span class="math display">\[R(A)\doteq\frac{1}{m}\mathop{\mathbb{E}}_{\sigma\sim\{\pm 1\}^m} [\sup_{a\in A}\sum_{i=1}^m \sigma_i a_i]\]</span>这里例举拉德马赫复杂度的几条性质, 具体见Understanding machine learning一书26章:</p>
+<ul>
+<li>A的凸包与A具有一样的拉德马赫复杂度.</li>
+<li>一个有限集合的拉德马赫复杂度随着集合大小增长而对数增长.</li>
+<li>如果给集合A作用一个利普希兹函数, 并不会增大其拉德马赫复杂度.</li>
+</ul>
+<hr />
+<h3 id="线性类的拉德马赫复杂度">线性类的拉德马赫复杂度</h3>
+<p>本节给出两个线性的假设类的拉德马赫复杂度, 假定<span class="math inline">\(x\)</span>的维数为<span class="math inline">\(n\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\mathcal{H}_1=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_1\le 1\}\)</span></li>
+<li><span class="math inline">\(\mathcal{H}_2=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_2\le 1\}\)</span></li>
+</ul>
+<p><span class="math inline">\(\mathcal{H}_1\circ S\)</span>定义为<span class="math inline">\(\{(&lt;\omega, x_i&gt;, i=1...,m):\Vert\omega\Vert_1\le 1\}\)</span>, <span class="math inline">\(\mathcal{H}_2\circ S\)</span>类似的定义, 有如下两个结果: - <span class="math inline">\(R(\mathcal{H}_1\circ S) \le \max_i\Vert x_i\Vert_{\infty}\sqrt{\frac{2\log(2n)}{m}}\)</span> - <span class="math inline">\(R(\mathcal{H}_2\circ S) \le\frac{\max_i\Vert x_i\Vert_2}{\sqrt{m}}\)</span></p>
+<p><strong>p.s.</strong> 此外还有软硬间隔SVM的泛化误差界的推导, 见26.3, 26.4; 另一种度量集合复杂度的方法为覆盖数, 见27章.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/" rel="tag"># 拉德马赫复杂度</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/10/23/%E9%AB%98%E6%95%88%E8%83%BD%E4%BA%BA%E5%A3%AB%E7%9A%84%E4%B8%83%E4%B8%AA%E4%B9%A0%E6%83%AF-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="prev" title="高效能人士的七个习惯-读书笔记">
+      <i class="fa fa-chevron-left"></i> 高效能人士的七个习惯-读书笔记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/12/23/Ubuntu1604%E4%B8%8B%E4%BE%BF%E6%8D%B7%E5%AE%89%E8%A3%85tensorflow/" rel="next" title="Ubuntu16.04下便捷安装tensorflow">
+      Ubuntu16.04下便捷安装tensorflow <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#训练集的代表性与拉德马赫复杂度"><span class="nav-number">1.</span> <span class="nav-text">训练集的代表性与拉德马赫复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据相关界"><span class="nav-number">2.</span> <span class="nav-text">数据相关界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拉德马赫复杂度的性质"><span class="nav-number">3.</span> <span class="nav-text">拉德马赫复杂度的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性类的拉德马赫复杂度"><span class="nav-number">4.</span> <span class="nav-text">线性类的拉德马赫复杂度</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">msgsxj</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/msgsxj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;msgsxj" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:msgsxj@gmail.com" title="E-Mail → mailto:msgsxj@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">msgsxj</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+</body>
+</html>

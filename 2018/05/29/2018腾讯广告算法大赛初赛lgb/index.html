@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-fruit.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-fruit.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-fruit.png">
+  <link rel="mask-icon" href="/images/logo.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="前言:最近参加了2018腾讯广告算法大赛,虽然没进复赛,但也花了不少时间,算是为下次参加比赛试试水,最终初赛线上最好成绩是0.745764,特此记录.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018腾讯广告算法大赛初赛lgb">
+<meta property="og:url" content="http://yoursite.com/2018/05/29/2018%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A%E7%AE%97%E6%B3%95%E5%A4%A7%E8%B5%9B%E5%88%9D%E8%B5%9Blgb/index.html">
+<meta property="og:site_name" content="msgsxj&#39;blog">
+<meta property="og:description" content="前言:最近参加了2018腾讯广告算法大赛,虽然没进复赛,但也花了不少时间,算是为下次参加比赛试试水,最终初赛线上最好成绩是0.745764,特此记录.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/pictures/p2.png">
+<meta property="article:published_time" content="2018-05-29T15:36:56.000Z">
+<meta property="article:modified_time" content="2020-01-01T07:17:46.792Z">
+<meta property="article:author" content="msgsxj">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/pictures/p2.png">
+
+<link rel="canonical" href="http://yoursite.com/2018/05/29/2018%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A%E7%AE%97%E6%B3%95%E5%A4%A7%E8%B5%9B%E5%88%9D%E8%B5%9Blgb/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>2018腾讯广告算法大赛初赛lgb | msgsxj'blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148974741-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-148974741-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?de439caa3b6ff1c75c24155f1c47fc77";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">msgsxj'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/29/2018%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A%E7%AE%97%E6%B3%95%E5%A4%A7%E8%B5%9B%E5%88%9D%E8%B5%9Blgb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="msgsxj">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="msgsxj'blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2018腾讯广告算法大赛初赛lgb
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-05-29 23:36:56" itemprop="dateCreated datePublished" datetime="2018-05-29T23:36:56+08:00">2018-05-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-01 15:17:46" itemprop="dateModified" datetime="2020-01-01T15:17:46+08:00">2020-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>前言:最近参加了2018腾讯广告算法大赛,虽然没进复赛,但也花了不少时间,算是为下次参加比赛试试水,最终初赛线上最好成绩是0.745764,特此记录.</p>
+<a id="more"></a>
+<p>主要参考了<a href="https://github.com/YouChouNoBB/2018-tencent-ad-competition-baseline" target="_blank" rel="noopener">bryan开源</a>的lgb模型,代码如下:</p>
+<h2 id="code">code</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> lightgbm <span class="keyword">as</span> lgb</span><br><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> CountVectorizer</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> OneHotEncoder,LabelEncoder</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> sparse</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> gc</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line">homedir = os.getcwd()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getdata</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"read data"</span>)</span><br><span class="line">    adFeature = pd.read_csv(homedir + <span class="string">'\\data\\adFeature.csv'</span>) <span class="comment">#7KB</span></span><br><span class="line">    test1 = pd.read_csv(homedir + <span class="string">'\\data\\test2.csv'</span>)<span class="comment"># 29MB</span></span><br><span class="line">    train = pd.read_csv(homedir + <span class="string">'\\data\\train.csv'</span>) <span class="comment"># 140MB</span></span><br><span class="line">    <span class="keyword">if</span> os.path.exists(homedir + <span class="string">'\\data\\userFeature_csv\\userFeature_11.csv'</span>):</span><br><span class="line">        userFeature = pd.read_csv(homedir + <span class="string">'\\data\\userFeature_csv\\userFeature_0.csv'</span>)</span><br><span class="line">        print(<span class="string">"read one million"</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">11</span>):</span><br><span class="line">            userFeature = userFeature.append(pd.read_csv(homedir + <span class="string">'\\data\\userFeature_csv\\userFeature_'</span> + str(i+<span class="number">1</span>) + <span class="string">'.csv'</span>))</span><br><span class="line">            print(<span class="string">"read one million"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        userFeature_list = []</span><br><span class="line">        userFeature = []</span><br><span class="line">        <span class="keyword">with</span> open(homedir + <span class="string">'\\data\\userFeature.data'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f: <span class="comment"># 4173MB</span></span><br><span class="line">            <span class="keyword">for</span> i, line <span class="keyword">in</span> enumerate(f):</span><br><span class="line">                line = line.strip().split(<span class="string">'|'</span>)</span><br><span class="line">                userFeature_dict = &#123;&#125;</span><br><span class="line">                <span class="keyword">for</span> each <span class="keyword">in</span> line:</span><br><span class="line">                    each_list = each.split(<span class="string">' '</span>)</span><br><span class="line">                    userFeature_dict[each_list[<span class="number">0</span>]] = <span class="string">' '</span>.join(each_list[<span class="number">1</span>:])</span><br><span class="line">                userFeature_list.append(userFeature_dict)</span><br><span class="line">                <span class="keyword">if</span> i % <span class="number">100000</span> == <span class="number">0</span>:</span><br><span class="line">                    print(i)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">11</span>):</span><br><span class="line">            userFeature_temp = pd.DataFrame(userFeature_list[i*<span class="number">1000000</span>:(i+<span class="number">1</span>)*<span class="number">1000000</span>])</span><br><span class="line">            userFeature_temp.to_csv(homedir + <span class="string">'\\data\\userFeature_csv\\userFeature_'</span> + str(i) + <span class="string">'.csv'</span>, index=<span class="literal">False</span>)</span><br><span class="line">            print(<span class="string">"save one million"</span>)</span><br><span class="line">            <span class="keyword">del</span> userFeature_temp</span><br><span class="line">            gc.collect()</span><br><span class="line">        userFeature_temp = pd.DataFrame(userFeature_list[<span class="number">11000000</span>:])</span><br><span class="line">        userFeature_temp.to_csv(homedir + <span class="string">'\\data\\userFeature_csv\\userFeature_11.csv'</span>, index=<span class="literal">False</span>)</span><br><span class="line">        print(<span class="string">"save as csv successfully"</span>)</span><br><span class="line">        <span class="keyword">del</span> userFeature_temp</span><br><span class="line">        gc.collect()</span><br><span class="line">    <span class="keyword">return</span> mergedata(adFeature, test1, train, userFeature)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mergedata</span><span class="params">(adFeature, test1, train, userFeature)</span>:</span></span><br><span class="line">    print(<span class="string">"merge data and set na as -1"</span>)</span><br><span class="line">    train.loc[train[<span class="string">'label'</span>]==<span class="number">-1</span>, <span class="string">'label'</span>] = <span class="number">0</span></span><br><span class="line">    test1[<span class="string">'label'</span>] = <span class="number">-1</span></span><br><span class="line">    data = pd.concat([train, test1])</span><br><span class="line">    data = pd.merge(data, adFeature, on=<span class="string">'aid'</span>, how=<span class="string">'left'</span>)</span><br><span class="line">    data = pd.merge(data, userFeature, on=<span class="string">'uid'</span>, how=<span class="string">'left'</span>)</span><br><span class="line">    data = data.fillna(<span class="string">'-1'</span>)</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">batch_predict</span><span class="params">(data,index)</span>:</span></span><br><span class="line">    one_hot_feature=[<span class="string">'LBS'</span>,<span class="string">'age'</span>,<span class="string">'carrier'</span>,<span class="string">'consumptionAbility'</span>,<span class="string">'education'</span>,<span class="string">'gender'</span>,<span class="string">'house'</span>,<span class="string">'os'</span>,<span class="string">'ct'</span>,<span class="string">'marriageStatus'</span>,<span class="string">'advertiserId'</span>,<span class="string">'campaignId'</span>, <span class="string">'creativeId'</span>,</span><br><span class="line">           <span class="string">'adCategoryId'</span>, <span class="string">'productId'</span>, <span class="string">'productType'</span>]</span><br><span class="line">    vector_feature=[<span class="string">'appIdAction'</span>,<span class="string">'appIdInstall'</span>,<span class="string">'interest1'</span>,<span class="string">'interest2'</span>,<span class="string">'interest3'</span>,<span class="string">'interest4'</span>,<span class="string">'interest5'</span>,<span class="string">'kw1'</span>,<span class="string">'kw2'</span>,<span class="string">'kw3'</span>,<span class="string">'topic1'</span>,<span class="string">'topic2'</span>,<span class="string">'topic3'</span>]</span><br><span class="line">    <span class="keyword">for</span> feature <span class="keyword">in</span> one_hot_feature:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            data[feature] = LabelEncoder().fit_transform(data[feature].apply(int))</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            data[feature] = LabelEncoder().fit_transform(data[feature])</span><br><span class="line"></span><br><span class="line">    train=data[data.label!=<span class="number">-1</span>]</span><br><span class="line">    train_y=train.pop(<span class="string">'label'</span>)</span><br><span class="line">    test=data[data.label==<span class="number">-1</span>]</span><br><span class="line">    res=test[[<span class="string">'aid'</span>,<span class="string">'uid'</span>]]</span><br><span class="line">    test=test.drop(<span class="string">'label'</span>,axis=<span class="number">1</span>)</span><br><span class="line">    enc = OneHotEncoder()</span><br><span class="line">    train_x=train[[<span class="string">'creativeSize'</span>]]</span><br><span class="line">    test_x=test[[<span class="string">'creativeSize'</span>]]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> feature <span class="keyword">in</span> one_hot_feature:</span><br><span class="line">        enc.fit(data[feature].values.reshape(<span class="number">-1</span>, <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">del</span> data[feature]</span><br><span class="line">        gc.collect()</span><br><span class="line">        train_a = enc.transform(train[feature].values.reshape(<span class="number">-1</span>, <span class="number">1</span>))</span><br><span class="line">        test_a = enc.transform(test[feature].values.reshape(<span class="number">-1</span>, <span class="number">1</span>))</span><br><span class="line">        train_x = sparse.hstack((train_x, train_a))</span><br><span class="line">        test_x = sparse.hstack((test_x, test_a))</span><br><span class="line">        print(feature+<span class="string">' finish'</span>)</span><br><span class="line"></span><br><span class="line">    cv=CountVectorizer()</span><br><span class="line">    <span class="keyword">for</span> feature <span class="keyword">in</span> vector_feature:</span><br><span class="line">        cv.fit(data[feature])</span><br><span class="line">        <span class="keyword">del</span> data[feature]</span><br><span class="line">        gc.collect()</span><br><span class="line">        train_a = cv.transform(train[feature])</span><br><span class="line">        test_a = cv.transform(test[feature])</span><br><span class="line">        train_x = sparse.hstack((train_x, train_a))</span><br><span class="line">        test_x = sparse.hstack((test_x, test_a))</span><br><span class="line">        print(feature + <span class="string">' finish'</span>)</span><br><span class="line">    <span class="keyword">del</span> data</span><br><span class="line">    gc.collect()</span><br><span class="line">    <span class="keyword">return</span> LGB_predict(train_x, train_y, test_x, res, index)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LGB_predict</span><span class="params">(train_x, train_y, test_x, res, index)</span>:</span></span><br><span class="line">    print(<span class="string">"split train data as train and eval"</span>)</span><br><span class="line">    train_x, evals_x, train_y, evals_y = train_test_split(train_x, train_y,test_size=<span class="number">0.2</span>)</span><br><span class="line">    gc.collect()</span><br><span class="line">    clf = lgb.LGBMClassifier(</span><br><span class="line">        boosting_type=<span class="string">'gbdt'</span>, num_leaves=<span class="number">127</span>, reg_alpha=<span class="number">10</span>, reg_lambda=<span class="number">10</span>,</span><br><span class="line">        max_depth=<span class="number">8</span>, n_estimators=<span class="number">10000</span>, objective=<span class="string">'binary'</span>, metric= <span class="string">'binary_logloss'</span>,</span><br><span class="line">        subsample=<span class="number">0.7</span>, colsample_bytree=<span class="number">0.7</span>, subsample_freq=<span class="number">1</span>,</span><br><span class="line">        learning_rate=<span class="number">0.05</span>, min_child_weight=<span class="number">20</span>, random_state=<span class="number">2018</span>, n_jobs=<span class="number">-1</span></span><br><span class="line">    )</span><br><span class="line">    clf.fit(train_x, train_y, eval_set=[(evals_x, evals_y)], eval_metric=<span class="string">'auc'</span>,early_stopping_rounds=<span class="number">200</span>)</span><br><span class="line">    print(<span class="string">"predict"</span>)</span><br><span class="line">    res[<span class="string">'score'</span>+str(index)] = clf.predict_proba(test_x)[:,<span class="number">1</span>]</span><br><span class="line">    res[<span class="string">'score'</span>+str(index)] = res[<span class="string">'score'</span>+str(index)].apply(<span class="keyword">lambda</span> x: float(<span class="string">'%.6f'</span> % x))</span><br><span class="line">    auc_valid = clf.evals_result_[<span class="string">'valid_0'</span>][<span class="string">'auc'</span>]</span><br><span class="line">    print(<span class="string">"save valid auc curve"</span>)</span><br><span class="line">    plt.figure(figsize=(<span class="number">60</span>, <span class="number">40</span>))</span><br><span class="line">    plt.plot(auc_valid)</span><br><span class="line">    plt.title(max(clf.evals_result_[<span class="string">'valid_0'</span>][<span class="string">'auc'</span>]))</span><br><span class="line">    plt.savefig(<span class="string">'./picture/'</span>+ str(i) + <span class="string">'.png'</span>)</span><br><span class="line">    plt.show()</span><br><span class="line">    gc.collect()</span><br><span class="line">    res=res.reset_index(drop=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> res[<span class="string">'score'</span>+str(index)]</span><br><span class="line"></span><br><span class="line"><span class="comment">#数据分片处理，对每片分别训练预测，然后求平均</span></span><br><span class="line">data=getdata()</span><br><span class="line">train=data[data[<span class="string">'label'</span>]!=<span class="number">-1</span>]</span><br><span class="line">test=data[data[<span class="string">'label'</span>]==<span class="number">-1</span>]</span><br><span class="line"><span class="keyword">del</span> data</span><br><span class="line">gc.collect()</span><br><span class="line">predict=pd.read_csv(<span class="string">'./data/test2.csv'</span>)</span><br><span class="line">print(<span class="string">"分片"</span>)</span><br><span class="line">cnt = <span class="number">1</span></span><br><span class="line">size = math.ceil(len(train) / cnt)</span><br><span class="line">result=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(cnt):</span><br><span class="line">    start = size * i</span><br><span class="line">    end = (i + <span class="number">1</span>) * size <span class="keyword">if</span> (i + <span class="number">1</span>) * size &lt; len(train) <span class="keyword">else</span> len(train)</span><br><span class="line">    slice = train[start:end]</span><br><span class="line">    result.append(batch_predict(pd.concat([slice,test]),i))</span><br><span class="line">    print(str(i),<span class="string">'/'</span>,str(cnt))</span><br><span class="line">    gc.collect()</span><br><span class="line"></span><br><span class="line">result=pd.concat(result,axis=<span class="number">1</span>)</span><br><span class="line">result[<span class="string">'score'</span>]=np.mean(result,axis=<span class="number">1</span>)</span><br><span class="line">result[<span class="string">'score'</span>] = result[<span class="string">'score'</span>].apply(<span class="keyword">lambda</span> x: float(<span class="string">'%.6f'</span> % x))</span><br><span class="line">result=result.reset_index(drop=<span class="literal">True</span>)</span><br><span class="line">print(<span class="string">"save as csv"</span>)</span><br><span class="line">result=pd.concat([predict[[<span class="string">'aid'</span>,<span class="string">'uid'</span>]].reset_index(drop=<span class="literal">True</span>),result[<span class="string">'score'</span>]],axis=<span class="number">1</span>)</span><br><span class="line">result[[<span class="string">'aid'</span>,<span class="string">'uid'</span>,<span class="string">'score'</span>]].to_csv(<span class="string">'./submission.csv'</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<hr />
+<h2 id="hyperparameters">hyperparameters</h2>
+<p>这里给出调参的一点心得,上述最关键lgb模型参数部分为: <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">clf = lgb.LGBMClassifier(</span><br><span class="line">    boosting_type=<span class="string">'gbdt'</span>, num_leaves=<span class="number">127</span>, reg_alpha=<span class="number">10</span>, reg_lambda=<span class="number">10</span>,</span><br><span class="line">    max_depth=<span class="number">8</span>, n_estimators=<span class="number">10000</span>, objective=<span class="string">'binary'</span>, metric= <span class="string">'binary_logloss'</span>,</span><br><span class="line">    subsample=<span class="number">0.7</span>, colsample_bytree=<span class="number">0.7</span>, subsample_freq=<span class="number">1</span>,</span><br><span class="line">    learning_rate=<span class="number">0.05</span>, min_child_weight=<span class="number">20</span>, random_state=<span class="number">2018</span>, n_jobs=<span class="number">-1</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure> 以超参数正则化项系数为例子:</p>
+<ol type="1">
+<li>第一次试验l1,l2正则化项系数均为1,线下0.760,线上0.7451</li>
+<li>第二次试验l1,l2正则化项系数均为10,线下0.759,线上0.7457</li>
+<li>第三次试验l1,l2正则化项系数均为100,线下0.740,线上0.7347</li>
+</ol>
+<p>显然第三次试验正则化系数加的过多导致严重欠拟合,对上述系数(1,10,100)取倒数,再取log可得(0,-1,-2),从第三次试验到第一次试验为正则化项系数减少方向,也即模型复杂程度增加方向,也即VC维增加方向(不清楚地朋友可以看我的第一篇博文博文统计学习基本定理的1.3.4节),故此时线下正确率可大致视为指数型递减,线上大致可视为二次曲线或某凸函数. 大致画出此时线上线下1-auc(auc为ROC曲线下方的面积大小,也是此次比赛评估模型优劣的参数)的图像,蓝线表示线下,绿线表示线上,由图像猜测第一次试验过拟合,第二次第三次试验欠拟合: <img src="/pictures/p2.png" alt="l1_l2" /></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/05/02/%E6%99%BA%E8%83%BD%E6%97%B6%E4%BB%A3-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="prev" title="智能时代-读书笔记">
+      <i class="fa fa-chevron-left"></i> 智能时代-读书笔记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/06/14/VC-bound/" rel="next" title="VC bound">
+      VC bound <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#code"><span class="nav-number">1.</span> <span class="nav-text">code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hyperparameters"><span class="nav-number">2.</span> <span class="nav-text">hyperparameters</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">msgsxj</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/msgsxj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;msgsxj" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:msgsxj@gmail.com" title="E-Mail → mailto:msgsxj@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">msgsxj</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

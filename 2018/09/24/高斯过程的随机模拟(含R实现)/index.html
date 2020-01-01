@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-fruit.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-fruit.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-fruit.png">
+  <link rel="mask-icon" href="/images/logo.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="前言: 读PRML一书的6.4节, 对图6.4中高斯过程的采用不同核函数模拟实现非常好奇, 同时也惊叹于高斯过程看上是几乎处处连续的性质, 于是尝试用R去模拟高斯过程.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高斯过程的随机模拟(含R实现)">
+<meta property="og:url" content="http://yoursite.com/2018/09/24/%E9%AB%98%E6%96%AF%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%A8%A1%E6%8B%9F(%E5%90%ABR%E5%AE%9E%E7%8E%B0)/index.html">
+<meta property="og:site_name" content="msgsxj&#39;blog">
+<meta property="og:description" content="前言: 读PRML一书的6.4节, 对图6.4中高斯过程的采用不同核函数模拟实现非常好奇, 同时也惊叹于高斯过程看上是几乎处处连续的性质, 于是尝试用R去模拟高斯过程.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/pictures/R/R_brown_motion.png">
+<meta property="og:image" content="http://yoursite.com/pictures/R/R_gauss_kernel.png">
+<meta property="og:image" content="http://yoursite.com/pictures/R/R_gausskernel_2.png">
+<meta property="og:image" content="http://yoursite.com/pictures/R/R_OUprocess.png">
+<meta property="article:published_time" content="2018-09-24T14:15:07.000Z">
+<meta property="article:modified_time" content="2020-01-01T06:42:59.243Z">
+<meta property="article:author" content="msgsxj">
+<meta property="article:tag" content="R">
+<meta property="article:tag" content="高斯过程">
+<meta property="article:tag" content="核函数">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/pictures/R/R_brown_motion.png">
+
+<link rel="canonical" href="http://yoursite.com/2018/09/24/%E9%AB%98%E6%96%AF%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%A8%A1%E6%8B%9F(%E5%90%ABR%E5%AE%9E%E7%8E%B0)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>高斯过程的随机模拟(含R实现) | msgsxj'blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148974741-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-148974741-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?de439caa3b6ff1c75c24155f1c47fc77";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">msgsxj'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/24/%E9%AB%98%E6%96%AF%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%A8%A1%E6%8B%9F(%E5%90%ABR%E5%AE%9E%E7%8E%B0)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="msgsxj">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="msgsxj'blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          高斯过程的随机模拟(含R实现)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-09-24 22:15:07" itemprop="dateCreated datePublished" datetime="2018-09-24T22:15:07+08:00">2018-09-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-01 14:42:59" itemprop="dateModified" datetime="2020-01-01T14:42:59+08:00">2020-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/R/" itemprop="url" rel="index">
+                    <span itemprop="name">R</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>前言: 读PRML一书的6.4节, 对图6.4中高斯过程的采用不同核函数模拟实现非常好奇, 同时也惊叹于高斯过程看上是几乎处处连续的性质, 于是尝试用R去模拟高斯过程. <a id="more"></a></p>
+<hr />
+<p>首先简单说明几点:</p>
+<ul>
+<li>经典的随机过程(stochastic process)的定义<span class="math inline">\(\{x_t, t\in T\}\)</span>可以简单理解为随机变量加上一个维度(比方说时间), 一般的, 时间视为不可数; 另外随机变量可以取实值, 复值, 向量值等, 但一般还是取实值.</li>
+<li>由随机变量的概率空间及状态空间出发去定义随机过程概率空间却不是那么方便, 这当中用到了Kolmogorov定理, 详见钱敏平的随机过程论1.1及1.2小节.</li>
+<li>另外一个重要定理可分修正表明, 任意随机过程都能修正为一个具有可分性的过程(即两者几乎处处相等), 而可分的随机过程其实带有一些连续性的味道, 可见钱敏平的随机过程论p11.</li>
+<li>高斯过程则是任意有限维时间的联合分布(<span class="math inline">\(\{x_{t_1}, x_{t_2},...,x_{t_k}\}\)</span>, 其中<span class="math inline">\(t_1,..,t_k, k\)</span>均任取)为多元正态分布的随机过程, 可见<a href="https://en.wikipedia.org/wiki/Gaussian_process" target="_blank" rel="noopener">维基百科</a>.</li>
+<li>补充一点, 随机场(<a href="https://en.wikipedia.org/wiki/Random_field" target="_blank" rel="noopener">random field</a>)则是可以视为随机过程的一般化, 即此时添加的可能不仅仅是一维的时间, 而是多维向量; 而高斯随机场(Gaussian random field)则是有限维联合分布为多元正态分布的随机场.</li>
+<li>在现代数学中, 随机过程这个概念等同于随机场(参见随机场的维基百科).</li>
+</ul>
+<hr />
+<p>容易知道, 多元正态分布仅仅依赖于它的期望<span class="math inline">\(\mu\)</span>与协方差矩阵<span class="math inline">\(\Sigma\)</span>, 因此如果我们能对任意有限维分布给出期望<span class="math inline">\(\mu\)</span>与协方差矩阵<span class="math inline">\(\Sigma\)</span>, 高斯过程也就给定了.</p>
+<p>一种思路是假定<span class="math inline">\(\mu=0\)</span>, <span class="math inline">\(\Sigma=K\)</span>, 其中<span class="math inline">\(K_{ij}=k(t_i, t_j)\)</span>, 下面给出<span class="math inline">\(k(t_i, t_j)\)</span>的三种形式:</p>
+<ul>
+<li><span class="math inline">\(k(t_i, t_j)=\min\{t_i, t_j\}\)</span>, 此时高斯过程即为维纳过程, 或者说布朗运动, 高斯过程的R模拟图像如下:
+<div data-align="center">
+<img src="/pictures/R/R_brown_motion.png" width="80%" />
+</div></li>
+<li><span class="math inline">\(k(t_i, t_j)=\exp(-\Vert t_i-t_j\Vert/2\sigma^2)\)</span>, 这个函数又被称为高斯核, 取<span class="math inline">\(2\sigma^2=1\)</span>, 高斯过程的R模拟图像如下:
+<div data-align="center">
+<img src="/pictures/R/R_gauss_kernel.png" width="80%" />
+</div>
+取<span class="math inline">\(2\sigma^2=1/16\)</span>, 高斯过程的R模拟图像又如下:
+<div data-align="center">
+<img src="/pictures/R/R_gausskernel_2.png" width="80%" />
+</div></li>
+<li><span class="math inline">\(k(t_i, t_j)=\exp(-\theta\Vert t_i-t_j\Vert)\)</span>, 此时高斯过程即为<a href="https://en.wikipedia.org/wiki/Ornstein%E2%80%93Uhlenbeck_process" target="_blank" rel="noopener">Ornstein–Uhlenbeck过程</a>, 取<span class="math inline">\(\theta=1\)</span>, 高斯过程的R模拟图像如下:
+<div data-align="center">
+<img src="/pictures/R/R_OUprocess.png" width="80%" />
+</div></li>
+</ul>
+<p>最后附上R代码, 其中核心部分代码即<code>gaussprocess</code>函数, 这个函数即先根据函数<span class="math inline">\(k(,)\)</span>去求对所有时间的协方差矩阵<span class="math inline">\(\Sigma\)</span>(计算机的计算必须离散化, 这里的模拟精度为<span class="math inline">\(t\in [0,1]\)</span>之间有1000个数), 再用<code>MASS</code>包中的<code>mvrnorm</code>函数去从多元正态分布中抽样: <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(ggplot2)</span><br><span class="line"><span class="keyword">library</span>(magrittr)</span><br><span class="line"><span class="keyword">library</span>(tidyverse)</span><br><span class="line">gaussprocess &lt;- <span class="keyword">function</span>(from = <span class="number">0</span>,</span><br><span class="line">                         to = <span class="number">1</span>,</span><br><span class="line">                         K = <span class="keyword">function</span>(s, t) &#123;min(s, t)&#125;,</span><br><span class="line">                         start = <span class="literal">NULL</span>,</span><br><span class="line">                         m = <span class="number">2000</span>) &#123;</span><br><span class="line">    t &lt;- seq(from = from, to = to, length.out = m)</span><br><span class="line">    Sigma &lt;- sapply(t, <span class="keyword">function</span>(s1) &#123;</span><br><span class="line">        sapply(t, <span class="keyword">function</span>(s2) &#123;</span><br><span class="line">            K(s1, s2)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">    path &lt;- MASS::mvrnorm(mu = rep(<span class="number">0</span>, times = m), Sigma = Sigma)</span><br><span class="line">    <span class="keyword">if</span> (!is.null(start)) &#123;</span><br><span class="line">        path &lt;- path - path[<span class="number">1</span>] + start  <span class="comment"># Must always start at "start"</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>(data.frame(<span class="string">"t"</span> = t, <span class="string">"xt"</span> = path))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">## 维纳过程</span></span><br><span class="line">plot_1 &lt;- <span class="keyword">function</span>(times = <span class="number">5</span>) &#123;</span><br><span class="line">    data &lt;- gaussprocess()</span><br><span class="line">    data[<span class="string">'id'</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:(times-<span class="number">1</span>))&#123;</span><br><span class="line">        temp &lt;- gaussprocess()</span><br><span class="line">        temp[<span class="string">'id'</span>] = i</span><br><span class="line">        data &lt;- rbind(data, temp)</span><br><span class="line">    &#125;</span><br><span class="line">    data[<span class="string">'id'</span>]</span><br><span class="line">    ggplot(data = data, aes(x = t, y = xt, color = id, group = id)) + geom_line()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">plot_1(times = <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## 高斯过程</span></span><br><span class="line">plot_2 &lt;- <span class="keyword">function</span>(times = <span class="number">5</span>) &#123;</span><br><span class="line">    data &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t) &#123;exp(-<span class="number">16</span> * (s - t) ^ <span class="number">2</span>)&#125;)</span><br><span class="line">    data[<span class="string">'id'</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:(times-<span class="number">1</span>))&#123;</span><br><span class="line">        temp &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t) &#123;exp(-<span class="number">16</span> * (s - t) ^ <span class="number">2</span>)&#125;)</span><br><span class="line">        temp[<span class="string">'id'</span>] = i</span><br><span class="line">        data &lt;- rbind(data, temp)</span><br><span class="line">    &#125;</span><br><span class="line">    data[<span class="string">'id'</span>]</span><br><span class="line">    ggplot(data = data, aes(x = t, y = xt, color = id, group = id)) + geom_line()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">plot_2(times = <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## Ornstein-Uhlenbeck过程</span></span><br><span class="line">plot_3 &lt;- <span class="keyword">function</span>(times = <span class="number">5</span>) &#123;</span><br><span class="line">    data &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t)&#123;exp(-abs(s - t))&#125;)</span><br><span class="line">    data[<span class="string">'id'</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:(times-<span class="number">1</span>))&#123;</span><br><span class="line">        temp &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t)&#123;exp(-abs(s - t))&#125;)</span><br><span class="line">        temp[<span class="string">'id'</span>] = i</span><br><span class="line">        data &lt;- rbind(data, temp)</span><br><span class="line">    &#125;</span><br><span class="line">    data[<span class="string">'id'</span>]</span><br><span class="line">    ggplot(data = data, aes(x = t, y = xt, color = id, group = id)) + geom_line()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">plot_3(times = <span class="number">5</span>)</span><br></pre></td></tr></table></figure></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/R/" rel="tag"># R</a>
+              <a href="/tags/%E9%AB%98%E6%96%AF%E8%BF%87%E7%A8%8B/" rel="tag"># 高斯过程</a>
+              <a href="/tags/%E6%A0%B8%E5%87%BD%E6%95%B0/" rel="tag"># 核函数</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/09/18/MCMC/" rel="prev" title="MCMC">
+      <i class="fa fa-chevron-left"></i> MCMC
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/" rel="next" title="拉普拉斯方法">
+      拉普拉斯方法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">msgsxj</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/msgsxj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;msgsxj" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:msgsxj@gmail.com" title="E-Mail → mailto:msgsxj@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">msgsxj</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+</body>
+</html>

@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-fruit.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-fruit.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-fruit.png">
+  <link rel="mask-icon" href="/images/logo.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="来自coursera上约翰霍普金斯大学Data Science系列课程Course4:Exploratory Data Analysis.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Exploratory Data Analysis">
+<meta property="og:url" content="http://yoursite.com/2018/04/17/Exploratory-Data-Analysis/index.html">
+<meta property="og:site_name" content="msgsxj&#39;blog">
+<meta property="og:description" content="来自coursera上约翰霍普金斯大学Data Science系列课程Course4:Exploratory Data Analysis.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/pictures/R/base_ex1.png">
+<meta property="og:image" content="http://yoursite.com/pictures/R/base_ex2.png">
+<meta property="og:image" content="http://yoursite.com/pictures/R/lattice_ex1.png">
+<meta property="og:image" content="http://yoursite.com/pictures/R/lattice_ex2.png">
+<meta property="og:image" content="http://yoursite.com/pictures/R/ggplot2_ex1.png">
+<meta property="og:image" content="http://yoursite.com/pictures/R/ggplot2_ex2.png">
+<meta property="og:image" content="http://yoursite.com/pictures/R/ggplot2_ex3.png">
+<meta property="og:image" content="http://yoursite.com/pictures/R/ggplot2_ex4.png">
+<meta property="og:image" content="http://yoursite.com/pictures/R/ggplot2_ex5.png">
+<meta property="og:image" content="http://yoursite.com/pictures/R/ggplot2_ex6.png">
+<meta property="og:image" content="http://yoursite.com/pictures/R/color_1.png">
+<meta property="og:image" content="http://yoursite.com/pictures/R/color_2.png">
+<meta property="og:image" content="http://yoursite.com/pictures/R/color_3.png">
+<meta property="article:published_time" content="2018-04-17T13:54:40.000Z">
+<meta property="article:modified_time" content="2020-01-01T07:31:48.694Z">
+<meta property="article:author" content="msgsxj">
+<meta property="article:tag" content="R">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/pictures/R/base_ex1.png">
+
+<link rel="canonical" href="http://yoursite.com/2018/04/17/Exploratory-Data-Analysis/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Exploratory Data Analysis | msgsxj'blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148974741-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-148974741-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?de439caa3b6ff1c75c24155f1c47fc77";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">msgsxj'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/17/Exploratory-Data-Analysis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="msgsxj">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="msgsxj'blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Exploratory Data Analysis
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-04-17 21:54:40" itemprop="dateCreated datePublished" datetime="2018-04-17T21:54:40+08:00">2018-04-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-01 15:31:48" itemprop="dateModified" datetime="2020-01-01T15:31:48+08:00">2020-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/R/" itemprop="url" rel="index">
+                    <span itemprop="name">R</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>来自coursera上约翰霍普金斯大学Data Science系列课程Course4:Exploratory Data Analysis. <a id="more"></a></p>
+<hr />
+<h1 id="princlples-of-analytic-graphics">Princlples of Analytic Graphics</h1>
+<ol type="1">
+<li>Show comparisons compared to what(PM25 in house with aircleaner compared to without aircleaner)</li>
+<li>Show casuality, mechanism, explanation show how you believe the world works(show you believe child living in house with lower pm25 is more likely to be healthy)</li>
+<li>Show multivariate Data more than 2 variables</li>
+<li>Integrate multiple models of evidence don't let the tools drive the analysis(plot depend on your own idea, not the tools)</li>
+<li>Describe and document the evidence</li>
+<li>Content is king</li>
+</ol>
+<hr />
+<h1 id="take-a-look-at-the-data">Take a Look at the Data</h1>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(datasets)</span><br><span class="line">data(airquality)</span><br></pre></td></tr></table></figure>
+<h2 id="one-dimension">One dimension</h2>
+<ol type="1">
+<li>Summary <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">summary(airquality$Ozone) <span class="comment"># 臭氧</span></span><br></pre></td></tr></table></figure></li>
+<li>Boxplots <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">boxplot(airquality$Ozone, col = <span class="string">"blue"</span>)</span><br><span class="line">abline(h = <span class="number">100</span>)</span><br></pre></td></tr></table></figure></li>
+<li>Historgrams <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hist(airquality$Ozone, col = <span class="string">"green"</span>, breaks = <span class="number">100</span>)</span><br><span class="line">abline(v = <span class="number">100</span>, lwd = <span class="number">2</span>)</span><br><span class="line">abline(v = median(airquality$Ozone), col = <span class="string">"magenta"</span>, lwd = <span class="number">4</span>)</span><br><span class="line">rug(airquality$Ozone)</span><br></pre></td></tr></table></figure></li>
+<li>Barplot <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">barplot(table(airquality$Month),col = <span class="string">"wheat"</span>)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="two-dimensions">Two dimensions</h2>
+<ol type="1">
+<li>Multiple Boxplots <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boxplot(Ozone ~ Month, data = airquality, col = <span class="string">"red"</span>)</span><br></pre></td></tr></table></figure></li>
+<li>Multiple Historgrams <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">par(mfrow = c(<span class="number">2</span>,<span class="number">1</span>), mar = c(<span class="number">4</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>))</span><br><span class="line">hist(subset(airquality, Month == <span class="number">5</span>)$Ozone, col = <span class="string">"green"</span>)</span><br><span class="line">hist(subset(airquality, Month == <span class="number">8</span>)$Ozone, col = <span class="string">"green"</span>)</span><br></pre></td></tr></table></figure></li>
+<li>Scatterplot <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">par(mfrow = c(<span class="number">1</span>,<span class="number">1</span>))</span><br><span class="line">with(airquality, plot(Solar.R, Ozone, col = Month))</span><br><span class="line">legend(<span class="string">"topright"</span>, pch = <span class="number">1</span>, col = c(<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>), legend = c(<span class="string">"5月"</span>, <span class="string">"6月"</span>, <span class="string">"7月"</span>, <span class="string">"8月"</span>, <span class="string">"9月"</span>))</span><br><span class="line">abline(h = <span class="number">100</span>, lwd = <span class="number">2</span>, lty = <span class="number">2</span>)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr />
+<h1 id="plotting-systems-in-r">Plotting Systems in R</h1>
+<h2 id="base-plotting-system">Base Plotting System</h2>
+<ul>
+<li>Base:artist's palette model, and usually needs two steps to create a plot</li>
+<li>representative:plot()</li>
+</ul>
+<h3 id="two-packages">Two packages</h3>
+<ul>
+<li>graphics(including plot, hist, boxplot, etc)</li>
+<li>grDevices(including X11, PDF, PostScript, PNG, etc)</li>
+</ul>
+<h3 id="two-steps-to-create-a-base-plot">Two steps to create a base plot</h3>
+<ul>
+<li>Initializing a new plot <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(datasets)</span><br><span class="line">with(airquality, plot(Wind, Ozone)) <span class="comment"># Scatterplot</span></span><br></pre></td></tr></table></figure></li>
+<li>Annotation an existing plot <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">model &lt;- lm(Ozone ~ Wind, airquality)</span><br><span class="line">abline(model, lwd = <span class="number">2</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="base-plotting-functions">Base Plotting Functions</h3>
+<h4 id="initialize">Initialize</h4>
+<ul>
+<li>plot:initialize a new plot</li>
+<li>hist:initialize a new hist</li>
+<li>boxplot:initialize a new boxplot</li>
+</ul>
+<h4 id="add">Add</h4>
+<ul>
+<li>lines:add lines to a plot</li>
+<li>abline:add lines to a plot</li>
+<li>points:add points to a plot</li>
+<li>text:add text labels to a plot using specified x, y coordinates</li>
+<li>title:add annotations to x, y axis labels, title, subtitle, outer margin</li>
+<li>mtext:add arbitrary text to the margins</li>
+<li>axis:add axis labels</li>
+</ul>
+<h3 id="some-important-base-graphics-parameters">Some Important Base Graphics Parameters</h3>
+<ul>
+<li>pch:the plotting symbol</li>
+<li>lty:the line type</li>
+<li>lwd:the line width</li>
+<li>col:color</li>
+<li>xlab:string for the xlab</li>
+<li>ylab:string for the ylab</li>
+<li>las:the orientation of the axis</li>
+<li>bg:thebackground color</li>
+<li>mar:the margin size</li>
+<li>oma:the outer margin size</li>
+<li>mfrow:number of plots per row, column</li>
+<li>mfcol:number of plots per row, column(differ in order)</li>
+</ul>
+<p>Default parameters:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">par(<span class="string">"bg"</span>) <span class="comment"># "transparent"</span></span><br><span class="line">par(<span class="string">"mar"</span>) <span class="comment"># 4 4 2 1</span></span><br></pre></td></tr></table></figure>
+<h3 id="examples">Examples</h3>
+<h4 id="examplelegend">Example:Legend</h4>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">with(airquality, plot(Wind, Ozone, main = <span class="string">"Ozone and Wind in New York"</span>, type = <span class="string">"n"</span>))</span><br><span class="line">with(subset(airquality, Month == <span class="number">5</span>), points(Wind, Ozone, col = <span class="string">"blue"</span>))</span><br><span class="line">with(subset(airquality, Month != <span class="number">5</span>), points(Wind, Ozone, col = <span class="string">"red"</span>))</span><br><span class="line">legend(<span class="string">"topright"</span>, pch = <span class="number">1</span>, col = c(<span class="string">"blue"</span>, <span class="string">"red"</span>), legend = c(<span class="string">"May"</span>, <span class="string">"Other Months"</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/base_ex1.png" /></p>
+<h4 id="examplemultiple-base-plots">Example:Multiple Base Plots</h4>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">par(mfrow = c(<span class="number">1</span>, <span class="number">3</span>), mar = c(<span class="number">4</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>), oma = c(<span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>))</span><br><span class="line">with(airquality, &#123;</span><br><span class="line">    plot(Wind, Ozone, main = <span class="string">"Ozone and Wind"</span>)</span><br><span class="line">    plot(Solar.R, Ozone, main = <span class="string">"Ozone and Solar Radiation"</span>)</span><br><span class="line">    plot(Temp, Ozone, main = <span class="string">"Ozone and Temperature"</span>)</span><br><span class="line">    mtext(<span class="string">"Ozone and Weather in New York"</span>, outer = <span class="literal">TRUE</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/base_ex2.png" /></p>
+<h2 id="the-lattice-system">The Lattice System</h2>
+<ul>
+<li>Lattice:Entire plot specified by one function</li>
+<li>useful for plotting high dimensional data(conditioning plots)</li>
+<li>different from base plot driectly to the graphics device, lattice plot returns an object of class <strong>trellis</strong> (and will be auto-printed)</li>
+<li>representative:xyplot()</li>
+</ul>
+<h3 id="two-packages-1">Two packages</h3>
+<ul>
+<li>lattice(including xyplot bwplot, levelplot, etc)</li>
+<li>grid(usually indirectedly called through lattice or ggplot2)</li>
+</ul>
+<h3 id="lattice-functions">Lattice Functions</h3>
+<ul>
+<li>xplot:create scatterplots</li>
+<li>bwplot:box-and-whiskers plots</li>
+<li>histogram:histograms</li>
+<li>stripplot:like a boxplot but with actual points</li>
+<li>dotplot:plot dots on "violin strings"</li>
+<li>splom:scatterplot matrix(like pairs in base plotting)</li>
+<li>levelplot, contourplot:for plotting "image" data</li>
+</ul>
+<h3 id="examples-1">Examples</h3>
+<h4 id="examplexyplot">Example:xyplot</h4>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(datasets)</span><br><span class="line"><span class="keyword">library</span>(lattice)</span><br><span class="line">state &lt;- data.frame(state.x77, region = state.region)</span><br><span class="line">xyplot(Life.Exp ~ Income | region, data = state, layout = c(<span class="number">4</span>, <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/lattice_ex1.png" /></p>
+<h4 id="exampleplane-functiuon">Example:plane functiuon</h4>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(lattice)</span><br><span class="line">set.seed(<span class="number">10</span>)</span><br><span class="line">x &lt;- rnorm(<span class="number">100</span>)</span><br><span class="line">f &lt;- rep(<span class="number">0</span>:<span class="number">1</span>, each = <span class="number">50</span>)</span><br><span class="line">y &lt;- x + f- f * x + rnorm(<span class="number">100</span>, sd = <span class="number">0.5</span>)</span><br><span class="line">f &lt;- factor(f, labels = c(<span class="string">"group1"</span>, <span class="string">"group2"</span>))</span><br><span class="line">xyplot(y ~ x | f, panel = <span class="keyword">function</span>(x, y, <span class="keyword">...</span>)&#123;</span><br><span class="line">    panel.xyplot(x, y, <span class="keyword">...</span>)</span><br><span class="line">    panel.lmline(x, y, col = <span class="number">2</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/lattice_ex2.png" /></p>
+<h2 id="the-ggplot2-system">The ggplot2 System</h2>
+<ul>
+<li>ggplot2:Mixed elements of Base and Lattice</li>
+<li>book<ggplot2>: In brief, thegrammar tells us that a statistical graphic is a mapping from data to aesthetic(美学) attributes(color, shape, size) of geometric objects (points, lines, bars).The plot may also contain statistical transformations of the data and is drawn on a specific corrdinate system.</li>
+<li>representative:qplot(), ggplot()</li>
+</ul>
+<h3 id="basic-components-of-a-ggplot2-plot">Basic Components of a ggplot2 Plot</h3>
+<ul>
+<li>a data frame</li>
+<li>aesthetic mapping:how data are mapped to color, size</li>
+<li>geoms:points, lines, shapes</li>
+<li>facets:for conditional plots</li>
+<li>stats:binning(柱形分析), quantiles, smoothing</li>
+<li>scales:for example:sex</li>
+<li>corrdinate system</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">g &lt;- ggplot(mpg, aes(displ, hwy))</span><br><span class="line">summary(g)</span><br><span class="line">g + geom_point()</span><br></pre></td></tr></table></figure>
+<h3 id="annotation">Annotation</h3>
+<ol type="1">
+<li>labs and theme</li>
+</ol>
+<ul>
+<li>xlab(), ylab(), ggtitle(), labs()</li>
+<li>theme(legend.position = "none")</li>
+<li>theme_gray()</li>
+<li>theme_bw()</li>
+</ul>
+<p><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">g &lt;- ggplot(mpg, aes(displ, hwy))</span><br><span class="line">g + geom_point(color = <span class="string">"steelblue"</span>, size = <span class="number">3.14</span>, alpha = <span class="number">0.5</span>) + labs(x = expression(PM[<span class="number">25</span>]))<span class="comment"># alpha表示透明度</span></span><br><span class="line">g + geom_point(aes(color = drv), size = <span class="number">3.14</span>, alpha = <span class="number">0.5</span>) + ggtitle(<span class="string">"title"</span>) + theme(plot.title = element_text(hjust = <span class="number">0.5</span>))</span><br></pre></td></tr></table></figure> 2. ylim and coord_cartesian - ylim(-3, 3)# 把y限定在(-3, 3) - coord_cartesian(ylim = c(-3, 3))# 显示(-3, 3)的范围</p>
+<p><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">testdata &lt;- data.frame(x = <span class="number">1</span>:<span class="number">100</span>, y = rnorm(<span class="number">100</span>))</span><br><span class="line">testdata[<span class="number">50</span>,<span class="number">2</span>] &lt;- <span class="number">100</span></span><br><span class="line">g &lt;- ggplot(testdata, aes(x = x,y = y))</span><br><span class="line">g + geom_line()</span><br><span class="line">g + geom_line() + ylim(-<span class="number">3</span>, <span class="number">3</span>) <span class="comment"># 把y限定在(-3, 3)</span></span><br><span class="line">g + geom_line() + coord_cartesian(ylim = c(-<span class="number">3</span>, <span class="number">3</span>)) <span class="comment"># 显示(-3, 3)的范围</span></span><br></pre></td></tr></table></figure> 3. cut <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">testdata &lt;- data.frame(x = <span class="number">1</span>:<span class="number">100</span>, y = rnorm(<span class="number">100</span>))</span><br><span class="line">testdata[<span class="number">50</span>,<span class="number">2</span>] &lt;- <span class="number">100</span></span><br><span class="line">cutpoints &lt;- quantile(testdata$y, seq(<span class="number">0</span>, <span class="number">1</span>, length = <span class="number">4</span>), na.rm = <span class="literal">T</span>)</span><br><span class="line">testdata$y_new &lt;- cut(testdata$y, cutpoints)</span><br></pre></td></tr></table></figure></p>
+<h3 id="examples-2">Examples</h3>
+<h4 id="examplegeom">Example:geom</h4>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(displ, hwy, data = mpg, geom = c(<span class="string">"point"</span>, <span class="string">"smooth"</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/ggplot2_ex1.png" /></p>
+<h4 id="examplefill">Example:fill</h4>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(hwy, data = mpg, fill = drv)</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/ggplot2_ex2.png" /></p>
+<h4 id="examplefacets">Example:facets</h4>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(displ, hwy, data = mpg, facets = .~drv)</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/ggplot2_ex3.png" /> <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(displ, hwy, data = mpg, facets = drv~.)</span><br></pre></td></tr></table></figure> <img src="/pictures/R/ggplot2_ex4.png" /></p>
+<h4 id="exampleboxplot">Example:boxplot</h4>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(drv, hwy, data = mpg, geom = <span class="string">"boxplot"</span>, color = manufacturer)</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/ggplot2_ex5.png" /></p>
+<h4 id="exampleggplot">Example:ggplot</h4>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">g + geom_point() + facet_grid(drv~cyl, margins=<span class="literal">TRUE</span>) + geom_smooth(method=<span class="string">"lm"</span>, size=<span class="number">1</span>, se=<span class="literal">FALSE</span>, color=<span class="string">"pink"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/ggplot2_ex6.png" /></p>
+<hr />
+<h1 id="color">Color</h1>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p1 &lt;- colorRampPalette(c(<span class="string">"red"</span>,<span class="string">"yellow"</span>))</span><br><span class="line">showMe(p1(<span class="number">100</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/color_1.png" /> <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p2 &lt;- colorRampPalette(c(<span class="string">"orange"</span>,<span class="string">"yellow"</span>,<span class="string">"green"</span>))</span><br><span class="line">showMe(p2(<span class="number">100</span>))</span><br></pre></td></tr></table></figure> <img src="/pictures/R/color_2.png" /> <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cols &lt;- brewer.pal(<span class="number">3</span>, <span class="string">"BuGn"</span>)</span><br><span class="line">showMe(cols)</span><br><span class="line">pal &lt;- colorRampPalette(cols)</span><br><span class="line">showMe(pal(<span class="number">20</span>))</span><br></pre></td></tr></table></figure> <img src="/pictures/R/color_3.png" /></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/R/" rel="tag"># R</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/03/24/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%BF%9B%E5%8C%96%E5%8F%B2/" rel="prev" title="个人博客进化史">
+      <i class="fa fa-chevron-left"></i> 个人博客进化史
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/04/18/Ubuntu%E9%A3%9F%E7%94%A8%E8%AE%B0%E5%BD%95/" rel="next" title="Ubuntu食用记录">
+      Ubuntu食用记录 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#princlples-of-analytic-graphics"><span class="nav-number">1.</span> <span class="nav-text">Princlples of Analytic Graphics</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#take-a-look-at-the-data"><span class="nav-number">2.</span> <span class="nav-text">Take a Look at the Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#one-dimension"><span class="nav-number">2.1.</span> <span class="nav-text">One dimension</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#two-dimensions"><span class="nav-number">2.2.</span> <span class="nav-text">Two dimensions</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#plotting-systems-in-r"><span class="nav-number">3.</span> <span class="nav-text">Plotting Systems in R</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#base-plotting-system"><span class="nav-number">3.1.</span> <span class="nav-text">Base Plotting System</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#two-packages"><span class="nav-number">3.1.1.</span> <span class="nav-text">Two packages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#two-steps-to-create-a-base-plot"><span class="nav-number">3.1.2.</span> <span class="nav-text">Two steps to create a base plot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#base-plotting-functions"><span class="nav-number">3.1.3.</span> <span class="nav-text">Base Plotting Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#initialize"><span class="nav-number">3.1.3.1.</span> <span class="nav-text">Initialize</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#add"><span class="nav-number">3.1.3.2.</span> <span class="nav-text">Add</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#some-important-base-graphics-parameters"><span class="nav-number">3.1.4.</span> <span class="nav-text">Some Important Base Graphics Parameters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#examples"><span class="nav-number">3.1.5.</span> <span class="nav-text">Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#examplelegend"><span class="nav-number">3.1.5.1.</span> <span class="nav-text">Example:Legend</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#examplemultiple-base-plots"><span class="nav-number">3.1.5.2.</span> <span class="nav-text">Example:Multiple Base Plots</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-lattice-system"><span class="nav-number">3.2.</span> <span class="nav-text">The Lattice System</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#two-packages-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">Two packages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lattice-functions"><span class="nav-number">3.2.2.</span> <span class="nav-text">Lattice Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#examples-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#examplexyplot"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">Example:xyplot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exampleplane-functiuon"><span class="nav-number">3.2.3.2.</span> <span class="nav-text">Example:plane functiuon</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-ggplot2-system"><span class="nav-number">3.3.</span> <span class="nav-text">The ggplot2 System</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#basic-components-of-a-ggplot2-plot"><span class="nav-number">3.3.1.</span> <span class="nav-text">Basic Components of a ggplot2 Plot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#annotation"><span class="nav-number">3.3.2.</span> <span class="nav-text">Annotation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#examples-2"><span class="nav-number">3.3.3.</span> <span class="nav-text">Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#examplegeom"><span class="nav-number">3.3.3.1.</span> <span class="nav-text">Example:geom</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#examplefill"><span class="nav-number">3.3.3.2.</span> <span class="nav-text">Example:fill</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#examplefacets"><span class="nav-number">3.3.3.3.</span> <span class="nav-text">Example:facets</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exampleboxplot"><span class="nav-number">3.3.3.4.</span> <span class="nav-text">Example:boxplot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exampleggplot"><span class="nav-number">3.3.3.5.</span> <span class="nav-text">Example:ggplot</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#color"><span class="nav-number">4.</span> <span class="nav-text">Color</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">msgsxj</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/msgsxj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;msgsxj" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:msgsxj@gmail.com" title="E-Mail → mailto:msgsxj@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">msgsxj</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

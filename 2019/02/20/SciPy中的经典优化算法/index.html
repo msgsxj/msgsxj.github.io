@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-fruit.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-fruit.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-fruit.png">
+  <link rel="mask-icon" href="/images/logo.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="前言: 本文的初衷是试图用尽量简明形象的语言说一说scipy.optimize.minimize函数涉及到的经典优化算法的特点, 方便速查与快速回忆; 严格理论的部分可见官方文档Notes部分的内容, 其对每一种方法都给出了参考论文, 而笔者关于这些算法的理解大多来自于Jorge Nocedal的Numerical Optimization.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SciPy中的经典优化算法">
+<meta property="og:url" content="http://yoursite.com/2019/02/20/SciPy%E4%B8%AD%E7%9A%84%E7%BB%8F%E5%85%B8%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="msgsxj&#39;blog">
+<meta property="og:description" content="前言: 本文的初衷是试图用尽量简明形象的语言说一说scipy.optimize.minimize函数涉及到的经典优化算法的特点, 方便速查与快速回忆; 严格理论的部分可见官方文档Notes部分的内容, 其对每一种方法都给出了参考论文, 而笔者关于这些算法的理解大多来自于Jorge Nocedal的Numerical Optimization.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/e/e4/Nelder-Mead_Rosenbrock.gif">
+<meta property="og:image" content="http://yoursite.com/pictures/scipy_optimization/1.png">
+<meta property="og:image" content="http://yoursite.com/pictures/scipy_optimization/2.png">
+<meta property="article:published_time" content="2019-02-20T11:36:07.000Z">
+<meta property="article:modified_time" content="2020-01-01T06:18:51.456Z">
+<meta property="article:author" content="msgsxj">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="SciPy">
+<meta property="article:tag" content="优化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/e/e4/Nelder-Mead_Rosenbrock.gif">
+
+<link rel="canonical" href="http://yoursite.com/2019/02/20/SciPy%E4%B8%AD%E7%9A%84%E7%BB%8F%E5%85%B8%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>SciPy中的经典优化算法 | msgsxj'blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148974741-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-148974741-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?de439caa3b6ff1c75c24155f1c47fc77";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">msgsxj'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/20/SciPy%E4%B8%AD%E7%9A%84%E7%BB%8F%E5%85%B8%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="msgsxj">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="msgsxj'blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SciPy中的经典优化算法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-20 19:36:07" itemprop="dateCreated datePublished" datetime="2019-02-20T19:36:07+08:00">2019-02-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-01 14:18:51" itemprop="dateModified" datetime="2020-01-01T14:18:51+08:00">2020-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">优化算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>前言: 本文的初衷是试图用尽量简明形象的语言说一说<code>scipy.optimize.minimize</code>函数涉及到的经典优化算法的特点, 方便速查与快速回忆; 严格理论的部分可见<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" target="_blank" rel="noopener">官方文档</a>Notes部分的内容, 其对每一种方法都给出了参考论文, 而笔者关于这些算法的理解大多来自于Jorge Nocedal的Numerical Optimization. <a id="more"></a></p>
+<p>首先来看<code>scipy.optimize</code>这个包的<a href="https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html" target="_blank" rel="noopener">官方文档</a>, 右侧的目录告诉我们这个包大致分为6块内容:</p>
+<ul>
+<li>多元函数无约束优化</li>
+<li>多元函数约束优化</li>
+<li>最小二乘优化</li>
+<li>一元函数优化</li>
+<li>自定义优化器</li>
+<li>寻根问题</li>
+</ul>
+<h2 id="minimize函数">minimize函数</h2>
+<p>可以看到<code>scipy.optimize.minimize</code>函数对应于第一第二块内容, 具体<code>minimize</code>的<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" target="_blank" rel="noopener">文档</a>, 可以看到<code>method</code>参数中罗列着以下14种方法:</p>
+<ul>
+<li>Nelder-Mead</li>
+<li>Powell</li>
+<li>CG</li>
+<li>BFGS</li>
+<li>Newton-CG</li>
+<li>L-BFGS-B</li>
+<li>TNC</li>
+<li>COBYLA</li>
+<li>SLSQP</li>
+<li>trust-constr</li>
+<li>dogleg</li>
+<li>trust-ncg</li>
+<li>trust-exact</li>
+<li>trust-krylov</li>
+</ul>
+<p>优化是对目标函数的进行迭代求最小值的过程, 若优化过程只需求得目标函数的在迭代点处函数值, 那么这类方法称为是<strong>无导数优化</strong>; 若需要求得目标函数的一阶信息(梯度向量值), 那么这类方法称为是<strong>一阶方法</strong>; 若需要求得二阶信息(Hessian阵), 那么这类方法称为是<strong>二阶方法</strong>. 显然三类方法的计算量的越来越大.</p>
+<p>上面罗列的算法中<strong>无导数优化</strong>方法有: Nelder-Mead, Powell, COBYLA; <strong>一阶方法</strong>有: CG, BFGS, L-BFGS-B, TNC, SLSQP; <strong>二阶方法</strong>有: Newton-CG, trust-constr, dogleg, trust-ncg, trust-exact, trust-krylov; 特别的, 二阶方法中的trust-constr, trust-ncg, trust-krylov若能提供Hessian右乘任意向量p的结果(即关于迭代点x和任意向量p的函数), 这样的函数一般来说计算量会小于直接计算Hessian阵, 因此实际上计算量会介于一阶方法与二阶方法之间, 这里笔者称之为<strong>一阶半方法</strong>, 这类方法适合大规模问题.</p>
+<p>下面按优化问题的不同分无约束优化, 有界约束优化与约束优化分别来看:</p>
+<h2 id="无约束优化">无约束优化</h2>
+<hr />
+<h3 id="nelder-mead方法">Nelder-Mead方法</h3>
+<p>Nelder-Mead方法是<strong>无导数优化方法</strong>, 其保持了对<span class="math inline">\(\mathbb{R}^n\)</span>中的<span class="math inline">\(n+1\)</span>个点的函数值追踪, 且这些点的凸包构成了一个<strong>非退化的单纯形</strong>. 比方说目标函数为<span class="math inline">\(\mathbb{R}^2\)</span>中的函数, Nelder-Mead方法就保持了对<span class="math inline">\(3\)</span>个点的函数值追踪, 非退化指的是这三者不能共线.</p>
+<p>下面以<a href="https://en.wikipedia.org/wiki/Nelder%E2%80%93Mead_method" target="_blank" rel="noopener">维基百科</a>上的关于Rosenbrock函数的动图为例, 记手中的<span class="math inline">\(n+1\)</span>个点为<span class="math inline">\(\{x_1,...,x_{n+1}\}\)</span>, 并将它们按函数值大小排序<span class="math inline">\(f(x_1)\le\cdots\le f(x_{n+1})\)</span>, <span class="math inline">\(n\)</span>个最好的点的形心为<span class="math inline">\(\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i\)</span>此时<span class="math inline">\(\bar{x}\)</span>与最差的点<span class="math inline">\(x_{n+1}\)</span>之间的连线即为: <span class="math display">\[\bar{x}(t)=\bar{x}+t(x_{n+1}-\bar{x})\]</span>Nelder-Mead方法出于<strong>尽量远离函数值最高的点的想法</strong>, 去观察<span class="math inline">\(\bar{x}(-1)\)</span>的值</p>
+<ul>
+<li>若<span class="math inline">\(f(x_1)\le f(\bar{x}(-1))&lt;f(x_n)\)</span>, 则用<span class="math inline">\(\bar{x}(-1)\)</span>取代<span class="math inline">\(x_{n+1}\)</span>;</li>
+<li>若<span class="math inline">\(f(\bar{x}(-1))&lt;f(x_1)\)</span>, 继续观察<span class="math inline">\(\bar{x}(-2)\)</span>是否会带来更进一步下降, 择优选择取代<span class="math inline">\(x_{n+1}\)</span>;</li>
+<li>若<span class="math inline">\(f(x_n)\le f(\bar{x}(-1))&lt;f(x_{n+1})\)</span>, 先后观察<span class="math inline">\(\bar{x}(-\frac{1}{2})\)</span>与<span class="math inline">\(\bar{x}(\frac{1}{2})\)</span>是否会带来更进一步下降, 注意到先后的顺序也体现了尽量远离<span class="math inline">\(x_{n+1}\)</span>;</li>
+<li>最后若上述条件均不满足, 则整体向函数值最小的点<span class="math inline">\(x_1\)</span>挪一半.</li>
+</ul>
+上述算法可见Numerical Optimization一书9.5节, 对应到下图中的第一步迭代, 不难看出第一次迭代点的选择为<span class="math inline">\(\bar{x}(\frac{1}{2})\)</span>.
+<div data-align="center">
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Nelder-Mead_Rosenbrock.gif" width="420">
+</div>
+<hr />
+<h3 id="powell方法">Powell方法</h3>
+<p><a href="https://en.wikipedia.org/wiki/Powell%27s_method" target="_blank" rel="noopener">Powell方法</a>是共轭方向法的一种变体, 先来看什么是共轭方向法, <strong>共轭方向法</strong>是<strong>给定一共轭方向的集合</strong><span class="math inline">\(\{p_1....,p_n\}\)</span>, 对集合中的方向依次进一维巡查的方法, 因此显然是<strong>无导数优化方法</strong>.</p>
+<p>以最简单的二次函数<span class="math inline">\(f(x)=\frac{1}{2}x^TAx-b^Tx\)</span>为例, 其中<span class="math inline">\(A\)</span>为<span class="math inline">\(n\)</span>阶对称正定方阵, 此时共轭的概念有了具体的要求: <span class="math inline">\(p_i^TAp_j=0\)</span>. 若<span class="math inline">\(A\)</span>恰为对角阵, 如左图所示, 共轭方向集合可取为坐标轴方向<span class="math inline">\(\{e_1, e_2\}\)</span>; 若<span class="math inline">\(A\)</span>不为对角阵, 如右图所示, 此时<span class="math inline">\(\{e_1, e_2\}\)</span>不能作为一组共轭方向, 图中的<strong>红线</strong>和<strong>蓝线</strong>则是给出了两个不同的共轭方向集合.</p>
+<p>值得注意的是, 此时<strong>至多</strong><span class="math inline">\(n\)</span>步共轭方向法会收敛到最小值点<span class="math inline">\(x^*\)</span>, 证明可见Numerical Optimization一书定理5.1</p>
+<figure>
+<img src="/pictures/scipy_optimization/1.png" alt="" /><figcaption>avatar</figcaption>
+</figure>
+<p>回到Powell方法, 仍然以上述二次函数为例, 其与标准共轭方向法唯一的不同在于<strong>迭代地得到共轭方向的集合</strong>, 且共轭方向的集合的初始化可简单取为<span class="math inline">\(\{e_1, e_2\}\)</span>. 以右图为例,</p>
+<ul>
+<li>第一步从<span class="math inline">\(x_0\)</span>出发沿着<span class="math inline">\(e_1\)</span>做一维巡查得到<span class="math inline">\(x_1\)</span>;</li>
+<li>第二步先分别对<span class="math inline">\(\{e_2,e_1\}\)</span>做一维巡查得到<span class="math inline">\(x_2,x_3\)</span>, 由此得到真巡查方向<span class="math inline">\(x_3-x_1\)</span>, 从<span class="math inline">\(x_1\)</span>出发沿着<span class="math inline">\(x_3-x_1\)</span>做一维巡查就能直接到达<span class="math inline">\(x^*\)</span>(不难验证<span class="math inline">\(x_3-x_1\)</span>与<span class="math inline">\(e_1\)</span>关于<span class="math inline">\(A\)</span>共轭), 且此时共轭方向的集合更新为<span class="math inline">\(\{e_1, x_3-x_1\}\)</span>.</li>
+</ul>
+<p>容易看到Powell方法不涉及一阶信息因此为<strong>无导数优化方法</strong>. 上述括号内的性质称为是<strong>并行子空间性质</strong>: 记函数<span class="math inline">\(f(x)\)</span>在两条平行线<span class="math inline">\(l_1(\alpha)=x_0+\alpha e_1\)</span>, <span class="math inline">\(l_2(\alpha)=x_2+\alpha e_1\)</span>上的最小值点分别为<span class="math inline">\(x_1, x_3\)</span>, 那么<span class="math inline">\(x_3-x_1\)</span>与<span class="math inline">\(e_1\)</span>关于<span class="math inline">\(A\)</span>共轭. 该性质也容易推广到<span class="math inline">\(n\)</span>维情形.</p>
+<p>上述性质可参考Numerical Optimization一书9.4节, 最后要注意的是对于一般的函数只需将精确的一维巡查改为<strong>非精确搜索</strong>.</p>
+<hr />
+<h3 id="cg方法">CG方法</h3>
+<p>CG为Conjugate Gradient的缩写, 即<a href="https://en.wikipedia.org/wiki/Conjugate_gradient_method" target="_blank" rel="noopener">共轭梯度法</a>, 这是利用一组共轭方向求解线性方程组<span class="math inline">\(Ax=b\)</span>的算法, 其中<span class="math inline">\(A\)</span>为<span class="math inline">\(n\)</span>阶对称正定方阵, 而共轭方向一般通过构造一个关于<span class="math inline">\(A\)</span>的Krylov子空间来得到, 且为一阶半方法, 详见Numerical Optimization一书算法5.1. 不难发现线性方程组的求解等价于最小化二次函数<span class="math inline">\(f(x)=\frac{1}{2}x^TAx-b^Tx\)</span>. 事实上, CG方法也可用于一般的优化问题, 其与上述Powell方法类似, <strong>共轭方向由迭代更新得到</strong>, 唯一的不同在于CG方法用了<strong>一阶甚至是二阶信息</strong>来更新共轭方向(<strong>补充一句, 对于一般的非二次函数并没有共轭一说, 这里可以理解为沿用共轭一词</strong>). 以FR(Fletcher-Reeves)方法为例: <span class="math display">\[\beta_{k+1}^{FR}=\nabla f_{k+1}^T\nabla f_{k+1}/\nabla f_{k}^T\nabla f_{k}, p_{k+1}=-\nabla f_{k+1}+\beta_{k+1}^{FR}p_k\]</span>其有许多变体, 具体到<code>SciPy</code>中的这里CG方法指的是PR(Polak-Ribiere)方法:<span class="math display">\[\beta_{k+1}^{PR}=\nabla f_{k+1}^T(\nabla f_{k+1}-\nabla f_{k})/\nabla f_{k}^T\nabla f_{k}, p_{k+1}=-\nabla f_{k+1}+\beta_{k+1}^{FR}p_k\]</span>此外还有PR+方法, HS方法, FR-PR方法等可见Numerical Optimization一书5.2节. 且这里除了HS方法是<strong>二阶方法</strong>, 其余涉及的均为<strong>一阶方法</strong>.</p>
+<p>上述<strong>初值<span class="math inline">\(p_0\)</span>可直接取为负梯度方向</strong>, 另外值得注意的是, 这里关于<span class="math inline">\(p_k\)</span>的一维巡查方法一般需要满足<a href="https://en.wikipedia.org/wiki/Wolfe_conditions#Strong_Wolfe_condition_on_curvature" target="_blank" rel="noopener">强Wolfe条件</a>, 且<span class="math inline">\(c_2&lt;\frac{1}{2}\)</span>.</p>
+<hr />
+<h3 id="bfgs方法">BFGS方法</h3>
+<p><a href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm" target="_blank" rel="noopener">BFGS</a>作为一种的<strong>拟牛顿方法</strong>, 其不直接计算Hessian阵, 而是<strong>用梯度信息近似计算Hessian阵的逆</strong>并迭代更新, 因此是<strong>一阶方法</strong>, 其更新公式如下:<span class="math display">\[H_{k+1}=(I-\rho_ks_ky_k^T)H_k(I-\rho_ky_ks_k^T)+\rho_ks_ks_k^T\]</span>其中$ s_k=x_{k+1}-x_k, y_k=f_{k+1}-f_k, <em>k=1/y_k^Ts_k&gt;0<span class="math inline">\(. 由于\)</span>H</em>{k+1}<span class="math inline">\(直接为Hessian阵的**逆**的近似, 因此搜索方向为\)</span>p_{k+1}=-H_{k+1}f_{k+1}$.</p>
+<p>DFP方法与BFGS方法唯一的不同在于<strong>迭代更新Hessian阵本身</strong>而不是逆, 但由于仍然需要求逆操作, 因此计算量会比BFGS大上一圈. DFP方法的迭代公式可参考Numerical Optimization一书6.1节, 另一种的常见拟牛顿方法SR1可参考Numerical Optimization一书6.2节.</p>
+<p>最后值得注意的是, BFGS常用<a href="https://en.wikipedia.org/wiki/Wolfe_conditions" target="_blank" rel="noopener">Wolfe条件</a>做为巡查条件.</p>
+<hr />
+<h3 id="newton-cg方法">Newton-CG方法</h3>
+<p>Newton-CG方法是一种<a href="https://en.m.wikipedia.org/wiki/Truncated_Newton_method" target="_blank" rel="noopener">截断牛顿方法</a>, 而截断牛顿方法则是近似去解牛顿方程来得到巡查方向的思路, 解牛顿方程即为了获得牛顿方向, 而截断意味着近似解方程要在截断的迭代次数内, 因而是近似.</p>
+<p>选用CG方法来近似求解牛顿方程(<span class="math inline">\(\nabla^2f_k p_k+\nabla f_k=0\)</span>), 我们就得到了Newton-CG方法, 由于要求得到<span class="math inline">\(\nabla^2 f_k\)</span>, 因此Newton-CG方法为<strong>二阶方法</strong>.</p>
+<p>关于算法的更多细节可见Numerical Optimization一书算法7.1. 另外通过观察算法不难发现, 若能提供Hseeian-vector products函数, 那么Newton-CG方法此时就是<strong>一阶半方法</strong>.</p>
+<p>Newton-CG方法的主要计算量在CG迭代部分, preconditioning可加速CG迭代过程, 见Numerical Optimization一书page118.</p>
+<hr />
+<h3 id="dogleg法">Dogleg法</h3>
+<p>狗腿法是一种<a href="https://optimization.mccormick.northwestern.edu/index.php/Trust-region_methods" target="_blank" rel="noopener">信赖域方法</a>, 简单介绍信赖域方法, 与线搜索方法先确定方向后确定步长不同的是, 信赖域方法在<strong>确定方向前首先给定一个信赖域半径</strong><span class="math inline">\(\Delta\)</span>, 要求搜索方向在该信赖域内.</p>
+<p>涉及信赖域方法就不得不谈信赖域子问题: <span class="math inline">\(\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\)</span>且一般的, 这里的<span class="math inline">\(B_k\)</span><strong>仅仅要求对称, 一致有界</strong>. 关于这点可见Numerical Optimization一书page68; 但具体到这里的狗腿法仍然需要加上<strong>正定性</strong>的要求.</p>
+<p>回过头来看狗腿法, 狗腿法实际上是<strong>对信赖域子问题最优解曲线的近似</strong>, 从图中可以看到, 第一段是沿着负梯度方向到达柯西点, 这里的柯西点指的是<strong>沿着负梯度方向极小化信赖域子问题</strong>得到的极小值点; 接着像狗腿那样拐弯, 直奔<strong>信赖域子问题的最优解</strong>而去, 因此信赖域半径的作用就是决定了上述过程能跑多远.</p>
+<div data-align="center">
+<img src="/pictures/scipy_optimization/2.png" width="420">
+</div>
+<hr />
+<h3 id="trust-ncg方法">Trust-ncg方法</h3>
+<p>信赖域Newton-CG方法与Newton-CG方法的区别在于不是直接用CG方法解牛顿方程(<span class="math inline">\(\nabla^2f_k p_k+\nabla f_k=0\)</span>), 而是<strong>解信赖域子问题</strong><span class="math inline">\(\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\)</span>, 这里<span class="math inline">\(B_k=\nabla^2 f_k\)</span>. 另外步长可<strong>直接设为1</strong>而不需要做一维巡查.</p>
+<p>与Newton-CG方法类似, 显然Trust-ncg法本身是<strong>二阶方法</strong>, 但若能提供Hseeian-vector products函数, Trust-ncg方法也是<strong>一阶半方法</strong>. 算法细节可见Numerical Optimization一书算法7.2.</p>
+<p>preconditioning可加速CG迭代过程, 见Numerical Optimization一书page118.</p>
+<hr />
+<h3 id="trust-krylov方法">Trust-krylov方法</h3>
+<p>其实应该叫Trust-Lanczos方法, <a href="https://en.wikipedia.org/wiki/Lanczos_algorithm" target="_blank" rel="noopener">Lanczos方法</a>可以用来三对角化矩阵, 同时构造出了一个Krylov子空间. 上述过程的应用之一就是用来解线性方程<span class="math inline">\(Ax=b\)</span>, 因此也可解牛顿方程, 参见矩阵计算第三版9.3节.</p>
+<p>与Trust-ncg方法相比, Trust-krylov方法只是将CG方法换成了<strong>Lanczos方法</strong>, 且本身仍为<strong>二阶方法</strong>, 同样若能提供Hseeian-vector products函数, Trust-krylov方法也是<strong>一阶半方法</strong>.</p>
+<hr />
+<h3 id="trust-exact方法">Trust-exact方法</h3>
+<p>exact指的是信赖域子问题<span class="math inline">\(\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\)</span>中的<span class="math inline">\(B_k=\nabla^2 f_k\)</span>, 再进行直接求解. 形式上与Trust-ncg方法、Trust-krylov方法非常类似, 但计算量显然要大一些, 因此只适合小规模问题.</p>
+<p>显然Trust-exact方法为<strong>二阶方法</strong>.</p>
+<hr />
+<h2 id="有界约束优化">有界约束优化</h2>
+<h3 id="l-bfgs-b方法">L-BFGS-B方法</h3>
+<p>To be continued...</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/SciPy/" rel="tag"># SciPy</a>
+              <a href="/tags/%E4%BC%98%E5%8C%96/" rel="tag"># 优化</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/01/30/2018/" rel="prev" title="2018">
+      <i class="fa fa-chevron-left"></i> 2018
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/03/28/%E6%9C%80%E5%B0%8F%E4%BD%9C%E7%94%A8%E9%87%8F%E5%8E%9F%E7%90%86/" rel="next" title="最小作用量原理">
+      最小作用量原理 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#minimize函数"><span class="nav-number">1.</span> <span class="nav-text">minimize函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无约束优化"><span class="nav-number">2.</span> <span class="nav-text">无约束优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nelder-mead方法"><span class="nav-number">2.1.</span> <span class="nav-text">Nelder-Mead方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#powell方法"><span class="nav-number">2.2.</span> <span class="nav-text">Powell方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cg方法"><span class="nav-number">2.3.</span> <span class="nav-text">CG方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bfgs方法"><span class="nav-number">2.4.</span> <span class="nav-text">BFGS方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#newton-cg方法"><span class="nav-number">2.5.</span> <span class="nav-text">Newton-CG方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dogleg法"><span class="nav-number">2.6.</span> <span class="nav-text">Dogleg法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trust-ncg方法"><span class="nav-number">2.7.</span> <span class="nav-text">Trust-ncg方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trust-krylov方法"><span class="nav-number">2.8.</span> <span class="nav-text">Trust-krylov方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trust-exact方法"><span class="nav-number">2.9.</span> <span class="nav-text">Trust-exact方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有界约束优化"><span class="nav-number">3.</span> <span class="nav-text">有界约束优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#l-bfgs-b方法"><span class="nav-number">3.1.</span> <span class="nav-text">L-BFGS-B方法</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">msgsxj</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/msgsxj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;msgsxj" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:msgsxj@gmail.com" title="E-Mail → mailto:msgsxj@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">msgsxj</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+</body>
+</html>

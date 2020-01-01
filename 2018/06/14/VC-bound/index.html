@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-fruit.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-fruit.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-fruit.png">
+  <link rel="mask-icon" href="/images/logo.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="前言:最近读Léon Bottou的18年2月的文章Optimization Methods for Large-Scale Machine Learning时,读到式(2.7)觉得怪怪的,于是特此将笔者看到过的有关VC bound的证明整理一下,分直观证明和理论证明去叙述:  直观证明来自台湾大学林轩田的机器学习基石课程. 理论证明来自Shai Shalve-Shwartz的UNDERSTAND">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VC bound">
+<meta property="og:url" content="http://yoursite.com/2018/06/14/VC-bound/index.html">
+<meta property="og:site_name" content="msgsxj&#39;blog">
+<meta property="og:description" content="前言:最近读Léon Bottou的18年2月的文章Optimization Methods for Large-Scale Machine Learning时,读到式(2.7)觉得怪怪的,于是特此将笔者看到过的有关VC bound的证明整理一下,分直观证明和理论证明去叙述:  直观证明来自台湾大学林轩田的机器学习基石课程. 理论证明来自Shai Shalve-Shwartz的UNDERSTAND">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-06-14T05:21:22.000Z">
+<meta property="article:modified_time" content="2020-01-01T07:16:20.746Z">
+<meta property="article:author" content="msgsxj">
+<meta property="article:tag" content="VC bound">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2018/06/14/VC-bound/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>VC bound | msgsxj'blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148974741-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-148974741-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?de439caa3b6ff1c75c24155f1c47fc77";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">msgsxj'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/14/VC-bound/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="msgsxj">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="msgsxj'blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VC bound
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-06-14 13:21:22" itemprop="dateCreated datePublished" datetime="2018-06-14T13:21:22+08:00">2018-06-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-01 15:16:20" itemprop="dateModified" datetime="2020-01-01T15:16:20+08:00">2020-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>前言:最近读Léon Bottou的18年2月的文章<a href="https://arxiv.org/pdf/1606.04838.pdf" target="_blank" rel="noopener">Optimization Methods for Large-Scale Machine Learning</a>时,读到式(2.7)觉得怪怪的,于是特此将笔者看到过的有关VC bound的证明整理一下,分直观证明和理论证明去叙述:</p>
+<ul>
+<li>直观证明来自台湾大学林轩田的机器学习基石课程.</li>
+<li>理论证明来自Shai Shalve-Shwartz的UNDERSTANDING MACHINE LEARNING一书.</li>
+</ul>
+<p><code>p.s.</code> 读本文需要读者至少知道VC维的含义, VC界的含义.</p>
+<a id="more"></a>
+<hr />
+<h2 id="motivation">motivation</h2>
+<p>Léon Bottou今年2月发的文章中式(2.7): <span class="math display">\[
+\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \mathcal{O}\left(\sqrt{\frac{1}{2m}\log\left(\frac{2}{\delta}\right)+\frac{d_{\mathcal{H}}}{m}\log\left(\frac{m}{d_{\mathcal{H}}}\right)}\right)
+\]</span>其中<span class="math inline">\(L_{S}(h)\)</span>为训练集<span class="math inline">\(S\)</span>上的误差,<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>为泛化误差,<span class="math inline">\(m\)</span>为训练集<span class="math inline">\(S\)</span>的大小,<span class="math inline">\(\delta\)</span>为置信度(即以至少<span class="math inline">\(1-\delta\)</span>的概率上式成立),<span class="math inline">\(d_{\mathcal{H}}\)</span>为假设类<span class="math inline">\(\mathcal{H}\)</span>的VC维,这个不等式的意思是:</p>
+<ol type="1">
+<li>范化误差与训练误差的差异的最大值会随着假设类<span class="math inline">\(\mathcal{H}\)</span>的VC维<span class="math inline">\(d_{\mathcal{H}}\)</span>的增大而减小</li>
+<li>且要想保持VC bound不变,<span class="math inline">\(d_{\mathcal{H}}\)</span>增大的同时样本量<span class="math inline">\(m\)</span>必须与之同步增大</li>
+</ol>
+<p>初看到这个结论我是懵逼的, 因为它不同于笔者之前看到的几个VC界:</p>
+<hr />
+<h2 id="vc-bound-1">VC bound 1</h2>
+<p>台大林轩田老师在机器学习基石课程中给出了一个VC bound(来自Lecrure7 page21), : <span class="math display">\[
+\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\frac{4\left(2m\right)^{d_{\mathcal{H}}}}{\delta}}\]</span>整理得:<span class="math display">\[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\frac{4}{\delta}+\frac{8d_{\mathcal{H}}}{m}\log\left(2m\right)}
+\]</span>上式均是在以不少于<span class="math inline">\(1-\delta\)</span>概率成立的意义下. 细看这下会发现与Léon Bottou给出的式子有些许不同,下面来看其给出的直观证明,分5步走:</p>
+<ol type="1">
+<li><span class="math inline">\(L_{\mathcal{D}}\)</span>没法处理, 设法用<span class="math inline">\(L_{S&#39;}\)</span>取代<span class="math inline">\(L_{\mathcal{D}}\)</span>: <span class="math display">\[
+\frac{1}{2}\mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right] \le \mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{S&#39;}(h)\right|&gt;\frac{\varepsilon}{2}\right]
+\]</span>这一步是难点, <a href="https://link.springer.com/content/pdf/10.1007%2F978-3-319-21852-6.pdf" target="_blank" rel="noopener">这篇文章</a>page42的引理2给出了证明, 笔者在这里给出自己的直观理解: 显然有<span class="math inline">\(\mathbb{E}_{S\sim \mathcal{D}}L_{S}(h)=L_{\mathcal{D}}(h)\)</span>, 简单将<span class="math inline">\(L_{S}(h)\)</span>视为正态分布, 其期望则是<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>, 若存在一个<span class="math inline">\(h\)</span>, <span class="math display">\[\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\]</span>而<span class="math inline">\(L_{S&#39;}(h)\)</span>大概率会落在离<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>比较近的区域, 也就是大概率会有:<span class="math display">\[\left|L_{S}(h)-L_{S&#39;}(h)\right|&gt;\frac{\varepsilon}{2}\]</span></li>
+<li>期望找到一个多项式增长的函数<span class="math inline">\(\tau_{\mathcal{H}}(m)\)</span>(事实上,<span class="math inline">\(\tau_{\mathcal{H}}(m)=\max_{|C|=m}\left|\mathcal{H}_{C}\right|\)</span>,其中<span class="math inline">\(\mathcal{H}_{C}\)</span>为<span class="math inline">\(\mathcal{H}\)</span>限制在<span class="math inline">\(C\)</span>上)满足 <span class="math display">\[
+\begin{aligned}\mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right] &amp; \le 2\mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{S&#39;}}(h)\right|&gt;\frac{\varepsilon}{2}\right]\\\
+&amp; = 2\mathbb{P}\left[\exists h \in\mathcal{H} s.t.\left|L_{S}(h)-L_{\mathcal{S&#39;}}(h)\right|&gt;\frac{\varepsilon}{2}\right]\\\
+&amp;\le 2\tau_{\mathcal{H}}(m)\mathbb{P}\left[{\rm fixed} \ h \ s.t.\left|L_{S}(h)-L_{\mathcal{S&#39;}}(h)\right|&gt;\frac{\varepsilon}{2}\right]
+\end{aligned}
+\]</span></li>
+<li>考虑<a href="https://en.wikipedia.org/wiki/Hoeffding%27s_inequality" target="_blank" rel="noopener">霍夫丁不等式</a><span class="math inline">\(\mathbb{P}\left\{\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right\}\le2\exp\left(-2\varepsilon^{2}m\right)\)</span>: <span class="math display">\[
+\mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right] \le 4\tau_{\mathcal{H}}(m)\exp\left(-2\left(\frac{\varepsilon}{2}\right)^{2}m\right)
+\]</span>注意到此时<span class="math inline">\(\mathcal{D}\)</span>替换成了<span class="math inline">\(S&#39;\)</span>, 而<span class="math inline">\(S\)</span>,<span class="math inline">\(S&#39;\)</span>均有<span class="math inline">\(m\)</span>个样本故将<span class="math inline">\(\tau_{\mathcal{H}}(m)\)</span>修正为<span class="math inline">\(\tau_{\mathcal{H}}(2m)\)</span>, 另外 <span class="math display">\[
+\left|L_{S}(h)-L_{\mathcal{S&#39;}}(h)\right|&gt;\frac{\varepsilon}{2}\Leftrightarrow\left|L_{S}(h)-\left(L_{\mathcal{S&#39;}}(h)+L_{S}(h)\right)/2\right|&gt;\frac{\varepsilon}{4}
+\]</span>故<span class="math inline">\(\frac{\varepsilon}{2}\)</span>修正为<span class="math inline">\(\frac{\varepsilon}{4}\)</span> ,得到: <span class="math display">\[
+\mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right] \le 4\tau_{\mathcal{H}}(2m)\exp\left(-2\left(\frac{\varepsilon}{4}\right)^{2}m\right)
+\]</span>这个式子也能在上面那篇<a href="https://link.springer.com/content/pdf/10.1007%2F978-3-319-21852-6.pdf" target="_blank" rel="noopener">文章</a>page42的定理2中找到.</li>
+<li>归纳法可证:<span class="math inline">\(\tau_{\mathcal{H}}(m)\le\sum_{i=0}^{d_{\mathcal{H}}}\binom{m}{i}\)</span>,林老师在这里粗糙的放大成<span class="math inline">\(\sum_{i=0}^{d_{\mathcal{H}}}\binom{m}{i}&lt;m^{d_{\mathcal{H}}}\)</span>,整理得到: <span class="math display">\[
+\mathbb{P}\left\{\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right\}\le4 (2m)^{d_{\mathcal{H}}}\exp\left(-\frac{\varepsilon^{2}}{8}m\right)
+\]</span></li>
+<li>令<span class="math inline">\(\delta=4 (2m)^{d_{\mathcal{H}}}\exp\left(-\frac{\varepsilon^{2}}{8}m\right)\)</span>, 即<span class="math inline">\(\varepsilon=\sqrt{\frac{8}{m}\log\frac{4\left(2m\right)^{d_{\mathcal{H}}}}{\delta}}\)</span>, 有: <span class="math display">\[
+\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\frac{4\left(2m\right)^{d_{\mathcal{H}}}}{\delta}}
+\]</span></li>
+</ol>
+<p>思路叙述完毕,细看之下,4中不等式放的太宽了,事实上,当<span class="math inline">\(m&gt;d_{\mathcal{H}}+1\)</span>有如下不等式成立:<span class="math inline">\(\sum_{i=0}^{d_{\mathcal{H}}}\binom{m}{i}\le \left(\frac{em}{d_{\mathcal{H}}}\right)^{d_{\mathcal{H}}}\)</span>(证明可见UNDERSTABDING MACHINE LEARNING一书附录A.5),此时VC bound变成: <span class="math display">\[
+\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\frac{4(\frac{2em}{d_{\mathcal{H}}})^{d_{\mathcal{H}}}}{\delta}}
+\]</span>整理得: <span class="math display">\[
+\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
+\]</span> <code>p.s.</code> 显然有<span class="math inline">\(\mathbb{P}\left[\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right]\le\mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right]\)</span>, 就能轻易得到西瓜书定理12.2及定理12.3的结论.</p>
+<hr />
+<h2 id="vc-bound-2">VC bound 2</h2>
+<p>Shai Shalve-Shwartz的UNDERSTABDING MACHINE LEARNING一书中定理6.11也给出了一个VC bound: <span class="math display">\[
+\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}
+\]</span>同样上式是以<span class="math inline">\(1-\delta\)</span>的概率成立. 证明分8步走:</p>
+<ol type="1">
+<li><p>引理1: <span class="math display">\[
+\mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\right]\le\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\sqrt{2m}}
+\]</span>现先假定引理1成立,那么由随机变量<span class="math inline">\(\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\)</span>显然是非负的以及马尔可夫不等式<span class="math inline">\(\mathbb{P}[X\ge \delta]\le\frac{\mathbb{E}[X]}{\delta}\)</span>可直接推得结论成立: <span class="math display">\[
+\mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\ge\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}\right] \le \frac{\mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[ \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\right]}{\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}}\le \delta
+\]</span>即 <span class="math display">\[
+\mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}\right] \ge 1-\delta
+\]</span></p></li>
+<li><p>问题转化为证引理1,考虑引理1的左半部分: <span class="math display">\[
+\begin{aligned} \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\right] &amp; =  \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|\mathop{\mathbb{E}}_{S&#39;\sim\mathcal{D}^{m}}L_{S&#39;}(h)-L_{S}(h)\right|\right] \\\
+&amp; \le  \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\mathop{\mathbb{E}}_{S&#39;\sim\mathcal{D}^{m}}\left|L_{S&#39;}(h)-L_{S}(h)\right|\right]\\\
+&amp; \le  \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \mathop{\mathbb{E}}_{S&#39;\sim\mathcal{D}^{m}}\sup_{h\in\mathcal{H}}\left|L_{S&#39;}(h)-L_{S}(h)\right|\right]\\\
+&amp; =  \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|L_{S&#39;}(h)-L_{S}(h)\right|\right]\\\
+&amp; =  \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right] \end{aligned}
+\]</span> 其中第一个等号是因为<span class="math inline">\(L_{\mathcal{D}}(h)=\mathbb{E}_{S&#39;\sim\mathcal{D}^{m}}L_{S&#39;}(h)\)</span>,第二个不等号为绝对值放到积分里面,第三个不等号为期望的上界小于等于上界的期望,第四个等号为两个期望合并,第五个等号为<span class="math inline">\(L_{S}(h)\)</span>写开来,且这里的<span class="math inline">\(l(h,x_{i})\)</span>为<span class="math inline">\(h\)</span>下的0-1损失</p></li>
+<li><p>引入随机变量<span class="math inline">\(\sigma\in\{\pm 1\}^{m}\)</span>,2.中最右端等价于: <span class="math display">\[
+\begin{aligned} \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right] &amp; =  \mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right]\\\
+&amp; = \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}} \mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right] \end{aligned}
+\]</span>其中第一个等号为<span class="math inline">\(\pm1\)</span>对绝对值无影响,第二个等号为交换期望</p></li>
+<li><p>考虑3.最右端,固定<span class="math inline">\(S,S&#39;\)</span>,令<span class="math inline">\(C=S\cup S&#39;\)</span>,那么此时<span class="math inline">\(\mathcal{H}\)</span>仅会涉及<span class="math inline">\(C\)</span>上的假设,即可以把<span class="math inline">\(\mathcal{H}\)</span>限制在<span class="math inline">\(C\)</span>上: <span class="math display">\[
+\mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right]= \mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\left[  \max_{h\in\mathcal{H}_{C}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right]
+\]</span></p></li>
+<li><p>固定<span class="math inline">\(h\in\mathcal{H}_{C}\)</span>,并记<span class="math inline">\(\theta_{h} \triangleq \frac{1}{m}\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\)</span>,则有 <span class="math display">\[
+\begin{aligned}\mathbb{E}\theta_{h} &amp; =\mathbb{E}\frac{1}{m}\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right) \\\
+&amp; = \frac{1}{m}\sum_{i=1}^{m}\mathbb{E}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\\\
+&amp; = 0
+\end{aligned}
+\]</span> 且<span class="math inline">\(\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\)</span>是在<span class="math inline">\([-1,1]\)</span>(确切说是<span class="math inline">\(\{-1,0,1\}\)</span>)上取值的独立随机变量,因此满足<a href="https://en.wikipedia.org/wiki/Hoeffding%27s_inequality" target="_blank" rel="noopener">霍夫丁不等式</a>的条件,得<span class="math inline">\(\forall \rho&gt;0,\)</span> <span class="math display">\[
+\mathbb{P}\left[\left|\theta_{h}\right|&gt;\rho\right]\le2\exp(-2m\rho^{2})
+\]</span>即 <span class="math display">\[
+\mathbb{P}\left[\frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|&gt;\rho\right]\le2\exp(-2m\rho^{2})
+\]</span></p></li>
+<li><p>注意到此时<span class="math inline">\(\mathcal{H}_{C}\)</span>仅包含有限个假设,由联合界(简言之,<span class="math inline">\(\mathbb{P}(A\cup B)\le\mathbb{P}(A)+\mathbb{P}(B)\)</span>)可得: <span class="math display">\[
+\mathbb{P}\left[\max_{h\in\mathcal{H}_{C}}\left|\theta_{h}\right|&gt;\rho\right]\le2\left|\mathcal{H}_{C}\right|\exp(-2m\rho^{2})
+\]</span>即 <span class="math display">\[
+\mathbb{P}\left[\max_{h\in\mathcal{H}_{C}}\frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|&gt;\rho\right]\le2\left|\mathcal{H}_{C}\right|\exp(-2m\rho^{2})
+\]</span> 第7步用到一个引理2: &gt; <span class="math inline">\(X\)</span>为一随机变量,<span class="math inline">\(x\in\mathbb{R}\)</span>为一标量,假定存在<span class="math inline">\(a&gt;0\)</span>和<span class="math inline">\(b&gt;e\)</span>,使得对<span class="math inline">\(\forall t&gt;0\)</span>,有<span class="math inline">\(\mathbb{P}\left[\left|X-x\right|&gt;t\right]\le2be^{-t^2/a^2}\)</span>,那么 <span class="math display">\[
+\mathbb{E}\left[\left|X-x\right|\right]\le a(2+\sqrt{\log{b}})
+\]</span></p></li>
+<li><p>引理2的证明可见UNDERSTABDING MACHINE LEARNING一书附录A.4,将<span class="math inline">\(X=\max_{h\in\mathcal{H}_{C}}\left|\theta_{h}\right|\)</span>,<span class="math inline">\(x=0\)</span>,<span class="math inline">\(b=\left|\mathcal{H}_{C}\right|\)</span>,<span class="math inline">\(a=1/\sqrt{2m}\)</span>带入得: <span class="math display">\[
+\mathbb{E}\left[\max_{h\in\mathcal{H}_{C}}\left|\theta_{h}\right|\right]\le\frac{2+\sqrt{\log\left(\left|\mathcal{H}_{C}\right|\right)}}{\sqrt{2m}}
+\]</span>即有4.的最右端 <span class="math display">\[
+\mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\left[  \max_{h\in\mathcal{H}_{C}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right]\le\frac{2+\sqrt{\log\left(\left|\mathcal{H}_{C}\right|\right)}}{\sqrt{2m}}
+\]</span>再由定义<span class="math inline">\(\tau_{\mathcal{H}}(m)=\max_{|C|=m}\left|\mathcal{H}_{C}\right|\)</span>,以及<span class="math inline">\(C\)</span>最多包含<span class="math inline">\(2m\)</span>个样本得3.的最右端: <span class="math display">\[
+\mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}} \mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right] \le\frac{2+\sqrt{\log\left(\tau_{\mathcal{H}}(2m)\right)}}{\sqrt{2m}}
+\]</span>再由2.即 <span class="math display">\[
+\mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\right]\le\frac{2+\sqrt{\log\left(\tau_{\mathcal{H}}(2m)\right)}}{\sqrt{2m}}
+\]</span>即引理1得证</p></li>
+</ol>
+<p>仔细审视之下,7.中的引理2的证明似乎有些问题,下面直接看修正后的引理2的证明: 引理2: &gt;<span class="math inline">\(X\)</span>为一随机变量,<span class="math inline">\(x\in\mathbb{R}\)</span>为一标量,假定存在<span class="math inline">\(a&gt;0\)</span>和<span class="math inline">\(b&gt;e^{4}\)</span>,使得对<span class="math inline">\(\forall t&gt;0\)</span>,有<span class="math inline">\(\mathbb{P}\left[\left|X-x\right|&gt;t\right]\le2be^{-t^2/a^2}\)</span>,那么 <span class="math display">\[
+\mathbb{E}\left[\left|X-x\right|\right]\le a(2e^{2\sqrt{\log(b)}-1}+\sqrt{\log{b}})
+\]</span></p>
+<p>证明:令<span class="math inline">\(t_{i}=a\left(i+\sqrt{\log(b)}\right),i=0,1,...\)</span>,有: <span class="math display">\[
+\begin{aligned}\mathbb{E}\left[\left|X-x\right|\right]&amp; \le a\sqrt{\log(b)}\mathbb{P}\left[\left|X-x\right|\le a\sqrt{\log(b)}\right]+\sum_{i=1}^{+\infty}t_{i}\mathbb{P}\left[t_{i-1}&lt;\left|X-x\right|\le t_{i}\right]\\\
+&amp; \le a\sqrt{\log(b)}+\sum_{i=1}^{+\infty}t_{i}\mathbb{P}\left[\left|X-x\right|&gt; t_{i-1}\right]\\\
+&amp; \le a\sqrt{\log(b)}+\sum_{i=1}^{+\infty}a\left(i+\sqrt{\log(b)}\right)2be^{-\left(i-1+\sqrt{\log(b)}\right)^{2}}\\\
+&amp; = a\sqrt{\log(b)}+2ab\sum_{i=1}^{+\infty}\left(i+\sqrt{\log(b)}\right)e^{-\left(i-1+\sqrt{\log(b)}\right)^{2}}\\\
+&amp; \le a\sqrt{\log(b)}+2ab\int_{\sqrt{\log(b)}}^{+\infty} xe^{-\left(x-1\right)^{2}} dx\\\
+&amp; = a\sqrt{\log(b)}+2ab\int_{\sqrt{\log(b)}-1}^{+\infty} (y+1)e^{y^{2}} dy\\\
+&amp; \le a\sqrt{\log(b)}+4ab\int_{\sqrt{\log(b)}-1}^{+\infty} ye^{y^{2}} dy\\\
+&amp; = a\sqrt{\log(b)}+2ab\left[-e^{-y^2}\right]_{\sqrt{\log(b)}-1}^{+\infty}\\\
+&amp; =  a\sqrt{\log(b)}+2abe^{-\log(b)+2\sqrt{\log(b)}-1}\\\
+&amp; =  a\sqrt{\log(b)}+2ae^{2\sqrt{\log(b)}-1}\\\
+&amp; = a(2e^{2\sqrt{\log(b)}-1}+\sqrt{\log{b}})
+\end{aligned}
+\]</span> 第一个不等号为分区间放大期望,第二个不等号为把概率放大,第三个不等号为将条件带入,第四个等号为常数放到前面,第五个不等号可由<span class="math inline">\(xe^{-\left(x-1\right)^{2}}\)</span>的单调递减性得到(原证明则是在这一步的积分下限错误的放大为<span class="math inline">\(1+\sqrt{\log(b)}\)</span>),第六个不等号为变量代换,第七个不等号由<span class="math inline">\(b&gt;e^{4}\)</span>知积分下限大于1,故可将将1放大为<span class="math inline">\(y\)</span>,第八个等号为求积分,第九、十和十一个等号均为化简.那么上述第7步应当做相应修正,此时的VC bound应当修正为: <span class="math display">\[
+\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le\frac{2e^{2\sqrt{\log\left(\tau_{\mathcal{h}}(2m)\right)}-1}+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}
+\]</span><code>p.s.</code>上面那个界可以说非常丑, 只能怪笔者没能把引理中后面那部分放缩到简单情形, 望读者老爷们不吝赐教. 最后要注意的是该VC bound要求假设类<span class="math inline">\(\mathcal{H}\)</span>的VC维要满足<span class="math inline">\(b=\left|\mathcal{H}_{C}\right|&gt;e^{4}\)</span></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/VC-bound/" rel="tag"># VC bound</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/05/29/2018%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A%E7%AE%97%E6%B3%95%E5%A4%A7%E8%B5%9B%E5%88%9D%E8%B5%9Blgb/" rel="prev" title="2018腾讯广告算法大赛初赛lgb">
+      <i class="fa fa-chevron-left"></i> 2018腾讯广告算法大赛初赛lgb
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/08/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%80%9D%E6%83%B3/" rel="next" title="机器学习中的贝叶斯思想">
+      机器学习中的贝叶斯思想 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#motivation"><span class="nav-number">1.</span> <span class="nav-text">motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vc-bound-1"><span class="nav-number">2.</span> <span class="nav-text">VC bound 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vc-bound-2"><span class="nav-number">3.</span> <span class="nav-text">VC bound 2</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">msgsxj</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/msgsxj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;msgsxj" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:msgsxj@gmail.com" title="E-Mail → mailto:msgsxj@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">msgsxj</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+</body>
+</html>

@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-fruit.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-fruit.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-fruit.png">
+  <link rel="mask-icon" href="/images/logo.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="前言: 本文主要是关于Latent Dirichlet Allocation模型, 这是一类能够从文档集合中挖掘出抽象主题的模型, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Latent Dirichlet Allocation">
+<meta property="og:url" content="http://yoursite.com/2018/10/16/Latent-Dirichlet-Allocation/index.html">
+<meta property="og:site_name" content="msgsxj&#39;blog">
+<meta property="og:description" content="前言: 本文主要是关于Latent Dirichlet Allocation模型, 这是一类能够从文档集合中挖掘出抽象主题的模型, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/pictures/bayes%20in%20ml/LDA_plate_model_1.png">
+<meta property="og:image" content="http://yoursite.com/pictures/bayes%20in%20ml/LDA_plate_model_2.png">
+<meta property="article:published_time" content="2018-10-16T03:08:14.000Z">
+<meta property="article:modified_time" content="2020-01-01T06:33:33.900Z">
+<meta property="article:author" content="msgsxj">
+<meta property="article:tag" content="隐变量模型">
+<meta property="article:tag" content="LDA模型">
+<meta property="article:tag" content="Dirichlet分布">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/pictures/bayes%20in%20ml/LDA_plate_model_1.png">
+
+<link rel="canonical" href="http://yoursite.com/2018/10/16/Latent-Dirichlet-Allocation/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Latent Dirichlet Allocation | msgsxj'blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148974741-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-148974741-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?de439caa3b6ff1c75c24155f1c47fc77";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">msgsxj'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/16/Latent-Dirichlet-Allocation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="msgsxj">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="msgsxj'blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Latent Dirichlet Allocation
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-10-16 11:08:14" itemprop="dateCreated datePublished" datetime="2018-10-16T11:08:14+08:00">2018-10-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-01 14:33:33" itemprop="dateModified" datetime="2020-01-01T14:33:33+08:00">2020-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>前言: 本文主要是关于Latent Dirichlet Allocation模型, 这是一类能够从文档集合中挖掘出抽象主题的模型, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3. <a id="more"></a></p>
+<hr />
+<h2 id="隐狄利克雷分配模型">隐狄利克雷分配模型</h2>
+<p>以推荐系统为例, 假如我读过东野圭吾的新参者, 我希望推荐系统能把白夜行也推荐给我. 在自然语言处理(Natural Language Processing: NLP)中, 主题模型(Topic Model)是一类能够从文档集合中挖掘出抽象主题的模型, 其中用的最多的大概就是隐狄利克雷分配模型(Latent Dirichlet Allocation: LDA). 比方说给定50个主题数量, 其想法是对每一篇文档给出一个关于50个主题数量的分布, 例如新参者的主题是70%的推理类, 10%的叉叉类等, 因此如果能得到每篇文档的主题分布, 就能给出书之间的相似度.</p>
+<p>下面我们来看什么是LDA模型, 并给出一些记号. 假设有文档<span class="math inline">\(D\)</span>篇, 其中第<span class="math inline">\(d\)</span>篇文档有<span class="math inline">\(N_d\)</span>个单词, 给定主题数量<span class="math inline">\(T\)</span>, 记第<span class="math inline">\(d\)</span>篇文档的主题为<span class="math inline">\(\theta_d\)</span>, 显然<span class="math inline">\(\theta_d\)</span>为一个<span class="math inline">\(T\)</span>维向量, <span class="math inline">\(z_{dn}\)</span>是第<span class="math inline">\(d\)</span>篇文档的第<span class="math inline">\(n\)</span>个单词的主题分布, <span class="math inline">\(w_{dn}\)</span>是第<span class="math inline">\(d\)</span>篇文档的第<span class="math inline">\(n\)</span>个单词本身(一般给长度为<span class="math inline">\(\left|w_{set}\right|\)</span>定词汇表<span class="math inline">\(w_{set}\)</span>后用一个长度为<span class="math inline">\(\left|w_{set}\right|\)</span>的向量去表示).</p>
+<p>给定主题数量<span class="math inline">\(T=50\)</span>, 目前我们有了三个关键要素:</p>
+<ul>
+<li>每篇文档的主题分布:<span class="math inline">\(\theta\)</span></li>
+<li>每篇文档每个单词的主题分布:<span class="math inline">\(z\)</span></li>
+<li>每篇文档每个单词:<span class="math inline">\(w\)</span></li>
+</ul>
+<p>遵循一些直观的假象, 我们分三步尝试去构造模型:</p>
+<ul>
+<li>首先要有每篇文档的主题<span class="math inline">\(\theta_d\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>.</li>
+<li>简单假设每个单词的主题<span class="math inline">\(z_{dn}\)</span>与所在文档的主题<span class="math inline">\(\theta_d\)</span>一致, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
+<li>每个单词确定了主题之后就能按照一定的概率分布从主题中选择单词出来. 比方说给定词汇表<span class="math inline">\(w_{set}\)</span>, 其包含<span class="math inline">\(\left|w_{set}\right|\)</span>个单词, 假设第<span class="math inline">\(t\)</span>主题有一个单词表上的概率分布<span class="math inline">\(\varphi_{\cdot t}\)</span>, 显然<span class="math inline">\(\varphi_{\cdot t}\)</span>为<span class="math inline">\(\left|w_{set}\right|\)</span>维列向量, 那么<span class="math inline">\(\varphi\)</span>为<span class="math inline">\(\left|w_{set}\right|\times T\)</span>的未知参数矩阵.</li>
+</ul>
+<p>将上述三要素视为随机变量, 此时可以写出三者的联合分布函数: <span class="math display">\[P(W, Z, \Theta)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>显然文档主题<span class="math inline">\(\theta_d\)</span>和单词主题<span class="math inline">\(z_{dn}\)</span>是无法观测得到的, 因此作为LDA模型中的L(Lantent), D(Dirichlet)则是指随机变量<span class="math inline">\(\theta_d\)</span>满足Dirichlet分布:</p>
+<ul>
+<li>假定文章的来源一致, 即<span class="math inline">\(\theta_d\)</span>独立同分布: 服从<a href="https://en.wikipedia.org/wiki/Dirichlet_distribution" target="_blank" rel="noopener">Dirichlet分布</a><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(\alpha\)</span>为<span class="math inline">\(T\)</span>维列向量; <span class="math inline">\(B(\alpha)\)</span>为多元Beta函数, 可表示为<span class="math inline">\(B(\alpha)=\frac{\prod_{i=1}^{T}\Gamma(\alpha_i)}{\Gamma(\sum_{i=1}^{T}\alpha_i)}\)</span>, <span class="math inline">\(\Gamma\)</span>为<a href="https://en.wikipedia.org/wiki/Gamma_function" target="_blank" rel="noopener">Gamma函数</a>, 详见维基百科.</li>
+<li>值得注意的是, <span class="math inline">\(\alpha\)</span>增大能导致每篇文档的话题数量变多(关于这点可以参考维基百科上的一张<a href="https://upload.wikimedia.org/wikipedia/commons/5/54/LogDirichletDensity-alpha_0.3_to_alpha_2.0.gif" target="_blank" rel="noopener">动图</a>), 所以另一种思路是把<span class="math inline">\(\alpha\)</span>视为超参去调.</li>
+<li>假定每个单词的主题<span class="math inline">\(z_{dn}\)</span>与所在文档的主题<span class="math inline">\(\theta_d\)</span>一致, 即<span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 写得直观些, 即<span class="math inline">\(P(z_{dn}=t\mid\theta_d)=\theta_{dt}\)</span>, <span class="math inline">\(\theta_{dt}\)</span>表示<span class="math inline">\(\theta_d\)</span>的第<span class="math inline">\(t\)</span>个分量.</li>
+<li><span class="math inline">\(T\)</span>个主题与词汇表<span class="math inline">\(w_{set}\)</span>的分布记为<span class="math inline">\(\phi\)</span>, 这里的<span class="math inline">\(\phi\)</span>为<span class="math inline">\(\left|w_{set}\right|\times T\)</span>的矩阵. 即<span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{z_{dn}w_{dn}}\)</span>, 写得直观些, <span class="math inline">\(v\)</span>为不超过<span class="math inline">\(\left|w_{set}\right|\)</span>的正整数, <span class="math inline">\(P(w_{dn}=v\mid z_{dn})=\varphi_{v z_{dn}}\)</span>.</li>
+</ul>
+<p>若用大小字母表示小写字母的总和, 参数仍简记为小写字母, 我们现有五个关键要素: <span class="math inline">\(W\)</span>为数据集; <span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>为未知参数.</p>
+板表示法(plate notation)是一种表示在图形模型中重复的变量的方法, 下面采用板表示法的贝叶斯网络表达上述模型:
+<div data-align="center">
+<img src="/pictures/bayes in ml/LDA_plate_model_1.png" width="60%"/>
+</div>
+<p>这里的虚线框右下角的字母表示框中的部分应该重复画字母次, 所以板表示法的好处就很明显:</p>
+<ul>
+<li>简化图模型,更美观.</li>
+<li>同时模型表达式变得一模了然.</li>
+</ul>
+<p>最后把该LDA模型用较为简练的语言再写一遍(可以对照图去写): <span class="math display">\[P(W, Z, \Theta\mid \varphi, \alpha)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>其中:</p>
+<ul>
+<li><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>, <span class="math inline">\(T\)</span>给定.</li>
+<li><span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
+<li><span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{w_{dn}z_{dn}}\)</span>, 给定词汇表<span class="math inline">\(w_{set}\)</span>, <span class="math inline">\(w_{dn}\in\{1,2,...,\left|w_{set}\right|\}\)</span>.</li>
+</ul>
+<p>大小字母表示小写字母的总和, 参数仍简记为小写字母, 总结如下:</p>
+<ul>
+<li>未知:<span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>未知参数.</li>
+<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
+<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
+</ul>
+<p>这个模型因为属于隐变量模型, 故可用<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/" target="_blank" rel="noopener">EM算法</a>求解: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>: - E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>. - M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</p>
+<p>若后验<span class="math inline">\(P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>难以处理, 则可以用一些近似方法取求得期望, 如<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">变分贝叶斯</a>, <a href="https://msgsxj.cn/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">Laplace近似方法</a>, <a href="https://msgsxj.cn/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/" target="_blank" rel="noopener">期望传播方法</a>, <a href="https://msgsxj.cn/2018/09/18/MCMC/" target="_blank" rel="noopener">MCMC方法</a>等</p>
+<hr />
+<h2 id="lda模型的拓展">LDA模型的拓展</h2>
+<h3 id="phi"><span class="math inline">\(\Phi\)</span></h3>
+若把未知参数<span class="math inline">\(\varphi\)</span>视为随机变量, 重新记为<span class="math inline">\(\Phi\)</span>, 假定<span class="math inline">\(\Phi_{i\cdot}\sim Dir(\beta_i)\)</span>, 即假定第<span class="math inline">\(i\)</span>个单词的主题分布满足参数为<span class="math inline">\(\beta_i\)</span>的狄利克雷分布(回忆开头狄利克雷分布的特性), 这里假定<span class="math inline">\(i\)</span>的取值集合<span class="math inline">\(w_{set}\)</span>的大小为<span class="math inline">\(S\)</span>, 上述修改后的模型用板表示法表示如下:
+<div data-align="center">
+<img src="/pictures/bayes in ml/LDA_plate_model_2.png" width="60%"/>
+</div>
+<p><span class="math display">\[P(W, Z, \Theta, \Phi\mid  \alpha, \beta)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}\prod_{i=1}^{S}P(z_{dn}=i\mid\theta_d)P(w_{dn}\mid z_{dn}=i, \Phi_{i\cdot})P(\Phi_{i\cdot})\]</span>与上文的模型相比只是把参数<span class="math inline">\(\varphi\)</span>视为随机变量<span class="math inline">\(\Phi\)</span>, 且<span class="math inline">\(\Phi_{i\cdot}\sim Dir(\beta_i)\)</span>, 其余不变. 总结如下:</p>
+<ul>
+<li>未知:<span class="math inline">\(Z, \Theta, \Phi\)</span>为隐变量; $ , $为未知参数.</li>
+<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
+<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
+</ul>
+<h3 id="logit-normal-distribution">Logit-normal distribution</h3>
+<p><span class="math inline">\(\theta_d\sim Dir(\alpha)\)</span>的一个良好替代是假定<span class="math inline">\(\theta_d\sim \mathcal{P}(N(\mu, \Sigma))\)</span>, 即满足<a href="https://en.wikipedia.org/wiki/Logit-normal_distribution" target="_blank" rel="noopener">Logit-normal分布</a>. 逻辑正态分布: 若<span class="math inline">\(Y\sim N(\mu, \Sigma)\)</span>, 则称<span class="math inline">\(X=\mathcal{P}(Y)\)</span>为逻辑正态(Logit-normal)分布, 其中<span class="math inline">\(\mathcal{P}()\)</span>为逻辑函数. 下面来看这两个分布的异同:</p>
+<ul>
+<li>与狄利克雷分布相比, 逻辑正态分布能捕捉<span class="math inline">\(\theta_d\)</span>之间的相关性, 因而更受欢迎.</li>
+<li>虽然任何参数<span class="math inline">\(\mu, \Sigma, \alpha\)</span>的选择都不能让两个的密度函数相等, 但通过最小化<span class="math inline">\(\mathcal{KL}\)</span>散度的方式来让逻辑正态分布去逼近狄利克雷分布的方式, 即最小化<span class="math display">\[\mathcal{KL}(p, q)=\int p(x\mid \alpha)\log\frac{p(x\mid\alpha)}{q(x\mid\mu, \Sigma)}dx\]</span>可以得到关于<span class="math inline">\(\alpha\)</span>的参数<span class="math inline">\(\mu,\Sigma\)</span>在<span class="math inline">\(\mathcal{KL}\)</span>散度意义下的最优选择, 详见<a href="https://en.wikipedia.org/wiki/Logit-normal_distribution" target="_blank" rel="noopener">维基百科</a>, 这里要说明的是, 当<span class="math inline">\(\alpha\)</span>的每个分量都趋于无穷, <span class="math inline">\(p(x\mid \alpha)\to q(x\mid\mu, \Sigma)\)</span>, 也就是说<span class="math inline">\(\alpha\)</span>很大时两者可以变得非常靠近.</li>
+</ul>
+<h3 id="dynamic-topic-models">Dynamic Topic Models</h3>
+<p>此外还有动态主题模型, 见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.62.2783&amp;rep=rep1&amp;type=pdf" target="_blank" rel="noopener">这篇文章</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9A%90%E5%8F%98%E9%87%8F%E6%A8%A1%E5%9E%8B/" rel="tag"># 隐变量模型</a>
+              <a href="/tags/LDA%E6%A8%A1%E5%9E%8B/" rel="tag"># LDA模型</a>
+              <a href="/tags/Dirichlet%E5%88%86%E5%B8%83/" rel="tag"># Dirichlet分布</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/" rel="prev" title="期望传播">
+      <i class="fa fa-chevron-left"></i> 期望传播
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/10/23/%E9%AB%98%E6%95%88%E8%83%BD%E4%BA%BA%E5%A3%AB%E7%9A%84%E4%B8%83%E4%B8%AA%E4%B9%A0%E6%83%AF-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="next" title="高效能人士的七个习惯-读书笔记">
+      高效能人士的七个习惯-读书笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#隐狄利克雷分配模型"><span class="nav-number">1.</span> <span class="nav-text">隐狄利克雷分配模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lda模型的拓展"><span class="nav-number">2.</span> <span class="nav-text">LDA模型的拓展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#phi"><span class="nav-number">2.1.</span> <span class="nav-text">\(\Phi\)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#logit-normal-distribution"><span class="nav-number">2.2.</span> <span class="nav-text">Logit-normal distribution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dynamic-topic-models"><span class="nav-number">2.3.</span> <span class="nav-text">Dynamic Topic Models</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">msgsxj</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/msgsxj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;msgsxj" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:msgsxj@gmail.com" title="E-Mail → mailto:msgsxj@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">msgsxj</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+</body>
+</html>

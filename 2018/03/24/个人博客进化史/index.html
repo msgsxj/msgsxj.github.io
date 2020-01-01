@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-fruit.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-fruit.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-fruit.png">
+  <link rel="mask-icon" href="/images/logo.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="前言:本文记录了本博客的进化史.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="个人博客进化史">
+<meta property="og:url" content="http://yoursite.com/2018/03/24/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%BF%9B%E5%8C%96%E5%8F%B2/index.html">
+<meta property="og:site_name" content="msgsxj&#39;blog">
+<meta property="og:description" content="前言:本文记录了本博客的进化史.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-03-24T04:50:16.000Z">
+<meta property="article:modified_time" content="2020-01-01T07:58:21.397Z">
+<meta property="article:author" content="msgsxj">
+<meta property="article:tag" content="博客的进化史">
+<meta property="article:tag" content="latex">
+<meta property="article:tag" content="加上小锁">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2018/03/24/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%BF%9B%E5%8C%96%E5%8F%B2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>个人博客进化史 | msgsxj'blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148974741-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-148974741-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?de439caa3b6ff1c75c24155f1c47fc77";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">msgsxj'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/24/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%BF%9B%E5%8C%96%E5%8F%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="msgsxj">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="msgsxj'blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          个人博客进化史
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-03-24 12:50:16" itemprop="dateCreated datePublished" datetime="2018-03-24T12:50:16+08:00">2018-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-01 15:58:21" itemprop="dateModified" datetime="2020-01-01T15:58:21+08:00">2020-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%81%8A%E8%81%8A%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index">
+                    <span itemprop="name">聊聊生活</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>前言:本文记录了本博客的进化史. <a id="more"></a> ## 将next主题更新至6.0.6 <strong>2018/03/24</strong>: 将主题升级至6.0.6, 并在主题配置文件界面开启了访问统计(不蒜子统计)及站内搜索功能, 主要参考了Next<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">主题文档</a>.</p>
+<h2 id="用mathjax引擎渲染latex公式">用mathjax引擎渲染latex公式</h2>
+<p><strong>2018/03/24</strong>: 在主题配置文件开启了latex公式支持功能, 但没法用宏包, 主要参考了Next<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">主题文档</a>. 它的使用方法很简答,只需分三步:</p>
+<ol type="1">
+<li>将主题配置文件中mathjax引擎的开关打开 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Math Equations Render Support</span></span><br><span class="line"><span class="attr">math:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Default(true) will load mathjax/katex script on demand</span></span><br><span class="line">  <span class="comment"># That is it only render those page who has 'mathjax: true' in Front Matter.</span></span><br><span class="line">  <span class="comment"># If you set it to false, it will load mathjax/katex srcipt EVERY PAGE.</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">engine:</span> <span class="string">mathjax</span></span><br><span class="line">  <span class="comment">#engine: katex</span></span><br></pre></td></tr></table></figure></li>
+<li>hexo的配置文件最后加入一行: <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mathjax:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
+<li>使用前记得在front-matter中将开关打开,如: <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 凸优化学习笔记</span><br><span class="line">date: 2018-02-23 15:05:49</span><br><span class="line">tags: [凸优化]</span><br><span class="line">categories: 凸优化</span><br><span class="line">mathjax: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="数学公式相关问题">数学公式相关问题</h2>
+<p><strong>2018/03/24</strong>: 输入latex公式时发现不少问题,如想输入大括号没法显示: <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\&#123;x|a&#39;x&#x3D;b\&#125;$</span><br></pre></td></tr></table></figure> 期望上述公式显示为:<span class="math inline">\(\{x|a&#39;x=b\}\)</span>.</p>
+<p>或是想输入下标却被hexo渲染为<code>&lt;em&gt;</code>标签: <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$C_&#123;1&#125;$</span><br></pre></td></tr></table></figure> 期望上述公式显示为:<span class="math inline">\(C_{1}\)</span>.</p>
+<p>原因是 _ , { , } 等比较特殊,它们会被渲染成其他标签. 一个有效的方案是把它们的特殊性手动去掉. 找到hexo根目录下面的<code>node_modules\marked\lib\marked.js</code>,查找将其中第451行<code>escape</code>和459行<code>em</code>做如下修改,修改前如下: <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> inline = &#123;</span><br><span class="line">  <span class="built_in">escape</span>: <span class="regexp">/^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/</span>,</span><br><span class="line">  autolink: <span class="regexp">/^&lt;([^ &gt;]+(@|:\/)[^ &gt;]+)&gt;/</span>,</span><br><span class="line">  url: noop,</span><br><span class="line">  tag: <span class="regexp">/^&lt;!--[\s\S]*?--&gt;|^&lt;\/?\w+(?:"[^"]*"|'[^']*'|[^'"&gt;])*?&gt;/</span>,</span><br><span class="line">  link: <span class="regexp">/^!?\[(inside)\]\(href\)/</span>,</span><br><span class="line">  reflink: <span class="regexp">/^!?\[(inside)\]\s*\[([^\]]*)\]/</span>,</span><br><span class="line">  nolink: <span class="regexp">/^!?\[((?:\[[^\]]*\]|[^\[\]])*)\]/</span>,</span><br><span class="line">  strong: <span class="regexp">/^__([\s\S]+?)__(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/</span>,</span><br><span class="line">  em: <span class="regexp">/^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,</span><br><span class="line">  code: <span class="regexp">/^(`+)\s*([\s\S]*?[^`])\s*\1(?!`)/</span>,</span><br><span class="line">  br: <span class="regexp">/^ &#123;2,&#125;\n(?!\s*$)/</span>,</span><br><span class="line">  del: noop,</span><br><span class="line">  text: <span class="regexp">/^[\s\S]+?(?=[\\&lt;!\[_*`]| &#123;2,&#125;\n|$)/</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure> 修改后如下: <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> inline = &#123;</span><br><span class="line">  <span class="built_in">escape</span>: <span class="regexp">/^\\([\\`*\[\]()#+\-.!_&gt;])/</span>,</span><br><span class="line">  autolink: <span class="regexp">/^&lt;([^ &gt;]+(@|:\/)[^ &gt;]+)&gt;/</span>,</span><br><span class="line">  url: noop,</span><br><span class="line">  tag: <span class="regexp">/^&lt;!--[\s\S]*?--&gt;|^&lt;\/?\w+(?:"[^"]*"|'[^']*'|[^'"&gt;])*?&gt;/</span>,</span><br><span class="line">  link: <span class="regexp">/^!?\[(inside)\]\(href\)/</span>,</span><br><span class="line">  reflink: <span class="regexp">/^!?\[(inside)\]\s*\[([^\]]*)\]/</span>,</span><br><span class="line">  nolink: <span class="regexp">/^!?\[((?:\[[^\]]*\]|[^\[\]])*)\]/</span>,</span><br><span class="line">  strong: <span class="regexp">/^__([\s\S]+?)__(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/</span>,</span><br><span class="line">  em: <span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,</span><br><span class="line">  code: <span class="regexp">/^(`+)\s*([\s\S]*?[^`])\s*\1(?!`)/</span>,</span><br><span class="line">  br: <span class="regexp">/^ &#123;2,&#125;\n(?!\s*$)/</span>,</span><br><span class="line">  del: noop,</span><br><span class="line">  text: <span class="regexp">/^[\s\S]+?(?=[\\&lt;!\[_*`]| &#123;2,&#125;\n|$)/</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="latex多行公式对齐">latex多行公式对齐</h2>
+<p><strong>2018/06/14</strong>: 解决了latex多行公式对齐问题. <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;aligned&#125; \mathop&#123;\mathbb&#123;E&#125;&#125;_&#123;S\sim\mathcal&#123;D&#125;^&#123;m&#125;&#125;\left[  \sup_&#123;h\in\mathcal&#123;H&#125;&#125;\left|L_&#123;S&#125;(h)-L_&#123;\mathcal&#123;D&#125;&#125;(h)\right|\right] &amp; &#x3D;  \mathop&#123;\mathbb&#123;E&#125;&#125;_&#123;S\sim\mathcal&#123;D&#125;^&#123;m&#125;&#125;\left[  \sup_&#123;h\in\mathcal&#123;H&#125;&#125;\left|\mathop&#123;\mathbb&#123;E&#125;&#125;_&#123;S&#39;\sim\mathcal&#123;D&#125;^&#123;m&#125;&#125;L_&#123;S&#39;&#125;(h)-L_&#123;S&#125;(h)\right|\right] \\</span><br><span class="line">&amp; \le  \mathop&#123;\mathbb&#123;E&#125;&#125;_&#123;S\sim\mathcal&#123;D&#125;^&#123;m&#125;&#125;\left[  \sup_&#123;h\in\mathcal&#123;H&#125;&#125;\mathop&#123;\mathbb&#123;E&#125;&#125;_&#123;S&#39;\sim\mathcal&#123;D&#125;^&#123;m&#125;&#125;\left|L_&#123;S&#39;&#125;(h)-L_&#123;S&#125;(h)\right|\right]\\</span><br><span class="line">&amp; \le  \mathop&#123;\mathbb&#123;E&#125;&#125;_&#123;S\sim\mathcal&#123;D&#125;^&#123;m&#125;&#125;\left[  \mathop&#123;\mathbb&#123;E&#125;&#125;_&#123;S&#39;\sim\mathcal&#123;D&#125;^&#123;m&#125;&#125;\sup_&#123;h\in\mathcal&#123;H&#125;&#125;\left|L_&#123;S&#39;&#125;(h)-L_&#123;S&#125;(h)\right|\right]\\</span><br><span class="line">&amp; &#x3D;  \mathop&#123;\mathbb&#123;E&#125;&#125;_&#123;S,S&#39;\sim\mathcal&#123;D&#125;^&#123;m&#125;&#125;\left[  \sup_&#123;h\in\mathcal&#123;H&#125;&#125;\left|L_&#123;S&#39;&#125;(h)-L_&#123;S&#125;(h)\right|\right]\\</span><br><span class="line">&amp; &#x3D;  \mathop&#123;\mathbb&#123;E&#125;&#125;_&#123;S,S&#39;\sim\mathcal&#123;D&#125;^&#123;m&#125;&#125;\left[  \sup_&#123;h\in\mathcal&#123;H&#125;&#125; \frac&#123;1&#125;&#123;m&#125;\left|\sum_&#123;i&#x3D;1&#125;^&#123;m&#125;\left(l(h,x_&#123;i&#125;&#39;)-l(h,x_&#123;i&#125;)\right)\right|\right] \end&#123;aligned&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure> 正常latex多行公式对齐如上,但显示结果却在一行上,观察一番后发现因为转义的原因此时换行需要三个反斜杠<code>\\\</code>,正确的latex代码如下,特此记录 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;aligned&#125; \mathop&#123;\mathbb&#123;E&#125;&#125;_&#123;S\sim\mathcal&#123;D&#125;^&#123;m&#125;&#125;\left[  \sup_&#123;h\in\mathcal&#123;H&#125;&#125;\left|L_&#123;S&#125;(h)-L_&#123;\mathcal&#123;D&#125;&#125;(h)\right|\right] &amp; &#x3D;  \mathop&#123;\mathbb&#123;E&#125;&#125;_&#123;S\sim\mathcal&#123;D&#125;^&#123;m&#125;&#125;\left[  \sup_&#123;h\in\mathcal&#123;H&#125;&#125;\left|\mathop&#123;\mathbb&#123;E&#125;&#125;_&#123;S&#39;\sim\mathcal&#123;D&#125;^&#123;m&#125;&#125;L_&#123;S&#39;&#125;(h)-L_&#123;S&#125;(h)\right|\right] \\\</span><br><span class="line">&amp; \le  \mathop&#123;\mathbb&#123;E&#125;&#125;_&#123;S\sim\mathcal&#123;D&#125;^&#123;m&#125;&#125;\left[  \sup_&#123;h\in\mathcal&#123;H&#125;&#125;\mathop&#123;\mathbb&#123;E&#125;&#125;_&#123;S&#39;\sim\mathcal&#123;D&#125;^&#123;m&#125;&#125;\left|L_&#123;S&#39;&#125;(h)-L_&#123;S&#125;(h)\right|\right]\\\</span><br><span class="line">&amp; \le  \mathop&#123;\mathbb&#123;E&#125;&#125;_&#123;S\sim\mathcal&#123;D&#125;^&#123;m&#125;&#125;\left[  \mathop&#123;\mathbb&#123;E&#125;&#125;_&#123;S&#39;\sim\mathcal&#123;D&#125;^&#123;m&#125;&#125;\sup_&#123;h\in\mathcal&#123;H&#125;&#125;\left|L_&#123;S&#39;&#125;(h)-L_&#123;S&#125;(h)\right|\right]\\\</span><br><span class="line">&amp; &#x3D;  \mathop&#123;\mathbb&#123;E&#125;&#125;_&#123;S,S&#39;\sim\mathcal&#123;D&#125;^&#123;m&#125;&#125;\left[  \sup_&#123;h\in\mathcal&#123;H&#125;&#125;\left|L_&#123;S&#39;&#125;(h)-L_&#123;S&#125;(h)\right|\right]\\\</span><br><span class="line">&amp; &#x3D;  \mathop&#123;\mathbb&#123;E&#125;&#125;_&#123;S,S&#39;\sim\mathcal&#123;D&#125;^&#123;m&#125;&#125;\left[  \sup_&#123;h\in\mathcal&#123;H&#125;&#125; \frac&#123;1&#125;&#123;m&#125;\left|\sum_&#123;i&#x3D;1&#125;^&#123;m&#125;\left(l(h,x_&#123;i&#125;&#39;)-l(h,x_&#123;i&#125;)\right)\right|\right] \end&#123;aligned&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure> <span class="math display">\[
+\begin{aligned} \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\right] &amp; =  \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|\mathop{\mathbb{E}}_{S&#39;\sim\mathcal{D}^{m}}L_{S&#39;}(h)-L_{S}(h)\right|\right] \\\
+&amp; \le  \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\mathop{\mathbb{E}}_{S&#39;\sim\mathcal{D}^{m}}\left|L_{S&#39;}(h)-L_{S}(h)\right|\right]\\\
+&amp; \le  \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \mathop{\mathbb{E}}_{S&#39;\sim\mathcal{D}^{m}}\sup_{h\in\mathcal{H}}\left|L_{S&#39;}(h)-L_{S}(h)\right|\right]\\\
+&amp; =  \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|L_{S&#39;}(h)-L_{S}(h)\right|\right]\\\
+&amp; =  \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right] \end{aligned}
+\]</span></p>
+<h2 id="将博客部署到coding.net上及被谷歌收录">将博客部署到coding.net上及被谷歌收录</h2>
+<p><strong>2018/09/04</strong>: 此次升级将博客部署到了coding.net上, 主要参考了<a href="https://www.jianshu.com/p/b8c9beb07d1c" target="_blank" rel="noopener">这篇博文</a>也就是说:</p>
+<ul>
+<li>http://msgsxj.cn/</li>
+<li>http://msgsxj.coding.me/</li>
+<li>http://msgsxj.github.io/</li>
+</ul>
+<p>这三个url均能到达本站. 另外被谷歌收录(百度已经收录过了), 也就是说能在google中搜到本站, 之前不行.</p>
+<h2 id="阅读统计量清零">阅读统计量清零</h2>
+<p><strong>2018/09/15</strong>: 从18年3月开始用不蒜子统计来统计每篇文章阅读量及站点访问量, 但此次一不小心把统计结果清零了, 特此记录</p>
+<h2 id="为自己的博客加上小锁">为自己的博客加上小锁</h2>
+<p><strong>2018/09/22</strong>: 为了给个人博客加上小锁, 主要做了以下三件事情:</p>
+<ul>
+<li>按照chrome浏览器的控制台的error与warning, 在主题配置文件中关闭了一些功能, 包括自动推送url到百度</li>
+<li>在主题配置文件关闭了livere评论功能</li>
+<li>最后申请coding.net的三个月一期的免费证书(过三个月得续一次), 成功加上小锁</li>
+</ul>
+<h2 id="把图片从图床搬到本地">把图片从图床搬到本地</h2>
+<p><strong>2018/11/08</strong>: 七牛云开始收费了, 于是手动把图片般到本地路径, 正好把小锁配齐.</p>
+<h2 id="博客写作平台迁移至mac">博客写作平台迁移至mac</h2>
+<p><strong>2020/01/01</strong>: 前些日子入了台mac, 这里简单记录一下将hexo从windows迁移至mac的过程.</p>
+<ol type="1">
+<li><p>terminal下安装git,node以及hexo, 参考了<a href="https://www.jianshu.com/p/5637ced606d4" target="_blank" rel="noopener">这篇博客</a> <figure class="highlight plain"><figcaption><span>[install hexo]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew install git</span><br><span class="line">brew install node</span><br><span class="line">npm install hexo g</span><br></pre></td></tr></table></figure> 安装node过程中会在系统用户目录下生成一个<code>node_modules</code>文件夹并抛出<span class="label warning">warning</span>后生成一个<code>package-lock.json</code>文件, 这只是警告系统用户目录下没有<code>package.json</code>文件.</p></li>
+<li><p>初始化hexo,继续使用next主题 <figure class="highlight plain"><figcaption><span>[use next theme]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir hexo</span><br><span class="line">cd hexo</span><br><span class="line">hexo init</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure> 接着就是source文件的覆盖,<a href="https://hexo.io/docs/configuration.html" target="_blank" rel="noopener">hexo配置</a>,next主题文件的配置.</p></li>
+<li><p>仍然在hexo目录下将hexo的markdown引擎从默认的<code>marked</code>更换为<code>markdown-it</code>以更好的支持latex,参考了next主题中的一篇<a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/MATH.md" target="_blank" rel="noopener">doc</a> <figure class="highlight plain"><figcaption><span>[markdown-it]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked</span><br><span class="line">npm install hexo-renderer-pandoc # or hexo-renderer-kramed</span><br></pre></td></tr></table></figure> <code>markdown-it</code>与<code>marked</code>最大的区别就是需要更多的空行, 所以遇到显示不正常不妨试着加空行.</p></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%BF%9B%E5%8C%96%E5%8F%B2/" rel="tag"># 博客的进化史</a>
+              <a href="/tags/latex/" rel="tag"># latex</a>
+              <a href="/tags/%E5%8A%A0%E4%B8%8A%E5%B0%8F%E9%94%81/" rel="tag"># 加上小锁</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/01/24/2017/" rel="prev" title="2017">
+      <i class="fa fa-chevron-left"></i> 2017
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/04/17/Exploratory-Data-Analysis/" rel="next" title="Exploratory Data Analysis">
+      Exploratory Data Analysis <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用mathjax引擎渲染latex公式"><span class="nav-number">1.</span> <span class="nav-text">用mathjax引擎渲染latex公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数学公式相关问题"><span class="nav-number">2.</span> <span class="nav-text">数学公式相关问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#latex多行公式对齐"><span class="nav-number">3.</span> <span class="nav-text">latex多行公式对齐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将博客部署到coding.net上及被谷歌收录"><span class="nav-number">4.</span> <span class="nav-text">将博客部署到coding.net上及被谷歌收录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阅读统计量清零"><span class="nav-number">5.</span> <span class="nav-text">阅读统计量清零</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为自己的博客加上小锁"><span class="nav-number">6.</span> <span class="nav-text">为自己的博客加上小锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#把图片从图床搬到本地"><span class="nav-number">7.</span> <span class="nav-text">把图片从图床搬到本地</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#博客写作平台迁移至mac"><span class="nav-number">8.</span> <span class="nav-text">博客写作平台迁移至mac</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">msgsxj</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/msgsxj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;msgsxj" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:msgsxj@gmail.com" title="E-Mail → mailto:msgsxj@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">msgsxj</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+</body>
+</html>

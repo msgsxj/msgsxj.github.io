@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-fruit.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-fruit.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-fruit.png">
+  <link rel="mask-icon" href="/images/logo.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="前言:之前读过吴军博士的浪潮之巅,让我对各大IT企业有了一个了解,这次又买了吴博士的智能时代,特此记录我的一些读书笔记. ps:由于笔者从本科到研究生都在数学系,所以习惯用从定义到例子这样的方式去理解一个概念,定义内容主要参考了维基百科.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能时代-读书笔记">
+<meta property="og:url" content="http://yoursite.com/2018/05/02/%E6%99%BA%E8%83%BD%E6%97%B6%E4%BB%A3-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="msgsxj&#39;blog">
+<meta property="og:description" content="前言:之前读过吴军博士的浪潮之巅,让我对各大IT企业有了一个了解,这次又买了吴博士的智能时代,特此记录我的一些读书笔记. ps:由于笔者从本科到研究生都在数学系,所以习惯用从定义到例子这样的方式去理解一个概念,定义内容主要参考了维基百科.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-05-02T15:01:39.000Z">
+<meta property="article:modified_time" content="2020-01-01T07:20:50.005Z">
+<meta property="article:author" content="msgsxj">
+<meta property="article:tag" content="智能时代">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2018/05/02/%E6%99%BA%E8%83%BD%E6%97%B6%E4%BB%A3-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>智能时代-读书笔记 | msgsxj'blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148974741-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-148974741-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?de439caa3b6ff1c75c24155f1c47fc77";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">msgsxj'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/02/%E6%99%BA%E8%83%BD%E6%97%B6%E4%BB%A3-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="msgsxj">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="msgsxj'blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          智能时代-读书笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-05-02 23:01:39" itemprop="dateCreated datePublished" datetime="2018-05-02T23:01:39+08:00">2018-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-01 15:20:50" itemprop="dateModified" datetime="2020-01-01T15:20:50+08:00">2020-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>前言:之前读过吴军博士的浪潮之巅,让我对各大IT企业有了一个了解,这次又买了吴博士的智能时代,特此记录我的一些读书笔记. ps:由于笔者从本科到研究生都在数学系,所以习惯用从定义到例子这样的方式去理解一个概念,定义内容主要参考了维基百科.</p>
+<a id="more"></a>
+<hr />
+<h2 id="数据-人类文明的基石">数据-人类文明的基石</h2>
+<p>如果我们把资本和机械动能作为大航海时代以来全球近代化的推动力,那么数据将成为智能革命的核心动力. <a href="https://en.wikipedia.org/wiki/Data" target="_blank" rel="noopener">数据</a>:</p>
+<blockquote>
+<p>Data is a set of values of qualitative or quantitative variables.</p>
+</blockquote>
+<p>值得注意的是数据虽然本身是客观存在的,但他的范畴是随着文明进程不断变化和扩大的;计算机出现以前,一般书籍上的文字不认为是数据,而在今天它确实很重要的数据形式,可以想象不久的将来数据的范围一定会进一步扩大.</p>
+<p><a href="https://en.wikipedia.org/wiki/Information" target="_blank" rel="noopener">信息</a>:</p>
+<blockquote>
+<p>Information is any entity or form that resolves uncertainty or provides the answer to a question of some kind.</p>
+</blockquote>
+<p>通常我们的目标就是从数据中挖掘出有用的信息来为我们所用,但我们能拿到的数据往往是有用的数据和没用的数据(伪造数据)混在一起,这无疑会干扰我们获取有用的信息.</p>
+<p><a href="https://en.wikipedia.org/wiki/Mathematical_model" target="_blank" rel="noopener">数学模型</a>:</p>
+<blockquote>
+<p>A mathematical model is a description of a system using mathematical concepts and language.A model may help to explain a system and to study the effects of different components, and to make predictions about behaviour.</p>
+</blockquote>
+<p>很多时候,我们没法直接使用数据,但我们可以将相关的信息量化,然后通过数学模型,间接的得到想要的信息. 另外我们通常对数据有两个方面的要求,质和量,质表示得到数据必须具有一定的代表性,量则是数据量必须充足.</p>
+<p><a href="https://en.wikipedia.org/wiki/Data-driven" target="_blank" rel="noopener">数据驱动</a>:</p>
+<blockquote>
+<p>The adjective data-driven means that progress in an activity is compelled by data.</p>
+</blockquote>
+<p>数学模型的选择不是一件容易的事情,其中数据驱动方法是目前的主流,它的主要内容就是选择一个或简单或复杂的模型,然后用很多数据去拟合.比方说DNN的数学模型可以说非常简单了,但它往往都有很多层隐藏层,从这个层面讲这个模型可以说的上是复杂. 数据驱动方法最大优势在于他可以最大程度上得益于计算机技术的进步,尽管一开始数据量不够、计算力不够时会显得粗糙,随着时间的推移,数据驱动方法可以非常准确.相比之下非数据驱动方法的进步需要理论上的突破,因此改进周期长.</p>
+<hr />
+<h2 id="大数据与机器智能">大数据与机器智能</h2>
+<p>在有大数据之前,计算机并不擅长解决需要人类智能的问题,但今天这些问题能够得以解决,其核心就是变智能问题为数据问题,由此开始了新一轮技术革命-智能革命. 机器智能又名<a href="https://en.wikipedia.org/wiki/AI" target="_blank" rel="noopener">人工智能</a>:</p>
+<blockquote>
+<p>In computer science AI research is defined as the study of "intelligent agents": any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals.</p>
+</blockquote>
+<p>人工智能1.0:1956年夏天的<a href="https://en.wikipedia.org/wiki/Dartmouth_workshop" target="_blank" rel="noopener">Dartmouth workshop</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Big_data" target="_blank" rel="noopener">大数据</a>:</p>
+<blockquote>
+<p>Big data is data sets that are so voluminous and complex that traditional data-processing application software are inadequate to deal with them.</p>
+</blockquote>
+<p>大数据的三个特征:</p>
+<ul>
+<li>Vast(2005是大数据的元年,第一次参加<a href="https://en.wikipedia.org/wiki/National_Institute_of_Standards_and_Technology" target="_blank" rel="noopener">NIST</a>评测的Google机器翻译团队以巨大优势取得第一,原因在于使用了万倍的数据量建立了六元模型而不是三元模型).</li>
+<li>Variety(百度发布的<a href="https://baike.baidu.com/item/%E4%B8%AD%E5%9B%BD%E5%8D%81%E5%A4%A7%E5%90%83%E8%B4%A7%E7%9C%81%E5%B8%82%E6%8E%92%E8%A1%8C%E6%A6%9C/15408979" target="_blank" rel="noopener">中国十大吃货省市排行榜</a>说明了正是大数据的多样性,我们才能从中获得更多有价值的结果)</li>
+<li>Completeness(<a href="https://en.wikipedia.org/wiki/Nate_Silver" target="_blank" rel="noopener">Nade Silver</a>通过搜集社交网络上的相对反映真实想法的数据,对2012美国大选做出非常漂亮的预测)</li>
+</ul>
+<hr />
+<h2 id="思维的革命">思维的革命</h2>
+<p>数据所包含的信息能帮助我们消除不确定性,数据的相关性一定程度上能取代员原来的因果关系. 上一章我们从技术层面分析了大数据的重要性,这一张我们将从方法论层面描述其重要性. <a href="https://en.wikipedia.org/wiki/Mechanical_philosophy" target="_blank" rel="noopener">机械思维</a>:</p>
+<blockquote>
+<p>the universe is reducible to completely mechanical principles—that is, the motion and collision of matter.</p>
+</blockquote>
+<p>机械思维的形成:</p>
+<ul>
+<li><p>欧几里得创立了基于公理化体系的几何学</p></li>
+<li><p>托勒密总结出:通过观察获得数学模型的雏形,然后利用数据来细化模型</p></li>
+<li><p>笛卡尔总结出:大胆假设,小心求证</p></li>
+<li><p>牛顿不仅把欧几里得通过逻辑建立起来的方法论从数学扩展到自然科学领域,而且把托勒密用机械运动描述天体的规律扩展到对世界任何规律的描述,后来人们将牛顿的方法论概括为机械思维,其核心思想有三:</p>
+<ol type="1">
+<li>世界的变化规律是确定的</li>
+<li>规律不仅可以被认知,而且可以用简单的语言描述</li>
+<li>这些规律可以在未知领域指导实践</li>
+</ol></li>
+</ul>
+<p>机械思维的局限性:</p>
+<ul>
+<li>否认了不确定性(量子力学中测不准原理<span class="math inline">\(\Delta t\cdot\Delta p&gt;\varepsilon\)</span>)</li>
+</ul>
+<p><a href="https://en.wikipedia.org/wiki/Entropy" target="_blank" rel="noopener">熵</a>:</p>
+<blockquote>
+<p>In statistical mechanics, entropy is an extensive property of a thermodynamic system. It is closely related to the number Ω of microscopic configurations (known as microstates) that are consistent with the macroscopic quantities that characterize the system (such as its volume, pressure and temperature). Under the assumption that each microstate is equally probable, the entropy S is the natural logarithm of the number of microstates, multiplied by the Boltzmann constant <span class="math inline">\(k_{B}\)</span>. Formally,<span class="math inline">\(S=k_{B}\ln\Omega\)</span>.</p>
+</blockquote>
+<p>香浓在信息论中借用了热力学中熵的概念,描述了一个信息系统的不确定性.<a href="https://en.wikipedia.org/wiki/Information_theory" target="_blank" rel="noopener">信息论</a>主要包括自信息(self-information),互信息(mutual-information),香农第一定律(噪声信道编码定理)和香农第二定律:</p>
+<ul>
+<li>自信息:<span class="math inline">\(H(X)=\mathbb {E}_{X}[I(x)]=-\sum_{x\in \mathbb {X} }p(x)\log p(x)\)</span></li>
+<li>互信息:<span class="math inline">\(I(X;Y)=\mathbb {E}_{X,Y}[SI(x,y)]=\sum_{x,y}p(x,y)\log {\frac {p(x,y)}{p(x)\,p(y)}}\)</span></li>
+<li>香农第一定律(<a href="https://en.wikipedia.org/wiki/Shannon%27s_source_coding_theorem" target="_blank" rel="noopener">Shannon's source coding theorem</a>):对于信号源发出的所有信息设置一种编码,那么编码的平均长度一定大于该源的信息熵;且一定存在一种编码,这种编码的平均长度能无限接近于它的信息熵(这种编码又称为是<a href="https://en.wikipedia.org/wiki/Huffman_coding" target="_blank" rel="noopener">霍夫曼编码</a>)</li>
+<li>香农第二定律(<a href="https://en.wikipedia.org/wiki/Noisy-channel_coding_theorem" target="_blank" rel="noopener">Noisy-channel coding theorem</a>):信息传播速率不可能超过信道的容量</li>
+</ul>
+<p>关于信息论,还有一个原理必须了解,那就是<a href="https://en.wikipedia.org/wiki/Principle_of_maximum_entropy" target="_blank" rel="noopener">最大熵原理</a>:</p>
+<blockquote>
+<p>The principle of maximum entropy states that the probability distribution which best represents the current state of knowledge is the one with largest entropy, in the context of precisely stated prior data (such as a proposition that expresses testable information).</p>
+</blockquote>
+<p>这原理的大意为,当我们要对未知寻求一个概率模型时,这个模型应当满足我们所有已经看到的数据,但对未知的情况不要做任何假设.这事实上截然不同于笛卡尔总结出:大胆假设,小心求证的方法论.</p>
+<p>在无法确定因果关系时,数据所包含的信息能帮助我们消除不确定性,研究数据的相关性为我们从数据中得到信息提供一种更高效的方法(而不是直接研究因果关系),这两点便是大数据思维的核心.</p>
+<hr />
+<h2 id="大数据与商业">大数据与商业</h2>
+<p>可以预见的是,在未来,大数据会如同水电,由专门的公司提供给全社会使用.</p>
+<hr />
+<h2 id="大数据和智能革命的技术挑战">大数据和智能革命的技术挑战</h2>
+<p>大数据的数据量大、维度多、数据完备等特点使得它从数据收集到存储和处理都与过去的数据方法有很大不同,因此,这需要我们在技术上采用不同的方法.</p>
+<hr />
+<h2 id="未来智能化产业">未来智能化产业</h2>
+<p>现有产业+机器智能=新产业</p>
+<hr />
+<h2 id="智能革命和未来社会">智能革命和未来社会</h2>
+<p>在美国,很多道路在交通高峰期要求车上必须有两个及以上人才能使用快速车道,这些车道被称为拼车车道.</p>
+<hr />
+<h3 id="区块链">区块链</h3>
+<p>区块链(<a href="https://en.wikipedia.org/wiki/Blockchain" target="_blank" rel="noopener">Block Chain</a>):</p>
+<ul>
+<li>Block:一个账户存储信息</li>
+<li>Chain:一连串的交易信息</li>
+</ul>
+<p>区块链的一项重要应用比特币实际上是由随机数算法产生的随机数,这个随机数在整个互联网上是唯一的,而且是可以验其真伪的.比特币在被矿工挖出时,就产生一个带有这样的特殊随机数的Block,当这个比特币通过交易到达第二个人手里时,在该Block中就记录下了这笔交易的信息,这个过程本质上是一个加密信息传输过程,一旦交易完成了,它就会被广播到整个互联网上.所有的比特币散布在整个互联网上,且通过公开秘钥来发送和传播,且没有一个中心去控制.</p>
+<p>比特币(<a href="https://en.wikipedia.org/wiki/Bitcoin" target="_blank" rel="noopener">Bitcion</a>):</p>
+<ul>
+<li>a cryptocurrency and worldwide payment system</li>
+<li>without a central bank or single administrator</li>
+<li>the network is peer-to-peer</li>
+<li>transactions are verified by network nodes through the use of cryptography and recorded in a public distributed ledger called a blockchain</li>
+</ul>
+<p>区块链的另外一项重要应用是商品溯源,如果一个商品制造出来时产生这样一个区块链,并且它在被运输和交易时利用区块链记录全过程,那么当最终消费者购买到这个商品后,他可以看到这个商品是如何一步步到自己手上的.因为商品与区块链是一一对应的,这样子就能从理论上杜绝假货.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%99%BA%E8%83%BD%E6%97%B6%E4%BB%A3/" rel="tag"># 智能时代</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/04/19/Python%E9%A3%9F%E7%94%A8%E8%AE%B0%E5%BD%95/" rel="prev" title="Python食用记录">
+      <i class="fa fa-chevron-left"></i> Python食用记录
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/05/29/2018%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A%E7%AE%97%E6%B3%95%E5%A4%A7%E8%B5%9B%E5%88%9D%E8%B5%9Blgb/" rel="next" title="2018腾讯广告算法大赛初赛lgb">
+      2018腾讯广告算法大赛初赛lgb <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据-人类文明的基石"><span class="nav-number">1.</span> <span class="nav-text">数据-人类文明的基石</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大数据与机器智能"><span class="nav-number">2.</span> <span class="nav-text">大数据与机器智能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思维的革命"><span class="nav-number">3.</span> <span class="nav-text">思维的革命</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大数据与商业"><span class="nav-number">4.</span> <span class="nav-text">大数据与商业</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大数据和智能革命的技术挑战"><span class="nav-number">5.</span> <span class="nav-text">大数据和智能革命的技术挑战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未来智能化产业"><span class="nav-number">6.</span> <span class="nav-text">未来智能化产业</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#智能革命和未来社会"><span class="nav-number">7.</span> <span class="nav-text">智能革命和未来社会</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#区块链"><span class="nav-number">7.1.</span> <span class="nav-text">区块链</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">msgsxj</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/msgsxj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;msgsxj" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:msgsxj@gmail.com" title="E-Mail → mailto:msgsxj@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">msgsxj</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+</body>
+</html>
