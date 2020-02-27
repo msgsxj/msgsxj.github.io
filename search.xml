@@ -32,7 +32,7 @@
 <p>这类方法着重于利用先前迭代中计算得到的样本的梯度信息, 其包括SVGR、SAG/SAGA等.</p>
 <h4 id="svrg">SVRG</h4>
 <figure>
-<img src="/pictures/SVRG.png" alt="" /><figcaption>SVRG</figcaption>
+<img src="/pictures/SVRG.png" alt="SVRG" /><figcaption>SVRG</figcaption>
 </figure>
 <p>SVGA只适用于<span class="math inline">\(R_n(w)\)</span>. 如上图算法所示, 相比SG, SVGA多了抽取<span class="math inline">\(m\)</span>个样本的内层循环, 再用内层循环产生的子序列<span class="math inline">\(\{\tilde{w}_j\}\)</span>,<span class="math inline">\({j=1,...,m}\)</span>去生成高质量的<span class="math inline">\(w_{k+1}\)</span>, 方式比如说(a),(b),(c). 核心式子为:<span class="math display">\[\tilde{g}_j\leftarrow \nabla f_{i_{j}}(\tilde{w}_j)-(\nabla f_{i_{j}}(w_k)-\nabla R_n(w_k))\]</span>它可以从两个角度去理解:</p>
 <ol type="1">
@@ -42,7 +42,7 @@
 <p>在强凸前提下其收敛速度为线性[SVRG TH1]<span class="math display">\[\mathbb{E}[R_n(w_{k})-R_*]\le\omega\rho^{k-1}\]</span>其中<span class="math inline">\(\rho\in(0,1)\)</span>. SVRG的计算复杂度为:<span class="math display">\[O((n+\kappa)\log(1/\epsilon))\]</span></p>
 <h4 id="sagasag">SAGA/SAG</h4>
 <figure>
-<img src="/pictures/SAGA.png" alt="" /><figcaption>SAGA</figcaption>
+<img src="/pictures/SAGA.png" alt="SAGA" /><figcaption>SAGA</figcaption>
 </figure>
 <p>SAGA只适用于<span class="math inline">\(R_n(w)\)</span>, 显然算法部分第一块为初始化所有样本梯度值并存储, 第二个循环才是算法循环. 其中<span class="math inline">\(\nabla f_j(w_{[j]})\)</span>表示第<span class="math inline">\(j\)</span>个样本最近一次存储着的梯度值. 比如说对于第<span class="math inline">\(1\)</span>个样本, 初始化时<span class="math inline">\(\nabla f_1(w_{[1]})\leftarrow \nabla f_1(w_{1})\)</span>, 剩下涉第<span class="math inline">\(1\)</span>个样本的梯度的更新就只有靠算法循环中的<code>Choose j uniformly in {1,...,n}</code>抽到再用<span class="math inline">\(\nabla f_1(w_k)\)</span>更新. 因此可以看出, SAGA本着<strong>能不计算梯度就不计算</strong>的原则(每步迭代只计算一个样本的梯度, 从这个角度看更接近SG), 而其核心式子为:<span class="math display">\[g_k\leftarrow \nabla f_{j}(w_k)-\nabla f_{j}(w_{[j]})+\frac{1}{n}\sum_{i=1}^n\nabla f_i(w_{[i]})\]</span>它同样可以从两个角度去理解:</p>
 <ol type="1">
@@ -202,7 +202,7 @@
     <content><![CDATA[<p>前言: 最近在读最佳可能的世界一书, 这里简单分享一下最小作用量原理. <a id="more"></a></p>
 <hr />
 <h3 id="hero-of-alexandria-自然将永远选择最短的路线">Hero of Alexandria: 自然将永远选择最短的路线</h3>
-<p>Hero of Alexandria(希罗)是公元后10年-70年时期来自亚历山大的数学家和工程师, 他的作品被Marin Cureau de la Chambre(马林·库若)读到; 1657年, 库若写了一篇论文"关于光"并把它寄给了Pierre de Fermat(皮埃尔·德·费马), 这篇文章陈述了反射定律, 根据这个原理, "自然将永远选择最短的路线", 正如下图所示: <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Reflection_angles.svg/800px-Reflection_angles.svg.png" width="50%" /></p>
+<p>Hero of Alexandria(希罗)是公元后10年-70年时期来自亚历山大的数学家和工程师, 他的作品被Marin Cureau de la Chambre(马林·库若)读到; 1657年, 库若写了一篇论文&quot;关于光&quot;并把它寄给了Pierre de Fermat(皮埃尔·德·费马), 这篇文章陈述了反射定律, 根据这个原理, &quot;自然将永远选择最短的路线&quot;, 正如下图所示: <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Reflection_angles.svg/800px-Reflection_angles.svg.png" width="50%" /></p>
 <hr />
 <h3 id="pierre-de-fermat-光沿着最快的路线传播">Pierre de Fermat: 光沿着最快的路线传播</h3>
 <p>费马在给库若的回信表示了对希罗的观点的认同, 并在对光的折射的研究中提出了新的描述: 光沿着最快的路线传播; 5年后的1662年, 费马给出了他的结果, 并成功导出了Descartes(笛卡尔)在1637年推导出的正弦定律, 只不过笛卡尔认为光在水中比在空气中的传播速度快, 而费马的想法与此相反.</p>
@@ -220,7 +220,7 @@
 <h3 id="maupertuis-光选择了一条具有真正好处的路线-它走的路线作用量最小">Maupertuis: 光选择了一条具有真正好处的路线: 它走的路线作用量最小</h3>
 <p>1744年, Maupertuis(莫培督)提出: 既然光不能同时选择最短的和最快的路线, 那它为什么选择这条路而不是那条路呢? 光实际上选择了最小化作用量<span class="math inline">\(lvm\)</span>的线路, 这里<span class="math inline">\(l\)</span>表示距离, <span class="math inline">\(v\)</span>表示速度, <span class="math inline">\(m\)</span>表示物体质量; 1751年, 一位叫Koenig(科尼格)的提到Gottfried Wilhelm Leibniz(弗里德·威廉·莱布尼兹)在1707年所写的信中提出过作用量的概念, 其应当是距离, 时间和质量的乘积<span class="math inline">\(ltm\)</span>, 科尼格因此却被莫培督控告造假; 1752年, 莫培督在他的论宇宙一书声称了一个物理学同形而上学甚至道德的统一: 由最小作用量原理统治的世界一定是最好的.</p>
 <blockquote>
-<p>Voltaire: "圣马洛本地人早就染上了一种慢性疾病, 有人把这种病称为是追命惴栗, 也有人把它称为喜好权利." 他病得很重, 他写文章攻击医药和上帝的存在的证明. 他最后达到认为它比前一世纪的某个巨人莱布尼兹更伟大.</p>
+<p>Voltaire: &quot;圣马洛本地人早就染上了一种慢性疾病, 有人把这种病称为是追命惴栗, 也有人把它称为喜好权利.&quot; 他病得很重, 他写文章攻击医药和上帝的存在的证明. 他最后达到认为它比前一世纪的某个巨人莱布尼兹更伟大.</p>
 </blockquote>
 <p>Voltaire(伏尔泰)的文章迅速获得成功, 莫培督在欧洲受尽嘲讽, 并于1759年落魄去世; 而伏尔泰于1759年出版的小说Candide(老实人)至今仍被人阅读.</p>
 <hr />
@@ -292,7 +292,7 @@
 <p>以最简单的二次函数<span class="math inline">\(f(x)=\frac{1}{2}x^TAx-b^Tx\)</span>为例, 其中<span class="math inline">\(A\)</span>为<span class="math inline">\(n\)</span>阶对称正定方阵, 此时共轭的概念有了具体的要求: <span class="math inline">\(p_i^TAp_j=0\)</span>. 若<span class="math inline">\(A\)</span>恰为对角阵, 如左图所示, 共轭方向集合可取为坐标轴方向<span class="math inline">\(\{e_1, e_2\}\)</span>; 若<span class="math inline">\(A\)</span>不为对角阵, 如右图所示, 此时<span class="math inline">\(\{e_1, e_2\}\)</span>不能作为一组共轭方向, 图中的<strong>红线</strong>和<strong>蓝线</strong>则是给出了两个不同的共轭方向集合.</p>
 <p>值得注意的是, 此时<strong>至多</strong><span class="math inline">\(n\)</span>步共轭方向法会收敛到最小值点<span class="math inline">\(x^*\)</span>, 证明可见Numerical Optimization一书定理5.1</p>
 <figure>
-<img src="/pictures/scipy_optimization/1.png" alt="" /><figcaption>avatar</figcaption>
+<img src="/pictures/scipy_optimization/1.png" alt="avatar" /><figcaption>avatar</figcaption>
 </figure>
 <p>回到Powell方法, 仍然以上述二次函数为例, 其与标准共轭方向法唯一的不同在于<strong>迭代地得到共轭方向的集合</strong>, 且共轭方向的集合的初始化可简单取为<span class="math inline">\(\{e_1, e_2\}\)</span>. 以右图为例,</p>
 <ul>
@@ -641,7 +641,7 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
 <h2 id="习惯五-知彼解己">习惯五: 知彼解己</h2>
 <p>首先寻求取了解对方, 然后在争取让对方了解自己.</p>
 <h3 id="移情聆听">移情聆听</h3>
-<p>然而, 大部分人在聆听时并不是想理解对方, 而是为了做出回应: "是的, 我知道你的感受, 我的经验是...". 移情聆听是指以理解目的的聆听, 要求听者站在说话者的角度理解他们的思维模式和感受, 表现为耳到, 眼到, 心到. 移情聆听同样是有风险的, 只有当你做好了被对方影响的准备, 才能深入移情聆听的阶段, 而这需要足够的安全感的, 因为这时候的你会变得很脆弱. 所以说, 习惯一二三是基础, 帮你保持核心不变, 即以原则为中心, 从而和平有力地应对坚定内心之外的脆弱.</p>
+<p>然而, 大部分人在聆听时并不是想理解对方, 而是为了做出回应: &quot;是的, 我知道你的感受, 我的经验是...&quot;. 移情聆听是指以理解目的的聆听, 要求听者站在说话者的角度理解他们的思维模式和感受, 表现为耳到, 眼到, 心到. 移情聆听同样是有风险的, 只有当你做好了被对方影响的准备, 才能深入移情聆听的阶段, 而这需要足够的安全感的, 因为这时候的你会变得很脆弱. 所以说, 习惯一二三是基础, 帮你保持核心不变, 即以原则为中心, 从而和平有力地应对坚定内心之外的脆弱.</p>
 <h3 id="合理表达自己">合理表达自己</h3>
 <p>我们在听别人讲话时总是会联系我们自己的经历, 因此自以为是的人往往会有四种自传式回应(autobiographical reponse)的倾向:</p>
 <ul>
@@ -1391,28 +1391,28 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}
 \]</span>同样上式是以<span class="math inline">\(1-\delta\)</span>的概率成立. 证明分8步走:</p>
 <ol type="1">
-<li><p>引理1: <span class="math display">\[
+<li>引理1: <span class="math display">\[
 \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\right]\le\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\sqrt{2m}}
 \]</span>现先假定引理1成立,那么由随机变量<span class="math inline">\(\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\)</span>显然是非负的以及马尔可夫不等式<span class="math inline">\(\mathbb{P}[X\ge \delta]\le\frac{\mathbb{E}[X]}{\delta}\)</span>可直接推得结论成立: <span class="math display">\[
 \mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\ge\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}\right] \le \frac{\mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[ \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\right]}{\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}}\le \delta
 \]</span>即 <span class="math display">\[
 \mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}\right] \ge 1-\delta
-\]</span></p></li>
-<li><p>问题转化为证引理1,考虑引理1的左半部分: <span class="math display">\[
+\]</span></li>
+<li>问题转化为证引理1,考虑引理1的左半部分: <span class="math display">\[
 \begin{aligned} \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\right] &amp; =  \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|\mathop{\mathbb{E}}_{S&#39;\sim\mathcal{D}^{m}}L_{S&#39;}(h)-L_{S}(h)\right|\right] \\\
 &amp; \le  \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\mathop{\mathbb{E}}_{S&#39;\sim\mathcal{D}^{m}}\left|L_{S&#39;}(h)-L_{S}(h)\right|\right]\\\
 &amp; \le  \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \mathop{\mathbb{E}}_{S&#39;\sim\mathcal{D}^{m}}\sup_{h\in\mathcal{H}}\left|L_{S&#39;}(h)-L_{S}(h)\right|\right]\\\
 &amp; =  \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|L_{S&#39;}(h)-L_{S}(h)\right|\right]\\\
 &amp; =  \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right] \end{aligned}
-\]</span> 其中第一个等号是因为<span class="math inline">\(L_{\mathcal{D}}(h)=\mathbb{E}_{S&#39;\sim\mathcal{D}^{m}}L_{S&#39;}(h)\)</span>,第二个不等号为绝对值放到积分里面,第三个不等号为期望的上界小于等于上界的期望,第四个等号为两个期望合并,第五个等号为<span class="math inline">\(L_{S}(h)\)</span>写开来,且这里的<span class="math inline">\(l(h,x_{i})\)</span>为<span class="math inline">\(h\)</span>下的0-1损失</p></li>
-<li><p>引入随机变量<span class="math inline">\(\sigma\in\{\pm 1\}^{m}\)</span>,2.中最右端等价于: <span class="math display">\[
+\]</span> 其中第一个等号是因为<span class="math inline">\(L_{\mathcal{D}}(h)=\mathbb{E}_{S&#39;\sim\mathcal{D}^{m}}L_{S&#39;}(h)\)</span>,第二个不等号为绝对值放到积分里面,第三个不等号为期望的上界小于等于上界的期望,第四个等号为两个期望合并,第五个等号为<span class="math inline">\(L_{S}(h)\)</span>写开来,且这里的<span class="math inline">\(l(h,x_{i})\)</span>为<span class="math inline">\(h\)</span>下的0-1损失</li>
+<li>引入随机变量<span class="math inline">\(\sigma\in\{\pm 1\}^{m}\)</span>,2.中最右端等价于: <span class="math display">\[
 \begin{aligned} \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right] &amp; =  \mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right]\\\
 &amp; = \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}} \mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right] \end{aligned}
-\]</span>其中第一个等号为<span class="math inline">\(\pm1\)</span>对绝对值无影响,第二个等号为交换期望</p></li>
-<li><p>考虑3.最右端,固定<span class="math inline">\(S,S&#39;\)</span>,令<span class="math inline">\(C=S\cup S&#39;\)</span>,那么此时<span class="math inline">\(\mathcal{H}\)</span>仅会涉及<span class="math inline">\(C\)</span>上的假设,即可以把<span class="math inline">\(\mathcal{H}\)</span>限制在<span class="math inline">\(C\)</span>上: <span class="math display">\[
+\]</span>其中第一个等号为<span class="math inline">\(\pm1\)</span>对绝对值无影响,第二个等号为交换期望</li>
+<li>考虑3.最右端,固定<span class="math inline">\(S,S&#39;\)</span>,令<span class="math inline">\(C=S\cup S&#39;\)</span>,那么此时<span class="math inline">\(\mathcal{H}\)</span>仅会涉及<span class="math inline">\(C\)</span>上的假设,即可以把<span class="math inline">\(\mathcal{H}\)</span>限制在<span class="math inline">\(C\)</span>上: <span class="math display">\[
 \mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right]= \mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\left[  \max_{h\in\mathcal{H}_{C}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right]
-\]</span></p></li>
-<li><p>固定<span class="math inline">\(h\in\mathcal{H}_{C}\)</span>,并记<span class="math inline">\(\theta_{h} \triangleq \frac{1}{m}\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\)</span>,则有 <span class="math display">\[
+\]</span></li>
+<li>固定<span class="math inline">\(h\in\mathcal{H}_{C}\)</span>,并记<span class="math inline">\(\theta_{h} \triangleq \frac{1}{m}\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\)</span>,则有 <span class="math display">\[
 \begin{aligned}\mathbb{E}\theta_{h} &amp; =\mathbb{E}\frac{1}{m}\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right) \\\
 &amp; = \frac{1}{m}\sum_{i=1}^{m}\mathbb{E}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\\\
 &amp; = 0
@@ -1421,7 +1421,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 \mathbb{P}\left[\left|\theta_{h}\right|&gt;\rho\right]\le2\exp(-2m\rho^{2})
 \]</span>即 <span class="math display">\[
 \mathbb{P}\left[\frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|&gt;\rho\right]\le2\exp(-2m\rho^{2})
-\]</span></p></li>
+\]</span></li>
 <li><p>注意到此时<span class="math inline">\(\mathcal{H}_{C}\)</span>仅包含有限个假设,由联合界(简言之,<span class="math inline">\(\mathbb{P}(A\cup B)\le\mathbb{P}(A)+\mathbb{P}(B)\)</span>)可得: <span class="math display">\[
 \mathbb{P}\left[\max_{h\in\mathcal{H}_{C}}\left|\theta_{h}\right|&gt;\rho\right]\le2\left|\mathcal{H}_{C}\right|\exp(-2m\rho^{2})
 \]</span>即 <span class="math display">\[
@@ -1522,7 +1522,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 <h2 id="大数据与机器智能">大数据与机器智能</h2>
 <p>在有大数据之前,计算机并不擅长解决需要人类智能的问题,但今天这些问题能够得以解决,其核心就是变智能问题为数据问题,由此开始了新一轮技术革命-智能革命. 机器智能又名<a href="https://en.wikipedia.org/wiki/AI" target="_blank" rel="noopener">人工智能</a>:</p>
 <blockquote>
-<p>In computer science AI research is defined as the study of "intelligent agents": any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals.</p>
+<p>In computer science AI research is defined as the study of &quot;intelligent agents&quot;: any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals.</p>
 </blockquote>
 <p>人工智能1.0:1956年夏天的<a href="https://en.wikipedia.org/wiki/Dartmouth_workshop" target="_blank" rel="noopener">Dartmouth workshop</a></p>
 <p><a href="https://en.wikipedia.org/wiki/Big_data" target="_blank" rel="noopener">大数据</a>:</p>
@@ -1543,9 +1543,9 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 </blockquote>
 <p>机械思维的形成:</p>
 <ul>
-<li><p>欧几里得创立了基于公理化体系的几何学</p></li>
-<li><p>托勒密总结出:通过观察获得数学模型的雏形,然后利用数据来细化模型</p></li>
-<li><p>笛卡尔总结出:大胆假设,小心求证</p></li>
+<li>欧几里得创立了基于公理化体系的几何学</li>
+<li>托勒密总结出:通过观察获得数学模型的雏形,然后利用数据来细化模型</li>
+<li>笛卡尔总结出:大胆假设,小心求证</li>
 <li><p>牛顿不仅把欧几里得通过逻辑建立起来的方法论从数学扩展到自然科学领域,而且把托勒密用机械运动描述天体的规律扩展到对世界任何规律的描述,后来人们将牛顿的方法论概括为机械思维,其核心思想有三:</p>
 <ol type="1">
 <li>世界的变化规律是确定的</li>
@@ -1785,9 +1785,9 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 <li>bwplot:box-and-whiskers plots</li>
 <li>histogram:histograms</li>
 <li>stripplot:like a boxplot but with actual points</li>
-<li>dotplot:plot dots on "violin strings"</li>
+<li>dotplot:plot dots on &quot;violin strings&quot;</li>
 <li>splom:scatterplot matrix(like pairs in base plotting)</li>
-<li>levelplot, contourplot:for plotting "image" data</li>
+<li>levelplot, contourplot:for plotting &quot;image&quot; data</li>
 </ul>
 <h3 id="examples-1">Examples</h3>
 <h4 id="examplexyplot">Example:xyplot</h4>
@@ -1819,7 +1819,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 </ol>
 <ul>
 <li>xlab(), ylab(), ggtitle(), labs()</li>
-<li>theme(legend.position = "none")</li>
+<li>theme(legend.position = &quot;none&quot;)</li>
 <li>theme_gray()</li>
 <li>theme_bw()</li>
 </ul>
@@ -1899,7 +1899,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 <p><strong>2020/01/01</strong>: 前些日子入了台mac, 这里简单记录一下将hexo从windows迁移至mac的过程.</p>
 <ol type="1">
 <li><p>terminal下安装git,node以及hexo, 参考了<a href="https://www.jianshu.com/p/5637ced606d4" target="_blank" rel="noopener">这篇博客</a> <figure class="highlight plain"><figcaption><span>[install hexo]</span></figcaption><table><tr><td class="code"><pre><span class="line">brew install git</span><br><span class="line">brew install node</span><br><span class="line">npm install hexo g</span><br></pre></td></tr></table></figure> 安装node过程中会在系统用户目录下生成一个<code>node_modules</code>文件夹并抛出<span class="label warning">warning</span>后生成一个<code>package-lock.json</code>文件, 这只是警告系统用户目录下没有<code>package.json</code>文件.</p></li>
-<li><p>初始化hexo,继续使用next主题 <figure class="highlight plain"><figcaption><span>[use next theme]</span></figcaption><table><tr><td class="code"><pre><span class="line">mkdir hexo</span><br><span class="line">cd hexo</span><br><span class="line">hexo init</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure> 接着就是source文件的覆盖,<a href="https://hexo.io/docs/configuration.html" target="_blank" rel="noopener">hexo配置</a>,next主题文件的配置.</p></li>
+<li>初始化hexo,继续使用next主题 <figure class="highlight plain"><figcaption><span>[use next theme]</span></figcaption><table><tr><td class="code"><pre><span class="line">mkdir hexo</span><br><span class="line">cd hexo</span><br><span class="line">hexo init</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure> 接着就是source文件的覆盖,<a href="https://hexo.io/docs/configuration.html" target="_blank" rel="noopener">hexo配置</a>,next主题文件的配置.</li>
 <li><p>仍然在hexo目录下将hexo的markdown引擎从默认的<code>marked</code>更换为<code>pandoc</code>以更好的支持latex,参考了next主题中的一篇<a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/MATH.md" target="_blank" rel="noopener">doc</a> <figure class="highlight plain"><figcaption><span>[pandoc]</span></figcaption><table><tr><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked</span><br><span class="line">npm install hexo-renderer-pandoc</span><br></pre></td></tr></table></figure> <code>markdown-it</code>与<code>pandoc</code>最大的区别就是需要更多的空行, 所以遇到显示不正常不妨试着加空行.</p></li>
 </ol>
 ]]></content>
@@ -1913,11 +1913,290 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
       </tags>
   </entry>
   <entry>
+    <title>凸优化学习笔记</title>
+    <url>/2018/02/23/%E5%87%B8%E4%BC%98%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>前言:主要参考了凸优化理论一书及讨论班上的ppt <a id="more"></a> <span class="math inline">\(\mathbb{R}\)</span>表示实数域</p>
+<h1 id="基本概念">基本概念</h1>
+<h2 id="凸集与凸函数">凸集与凸函数</h2>
+<h3 id="凸集">凸集</h3>
+<p>凸集: &gt; <span class="math inline">\(\mathbb{R}^{n}\)</span>的子集<span class="math inline">\(C\)</span>被称为凸集,如果其满足<span class="math inline">\(\alpha x+(1-\alpha)y\in C,\forall x,y\in C,\forall \alpha \in [0,1]\)</span>.</p>
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Convex_polygon_illustration1.svg/153px-Convex_polygon_illustration1.svg.png" alt="avatar" /><figcaption>avatar</figcaption>
+</figure>
+<p>锥体(cone): &gt; <span class="math inline">\(0\in C\)</span>,如果对 <span class="math inline">\(\forall x \in C , \forall \lambda &gt; 0, \lambda x \in C\)</span> ,则称<span class="math inline">\(C\)</span>为锥体.</p>
+<h4 id="保持集合凸性的运算">保持集合凸性的运算</h4>
+<p>凸集在以下几种运算下能保持凸性: - 任意多个凸集的交集是凸集. - 任意两个凸集的向量和是凸集. - 对任意的凸集<span class="math inline">\(C\)</span>和标量<span class="math inline">\(\lambda\)</span>,集合<span class="math inline">\(\lambda C\)</span>是凸集. - 凸集的闭包(closure)和内点集(interior)是凸集. - 凸集在仿射函数下的像和原像是凸集.</p>
+<p>p.s.:不了解仿射函数的点<a href="https://en.wikipedia.org/wiki/Affine_transformation" target="_blank" rel="noopener">这里</a>.</p>
+<h4 id="几个特殊的凸集">几个特殊的凸集</h4>
+<p>下面是最常见的几个凸集的例子: - 超平面(hyperplane)形如<span class="math inline">\(\{x|a&#39;x=b\}\)</span>,其中<span class="math inline">\(a\)</span>为非零向量而<span class="math inline">\(b\)</span>为标量. - 半空间(half space)形如<span class="math inline">\(\{x|a&#39;x\le b\}\)</span>,其中<span class="math inline">\(a\)</span>为非零向量而<span class="math inline">\(b\)</span>为标量. - 多面体是有限个半空间的非空交集,形如<span class="math inline">\(\{x|a&#39;_{j}x≤b_{j},j=1,...,r\}\)</span>,其中<span class="math inline">\(a_{1},...,a_{r}\)</span>和<span class="math inline">\(b_{1},...,b_{r}\)</span>分别为<span class="math inline">\(\mathbb{R}^{n}\)</span>中的一组向量和标量. - 多面体锥(polyhedral cone)形如<span class="math inline">\(\{x|a&#39;_{j}x≤0,j=1,...,r\}\)</span>,其中<span class="math inline">\(a_{1},...,a_{r}\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>中的一组向量.</p>
+<h3 id="凸函数">凸函数</h3>
+<h4 id="实值凸函数">实值凸函数</h4>
+<p>凸函数： &gt; 令<span class="math inline">\(C\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>的凸子集,则称函数<span class="math inline">\(f:C\mapsto \mathbb{R}\)</span>为凸函数如果 &gt; <span class="math inline">\(f(\alpha x+(1-\alpha)x)\le \alpha f(x)+(1-\alpha)f(y),\forall x,y\in C,\forall \alpha \in[0,1]\)</span>.</p>
+<p>两个凸函数的典型例子是: - 仿射函数(affine function),这类函数形如<span class="math inline">\(f(x)=a&#39;x+b\)</span>,其中<span class="math inline">\(a\in \mathbb{R}^{n}\)</span>而<span class="math inline">\(b\in \mathbb{R}\)</span>. - 范数函数<span class="math inline">\(║║\)</span>,因其满足三角不等式,故为凸函数.</p>
+<p>便捷起见,一般假设函数在定义域上处处取有限值域,但很多优化问题的实际情况中,目标函数尝尝取到无穷大,例如 <span class="math inline">\(f(x)=\sup \limits _ {i\in I} f_{i}(x)\)</span>;此外,还有一些函数仅仅定义在某凸子集上,例如<span class="math inline">\(f:(0,+\infty)\mapsto R\)</span>,无法把定义域拓展到整个<span class="math inline">\(\mathbb{R}\)</span>上,这时最方便的做法就是拓展的部分直接取无穷大.</p>
+<h4 id="扩充实值函数">扩充实值函数</h4>
+<p>基于上述原因,下面引入扩充实值函数的概念,首先引入几个定义:</p>
+<h5 id="上图">上图</h5>
+<p>考虑定义域为<span class="math inline">\(R^{n}\)</span>中的子集<span class="math inline">\(X\)</span>的函数<span class="math inline">\(f:X\mapsto [-\infty,+\infty]\)</span>,其上图是<span class="math inline">\(\mathbb{R}^{n+1}\)</span>的子集,其定义如下:</p>
+<p>上图: &gt; <span class="math inline">\(epi(f)=\{(x,\omega)|x\in X,\omega\in \mathbb{R},f(x)\le \omega\}\)</span>.</p>
+<p>这里引用维基上关于<a href="https://en.wikipedia.org/wiki/Epigraph" target="_blank" rel="noopener">上图的定义(Epigraph (mathematics))</a>的一张图简单说明<span class="math inline">\(epi(f)\)</span>:</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Epigraph_convex.svg/512px-Epigraph_convex.svg.png" alt="avatar" /> 绿色部分就是<span class="math inline">\(epi(f)\)</span>.</p>
+<h5 id="有效定义域">有效定义域</h5>
+<p>有效定义域(effective domain): &gt; <span class="math inline">\(dom(f)=\{x\in X|f(x)&lt;\infty\}=\{x|\exists \omega\in \mathbb{R},s.t.(x,\omega)\in epi(f)\}\)</span></p>
+<h4 id="扩充实值凸函数">扩充实值凸函数</h4>
+<p>扩充实值凸函数: &gt; 令<span class="math inline">\(C\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>的凸子集,则扩充的实值函数<span class="math inline">\(f:C\mapsto [-\infty,+\infty]\)</span>称为凸函数当<span class="math inline">\(epi(f)\)</span>是<span class="math inline">\(\mathbb{R}^{n+1}\)</span>的凸子集.</p>
+<p>仔细比较与上文凸函数的定义不难发现: - <span class="math inline">\(f\)</span>的值域由<span class="math inline">\(\mathbb{R}\)</span>变成了<span class="math inline">\([-\infty,+\infty]\)</span>. - 条件:<span class="math inline">\(f(\alpha x+(1-\alpha)y)≤\alpha f(x)+(1-\alpha)f(y),\forall x,y\in C,\forall\alpha\in[0,1]\)</span>变成了:当<span class="math inline">\(epi(f)\)</span>是<span class="math inline">\(\mathbb{R}^{n+1}\)</span>的凸子集.</p>
+<p>不难看出,若是按照上文的方法定义扩充实值凸函数,容易碰到<span class="math inline">\(\alpha f(x)+(1-\alpha)f(y)\)</span>为<span class="math inline">\(-\infty+\infty\)</span>的没法处理的情况,这种情况在分析中应当避免.</p>
+<p>至此,扩充实值函数的凸性与其上图的凸性的等价关系已经建立.</p>
+<h4 id="在c上的凸函数">在C上的凸函数</h4>
+<p>出于严谨性,最后补充一种情况,有时还会遇到定义域<span class="math inline">\(C\)</span>非凸的函数,且若限制定义域为<span class="math inline">\(C\)</span>的凸子集,限制后的函数为凸函数,下面对这种情况的函数<span class="math inline">\(f\)</span>给出定义:</p>
+<p>在<span class="math inline">\(C\)</span>上的凸函数: &gt; <span class="math inline">\(C,X\)</span>为<span class="math inline">\(R^{n}\)</span>的子集其中<span class="math inline">\(C\subset X\)</span>,则称扩充的实值函数<span class="math inline">\(f:X\mapsto [-\infty,+\infty]\)</span>称为在<span class="math inline">\(C\)</span>上的凸函数,若<span class="math inline">\(f|_{C}\)</span>为凸函数.</p>
+<p>把定义域<span class="math inline">\(X\)</span>替换成<span class="math inline">\(C\)</span>,原函数也就是凸函数了,因此这类函数可直接视为凸函数,对其直接用实凸函数的结论.</p>
+<h3 id="函数的闭性与半连续性">函数的闭性与半连续性</h3>
+<h4 id="闭性">闭性</h4>
+<p>闭函数: &gt; 如果某个函数<span class="math inline">\(f:X\mapsto [-\infty,+\infty]\)</span>的上图是闭集,称<span class="math inline">\(f\)</span>为闭函数.</p>
+<p>至此,扩充实值函数的闭性与其上图的闭性的等价关系已经建立.</p>
+<h4 id="下半连续性">下半连续性</h4>
+<p>下半连续(lower semicontinuous): &gt; 函数<span class="math inline">\(f\)</span>是在向量<span class="math inline">\(x\in X\)</span>处是下半连续的,如果<span class="math inline">\(f(x)\le \liminf\limits _ {k\to +\infty}f(x_{k})\)</span>对每个满足<span class="math inline">\(x_{k}\to x\)</span>的点列<span class="math inline">\(\{x_{k}\}\subset X\)</span>成立.</p>
+<h4 id="闭性与下半连续性的等价">闭性与下半连续性的等价</h4>
+<p>下述定理把函数的下半连续性与闭性等价起来: &gt; 对于函数<span class="math inline">\(f:\mathbb{R}^{n}\mapsto [-\infty,+\infty]\)</span>,下列陈述等价: - 水平集<span class="math inline">\(V_{\gamma}=\{x|f(x)\le\gamma\}\)</span>对<span class="math inline">\(\forall\gamma\in R\)</span>闭. - <span class="math inline">\(f\)</span>下半连续. - <span class="math inline">\(f\)</span>闭.</p>
+<h3 id="凸函数的运算">凸函数的运算</h3>
+<p>类似于在凸集一节中提到的保持集合凸性的运算,保持函数凸性的运算主要有以下几种: - 线性变换. - 与非负标量相乘. - 取上确界. - 对部分变量最小化.</p>
+<h3 id="可微凸函数">可微凸函数</h3>
+<h4 id="一阶可微凸函数">一阶可微凸函数</h4>
+<p>下面这个命题想必大家都不会陌生: &gt; <span class="math inline">\(C\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>中的非空闭凸子集,且<span class="math inline">\(f:\mathbb{R}^{n}\mapsto \mathbb{R}\)</span>在包含<span class="math inline">\(C\)</span>的开集上可微,那么函数<span class="math inline">\(f\)</span>在<span class="math inline">\(C\)</span>上凸当且仅当 &gt; <span class="math inline">\(f(z)\ge f(x)+∇f(x)&#39;(z-x),\forall x,z\in C\)</span>.</p>
+<p>一张图秒懂上述命题: <img src="/pictures/%E5%87%B8%E4%BC%98%E5%8C%96_1.png" alt="avatar" /></p>
+<p>上述命题能导出一个最优性条件: &gt; <span class="math inline">\(C\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>中的非空闭凸子集,且<span class="math inline">\(f:\mathbb{R}^{n}\mapsto \mathbb{R}\)</span>在包含<span class="math inline">\(C\)</span>的开集上可微,则向量<span class="math inline">\(x_{0}\)</span>在<span class="math inline">\(C\)</span>上取最小当且仅当 &gt; <span class="math inline">\(∇f(x_{0})&#39;(z-x_{0})\ge 0,\forall z\in C\)</span>.</p>
+<p>该命题的充分性可有<a href="https://en.wikipedia.org/wiki/Fermat%27s_theorem" target="_blank" rel="noopener">Fermat引理(Fermat's theorem (stationary points))</a>易得,充分性则由 <span class="math inline">\(f(z)\ge f(x_{0})+∇f(x)&#39;(z-x_{0})\ge f(x_{0}),\forall z\in C\)</span>得到.</p>
+<p>而上述最优性条件又能来证明优化理论中的一条基本定理-投影定理(Projection Theorem),该定理叙述如下: &gt; <span class="math inline">\(C\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>中的非空闭凸子集,<span class="math inline">\(z\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>中的一个向量,则在<span class="math inline">\(x\in C\)</span>上存在唯一的向量,使得<span class="math inline">\(║z-x║\)</span>最小,这个向量称为<span class="math inline">\(z\)</span>在<span class="math inline">\(C\)</span>上的投影,记为<span class="math inline">\(x_{0}\)</span>.<span class="math inline">\(x_{0}\)</span>为<span class="math inline">\(z\)</span>在<span class="math inline">\(C\)</span>上的投影当且仅当<span class="math inline">\((z-x_{0})&#39;(x-x_{0})\le 0,\forall x\in C\)</span>.</p>
+<p>该定理的证明也很显然,<span class="math inline">\(x_{0}\)</span>为<span class="math inline">\(z\)</span>在<span class="math inline">\(C\)</span>上的投影等价于<span class="math inline">\(x_{0}\)</span>为<span class="math inline">\(║z-x║\)</span>最小值点;又等价于<span class="math inline">\(x_{0}\)</span>为<span class="math inline">\(f(x)=1/2║z-x║^{2}\)</span>的最小值点;再将<span class="math inline">\(f(x)\)</span>带入上述最优性条件可知:<span class="math inline">\(x_{0}\)</span>使<span class="math inline">\(f\)</span>在<span class="math inline">\(C\)</span>上取最小当且仅当<span class="math inline">\((x_{0}-z)&#39;(x-x_{0})\ge 0,\forall x\in C\)</span>.</p>
+<h4 id="二阶可微凸函数">二阶可微凸函数</h4>
+<p>下面这个命题想必大家也不会陌生: &gt; <span class="math inline">\(C\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>中的非空闭凸子集,且<span class="math inline">\(f:\mathbb{R}^{n}\mapsto \mathbb{R}\)</span>在包含<span class="math inline">\(C\)</span>的开集上二阶可微. - 如果<span class="math inline">\(∇^{2}f(x)\)</span>对所有的<span class="math inline">\(x\in C\)</span>半正定,那么函数<span class="math inline">\(f\)</span>在<span class="math inline">\(C\)</span>上为凸. - 如果<span class="math inline">\(∇^{2}f(x)\)</span>对所有的<span class="math inline">\(x\in C\)</span>正定,那么函数<span class="math inline">\(f\)</span>在<span class="math inline">\(C\)</span>上为严格凸. - 如果<span class="math inline">\(C\)</span>为开,且函数<span class="math inline">\(f\)</span>在<span class="math inline">\(C\)</span>上凸,那么<span class="math inline">\(∇^{2}f(x)\)</span>对所有的<span class="math inline">\(x\in C\)</span>半正定.</p>
+<h2 id="凸包仿射包及carathéodory定理">凸包、仿射包及Carathéodory定理</h2>
+<h3 id="凸包">凸包</h3>
+<p>凸包(convex hull): &gt; 集合<span class="math inline">\(X\)</span>的凸包,指所有包含<span class="math inline">\(X\)</span>的凸集的交集,记作<span class="math inline">\(conv(X)\)</span>.</p>
+<p>这里引用维基上面的一张图来加以说明:</p>
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/ConvexHull.svg/258px-ConvexHull.svg.png" alt="avatar" /><figcaption>avatar</figcaption>
+</figure>
+<p><span class="math inline">\(X\)</span>由图中的小黑点构成,外层黑线就是包含<span class="math inline">\(X\)</span>的一个凸集,此时<span class="math inline">\(conv(X)\)</span>就是图中的蓝线,就像一根橡皮筋那样.</p>
+<p>由凸集一节中凸集的性质:任意多个凸集的交集是凸集可得<span class="math inline">\(conv(X)\)</span>仍为凸集.</p>
+<p>为了进一步加深理解,打开维基上对凸包的定义,事实上,维基对<a href="https://en.wikipedia.org/wiki/Convex_hull" target="_blank" rel="noopener">凸包</a>其实有四种不同的定义: - 包含<span class="math inline">\(X\)</span>的(唯一的)最小凸集. - 所有包含<span class="math inline">\(X\)</span>的凸集的交集. - <span class="math inline">\(X\)</span>中所有点的凸组合. - 所有单形体的并集.</p>
+<p>其中第一第二条定义好理解,第三条中的<a href="https://en.wikipedia.org/wiki/Convex_combination" target="_blank" rel="noopener">凸组合</a>定义如下: &gt; 给定<span class="math inline">\(x_{1},...,x_{m}\)</span>,凸组合为<span class="math inline">\(\{\sum\limits_{i = 1}^m\alpha_{i}x_{i}\)</span>|<span class="math inline">\(\alpha_{i}\ge 0,\sum\limits_{i = 1}^m\alpha_{i}=1\}\)</span>.</p>
+<p>比如这张图中的点<span class="math inline">\(P\)</span>是<span class="math inline">\(x_{1},x_{2},x_{3}\)</span>的凸组合,点<span class="math inline">\(Q\)</span>则不是:</p>
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Convex_combination_illustration.svg/115px-Convex_combination_illustration.svg.png" alt="avatar" /><figcaption>avatar</figcaption>
+</figure>
+<p>至于第四条中的<a href="https://en.wikipedia.org/wiki/Simplex" target="_blank" rel="noopener">单形体</a>指的是是将三角形或四面体概念推广到任意维的概念,具体来说,<span class="math inline">\(k\)</span>单形体是一个<span class="math inline">\(k\)</span>维多面体,它是<span class="math inline">\(k+1\)</span>顶点的凸包,比如说下图就是一个正的3单形体,它是4个顶点的凸包:</p>
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Tetrahedron.png/127px-Tetrahedron.png" alt="avatar" /><figcaption>avatar</figcaption>
+</figure>
+<p>那么此时第四条就可以这样理解,还是这张图为例,此时的单形体就是所有以黑点为顶点的三角形,并起来就是蓝线内部.</p>
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/ConvexHull.svg/258px-ConvexHull.svg.png" alt="avatar" /><figcaption>avatar</figcaption>
+</figure>
+<h3 id="仿射包">仿射包</h3>
+<p>仿射包(affine hull): &gt; 集合<span class="math inline">\(X\)</span>的仿射包,指所有包含<span class="math inline">\(X\)</span>的仿射集的交集,记作<span class="math inline">\(aff(X)\)</span>.</p>
+<p>这里的仿射集是指: &gt; 集合<span class="math inline">\(M\)</span>称为是仿射的,如果它包含所有穿过满足<span class="math inline">\(x,y\in M\)</span>且<span class="math inline">\(x\neq y\)</span>条件的点对<span class="math inline">\(x,y\)</span>的直线.</p>
+<p>维基上对<a href="https://en.wikipedia.org/wiki/Affine_hull" target="_blank" rel="noopener">仿射包</a>定义有三: - 包含<span class="math inline">\(X\)</span>的最小仿射集. - 所有包含<span class="math inline">\(X\)</span>的仿射集的交集. - 所有<span class="math inline">\(X\)</span>中元素的仿射组合,即<span class="math inline">\(aff(X)=\{\sum\limits_{i = 1}^m \alpha_{i}x_{i}|\sum\limits_{i = 1}^m\alpha_{i}=1\}\)</span>.</p>
+<p>打开维基查询<a href="https://en.wikipedia.org/wiki/Affine_space" target="_blank" rel="noopener">仿射集</a>,发现该词条被并入仿射空间,这是因为:具有仿射结构的集合就是一个仿射空间,故仿射集即仿射空间.</p>
+<p>维基上对仿射空间及仿射结构有这样一段有意思的描述(可略过):</p>
+<p>仿射空间:忘记原点之后剩余的矢量空间;在仿射空间中,点与点之间做差可以得到向量,点与向量做加法将得到另一个点,但是点与点之间不可以做加法.</p>
+<p>仿射结构:想象一下,<span class="math inline">\(Alice\)</span>知道某个点是真正的原点,但<span class="math inline">\(Bob\)</span>认为另一点<span class="math inline">\(p\)</span>是原点,现求两个向量<span class="math inline">\(a\)</span>和<span class="math inline">\(b\)</span>的和.<span class="math inline">\(Bob\)</span>画出<span class="math inline">\(p\)</span>到<span class="math inline">\(a\)</span>和<span class="math inline">\(p\)</span>到<span class="math inline">\(b\)</span>的箭头,然后用平行四边形法则找到他认为的向量<span class="math inline">\(a+b\)</span>,但是<span class="math inline">\(Alice\)</span>知道他实际计算了<span class="math inline">\(p+(a-p)+(b-p)\)</span>.</p>
+<p>类似地,<span class="math inline">\(Alice\)</span>和<span class="math inline">\(Bob\)</span>可以计算向量<span class="math inline">\(a\)</span>和<span class="math inline">\(b\)</span>的线性组合,通常会得到不同的答案.但是,如果线性组合中系数的和为1,则<span class="math inline">\(Alice\)</span>和<span class="math inline">\(Bob\)</span>将得到相同的答案.</p>
+<p>举个例子:如果爱丽丝计算<span class="math inline">\(a\)</span>和<span class="math inline">\(b\)</span>的线性组合,<span class="math inline">\(\lambda a+(1-\lambda )b\)</span>,那么鲍勃可以得到相同的结果, <span class="math inline">\(p+\lambda(a-p)+(1-\lambda)(b-p)=\lambda a+(1-\lambda)b\)</span>.</p>
+<p>在这种情况下,尽管使用不同的原点,但对于所有系数<span class="math inline">\(\lambda+(1-\lambda)=1\)</span>,<span class="math inline">\(Alice\)</span>和<span class="math inline">\(Bob\)</span>用相同的线性组合描述相同的点.</p>
+<p>虽然<span class="math inline">\(Alice\)</span>知道线性结构,但<span class="math inline">\(Alice\)</span>和<span class="math inline">\(Bob\)</span>都知道仿射结构,即仿射组合的值,定义为系数之和为1的线性组合.</p>
+<h3 id="非负组合">非负组合</h3>
+<p>非负组合: &gt; <span class="math inline">\(X\)</span>中元素的非负组合为<span class="math inline">\(\{\sum\limits_{i = 1}^m\alpha_{i}x_{i}|\alpha_{i}\ge 0\}\)</span>,正组合为<span class="math inline">\(\{\sum\limits_{i = 1}^m\alpha_{i}x_{i}|\alpha_{i}&gt; 0\}\)</span>.</p>
+<p>显然和凸组合的定义相比,非负组合去除了<span class="math inline">\(\sum\limits_{i = 1}^m\alpha_{i}=1\)</span>的限制.</p>
+<p>由<span class="math inline">\(X\)</span>生成的锥体(cone(X)): &gt; 由<span class="math inline">\(X\)</span>生成的锥体,指<span class="math inline">\(X\)</span>中所有元素的非负组合构成的集合,即<span class="math inline">\(\{\sum\limits_{i = 1}^m\alpha_{i}x_{i}|\alpha_{i}\ge 0\}\)</span>,记作<span class="math inline">\(cone(X)\)</span>.</p>
+<p>注意与锥体定义的区别,锥体(cone): &gt; <span class="math inline">\(0\in X\)</span>,如果对 <span class="math inline">\(\forall x \in X , \forall \lambda &gt; 0, \lambda x \in X\)</span> ,则称<span class="math inline">\(X\)</span>为锥体.</p>
+<h3 id="carathéodory定理">Carathéodory定理</h3>
+<p>Carathéodory定理:</p>
+<blockquote>
+<p>令<span class="math inline">\(X\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>中的一个非空子集. - 每个取自<span class="math inline">\(X\)</span>生成的锥体<span class="math inline">\(cone(X)\)</span>的非零向量都可以表示成<span class="math inline">\(X\)</span>中线性无关向量的正组合. - 每个取自<span class="math inline">\(X\)</span>的凸包<span class="math inline">\(conv(X)\)</span>的向量都可以表示成<span class="math inline">\(X\)</span>中不超过<span class="math inline">\(n+1\)</span>个向量的凸组合.</p>
+</blockquote>
+<p>第一条很显然,第二条还是参照下图,<span class="math inline">\(\mathbb{R}^{n}\)</span>平面内,任意的蓝线内的点,总能找到<span class="math inline">\(2+1\)</span>个点形成三角形,使点在该三角形内.</p>
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/ConvexHull.svg/258px-ConvexHull.svg.png" alt="avatar" /><figcaption>avatar</figcaption>
+</figure>
+<p>Carathéodory定理可以用来证明下述命题:</p>
+<blockquote>
+<p>紧集的凸包是紧的.</p>
+</blockquote>
+<p>证明略,有兴趣的朋友可以去读凸优化理论p21.</p>
+<h2 id="相对内点集与闭包">相对内点集与闭包</h2>
+<h3 id="相对内点集">相对内点集</h3>
+<p>相对内点集: &gt; 令<span class="math inline">\(C\)</span>为非空凸集,称<span class="math inline">\(x\)</span>为<span class="math inline">\(C\)</span>的相对内点,如果<span class="math inline">\(x\in C\)</span>并且存在以<span class="math inline">\(x\)</span>为中心的开球<span class="math inline">\(S\)</span>,使得<span class="math inline">\(aff(C)\cap S\subset C\)</span>,即<span class="math inline">\(x\)</span>是相对于<span class="math inline">\(C\)</span>的仿射包的内点.<span class="math inline">\(C\)</span>的所有相对内点的集合称为<span class="math inline">\(C\)</span>的相对内点集,并记作<span class="math inline">\(ri(C)\)</span>.</p>
+<p>集合<span class="math inline">\(C\)</span>称为是相对开的,如果<span class="math inline">\(ri(C)=C\)</span>.</p>
+<h3 id="闭包与相对边界点">闭包与相对边界点</h3>
+<p><a href="https://en.wikipedia.org/wiki/Closure_(mathematics)" target="_blank" rel="noopener">闭包(Closure)</a>,维基上对其定义如下: &gt; A set has closure under an operation if performance of that operation on members of the set always produces a member of the same set; in this case we also say that the set is closed under the operation.</p>
+<p>比如欧氏空间<span class="math inline">\(\mathbb{R}^{n}\)</span>中,集合<span class="math inline">\(C\)</span>(未必是闭的)在取极限操作下有闭包<span class="math inline">\(cl(C)\)</span>,意味着对<span class="math inline">\(C\)</span>中收敛的点列取极限后得到的点仍在<span class="math inline">\(cl(C)\)</span>中(对于不收敛的点列取极限为空,也可以说在<span class="math inline">\(cl(C)\)</span>中).</p>
+<p>记<span class="math inline">\(cl(C)\)</span>为<span class="math inline">\(C\)</span>的闭包,<span class="math inline">\(cl(C)\)</span>中不是相对内点的点称为是<span class="math inline">\(C\)</span>的相对边界点,这些点的集合称为是<span class="math inline">\(C\)</span>的相对边界.</p>
+<p>例如,令<span class="math inline">\(C\)</span>为<span class="math inline">\(R\)</span>上的<span class="math inline">\([a,b]\)</span>,则<span class="math inline">\(aff(C)\)</span>则为<span class="math inline">\(\mathbb{R}\)</span>,那么<span class="math inline">\(ri(C)\)</span>则是<span class="math inline">\((a,b)\)</span>,<span class="math inline">\(C\)</span>的相对边界则是<span class="math inline">\(\{a,b\}\)</span>.特别的,若<span class="math inline">\(C\)</span>本身是仿射集,那么此时<span class="math inline">\(aff(C)=C=ri(C)\)</span>,相对边界是<span class="math inline">\(\emptyset\)</span>.</p>
+<h3 id="相对内点的性质">相对内点的性质</h3>
+<h4 id="线段原理">线段原理</h4>
+<p>如下命题给出了相对内点的性质:</p>
+<p>线段原理(Line Segment Principle): &gt; <span class="math inline">\(C\)</span>为非空凸集,如果<span class="math inline">\(x\in ri(C)\)</span>,并且<span class="math inline">\(y\in cl(C)\)</span>,那么连接两点<span class="math inline">\(x,y\)</span>的线段上的点,除了<span class="math inline">\(y\)</span>,都<span class="math inline">\(\in ri(C)\)</span>.</p>
+<h4 id="相对内点的非空性">相对内点的非空性</h4>
+<p>下述命题由线段原理推出:</p>
+<p>相对内点的非空性: &gt; 令<span class="math inline">\(C\)</span>为非空凸集.则 - 集合<span class="math inline">\(C\)</span>的相对内点集<span class="math inline">\(ri(C)\)</span>是非空凸集,并且和<span class="math inline">\(C\)</span>具有相同的仿射包,即<span class="math inline">\(aff(C)=aff(ri(C))\)</span>. - 如果<span class="math inline">\(C\)</span>的仿射包<span class="math inline">\(aff(C)\)</span>的维数<span class="math inline">\(m&gt;0\)</span>的,那么必存在向量<span class="math inline">\(x_{0},...,x_{m}\in ri(C)\)</span>,使得<span class="math inline">\(x_{1}-x_{0},...,x_{m}-x_{0}\)</span>所张成的子空间平行于<span class="math inline">\(aff(C)\)</span>.</p>
+<p>这里<span class="math inline">\(aff(C)\)</span>的维数定义为平行于<span class="math inline">\(aff(C)\)</span>的子空间的维数.</p>
+<h4 id="延伸引理">延伸引理</h4>
+<p>另一有用结论同样可由线段原理得到:</p>
+<p>延伸引理(Prolongation Lemma): &gt; 令<span class="math inline">\(C\)</span>为非空凸集.<span class="math inline">\(x\in ri(C)\)</span>,当且仅当对所有<span class="math inline">\(y\in C\)</span>,存在<span class="math inline">\(\gamma &gt;0\)</span>,使得<span class="math inline">\(x+\gamma (x-y)\in C\)</span>.</p>
+<p>即<span class="math inline">\(C\)</span>中以<span class="math inline">\(x\)</span>为端点的所有线段可以延伸超过<span class="math inline">\(x\)</span>而不必离开<span class="math inline">\(C\)</span>.</p>
+<h4 id="相对内点与对偶理论">相对内点与对偶理论</h4>
+<p>后面的章节中将看到相对内点的概念在凸优化和对偶理论中具有广泛应用,例如,当代价函数是凹的时,我们可以给出最后解集的一个刻画.</p>
+<blockquote>
+<p>令<span class="math inline">\(X\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>中一个非空凸子集,且函数<span class="math inline">\(f:X\mapsto R\)</span>为凹,<span class="math inline">\(X^{+}\)</span>为使<span class="math inline">\(f\)</span>在<span class="math inline">\(X\)</span>上达到最小的向量集,即: <span class="math inline">\(X^{+}=\{x^{+}\in X|f(x^{+})=\inf \limits_{x\in X}f(x)\}\)</span>.如果<span class="math inline">\(X^{+}\)</span>包含<span class="math inline">\(X\)</span>的相对内点,那么<span class="math inline">\(f\)</span>在<span class="math inline">\(X\)</span>上必为常数.</p>
+</blockquote>
+<h3 id="相对内点集与闭包的演算">相对内点集与闭包的演算</h3>
+<p>为了研究凸集的集合运算,我们同样需要得到相应的相对内点集与闭包的运算结果,这里仅作概述(其中<span class="math inline">\(C,C_{1},C_{2}\)</span>为非空凸集,<span class="math inline">\(A\)</span>为线性变换): - 两个凸集具有相同的<span class="math inline">\(cl\)</span>当且仅当它们具有相同的<span class="math inline">\(ri\)</span>. - <span class="math inline">\(A•ri(C)=ri(A•C);A•cl(C)⊂cl(A•C)\)</span>且<span class="math inline">\(C\)</span>有界时取等号. - 特别的,<span class="math inline">\(A\)</span>为<span class="math inline">\((x_{1},x_{2})\)</span>到<span class="math inline">\(x_{1}+x_{2}\)</span>的线性变换时,有<span class="math inline">\(ri(C_{1}+C_{2})=ri(C_{1})+ri(C_{2})\)</span>; <span class="math inline">\(cl(C_{1}+C_{2})\subset cl(C_{1})+cl(C_{2})\)</span>且<span class="math inline">\(C_{1},C_{2}\)</span>至少一个有界时取等号. - <span class="math inline">\(ri(C_{1})\cap ri(C_{2})\subset ri(C_{1}\cap C_{2})\)</span>且<span class="math inline">\(ri(C_{1})\cap ri(C_{2})\neq\emptyset\)</span>时取等号; <span class="math inline">\(cl(C_{1}\cap C_{2})\subset cl(C_{1})\cap cl(C_{2})\)</span>且<span class="math inline">\(ri(C_{1})\cap ri(C_{2})\neq\emptyset\)</span>时取等号. - 如果<span class="math inline">\(A^{-1}•ri(C)\)</span>非空:<span class="math inline">\(ri(A^{-1}•C)=A^{-1}•ri(C)\)</span>;<span class="math inline">\(cl(A^{-1}•C)=A^{-1}•cl(C)\)</span>.</p>
+<p>第二条说明闭凸集在线性变换下不一定是闭的,这是凸优化分析上存在困难的一个主要原因.</p>
+<h3 id="凸函数的连续性">凸函数的连续性</h3>
+<p>凸函数有一个基本的性质:</p>
+<p>凸函数的连续性: &gt; 如果<span class="math inline">\(f:\mathbb{R}^{n}\mapsto \mathbb{R}\)</span>是凸的,那么它一定是连续的.更一般的,如果<span class="math inline">\(f:\mathbb{R}^{n}\mapsto (-\infty,+\infty]\)</span>,那么限制在<span class="math inline">\(dom(f)\)</span>上的函数<span class="math inline">\(f\)</span>在<span class="math inline">\(dom(f)\)</span>的相对内点集上是连续的.</p>
+<p>该命题蕴含实值凸函数是连续的,进而是闭的(<span class="math inline">\(f\)</span>下半连续等价于<span class="math inline">\(f\)</span>闭),对于单变量函数的情形,我们还有如下更强的结论: &gt; 如果<span class="math inline">\(C\)</span>是<span class="math inline">\(\mathbb{R}\)</span>上的一个闭区间,且<span class="math inline">\(f:C\mapsto \mathbb{R}\)</span>是闭的和凸的,那么<span class="math inline">\(f\)</span>在<span class="math inline">\(C\)</span>上连续.</p>
+<p>事实上,数学分析中关于凸函数有如下推论(斐礼文的数学分析中的典型问题与方法): &gt; 若<span class="math inline">\(f\)</span>在区间<span class="math inline">\(I\)</span>上凸,那么<span class="math inline">\(f\)</span>在任意内点上连续.</p>
+<p>那么利用上述推论或者利用凸函数的连续性,再加上<span class="math inline">\(f\)</span>闭不难得出<span class="math inline">\(f\)</span>在闭区间<span class="math inline">\(C\)</span>连续.</p>
+<h3 id="函数的闭包">函数的闭包</h3>
+<p>本节研究可以把给定函数变换为闭凸函数,同时又能保留该函数主要特性的运算.</p>
+<p><span class="math inline">\(\mathbb{R}^{n+1}\)</span>的非空子集<span class="math inline">\(E\)</span>是某个函数的上图,如果它满足:对每个点<span class="math inline">\((x,\omega)\in E\)</span>,集合<span class="math inline">\(\{\omega|(x,\omega)\in E\}\)</span>要么是实数直线,要么是下方有界的半直线.</p>
+<h4 id="闭包">闭包</h4>
+<p><span class="math inline">\(f\)</span>的闭包(closure): &gt;函数<span class="math inline">\(f:X\mapsto [-\infty,+\infty]\)</span>的上图的闭包可以看做是另一个函数的上图.这个函数被称为是<span class="math inline">\(f\)</span>的闭包,记作<span class="math inline">\(clf\)</span>. &gt;<span class="math inline">\(clf :\mathbb{R}^{n}\mapsto [-\infty,+\infty]\)</span>,且<span class="math inline">\((clf )(x)=\inf\{\omega|(x,\omega)\in cl(epi(f))\},\forall x\in \mathbb{R}^{n}\)</span>.</p>
+<p>当<span class="math inline">\(f\)</span>凸时,<span class="math inline">\(epi(f)\)</span>凸,那么<span class="math inline">\(cl(epi(f))\)</span>是闭的凸的(凸集的闭包仍凸).这意味着$clf <span class="math inline">\(是闭的凸的,因为依据定义有\)</span>epi(clf)=cl(epi(f))$.</p>
+<h4 id="凸闭包">凸闭包</h4>
+<p><span class="math inline">\(f\)</span>的凸闭包(convex closure): &gt; <span class="math inline">\(f\)</span>的上图的凸包的闭包是某个函数的上图.这个函数被称为是<span class="math inline">\(f\)</span>的凸闭包,记作<span class="math inline">\(\hat{cl}f\)</span>, &gt;令<span class="math inline">\(F(x)=\inf\{\omega|(x,\omega)\in conv(epi(f))\},\forall x\in \mathbb{R}^{n}\)</span>,那么<span class="math inline">\(\hat{cl}f\)</span>是函数<span class="math inline">\(F\)</span>的闭包.</p>
+<p><span class="math inline">\(F\)</span>是凸的,但它未必是闭的.<span class="math inline">\(\hat{cl}f\)</span> 是闭的凸的.</p>
+<h4 id="闭包的性质">闭包的性质</h4>
+<p>从优化的角度看,下述命题叙述了一条重要性质,即<span class="math inline">\(f\)</span>,<span class="math inline">\(clf\)</span> ,<span class="math inline">\(F\)</span>和<span class="math inline">\(\hat{cl}f\)</span>的最小值是一样的: &gt; <span class="math inline">\(f:X\mapsto [-\infty,+\infty]\)</span>为一函数,有 &gt; <span class="math inline">\(\inf\limits_{x\in X}f(x)=\inf\limits_{x\in X}clf(x)=\inf\limits_{x\in \mathbb{R}^{n}}clf(x)=\inf\limits_{x\in \mathbb{R}^{n}}F(x)=\inf\limits_{x\in \mathbb{R}^{n}}\hat{cl}f(x)\)</span>.</p>
+<p>下面的命题给出闭包的一个特性: &gt; <span class="math inline">\(f:X\mapsto [-\infty,+\infty]\)</span>为一函数, - <span class="math inline">\(clf\)</span>是被<span class="math inline">\(f\)</span>控制的最大闭函数. - <span class="math inline">\(\hat{cl}f\)</span>是被<span class="math inline">\(f\)</span>控制的最大闭凸函数.</p>
+<p>这里被控制即如果<span class="math inline">\(g\)</span>是闭的且<span class="math inline">\(g\le f\)</span>,那么<span class="math inline">\(g\le clf\)</span>.</p>
+<p>研究凸函数的闭包是因为在某种意义下闭包与原函数差别最小.特别的,可以证明凸函数在它的定义域的相对内点集上与它的闭包一致: &gt; <span class="math inline">\(f:X\mapsto [-\infty,+\infty]\)</span>为一凸函数,则: - <span class="math inline">\(cl(dom(f))=cl(dom(clf))\)</span>,<span class="math inline">\(ri(dom(f))=ri(dom(clf))\)</span>,且<span class="math inline">\((clf )(x)=f(x),\forall x\in ri(dom(f))\)</span>.进而,<span class="math inline">\(clf\)</span> 是真的当且仅当<span class="math inline">\(f\)</span>是真的. - 如果<span class="math inline">\(x\in ri(dom(f))\)</span>,我们有:<span class="math inline">\((clf)(y)=\lim\limits_{\alpha\downarrow 0}f(y+\alpha (x-y)),\forall y\in \mathbb{R}^{n}\)</span>.</p>
+<p>下面两个命题是刻画凸函数经过线性变换之后所得函数的闭包: &gt; <span class="math inline">\(f:X\mapsto [-\infty,+\infty]\)</span>为一凸函数,且A为一<span class="math inline">\(m×n\)</span>矩阵使得A的值域包含<span class="math inline">\(ri(dom(f))\)</span>中的一个点.那么由 &gt; <span class="math inline">\(F(x)=f(Ax)\)</span>定义的函数<span class="math inline">\(F\)</span>是凸的,并且<span class="math inline">\((clF)(x)=(clf)(Ax),\forall x\in \mathbb{R}^{n}\)</span>.</p>
+<p>下述命题本质上式上述命题的一个特例: &gt; <span class="math inline">\(f_{i}:\mathbb{R}^{n}\mapsto [-\infty,+\infty],i=1,...,m\)</span>,为凸函数,且<span class="math inline">\(\cap_{i=1,...,m}ri(dom(f_{i}))\neq\emptyset\)</span>.那么由 &gt; <span class="math inline">\(F(x)=f_{1}(x)+...+f_{m}(x)\)</span>定义的函数<span class="math inline">\(F\)</span>是凸的,并且 &gt; <span class="math inline">\((clF)(x)=(clf_{m})(x)+...+(clf_{m})(x),\forall x\in \mathbb{R}^{n}\)</span>.</p>
+<h2 id="回收锥">回收锥</h2>
+<h3 id="回收锥与线形空间">回收锥与线形空间</h3>
+<h4 id="回收锥-1">回收锥</h4>
+<h5 id="回收方向">回收方向</h5>
+<p>回收方向(direction of recession): &gt; 给定非空凸集<span class="math inline">\(C\)</span>,我们说<span class="math inline">\(d\)</span>是<span class="math inline">\(C\)</span>的一个回收方向,如果<span class="math inline">\(x+\alpha d\in C\)</span>对所有的<span class="math inline">\(x\)</span>属于<span class="math inline">\(C\)</span>和<span class="math inline">\(\alpha\ge 0\)</span>都成立.</p>
+<p>通俗的解释就是我们从<span class="math inline">\(C\)</span>中任意点出发,沿着<span class="math inline">\(d\)</span>的方向走到无穷,而永远不穿过<span class="math inline">\(C\)</span>的相对边界点跑到<span class="math inline">\(C\)</span>之外.</p>
+<h5 id="回收锥-2">回收锥</h5>
+<p>回收锥(recession cone): &gt; 所有回收方向的集合是一个包含原点的锥体.称之为<span class="math inline">\(C\)</span>的回收锥,记作<span class="math inline">\(R_{C}\)</span>.</p>
+<p>闭凸集的一条重要性质就是为检验<span class="math inline">\(d\in R_{C}\)</span>是否成立,只需验证<span class="math inline">\(x+\alpha d\in C\)</span>对单一的<span class="math inline">\(x\in C\)</span>成立就可以了.这就是下述命题的下半部分.</p>
+<h5 id="回收锥定理">回收锥定理</h5>
+<p>回收锥定理(Recession Cone Theorem): &gt; <span class="math inline">\(C\)</span>为非空闭凸集. - 回收锥<span class="math inline">\(R_{C}\)</span>是闭的凸的. - 向量<span class="math inline">\(d\in R_{C}\)</span>当且仅当存在向量<span class="math inline">\(x\in C\)</span>使得<span class="math inline">\(x+\alpha d\in C\)</span>对所有的<span class="math inline">\(\alpha\ge 0\)</span>成立.</p>
+<h5 id="回收锥的性质">回收锥的性质</h5>
+<p>下述命题给出回收锥的一些其他性质. &gt; <span class="math inline">\(C\)</span>为非空闭凸集. - <span class="math inline">\(R_{C}\)</span>包含一个非零的方向当且仅当<span class="math inline">\(C\)</span>是无界的. - <span class="math inline">\(R_{C}\)</span>=<span class="math inline">\(R_{ri(C)}\)</span>. - 对任意一组闭凸集<span class="math inline">\(C_{i},i\in I\)</span>,并且<span class="math inline">\(\cap_{i\in I}C_{i}\neq\emptyset\)</span>,有<span class="math inline">\(R_{\cap_{i\in I}C_{i}}=\cap_{i\in I}R_{C_{i}}\)</span>. - <span class="math inline">\(W\)</span>为<span class="math inline">\(\mathbb{R}^{m}\)</span>的紧的凸子集,并令<span class="math inline">\(A\)</span>为一<span class="math inline">\(m×n\)</span>矩阵.集合<span class="math inline">\(V=\{x\in C|Ax\in W\}\)</span>的回收锥是<span class="math inline">\(R_{C}\cap N(A)\)</span>,其中<span class="math inline">\(N(A)\)</span>是<span class="math inline">\(A\)</span>的零化空间(nullspace).</p>
+<h4 id="线形空间">线形空间</h4>
+<h5 id="线形空间-1">线形空间</h5>
+<p>凸集<span class="math inline">\(C\)</span>的回收锥有一个重要子集,称为其线形空间(lineality space), &gt; 线形空间,记作<span class="math inline">\(L_{C}\)</span>,定义为<span class="math inline">\(-d\)</span>也是回收方向的方向<span class="math inline">\(d\)</span>的集合:<span class="math inline">\(L_{C}=R_{C}\cap (-R_{C})\)</span>.</p>
+<p>因此<span class="math inline">\(d\in L_{C}\)</span>当且仅当整个直线<span class="math inline">\(\{x+\alpha d|\alpha\in R\}\)</span>对于每个<span class="math inline">\(x\in C\)</span>都包含于<span class="math inline">\(C\)</span>中.</p>
+<h5 id="线形空间的性质">线形空间的性质</h5>
+<p>线形空间仍然有我们已经有的回收锥的若干性质: &gt; <span class="math inline">\(C\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>的非空闭凸集. - <span class="math inline">\(L_{C}\)</span>是<span class="math inline">\(\mathbb{R}^{n}\)</span>的子空间. - <span class="math inline">\(L_{C}=L_{ri(C)}\)</span>. - 对任意一组闭凸集<span class="math inline">\(C_{i},i\in I\)</span>,并且<span class="math inline">\(\cap_{i\in I}C_{i}\neq\emptyset\)</span>,有<span class="math inline">\(L_{\cap_{i\in I}C_{i}}=\cap_{i\in I}L_{C_{i}}\)</span>. - <span class="math inline">\(W\)</span>为<span class="math inline">\(\mathbb{R}^{m}\)</span>的紧的凸子集,并令<span class="math inline">\(A\)</span>为一<span class="math inline">\(m×n\)</span>矩阵.集合<span class="math inline">\(V=\{x\in C|Ax\in W\}\)</span>的线形空间是<span class="math inline">\(L_{C}\cap N(A)\)</span>,其中<span class="math inline">\(N(A)\)</span>是<span class="math inline">\(A\)</span>的零化空间(nullspace).</p>
+<h4 id="回收锥与线形空间的一个例子">回收锥与线形空间的一个例子</h4>
+<p>举例来说,考虑集合<span class="math inline">\(C=\{x|x&#39;Qx+c&#39;x+b\le 0\}\)</span>,<span class="math inline">\(Q\)</span>为对称正定的<span class="math inline">\(n\)</span>维方阵,<span class="math inline">\(c\)</span>为<span class="math inline">\(n\)</span>维向量. 向量<span class="math inline">\(d\)</span>是回收方向当且仅当<span class="math inline">\((x+\alpha d)&#39;Q(x+\alpha d)+c&#39;(x+\alpha d)+b\le 0,\forall\alpha&gt;0\)</span>.显然不可能有<span class="math inline">\(d&#39;Qd&gt;0\)</span>,所以只能<span class="math inline">\(d&#39;Qd=0\)</span>,又<span class="math inline">\(Q\)</span>半正定,故存在<span class="math inline">\(M\)</span>,<span class="math inline">\(s.t.Q=M&#39;M\)</span>,这使得<span class="math inline">\(Md=0\)</span>,这表明<span class="math inline">\(Qd=M&#39;Md=0\)</span>.故原式等价于<span class="math inline">\(x&#39;Qx+c&#39;x+b+\alpha c&#39;d\le0,\forall\alpha&gt;0\)</span>.而此式成立当且仅当<span class="math inline">\(c&#39;d\le 0\)</span>.于是: <span class="math inline">\(R_{C}=\{d|Qd=0,c&#39;d≤0\}\)</span>;<span class="math inline">\(L_{C}=\{d|Qd=0,c&#39;d=0\}\)</span>.</p>
+<h4 id="凸集分解">凸集分解</h4>
+<p>最后是一个有用的结论,它使得我们可以吧凸集按照它的线形空间(的子空间)和它的正交补进行分解:</p>
+<p>凸集分解: &gt; <span class="math inline">\(C\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>的非空闭凸集.则对于每个包含在线形空间<span class="math inline">\(L_{C}\)</span>中的子空间<span class="math inline">\(S\)</span>,我们都有:<span class="math inline">\(C=S+(C+S_{\perp})\)</span>.</p>
+<h3 id="凸函数的回收方向与不变空间">凸函数的回收方向与不变空间</h3>
+<p>与上节对应的,函数中也有类似的概念. 这个概念的重要性在于凸优化问题解得存在性.<span class="math inline">\(epi(f)\)</span>回收锥的方向可以得到<span class="math inline">\(f\)</span>不单调增加的方向.</p>
+<h4 id="凸函数的回收方向">凸函数的回收方向</h4>
+<blockquote>
+<p><span class="math inline">\(f:\mathbb{R}^{n}\mapsto (-\infty,+\infty]\)</span>为闭的真凸函数,考虑水平集<span class="math inline">\(V_{\gamma},\gamma\in R\)</span>.则: - 所有的非空水平集<span class="math inline">\(V_{\gamma}\)</span>都具有相同的回收锥,记作<span class="math inline">\(R_{f}\)</span>,由<span class="math inline">\(R_{f}=\{d|(d,0)\in R_{epi(f)}\}\)</span>给出. - 如果某个非空水平集<span class="math inline">\(V_{\gamma}\)</span>是紧的,那么所有这些水平集都是紧的.</p>
+</blockquote>
+<p><span class="math inline">\(f\)</span>的回收方向: &gt;向量<span class="math inline">\(d\in R_{f}\)</span>称为<span class="math inline">\(f\)</span>的回收方向,其中<span class="math inline">\(R_{f}\)</span>由<span class="math inline">\(R_{f}=\{d|(d,0)\in R_{epi(f)}\}\)</span>给出.</p>
+<p>一个直观的理解就是f的回收方向是对f连续不升的方向,反之,如果我们从某个<span class="math inline">\(x\in dom(f)\)</span>出发,而且在沿着方向<span class="math inline">\(d\)</span>移动时,我们遇到点<span class="math inline">\(z\)</span>满足<span class="math inline">\(f(z)&gt;f(x)\)</span>,那么<span class="math inline">\(d\)</span>不可能称为回收方向.由<span class="math inline">\(f\)</span>的水平集的凸性,一旦我们跨过水平集的相对边界,我们将永远不会再次跨过该边界,而且,一个方向若不是<span class="math inline">\(f\)</span>的回收方向,其将最终为<span class="math inline">\(f\)</span>连续上升的方向.</p>
+<h4 id="凸函数的不变空间">凸函数的不变空间</h4>
+<p>闭的真凸函数<span class="math inline">\(f\)</span>的回收锥<span class="math inline">\(R_{f}\)</span>的线形空间记为<span class="math inline">\(L_{f}\)</span>.它是由<span class="math inline">\(d\)</span>和<span class="math inline">\(-d\)</span>都是<span class="math inline">\(f\)</span>的回收方向的所有<span class="math inline">\(d\)</span>构成子空间,即<span class="math inline">\(L_{f}=R_{f}∩(-R_{f})\)</span>.</p>
+<p><span class="math inline">\(f\)</span>的不变空间(constancy space): &gt; 向量<span class="math inline">\(d\in L_{f}\)</span>称为让<span class="math inline">\(f\)</span>常值的方向,而<span class="math inline">\(L_{f}=R_{f}∩(-R_{f})\)</span>称为<span class="math inline">\(f\)</span>的不变空间.</p>
+<p>举例来说,如果<span class="math inline">\(f(x)=x&#39;Qx+c&#39;x+b\)</span>为二次函数,<span class="math inline">\(Q\)</span>为对称正定的<span class="math inline">\(n\)</span>维方阵,<span class="math inline">\(c\)</span>为<span class="math inline">\(n\)</span>维向量,那么它的回收锥和不变空间是: <span class="math inline">\(R_{f}=\{d|Qd=0,c&#39;d\le 0\};L_{f}=\{d|Qd=0,c&#39;d=0\}\)</span>.</p>
+<h4 id="回收函数">回收函数</h4>
+<p>我们已经有,如果<span class="math inline">\(d\)</span>是f的回收方向,那么<span class="math inline">\(f\)</span>沿着射线<span class="math inline">\(x+\alpha d\)</span>是渐进非增的,但事实上我们有更强的性质,<span class="math inline">\(f\)</span>沿着<span class="math inline">\(d\)</span>的渐进斜率独立于起点<span class="math inline">\(x\)</span>.现在引入一个函数表示闭的真凸函数沿着某个方向的渐进斜率,即回收函数: &gt; <span class="math inline">\(r_{f}\)</span>称为是<span class="math inline">\(f\)</span>的回收函数,如果满足<span class="math inline">\(epi(r_{f})=R_{epi(f)}\)</span>.</p>
+<p>注意到<span class="math inline">\(R_{epi(f)}\)</span>是另外一个闭的真凸函数的上图,即<span class="math inline">\(r_{f}\)</span>是闭的真凸函数.</p>
+<h4 id="刻画凸函数的回收锥和不变空间">刻画凸函数的回收锥和不变空间</h4>
+<p>回收函数<span class="math inline">\(r_{f}\)</span>可以用来刻画凸函数的回收锥和不变空间. &gt; <span class="math inline">\(f:\mathbb{R}^{n}\mapsto (-\infty,+\infty]\)</span>为闭的真凸函数.则<span class="math inline">\(f\)</span>的回收锥和不变函数可以用它的回收函数给出: &gt; <span class="math inline">\(R_{f}=\{d|r_{f}(d)\le 0\}\)</span>,<span class="math inline">\(L_{f}=\{d|r_{f}(d)=r_{f}(-d)=0\}\)</span>.</p>
+<p><span class="math inline">\(d\)</span>是<span class="math inline">\(f\)</span>的回收方向,那么<span class="math inline">\(f\)</span>沿着射线<span class="math inline">\(x+\alpha d\)</span>是渐进非增的,即<span class="math inline">\(r_{f}(d)\le 0\)</span>,这就是上文中渐进斜率的含义.下述命题给出了回收函数的显示表达: &gt; <span class="math inline">\(f:\mathbb{R}^{n}\mapsto (-\infty,+\infty]\)</span>为闭的真凸函数.则对于所有的<span class="math inline">\(x\in dom(f)\)</span>和<span class="math inline">\(d\in \mathbb{R}^{n}\)</span>, &gt; <span class="math inline">\(r_{f}(d)=\sup\limits_{\alpha&gt;0}(f(x+\alpha d)-f(x))/\alpha=\lim\limits_{\alpha\to +\infty}(f(x+\alpha d)-f(x))/\alpha\)</span>.</p>
+<p>最后是和的回收函数: &gt; <span class="math inline">\(f_{i}:\mathbb{R}^{n}\mapsto (-\infty,+\infty],i=1,...,m\)</span>,为闭的真凸函数,且<span class="math inline">\(f=f_{1}+...+f_{m}\)</span>为真.则 &gt; <span class="math inline">\(r_{f}(d)=r_{f_{1}}(d)+...+r_{f_{m}}(d),\forall d\in \mathbb{R}^{n}\)</span>.</p>
+<h3 id="闭集交的非空性与线性变换下的闭性">闭集交的非空性与线性变换下的闭性</h3>
+<h4 id="闭集交的非空性">闭集交的非空性</h4>
+<p>回收锥与线形空间的概念可以用来把紧集合的某些性质推广到闭凸集上去: - 嵌套的非空闭集<span class="math inline">\(\{C_{k}\}\)</span>具有非空紧交集. - 紧集在线性变换下是紧的.</p>
+<p>考虑<span class="math inline">\(\mathbb{R}^{n}\)</span>中嵌套的非空闭集<span class="math inline">\(\{C_{k}\}\)</span>,满足有<span class="math inline">\(C_{k+1}⊂C_{k}\)</span>,证明<span class="math inline">\(\cap_{k=0,...,+\infty}C_{k}\)</span>是否为空的问题会在以下背景中出现: - 函数<span class="math inline">\(f:\mathbb{R}^{n}\mapsto\mathbb{R}\)</span>在集合<span class="math inline">\(X\)</span>上是否会达到最小值?该问题的答案为当且仅当<span class="math inline">\(\cap^{\infty}_{k=0}\{x\in X|f(x)\le\gamma_{k}\}\)</span>非空,其中$<em>{k}</em>{xX}f(x) <span class="math inline">\(.  - 如果\)</span>C<span class="math inline">\(是闭集,\)</span>A<span class="math inline">\(是矩阵,\)</span>AC<span class="math inline">\(是否为闭集?为了证明这一点,可令\)</span>{y_{k}}y<span class="math inline">\(为\)</span>AC<span class="math inline">\(中一个收敛的序列,然后证明\)</span>yAC<span class="math inline">\(.一种方法是引入集合\)</span>C_{k}=CN_{k}<span class="math inline">\(,其中\)</span>N_{k}={x|║Ax-y║║y_{k}-y║}<span class="math inline">\(,那么一个充分条件就是\)</span><em>{k=0,...,+}C</em>{k}$.</p>
+<p>一个重要的事实是<span class="math inline">\(\cap_{k=0,...,+\infty}C_{k}\)</span>为空当且仅当<span class="math inline">\(\{C_{k}\}\)</span>中的序列<span class="math inline">\(\{x_{k}\}\)</span>都是无界的.因此我们的思路是引入保证并非所有这样的序列都是无界的,事实上只要关心如下定义中沿着公共方向发散到<span class="math inline">\(+\infty\)</span>的无界序列就可以了.</p>
+<p>渐进序列: &gt; <span class="math inline">\(\{C_{k}\}\)</span>为嵌套的非空闭凸集序列,我们说<span class="math inline">\(\{x_{k}\}\)</span>是<span class="math inline">\(\{C_{k}\}\)</span>的一个渐进序列,如果<span class="math inline">\(x_{k}\neq0\)</span>,<span class="math inline">\(x_{k}\in C_{k}\)</span>对所有的<span class="math inline">\(k\)</span>成立, &gt;并且<span class="math inline">\(║x_{k}║\to+\infty\)</span>,<span class="math inline">\(x_{k}/║x_{k}║→d/║d║\)</span>,其中<span class="math inline">\(d\in\cap_{k=0,...,+∞}R_{C_{k}}\)</span>是公共非零回收方向.</p>
+<p>下面引入具有我们所期望性质的一类序列.</p>
+<p>收缩的(retractive): &gt; <span class="math inline">\(\{C_{k}\}\)</span>为嵌套的非空闭凸集序列,我们说<span class="math inline">\(\{x_{k}\}\)</span>为收缩的,如果对上述渐进序列的定义中对应于<span class="math inline">\(\{x_{k}\}\)</span>的方向<span class="math inline">\(d\)</span>,存在下标<span class="math inline">\(\bar{k}\)</span>,使得<span class="math inline">\(x_{k}-d\in C_{k},\forall k\ge \bar{k}\)</span>.</p>
+<p>我们称<span class="math inline">\(\{C_{k}\}\)</span>是收缩的,如果它的所有渐进序列都是收缩的.下图形象的说明了收缩这一概念,显然<span class="math inline">\((a)\)</span>是收缩的而<span class="math inline">\((b)\)</span>不是.</p>
+<figure>
+<img src="/pictures/%E5%87%B8%E4%BC%98%E5%8C%96_2.png" alt="avatar" /><figcaption>avatar</figcaption>
+</figure>
+<p>多面体集合是最重要的一类收缩集: &gt; 多面体集合是收缩的.</p>
+<p>收缩序列的重要性可从如下命题中看出: &gt; 收缩的嵌套非空闭凸集序列具有非空交集.</p>
+<p>上述命题适用的一个简单例子就是圆柱形集合序列,其中<span class="math inline">\(R_{C_{k}}=L_{C_{k}}=L\)</span>.下面命题给出了一个重要的拓展结果: &gt; <span class="math inline">\(\{C_{k}\}\)</span>为非空闭凸集序列,记<span class="math inline">\(R=\cap_{k=0,...,+\infty}R_{C_{k}},L=\cap_{k=0,...,+\infty}L_{C_{k}}\)</span>. - 如果<span class="math inline">\(R=L\)</span>,那么<span class="math inline">\(\{C_{k}\}\)</span>是收缩的,且<span class="math inline">\(\cap_{k=0,...,+\infty}C_{k}\neq\emptyset\)</span>,进而<span class="math inline">\(\cap_{k=0,...,+\infty}C_{k}=L+\hat{C}\)</span>,其中<span class="math inline">\(\hat{C}\)</span>为一非空紧集. - <span class="math inline">\(X\)</span>为收缩的闭凸集,假定所有集合<span class="math inline">\(\bar{C_{k}}=X\cap C_{k}\neq\emptyset\)</span>,且<span class="math inline">\(R_{X}\cap R\subset L\)</span>,则<span class="math inline">\(\{\bar{C_{k}}\}\)</span>是收缩的,且<span class="math inline">\(\cap_{k=0,...,+\infty}\bar{C_{k}}\neq\emptyset\)</span>.</p>
+<p>下面是一个重要应用:</p>
+<p>凸二次规划解的存在性: &gt; 令<span class="math inline">\(Q\)</span>为对称半正定<span class="math inline">\(n\)</span>阶方阵,<span class="math inline">\(c\)</span>和<span class="math inline">\(a_{1},...,a_{r}\)</span>为<span class="math inline">\(n\)</span>维向量,<span class="math inline">\(b_{1},...,b_{r}\)</span>为标量,假定优化问题:<span class="math display">\[minx&#39;Qx+c&#39;x\]</span> <span class="math display">\[s.t.a&#39;_{j}x\le b_{j},j=1,...,r\]</span>的最优值为有限,则该问题至少有一个最优解.</p>
+<h4 id="线性变换下的闭性">线性变换下的闭性</h4>
+<p>上节得到的闭凸集序列交的非空性可以转化为保证闭凸集<span class="math inline">\(C\)</span>在线性变换<span class="math inline">\(A\)</span>下的像<span class="math inline">\(AC\)</span>的闭性条件,这就是下述命题: &gt; <span class="math inline">\(X\)</span>和<span class="math inline">\(C\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>中的非空闭集,<span class="math inline">\(A\)</span>为<span class="math inline">\(m×n\)</span>矩阵,且记<span class="math inline">\(N(A)\)</span>为其零化空间.如果<span class="math inline">\(X\)</span>是收缩的闭凸集且<span class="math inline">\(R_{X}\cap R_{C}\cap N(A)\subset L_{C}\)</span>,那么<span class="math inline">\(A(X\cap C)\)</span>为闭集.</p>
+<ul>
+<li>令<span class="math inline">\(C=\mathbb{R}^{n}\)</span>,<span class="math inline">\(X\)</span>为多面体集,则<span class="math inline">\(L_{C}=\mathbb{R}^{n}\)</span>,上述命题条件自动满足,于是<span class="math inline">\(AX\)</span>为闭,因此多面体集在线性变换下的像为闭集.</li>
+<li>令<span class="math inline">\(X=\mathbb{R}^{n}\)</span>,则如果<span class="math inline">\(C\)</span>的每个属于<span class="math inline">\(N(A)\)</span>的回收方向都属于<span class="math inline">\(L_{C}\)</span>,那么<span class="math inline">\(AC\)</span>闭.特别的,<span class="math inline">\(R_{C}\cap N(A)={0}\)</span>时必然成立.作为特例,该结果可以用来得到保证闭凸集向量和的闭性的条件.</li>
+</ul>
+<blockquote>
+<p><span class="math inline">\(C_{1},...,C_{m}\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>中的非空闭凸子集,假定等式<span class="math inline">\(d_{1}+...+d_{m}=0\)</span>对某些向量<span class="math inline">\(d_{i}\in R_{C_{i}}\)</span>成立就意味着<span class="math inline">\(d_{i}\in L_{C_{i}}\)</span>对所有<span class="math inline">\(i=1,...,m\)</span>成立.则<span class="math inline">\(C_{1}+...+C_{m}\)</span>是闭集.</p>
+</blockquote>
+<p>特别的取<span class="math inline">\(m=2\)</span>,且<span class="math inline">\(C_{1},C_{2}\)</span>有界,显然<span class="math inline">\(R_{C_{1}}=R_{C_{2}}={0}\)</span>,此时条件自动成立,那么<span class="math inline">\(C_{1}+C_{2}\)</span>为闭集.</p>
+<h2 id="超平面">超平面</h2>
+<h3 id="分离超平面">分离超平面</h3>
+<p>超平面: &gt; 超平面是<span class="math inline">\(\mathbb{R}^{n}\)</span>中形如<span class="math inline">\(\{x|a&#39;x=b\}\)</span>的集合,其中<span class="math inline">\(a\)</span>是<span class="math inline">\(n\)</span>维向量,<span class="math inline">\(b\)</span>为标量.</p>
+<p>任取超平面内的向量都满足<span class="math inline">\(a&#39;\bar x=b\)</span>,所以该超平面亦可被等价定义为<span class="math inline">\(H=\{x|a&#39;x=a&#39;\bar x\}\)</span>或<span class="math inline">\(H=\bar x+\{x|a&#39;x=0\}\)</span>,<span class="math inline">\(a\)</span>被称为<span class="math inline">\(H\)</span>的法向量.</p>
+<p>集合<span class="math inline">\(\{x|a&#39;x\ge b\}\)</span>与<span class="math inline">\(\{x|a&#39;x\le b\}\)</span>被称为与超平面关联的闭半空间,两者也分别被称为正、负半空间. 集合<span class="math inline">\(\{x|a&#39;x&gt; b\}\)</span>与<span class="math inline">\(\{x|a&#39;x&lt; b\}\)</span>则被称为与超平面关联的开半空间.</p>
+<p>分离: &gt; 称集合<span class="math inline">\(C_{1}\)</span>,<span class="math inline">\(C_{2}\)</span>是可被超平面<span class="math inline">\(\{x|a&#39;x=b\}\)</span>分离的,如果两个集合分别被包含于与H关联的两个闭半空间内,也即满足:<span class="math inline">\(a&#39;x_{1}\le b\le a&#39;x_{2},\forall x_{1}\in C_{1},\forall x_{2}\in C_{2}\)</span>成立.</p>
+<p>支撑: &gt; 在集合<span class="math inline">\(C\)</span>的闭包内任取向量<span class="math inline">\(\bar x\)</span>如果一超平面能将<span class="math inline">\(C\)</span>与单点集{<span class="math inline">\(\bar x\)</span>}分离,则称该超平面在<span class="math inline">\(\bar x\)</span>上支撑<span class="math inline">\(C\)</span>.即存在非零向量<span class="math inline">\(a\)</span>使得<span class="math inline">\(a&#39;\bar x\le a&#39;x,\forall x\in C\)</span>.</p>
+<p>等价的,由于<span class="math inline">\(\bar x\)</span>是<span class="math inline">\(C\)</span>的闭包点(closure point),所以<span class="math inline">\(a&#39;\bar x=\inf \limits_{x\in C}a&#39;x\)</span>.</p>
+<p>支撑超平面定理(Supporting Hyperplane Theorem): &gt; <span class="math inline">\(C\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>中的非空凸子集,<span class="math inline">\(\bar x\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>中向量,如果<span class="math inline">\(\bar x\)</span>不是<span class="math inline">\(C\)</span>的内点,则存在通过<span class="math inline">\(\bar x\)</span>的超平面使得<span class="math inline">\(C\)</span>包含于其某个闭半空间内,也即存在向量<span class="math inline">\(a\neq 0\)</span>使得<span class="math inline">\(a&#39;\bar x\le a&#39;x,\forall x\in C\)</span>.</p>
+<p>分离超平面定理: &gt; <span class="math inline">\(C_{1}\)</span>与<span class="math inline">\(C_{2}\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>中的非空凸子集,如果<span class="math inline">\(C_{1}\)</span>与<span class="math inline">\(C_{2}\)</span>不交(disjoint),则存在分离超平面.即存在非零向量<span class="math inline">\(a\)</span>使得<span class="math inline">\(a&#39;x_{1}\le a&#39;x_{2},\forall x_{1}\in C_{1},\forall x_{2}\in C_{2}\)</span>.</p>
+<p>严格分离(strictly separate): &gt; 称超平面<span class="math inline">\(\{x|a&#39;x=b\}\)</span>严格分离<span class="math inline">\(C_{1}\)</span>与<span class="math inline">\(C_{2}\)</span>,如果其不仅能分离<span class="math inline">\(C_{1}\)</span>与<span class="math inline">\(C_{2}\)</span>,还与两个集合都没有交点,即<span class="math inline">\(a&#39;x_{1}&lt; b&lt; a&#39;x_{2},\forall x_{1}\in C_{1},\forall x_{2}\in C_{2}\)</span>或<span class="math inline">\(a&#39;x_{2}&lt; b&lt; a&#39;x_{1},\forall x_{1}\in C_{1},\forall x_{2}\in C_{2}\)</span>成立.</p>
+<p>严格分离定理: &gt; <span class="math inline">\(C_{1}\)</span>与<span class="math inline">\(C_{2}\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>中的非空凸子集,且<span class="math inline">\(C_{1}\)</span>与<span class="math inline">\(C_{2}\)</span>不交(disjoint),当下列任一条件满足时,<span class="math inline">\(C_{1}\)</span>与<span class="math inline">\(C_{2}\)</span>能被严格分离. &gt; - <span class="math inline">\(C_{2}-C_{1}\)</span>是闭集. &gt; - <span class="math inline">\(C_{1}\)</span>是闭集且<span class="math inline">\(C_{2}\)</span>是紧集. &gt; - <span class="math inline">\(C_{1}\)</span>与<span class="math inline">\(C_{2}\)</span>都是多面体. &gt; - <span class="math inline">\(C_{1}\)</span>与<span class="math inline">\(C_{2}\)</span>都是闭集且满足<span class="math inline">\(R_{C_{1}}\cap R_{C_{2}}=L_{C_{1}}\cap L_{C_{2}}\)</span>. &gt; - <span class="math inline">\(C_{1}\)</span>是闭集,<span class="math inline">\(C_{2}\)</span>是多面体且满足<span class="math inline">\(R_{C_{1}}\cap R_{C_{2}}\subset L_{C_{1}}\)</span>.</p>
+<p>上述结论的一个推论是,闭集<span class="math inline">\(C\)</span>与任何不属于<span class="math inline">\(C\)</span>的向量<span class="math inline">\(\bar x\)</span>总可以被严格分离.根据这个性质,可以得到闭凸集如下重要性质: &gt; 集合<span class="math inline">\(C\)</span>的凸包是包含<span class="math inline">\(C\)</span>的所有闭半空间的交集.特别的,一个闭凸集是包含它的所有闭半空间的交集.</p>
+<h3 id="真分离超平面">真分离超平面</h3>
+<p>真分离(proper separate): &gt; 称超平面<span class="math inline">\(\{x|a&#39;x=b\}\)</span>真分离<span class="math inline">\(C_{1}\)</span>与<span class="math inline">\(C_{2}\)</span>,如果其不仅分离<span class="math inline">\(C_{1}\)</span>与<span class="math inline">\(C_{2}\)</span>且不同时包含<span class="math inline">\(C_{1}\)</span>与<span class="math inline">\(C_{2}\)</span>.即$_ {x_{1}C_{1}} a'x_{1} _ {x_{2}C_{2}} a'x_{2} <span class="math inline">\(,\)</span>_ {x_{1}C_{1}} a'x_{1} &lt; _ {x_{2}C_{2}} a'x_{2} $.</p>
+<p>下证严格分离&gt;分离,真分离&gt;分离: 由定义,显然有严格分离<span class="math inline">\(\ge\)</span>分离,真分离<span class="math inline">\(\ge\)</span>分离. 想象<span class="math inline">\(\mathbb{R}^{2}\)</span>空间中<span class="math inline">\(C_{1}=\{(x,y)|x\in [0,2],y=0\}\)</span>和<span class="math inline">\(C_{2}=\{(x,y)|x\in [1,3],y=0\}\)</span>,显然<span class="math inline">\(C_{1}\)</span>与<span class="math inline">\(C_{2}\)</span>为凸集,<span class="math inline">\(\{(x,y)|y=0\}\)</span>能够分离<span class="math inline">\(C_{1}\)</span>与<span class="math inline">\(C_{2}\)</span>,但不能真分离或是严格分离<span class="math inline">\(C_{1}\)</span>与<span class="math inline">\(C_{2}\)</span>.即有严格分离&gt;分离,真分离&gt;分离.</p>
+<p>真分离定理: &gt; <span class="math inline">\(C\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>中的非空凸子集,<span class="math inline">\(\bar x\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>中向量,当且仅当<span class="math inline">\(\bar x\notin ri(C)\)</span>时,存在<span class="math inline">\(C\)</span>与<span class="math inline">\(\bar x\)</span>的真分离超平面.</p>
+<p>两个凸集的真分离定理: &gt; <span class="math inline">\(C_{1}\)</span>与<span class="math inline">\(C_{2}\)</span>为<span class="math inline">\(\mathbb{R}^{n}\)</span>中的非空凸子集,则其存在真分离超平面当且仅当<span class="math inline">\(ri(C_{1})\cap ri(C_{2})=\emptyset\)</span>.</p>
+<p>多面体的真分离定理: &gt; <span class="math inline">\(C\)</span>与<span class="math inline">\(P\)</span>是<span class="math inline">\(\mathbb{R}^{n}\)</span>中的非空凸子集且<span class="math inline">\(P\)</span>是多面体.则存在分离<span class="math inline">\(C\)</span>与<span class="math inline">\(P\)</span>且其不包含<span class="math inline">\(C\)</span>的超平面存在当且仅当<span class="math inline">\(ri(C)\cap P=\emptyset\)</span>.</p>
+<h3 id="非竖直超平面">非竖直超平面</h3>
+<p>在优化问题中,常常用支撑超平面来分析函数的上图,对于定义在<span class="math inline">\(\mathbb{R}^{n}\)</span>上的函数,其上图是<span class="math inline">\(\mathbb{R}^{n+1}\)</span>的子集,此时考虑<span class="math inline">\(\mathbb{R}^{n+1}\)</span>中的超平面,并将其法向量记为<span class="math inline">\((\mu,\beta)\)</span>的n+1维向量,其中<span class="math inline">\(\mu\in \mathbb{R}^{n}\)</span>而<span class="math inline">\(\beta\in \mathbb{R}\)</span>,如果<span class="math inline">\(\beta=0\)</span>,称该超平面是竖直的(vertical).</p>
+<p>非竖直超平面定理: &gt; <span class="math inline">\(C\)</span>为<span class="math inline">\(\mathbb{R}^{n+1}\)</span>中的非空凸子集,且<span class="math inline">\(C\)</span>不包含任何直线,标记<span class="math inline">\(\mathbb{R}^{n+1}\)</span>中的向量为<span class="math inline">\((u,w)\)</span>,其中<span class="math inline">\(u\in \mathbb{R}^{n}\)</span>而<span class="math inline">\(w\in \mathbb{R}\)</span>,则有: 1. 存在非竖直超平面,使得其关联的闭半空间包含<span class="math inline">\(C\)</span>,也即存在向量<span class="math inline">\(\mu\in \mathbb{R}^{n}\)</span>,标量<span class="math inline">\(\beta\neq 0\)</span>,及标量<span class="math inline">\(\gamma\)</span>使成立:<span class="math inline">\(\mu&#39;u+\beta w\ge \gamma\)</span>. 2. 如果向量<span class="math inline">\((\bar u,\bar w)\notin cl(C)\)</span>,则存在非竖直超平面使得<span class="math inline">\((\bar u,\bar w)\)</span>与<span class="math inline">\(C\)</span>严格分离.</p>
+<h2 id="共轭函数">共轭函数</h2>
+<p>最后一节介绍凸优化中一个基本概念叫函数的共轭变换(conjugate transformation),它有另外一个广为人知的名字:Legendre–Fenchel transformation.</p>
+<h3 id="共轭函数-1">共轭函数</h3>
+<p>共轭函数(conjugate function): &gt; 扩充的实值函数<span class="math inline">\(f:\mathbb{R}^{n}\mapsto[-\infty,+\infty]\)</span>,其共轭函数<span class="math inline">\(f^{+}:\mathbb{R}^{n}\mapsto[-\infty,+\infty]\)</span>如下定义:<span class="math display">\[f^{+}(y)=\sup  \limits _ {x\in \mathbb{R}^{n}}\{x&#39;y-f(x)\},\forall y\in \mathbb{R}^{n}\]</span></p>
+<p>值得注意的是,无论<span class="math inline">\(f\)</span>是否为凸函数,其共轭函数<span class="math inline">\(f^{+}\)</span>总是闭凸函数,因为仿射函数族<span class="math inline">\(x&#39;y-f(x),\forall x\in dom(f)\)</span>处处收敛到<span class="math inline">\(f^{+}\)</span>,也即<span class="math inline">\(f^{+}\)</span>是它们的上确界.还需注意的是,无论<span class="math inline">\(f\)</span>是否为真函数,<span class="math inline">\(f^{+}\)</span>都不一定是真函数.</p>
+<h3 id="双重共轭函数">双重共轭函数</h3>
+<p>双重共轭函数(double conjugate): &gt; 考虑共轭函数<span class="math inline">\(f^{+}\)</span>的共轭函数,记作<span class="math inline">\(f^{+ +}\)</span>.</p>
+<h3 id="共轭定理">共轭定理</h3>
+<p>共轭定理: &gt; <span class="math inline">\(f^{+}\)</span>为函数<span class="math inline">\(f:\mathbb{R}^{n}\mapsto[-\infty,+\infty]\)</span>的共轭函数,<span class="math inline">\(f^{++}\)</span>为对应双重共轭函数.则有: &gt; - 恒有<span class="math inline">\(f(x)\ge f^{++}(x),\forall x\in \mathbb{R}^{n}\)</span>. &gt; - 如果<span class="math inline">\(f\)</span>是凸函数,则如果<span class="math inline">\(f,f^{+},f^{++}\)</span>中有任一函数是真函数,则另外两个也是真函数. &gt; - 如果<span class="math inline">\(f\)</span>是真的闭凸函数,则<span class="math inline">\(f=f^{++}\)</span>. &gt; - <span class="math inline">\(f^{++}\)</span>与凸闭包函数<span class="math inline">\(\hat{cl}f\)</span>相等,此外,如果<span class="math inline">\(\hat{cl}f\)</span>是真函数,则<span class="math inline">\(\hat{cl}f=f^{++}\)</span>.</p>
+<p>上述定理不难看出共轭函数与凸闭包函数的相似之处,不同的是共轭函数完全通过非竖直超平面定义的,而图闭包函数的定义既用到了非竖直超平面,也用到了竖直超平面.</p>
+<h3 id="两个例子">两个例子</h3>
+<p>例1(示性/支撑函数的共轭): 非空集合<span class="math inline">\(X\)</span>示性函数(indicator function)的定义如下:<span class="math display">\[\delta_{X}(x)=0,x\in X;\infty,otherwise\]</span>而<span class="math inline">\(\delta_{X}(x)\)</span>的共轭函数:<span class="math display">\[\sigma_{X}(x)=\sup  \limits _ {x\in X} y&#39;x\]</span>并称为X的支撑函数.由共轭定理第四条,<span class="math inline">\(X,cl(X),conv(X),cl(conv(X))\)</span>有相同的支撑函数.</p>
+<p>例2(锥的支撑函数): <span class="math inline">\(C\)</span>为凸锥,根据例1,C的示性函数<span class="math inline">\(\delta_{C}\)</span>的共轭即<span class="math inline">\(C\)</span>的支撑函数<span class="math display">\[\sigma_{C}(y)=\sup  \limits _ {x\in C} y&#39;x\]</span>由于<span class="math inline">\(C\)</span>是锥体,可得:<span class="math display">\[\sigma_{C}(y)=0,y&#39;x\le 0,\forall x \in C;\infty,otherwise\]</span>因此支撑函数<span class="math inline">\(\sigma_{C}\)</span>恰为如下锥<span class="math inline">\(C^{+}\)</span>的示性函数<span class="math inline">\(\delta_{C^{+}}\)</span>,<span class="math display">\[C^{+}=\{y|y&#39;x\le 0,\forall x \in C\}\]</span>称<span class="math inline">\(C^{+}\)</span>为<span class="math inline">\(C\)</span>的极锥(polar cone). 最后是常见的函数的共轭变换: <img src="/pictures/convex%20conjugates.png" alt="avatar" /></p>
+<p>未完待续..</p>
+]]></content>
+      <categories>
+        <category>优化算法</category>
+      </categories>
+      <tags>
+        <tag>凸优化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2017</title>
     <url>/2018/01/24/2017/</url>
     <content><![CDATA[<p>前言:记录2017,为2018立flag <a id="more"></a></p>
 <figure>
-<img src="/pictures/background.jpg" alt="" /><figcaption>avatar</figcaption>
+<img src="/pictures/background.jpg" alt="avatar" /><figcaption>avatar</figcaption>
 </figure>
 <h2 id="回顾2017">回顾2017:</h2>
 <ul>
@@ -1981,7 +2260,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 <h3 id="from-csv">from csv</h3>
 <ul>
 <li>utils包中函数:</li>
-<li>download.file():如果是https开头,mac需要指定method = "curl",win不需要;如果是http开头则都不需要</li>
+<li>download.file():如果是https开头,mac需要指定method = &quot;curl&quot;,win不需要;如果是http开头则都不需要</li>
 </ul>
 <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">setwd(<span class="string">"C:/Users/msgsxj/Desktop/coursera/Getting and Cleaning Data"</span>)</span><br><span class="line">fileurl &lt;- <span class="string">"https://data.baltimorecity.gov/api/views/dz54-2aru/rows.csv?accseeType=DOWNLOAD"</span></span><br><span class="line">download.file(fileurl, destfile = <span class="string">"./data/cameras.csv"</span>, method = <span class="string">"curl"</span>) <span class="comment"># mac需要指定curl,win不需要</span></span><br><span class="line">list.files(<span class="string">"./data"</span>)</span><br></pre></td></tr></table></figure>
 <ul>
@@ -2070,7 +2349,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 </ul>
 <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">con = url(<span class="string">"http://www.msgsxj.cn/about/"</span>)</span><br><span class="line">htmlCode = readLines(con)</span><br><span class="line">close(con)</span><br><span class="line">htmlCode[<span class="number">378</span>:<span class="number">380</span>]</span><br></pre></td></tr></table></figure>
 <figure>
-<img src="/pictures/R/R_me.png" alt="" /><figcaption>me</figcaption>
+<img src="/pictures/R/R_me.png" alt="me" /><figcaption>me</figcaption>
 </figure>
 <ul>
 <li>XML包中函数:</li>
@@ -2143,7 +2422,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 </ul>
 <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">set.seed(<span class="number">13435</span>)</span><br><span class="line">X &lt;- data.frame(<span class="string">"var1"</span>=sample(<span class="number">1</span>:<span class="number">5</span>),<span class="string">"var2"</span>=sample(<span class="number">6</span>:<span class="number">10</span>),<span class="string">"var3"</span>=sample(<span class="number">11</span>:<span class="number">15</span>))</span><br><span class="line">X &lt;- X[sample(<span class="number">1</span>:<span class="number">5</span>),]</span><br><span class="line">X$var2[c(<span class="number">1</span>,<span class="number">3</span>)]=<span class="literal">NA</span></span><br><span class="line">X</span><br><span class="line">X[,<span class="number">1</span>] <span class="comment">#提取第一列数据</span></span><br><span class="line">X[,<span class="string">"var1"</span>] <span class="comment">#提取var1数据</span></span><br><span class="line">X[<span class="number">1</span>:<span class="number">2</span>,<span class="string">"var2"</span>]</span><br><span class="line">X[(X$var1 &lt;= <span class="number">3</span> &amp; X$var3 &gt; <span class="number">11</span>),]</span><br><span class="line">X[(X$var1 &lt;= <span class="number">3</span> | X$var3 &gt; <span class="number">15</span>),]</span><br><span class="line">X[which(X$var2 &gt; <span class="number">8</span>),]</span><br><span class="line">X[(X$var2 &gt; <span class="number">8</span>),] <span class="comment">#会返回NA</span></span><br></pre></td></tr></table></figure>
 <figure>
-<img src="/pictures/R/R_X%5B%5D.png" alt="" /><figcaption>X[]</figcaption>
+<img src="/pictures/R/R_X%5B%5D.png" alt="X[]" /><figcaption>X[]</figcaption>
 </figure>
 <h3 id="sorting">Sorting</h3>
 <ul>
@@ -2287,7 +2566,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">names(camera2Data) &lt;- tolower(names(camera2Data)) <span class="comment"># 变量名全部变小写</span></span><br><span class="line">names(camera2Data)</span><br><span class="line">splitNames &lt;- strsplit(names(camera2Data),<span class="string">"\\."</span>) <span class="comment"># split 需转义</span></span><br><span class="line">splitNames[[<span class="number">6</span>]]</span><br><span class="line">splitNames[[<span class="number">6</span>]][<span class="number">1</span>]</span><br><span class="line">firstElement &lt;- <span class="keyword">function</span>(x)&#123;x[<span class="number">1</span>]&#125;</span><br><span class="line">names(camera2Data) &lt;- sapply(splitNames,firstElement)  <span class="comment"># 想只保留splitNames[[6]]的第一部分</span></span><br><span class="line">names(camera2Data)</span><br></pre></td></tr></table></figure>
 <p><img src="/pictures/R/R_sapply.png" /></p>
 <ul>
-<li>上述srtsplit()+sapply()过程的相似处理:用""取代"."</li>
+<li>上述srtsplit()+sapply()过程的相似处理:用&quot;&quot;取代&quot;.&quot;</li>
 <li>sub()</li>
 <li>gsub() 替换所有</li>
 </ul>
@@ -2587,7 +2866,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 </blockquote>
 <p>这个概念要求输出假设与假设类中其他假设相比具有<span class="math inline">\((\varepsilon,\delta)\)</span>的竞争力, 同时从定义也很容易得到不可知PAC可学习一定能推得不一致可学习, 且不一致可学习是不可知PAC可学习的严格松弛. 下面举个例子说明两者的严格松弛关系:</p>
 <ul>
-<li><p>考虑二分问题, 假设<span class="math inline">\(\mathcal{H}_{n}\)</span>是<span class="math inline">\(n\)</span>次多项式构成的假设类, 即<span class="math inline">\(\mathcal{H}_{n}\)</span>为<span class="math inline">\(h(x)=sign(p(x))\)</span>的分类器的集合.这里<span class="math inline">\(p(x)\)</span>是<span class="math inline">\(\mathbb{R}\to\mathbb{R}\)</span>的<span class="math inline">\(n\)</span>次多项式.令<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>. 容易得到<span class="math inline">\(VCdim(\mathcal{H})=+\infty\)</span>, 但<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的.</p></li>
+<li>考虑二分问题, 假设<span class="math inline">\(\mathcal{H}_{n}\)</span>是<span class="math inline">\(n\)</span>次多项式构成的假设类, 即<span class="math inline">\(\mathcal{H}_{n}\)</span>为<span class="math inline">\(h(x)=sign(p(x))\)</span>的分类器的集合.这里<span class="math inline">\(p(x)\)</span>是<span class="math inline">\(\mathbb{R}\to\mathbb{R}\)</span>的<span class="math inline">\(n\)</span>次多项式.令<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>. 容易得到<span class="math inline">\(VCdim(\mathcal{H})=+\infty\)</span>, 但<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的.</li>
 <li><p>事实上, 有一个定理清晰的描述了两者的关系:</p>
 <blockquote>
 <p>两分类器的假设类<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的, 当且仅当它是不可知PAC可学习的可数并.</p>
@@ -2595,7 +2874,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 </ul>
 <p>下面来看这个定理的证明:</p>
 <ul>
-<li><p>必要性: 假定<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的, 对于每个<span class="math inline">\(n\in\mathbb{N}\)</span>,令<span class="math inline">\(\mathcal{H}_{n}=\{h\in\mathcal{H}:m^{NUL}_{\mathcal{H}}(\frac{1}{8},\frac{1}{7},h)\le n\}\)</span>. 显然<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>. 此外, 由<span class="math inline">\(m^{NUL}_{\mathcal{H}}\)</span>定义知, 对于任何关于<span class="math inline">\(\mathcal{H}_{n}\)</span>满足可实现性假设的分布<span class="math inline">\(\mathcal{D}\)</span>, <span class="math inline">\(S\)</span>由<span class="math inline">\(\mathcal{D}\)</span>独立抽样得到, 选择样本<span class="math inline">\(S\)</span>的概率大于等于<span class="math inline">\(\frac{6}{7}\)</span>. 则<span class="math inline">\(L_{\mathcal{D}}(A(S))\le\frac{1}{8}\)</span>. 由统计学习基本定理知, <span class="math inline">\(VCdim(\mathcal{H}_{n})&lt;+\infty\)</span>, 因此<span class="math inline">\(\mathcal{H}_{n}\)</span>是不可知PAC可学习的.</p></li>
+<li>必要性: 假定<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的, 对于每个<span class="math inline">\(n\in\mathbb{N}\)</span>,令<span class="math inline">\(\mathcal{H}_{n}=\{h\in\mathcal{H}:m^{NUL}_{\mathcal{H}}(\frac{1}{8},\frac{1}{7},h)\le n\}\)</span>. 显然<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>. 此外, 由<span class="math inline">\(m^{NUL}_{\mathcal{H}}\)</span>定义知, 对于任何关于<span class="math inline">\(\mathcal{H}_{n}\)</span>满足可实现性假设的分布<span class="math inline">\(\mathcal{D}\)</span>, <span class="math inline">\(S\)</span>由<span class="math inline">\(\mathcal{D}\)</span>独立抽样得到, 选择样本<span class="math inline">\(S\)</span>的概率大于等于<span class="math inline">\(\frac{6}{7}\)</span>. 则<span class="math inline">\(L_{\mathcal{D}}(A(S))\le\frac{1}{8}\)</span>. 由统计学习基本定理知, <span class="math inline">\(VCdim(\mathcal{H}_{n})&lt;+\infty\)</span>, 因此<span class="math inline">\(\mathcal{H}_{n}\)</span>是不可知PAC可学习的.</li>
 <li><p>充分性: 充分性的证明依赖于下述引理:</p>
 <blockquote>
 <p><span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>, 如果<span class="math inline">\(\mathcal{H}_{n}\)</span>是一致收敛的, 那么<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的.</p>

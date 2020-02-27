@@ -324,7 +324,7 @@
 <p>这类方法着重于利用先前迭代中计算得到的样本的梯度信息, 其包括SVGR、SAG/SAGA等.</p>
 <h4 id="svrg">SVRG</h4>
 <figure>
-<img src="/pictures/SVRG.png" alt="" /><figcaption>SVRG</figcaption>
+<img src="/pictures/SVRG.png" alt="SVRG" /><figcaption>SVRG</figcaption>
 </figure>
 <p>SVGA只适用于<span class="math inline">\(R_n(w)\)</span>. 如上图算法所示, 相比SG, SVGA多了抽取<span class="math inline">\(m\)</span>个样本的内层循环, 再用内层循环产生的子序列<span class="math inline">\(\{\tilde{w}_j\}\)</span>,<span class="math inline">\({j=1,...,m}\)</span>去生成高质量的<span class="math inline">\(w_{k+1}\)</span>, 方式比如说(a),(b),(c). 核心式子为:<span class="math display">\[\tilde{g}_j\leftarrow \nabla f_{i_{j}}(\tilde{w}_j)-(\nabla f_{i_{j}}(w_k)-\nabla R_n(w_k))\]</span>它可以从两个角度去理解:</p>
 <ol type="1">
@@ -334,7 +334,7 @@
 <p>在强凸前提下其收敛速度为线性[SVRG TH1]<span class="math display">\[\mathbb{E}[R_n(w_{k})-R_*]\le\omega\rho^{k-1}\]</span>其中<span class="math inline">\(\rho\in(0,1)\)</span>. SVRG的计算复杂度为:<span class="math display">\[O((n+\kappa)\log(1/\epsilon))\]</span></p>
 <h4 id="sagasag">SAGA/SAG</h4>
 <figure>
-<img src="/pictures/SAGA.png" alt="" /><figcaption>SAGA</figcaption>
+<img src="/pictures/SAGA.png" alt="SAGA" /><figcaption>SAGA</figcaption>
 </figure>
 <p>SAGA只适用于<span class="math inline">\(R_n(w)\)</span>, 显然算法部分第一块为初始化所有样本梯度值并存储, 第二个循环才是算法循环. 其中<span class="math inline">\(\nabla f_j(w_{[j]})\)</span>表示第<span class="math inline">\(j\)</span>个样本最近一次存储着的梯度值. 比如说对于第<span class="math inline">\(1\)</span>个样本, 初始化时<span class="math inline">\(\nabla f_1(w_{[1]})\leftarrow \nabla f_1(w_{1})\)</span>, 剩下涉第<span class="math inline">\(1\)</span>个样本的梯度的更新就只有靠算法循环中的<code>Choose j uniformly in {1,...,n}</code>抽到再用<span class="math inline">\(\nabla f_1(w_k)\)</span>更新. 因此可以看出, SAGA本着<strong>能不计算梯度就不计算</strong>的原则(每步迭代只计算一个样本的梯度, 从这个角度看更接近SG), 而其核心式子为:<span class="math display">\[g_k\leftarrow \nabla f_{j}(w_k)-\nabla f_{j}(w_{[j]})+\frac{1}{n}\sum_{i=1}^n\nabla f_i(w_{[i]})\]</span>它同样可以从两个角度去理解:</p>
 <ol type="1">
@@ -446,7 +446,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -459,7 +459,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

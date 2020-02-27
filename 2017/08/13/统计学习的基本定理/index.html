@@ -502,7 +502,7 @@
 </blockquote>
 <p>这个概念要求输出假设与假设类中其他假设相比具有<span class="math inline">\((\varepsilon,\delta)\)</span>的竞争力, 同时从定义也很容易得到不可知PAC可学习一定能推得不一致可学习, 且不一致可学习是不可知PAC可学习的严格松弛. 下面举个例子说明两者的严格松弛关系:</p>
 <ul>
-<li><p>考虑二分问题, 假设<span class="math inline">\(\mathcal{H}_{n}\)</span>是<span class="math inline">\(n\)</span>次多项式构成的假设类, 即<span class="math inline">\(\mathcal{H}_{n}\)</span>为<span class="math inline">\(h(x)=sign(p(x))\)</span>的分类器的集合.这里<span class="math inline">\(p(x)\)</span>是<span class="math inline">\(\mathbb{R}\to\mathbb{R}\)</span>的<span class="math inline">\(n\)</span>次多项式.令<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>. 容易得到<span class="math inline">\(VCdim(\mathcal{H})=+\infty\)</span>, 但<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的.</p></li>
+<li>考虑二分问题, 假设<span class="math inline">\(\mathcal{H}_{n}\)</span>是<span class="math inline">\(n\)</span>次多项式构成的假设类, 即<span class="math inline">\(\mathcal{H}_{n}\)</span>为<span class="math inline">\(h(x)=sign(p(x))\)</span>的分类器的集合.这里<span class="math inline">\(p(x)\)</span>是<span class="math inline">\(\mathbb{R}\to\mathbb{R}\)</span>的<span class="math inline">\(n\)</span>次多项式.令<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>. 容易得到<span class="math inline">\(VCdim(\mathcal{H})=+\infty\)</span>, 但<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的.</li>
 <li><p>事实上, 有一个定理清晰的描述了两者的关系:</p>
 <blockquote>
 <p>两分类器的假设类<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的, 当且仅当它是不可知PAC可学习的可数并.</p>
@@ -510,7 +510,7 @@
 </ul>
 <p>下面来看这个定理的证明:</p>
 <ul>
-<li><p>必要性: 假定<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的, 对于每个<span class="math inline">\(n\in\mathbb{N}\)</span>,令<span class="math inline">\(\mathcal{H}_{n}=\{h\in\mathcal{H}:m^{NUL}_{\mathcal{H}}(\frac{1}{8},\frac{1}{7},h)\le n\}\)</span>. 显然<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>. 此外, 由<span class="math inline">\(m^{NUL}_{\mathcal{H}}\)</span>定义知, 对于任何关于<span class="math inline">\(\mathcal{H}_{n}\)</span>满足可实现性假设的分布<span class="math inline">\(\mathcal{D}\)</span>, <span class="math inline">\(S\)</span>由<span class="math inline">\(\mathcal{D}\)</span>独立抽样得到, 选择样本<span class="math inline">\(S\)</span>的概率大于等于<span class="math inline">\(\frac{6}{7}\)</span>. 则<span class="math inline">\(L_{\mathcal{D}}(A(S))\le\frac{1}{8}\)</span>. 由统计学习基本定理知, <span class="math inline">\(VCdim(\mathcal{H}_{n})&lt;+\infty\)</span>, 因此<span class="math inline">\(\mathcal{H}_{n}\)</span>是不可知PAC可学习的.</p></li>
+<li>必要性: 假定<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的, 对于每个<span class="math inline">\(n\in\mathbb{N}\)</span>,令<span class="math inline">\(\mathcal{H}_{n}=\{h\in\mathcal{H}:m^{NUL}_{\mathcal{H}}(\frac{1}{8},\frac{1}{7},h)\le n\}\)</span>. 显然<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>. 此外, 由<span class="math inline">\(m^{NUL}_{\mathcal{H}}\)</span>定义知, 对于任何关于<span class="math inline">\(\mathcal{H}_{n}\)</span>满足可实现性假设的分布<span class="math inline">\(\mathcal{D}\)</span>, <span class="math inline">\(S\)</span>由<span class="math inline">\(\mathcal{D}\)</span>独立抽样得到, 选择样本<span class="math inline">\(S\)</span>的概率大于等于<span class="math inline">\(\frac{6}{7}\)</span>. 则<span class="math inline">\(L_{\mathcal{D}}(A(S))\le\frac{1}{8}\)</span>. 由统计学习基本定理知, <span class="math inline">\(VCdim(\mathcal{H}_{n})&lt;+\infty\)</span>, 因此<span class="math inline">\(\mathcal{H}_{n}\)</span>是不可知PAC可学习的.</li>
 <li><p>充分性: 充分性的证明依赖于下述引理:</p>
 <blockquote>
 <p><span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>, 如果<span class="math inline">\(\mathcal{H}_{n}\)</span>是一致收敛的, 那么<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的.</p>
@@ -678,7 +678,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -691,7 +691,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
