@@ -792,9 +792,9 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
         <category>机器学习</category>
       </categories>
       <tags>
+        <tag>隐变量模型</tag>
         <tag>LDA模型</tag>
         <tag>Dirichlet分布</tag>
-        <tag>隐变量模型</tag>
       </tags>
   </entry>
   <entry>
@@ -1251,8 +1251,8 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>隐变量模型</tag>
         <tag>EM算法</tag>
+        <tag>隐变量模型</tag>
         <tag>Jensen不等式</tag>
       </tags>
   </entry>
@@ -1915,7 +1915,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
   <entry>
     <title>凸优化学习笔记</title>
     <url>/2018/02/23/%E5%87%B8%E4%BC%98%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>前言:主要参考了凸优化理论一书及讨论班上的ppt <a id="more"></a> <span class="math inline">\(\mathbb{R}\)</span>表示实数域</p>
+    <content><![CDATA[<p>前言:主要参考了凸优化理论一书及讨论班上的ppt, <span class="math inline">\(\mathbb{R}\)</span>表示实数域. <a id="more"></a></p>
 <h1 id="基本概念">基本概念</h1>
 <h2 id="凸集与凸函数">凸集与凸函数</h2>
 <h3 id="凸集">凸集</h3>
