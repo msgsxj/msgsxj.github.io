@@ -792,9 +792,9 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>隐变量模型</tag>
         <tag>LDA模型</tag>
         <tag>Dirichlet分布</tag>
+        <tag>隐变量模型</tag>
       </tags>
   </entry>
   <entry>
@@ -1251,8 +1251,8 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>EM算法</tag>
         <tag>隐变量模型</tag>
+        <tag>EM算法</tag>
         <tag>Jensen不等式</tag>
       </tags>
   </entry>
