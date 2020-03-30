@@ -49,11 +49,11 @@
 <h3 id="其它">其它</h3>
 <h4 id="sarah">SARAH</h4>
 <div data-align="left">
-<img src="/pictures/SARAH.png" height="520" width="490" >
+<img src="/pictures/SARAH.png" height="400" width="390" >
 </div>
 <a href="https://arxiv.org/pdf/1703.00102.pdf" target="_blank" rel="noopener">SARAH</a>只适用于<span class="math inline">\(R_n(w)\)</span>, 它与SVGR一样有内圈循环, 不同的是核心迭代式子中把<span class="math inline">\(\nabla R_n(w_k)\)</span>替换成了上一步的迭代方向. 且此时无偏性不再保持. 在强凸前提下, SARAH线性收敛 且计算复杂度与SVRG一样均为:<span class="math display">\[O((n+\kappa)\log(1/\epsilon))\]</span>注意到SARAH与SVRG中的<span class="math inline">\(m\)</span>均为超参, SARAH原论文中还提出了以<span class="math inline">\(\Vert v_{t-1}\Vert_2^2\le\gamma \Vert v_0\Vert_2^2\)</span>为内圈循环停止条件的实用版算法SARAH+.
-<div data-align="center">
-<img src="/pictures/SARAH+.png" height="520" width="490" >
+<div data-align="left">
+<img src="/pictures/SARAH+.png" height="400" width="390" >
 </div>
 ]]></content>
       <categories>
@@ -1246,10 +1246,10 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
         <category>机器学习</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>EM算法</tag>
         <tag>隐变量模型</tag>
         <tag>Jensen不等式</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
