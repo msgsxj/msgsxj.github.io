@@ -48,9 +48,7 @@
 <p>SAGA起源自SAG, 它们唯一的不同在于核心式子, SAG的核心式子如下:<span class="math display">\[g_k\leftarrow \frac{1}{n}(\nabla f_{j}(w_k)-\nabla f_{j}(w_{[j]})+\sum_{i=1}^n\nabla f_i(w_{[i]}))\]</span>与SAGA不同的是, 此时<span class="math inline">\(g_k\)</span>不是<span class="math inline">\(\nabla R_n(w_k)\)</span>的无偏估计.在强凸前提下, SAGA与SAG均能线性收敛, 且计算复杂度与SVRG一样均为:<span class="math display">\[O((n+\kappa)\log(1/\epsilon))\]</span></p>
 <h3 id="其它">其它</h3>
 <h4 id="sarah">SARAH</h4>
-<div data-align="left">
-<img src="/pictures/SARAH.png" height="488" width="459" >
-</div>
+<p><img src="/pictures/SARAH.png" width = "488" height = "459" div align=center /></p>
 <a href="https://arxiv.org/pdf/1703.00102.pdf" target="_blank" rel="noopener">SARAH</a>只适用于<span class="math inline">\(R_n(w)\)</span>, 它与SVGR一样有内圈循环, 不同的是核心迭代式子中把<span class="math inline">\(\nabla R_n(w_k)\)</span>替换成了上一步的迭代方向. 且此时无偏性不再保持. 在强凸前提下, SARAH线性收敛 且计算复杂度与SVRG一样均为:<span class="math display">\[O((n+\kappa)\log(1/\epsilon))\]</span>注意到SARAH与SVRG中的<span class="math inline">\(m\)</span>均为超参, SARAH原论文中还提出了以<span class="math inline">\(\Vert v_{t-1}\Vert_2^2\le\gamma \Vert v_0\Vert_2^2\)</span>为内圈循环停止条件的实用版算法SARAH+.
 <div data-align="left">
 <img src="/pictures/SARAH+.png" height="450" width="421" >
