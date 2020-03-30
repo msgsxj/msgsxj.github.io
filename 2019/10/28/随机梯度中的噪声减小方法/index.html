@@ -58,7 +58,7 @@
 <meta property="og:image" content="https://msgsxj.cn/pictures/SARAH.png">
 <meta property="og:image" content="https://msgsxj.cn/pictures/SARAH+.png">
 <meta property="article:published_time" content="2019-10-28T08:00:18.000Z">
-<meta property="article:modified_time" content="2020-03-30T04:36:17.129Z">
+<meta property="article:modified_time" content="2020-03-30T04:38:36.093Z">
 <meta property="article:author" content="msgsxj">
 <meta property="article:tag" content="SG">
 <meta name="twitter:card" content="summary">
@@ -263,7 +263,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 12:36:17" itemprop="dateModified" datetime="2020-03-30T12:36:17+08:00">2020-03-30</time>
+                <time title="修改时间：2020-03-30 12:38:36" itemprop="dateModified" datetime="2020-03-30T12:38:36+08:00">2020-03-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -316,9 +316,7 @@
 <h3 id="梯度聚合">梯度聚合</h3>
 <p>这类方法着重于利用先前迭代中计算得到的样本的梯度信息, 其包括SVGR、SAG/SAGA等.</p>
 <h4 id="svrg">SVRG</h4>
-<figure>
-<img src="/pictures/SVRG.png" alt="SVRG" /><figcaption>SVRG</figcaption>
-</figure>
+<p><img src="/pictures/SVRG.png" /></p>
 <p>SVGA只适用于<span class="math inline">\(R_n(w)\)</span>. 如上图算法所示, 相比SG, SVGA多了抽取<span class="math inline">\(m\)</span>个样本的内层循环, 再用内层循环产生的子序列<span class="math inline">\(\{\tilde{w}_j\}\)</span>,<span class="math inline">\({j=1,...,m}\)</span>去生成高质量的<span class="math inline">\(w_{k+1}\)</span>, 方式比如说(a),(b),(c). 核心式子为:<span class="math display">\[\tilde{g}_j\leftarrow \nabla f_{i_{j}}(\tilde{w}_j)-(\nabla f_{i_{j}}(w_k)-\nabla R_n(w_k))\]</span>它可以从两个角度去理解:</p>
 <ol type="1">
 <li><span class="math inline">\((\nabla f_{i_{j}}(w_k)-\nabla R_n(w_k))\)</span>可视为从单个样本<span class="math inline">\(i_j\)</span>到<span class="math inline">\(n\)</span>个样本的修正, 因此<span class="math inline">\(\tilde{g}_j\)</span>可近似视为<span class="math inline">\(\nabla R_n(\tilde{w}_j)\)</span>.</li>
@@ -326,9 +324,7 @@
 </ol>
 <p>在强凸前提下其收敛速度为线性[SVRG TH1]<span class="math display">\[\mathbb{E}[R_n(w_{k})-R_*]\le\omega\rho^{k-1}\]</span>其中<span class="math inline">\(\rho\in(0,1)\)</span>. SVRG的计算复杂度为:<span class="math display">\[O((n+\kappa)\log(1/\epsilon))\]</span></p>
 <h4 id="sagasag">SAGA/SAG</h4>
-<figure>
-<img src="/pictures/SAGA.png" alt="SAGA" /><figcaption>SAGA</figcaption>
-</figure>
+<p><img src="/pictures/SAGA.png" /></p>
 <p>SAGA只适用于<span class="math inline">\(R_n(w)\)</span>, 显然算法部分第一块为初始化所有样本梯度值并存储, 第二个循环才是算法循环. 其中<span class="math inline">\(\nabla f_j(w_{[j]})\)</span>表示第<span class="math inline">\(j\)</span>个样本最近一次存储着的梯度值. 比如说对于第<span class="math inline">\(1\)</span>个样本, 初始化时<span class="math inline">\(\nabla f_1(w_{[1]})\leftarrow \nabla f_1(w_{1})\)</span>, 剩下涉第<span class="math inline">\(1\)</span>个样本的梯度的更新就只有靠算法循环中的<code>Choose j uniformly in {1,...,n}</code>抽到再用<span class="math inline">\(\nabla f_1(w_k)\)</span>更新. 因此可以看出, SAGA本着<strong>能不计算梯度就不计算</strong>的原则(每步迭代只计算一个样本的梯度, 从这个角度看更接近SG), 而其核心式子为:<span class="math display">\[g_k\leftarrow \nabla f_{j}(w_k)-\nabla f_{j}(w_{[j]})+\frac{1}{n}\sum_{i=1}^n\nabla f_i(w_{[i]})\]</span>它同样可以从两个角度去理解:</p>
 <ol type="1">
 <li><span class="math inline">\(\nabla f_{j}(w_{[j]})-\frac{1}{n}\sum_{i=1}^n\nabla f_i(w_{[i]})\)</span>视为单样本到<span class="math inline">\(n\)</span>个样本的修正, <span class="math inline">\(g_k\)</span>可近似视为<span class="math inline">\(\nabla R_n(w_k)\)</span>.</li>
@@ -341,7 +337,7 @@
 <img src="/pictures/SARAH.png" height="520" width="490" >
 </div>
 <a href="https://arxiv.org/pdf/1703.00102.pdf" target="_blank" rel="noopener">SARAH</a>只适用于<span class="math inline">\(R_n(w)\)</span>, 它与SVGR一样有内圈循环, 不同的是核心迭代式子中把<span class="math inline">\(\nabla R_n(w_k)\)</span>替换成了上一步的迭代方向. 且此时无偏性不再保持. 在强凸前提下, SARAH线性收敛 且计算复杂度与SVRG一样均为:<span class="math display">\[O((n+\kappa)\log(1/\epsilon))\]</span>注意到SARAH与SVRG中的<span class="math inline">\(m\)</span>均为超参, SARAH原论文中还提出了以<span class="math inline">\(\Vert v_{t-1}\Vert_2^2\le\gamma \Vert v_0\Vert_2^2\)</span>为内圈循环停止条件的实用版算法SARAH+.
-<div data-align="left">
+<div data-align="center">
 <img src="/pictures/SARAH+.png" height="520" width="490" >
 </div>
 
