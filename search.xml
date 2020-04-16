@@ -1528,7 +1528,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 </ul>
 <hr />
 <h2 id="思维的革命">思维的革命</h2>
-<p>数据所包含的信息能帮助我们消除不确定性,数据的相关性一定程度上能取代员原来的因果关系. 上一章我们从技术层面分析了大数据的重要性,这一张我们将从方法论层面描述其重要性. <a href="https://en.wikipedia.org/wiki/Mechanical_philosophy" target="_blank" rel="noopener">机械思维</a>:</p>
+<p>数据所包含的信息能帮助我们消除不确定性,数据的相关性一定程度上能取代原来的因果关系. 上一章我们从技术层面分析了大数据的重要性,这一张我们将从方法论层面描述其重要性. <a href="https://en.wikipedia.org/wiki/Mechanical_philosophy" target="_blank" rel="noopener">机械思维</a>:</p>
 <blockquote>
 <p>the universe is reducible to completely mechanical principles—that is, the motion and collision of matter.</p>
 </blockquote>
