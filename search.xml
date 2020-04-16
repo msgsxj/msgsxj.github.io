@@ -1552,7 +1552,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 <blockquote>
 <p>In statistical mechanics, entropy is an extensive property of a thermodynamic system. It is closely related to the number Ω of microscopic configurations (known as microstates) that are consistent with the macroscopic quantities that characterize the system (such as its volume, pressure and temperature). Under the assumption that each microstate is equally probable, the entropy S is the natural logarithm of the number of microstates, multiplied by the Boltzmann constant <span class="math inline">\(k_{B}\)</span>. Formally,<span class="math inline">\(S=k_{B}\ln\Omega\)</span>.</p>
 </blockquote>
-<p>香浓在信息论中借用了热力学中熵的概念,描述了一个信息系统的不确定性.<a href="https://en.wikipedia.org/wiki/Information_theory" target="_blank" rel="noopener">信息论</a>主要包括自信息(self-information),互信息(mutual-information),香农第一定律(噪声信道编码定理)和香农第二定律:</p>
+<p>香农在信息论中借用了热力学中熵的概念,描述了一个信息系统的不确定性.<a href="https://en.wikipedia.org/wiki/Information_theory" target="_blank" rel="noopener">信息论</a>主要包括自信息(self-information),互信息(mutual-information),香农第一定律(噪声信道编码定理)和香农第二定律:</p>
 <ul>
 <li>自信息:<span class="math inline">\(H(X)=\mathbb {E}_{X}[I(x)]=-\sum_{x\in \mathbb {X} }p(x)\log p(x)\)</span></li>
 <li>互信息:<span class="math inline">\(I(X;Y)=\mathbb {E}_{X,Y}[SI(x,y)]=\sum_{x,y}p(x,y)\log {\frac {p(x,y)}{p(x)\,p(y)}}\)</span></li>
