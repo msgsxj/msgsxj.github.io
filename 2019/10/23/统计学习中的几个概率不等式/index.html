@@ -54,7 +54,7 @@
 <meta property="og:description" content="前言: 福特的实习总算快结束了, 忙里偷闲写博客. 本文的初衷用简明扼要的语言说一说统计学习理论中的常见的概率不等式, 证明过程略, 只为了方便快速回忆. 主要参考了Shai Shalev-Shwartz的Understanding machine learning一书、这篇博客以及维基百科.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-10-23T07:02:17.000Z">
-<meta property="article:modified_time" content="2020-01-01T06:06:00.424Z">
+<meta property="article:modified_time" content="2020-05-28T07:17:12.339Z">
 <meta property="article:author" content="msgsxj">
 <meta property="article:tag" content="统计学习">
 <meta property="article:tag" content="概率论">
@@ -260,7 +260,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-01 14:06:00" itemprop="dateModified" datetime="2020-01-01T14:06:00+08:00">2020-01-01</time>
+                <time title="修改时间：2020-05-28 15:17:12" itemprop="dateModified" datetime="2020-05-28T15:17:12+08:00">2020-05-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -305,40 +305,45 @@
 <p><span class="math inline">\(\forall a &gt;0\)</span> <span class="math display">\[\mathbb{P}(\left|Z-\mathbb{E}(Z)\right|\ge a)\le\frac{Var(Z)}{a^2}\]</span></p>
 </blockquote>
 <h2 id="chernoff-bound">Chernoff Bound</h2>
-<p>Chernoff Bound一般指用指数函数的单调性及Markov Inequality得到的界. 笔者按自己的理解再细分成了两类: - <a href="https://en.wikipedia.org/wiki/Chernoff_bound#Example" target="_blank" rel="noopener">Chernoff Inequality</a>、<a href="https://en.wikipedia.org/wiki/Bennett%27s_inequality" target="_blank" rel="noopener">Bennett Inequality</a> and <a href="https://en.wikipedia.org/wiki/Bernstein_inequalities_(probability_theory)" target="_blank" rel="noopener">Bernstein Inequality</a> - <a href="https://en.wikipedia.org/wiki/Hoeffding%27s_inequality" target="_blank" rel="noopener">Hoeffding Inequality</a> 、<a href="https://en.wikipedia.org/wiki/Doob_martingale#McDiarmid&#39;s_inequality" target="_blank" rel="noopener">McDiarmid inequality</a> and <a href="https://en.wikipedia.org/wiki/Azuma%27s_inequality" target="_blank" rel="noopener">Azuma–Hoeffding inequality</a></p>
+<p>Chernoff Bound一般指用指数函数的单调性及Markov Inequality得到的界. 笔者按自己的理解再细分成了两类:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Chernoff_bound#Example" target="_blank" rel="noopener">Chernoff Inequality</a>、<a href="https://en.wikipedia.org/wiki/Bennett%27s_inequality" target="_blank" rel="noopener">Bennett Inequality</a> and <a href="https://en.wikipedia.org/wiki/Bernstein_inequalities_(probability_theory)" target="_blank" rel="noopener">Bernstein Inequality</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Hoeffding%27s_inequality" target="_blank" rel="noopener">Hoeffding Inequality</a> 、<a href="https://en.wikipedia.org/wiki/Doob_martingale#McDiarmid&#39;s_inequality" target="_blank" rel="noopener">McDiarmid inequality</a> and <a href="https://en.wikipedia.org/wiki/Azuma%27s_inequality" target="_blank" rel="noopener">Azuma–Hoeffding inequality</a></li>
+</ul>
 <h3 id="chernoff-inequality">Chernoff Inequality</h3>
 <blockquote>
-<p>设<span class="math inline">\(Z_i \sim B(1,p_i), i=1,...,m\)</span>为独立的伯努利随机变量序列, <span class="math inline">\(\forall a &gt;0\)</span> <span class="math display">\[
+<p>设<span class="math inline">\(Z_i \sim B(1,p_i), i=1,...,m\)</span>为独立的伯努利随机变量序列, 那么对于<span class="math inline">\(\forall a &gt;0\)</span> <span class="math display">\[
 \begin{aligned}\mathbb{P}\left(\frac{1}{m}\sum_{i=1}^{m} Z_i&gt;(1+a)\frac{1}{m}\sum_{i=1}^m p_i\right) &amp; \le \exp\left(- \frac{a^2}{2+2a/3}\sum_{i=1}^m p_i\right)\\\
 \mathbb{P}\left(\frac{1}{m}\sum_{i=1}^{m} Z_i&lt;(1-a)\frac{1}{m}\sum_{i=1}^m p_i\right) &amp; \le \exp\left(- \frac{a^2}{2+2a/3}\sum_{i=1}^m p_i\right)\end{aligned}
 \]</span></p>
 </blockquote>
 <h3 id="bennett-inequality">Bennett Inequality</h3>
 <blockquote>
-<p>设<span class="math inline">\(Z_i , i=1,...,m\)</span>为0均值独立随机变量序列, 且几乎处处有<span class="math inline">\(Z_i\le c\)</span>. <span class="math inline">\(\forall a &gt;0, \forall \sigma^2\ge\frac{1}{m}\sum_{i=1}^{m}\mathbb{E}\left[Z_i^2\right]\)</span> <span class="math display">\[
+<p>设<span class="math inline">\(Z_i , i=1,...,m\)</span>为0均值独立随机变量序列, 且几乎处处有<span class="math inline">\(Z_i\le c\)</span>. 那么对于<span class="math inline">\(\forall a &gt;0\)</span>,<span class="math inline">\(\forall \sigma^2\ge\frac{1}{m}\sum_{i=1}^{m}\mathbb{E}\left[Z_i^2\right]\)</span> <span class="math display">\[
 \begin{aligned}\mathbb{P}\left(\frac{1}{m}\sum_{i=1}^{m} Z_i&gt;a \right) &amp; \le \exp\left(- \frac{m\sigma^2}{c^2}h\left(\frac{ac}{\sigma^2}\right)\right)\end{aligned}
 \]</span>其中<span class="math inline">\(h(x)=(1+x)\log(1+x)-x\)</span></p>
 </blockquote>
 <h3 id="bernstein-inequality">Bernstein Inequality</h3>
 <blockquote>
-<p>设<span class="math inline">\(Z_i , i=1,...,m\)</span>为0均值独立随机变量序列, 且几乎处处有<span class="math inline">\(\left\vert Z_i\right\vert\le c\)</span>. <span class="math inline">\(\forall a &gt;0\)</span> <span class="math display">\[
+<p>设<span class="math inline">\(Z_i , i=1,...,m\)</span>为0均值独立随机变量序列, 且几乎处处有<span class="math inline">\(\left\vert Z_i\right\vert\le c\)</span>. 那么对于<span class="math inline">\(\forall a &gt;0\)</span> <span class="math display">\[
 \begin{aligned}\mathbb{P}\left(\frac{1}{m}\sum_{i=1}^{m} Z_i&gt;a \right) &amp; \le \exp\left(- \frac{m^2 a^2}{2\sum_{j=1}^m\mathbb{E}[Z_j^2]+2acm/3}\right)\end{aligned}
 \]</span></p>
 </blockquote>
 <h3 id="hoeffding-inequality">Hoeffding Inequality</h3>
 <blockquote>
-<p>设<span class="math inline">\(Z_i , i=1,...,m\)</span>为独立随机变量序列, 且几乎处处有<span class="math inline">\(l_i\le Z_i\le u_i\)</span>. <span class="math inline">\(\forall a &gt;0\)</span> <span class="math display">\[
+<p>设<span class="math inline">\(Z_i , i=1,...,m\)</span>为独立随机变量序列, 且几乎处处有<span class="math inline">\(l_i\le Z_i\le u_i\)</span>. 那么对于<span class="math inline">\(\forall a &gt;0\)</span> <span class="math display">\[
 \begin{aligned}\mathbb{P}\left(\frac{1}{m}\sum_{i=1}^{m} Z_i - \mathbb{E}\left[\frac{1}{m}\sum_{i=1}^{m} Z_i \right] \ge a\right) &amp; \le\exp\left(- \frac{2m^2a^2}{\sum_{i=1}^m(u_i-l_i)^2}\right)\\\
 \mathbb{P}\left(\frac{1}{m}\sum_{i=1}^{m} Z_i - \mathbb{E}\left[\frac{1}{m}\sum_{i=1}^{m} Z_i \right] \le -a\right) &amp; \le\exp\left(- \frac{2m^2a^2}{\sum_{i=1}^m(u_i-l_i)^2}\right)\end{aligned}
 \]</span></p>
 </blockquote>
 <h3 id="mcdiarmid-inequality">McDiarmid inequality</h3>
 <blockquote>
-<p>设<span class="math inline">\(Z_i , i=1,...,m\)</span>为独立随机变量序列, <span class="math inline">\(f(Z_1,...,Z_m)\)</span>为一映射(比方说取为均值函数, 就是Hoeffding’s Inequality), 且几乎处处有<span class="math inline">\(\sup_{z_1,...,z_i,z_i&#39;,...,z_m}|f(z_1,...,z_i,...,z_m)-f(x_1,...,x_i&#39;,...,x_m)|\le c_i\)</span>. <span class="math inline">\(\forall a&gt;0\)</span> <span class="math display">\[\begin{aligned}\mathbb{P}\left(f(Z_1,...,Z_m)- \mathbb{E}\left[f(Z_1,...,Z_m) \right] \ge a\right) &amp; \le\exp\left(- \frac{2a^2}{\sum_{i=1}^mc_i^2}\right) \\\       \mathbb{P}\left(f(Z_1,...,Z_m)- \mathbb{E}\left[f(Z_1,...,Z_m) \right] \le -a\right) &amp; \le\exp\left(- \frac{2a^2}{\sum_{i=1}^mc_i^2}\right)\end{aligned}\]</span></p>
+<p>设<span class="math inline">\(Z_i , i=1,...,m\)</span>为独立随机变量序列, <span class="math inline">\(f(Z_1,...,Z_m)\)</span>为一映射, 且几乎处处有<span class="math display">\[\sup_{z_1,...,z_i,z_i&#39;,...,z_m}|f(z_1,...,z_i,...,z_m)-f(z_1,...,z_i&#39;,...,z_m)|\le c_i\]</span>成立. 那么对于<span class="math inline">\(\forall a&gt;0\)</span> <span class="math display">\[\begin{aligned}\mathbb{P}\left(f(Z_1,...,Z_m)- \mathbb{E}\left[f(Z_1,...,Z_m) \right] \ge a\right) &amp; \le\exp\left(- \frac{2a^2}{\sum_{i=1}^mc_i^2}\right) \\\       \mathbb{P}\left(f(Z_1,...,Z_m)- \mathbb{E}\left[f(Z_1,...,Z_m) \right] \le -a\right) &amp; \le\exp\left(- \frac{2a^2}{\sum_{i=1}^mc_i^2}\right)\end{aligned}\]</span></p>
 </blockquote>
+<p><code>p.s.</code> 该不等式可视为Hoeffding’s Inequality的推广, <span class="math inline">\(f\)</span>取为均值映射就是Hoeffding’s Inequality.</p>
 <h3 id="azumahoeffding-inequality">Azuma–Hoeffding inequality</h3>
 <blockquote>
-<p>设<span class="math inline">\(Z_i , i=0,1,...,m\)</span>为一个鞅(上鞅), 且几乎处处有<span class="math inline">\(|Z_k-Z_{k-1}|\le c_k\)</span>. <span class="math inline">\(\forall a&gt;0\)</span> <span class="math display">\[\begin{aligned}\mathbb{P}\left(Z_m-Z_0  \ge a\right) &amp; \le\exp\left(- \frac{a^2}{2\sum_{i=1}^mc_i^2}\right) \\\       \mathbb{P}\left(Z_m-Z_0  \le -a\right) &amp; \le\exp\left(- \frac{a^2}{2\sum_{i=1}^mc_i^2}\right)\end{aligned}\]</span></p>
+<p>设<span class="math inline">\(Z_i , i=0,1,...,m\)</span>为一个鞅(上鞅), 且几乎处处有<span class="math inline">\(|Z_k-Z_{k-1}|\le c_k\)</span>成立. 那么对于<span class="math inline">\(\forall a&gt;0\)</span> <span class="math display">\[\begin{aligned}\mathbb{P}\left(Z_m-Z_0  \ge a\right) &amp; \le\exp\left(- \frac{a^2}{2\sum_{i=1}^mc_i^2}\right) \\\       \mathbb{P}\left(Z_m-Z_0  \le -a\right) &amp; \le\exp\left(- \frac{a^2}{2\sum_{i=1}^mc_i^2}\right)\end{aligned}\]</span></p>
 </blockquote>
 
     </div>
