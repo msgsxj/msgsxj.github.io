@@ -140,7 +140,7 @@
 <blockquote>
 <p>A finite dimensional real vector space equipped with an inner product <span class="math inline">\(\left&lt; x,y \right&gt;\)</span>, is called a <strong>Eulidean space</strong>, if it is endowed with the norm <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}\)</span>, which is referred to as <strong>Eulidean norm</strong>.</p>
 </blockquote>
-<p>通俗的讲, 首先得有一个向量空间<span class="math inline">\(\mathbb{R}^n\)</span>, 接着在这个空间上定义内积, 这个内积可以是常见的内积点乘, 也可以是其它内积:</p>
+<p>通俗的讲, 首先得有一个向量空间<span class="math inline">\(\mathbb{R}^n\)</span>, 接着在这个空间上定义内积(inner product), 这个内积可以是常见的内积点乘, 也可以是其它内积:</p>
 <ul>
 <li>dot product: <span class="math inline">\(\left&lt; x,y \right&gt;=\sum_{i=1}^nx_iy_i\)</span>, 其中<span class="math inline">\(x_i\)</span>为<span class="math inline">\(x\)</span>的第<span class="math inline">\(i\)</span>个分量.</li>
 <li><span class="math inline">\(Q\)</span> inner: <span class="math inline">\(\left&lt; x,y \right&gt;=x^TQy\)</span>, 其<span class="math inline">\(Q\)</span>为<span class="math inline">\(n\)</span>阶正定阵.</li>
@@ -150,7 +150,8 @@
 <li><span class="math inline">\(l_2\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{ \sum_{i=1}^n x_i^2 }\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_2\)</span>.</li>
 <li><span class="math inline">\(Q\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{x^TQx}\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_Q\)</span>.</li>
 </ul>
-<p>有了范数, 我们就可以度量两个点<span class="math inline">\(x,x+dx\)</span>之间的距离(点乘内积): <span class="math inline">\(\Vert x + dx-x\Vert=\Vert dx\Vert=\sqrt{ \sum_{i=1}^n dx_i^2 }\)</span>. 小结一下:</p>
+<p>有了范数, 我们就可以度量两个点<span class="math inline">\(x,x+dx\)</span>之间的距离(点乘内积): <span class="math display">\[\Vert x + dx-x\Vert=\Vert dx\Vert=\sqrt{ \sum_{i=1}^n dx_i^2 }.\]</span></p>
+<p>小结一下:</p>
 <ul>
 <li>欧式空间是一个向量空间, 且带有内积和范数;</li>
 <li>最重要的是, 该范数一定是要由内积根据上式诱导出来的.</li>
@@ -287,9 +288,7 @@
 <p><a href="https://en.wikipedia.org/wiki/Powell%27s_method" target="_blank" rel="noopener">Powell方法</a>是共轭方向法的一种变体, 先来看什么是共轭方向法, <strong>共轭方向法</strong>是<strong>给定一共轭方向的集合</strong><span class="math inline">\(\{p_1....,p_n\}\)</span>, 对集合中的方向依次进一维巡查的方法, 因此显然是<strong>无导数优化方法</strong>.</p>
 <p>以最简单的二次函数<span class="math inline">\(f(x)=\frac{1}{2}x^TAx-b^Tx\)</span>为例, 其中<span class="math inline">\(A\)</span>为<span class="math inline">\(n\)</span>阶对称正定方阵, 此时共轭的概念有了具体的要求: <span class="math inline">\(p_i^TAp_j=0\)</span>. 若<span class="math inline">\(A\)</span>恰为对角阵, 如左图所示, 共轭方向集合可取为坐标轴方向<span class="math inline">\(\{e_1, e_2\}\)</span>; 若<span class="math inline">\(A\)</span>不为对角阵, 如右图所示, 此时<span class="math inline">\(\{e_1, e_2\}\)</span>不能作为一组共轭方向, 图中的<strong>红线</strong>和<strong>蓝线</strong>则是给出了两个不同的共轭方向集合.</p>
 <p>值得注意的是, 此时<strong>至多</strong><span class="math inline">\(n\)</span>步共轭方向法会收敛到最小值点<span class="math inline">\(x^*\)</span>, 证明可见Numerical Optimization一书定理5.1</p>
-<figure>
-<img src="/pictures/scipy_optimization/1.png" alt="avatar" /><figcaption>avatar</figcaption>
-</figure>
+<p><img src="/pictures/scipy_optimization/1.png" /></p>
 <p>回到Powell方法, 仍然以上述二次函数为例, 其与标准共轭方向法唯一的不同在于<strong>迭代地得到共轭方向的集合</strong>, 且共轭方向的集合的初始化可简单取为<span class="math inline">\(\{e_1, e_2\}\)</span>. 以右图为例,</p>
 <ul>
 <li>第一步从<span class="math inline">\(x_0\)</span>出发沿着<span class="math inline">\(e_1\)</span>做一维巡查得到<span class="math inline">\(x_1\)</span>;</li>
@@ -303,7 +302,7 @@
 <p>上述<strong>初值<span class="math inline">\(p_0\)</span>可直接取为负梯度方向</strong>, 另外值得注意的是, 这里关于<span class="math inline">\(p_k\)</span>的一维巡查方法一般需要满足<a href="https://en.wikipedia.org/wiki/Wolfe_conditions#Strong_Wolfe_condition_on_curvature" target="_blank" rel="noopener">强Wolfe条件</a>, 且<span class="math inline">\(c_2&lt;\frac{1}{2}\)</span>.</p>
 <hr />
 <h3 id="bfgs方法">BFGS方法</h3>
-<p><a href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm" target="_blank" rel="noopener">BFGS</a>作为一种的<strong>拟牛顿方法</strong>, 其不直接计算Hessian阵, 而是<strong>用梯度信息近似计算Hessian阵的逆</strong>并迭代更新, 因此是<strong>一阶方法</strong>, 其更新公式如下:<span class="math display">\[H_{k+1}=(I-\rho_ks_ky_k^T)H_k(I-\rho_ky_ks_k^T)+\rho_ks_ks_k^T\]</span>其中$ s_k=x_{k+1}-x_k, y_k=f_{k+1}-f_k, <em>k=1/y_k^Ts_k&gt;0<span class="math inline">\(. 由于\)</span>H</em>{k+1}<span class="math inline">\(直接为Hessian阵的**逆**的近似, 因此搜索方向为\)</span>p_{k+1}=-H_{k+1}f_{k+1}$.</p>
+<p><a href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm" target="_blank" rel="noopener">BFGS</a>作为一种的<strong>拟牛顿方法</strong>, 其不直接计算Hessian阵, 而是<strong>用梯度信息近似计算Hessian阵的逆</strong>并迭代更新, 因此是<strong>一阶方法</strong>, 其更新公式如下:<span class="math display">\[H_{k+1}=(I-\rho_ks_ky_k^T)H_k(I-\rho_ky_ks_k^T)+\rho_ks_ks_k^T\]</span>其中<span class="math inline">\(s_k=x_{k+1}-x_k, y_k=\nabla f_{k+1}-\nabla f_k, \rho_k=1/y_k^Ts_k&gt;0\)</span>. 由于<span class="math inline">\(H_{k+1}\)</span>直接为Hessian阵的<strong>逆</strong>的近似, 因此搜索方向为<span class="math inline">\(p_{k+1}=-H_{k+1}\nabla f_{k+1}\)</span>.</p>
 <p>DFP方法与BFGS方法唯一的不同在于<strong>迭代更新Hessian阵本身</strong>而不是逆, 但由于仍然需要求逆操作, 因此计算量会比BFGS大上一圈. DFP方法的迭代公式可参考Numerical Optimization一书6.1节, 另一种的常见拟牛顿方法SR1可参考Numerical Optimization一书6.2节.</p>
 <p>最后值得注意的是, BFGS常用<a href="https://en.wikipedia.org/wiki/Wolfe_conditions" target="_blank" rel="noopener">Wolfe条件</a>做为巡查条件.</p>
 <hr />
@@ -315,14 +314,14 @@
 <hr />
 <h3 id="dogleg法">Dogleg法</h3>
 <p>狗腿法是一种<a href="https://optimization.mccormick.northwestern.edu/index.php/Trust-region_methods" target="_blank" rel="noopener">信赖域方法</a>, 简单介绍信赖域方法, 与线搜索方法先确定方向后确定步长不同的是, 信赖域方法在<strong>确定方向前首先给定一个信赖域半径</strong><span class="math inline">\(\Delta\)</span>, 要求搜索方向在该信赖域内.</p>
-<p>涉及信赖域方法就不得不谈信赖域子问题: <span class="math inline">\(\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\)</span>且一般的, 这里的<span class="math inline">\(B_k\)</span><strong>仅仅要求对称, 一致有界</strong>. 关于这点可见Numerical Optimization一书page68; 但具体到这里的狗腿法仍然需要加上<strong>正定性</strong>的要求.</p>
+<p>涉及信赖域方法就不得不谈信赖域子问题: <span class="math display">\[\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\]</span>且一般的, 这里的<span class="math inline">\(B_k\)</span><strong>仅仅要求对称, 一致有界</strong>. 关于这点可见Numerical Optimization一书page68; 但具体到这里的狗腿法仍然需要加上<strong>正定性</strong>的要求.</p>
 <p>回过头来看狗腿法, 狗腿法实际上是<strong>对信赖域子问题最优解曲线的近似</strong>, 从图中可以看到, 第一段是沿着负梯度方向到达柯西点, 这里的柯西点指的是<strong>沿着负梯度方向极小化信赖域子问题</strong>得到的极小值点; 接着像狗腿那样拐弯, 直奔<strong>信赖域子问题的最优解</strong>而去, 因此信赖域半径的作用就是决定了上述过程能跑多远.</p>
 <div data-align="center">
 <img src="/pictures/scipy_optimization/2.png" width="420">
 </div>
 <hr />
 <h3 id="trust-ncg方法">Trust-ncg方法</h3>
-<p>信赖域Newton-CG方法与Newton-CG方法的区别在于不是直接用CG方法解牛顿方程(<span class="math inline">\(\nabla^2f_k p_k+\nabla f_k=0\)</span>), 而是<strong>解信赖域子问题</strong><span class="math inline">\(\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\)</span>, 这里<span class="math inline">\(B_k=\nabla^2 f_k\)</span>. 另外步长可<strong>直接设为1</strong>而不需要做一维巡查.</p>
+<p>信赖域Newton-CG方法与Newton-CG方法的区别在于不是直接用CG方法解牛顿方程(<span class="math inline">\(\nabla^2f_k p_k+\nabla f_k=0\)</span>), 而是<strong>解信赖域子问题</strong> <span class="math display">\[\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\]</span> 这里<span class="math inline">\(B_k=\nabla^2 f_k\)</span>. 另外步长可<strong>直接设为1</strong>而不需要做一维巡查.</p>
 <p>与Newton-CG方法类似, 显然Trust-ncg法本身是<strong>二阶方法</strong>, 但若能提供Hseeian-vector products函数, Trust-ncg方法也是<strong>一阶半方法</strong>. 算法细节可见Numerical Optimization一书算法7.2.</p>
 <p>preconditioning可加速CG迭代过程, 见Numerical Optimization一书page118.</p>
 <hr />
@@ -331,7 +330,7 @@
 <p>与Trust-ncg方法相比, Trust-krylov方法只是将CG方法换成了<strong>Lanczos方法</strong>, 且本身仍为<strong>二阶方法</strong>, 同样若能提供Hseeian-vector products函数, Trust-krylov方法也是<strong>一阶半方法</strong>.</p>
 <hr />
 <h3 id="trust-exact方法">Trust-exact方法</h3>
-<p>exact指的是信赖域子问题<span class="math inline">\(\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\)</span>中的<span class="math inline">\(B_k=\nabla^2 f_k\)</span>, 再进行直接求解. 形式上与Trust-ncg方法、Trust-krylov方法非常类似, 但计算量显然要大一些, 因此只适合小规模问题.</p>
+<p>exact指的是信赖域子问题 <span class="math display">\[\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\]</span>中的<span class="math inline">\(B_k=\nabla^2 f_k\)</span>再进行直接求解. 形式上与Trust-ncg方法、Trust-krylov方法非常类似, 但计算量显然要大一些, 因此只适合小规模问题.</p>
 <p>显然Trust-exact方法为<strong>二阶方法</strong>.</p>
 <hr />
 <h2 id="有界约束优化">有界约束优化</h2>
@@ -386,7 +385,7 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
 <div data-align="center">
 <img src="/pictures/Ubuntu/tensorflow/2.png" width="80%" />
 </div>
-<p>可以看到<code>cuda 10.0</code>(安装驱动会自动安装cuda?望懂的朋友告知, 可加我微信), 1066的显卡型号, 320MiB的显存占用, 43度的显卡温度, 9W的功耗等信息.</p>
+<p>可以看到<code>cuda 10.0</code>(安装驱动会自动安装cuda?), 1066的显卡型号, 320MiB的显存占用, 43度的显卡温度, 9W的功耗等信息.</p>
 <h3 id="安装tensorflow">安装tensorflow</h3>
 首先是安装anaconda, 这个请移步<a href="https://www.anaconda.com/" target="_blank" rel="noopener">官网</a>, 安装最新版本的即可; 接着<code>conda</code>一个新环境, 且包含最新版<code>tensorflow-gpu</code>, 这里笔者命名为<code>tf_gpu</code>
 <div data-align="center">
