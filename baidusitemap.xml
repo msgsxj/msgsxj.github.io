@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://msgsxj.cn/2018/10/16/Latent-Dirichlet-Allocation/</loc>
+    <lastmod>2020-06-01</lastmod>
+  </url>  <url>
     <loc>https://msgsxj.cn/2018/12/23/Ubuntu1604%E4%B8%8B%E4%BE%BF%E6%8D%B7%E5%AE%89%E8%A3%85tensorflow/</loc>
     <lastmod>2020-05-30</lastmod>
   </url>  <url>
@@ -74,9 +77,6 @@
     <lastmod>2020-01-01</lastmod>
   </url>  <url>
     <loc>https://msgsxj.cn/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/</loc>
-    <lastmod>2020-01-01</lastmod>
-  </url>  <url>
-    <loc>https://msgsxj.cn/2018/10/16/Latent-Dirichlet-Allocation/</loc>
     <lastmod>2020-01-01</lastmod>
   </url>  <url>
     <loc>https://msgsxj.cn/2019/01/30/2018/</loc>
