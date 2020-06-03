@@ -886,9 +886,9 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
         <category>机器学习</category>
       </categories>
       <tags>
+        <tag>隐变量模型</tag>
         <tag>LDA模型</tag>
         <tag>Dirichlet分布</tag>
-        <tag>隐变量模型</tag>
       </tags>
   </entry>
   <entry>
@@ -1274,24 +1274,29 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 <hr />
 <h2 id="隐变量模型">隐变量模型</h2>
 <p><a href="https://en.wikipedia.org/wiki/Latent_variable_model" target="_blank" rel="noopener">隐变量模型</a>, 隐变量模型含有未观测到值的变量, 且该隐变量解释了观测到的变量之间的相关性(<a href="https://en.wikipedia.org/wiki/Local_independence" target="_blank" rel="noopener">局部独立性</a>), 简言之引进的隐变量不能没有用.</p>
-下面举一个隐变量模型的例子, 例子来自Week2的课件: - 考虑银行是否发放信用卡的问题, 现有客户收入及负债的数据如下图:
+<p>下面举一个隐变量模型的例子, 例子来自Week2的课件:</p>
+<ul>
+<li>考虑银行是否发放信用卡的问题, 现有客户收入及负债的数据如下图:
 <div data-align="center">
 <img src="/pictures/bayes in ml/GMM_EM_origin.png" width="80%" height="50%" />
 </div>
-<p>通过探索性数据分析发现客户可大致分为三类, 并假定每一类服从高斯分布, 故可以采用高斯混合模型(Gaussian Mixture Model: GMM), 此时模型为:<span class="math display">\[P(x\mid\theta)=\pi_1N(\mu_1,\Sigma_1)+\pi_2N(\mu_2,\Sigma_2)+\pi_3N(\mu_3,\Sigma_3)\]</span>其中<span class="math inline">\(\theta=\{\pi_1, \pi_2\, \pi_3,\mu_1, \mu_2, \mu_3, \Sigma_1, \Sigma_2, \Sigma_3\}\)</span>, 且<span class="math inline">\(\pi_1+\pi_2+\pi_3=1\)</span>. 引入隐变量<span class="math inline">\(t\)</span>, <span class="math inline">\(t=1,2or3\)</span>代表了客户所属人群类别, 显然我们没有隐变量<span class="math inline">\(t\)</span>的观测值. 假定<span class="math display">\[P(t=c\mid\theta)=\pi_c$, $P(x\mid t=c, \theta)=N(\mu_c, \Sigma_c)\]</span>我们就有了:<span class="math display">\[P(x\mid\theta)=\sum_{c=1}^3P(x\mid t=c, \theta)P(t=c\mid\theta)\]</span>目标则是对最大化上式得到参数值<span class="math inline">\(\theta\)</span>. 故对于每一个样本<span class="math inline">\(x_i\)</span>, 计算<span class="math inline">\(P(t=c\mid x_i, \theta)\)</span>从而推测出其所属类别.</p>
+通过探索性数据分析发现客户可大致分为三类, 并假定每一类服从高斯分布, 故可以采用高斯混合模型(Gaussian Mixture Model: GMM), 此时模型为:<span class="math display">\[P(x\mid\theta)=\pi_1N(\mu_1,\Sigma_1)+\pi_2N(\mu_2,\Sigma_2)+\pi_3N(\mu_3,\Sigma_3)\]</span>其中<span class="math inline">\(\theta=\{\pi_1, \pi_2\, \pi_3,\mu_1, \mu_2, \mu_3, \Sigma_1, \Sigma_2, \Sigma_3\}\)</span>, 且<span class="math inline">\(\pi_1+\pi_2+\pi_3=1\)</span>. 引入隐变量<span class="math inline">\(t\)</span>, <span class="math inline">\(t=1,2or3\)</span>代表了客户所属人群类别, 显然我们没有隐变量<span class="math inline">\(t\)</span>的观测值. 假定<span class="math display">\[P(t=c\mid\theta)=\pi_c$, $P(x\mid t=c, \theta)=N(\mu_c, \Sigma_c)\]</span>我们就有了:<span class="math display">\[P(x\mid\theta)=\sum_{c=1}^3P(x\mid t=c, \theta)P(t=c\mid\theta)\]</span>目标则是对最大化上式得到参数值<span class="math inline">\(\theta\)</span>. 故对于每一个样本<span class="math inline">\(x_i\)</span>, 计算<span class="math inline">\(P(t=c\mid x_i, \theta)\)</span>从而推测出其所属类别.</li>
+</ul>
 <hr />
 <h2 id="em算法">EM算法</h2>
-<p>汇总一下上文叙述的GMM模型:<span class="math display">\[P(x\mid\theta)=\sum_{c=1}^3P(x\mid t=c, \theta)P(t=c\mid\theta)\]</span>其中<span class="math inline">\(\theta=\{\pi_c, \mu_c, \Sigma_c\mid c=\{1,2,3\}\}\)</span>,且<span class="math inline">\(P(x\mid t=c, \theta)=N(\mu_c, \Sigma_c)\)</span>,<span class="math inline">\(P(t=c\mid\theta)=\pi_c\ge 0\)</span>, <span class="math inline">\(\sum_{c=1}^3\pi_c=1\)</span>如果能求出参数<span class="math inline">\(\theta\)</span>的值, 此时模型就确定下来了, 一个自然地想法是极大化对数似然函数:<span class="math display">\[\hat\theta=\arg\max_{\theta}{\log P(X\mid\theta)}\]</span>EM算法没有直接对对数似然函数进行优化求解, 而是通过E步先求对目标函数下界的极大化逼近, 此时下界函数往往是凹函数, 再进行优化求解就简单很多, 下面来看:假设有<span class="math inline">\(m\)</span>个样本, 对每个样本任取的概率分布<span class="math inline">\(q(t_i=c)\)</span>,<span class="math inline">\(i=1,...,m\)</span> <span class="math display">\[\begin{aligned} \log P(X\mid\theta)&amp; =  \sum_{i=1}^{m}\log P(x_i\mid\theta)\\\
+汇总一下上文叙述的GMM模型:<span class="math display">\[P(x\mid\theta)=\sum_{c=1}^3P(x\mid t=c, \theta)P(t=c\mid\theta)\]</span>其中<span class="math inline">\(\theta=\{\pi_c, \mu_c, \Sigma_c\mid c=\{1,2,3\}\}\)</span>,且<span class="math inline">\(P(x\mid t=c, \theta)=N(\mu_c, \Sigma_c)\)</span>,<span class="math inline">\(P(t=c\mid\theta)=\pi_c\ge 0\)</span>, <span class="math inline">\(\sum_{c=1}^3\pi_c=1\)</span>如果能求出参数<span class="math inline">\(\theta\)</span>的值, 此时模型就确定下来了, 一个自然地想法是极大化对数似然函数:<span class="math display">\[\hat\theta=\arg\max_{\theta}{\log P(X\mid\theta)}\]</span>EM算法没有直接对对数似然函数进行优化求解, 而是通过E步先求对目标函数下界的极大化逼近, 此时下界函数往往是凹函数, 再进行优化求解就简单很多, 下面来看:假设有<span class="math inline">\(m\)</span>个样本, 对每个样本任取的概率分布<span class="math inline">\(q(t_i=c)\)</span>,<span class="math inline">\(i=1,...,m\)</span> <span class="math display">\[\begin{aligned} \log P(X\mid\theta)&amp; =  \sum_{i=1}^{m}\log P(x_i\mid\theta)\\\
 &amp; =  \sum_{i=1}^{m}\log \sum_{c=1}^3P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)\\\
 &amp; =  \sum_{i=1}^{m}\log \sum_{c=1}^3q(t_i=c)\frac{P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)}{q(t_i=c)}\\\
 &amp; \ge  \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log\frac{P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)}{q(t_i=c)}\\\
-&amp; \doteq \mathcal{L}(\theta, q) \end{aligned}¥¥其中唯一的一个不等号用到了[Jensen不等式](https://en.wikipedia.org/wiki/Jensen%27s_inequality)(概率形式), 其余等号都是基本的化简. 值得注意的是这里的$q$是任取的:&lt;div align=center&gt;&lt;img src=&quot;/pictures/bayes in ml/EM_L.png&quot; width=&quot;80%&quot; height=&quot;50%&quot; /&gt;&lt;/div&gt;
-下面做的事情则是考虑在$\theta$给定的情况下, 如何取$q$才能让$ \mathcal{L}(\theta, q) $尽可能的靠近$\log P(X\mid\theta)$. 事实上, 观察两者之差可以发现:
-¥¥\begin{aligned} \log P(X\mid\theta)-\mathcal{L}(\theta, q)&amp; =  \sum_{i=1}^{m}\log P(x_i\mid\theta)-\sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log\frac{P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)}{q(t_i=c)}\\\
+&amp; \doteq \mathcal{L}(\theta, q) \end{aligned}\]</span> 其中唯一的一个不等号用到了<a href="https://en.wikipedia.org/wiki/Jensen%27s_inequality" target="_blank" rel="noopener">Jensen不等式</a>(概率形式), 其余等号都是基本的化简. 值得注意的是这里的<span class="math inline">\(q\)</span>是任取的:
+<div data-align="center">
+<img src="/pictures/bayes in ml/EM_L.png" width="80%" height="50%" />
+</div>
+<p>下面做的事情则是考虑在<span class="math inline">\(\theta\)</span>给定的情况下, 如何取<span class="math inline">\(q\)</span>才能让<span class="math inline">\(\mathcal{L}(\theta, q)\)</span>尽可能的靠近<span class="math inline">\(\log P(X\mid\theta)\)</span>. 事实上, 观察两者之差可以发现: <span class="math display">\[\begin{aligned} \log P(X\mid\theta)-\mathcal{L}(\theta, q)&amp; =  \sum_{i=1}^{m}\log P(x_i\mid\theta)-\sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log\frac{P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)}{q(t_i=c)}\\\
 &amp; =  \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\left(\log P(x_i\mid\theta)-\log\frac{P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)}{q(t_i=c)}\right)\\\
 &amp; = \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log\frac{P(x_i\mid\theta)q(t_i=c)}{P(x_i, t_i=c\mid \theta)}\\\
 &amp; =  \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log\frac{q(t_i=c)}{P(t_i=c\mid x_i, \theta)}\\\
-&amp; = \mathcal{KL}(q(T)\Vert P(T\mid X, \theta)) \end{aligned}\]</span>恰为某<span class="math inline">\(\mathcal{KL}\)</span>散度, <span class="math inline">\(\mathcal{KL}\)</span>散度定义见<a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence" target="_blank" rel="noopener">维基百科</a>, <span class="math inline">\(\mathcal{KL}\)</span>散度定义为两个分布之间距离的度量, 必然<span class="math inline">\(\ge 0\)</span>, 且只在两个分布相同的情况下取<span class="math inline">\(0\)</span>. 可取<span class="math inline">\(q(T)=P(T\mid X, \theta)\)</span>. 最后对下界函数$ (, q) $稍作化简: <span class="math display">\[\begin{aligned} \mathcal{L}(\theta, q)&amp; =  \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log\frac{P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)}{q(t_i=c)}\\\
+&amp; = \mathcal{KL}(q(T)\Vert P(T\mid X, \theta)) \end{aligned}\]</span>恰为某<span class="math inline">\(\mathcal{KL}\)</span>散度, <span class="math inline">\(\mathcal{KL}\)</span>散度定义见<a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence" target="_blank" rel="noopener">维基百科</a>, <span class="math inline">\(\mathcal{KL}\)</span>散度定义为两个分布之间距离的度量, 必然<span class="math inline">\(\ge 0\)</span>, 且只在两个分布相同的情况下取<span class="math inline">\(0\)</span>. 可取<span class="math inline">\(q(T)=P(T\mid X, \theta)\)</span>. 最后对下界函数<span class="math inline">\(\mathcal{L}(\theta, q)\)</span>稍作化简: <span class="math display">\[\begin{aligned} \mathcal{L}(\theta, q)&amp; =  \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log\frac{P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)}{q(t_i=c)}\\\
 &amp; =  \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log P(x_i, t_i=c\mid \theta)-\sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log q(t_i=c)\\\
 &amp; =  \mathbb{E}_q\log P(X, T\mid\theta)+C \end{aligned}\]</span>这里<span class="math inline">\(C\)</span>与<span class="math inline">\(\theta\)</span>无关, 此时EM算法已经出来了, 第k+1次迭代, 参数为<span class="math inline">\(\theta^k\)</span>:</p>
 <ol type="1">
@@ -1345,8 +1350,8 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>隐变量模型</tag>
         <tag>EM算法</tag>
+        <tag>隐变量模型</tag>
         <tag>Jensen不等式</tag>
       </tags>
   </entry>
