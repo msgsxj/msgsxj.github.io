@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>典型相关分析</title>
+    <url>/2020/06/20/%E5%85%B8%E5%9E%8B%E7%9B%B8%E5%85%B3%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<p>前言: 最近在读脑磁共振影像数据的时空分析一书, 本文主要关于典型相关分析(CCA)的数学原理介绍 <a id="more"></a></p>
+<h2 id="典型相关分析基本原理">典型相关分析基本原理</h2>
+<p>统计学中, 典型相关分析(canonical correlation analysis, CCA)是研究两组随机变量之间关系的方法, 其本质上是用一对<strong>典型变量</strong>的相关系数去衡量两组随机变量之间的关系, 而这里的典型变量选用<strong>变量的线性组合</strong>的方式去构造. 我们有两组随机变量<span class="math inline">\(X=(x_1,...,x_m)\)</span>, <span class="math inline">\(Y=(y_1,...,y_n)\)</span>, CCA目标是求得向量<span class="math inline">\(a_1\in\mathbb{R}^m\)</span>, <span class="math inline">\(b_1\in\mathbb{R}^n\)</span>, 使得<span class="math inline">\(u_1=a_1^TX\)</span>和<span class="math inline">\(v_1=b_1^TY\)</span>的皮尔逊相关系数</p>
+<p><span class="math display">\[corr(u_1, v_1)=\frac{cov(a_1^TX, b_1^TY)}{\sqrt{cov(a_1^TX,a_1^TX)}\sqrt{cov(b_1^TY,b_1^TY)}}=\frac{a_1^T\Sigma_{X,Y}b_1}{\sqrt{a_1^T\Sigma_{X,X}a_1}\sqrt{b_1^T\Sigma_{Y,Y}b_1}}\]</span> 最大, 其中<span class="math inline">\(\Sigma_{X,Y}=cov(X,Y)\)</span>. 显然<span class="math inline">\(\Sigma_{X,X}\)</span>, <span class="math inline">\(\Sigma_{Y,Y}\)</span>半正定(p.s. 一般可认为是正定的, 只要<span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>中不包含方差为0的随机变量), 因此具有<a href="https://en.wikipedia.org/wiki/Definite_symmetric_matrix" target="_blank" rel="noopener">唯一的正定平方根</a><span class="math inline">\(\Sigma_{X,X}^{1/2}\)</span>,<span class="math inline">\(\Sigma_{Y,Y}^{1/2}\)</span>. 如下定义<span class="math inline">\(c_1=\Sigma_{X,X}^{1/2}a_1\)</span>, <span class="math inline">\(d_1=\Sigma_{Y,Y}^{1/2}b_1\)</span>, 问题转化为关于<span class="math inline">\(c_1\in\mathbb{R}^m\)</span>, <span class="math inline">\(d_1\in\mathbb{R}^n\)</span>最大化</p>
+<p><span class="math display">\[\frac{c_1^T\Sigma_{X,X}^{-1/2}\Sigma_{X,Y}\Sigma_{Y,Y}^{-1/2}d_1}{\sqrt{c_1^Tc_1}\sqrt{d_1^Td_1}}\]</span> 由Cauchy-Schwarz不等式可得</p>
+<p><span class="math display">\[c_1^{T}\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1/2}d_1\leq \sqrt{c_1^{T}\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_1}\sqrt{d_1^{T}d_1}\]</span> 即</p>
+<p><span class="math display">\[\frac{c_1^T\Sigma_{X,X}^{-1/2}\Sigma_{X,Y}\Sigma_{Y,Y}^{-1/2}d_1}{\sqrt{c_1^Tc_1}\sqrt{d_1^Td_1}}\le \frac{\sqrt{c_1^{T}\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_1}}{\sqrt{c_1^Tc_1}}\]</span> 且当且仅当<span class="math inline">\(d_1\)</span>与<span class="math inline">\(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_1\)</span>共线时取等号. 而对于不等式的右边, 由下述矩阵的实对称性易得当<span class="math inline">\(c_1\)</span>为矩阵</p>
+<p><span class="math display">\[\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}\]</span> 的最大特征值<span class="math inline">\(\lambda_1\)</span>对应的特征向量时, 不等式右边取最大值<span class="math inline">\(\sqrt{\lambda_m}\)</span>. 我们也可以接着去寻找第二对典型变量, 这里遵循的原则是在<span class="math inline">\(u_2,v_2\)</span>与第一对规范变量不相关的约束下:</p>
+<p><span class="math display">\[cov(u_2,u_1)=0, cov(v_2,v_1)=0\]</span> 寻求使相同的相关性最大化的向量<span class="math inline">\(\alpha_1\)</span>. 注意到<span class="math inline">\(\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}\)</span>为实对称矩阵, 因此其特征值对应的特征向量互相正交(<span class="math inline">\(\alpha_1^T\alpha_2=0\)</span>), 因此只需取<span class="math inline">\(u_2=a_2^TX\)</span>, <span class="math inline">\(a_2=\Sigma_{X,X}^{-1/2}c_2\)</span>, 这里<span class="math inline">\(c_2\)</span>相应取为矩阵第二大的特征值<span class="math inline">\(\lambda_2\)</span>对应的特征向量<span class="math inline">\(\alpha_2\)</span>. 就能轻易验证</p>
+<p><span class="math display">\[cov(u_2,u_1)=cov(a_2^TX,a_1^TX)=a_2^T\Sigma_{X,X}a_1=c_2^Tc_1=\alpha_2^T\alpha_1=0\]</span> 而<span class="math inline">\(v_2\)</span>只需与<span class="math inline">\(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_2\)</span>共线, 也能轻易验证</p>
+<p><span class="math display">\[\begin{aligned}
+cov(v_2,v_1)&amp;=cov(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_2,\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_1)\\
+&amp;=c_2^T\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_1\\
+&amp;=\lambda_1 c_2^Tc_1\\
+&amp;=0
+\end{aligned}\]</span> 上述过程可重复<span class="math inline">\(\min\{m,n\}\)</span>遍, 可得<span class="math inline">\(\min\{m,n\}\)</span>对典型变量. 事实上, 通过简单的变换, 典型变量的参数<span class="math inline">\(a\)</span>只需通过求<span class="math inline">\(\Sigma _{X,X}^{-1}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}\)</span>的特征向量就能得到, 此时<span class="math inline">\(b\)</span>只需与<span class="math inline">\(\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}a\)</span>共线.</p>
+<h2 id="特征向量与svd">特征向量与SVD</h2>
+<p><strong>p.s.</strong> 实际计算时, 要求<span class="math inline">\(AA^T\)</span>的特征向量<span class="math inline">\(u\)</span>, 其实等价于对<span class="math inline">\(A=U\Sigma V^T\)</span>做奇异值分解(SVD), 此时要求的<span class="math inline">\(u\)</span>为<span class="math inline">\(U\)</span>列向量. 这是因为<span class="math inline">\(AA^T=U\Sigma V^*V\Sigma U^*\)</span>, 即</p>
+<p><span class="math display">\[AA^TU=U\Sigma^2\]</span></p>
+<p>因此求<span class="math inline">\(\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}\)</span>的特征向量等价于对<span class="math inline">\(\Sigma_{X,X}^{-1/2}\Sigma_{X,Y}\Sigma_{Y,Y}^{-1/2}\)</span>做奇异值分解(SVD).</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>CCA</tag>
+        <tag>SVD</tag>
+        <tag>特征向量</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>随机梯度法中的噪声减小方法</title>
     <url>/2019/10/28/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%AD%E7%9A%84%E5%99%AA%E5%A3%B0%E5%87%8F%E5%B0%8F%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p>前言: 本文从优化的角度整理了随机梯度法中的常用的一类算法: 噪声缩减方法, 这里的噪声指的是对随机样本计算梯度带来的噪声. 主要参考了Léon Bottou的综述<a href="https://arxiv.org/pdf/1606.04838.pdf" target="_blank" rel="noopener">Optimization Methods for Large-Scale Machine Learning</a>、Jorge Nocedal的Numerical Optimization(2nd edition)以及<a href="http://caoxiaoqing.github.io/2018/05/11/SVRG%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" target="_blank" rel="noopener">这篇博客</a>. <a id="more"></a></p>
