@@ -46,29 +46,15 @@
   };
 </script>
 
-  <meta name="description" content="前言: 这篇博文记载了Ubuntu16.04下便捷安装tensorflow的方法.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu16.04下便捷安装tensorflow">
-<meta property="og:url" content="https://msgsxj.cn/2018/12/23/Ubuntu1604%E4%B8%8B%E4%BE%BF%E6%8D%B7%E5%AE%89%E8%A3%85tensorflow/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="msgsxj&#39;blog">
+<meta property="og:url" content="https://msgsxj.cn/tags/ICA/index.html">
 <meta property="og:site_name" content="msgsxj&#39;blog">
-<meta property="og:description" content="前言: 这篇博文记载了Ubuntu16.04下便捷安装tensorflow的方法.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://msgsxj.cn/pictures/Ubuntu/tensorflow/1.png">
-<meta property="og:image" content="https://msgsxj.cn/pictures/Ubuntu/tensorflow/2.png">
-<meta property="og:image" content="https://msgsxj.cn/pictures/Ubuntu/tensorflow/3.png">
-<meta property="og:image" content="https://msgsxj.cn/pictures/Ubuntu/tensorflow/4.png">
-<meta property="og:image" content="https://msgsxj.cn/pictures/Ubuntu/tensorflow/5.png">
-<meta property="og:image" content="https://msgsxj.cn/pictures/Ubuntu/tensorflow/6.png">
-<meta property="article:published_time" content="2018-12-23T05:17:42.000Z">
-<meta property="article:modified_time" content="2020-05-30T14:52:27.195Z">
 <meta property="article:author" content="msgsxj">
-<meta property="article:tag" content="Ubuntu">
-<meta property="article:tag" content="tensorflow">
-<meta property="article:tag" content="cuda">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://msgsxj.cn/pictures/Ubuntu/tensorflow/1.png">
 
-<link rel="canonical" href="https://msgsxj.cn/2018/12/23/Ubuntu1604%E4%B8%8B%E4%BE%BF%E6%8D%B7%E5%AE%89%E8%A3%85tensorflow/">
+<link rel="canonical" href="https://msgsxj.cn/tags/ICA/">
 
 
 <script id="page-configurations">
@@ -76,11 +62,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true
+    isPost: false
   };
 </script>
 
-  <title>Ubuntu16.04下便捷安装tensorflow | msgsxj'blog</title>
+  <title>标签: ICA | msgsxj'blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148974741-1"></script>
     <script>
@@ -232,134 +218,50 @@
           <div class="content">
             
 
-  <div class="posts-expand">
-      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://msgsxj.cn/2018/12/23/Ubuntu1604%E4%B8%8B%E4%BE%BF%E6%8D%B7%E5%AE%89%E8%A3%85tensorflow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="msgsxj">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="msgsxj'blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Ubuntu16.04下便捷安装tensorflow
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <h1 class="collection-header">ICA
+          <small>标签</small>
         </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-12-23 13:17:42" itemprop="dateCreated datePublished" datetime="2018-12-23T13:17:42+08:00">2018-12-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-30 22:52:27" itemprop="dateModified" datetime="2020-05-30T22:52:27+08:00">2020-05-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">Ubuntu</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+      </div>
 
       
-        <p>前言: 这篇博文记载了Ubuntu16.04下便捷安装tensorflow的方法. <a id="more"></a> 摸索了几天, 发现一种Ubuntu下便捷安装tensorflow的方法, 特此分享. 过程大致分为2步:</p>
-<ol type="1">
-<li>安装显卡驱动</li>
-<li>安装anaconda, 并conda一个新环境, 装入tensorflow</li>
-</ol>
-<h3 id="安装显卡驱动">安装显卡驱动</h3>
-ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-软件和更新-附加驱动-nvidia410-应用更改
-<div data-align="center">
-<img src="/pictures/Ubuntu/tensorflow/1.png" width="80%" />
-</div>
-安装完成后需要重启一次, 不出意外打开终端输入<code>nvidia-smi</code>就能看到下图:
-<div data-align="center">
-<img src="/pictures/Ubuntu/tensorflow/2.png" width="80%" />
-</div>
-<p>可以看到<code>cuda 10.0</code>(安装驱动会自动安装cuda?), 1066的显卡型号, 320MiB的显存占用, 43度的显卡温度, 9W的功耗等信息.</p>
-<h3 id="安装tensorflow">安装tensorflow</h3>
-首先是安装anaconda, 这个请移步<a href="https://www.anaconda.com/" target="_blank" rel="noopener">官网</a>, 安装最新版本的即可; 接着<code>conda</code>一个新环境, 且包含最新版<code>tensorflow-gpu</code>, 这里笔者命名为<code>tf_gpu</code>
-<div data-align="center">
-<img src="/pictures/Ubuntu/tensorflow/3.png" width="80%" />
-</div>
-正常安装需要耗费一些时间, 这里笔者已经装过了, 进入这个环境后, 可以看到其默认安装了 <code>python 3.6.7</code>以及<code>tensorflow-gpu 1.12.0</code>
-<div data-align="center">
-<img src="/pictures/Ubuntu/tensorflow/4.png" width="80%" />
-</div>
-<h3 id="测试">测试</h3>
-进入python测试一下, 成功.
-<div data-align="center">
-<img src="/pictures/Ubuntu/tensorflow/5.png" width="80%" />
-</div>
-<div data-align="center">
-<img src="/pictures/Ubuntu/tensorflow/6.png" width="80%" />
-</div>
-
+    <div class="collection-year">
+      <h1 class="collection-header">2020</h1>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
-              <a href="/tags/tensorflow/" rel="tag"># tensorflow</a>
-              <a href="/tags/cuda/" rel="tag"># cuda</a>
-          </div>
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2020-06-20T00:03:42+08:00"
+              content="2020-06-20">
+          06-20
+        </time>
+      </div>
 
-        
+      <h2 class="post-title">
+          <a class="post-title-link" href="/2020/06/20/%E5%85%B8%E5%9E%8B%E7%9B%B8%E5%85%B3%E5%88%86%E6%9E%90/" itemprop="url">
+            <span itemprop="name">典型相关分析</span>
+          </a>
+      </h2>
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/" rel="prev" title="拉德马赫复杂度">
-      <i class="fa fa-chevron-left"></i> 拉德马赫复杂度
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/01/30/2018/" rel="next" title="2018">
-      2018 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+    </header>
   </article>
+
+    </div>
+  </div>
   
   
   
 
-  </div>
+  
+
 
 
           </div>
@@ -410,7 +312,6 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装显卡驱动"><span class="nav-number">1.</span> <span class="nav-text">安装显卡驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装tensorflow"><span class="nav-number">2.</span> <span class="nav-text">安装tensorflow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">3.</span> <span class="nav-text">测试</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -536,54 +437,6 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
   
 
   
-      
-<script type="text/x-mathjax-config">
-
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
 
   
 

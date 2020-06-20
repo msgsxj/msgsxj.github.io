@@ -20,9 +20,17 @@ cov(v_2,v_1)&amp;=cov(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_2,\
 &amp;=0
 \end{aligned}\]</span> 上述过程可重复<span class="math inline">\(\min\{m,n\}\)</span>遍, 可得<span class="math inline">\(\min\{m,n\}\)</span>对典型变量. 事实上, 通过简单的变换, 典型变量的参数<span class="math inline">\(a\)</span>只需通过求<span class="math inline">\(\Sigma _{X,X}^{-1}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}\)</span>的特征向量就能得到, 此时<span class="math inline">\(b\)</span>只需与<span class="math inline">\(\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}a\)</span>共线.</p>
 <h2 id="特征向量与svd">特征向量与SVD</h2>
-<p><strong>p.s.</strong> 实际计算时, 要求<span class="math inline">\(AA^T\)</span>的特征向量<span class="math inline">\(u\)</span>, 其实等价于对<span class="math inline">\(A=U\Sigma V^T\)</span>做奇异值分解(SVD), 此时要求的<span class="math inline">\(u\)</span>为<span class="math inline">\(U\)</span>列向量. 这是因为<span class="math inline">\(AA^T=U\Sigma V^*V\Sigma U^*\)</span>, 即</p>
+<p>实际计算时, 要求<span class="math inline">\(AA^T\)</span>的特征向量<span class="math inline">\(u\)</span>, 其实等价于对<span class="math inline">\(A=U\Sigma V^T\)</span>做奇异值分解(SVD), 此时要求的<span class="math inline">\(u\)</span>为<span class="math inline">\(U\)</span>列向量. 这是因为<span class="math inline">\(AA^T=U\Sigma V^*V\Sigma U^*\)</span>, 即</p>
 <p><span class="math display">\[AA^TU=U\Sigma^2\]</span></p>
 <p>因此求<span class="math inline">\(\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}\)</span>的特征向量等价于对<span class="math inline">\(\Sigma_{X,X}^{-1/2}\Sigma_{X,Y}\Sigma_{Y,Y}^{-1/2}\)</span>做奇异值分解(SVD).</p>
+<h2 id="cca与fmri数据">CCA与fMRI数据</h2>
+<p>具体到fMRI数据中, 我们假定观测收集到的数据为一个三维张量<span class="math inline">\(x(t)\)</span>, 其中<span class="math inline">\(t\)</span>为时间变量, 因此输入数据为带时间维度的四维张量. <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.476.486&amp;rep=rep1&amp;type=pdf" target="_blank" rel="noopener">这篇文章</a>提出令<span class="math inline">\(y(t)=x(t-1)\)</span>, 因此若我们把CCA应用在<span class="math inline">\(x(t)\)</span>, <span class="math inline">\(y(t)\)</span>上, 此时找出的典型变量不仅是数据数据<span class="math inline">\(x(t)\)</span>的<strong>线性组合</strong>, 而且具有<strong>时间维度上的强自相关性(差分为1)</strong>, 而我们所期望得到的神经响应信号(呼吸产生的噪声等)也具有这样的特征. 当然缺点也显然, 这样的思路没能够用好输入数据的空间结构, 此外, 该文作者还给出一种试图寻求空间维度上的强自相关性的思路, 详见论文链接中的式<span class="math inline">\((15)\)</span>.</p>
+<h2 id="cca-ica和pca">CCA, ICA和PCA</h2>
+<p>换一个角度看, 将CCA应用到<span class="math inline">\(x(t)\)</span>, <span class="math inline">\(x(t-1)\)</span>可视为是在对<span class="math inline">\(x(t)\)</span>进行线性降维的操作, 只不过需要满足构造出特征的<strong>时间维度的自相关性</strong>尽可能大且不同的构造特征之间<strong>互不相关</strong>的约束, 这就能很自然的联想到另外两种降维的方法, 这里仅简单介绍:</p>
+<ol type="1">
+<li>主成分分析(Principal component analysis, PCA)的出发点为降维后的数据点到新子空间的距离都尽可能的近, 或者等价地, 降维后的数据在新子空间上的投影都尽可能的分散, 因此从fMRI数据的角度来看, PCA只是对每一个时间节点<strong>让构造出特征的方差尽可能大</strong>且不同的构造特征之间<strong>互不相关</strong>, 而<strong>没能</strong>考虑其本身是个时序数据.</li>
+<li>独立成分分析(Independent components analysis, ICA)最大的假设是不同的构造特征之间<strong>相互独立</strong>, 因此从fMRI数据的角度来看, ICA也<strong>没能</strong>考虑其本身是个时序数据.</li>
+</ol>
 ]]></content>
       <categories>
         <category>机器学习</category>
@@ -31,6 +39,8 @@ cov(v_2,v_1)&amp;=cov(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_2,\
         <tag>CCA</tag>
         <tag>SVD</tag>
         <tag>特征向量</tag>
+        <tag>ICA</tag>
+        <tag>PCA</tag>
       </tags>
   </entry>
   <entry>
