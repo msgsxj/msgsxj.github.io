@@ -242,7 +242,7 @@ cov(v_2,v_1)&amp;=cov(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_2,\
     <content><![CDATA[<p>前言: 最近在读最佳可能的世界一书, 这里简单分享一下最小作用量原理. <a id="more"></a></p>
 <hr />
 <h3 id="hero-of-alexandria-自然将永远选择最短的路线">Hero of Alexandria: 自然将永远选择最短的路线</h3>
-<p>Hero of Alexandria(希罗)是公元后10年-70年时期来自亚历山大的数学家和工程师, 他的作品被Marin Cureau de la Chambre(马林·库若)读到; 1657年, 库若写了一篇论文&quot;关于光&quot;并把它寄给了Pierre de Fermat(皮埃尔·德·费马), 这篇文章陈述了反射定律, 根据这个原理, &quot;自然将永远选择最短的路线&quot;, 正如下图所示: <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Reflection_angles.svg/800px-Reflection_angles.svg.png" width="50%" /></p>
+<p>Hero of Alexandria(希罗)是公元后10年-70年时期来自亚历山大的数学家和工程师, 他的作品被Marin Cureau de la Chambre(马林·库若)读到; 1657年, 库若写了一篇论文"关于光"并把它寄给了Pierre de Fermat(皮埃尔·德·费马), 这篇文章陈述了反射定律, 根据这个原理, "自然将永远选择最短的路线", 正如下图所示: <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Reflection_angles.svg/800px-Reflection_angles.svg.png" width="50%" /></p>
 <hr />
 <h3 id="pierre-de-fermat-光沿着最快的路线传播">Pierre de Fermat: 光沿着最快的路线传播</h3>
 <p>费马在给库若的回信表示了对希罗的观点的认同, 并在对光的折射的研究中提出了新的描述: 光沿着最快的路线传播; 5年后的1662年, 费马给出了他的结果, 并成功导出了Descartes(笛卡尔)在1637年推导出的正弦定律, 只不过笛卡尔认为光在水中比在空气中的传播速度快, 而费马的想法与此相反.</p>
@@ -260,7 +260,7 @@ cov(v_2,v_1)&amp;=cov(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_2,\
 <h3 id="maupertuis-光选择了一条具有真正好处的路线-它走的路线作用量最小">Maupertuis: 光选择了一条具有真正好处的路线: 它走的路线作用量最小</h3>
 <p>1744年, Maupertuis(莫培督)提出: 既然光不能同时选择最短的和最快的路线, 那它为什么选择这条路而不是那条路呢? 光实际上选择了最小化作用量<span class="math inline">\(lvm\)</span>的线路, 这里<span class="math inline">\(l\)</span>表示距离, <span class="math inline">\(v\)</span>表示速度, <span class="math inline">\(m\)</span>表示物体质量; 1751年, 一位叫Koenig(科尼格)的提到Gottfried Wilhelm Leibniz(弗里德·威廉·莱布尼兹)在1707年所写的信中提出过作用量的概念, 其应当是距离, 时间和质量的乘积<span class="math inline">\(ltm\)</span>, 科尼格因此却被莫培督控告造假; 1752年, 莫培督在他的论宇宙一书声称了一个物理学同形而上学甚至道德的统一: 由最小作用量原理统治的世界一定是最好的.</p>
 <blockquote>
-<p>Voltaire: &quot;圣马洛本地人早就染上了一种慢性疾病, 有人把这种病称为是追命惴栗, 也有人把它称为喜好权利.&quot; 他病得很重, 他写文章攻击医药和上帝的存在的证明. 他最后达到认为它比前一世纪的某个巨人莱布尼兹更伟大.</p>
+<p>Voltaire: "圣马洛本地人早就染上了一种慢性疾病, 有人把这种病称为是追命惴栗, 也有人把它称为喜好权利." 他病得很重, 他写文章攻击医药和上帝的存在的证明. 他最后达到认为它比前一世纪的某个巨人莱布尼兹更伟大.</p>
 </blockquote>
 <p>Voltaire(伏尔泰)的文章迅速获得成功, 莫培督在欧洲受尽嘲讽, 并于1759年落魄去世; 而伏尔泰于1759年出版的小说Candide(老实人)至今仍被人阅读.</p>
 <hr />
@@ -771,7 +771,7 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
 <h2 id="习惯五-知彼解己">习惯五: 知彼解己</h2>
 <p>首先寻求取了解对方, 然后在争取让对方了解自己.</p>
 <h3 id="移情聆听">移情聆听</h3>
-<p>然而, 大部分人在聆听时并不是想理解对方, 而是为了做出回应: &quot;是的, 我知道你的感受, 我的经验是...&quot;. 移情聆听是指以理解目的的聆听, 要求听者站在说话者的角度理解他们的思维模式和感受, 表现为耳到, 眼到, 心到. 移情聆听同样是有风险的, 只有当你做好了被对方影响的准备, 才能深入移情聆听的阶段, 而这需要足够的安全感的, 因为这时候的你会变得很脆弱. 所以说, 习惯一二三是基础, 帮你保持核心不变, 即以原则为中心, 从而和平有力地应对坚定内心之外的脆弱.</p>
+<p>然而, 大部分人在聆听时并不是想理解对方, 而是为了做出回应: "是的, 我知道你的感受, 我的经验是...". 移情聆听是指以理解目的的聆听, 要求听者站在说话者的角度理解他们的思维模式和感受, 表现为耳到, 眼到, 心到. 移情聆听同样是有风险的, 只有当你做好了被对方影响的准备, 才能深入移情聆听的阶段, 而这需要足够的安全感的, 因为这时候的你会变得很脆弱. 所以说, 习惯一二三是基础, 帮你保持核心不变, 即以原则为中心, 从而和平有力地应对坚定内心之外的脆弱.</p>
 <h3 id="合理表达自己">合理表达自己</h3>
 <p>我们在听别人讲话时总是会联系我们自己的经历, 因此自以为是的人往往会有四种自传式回应(autobiographical reponse)的倾向:</p>
 <ul>
@@ -1392,10 +1392,10 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>EM算法</tag>
         <tag>隐变量模型</tag>
         <tag>Jensen不等式</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1533,28 +1533,28 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}
 \]</span>同样上式是以<span class="math inline">\(1-\delta\)</span>的概率成立. 证明分8步走:</p>
 <ol type="1">
-<li>引理1: <span class="math display">\[
+<li><p>引理1: <span class="math display">\[
 \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\right]\le\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\sqrt{2m}}
 \]</span>现先假定引理1成立,那么由随机变量<span class="math inline">\(\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\)</span>显然是非负的以及马尔可夫不等式<span class="math inline">\(\mathbb{P}[X\ge \delta]\le\frac{\mathbb{E}[X]}{\delta}\)</span>可直接推得结论成立: <span class="math display">\[
 \mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\ge\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}\right] \le \frac{\mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[ \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\right]}{\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}}\le \delta
 \]</span>即 <span class="math display">\[
 \mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}\right] \ge 1-\delta
-\]</span></li>
-<li>问题转化为证引理1,考虑引理1的左半部分: <span class="math display">\[
+\]</span></p></li>
+<li><p>问题转化为证引理1,考虑引理1的左半部分: <span class="math display">\[
 \begin{aligned} \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\right] &amp; =  \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|\mathop{\mathbb{E}}_{S&#39;\sim\mathcal{D}^{m}}L_{S&#39;}(h)-L_{S}(h)\right|\right] \\\
 &amp; \le  \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\mathop{\mathbb{E}}_{S&#39;\sim\mathcal{D}^{m}}\left|L_{S&#39;}(h)-L_{S}(h)\right|\right]\\\
 &amp; \le  \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \mathop{\mathbb{E}}_{S&#39;\sim\mathcal{D}^{m}}\sup_{h\in\mathcal{H}}\left|L_{S&#39;}(h)-L_{S}(h)\right|\right]\\\
 &amp; =  \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|L_{S&#39;}(h)-L_{S}(h)\right|\right]\\\
 &amp; =  \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right] \end{aligned}
-\]</span> 其中第一个等号是因为<span class="math inline">\(L_{\mathcal{D}}(h)=\mathbb{E}_{S&#39;\sim\mathcal{D}^{m}}L_{S&#39;}(h)\)</span>,第二个不等号为绝对值放到积分里面,第三个不等号为期望的上界小于等于上界的期望,第四个等号为两个期望合并,第五个等号为<span class="math inline">\(L_{S}(h)\)</span>写开来,且这里的<span class="math inline">\(l(h,x_{i})\)</span>为<span class="math inline">\(h\)</span>下的0-1损失</li>
-<li>引入随机变量<span class="math inline">\(\sigma\in\{\pm 1\}^{m}\)</span>,2.中最右端等价于: <span class="math display">\[
+\]</span> 其中第一个等号是因为<span class="math inline">\(L_{\mathcal{D}}(h)=\mathbb{E}_{S&#39;\sim\mathcal{D}^{m}}L_{S&#39;}(h)\)</span>,第二个不等号为绝对值放到积分里面,第三个不等号为期望的上界小于等于上界的期望,第四个等号为两个期望合并,第五个等号为<span class="math inline">\(L_{S}(h)\)</span>写开来,且这里的<span class="math inline">\(l(h,x_{i})\)</span>为<span class="math inline">\(h\)</span>下的0-1损失</p></li>
+<li><p>引入随机变量<span class="math inline">\(\sigma\in\{\pm 1\}^{m}\)</span>,2.中最右端等价于: <span class="math display">\[
 \begin{aligned} \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right] &amp; =  \mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right]\\\
 &amp; = \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}} \mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right] \end{aligned}
-\]</span>其中第一个等号为<span class="math inline">\(\pm1\)</span>对绝对值无影响,第二个等号为交换期望</li>
-<li>考虑3.最右端,固定<span class="math inline">\(S,S&#39;\)</span>,令<span class="math inline">\(C=S\cup S&#39;\)</span>,那么此时<span class="math inline">\(\mathcal{H}\)</span>仅会涉及<span class="math inline">\(C\)</span>上的假设,即可以把<span class="math inline">\(\mathcal{H}\)</span>限制在<span class="math inline">\(C\)</span>上: <span class="math display">\[
+\]</span>其中第一个等号为<span class="math inline">\(\pm1\)</span>对绝对值无影响,第二个等号为交换期望</p></li>
+<li><p>考虑3.最右端,固定<span class="math inline">\(S,S&#39;\)</span>,令<span class="math inline">\(C=S\cup S&#39;\)</span>,那么此时<span class="math inline">\(\mathcal{H}\)</span>仅会涉及<span class="math inline">\(C\)</span>上的假设,即可以把<span class="math inline">\(\mathcal{H}\)</span>限制在<span class="math inline">\(C\)</span>上: <span class="math display">\[
 \mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right]= \mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\left[  \max_{h\in\mathcal{H}_{C}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right]
-\]</span></li>
-<li>固定<span class="math inline">\(h\in\mathcal{H}_{C}\)</span>,并记<span class="math inline">\(\theta_{h} \triangleq \frac{1}{m}\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\)</span>,则有 <span class="math display">\[
+\]</span></p></li>
+<li><p>固定<span class="math inline">\(h\in\mathcal{H}_{C}\)</span>,并记<span class="math inline">\(\theta_{h} \triangleq \frac{1}{m}\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\)</span>,则有 <span class="math display">\[
 \begin{aligned}\mathbb{E}\theta_{h} &amp; =\mathbb{E}\frac{1}{m}\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right) \\\
 &amp; = \frac{1}{m}\sum_{i=1}^{m}\mathbb{E}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\\\
 &amp; = 0
@@ -1563,7 +1563,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 \mathbb{P}\left[\left|\theta_{h}\right|&gt;\rho\right]\le2\exp(-2m\rho^{2})
 \]</span>即 <span class="math display">\[
 \mathbb{P}\left[\frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|&gt;\rho\right]\le2\exp(-2m\rho^{2})
-\]</span></li>
+\]</span></p></li>
 <li><p>注意到此时<span class="math inline">\(\mathcal{H}_{C}\)</span>仅包含有限个假设,由联合界(简言之,<span class="math inline">\(\mathbb{P}(A\cup B)\le\mathbb{P}(A)+\mathbb{P}(B)\)</span>)可得: <span class="math display">\[
 \mathbb{P}\left[\max_{h\in\mathcal{H}_{C}}\left|\theta_{h}\right|&gt;\rho\right]\le2\left|\mathcal{H}_{C}\right|\exp(-2m\rho^{2})
 \]</span>即 <span class="math display">\[
@@ -1664,7 +1664,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 <h2 id="大数据与机器智能">大数据与机器智能</h2>
 <p>在有大数据之前,计算机并不擅长解决需要人类智能的问题,但今天这些问题能够得以解决,其核心就是变智能问题为数据问题,由此开始了新一轮技术革命-智能革命. 机器智能又名<a href="https://en.wikipedia.org/wiki/AI" target="_blank" rel="noopener">人工智能</a>:</p>
 <blockquote>
-<p>In computer science AI research is defined as the study of &quot;intelligent agents&quot;: any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals.</p>
+<p>In computer science AI research is defined as the study of "intelligent agents": any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals.</p>
 </blockquote>
 <p>人工智能1.0:1956年夏天的<a href="https://en.wikipedia.org/wiki/Dartmouth_workshop" target="_blank" rel="noopener">Dartmouth workshop</a></p>
 <p><a href="https://en.wikipedia.org/wiki/Big_data" target="_blank" rel="noopener">大数据</a>:</p>
@@ -1685,9 +1685,9 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 </blockquote>
 <p>机械思维的形成:</p>
 <ul>
-<li>欧几里得创立了基于公理化体系的几何学</li>
-<li>托勒密总结出:通过观察获得数学模型的雏形,然后利用数据来细化模型</li>
-<li>笛卡尔总结出:大胆假设,小心求证</li>
+<li><p>欧几里得创立了基于公理化体系的几何学</p></li>
+<li><p>托勒密总结出:通过观察获得数学模型的雏形,然后利用数据来细化模型</p></li>
+<li><p>笛卡尔总结出:大胆假设,小心求证</p></li>
 <li><p>牛顿不仅把欧几里得通过逻辑建立起来的方法论从数学扩展到自然科学领域,而且把托勒密用机械运动描述天体的规律扩展到对世界任何规律的描述,后来人们将牛顿的方法论概括为机械思维,其核心思想有三:</p>
 <ol type="1">
 <li>世界的变化规律是确定的</li>
@@ -1927,9 +1927,9 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 <li>bwplot:box-and-whiskers plots</li>
 <li>histogram:histograms</li>
 <li>stripplot:like a boxplot but with actual points</li>
-<li>dotplot:plot dots on &quot;violin strings&quot;</li>
+<li>dotplot:plot dots on "violin strings"</li>
 <li>splom:scatterplot matrix(like pairs in base plotting)</li>
-<li>levelplot, contourplot:for plotting &quot;image&quot; data</li>
+<li>levelplot, contourplot:for plotting "image" data</li>
 </ul>
 <h3 id="examples-1">Examples</h3>
 <h4 id="examplexyplot">Example:xyplot</h4>
@@ -1961,7 +1961,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 </ol>
 <ul>
 <li>xlab(), ylab(), ggtitle(), labs()</li>
-<li>theme(legend.position = &quot;none&quot;)</li>
+<li>theme(legend.position = "none")</li>
 <li>theme_gray()</li>
 <li>theme_bw()</li>
 </ul>
@@ -2041,7 +2041,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 <p><strong>2020/01/01</strong>: 前些日子入了台mac, 这里简单记录一下将hexo从windows迁移至mac的过程.</p>
 <ol type="1">
 <li><p>terminal下安装git,node以及hexo, 参考了<a href="https://www.jianshu.com/p/5637ced606d4" target="_blank" rel="noopener">这篇博客</a> <figure class="highlight plain"><figcaption><span>[install hexo]</span></figcaption><table><tr><td class="code"><pre><span class="line">brew install git</span><br><span class="line">brew install node</span><br><span class="line">npm install hexo g</span><br></pre></td></tr></table></figure> 安装node过程中会在系统用户目录下生成一个<code>node_modules</code>文件夹并抛出<span class="label warning">warning</span>后生成一个<code>package-lock.json</code>文件, 这只是警告系统用户目录下没有<code>package.json</code>文件.</p></li>
-<li>初始化hexo,继续使用next主题 <figure class="highlight plain"><figcaption><span>[use next theme]</span></figcaption><table><tr><td class="code"><pre><span class="line">mkdir hexo</span><br><span class="line">cd hexo</span><br><span class="line">hexo init</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure> 接着就是source文件的覆盖,<a href="https://hexo.io/docs/configuration.html" target="_blank" rel="noopener">hexo配置</a>,next主题文件的配置.</li>
+<li><p>初始化hexo,继续使用next主题 <figure class="highlight plain"><figcaption><span>[use next theme]</span></figcaption><table><tr><td class="code"><pre><span class="line">mkdir hexo</span><br><span class="line">cd hexo</span><br><span class="line">hexo init</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure> 接着就是source文件的覆盖,<a href="https://hexo.io/docs/configuration.html" target="_blank" rel="noopener">hexo配置</a>,next主题文件的配置.</p></li>
 <li><p>仍然在hexo目录下将hexo的markdown引擎从默认的<code>marked</code>更换为<code>pandoc</code>以更好的支持latex,参考了next主题中的一篇<a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/MATH.md" target="_blank" rel="noopener">doc</a> <figure class="highlight plain"><figcaption><span>[pandoc]</span></figcaption><table><tr><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked</span><br><span class="line">npm install hexo-renderer-pandoc</span><br></pre></td></tr></table></figure> <code>markdown-it</code>与<code>pandoc</code>最大的区别就是需要更多的空行, 所以遇到显示不正常不妨试着加空行.</p></li>
 </ol>
 ]]></content>
@@ -2664,7 +2664,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
     <url>/2018/01/24/2017/</url>
     <content><![CDATA[<p>前言:记录2017,为2018立flag <a id="more"></a></p>
 <figure>
-<img src="/pictures/background.jpg" alt="avatar" /><figcaption>avatar</figcaption>
+<img src="/pictures/background.jpg" alt="" /><figcaption>avatar</figcaption>
 </figure>
 <h2 id="回顾2017">回顾2017:</h2>
 <ul>
@@ -2728,7 +2728,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 <h3 id="from-csv">from csv</h3>
 <ul>
 <li>utils包中函数:</li>
-<li>download.file():如果是https开头,mac需要指定method = &quot;curl&quot;,win不需要;如果是http开头则都不需要</li>
+<li>download.file():如果是https开头,mac需要指定method = "curl",win不需要;如果是http开头则都不需要</li>
 </ul>
 <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">setwd(<span class="string">"C:/Users/msgsxj/Desktop/coursera/Getting and Cleaning Data"</span>)</span><br><span class="line">fileurl &lt;- <span class="string">"https://data.baltimorecity.gov/api/views/dz54-2aru/rows.csv?accseeType=DOWNLOAD"</span></span><br><span class="line">download.file(fileurl, destfile = <span class="string">"./data/cameras.csv"</span>, method = <span class="string">"curl"</span>) <span class="comment"># mac需要指定curl,win不需要</span></span><br><span class="line">list.files(<span class="string">"./data"</span>)</span><br></pre></td></tr></table></figure>
 <ul>
@@ -2817,7 +2817,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 </ul>
 <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">con = url(<span class="string">"http://www.msgsxj.cn/about/"</span>)</span><br><span class="line">htmlCode = readLines(con)</span><br><span class="line">close(con)</span><br><span class="line">htmlCode[<span class="number">378</span>:<span class="number">380</span>]</span><br></pre></td></tr></table></figure>
 <figure>
-<img src="/pictures/R/R_me.png" alt="me" /><figcaption>me</figcaption>
+<img src="/pictures/R/R_me.png" alt="" /><figcaption>me</figcaption>
 </figure>
 <ul>
 <li>XML包中函数:</li>
@@ -2890,7 +2890,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 </ul>
 <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">set.seed(<span class="number">13435</span>)</span><br><span class="line">X &lt;- data.frame(<span class="string">"var1"</span>=sample(<span class="number">1</span>:<span class="number">5</span>),<span class="string">"var2"</span>=sample(<span class="number">6</span>:<span class="number">10</span>),<span class="string">"var3"</span>=sample(<span class="number">11</span>:<span class="number">15</span>))</span><br><span class="line">X &lt;- X[sample(<span class="number">1</span>:<span class="number">5</span>),]</span><br><span class="line">X$var2[c(<span class="number">1</span>,<span class="number">3</span>)]=<span class="literal">NA</span></span><br><span class="line">X</span><br><span class="line">X[,<span class="number">1</span>] <span class="comment">#提取第一列数据</span></span><br><span class="line">X[,<span class="string">"var1"</span>] <span class="comment">#提取var1数据</span></span><br><span class="line">X[<span class="number">1</span>:<span class="number">2</span>,<span class="string">"var2"</span>]</span><br><span class="line">X[(X$var1 &lt;= <span class="number">3</span> &amp; X$var3 &gt; <span class="number">11</span>),]</span><br><span class="line">X[(X$var1 &lt;= <span class="number">3</span> | X$var3 &gt; <span class="number">15</span>),]</span><br><span class="line">X[which(X$var2 &gt; <span class="number">8</span>),]</span><br><span class="line">X[(X$var2 &gt; <span class="number">8</span>),] <span class="comment">#会返回NA</span></span><br></pre></td></tr></table></figure>
 <figure>
-<img src="/pictures/R/R_X%5B%5D.png" alt="X[]" /><figcaption>X[]</figcaption>
+<img src="/pictures/R/R_X%5B%5D.png" alt="" /><figcaption>X[]</figcaption>
 </figure>
 <h3 id="sorting">Sorting</h3>
 <ul>
@@ -3034,7 +3034,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">names(camera2Data) &lt;- tolower(names(camera2Data)) <span class="comment"># 变量名全部变小写</span></span><br><span class="line">names(camera2Data)</span><br><span class="line">splitNames &lt;- strsplit(names(camera2Data),<span class="string">"\\."</span>) <span class="comment"># split 需转义</span></span><br><span class="line">splitNames[[<span class="number">6</span>]]</span><br><span class="line">splitNames[[<span class="number">6</span>]][<span class="number">1</span>]</span><br><span class="line">firstElement &lt;- <span class="keyword">function</span>(x)&#123;x[<span class="number">1</span>]&#125;</span><br><span class="line">names(camera2Data) &lt;- sapply(splitNames,firstElement)  <span class="comment"># 想只保留splitNames[[6]]的第一部分</span></span><br><span class="line">names(camera2Data)</span><br></pre></td></tr></table></figure>
 <p><img src="/pictures/R/R_sapply.png" /></p>
 <ul>
-<li>上述srtsplit()+sapply()过程的相似处理:用&quot;&quot;取代&quot;.&quot;</li>
+<li>上述srtsplit()+sapply()过程的相似处理:用""取代"."</li>
 <li>sub()</li>
 <li>gsub() 替换所有</li>
 </ul>
@@ -3335,7 +3335,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 </blockquote>
 <p>下面来看这个定理的证明:</p>
 <ul>
-<li>必要性: 假定<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的, 对于每个<span class="math inline">\(n\in\mathbb{N}\)</span>,令<span class="math display">\[\mathcal{H}_{n}=\{h\in\mathcal{H}:m^{NUL}_{\mathcal{H}}(\frac{1}{8},\frac{1}{7},h)\le n\}\]</span>显然<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>. 此外, 由<span class="math inline">\(m^{NUL}_{\mathcal{H}}\)</span>定义知, 对于任何关于<span class="math inline">\(\mathcal{H}_{n}\)</span>满足可实现性假设的分布<span class="math inline">\(\mathcal{D}\)</span>, <span class="math inline">\(S\)</span>由<span class="math inline">\(\mathcal{D}\)</span>独立抽样得到, 选择样本<span class="math inline">\(S\)</span>的概率大于等于<span class="math inline">\(\frac{6}{7}\)</span>. 则<span class="math inline">\(L_{\mathcal{D}}(A(S))\le\frac{1}{8}\)</span>. 由统计学习基本定理知, <span class="math inline">\(VCdim(\mathcal{H}_{n})&lt;+\infty\)</span>, 因此<span class="math inline">\(\mathcal{H}_{n}\)</span>是不可知PAC可学习的.</li>
+<li><p>必要性: 假定<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的, 对于每个<span class="math inline">\(n\in\mathbb{N}\)</span>,令<span class="math display">\[\mathcal{H}_{n}=\{h\in\mathcal{H}:m^{NUL}_{\mathcal{H}}(\frac{1}{8},\frac{1}{7},h)\le n\}\]</span>显然<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>. 此外, 由<span class="math inline">\(m^{NUL}_{\mathcal{H}}\)</span>定义知, 对于任何关于<span class="math inline">\(\mathcal{H}_{n}\)</span>满足可实现性假设的分布<span class="math inline">\(\mathcal{D}\)</span>, <span class="math inline">\(S\)</span>由<span class="math inline">\(\mathcal{D}\)</span>独立抽样得到, 选择样本<span class="math inline">\(S\)</span>的概率大于等于<span class="math inline">\(\frac{6}{7}\)</span>. 则<span class="math inline">\(L_{\mathcal{D}}(A(S))\le\frac{1}{8}\)</span>. 由统计学习基本定理知, <span class="math inline">\(VCdim(\mathcal{H}_{n})&lt;+\infty\)</span>, 因此<span class="math inline">\(\mathcal{H}_{n}\)</span>是不可知PAC可学习的.</p></li>
 <li><p>充分性: 充分性的证明依赖于下述引理:</p>
 <blockquote>
 <p><span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>, 如果<span class="math inline">\(\mathcal{H}_{n}\)</span>是一致收敛的, 那么<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的.</p>

@@ -340,28 +340,28 @@
 \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}
 \]</span>同样上式是以<span class="math inline">\(1-\delta\)</span>的概率成立. 证明分8步走:</p>
 <ol type="1">
-<li>引理1: <span class="math display">\[
+<li><p>引理1: <span class="math display">\[
 \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\right]\le\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\sqrt{2m}}
 \]</span>现先假定引理1成立,那么由随机变量<span class="math inline">\(\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\)</span>显然是非负的以及马尔可夫不等式<span class="math inline">\(\mathbb{P}[X\ge \delta]\le\frac{\mathbb{E}[X]}{\delta}\)</span>可直接推得结论成立: <span class="math display">\[
 \mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\ge\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}\right] \le \frac{\mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[ \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\right]}{\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}}\le \delta
 \]</span>即 <span class="math display">\[
 \mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}\right] \ge 1-\delta
-\]</span></li>
-<li>问题转化为证引理1,考虑引理1的左半部分: <span class="math display">\[
+\]</span></p></li>
+<li><p>问题转化为证引理1,考虑引理1的左半部分: <span class="math display">\[
 \begin{aligned} \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\right] &amp; =  \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|\mathop{\mathbb{E}}_{S&#39;\sim\mathcal{D}^{m}}L_{S&#39;}(h)-L_{S}(h)\right|\right] \\\
 &amp; \le  \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\mathop{\mathbb{E}}_{S&#39;\sim\mathcal{D}^{m}}\left|L_{S&#39;}(h)-L_{S}(h)\right|\right]\\\
 &amp; \le  \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \mathop{\mathbb{E}}_{S&#39;\sim\mathcal{D}^{m}}\sup_{h\in\mathcal{H}}\left|L_{S&#39;}(h)-L_{S}(h)\right|\right]\\\
 &amp; =  \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|L_{S&#39;}(h)-L_{S}(h)\right|\right]\\\
 &amp; =  \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right] \end{aligned}
-\]</span> 其中第一个等号是因为<span class="math inline">\(L_{\mathcal{D}}(h)=\mathbb{E}_{S&#39;\sim\mathcal{D}^{m}}L_{S&#39;}(h)\)</span>,第二个不等号为绝对值放到积分里面,第三个不等号为期望的上界小于等于上界的期望,第四个等号为两个期望合并,第五个等号为<span class="math inline">\(L_{S}(h)\)</span>写开来,且这里的<span class="math inline">\(l(h,x_{i})\)</span>为<span class="math inline">\(h\)</span>下的0-1损失</li>
-<li>引入随机变量<span class="math inline">\(\sigma\in\{\pm 1\}^{m}\)</span>,2.中最右端等价于: <span class="math display">\[
+\]</span> 其中第一个等号是因为<span class="math inline">\(L_{\mathcal{D}}(h)=\mathbb{E}_{S&#39;\sim\mathcal{D}^{m}}L_{S&#39;}(h)\)</span>,第二个不等号为绝对值放到积分里面,第三个不等号为期望的上界小于等于上界的期望,第四个等号为两个期望合并,第五个等号为<span class="math inline">\(L_{S}(h)\)</span>写开来,且这里的<span class="math inline">\(l(h,x_{i})\)</span>为<span class="math inline">\(h\)</span>下的0-1损失</p></li>
+<li><p>引入随机变量<span class="math inline">\(\sigma\in\{\pm 1\}^{m}\)</span>,2.中最右端等价于: <span class="math display">\[
 \begin{aligned} \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right] &amp; =  \mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right]\\\
 &amp; = \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}} \mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right] \end{aligned}
-\]</span>其中第一个等号为<span class="math inline">\(\pm1\)</span>对绝对值无影响,第二个等号为交换期望</li>
-<li>考虑3.最右端,固定<span class="math inline">\(S,S&#39;\)</span>,令<span class="math inline">\(C=S\cup S&#39;\)</span>,那么此时<span class="math inline">\(\mathcal{H}\)</span>仅会涉及<span class="math inline">\(C\)</span>上的假设,即可以把<span class="math inline">\(\mathcal{H}\)</span>限制在<span class="math inline">\(C\)</span>上: <span class="math display">\[
+\]</span>其中第一个等号为<span class="math inline">\(\pm1\)</span>对绝对值无影响,第二个等号为交换期望</p></li>
+<li><p>考虑3.最右端,固定<span class="math inline">\(S,S&#39;\)</span>,令<span class="math inline">\(C=S\cup S&#39;\)</span>,那么此时<span class="math inline">\(\mathcal{H}\)</span>仅会涉及<span class="math inline">\(C\)</span>上的假设,即可以把<span class="math inline">\(\mathcal{H}\)</span>限制在<span class="math inline">\(C\)</span>上: <span class="math display">\[
 \mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right]= \mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\left[  \max_{h\in\mathcal{H}_{C}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right]
-\]</span></li>
-<li>固定<span class="math inline">\(h\in\mathcal{H}_{C}\)</span>,并记<span class="math inline">\(\theta_{h} \triangleq \frac{1}{m}\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\)</span>,则有 <span class="math display">\[
+\]</span></p></li>
+<li><p>固定<span class="math inline">\(h\in\mathcal{H}_{C}\)</span>,并记<span class="math inline">\(\theta_{h} \triangleq \frac{1}{m}\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\)</span>,则有 <span class="math display">\[
 \begin{aligned}\mathbb{E}\theta_{h} &amp; =\mathbb{E}\frac{1}{m}\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right) \\\
 &amp; = \frac{1}{m}\sum_{i=1}^{m}\mathbb{E}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\\\
 &amp; = 0
@@ -370,7 +370,7 @@
 \mathbb{P}\left[\left|\theta_{h}\right|&gt;\rho\right]\le2\exp(-2m\rho^{2})
 \]</span>即 <span class="math display">\[
 \mathbb{P}\left[\frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|&gt;\rho\right]\le2\exp(-2m\rho^{2})
-\]</span></li>
+\]</span></p></li>
 <li><p>注意到此时<span class="math inline">\(\mathcal{H}_{C}\)</span>仅包含有限个假设,由联合界(简言之,<span class="math inline">\(\mathbb{P}(A\cup B)\le\mathbb{P}(A)+\mathbb{P}(B)\)</span>)可得: <span class="math display">\[
 \mathbb{P}\left[\max_{h\in\mathcal{H}_{C}}\left|\theta_{h}\right|&gt;\rho\right]\le2\left|\mathcal{H}_{C}\right|\exp(-2m\rho^{2})
 \]</span>即 <span class="math display">\[
