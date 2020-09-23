@@ -459,7 +459,7 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
   <entry>
     <title>拉德马赫复杂度</title>
     <url>/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/</url>
-    <content><![CDATA[<p>前言: 本文主要讲了拉德马赫复杂度(Rademacher complexity)[https://en.wikipedia.org/wiki/Rademacher_complexity], 主要参考了Understanding machine learning一书26章.</p>
+    <content><![CDATA[<p>前言: 本文主要讲了拉德马赫复杂度(<a href="https://en.wikipedia.org/wiki/Rademacher_complexity" target="_blank" rel="noopener">Rademacher complexity</a>), 主要参考了Understanding machine learning一书26章.</p>
 <a id="more"></a>
 <hr />
 <p>首先应当接触以下几个概念:</p>
@@ -1396,10 +1396,10 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>EM算法</tag>
         <tag>隐变量模型</tag>
         <tag>Jensen不等式</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
