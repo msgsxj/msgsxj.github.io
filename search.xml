@@ -510,7 +510,11 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
 <li><span class="math inline">\(\mathcal{H}_1=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_1\le 1\}\)</span></li>
 <li><span class="math inline">\(\mathcal{H}_2=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_2\le 1\}\)</span></li>
 </ul>
-<p><span class="math inline">\(\mathcal{H}_1\circ S\)</span>定义为<span class="math inline">\(\{(&lt;\omega, x_i&gt;, i=1...,m):\Vert\omega\Vert_1\le 1\}\)</span>, <span class="math inline">\(\mathcal{H}_2\circ S\)</span>类似的定义, 有如下两个结果: - <span class="math inline">\(R(\mathcal{H}_1\circ S) \le \max_i\Vert x_i\Vert_{\infty}\sqrt{\frac{2\log(2n)}{m}}\)</span> - <span class="math inline">\(R(\mathcal{H}_2\circ S) \le\frac{\max_i\Vert x_i\Vert_2}{\sqrt{m}}\)</span></p>
+<p><span class="math inline">\(\mathcal{H}_1\circ S\)</span>定义为<span class="math inline">\(\{(&lt;\omega, x_i&gt;, i=1...,m):\Vert\omega\Vert_1\le 1\}\)</span>, <span class="math inline">\(\mathcal{H}_2\circ S\)</span>类似的定义, 有如下两个结果:</p>
+<ul>
+<li><span class="math inline">\(R(\mathcal{H}_1\circ S) \le \max_i\Vert x_i\Vert_{\infty}\sqrt{\frac{2\log(2n)}{m}}\)</span></li>
+<li><span class="math inline">\(R(\mathcal{H}_2\circ S) \le\frac{\max_i\Vert x_i\Vert_2}{\sqrt{m}}\)</span></li>
+</ul>
 <p><strong>p.s.</strong> 此外还有软硬间隔SVM的泛化误差界的推导, 见26.3, 26.4; 另一种度量集合复杂度的方法为覆盖数, 见27章.</p>
 ]]></content>
       <categories>
@@ -929,9 +933,9 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>隐变量模型</tag>
         <tag>LDA模型</tag>
         <tag>Dirichlet分布</tag>
+        <tag>隐变量模型</tag>
       </tags>
   </entry>
   <entry>
@@ -1392,10 +1396,10 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>EM算法</tag>
-        <tag>隐变量模型</tag>
-        <tag>Jensen不等式</tag>
         <tag>Python</tag>
+        <tag>隐变量模型</tag>
+        <tag>EM算法</tag>
+        <tag>Jensen不等式</tag>
       </tags>
   </entry>
   <entry>
