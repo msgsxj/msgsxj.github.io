@@ -1396,10 +1396,10 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
         <category>机器学习</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>EM算法</tag>
         <tag>隐变量模型</tag>
         <tag>Jensen不等式</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1589,7 +1589,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 </ol>
 <p>仔细审视之下,7.中的引理2的证明似乎有些问题,下面直接看修正后的引理2的证明: 引理2:</p>
 <blockquote>
-<p><span class="math inline">\(X\)</span>为一随机变量,<span class="math inline">\(x\in\mathbb{R}\)</span>为一标量,假定存在<span class="math inline">\(a&gt;0\)</span>和<span class="math inline">\(b&gt;e^{4}\)</span>,使得对<span class="math inline">\(\forall t&gt;0\)</span>,有<span class="math inline">\(\mathbb{P}\left[\left|X-x\right|&gt;t\right]\le2be^{-t^2/a^2}\)</span>,那么 <span class="math display">\[
+<p><span class="math inline">\(X\)</span>为一随机变量,<span class="math inline">\(x\in\mathbb{R}\)</span>为一标量,假定存在<span class="math inline">\(a&gt;0\)</span>和<span class="math inline">\(b&gt;e^{4}\)</span>,使得对<span class="math inline">\(\forall t&gt;0\)</span>,有<span class="math display">\[\mathbb{P}\left[\left|X-x\right|&gt;t\right]\le2be^{-t^2/a^2}\]</span>那么 <span class="math display">\[
 \mathbb{E}\left[\left|X-x\right|\right]\le a(2e^{2\sqrt{\log(b)}-1}+\sqrt{\log{b}})
 \]</span></p>
 </blockquote>
