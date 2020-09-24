@@ -1396,10 +1396,10 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>EM算法</tag>
         <tag>隐变量模型</tag>
         <tag>Jensen不等式</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1535,7 +1535,9 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 <h2 id="vc-bound-2">VC bound 2</h2>
 <p>Shai Shalve-Shwartz的UNDERSTABDING MACHINE LEARNING一书中定理6.11也给出了一个VC bound: <span class="math display">\[
 \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}
-\]</span>同样上式是以<span class="math inline">\(1-\delta\)</span>的概率成立. 证明分8步走:</p>
+\]</span>同样上式是以<span class="math inline">\(1-\delta\)</span>的概率成立. <code>p.s.</code>若把 <span class="math display">\[
+\tau_{\mathcal{H}}(m)\le\sum_{i=0}^{d_{\mathcal{H}}}\binom{m}{i}\le\left(\frac{em}{d_{\mathcal{H}}}\right)^{d_{\mathcal{H}}}
+\]</span> 带入上式, 也能得到形式上类似于上述两个VC bound的估计(第二项会比较相似).证明分8步走:</p>
 <ol type="1">
 <li><p>引理1: <span class="math display">\[
 \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\right]\le\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\sqrt{2m}}
