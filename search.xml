@@ -1396,10 +1396,10 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
         <category>机器学习</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>EM算法</tag>
         <tag>隐变量模型</tag>
         <tag>Jensen不等式</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1585,11 +1585,14 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\right]\le\frac{2+\sqrt{\log\left(\tau_{\mathcal{H}}(2m)\right)}}{\sqrt{2m}}
 \]</span>即引理1得证</p></li>
 </ol>
-<p>仔细审视之下,7.中的引理2的证明似乎有些问题,下面直接看修正后的引理2的证明: 引理2: &gt;<span class="math inline">\(X\)</span>为一随机变量,<span class="math inline">\(x\in\mathbb{R}\)</span>为一标量,假定存在<span class="math inline">\(a&gt;0\)</span>和<span class="math inline">\(b&gt;e^{4}\)</span>,使得对<span class="math inline">\(\forall t&gt;0\)</span>,有<span class="math inline">\(\mathbb{P}\left[\left|X-x\right|&gt;t\right]\le2be^{-t^2/a^2}\)</span>,那么 <span class="math display">\[
+<p>仔细审视之下,7.中的引理2的证明似乎有些问题,下面直接看修正后的引理2的证明: 引理2:</p>
+<blockquote>
+<p><span class="math inline">\(X\)</span>为一随机变量,<span class="math inline">\(x\in\mathbb{R}\)</span>为一标量,假定存在<span class="math inline">\(a&gt;0\)</span>和<span class="math inline">\(b&gt;e^{4}\)</span>,使得对<span class="math inline">\(\forall t&gt;0\)</span>,有<span class="math inline">\(\mathbb{P}\left[\left|X-x\right|&gt;t\right]\le2be^{-t^2/a^2}\)</span>,那么 <span class="math display">\[
 \mathbb{E}\left[\left|X-x\right|\right]\le a(2e^{2\sqrt{\log(b)}-1}+\sqrt{\log{b}})
 \]</span></p>
+</blockquote>
 <p>证明:令<span class="math inline">\(t_{i}=a\left(i+\sqrt{\log(b)}\right),i=0,1,...\)</span>,有: <span class="math display">\[
-\begin{aligned}\mathbb{E}\left[\left|X-x\right|\right]&amp; \le a\sqrt{\log(b)}\mathbb{P}\left[\left|X-x\right|\le a\sqrt{\log(b)}\right]+\sum_{i=1}^{+\infty}t_{i}\mathbb{P}\left[t_{i-1}&lt;\left|X-x\right|\le t_{i}\right]\\\
+\begin{align}\mathbb{E}\left[\left|X-x\right|\right]&amp; \le a\sqrt{\log(b)}\mathbb{P}\left[\left|X-x\right|\le a\sqrt{\log(b)}\right]+\sum_{i=1}^{+\infty}t_{i}\mathbb{P}\left[t_{i-1}&lt;\left|X-x\right|\le t_{i}\right]\\\
 &amp; \le a\sqrt{\log(b)}+\sum_{i=1}^{+\infty}t_{i}\mathbb{P}\left[\left|X-x\right|&gt; t_{i-1}\right]\\\
 &amp; \le a\sqrt{\log(b)}+\sum_{i=1}^{+\infty}a\left(i+\sqrt{\log(b)}\right)2be^{-\left(i-1+\sqrt{\log(b)}\right)^{2}}\\\
 &amp; = a\sqrt{\log(b)}+2ab\sum_{i=1}^{+\infty}\left(i+\sqrt{\log(b)}\right)e^{-\left(i-1+\sqrt{\log(b)}\right)^{2}}\\\
@@ -1600,8 +1603,20 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 &amp; =  a\sqrt{\log(b)}+2abe^{-\log(b)+2\sqrt{\log(b)}-1}\\\
 &amp; =  a\sqrt{\log(b)}+2ae^{2\sqrt{\log(b)}-1}\\\
 &amp; = a(2e^{2\sqrt{\log(b)}-1}+\sqrt{\log{b}})
-\end{aligned}
-\]</span> 第一个不等号为分区间放大期望,第二个不等号为把概率放大,第三个不等号为将条件带入,第四个等号为常数放到前面,第五个不等号可由<span class="math inline">\(xe^{-\left(x-1\right)^{2}}\)</span>的单调递减性得到(原证明则是在这一步的积分下限错误的放大为<span class="math inline">\(1+\sqrt{\log(b)}\)</span>),第六个不等号为变量代换,第七个不等号由<span class="math inline">\(b&gt;e^{4}\)</span>知积分下限大于1,故可将将1放大为<span class="math inline">\(y\)</span>,第八个等号为求积分,第九、十和十一个等号均为化简.那么上述第7步应当做相应修正,此时的VC bound应当修正为: <span class="math display">\[
+\end{align}
+\]</span></p>
+<ol type="1">
+<li>第一个不等号为分区间放大期望</li>
+<li>第二个不等号为把概率放大</li>
+<li>第三个不等号为将条件带入</li>
+<li>第四个等号为常数放到前面</li>
+<li>第五个不等号可由<span class="math inline">\(xe^{-\left(x-1\right)^{2}}\)</span>的单调递减性得到(<strong>原证明则是在这一步的积分下限错误的放大为<span class="math inline">\(1+\sqrt{\log(b)}\)</span></strong>)</li>
+<li>第六个不等号为变量代换,</li>
+<li>第七个不等号由<span class="math inline">\(b&gt;e^{4}\)</span>知积分下限大于1,故可将将1放大为<span class="math inline">\(y\)</span></li>
+<li>第八个等号为求积分</li>
+<li>第九、十和十一个等号均为化简.</li>
+</ol>
+<p>那么上述第7步应当做相应修正,此时的VC bound应当修正为: <span class="math display">\[
 \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le\frac{2e^{2\sqrt{\log\left(\tau_{\mathcal{h}}(2m)\right)}-1}+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}
 \]</span><code>p.s.</code>上面那个界可以说非常丑, 只能怪笔者没能把引理中后面那部分放缩到简单情形, 望读者老爷们不吝赐教. 最后要注意的是该VC bound要求假设类<span class="math inline">\(\mathcal{H}\)</span>的VC维要满足<span class="math inline">\(b=\left|\mathcal{H}_{C}\right|&gt;e^{4}\)</span></p>
 ]]></content>
