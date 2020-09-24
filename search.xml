@@ -1532,8 +1532,8 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
 \]</span> <code>p.s.</code> 显然有<span class="math inline">\(\mathbb{P}\left[\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right]\le\mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right]\)</span>, 就能轻易得到西瓜书定理12.2及定理12.3的结论.</p>
 <hr />
-<h2 id="vc-bound-2">VC bound 2</h2>
-<p>Shai Shalve-Shwartz的UNDERSTABDING MACHINE LEARNING一书中定理6.11也给出了一个VC bound: <span class="math display">\[
+<h2 id="vc-bound-23">VC bound 2&amp;3</h2>
+<p>Shai Shalve-Shwartz的UNDERSTABDING MACHINE LEARNING一书中定理6.11也给出了两个VC bound: <span class="math display">\[
 \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}
 \]</span>同样上式是以<span class="math inline">\(1-\delta\)</span>的概率成立. <code>p.s.</code>若把 <span class="math display">\[
 \tau_{\mathcal{H}}(m)\le\sum_{i=0}^{d_{\mathcal{H}}}\binom{m}{i}\le\left(\frac{em}{d_{\mathcal{H}}}\right)^{d_{\mathcal{H}}}
@@ -1625,7 +1625,7 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
 </ol>
 <p>那么上述第7步应当做相应修正,此时的VC bound应当修正为: <span class="math display">\[
 \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le\frac{2e^{2\sqrt{\log\left(\tau_{\mathcal{h}}(2m)\right)}-1}+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}
-\]</span><code>p.s.</code>上面那个界可以说非常丑, 只能怪笔者没能把引理中后面那部分放缩到简单情形, 望读者老爷们不吝赐教. 最后要注意的是该VC bound要求假设类<span class="math inline">\(\mathcal{H}\)</span>的VC维要满足<span class="math inline">\(b=\left|\mathcal{H}_{C}\right|&gt;e^{4}\)</span></p>
+\]</span><code>p.s.</code>上面那个界可以说非常丑, 只能怪笔者没能把引理中后面那部分放缩到简单情形, 望读者老爷们不吝赐教. 最后要注意的是该VC bound 2要求假设类<span class="math inline">\(\mathcal{H}\)</span>的VC维要满足<span class="math inline">\(b=\left|\mathcal{H}_{C}\right|&gt;e^{4}\)</span></p>
 ]]></content>
       <categories>
         <category>机器学习</category>
