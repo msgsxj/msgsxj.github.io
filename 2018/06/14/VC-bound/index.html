@@ -54,7 +54,7 @@
 <meta property="og:description" content="前言:最近读Léon Bottou的18年2月的文章Optimization Methods for Large-Scale Machine Learning时,读到式(2.7)觉得怪怪的,于是特此将笔者看到过的有关VC bound的证明整理一下,分直观证明和理论证明去叙述:  直观证明来自台湾大学林轩田的机器学习基石课程. 理论证明来自Shai Shalve-Shwartz的UNDERSTAND">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-06-14T05:21:22.000Z">
-<meta property="article:modified_time" content="2020-09-27T05:26:50.444Z">
+<meta property="article:modified_time" content="2020-09-27T05:32:20.744Z">
 <meta property="article:author" content="msgsxj">
 <meta property="article:tag" content="VC bound">
 <meta name="twitter:card" content="summary">
@@ -258,7 +258,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-27 13:26:50" itemprop="dateModified" datetime="2020-09-27T13:26:50+08:00">2020-09-27</time>
+                <time title="修改时间：2020-09-27 13:32:20" itemprop="dateModified" datetime="2020-09-27T13:32:20+08:00">2020-09-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -286,7 +286,7 @@
         <p>前言:最近读Léon Bottou的18年2月的文章<a href="https://arxiv.org/pdf/1606.04838.pdf" target="_blank" rel="noopener">Optimization Methods for Large-Scale Machine Learning</a>时,读到式(2.7)觉得怪怪的,于是特此将笔者看到过的有关VC bound的证明整理一下,分直观证明和理论证明去叙述:</p>
 <ul>
 <li>直观证明来自台湾大学林轩田的机器学习基石课程.</li>
-<li>理论证明来自Shai Shalve-Shwartz的UNDERSTANDING MACHINE LEARNING一书.</li>
+<li>理论证明来自Shai Shalve-Shwartz的UNDERSTANDING MACHINE LEARNIN[UML]一书.</li>
 </ul>
 <p><code>p.s.</code> 读本文需要读者至少知道VC维的含义, VC界的含义.</p>
 <a id="more"></a>
@@ -329,18 +329,18 @@
 \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\frac{4\left(2m\right)^{d_{\mathcal{H}}}}{\delta}}
 \]</span></li>
 </ol>
-<p>思路叙述完毕,细看之下,4中不等式放的太宽了,事实上,当<span class="math inline">\(m&gt;d_{\mathcal{H}}+1\)</span>有如下不等式成立:<span class="math inline">\(\sum_{i=0}^{d_{\mathcal{H}}}\binom{m}{i}\le \left(\frac{em}{d_{\mathcal{H}}}\right)^{d_{\mathcal{H}}}\)</span>(证明可见UNDERSTABDING MACHINE LEARNING一书附录A.5),此时VC bound变成: <span class="math display">\[
+<p>思路叙述完毕,细看之下,4中不等式放的太宽了,事实上,当<span class="math inline">\(m&gt;d_{\mathcal{H}}+1\)</span>有如下不等式成立:<span class="math inline">\(\sum_{i=0}^{d_{\mathcal{H}}}\binom{m}{i}\le \left(\frac{em}{d_{\mathcal{H}}}\right)^{d_{\mathcal{H}}}\)</span>(证明可见[UML]一书附录A.5),此时VC bound变成: <span class="math display">\[
 \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\frac{4(\frac{2em}{d_{\mathcal{H}}})^{d_{\mathcal{H}}}}{\delta}}
 \]</span>整理得: <span class="math display">\[
 \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
 \]</span> <code>p.s.</code> 显然有<span class="math inline">\(\mathbb{P}\left[\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right]\le\mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right]\)</span>, 就能轻易得到西瓜书定理12.2及定理12.3的结论.</p>
 <hr />
 <h2 id="vc-bound-23">VC bound 2&amp;3</h2>
-<p>Shai Shalve-Shwartz的UNDERSTABDING MACHINE LEARNING一书中定理6.11也给出了两个VC bound: <span class="math display">\[
+<p>Shai Shalve-Shwartz的[UML]一书中定理6.11也给出了两个VC bound: <span class="math display">\[
 \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le\frac{2+\sqrt{\log\left(  \tau_{\mathcal{h}}(2m) \right)}}{\delta\sqrt{2m}}
 \]</span>同样上式是以<span class="math inline">\(1-\delta\)</span>的概率成立. <code>p.s.</code>若把 <span class="math display">\[
 \tau_{\mathcal{H}}(m)\le\sum_{i=0}^{d_{\mathcal{H}}}\binom{m}{i}\le\left(\frac{em}{d_{\mathcal{H}}}\right)^{d_{\mathcal{H}}}
-\]</span> 带入上式, 也能得到形式上类似于上述两个VC bound的估计(第二项会比较相似), 但会明显劣于上述两个界,因为随着<span class="math inline">\(\delta\)</span>接近于0, <span class="math inline">\(\frac{1}{\delta}\)</span>的增长会明显快于<span class="math inline">\(\log(\frac{1}{\delta})\)</span>. 庆幸的是, UNDERSTABDING MACHINE LEARNING的28章中给出一个相对更紧的界, 这与上述两个VC bound也一致起来了(系数不一致), 记为VC bound 3, 证明见28章: <span class="math display">\[
+\]</span> 带入上式, 也能得到形式上类似于上述两个VC bound的估计(第二项会比较相似), 但会明显劣于上述两个界,因为随着<span class="math inline">\(\delta\)</span>接近于0, <span class="math inline">\(\frac{1}{\delta}\)</span>的增长会明显快于<span class="math inline">\(\log(\frac{1}{\delta})\)</span>. 庆幸的是, [UML]的28章中给出一个相对更紧的界, 这与上述两个VC bound也一致起来了(系数不一致), 记为VC bound 3, 证明见28章: <span class="math display">\[
 \begin{aligned}
 \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right| &amp; \leq \sqrt{\frac{8 d_{\mathcal{H}} \log (e m / d_{\mathcal{H}})}{m}}+\sqrt{\frac{2 \log (4 / \delta)}{m}} \\
 &amp; \leq \sqrt{2} \sqrt{\frac{8 d_{\mathcal{H}} \log (e m / d_{\mathcal{H}})+2 \log (4 / \delta)}{m}}
@@ -382,15 +382,15 @@
 \mathbb{P}\left[\max_{h\in\mathcal{H}_{C}}\left|\theta_{h}\right|&gt;\rho\right]\le2\left|\mathcal{H}_{C}\right|\exp(-2m\rho^{2})
 \]</span>即 <span class="math display">\[
 \mathbb{P}\left[\max_{h\in\mathcal{H}_{C}}\frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|&gt;\rho\right]\le2\left|\mathcal{H}_{C}\right|\exp(-2m\rho^{2})
-\]</span> 第7步用到一个引理2:</li>
+\]</span></li>
+<li>第7步用到一个引理2:</li>
 </ol>
 <blockquote>
 <p><span class="math inline">\(X\)</span>为一随机变量,<span class="math inline">\(x\in\mathbb{R}\)</span>为一标量,假定存在<span class="math inline">\(a&gt;0\)</span>和<span class="math inline">\(b&gt;e\)</span>,使得对<span class="math inline">\(\forall t&gt;0\)</span>,有<span class="math inline">\(\mathbb{P}\left[\left|X-x\right|&gt;t\right]\le2be^{-t^2/a^2}\)</span>,那么 <span class="math display">\[
 \mathbb{E}\left[\left|X-x\right|\right]\le a(2+\sqrt{\log{b}})
 \]</span></p>
 </blockquote>
-<ol start="7" type="1">
-<li>引理2的证明可见UNDERSTABDING MACHINE LEARNING一书附录A.4,将<span class="math inline">\(X=\max_{h\in\mathcal{H}_{C}}\left|\theta_{h}\right|\)</span>,<span class="math inline">\(x=0\)</span>,<span class="math inline">\(b=\left|\mathcal{H}_{C}\right|\)</span>,<span class="math inline">\(a=1/\sqrt{2m}\)</span>带入得: <span class="math display">\[
+<p>引理2的证明可见[UML]一书附录A.4,将<span class="math inline">\(X=\max_{h\in\mathcal{H}_{C}}\left|\theta_{h}\right|\)</span>,<span class="math inline">\(x=0\)</span>,<span class="math inline">\(b=\left|\mathcal{H}_{C}\right|\)</span>,<span class="math inline">\(a=1/\sqrt{2m}\)</span>带入得: <span class="math display">\[
 \mathbb{E}\left[\max_{h\in\mathcal{H}_{C}}\left|\theta_{h}\right|\right]\le\frac{2+\sqrt{\log\left(\left|\mathcal{H}_{C}\right|\right)}}{\sqrt{2m}}
 \]</span>即有4.的最右端 <span class="math display">\[
 \mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\left[  \max_{h\in\mathcal{H}_{C}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right]\le\frac{2+\sqrt{\log\left(\left|\mathcal{H}_{C}\right|\right)}}{\sqrt{2m}}
@@ -398,8 +398,7 @@
 \mathop{\mathbb{E}}_{S,S&#39;\sim\mathcal{D}^{m}} \mathop{\mathbb{E}}_{\sigma\sim U_{\pm}^{m}}\left[  \sup_{h\in\mathcal{H}} \frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|\right] \le\frac{2+\sqrt{\log\left(\tau_{\mathcal{H}}(2m)\right)}}{\sqrt{2m}}
 \]</span>再由2.即 <span class="math display">\[
 \mathop{\mathbb{E}}_{S\sim\mathcal{D}^{m}}\left[  \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\right]\le\frac{2+\sqrt{\log\left(\tau_{\mathcal{H}}(2m)\right)}}{\sqrt{2m}}
-\]</span>即引理1得证</li>
-</ol>
+\]</span>即引理1得证</p>
 <p>仔细审视之下,7.中的引理2的证明似乎有些问题,下面直接看修正后的引理2的证明: 引理2:</p>
 <blockquote>
 <p><span class="math inline">\(X\)</span>为一随机变量,<span class="math inline">\(x\in\mathbb{R}\)</span>为一标量,假定存在<span class="math inline">\(a&gt;0\)</span>和<span class="math inline">\(b&gt;e^{4}\)</span>,使得对<span class="math inline">\(\forall t&gt;0\)</span>,有<span class="math display">\[\mathbb{P}\left[\left|X-x\right|&gt;t\right]\le2be^{-t^2/a^2}\]</span>那么 <span class="math display">\[
