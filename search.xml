@@ -490,7 +490,7 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
 <h3 id="数据相关界">数据相关界</h3>
 <p>首先来看一个重要的不等式, 有限偏差集中不等式, 又称<a href="https://en.wikipedia.org/wiki/Doob_martingale#McDiarmid&#39;s_inequality" target="_blank" rel="noopener">McDiarmid 不等式</a>, 这个不等式可见维基, 这个不等式可用来推出一个与训练集<span class="math inline">\(S\)</span>相关的界:</p>
 <blockquote>
-<p>假设对所有的<span class="math inline">\(z\)</span>和<span class="math inline">\(h\in\mathcal{H}\)</span>, <span class="math inline">\(|l(h, z)|\le c\)</span>, 那么以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(l \circ \mathcal{H}\circ S)]+c\sqrt{\frac{2\log(2/\delta)}{m}}\]</span>以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2R(l \circ \mathcal{H}\circ S)+3c\sqrt{\frac{2\log(4/\delta)}{m}}\]</span> 以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))-L_{\mathcal{D}}(h)\le 2R(l \circ \mathcal{H}\circ S)+4c\sqrt{\frac{2\log(8/\delta)}{m}}\]</span></p>
+<p>假设对所有的<span class="math inline">\(z\)</span>和<span class="math inline">\(h\in\mathcal{H}\)</span>, <span class="math inline">\(|l(h, z)|\le c\)</span>, 那么以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(l \circ \mathcal{H}\circ S)]+c\sqrt{\frac{2\log(2/\delta)}{m}}\]</span>以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2R(l \circ \mathcal{H}\circ S)+4c\sqrt{\frac{2\log(4/\delta)}{m}}\]</span> 以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))-L_{\mathcal{D}}(h)\le 2R(l \circ \mathcal{H}\circ S)+5c\sqrt{\frac{2\log(8/\delta)}{m}}\]</span></p>
 </blockquote>
 <p>有兴趣的朋友不妨试着去推一推, 上述1, 2的界的推导类似于西瓜书定理12.5, 唯一不同的是这里满足在常数为<span class="math inline">\(2c/m\)</span>下的有界偏差条件, 而西瓜书直接为1; 第三个不等式则是多一步霍夫丁不等式.</p>
 <ul>
@@ -1399,10 +1399,10 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>EM算法</tag>
         <tag>隐变量模型</tag>
         <tag>Jensen不等式</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
