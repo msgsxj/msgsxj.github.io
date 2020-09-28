@@ -28,8 +28,8 @@ cov(v_2,v_1)&amp;=cov(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_2,\
 <h2 id="cca-ica和pca">CCA, ICA和PCA</h2>
 <p>换一个角度看, 将CCA应用到<span class="math inline">\(x(t)\)</span>, <span class="math inline">\(x(t-1)\)</span>可视为是在对<span class="math inline">\(x(t)\)</span>进行线性降维的操作, 只不过需要满足构造出特征的<strong>时间维度的自相关性</strong>尽可能大且不同的构造特征之间<strong>互不相关</strong>的约束, 这就能很自然的联想到另外两种降维的方法, 这里仅简单介绍:</p>
 <ol type="1">
-<li>主成分分析(Principal component analysis, PCA)的出发点为降维后的数据点到新子空间的距离都尽可能的近, 或者等价地, 降维后的数据在新子空间上的投影都尽可能的分散, 因此从fMRI数据的角度来看, PCA只是对每一个时间节点<strong>让构造出特征的方差尽可能大</strong>且不同的构造特征之间<strong>互不相关</strong>, 而<strong>没能</strong>考虑其本身是个时序数据.</li>
-<li>独立成分分析(Independent components analysis, ICA)最大的假设是不同的构造特征之间<strong>相互独立</strong>, 因此从fMRI数据的角度来看, ICA也<strong>没能</strong>考虑其本身是个时序数据.</li>
+<li>主成分分析(Principal component analysis, PCA)的出发点为降维后的数据点到新子空间的距离都尽可能的近, 或者等价地, 降维后的数据在新子空间上的投影都尽可能的分散, 其构造出的特征<strong>方差尽可能大</strong>且不同的构造特征之间<strong>互不相关</strong>.</li>
+<li>独立成分分析(Independent components analysis, ICA)最大的假设是不同的构造特征之间<strong>相互独立</strong>且构造都是<strong>非高斯分布</strong>.</li>
 </ol>
 ]]></content>
       <categories>
@@ -1399,10 +1399,10 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
         <category>机器学习</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>EM算法</tag>
         <tag>隐变量模型</tag>
         <tag>Jensen不等式</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
