@@ -480,7 +480,7 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
 <p>如果<span class="math inline">\(S\)</span>是<span class="math inline">\(\varepsilon/2\)</span>-代表性样本, 那么在ERM准则下它是<span class="math inline">\(\varepsilon\)</span>-一致的, 即<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))\le \min_{h\in\mathcal{H}}L_{\mathcal{D}}(h)+\varepsilon\]</span></p>
 </blockquote>
 <hr />
-<h3 id="训练集的代表性与拉德马赫复杂度">训练集的代表性与拉德马赫复杂度</h3>
+<h3 id="拉德马赫复杂度">拉德马赫复杂度</h3>
 <p>回顾之前针对二分类问题建立的<a href="https://msgsxj.cn/2018/06/14/VC-bound/">VC bound</a>:<span class="math display">\[
 \sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
 \]</span>注意到要定义训练误差与泛化误差必须要定义损失函数, 损失函数实际上选定了二分类问题的常用的损失函数0-1损失: <span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>; 因此上述VC bound又可以写作:<span class="math display">\[
@@ -513,7 +513,7 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
 <li><span class="math inline">\(\mathcal{H}_1=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_1\le 1\}\)</span></li>
 <li><span class="math inline">\(\mathcal{H}_2=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_2\le 1\}\)</span></li>
 </ul>
-<p><span class="math inline">\(\mathcal{H}_1\circ S\)</span>定义为<span class="math inline">\(\{(&lt;\omega, x_i&gt;, i=1...,m):\Vert\omega\Vert_1\le 1\}\)</span>, <span class="math inline">\(\mathcal{H}_2\circ S\)</span>类似的定义, 有如下两个结果:</p>
+<p><span class="math inline">\(\mathcal{H}_1\circ S\)</span>定义为<span class="math inline">\(\{(&lt;\omega, x_i&gt;, i=1...,m):\Vert\omega\Vert_1\le 1\}\)</span>, <span class="math inline">\(\mathcal{H}_2\circ S\)</span>类似的定义, 有如下两个结果, 证明见[UML]一书引理26.10、26.11:</p>
 <ul>
 <li><span class="math inline">\(R(\mathcal{H}_1\circ S) \le \max_i\Vert x_i\Vert_{\infty}\sqrt{\frac{2\log(2n)}{m}}\)</span></li>
 <li><span class="math inline">\(R(\mathcal{H}_2\circ S) \le\frac{\max_i\Vert x_i\Vert_2}{\sqrt{m}}\)</span></li>
