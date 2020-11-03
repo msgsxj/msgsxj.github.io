@@ -426,7 +426,7 @@
 </ul>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">con = url(<span class="string">"http://www.msgsxj.cn/about/"</span>)</span><br><span class="line">htmlCode = readLines(con)</span><br><span class="line">close(con)</span><br><span class="line">htmlCode[<span class="number">378</span>:<span class="number">380</span>]</span><br></pre></td></tr></table></figure>
 <figure>
-<img src="/pictures/R/R_me.png" alt="" /><figcaption>me</figcaption>
+<img src="/pictures/R/R_me.png" alt="me" /><figcaption aria-hidden="true">me</figcaption>
 </figure>
 <ul>
 <li>XML包中函数:</li>
@@ -499,7 +499,7 @@
 </ul>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">13435</span>)</span><br><span class="line">X &lt;- data.frame(<span class="string">"var1"</span>=sample(<span class="number">1</span>:<span class="number">5</span>),<span class="string">"var2"</span>=sample(<span class="number">6</span>:<span class="number">10</span>),<span class="string">"var3"</span>=sample(<span class="number">11</span>:<span class="number">15</span>))</span><br><span class="line">X &lt;- X[sample(<span class="number">1</span>:<span class="number">5</span>),]</span><br><span class="line">X$var2[c(<span class="number">1</span>,<span class="number">3</span>)]=<span class="literal">NA</span></span><br><span class="line">X</span><br><span class="line">X[,<span class="number">1</span>] <span class="comment">#提取第一列数据</span></span><br><span class="line">X[,<span class="string">"var1"</span>] <span class="comment">#提取var1数据</span></span><br><span class="line">X[<span class="number">1</span>:<span class="number">2</span>,<span class="string">"var2"</span>]</span><br><span class="line">X[(X$var1 &lt;= <span class="number">3</span> &amp; X$var3 &gt; <span class="number">11</span>),]</span><br><span class="line">X[(X$var1 &lt;= <span class="number">3</span> | X$var3 &gt; <span class="number">15</span>),]</span><br><span class="line">X[which(X$var2 &gt; <span class="number">8</span>),]</span><br><span class="line">X[(X$var2 &gt; <span class="number">8</span>),] <span class="comment">#会返回NA</span></span><br></pre></td></tr></table></figure>
 <figure>
-<img src="/pictures/R/R_X%5B%5D.png" alt="" /><figcaption>X[]</figcaption>
+<img src="/pictures/R/R_X%5B%5D.png" alt="X[]" /><figcaption aria-hidden="true">X[]</figcaption>
 </figure>
 <h3 id="sorting">Sorting</h3>
 <ul>
