@@ -223,6 +223,122 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://msgsxj.cn/2021/01/19/%E8%BF%91%E7%AB%AF%E6%A2%AF%E5%BA%A6%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="msgsxj">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="msgsxj'blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/19/%E8%BF%91%E7%AB%AF%E6%A2%AF%E5%BA%A6%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">近端梯度方法</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-01-19 12:50:14 / 修改时间：12:53:57" itemprop="dateCreated datePublished" datetime="2021-01-19T12:50:14+08:00">2021-01-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">优化算法</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="正则神经网络">正则神经网络</h2>
+<p>在人工智能模型进行学习前，正则化 （regularization）能让我们把众多参数比如专家经验、假设、限制等转化为数学公式中的相关参数条件，并最终纳入到模型里面的一个方法。其在AI领域，不仅用于大大降低计算和学习的成本，还在众多领域发挥作用，譬如医疗大数据的清洗和标准化、影像配准（用于立体定向手术及个体长期AI预测的标准化）、临床生物特征（biomarker）及组学分析、蛋白质结构建模等。如果AI在上述领域中缺少了它，不论在研发或者应用会有更多难以解决、解释的问题。</p>
+<figure>
+<img src="/pictures/proximal/1.png" alt="1" /><figcaption aria-hidden="true">1</figcaption>
+</figure>
+<p>前几天，有一位AI医学的从业者感叹地说道：“加了正则化后，训练后的神经网络的效果没看到啥提升；对寻找生物标志也没啥帮助。” 他用了 Pytorch 深度学习框架，把正则化直接加进网络里的损失函数作为其中一项。不论在 Pytorch 或 Tensorflow 框架，许多人也会这么做，但无法达到该有的正则效果。</p>
+<p>其实，这样的做法是错的，当然显得无效。原因在于，一般深度学习所用的梯度下降方法受限于损失函数的性质；正则项会给损失函数带来本质上的改变，即非光滑性质，因此神经网络在学习的过程中会遇到不可微的现象。</p>
+<figure>
+<img src="/pictures/proximal/2.png" alt="2" /><figcaption aria-hidden="true">2</figcaption>
+</figure>
+<p>当我们在建立正则化的神经网络时，我们不把正则项直接加进去，而是会运用近端梯度方法（proximal gradient method，PGM）；效果特好。我们也建议此方法给读者包括 AI医学的从业者们。</p>
+<p>首先，正则化损失最小化使用在机器学习领域时，可视为一种联合最小化经验风险和正则化函数的学习范式，其形式可写为：</p>
+<p><span class="math display">\[\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)\]</span> 这里假定<span class="math inline">\(L_S(\omega)\)</span>表示关于训练样本集<span class="math inline">\(S\)</span>和模型系数<span class="math inline">\(\omega\)</span>的经验风险项；<span class="math inline">\(\mathcal{R}(\omega)\)</span>表示关于模型系数<span class="math inline">\(\omega\)</span>的正则项，代表我们对模型的额外偏好（可以按照医学的目标来设定）；正则项系数<span class="math inline">\(\alpha\)</span>用于控制正则的程度。以回归为例，当经验风险项为最小二乘损失<span class="math inline">\(L_S(\omega)=(X\omega-Y)^T(X\omega-Y)\)</span>时，若正则项为<span class="math inline">\(\ell_2\)</span>正则<span class="math inline">\(\mathcal{R}(\omega)=\Vert\omega\Vert_2^2\)</span>，此时RLM问题为</p>
+<p><span class="math display">\[\min_{\omega}(X\omega-Y)^T(X\omega-Y)+\alpha\Vert\omega\Vert_2^2\]</span> 其有闭式解(closed form solution)<span class="math inline">\(\omega_*=(X^TX+\alpha I)^{-1}X^TY\)</span>; 若正则项为<span class="math inline">\(\ell_1\)</span>正则<span class="math inline">\(\mathcal{R}(\omega)=\Vert\omega\Vert_1\)</span>，此时RLM问题为</p>
+<p><span class="math display">\[\min_{\omega}(X\omega-Y)^T(X\omega-Y)+\alpha\Vert\omega\Vert_1\]</span> 上述问题又名Lasso问题，可以采用坐标下降方法、近端梯度方法(Proximal Gradient Method, PGM)去解决，且相比<span class="math inline">\(\ell_2\)</span>正则，<span class="math inline">\(\ell_1\)</span>正则得到的解更为稀疏。</p>
+<h3 id="近端梯度方法解决ell_1正则化问题">近端梯度方法解决<span class="math inline">\(\ell_1\)</span>正则化问题</h3>
+<p>一般的，考虑如下问题带正则项的机器学习问题</p>
+<p><span class="math display">\[\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)\]</span> 其中<span class="math inline">\(L_S(\omega)\)</span>具有L-smooth性质，即<span class="math inline">\(\Vert\nabla_\omega L_S(x)-\nabla_\omega L_S(y)\Vert_2\le L\Vert x-y\Vert_2\)</span>。近端梯度方法(Proximal Gradient Method, PGM)处理的方式为迭代地进行如下计算 1. 计算</p>
+<p><span class="math display">\[z_k=\omega_k-\frac{1}{L}\nabla L_S(\omega_k)\]</span> 2. 求解</p>
+<p><span class="math display">\[
+\begin{aligned}
+\omega_{k+1} &amp;= \arg\min_\omega\ \frac{L}{2}\Vert \omega-z_k\Vert_2^2+\alpha \mathcal{R}(\omega) \\
+&amp;=\arg\min_\omega\ \frac{1}{2}\Vert \omega-z_k\Vert_2^2+\frac{\alpha}{L} \mathcal{R}(\omega)\\
+\end{aligned}
+\]</span></p>
+<p>第一步中的<span class="math inline">\(\nabla L_S(\omega_k)\)</span>表示<span class="math inline">\(L_S(\omega)\)</span>在<span class="math inline">\(\omega=\omega_k\)</span>处的梯度；第二步的计算复杂度则依赖于<span class="math inline">\(\mathcal{R}(\omega)\)</span>的选取。接下来我们从第二步的计算中抽象出近端算子<span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>的概念</p>
+<p><span class="math display">\[\operatorname{prox}_{h}(z)=\underset{\omega \in \mathbb{R}^{n}}{\arg \min }\ \frac{1}{2}\|\omega-z\|_{2}^{2}+h(\omega)\]</span> 当<span class="math inline">\(h(\omega)=\lambda\|\omega\|_{1}\)</span>，<span class="math inline">\(\lambda&gt;0\)</span>，<span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>恰为软阈值算子(Soft Threshold)[1]</p>
+<p><span class="math display">\[
+\left[\operatorname{prox}_{h}(z)\right]_{i}=\left\{\begin{array}{ll}
+0 &amp; \text { if }\left|z_{i}\right| \leq \lambda \\
+z_{i}-\lambda &amp; \text { if } z_{i}&gt;\lambda \\
+z_{i}+\lambda &amp; \text { if } z_{i}&lt;-\lambda
+\end{array} \quad i=1, \ldots, n\right.;
+\]</span> 上述闭式解意味着对于正则项为<span class="math inline">\(\ell_1\)</span>的RLM问题，近端梯度方法能够高效的解决。</p>
+<h3 id="近端梯度方法解决其它正则问题">近端梯度方法解决其它正则问题</h3>
+<p>当<span class="math inline">\(h(\omega)=\sum_{i=1}^{n}\left(\lambda^{2}-\left(\left|\omega_{i}\right|-\lambda\right)^{2} \mathbb{I}\left(\left|\omega_{i}\right|&lt;\lambda\right)\right)\)</span>, <span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>恰为硬阈值算子(Hard Threshold)[2]; 当<span class="math inline">\(h(\omega)=\|\omega\|_{1}-\lambda\|\omega\|_{2}\)</span>, [3]给出了闭式解。因此，对于上述两种正则的RLM问题而言，近端梯度方法也能够高效的解决。</p>
+<h3 id="近端梯度方法的一种直观理解">近端梯度方法的一种直观理解</h3>
+<p>回到近端梯度方法处理的问题上来</p>
+<p><span class="math display">\[\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)\]</span> 近端梯度方法做的事可以理解为分步最优化原目标函数的一个上界</p>
+<p><span class="math display">\[
+\begin{aligned}
+L_S(\omega)+\alpha\mathcal{R}(\omega) &amp; \leq L_S(\omega_k)+\left\langle\nabla L_S(\omega_k), \omega-\omega_k\right\rangle+\frac{L}{2}\left\|\omega-\omega_k\right\|_{2}^{2}+\alpha\mathcal{R}(\omega) \\
+&amp;=\frac{L}{2}\left\|\omega-\left(\omega_k-\frac{1}{L} \nabla L_S(\omega_k)\right)\right\|_{2}^{2}+\alpha\mathcal{R}(\omega) \\
+\end{aligned}
+\]</span> 第一个不等式可由L-smooth性质得到，而近端梯度方法等价于最小化上式。</p>
+<hr />
+<p>[1] Boyd, Stephen, Stephen P. Boyd, and Lieven Vandenberghe. Convex optimization. Cambridge university press, 2004. [2] Antoniadis, Anestis. "Wavelets in statistics: a review." Journal of the Italian Statistical Society 6.2 (1997): 97. [3] Lou, Yifei, and Ming Yan. "Fast L1–L2 minimization via a proximal operator." Journal of Scientific Computing 74.2 (2018): 767-785.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://msgsxj.cn/2020/06/20/%E5%85%B8%E5%9E%8B%E7%9B%B8%E5%85%B3%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -966,89 +1082,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://msgsxj.cn/2018/10/23/%E9%AB%98%E6%95%88%E8%83%BD%E4%BA%BA%E5%A3%AB%E7%9A%84%E4%B8%83%E4%B8%AA%E4%B9%A0%E6%83%AF-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="msgsxj">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="msgsxj'blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/10/23/%E9%AB%98%E6%95%88%E8%83%BD%E4%BA%BA%E5%A3%AB%E7%9A%84%E4%B8%83%E4%B8%AA%E4%B9%A0%E6%83%AF-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">高效能人士的七个习惯-读书笔记</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-10-23 23:40:52" itemprop="dateCreated datePublished" datetime="2018-10-23T23:40:52+08:00">2018-10-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-26 22:55:10" itemprop="dateModified" datetime="2020-05-26T22:55:10+08:00">2020-05-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">读书笔记</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>前言: 大部分人在聆听时并不是想理解对方, 而是为了做出回应------习惯五
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/10/23/%E9%AB%98%E6%95%88%E8%83%BD%E4%BA%BA%E5%A3%AB%E7%9A%84%E4%B8%83%E4%B8%AA%E4%B9%A0%E6%83%AF-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1119,7 +1152,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1132,7 +1165,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-count">66</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1165,7 +1198,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
