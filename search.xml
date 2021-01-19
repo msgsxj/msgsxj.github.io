@@ -3,25 +3,20 @@
   <entry>
     <title>近端梯度方法</title>
     <url>/2021/01/19/%E8%BF%91%E7%AB%AF%E6%A2%AF%E5%BA%A6%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="正则神经网络">正则神经网络</h2>
-<p>在人工智能模型进行学习前，正则化 （regularization）能让我们把众多参数比如专家经验、假设、限制等转化为数学公式中的相关参数条件，并最终纳入到模型里面的一个方法。其在AI领域，不仅用于大大降低计算和学习的成本，还在众多领域发挥作用，譬如医疗大数据的清洗和标准化、影像配准（用于立体定向手术及个体长期AI预测的标准化）、临床生物特征（biomarker）及组学分析、蛋白质结构建模等。如果AI在上述领域中缺少了它，不论在研发或者应用会有更多难以解决、解释的问题。</p>
-<figure>
-<img src="/pictures/proximal/1.png" alt="1" /><figcaption aria-hidden="true">1</figcaption>
-</figure>
-<p>前几天，有一位AI医学的从业者感叹地说道：“加了正则化后，训练后的神经网络的效果没看到啥提升；对寻找生物标志也没啥帮助。” 他用了 Pytorch 深度学习框架，把正则化直接加进网络里的损失函数作为其中一项。不论在 Pytorch 或 Tensorflow 框架，许多人也会这么做，但无法达到该有的正则效果。</p>
-<p>其实，这样的做法是错的，当然显得无效。原因在于，一般深度学习所用的梯度下降方法受限于损失函数的性质；正则项会给损失函数带来本质上的改变，即非光滑性质，因此神经网络在学习的过程中会遇到不可微的现象。</p>
-<figure>
-<img src="/pictures/proximal/2.png" alt="2" /><figcaption aria-hidden="true">2</figcaption>
-</figure>
-<p>当我们在建立正则化的神经网络时，我们不把正则项直接加进去，而是会运用近端梯度方法（proximal gradient method，PGM）；效果特好。我们也建议此方法给读者包括 AI医学的从业者们。</p>
-<p>首先，正则化损失最小化使用在机器学习领域时，可视为一种联合最小化经验风险和正则化函数的学习范式，其形式可写为：</p>
-<p><span class="math display">\[\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)\]</span> 这里假定<span class="math inline">\(L_S(\omega)\)</span>表示关于训练样本集<span class="math inline">\(S\)</span>和模型系数<span class="math inline">\(\omega\)</span>的经验风险项；<span class="math inline">\(\mathcal{R}(\omega)\)</span>表示关于模型系数<span class="math inline">\(\omega\)</span>的正则项，代表我们对模型的额外偏好（可以按照医学的目标来设定）；正则项系数<span class="math inline">\(\alpha\)</span>用于控制正则的程度。以回归为例，当经验风险项为最小二乘损失<span class="math inline">\(L_S(\omega)=(X\omega-Y)^T(X\omega-Y)\)</span>时，若正则项为<span class="math inline">\(\ell_2\)</span>正则<span class="math inline">\(\mathcal{R}(\omega)=\Vert\omega\Vert_2^2\)</span>，此时RLM问题为</p>
+    <content><![CDATA[<p>前言: 本文的主角是近端梯度方法(Proximal Gradient Method), 这是一个在数学优化领域广为人知，在机器学习领域却很少看到的数学优化方法，它在非光滑优化领域发挥着巨大的作用，下面我们从一个机器学习问题开始了解它能够解决什么问题。 <a id="more"></a></p>
+<h3 id="正则化损失最小化">正则化损失最小化</h3>
+<p>正则化损失最小化(Regularized Loss Minimization, RLM)是机 器学习领域中一种联合最小化经验⻛险和正则化函数的学习范式，其形式如下:</p>
+<p><span class="math display">\[\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)\]</span> 这里假定<span class="math inline">\(L_S(\omega)\)</span>表示关于训练样本集<span class="math inline">\(S\)</span>和模型系数<span class="math inline">\(\omega\)</span>的经验⻛险项，代表模型对训练 样本集<span class="math inline">\(S\)</span>拟合的好坏程度;<span class="math inline">\(\mathcal{R}(\omega)\)</span>表示关于模型系数<span class="math inline">\(\omega\)</span>的正则项，代表我们 对模型的额外偏好;正则项系数<span class="math inline">\(\alpha\)</span>用于控制正则ß程度。以回归为例，当经验⻛险项为最小二乘损 失<span class="math inline">\(L_S(\omega)=(X\omega-Y)^T(X\omega-Y)\)</span>时，若正则项为<span class="math inline">\(\ell_2\)</span>正则<span class="math inline">\(\mathcal{R} (\omega)=\Vert\omega\Vert_2^2\)</span>，此时RLM问题为</p>
 <p><span class="math display">\[\min_{\omega}(X\omega-Y)^T(X\omega-Y)+\alpha\Vert\omega\Vert_2^2\]</span> 其有闭式解(closed form solution)<span class="math inline">\(\omega_*=(X^TX+\alpha I)^{-1}X^TY\)</span>; 若正则项为<span class="math inline">\(\ell_1\)</span>正则<span class="math inline">\(\mathcal{R}(\omega)=\Vert\omega\Vert_1\)</span>，此时RLM问题为</p>
 <p><span class="math display">\[\min_{\omega}(X\omega-Y)^T(X\omega-Y)+\alpha\Vert\omega\Vert_1\]</span> 上述问题又名Lasso问题，可以采用坐标下降方法、近端梯度方法(Proximal Gradient Method, PGM)去解决，且相比<span class="math inline">\(\ell_2\)</span>正则，<span class="math inline">\(\ell_1\)</span>正则得到的解更为稀疏。</p>
 <h3 id="近端梯度方法解决ell_1正则化问题">近端梯度方法解决<span class="math inline">\(\ell_1\)</span>正则化问题</h3>
 <p>一般的，考虑如下问题带正则项的机器学习问题</p>
-<p><span class="math display">\[\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)\]</span> 其中<span class="math inline">\(L_S(\omega)\)</span>具有L-smooth性质，即<span class="math inline">\(\Vert\nabla_\omega L_S(x)-\nabla_\omega L_S(y)\Vert_2\le L\Vert x-y\Vert_2\)</span>。近端梯度方法(Proximal Gradient Method, PGM)处理的方式为迭代地进行如下计算 1. 计算</p>
-<p><span class="math display">\[z_k=\omega_k-\frac{1}{L}\nabla L_S(\omega_k)\]</span> 2. 求解</p>
+<p><span class="math display">\[\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)\]</span> 其中<span class="math inline">\(L_S(\omega)\)</span>具有L-smooth性质，即<span class="math inline">\(\Vert\nabla_\omega L_S(x)-\nabla_\omega L_S(y)\Vert_2\le L\Vert x-y\Vert_2\)</span>。近端梯度方法(Proximal Gradient Method, PGM)处理的方式为迭代地进行如下计算</p>
+<pre><code>1. 计算</code></pre>
+<p><span class="math display">\[z_k=\omega_k-\frac{1}{L}\nabla L_S(\omega_k)\]</span></p>
+<ol start="2" type="1">
+<li>求解</li>
+</ol>
 <p><span class="math display">\[
 \begin{aligned}
 \omega_{k+1} &amp;= \arg\min_\omega\ \frac{L}{2}\Vert \omega-z_k\Vert_2^2+\alpha \mathcal{R}(\omega) \\
@@ -55,7 +50,9 @@ L_S(\omega)+\alpha\mathcal{R}(\omega) &amp; \leq L_S(\omega_k)+\left\langle\nabl
         <category>优化算法</category>
       </categories>
       <tags>
-        <tag>proximal gradient</tag>
+        <tag>近端</tag>
+        <tag>近端梯度</tag>
+        <tag>正则</tag>
       </tags>
   </entry>
   <entry>
