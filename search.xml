@@ -16,7 +16,9 @@
 <h3 id="近端梯度方法解决ell_1正则化问题">近端梯度方法解决<span class="math inline">\(\ell_1\)</span>正则化问题</h3>
 <p>一般的，考虑如下问题带正则项的机器学习问题</p>
 <p><span class="math display">\[\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)\]</span> 其中<span class="math inline">\(L_S(\omega)\)</span>具有L-smooth性质，即<span class="math inline">\(\Vert\nabla_\omega L_S(x)-\nabla_\omega L_S(y)\Vert_2\le L\Vert x-y\Vert_2\)</span>。近端梯度方法(Proximal Gradient Method, PGM)处理的方式为迭代地进行如下计算</p>
-<pre><code>1. 计算</code></pre>
+<ol type="1">
+<li>计算</li>
+</ol>
 <p><span class="math display">\[
 z_k=\omega_k-\frac{1}{L}\nabla L_S(\omega_k)
 \]</span></p>
