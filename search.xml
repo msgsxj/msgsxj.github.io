@@ -2102,7 +2102,9 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
   <entry>
     <title>个人博客进化史</title>
     <url>/2018/03/24/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%BF%9B%E5%8C%96%E5%8F%B2/</url>
-    <content><![CDATA[<p>前言:本文记录了本博客的进化史. <a id="more"></a> ## 将next主题更新至6.0.6 <strong>2018/03/24</strong>: 将主题升级至6.0.6, 并在主题配置文件界面开启了访问统计(不蒜子统计)及站内搜索功能, 主要参考了Next<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">主题文档</a>.</p>
+    <content><![CDATA[<p>前言:本文记录了本博客的进化史. <a id="more"></a></p>
+<h2 id="将next主题更新至6.0.6">将next主题更新至6.0.6</h2>
+<p><strong>2018/03/24</strong>: 将主题升级至6.0.6, 并在主题配置文件界面开启了访问统计(不蒜子统计)及站内搜索功能, 主要参考了Next<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">主题文档</a>.</p>
 <h2 id="用mathjax引擎渲染latex公式">用mathjax引擎渲染latex公式</h2>
 <p><strong>2018/03/24</strong>: 在主题配置文件开启了latex公式支持功能, 但没法用宏包, 主要参考了Next<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">主题文档</a>. 它的使用方法很简答,只需分三步:</p>
 <ol type="1">
