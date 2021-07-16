@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>波束形成算法</title>
+    <url>/2021/07/16/%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>前沿: 本文根据阵列信号处理理论与应用整理了波束形成算法</p>
+<a id="more"></a>
+]]></content>
+      <categories>
+        <category>优化算法</category>
+      </categories>
+      <tags>
+        <tag>信号</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>近端梯度方法</title>
     <url>/2021/01/19/%E8%BF%91%E7%AB%AF%E6%A2%AF%E5%BA%A6%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p>前言: 本文的主角是近端梯度方法(Proximal Gradient Method), 这是一个在数学优化领域广为人知，在机器学习领域却很少看到的数学优化方法，它在非光滑优化领域发挥着巨大的作用，下面我们从一个机器学习问题开始了解它能够解决什么问题。 <a id="more"></a></p>
