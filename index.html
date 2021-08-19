@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-fruit.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-fruit.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-fruit.png">
@@ -246,10 +246,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-07-16 18:08:12 / 修改时间：18:15:08" itemprop="dateCreated datePublished" datetime="2021-07-16T18:08:12+08:00">2021-07-16</time>
+              <time title="创建时间：2021-07-16 18:08:12" itemprop="dateCreated datePublished" datetime="2021-07-16T18:08:12+08:00">2021-07-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-19 16:34:39" itemprop="dateModified" datetime="2021-08-19T16:34:39+08:00">2021-08-19</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -516,7 +522,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>前言: 本文从优化的角度整理了随机梯度法中的常用的一类算法: 噪声缩减方法, 这里的噪声指的是对随机样本计算梯度带来的噪声. 主要参考了Léon Bottou的综述<a href="https://arxiv.org/pdf/1606.04838.pdf" target="_blank" rel="noopener">Optimization Methods for Large-Scale Machine Learning</a>、Jorge Nocedal的Numerical Optimization(2nd edition)以及<a href="http://caoxiaoqing.github.io/2018/05/11/SVRG%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" target="_blank" rel="noopener">这篇博客</a>.
+          <p>前言: 本文从优化的角度整理了随机梯度法中的常用的一类算法: 噪声缩减方法, 这里的噪声指的是对随机样本计算梯度带来的噪声. 主要参考了Léon Bottou的综述<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1606.04838.pdf">Optimization Methods for Large-Scale Machine Learning</a>、Jorge Nocedal的Numerical Optimization(2nd edition)以及<a target="_blank" rel="noopener" href="http://caoxiaoqing.github.io/2018/05/11/SVRG%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">这篇博客</a>.
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/10/28/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%AD%E7%9A%84%E5%99%AA%E5%A3%B0%E5%87%8F%E5%B0%8F%E6%96%B9%E6%B3%95/#more" rel="contents">
@@ -599,7 +605,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>前言: 福特的实习总算快结束了, 忙里偷闲写博客. 本文的初衷用简明扼要的语言说一说统计学习理论中的常见的概率不等式, 证明过程略, 只为了方便快速回忆. 主要参考了Shai Shalev-Shwartz的Understanding machine learning一书、<a href="https://murongxixi.github.io/2013/10/26/%E5%87%A0%E4%B8%AA%E6%A6%82%E7%8E%87%E4%B8%8D%E7%AD%89%E5%BC%8F/" target="_blank" rel="noopener">这篇博客</a>以及维基百科.</p>
+          <p>前言: 福特的实习总算快结束了, 忙里偷闲写博客. 本文的初衷用简明扼要的语言说一说统计学习理论中的常见的概率不等式, 证明过程略, 只为了方便快速回忆. 主要参考了Shai Shalev-Shwartz的Understanding machine learning一书、<a target="_blank" rel="noopener" href="https://murongxixi.github.io/2013/10/26/%E5%87%A0%E4%B8%AA%E6%A6%82%E7%8E%87%E4%B8%8D%E7%AD%89%E5%BC%8F/">这篇博客</a>以及维基百科.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/10/23/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%A6%82%E7%8E%87%E4%B8%8D%E7%AD%89%E5%BC%8F/#more" rel="contents">
@@ -682,7 +688,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>前言: 本文介绍自然梯度算法, 这种方法考虑到许多问题的参数空间具有某种结构, 因此考虑放在非欧式空间中优化(但实际优化计算过程仍然在欧式空间), 有兴趣的同学可以读一读原论文<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf" target="_blank" rel="noopener">Natural Gradient</a>.
+          <p>前言: 本文介绍自然梯度算法, 这种方法考虑到许多问题的参数空间具有某种结构, 因此考虑放在非欧式空间中优化(但实际优化计算过程仍然在欧式空间), 有兴趣的同学可以读一读原论文<a target="_blank" rel="noopener" href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient</a>.
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/07/06/%E8%87%AA%E7%84%B6%E6%A2%AF%E5%BA%A6/#more" rel="contents">
@@ -848,7 +854,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>前言: 本文的初衷是试图用尽量简明形象的语言说一说<code>scipy.optimize.minimize</code>函数涉及到的经典优化算法的特点, 方便速查与快速回忆; 严格理论的部分可见<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" target="_blank" rel="noopener">官方文档</a>Notes部分的内容, 其对每一种方法都给出了参考论文, 而笔者关于这些算法的理解大多来自于Jorge Nocedal的Numerical Optimization.
+          <p>前言: 本文的初衷是试图用尽量简明形象的语言说一说<code>scipy.optimize.minimize</code>函数涉及到的经典优化算法的特点, 方便速查与快速回忆; 严格理论的部分可见<a target="_blank" rel="noopener" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize">官方文档</a>Notes部分的内容, 其对每一种方法都给出了参考论文, 而笔者关于这些算法的理解大多来自于Jorge Nocedal的Numerical Optimization.
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/02/20/SciPy%E4%B8%AD%E7%9A%84%E7%BB%8F%E5%85%B8%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/#more" rel="contents">
@@ -1159,7 +1165,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">msgsxj</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-fruit.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-fruit.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-fruit.png">
@@ -289,8 +289,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>前言: 本文的初衷是试图用尽量简明形象的语言说一说<code>scipy.optimize.minimize</code>函数涉及到的经典优化算法的特点, 方便速查与快速回忆; 严格理论的部分可见<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" target="_blank" rel="noopener">官方文档</a>Notes部分的内容, 其对每一种方法都给出了参考论文, 而笔者关于这些算法的理解大多来自于Jorge Nocedal的Numerical Optimization. <a id="more"></a></p>
-<p>首先来看<code>scipy.optimize</code>这个包的<a href="https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html" target="_blank" rel="noopener">官方文档</a>, 右侧的目录告诉我们这个包大致分为6块内容:</p>
+        <p>前言: 本文的初衷是试图用尽量简明形象的语言说一说<code>scipy.optimize.minimize</code>函数涉及到的经典优化算法的特点, 方便速查与快速回忆; 严格理论的部分可见<a target="_blank" rel="noopener" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize">官方文档</a>Notes部分的内容, 其对每一种方法都给出了参考论文, 而笔者关于这些算法的理解大多来自于Jorge Nocedal的Numerical Optimization. <span id="more"></span></p>
+<p>首先来看<code>scipy.optimize</code>这个包的<a target="_blank" rel="noopener" href="https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html">官方文档</a>, 右侧的目录告诉我们这个包大致分为6块内容:</p>
 <ul>
 <li>多元函数无约束优化</li>
 <li>多元函数约束优化</li>
@@ -300,7 +300,7 @@
 <li>寻根问题</li>
 </ul>
 <h2 id="minimize函数">minimize函数</h2>
-<p>可以看到<code>scipy.optimize.minimize</code>函数对应于第一第二块内容, 具体<code>minimize</code>的<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize" target="_blank" rel="noopener">文档</a>, 可以看到<code>method</code>参数中罗列着以下14种方法:</p>
+<p>可以看到<code>scipy.optimize.minimize</code>函数对应于第一第二块内容, 具体<code>minimize</code>的<a target="_blank" rel="noopener" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize">文档</a>, 可以看到<code>method</code>参数中罗列着以下14种方法:</p>
 <ul>
 <li>Nelder-Mead</li>
 <li>Powell</li>
@@ -324,7 +324,7 @@
 <hr />
 <h3 id="nelder-mead方法">Nelder-Mead方法</h3>
 <p>Nelder-Mead方法是<strong>无导数优化方法</strong>, 其保持了对<span class="math inline">\(\mathbb{R}^n\)</span>中的<span class="math inline">\(n+1\)</span>个点的函数值追踪, 且这些点的凸包构成了一个<strong>非退化的单纯形</strong>. 比方说目标函数为<span class="math inline">\(\mathbb{R}^2\)</span>中的函数, Nelder-Mead方法就保持了对<span class="math inline">\(3\)</span>个点的函数值追踪, 非退化指的是这三者不能共线.</p>
-<p>下面以<a href="https://en.wikipedia.org/wiki/Nelder%E2%80%93Mead_method" target="_blank" rel="noopener">维基百科</a>上的关于Rosenbrock函数的动图为例, 记手中的<span class="math inline">\(n+1\)</span>个点为<span class="math inline">\(\{x_1,...,x_{n+1}\}\)</span>, 并将它们按函数值大小排序<span class="math inline">\(f(x_1)\le\cdots\le f(x_{n+1})\)</span>, <span class="math inline">\(n\)</span>个最好的点的形心为<span class="math inline">\(\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i\)</span>此时<span class="math inline">\(\bar{x}\)</span>与最差的点<span class="math inline">\(x_{n+1}\)</span>之间的连线即为: <span class="math display">\[\bar{x}(t)=\bar{x}+t(x_{n+1}-\bar{x})\]</span>Nelder-Mead方法出于<strong>尽量远离函数值最高的点的想法</strong>, 去观察<span class="math inline">\(\bar{x}(-1)\)</span>的值</p>
+<p>下面以<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Nelder%E2%80%93Mead_method">维基百科</a>上的关于Rosenbrock函数的动图为例, 记手中的<span class="math inline">\(n+1\)</span>个点为<span class="math inline">\(\{x_1,...,x_{n+1}\}\)</span>, 并将它们按函数值大小排序<span class="math inline">\(f(x_1)\le\cdots\le f(x_{n+1})\)</span>, <span class="math inline">\(n\)</span>个最好的点的形心为<span class="math inline">\(\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i\)</span>此时<span class="math inline">\(\bar{x}\)</span>与最差的点<span class="math inline">\(x_{n+1}\)</span>之间的连线即为: <span class="math display">\[\bar{x}(t)=\bar{x}+t(x_{n+1}-\bar{x})\]</span>Nelder-Mead方法出于<strong>尽量远离函数值最高的点的想法</strong>, 去观察<span class="math inline">\(\bar{x}(-1)\)</span>的值</p>
 <ul>
 <li>若<span class="math inline">\(f(x_1)\le f(\bar{x}(-1))&lt;f(x_n)\)</span>, 则用<span class="math inline">\(\bar{x}(-1)\)</span>取代<span class="math inline">\(x_{n+1}\)</span>;</li>
 <li>若<span class="math inline">\(f(\bar{x}(-1))&lt;f(x_1)\)</span>, 继续观察<span class="math inline">\(\bar{x}(-2)\)</span>是否会带来更进一步下降, 择优选择取代<span class="math inline">\(x_{n+1}\)</span>;</li>
@@ -337,7 +337,7 @@
 </div>
 <hr />
 <h3 id="powell方法">Powell方法</h3>
-<p><a href="https://en.wikipedia.org/wiki/Powell%27s_method" target="_blank" rel="noopener">Powell方法</a>是共轭方向法的一种变体, 先来看什么是共轭方向法, <strong>共轭方向法</strong>是<strong>给定一共轭方向的集合</strong><span class="math inline">\(\{p_1....,p_n\}\)</span>, 对集合中的方向依次进一维巡查的方法, 因此显然是<strong>无导数优化方法</strong>.</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Powell%27s_method">Powell方法</a>是共轭方向法的一种变体, 先来看什么是共轭方向法, <strong>共轭方向法</strong>是<strong>给定一共轭方向的集合</strong><span class="math inline">\(\{p_1....,p_n\}\)</span>, 对集合中的方向依次进一维巡查的方法, 因此显然是<strong>无导数优化方法</strong>.</p>
 <p>以最简单的二次函数<span class="math inline">\(f(x)=\frac{1}{2}x^TAx-b^Tx\)</span>为例, 其中<span class="math inline">\(A\)</span>为<span class="math inline">\(n\)</span>阶对称正定方阵, 此时共轭的概念有了具体的要求: <span class="math inline">\(p_i^TAp_j=0\)</span>. 若<span class="math inline">\(A\)</span>恰为对角阵, 如左图所示, 共轭方向集合可取为坐标轴方向<span class="math inline">\(\{e_1, e_2\}\)</span>; 若<span class="math inline">\(A\)</span>不为对角阵, 如右图所示, 此时<span class="math inline">\(\{e_1, e_2\}\)</span>不能作为一组共轭方向, 图中的<strong>红线</strong>和<strong>蓝线</strong>则是给出了两个不同的共轭方向集合.</p>
 <p>值得注意的是, 此时<strong>至多</strong><span class="math inline">\(n\)</span>步共轭方向法会收敛到最小值点<span class="math inline">\(x^*\)</span>, 证明可见Numerical Optimization一书定理5.1</p>
 <p><img src="/pictures/scipy_optimization/1.png" /></p>
@@ -350,22 +350,22 @@
 <p>上述性质可参考Numerical Optimization一书9.4节, 最后要注意的是对于一般的函数只需将精确的一维巡查改为<strong>非精确搜索</strong>.</p>
 <hr />
 <h3 id="cg方法">CG方法</h3>
-<p>CG为Conjugate Gradient的缩写, 即<a href="https://en.wikipedia.org/wiki/Conjugate_gradient_method" target="_blank" rel="noopener">共轭梯度法</a>, 这是利用一组共轭方向求解线性方程组<span class="math inline">\(Ax=b\)</span>的算法, 其中<span class="math inline">\(A\)</span>为<span class="math inline">\(n\)</span>阶对称正定方阵, 而共轭方向一般通过构造一个关于<span class="math inline">\(A\)</span>的Krylov子空间来得到, 且为一阶半方法, 详见Numerical Optimization一书算法5.1. 不难发现线性方程组的求解等价于最小化二次函数<span class="math inline">\(f(x)=\frac{1}{2}x^TAx-b^Tx\)</span>. 事实上, CG方法也可用于一般的优化问题, 其与上述Powell方法类似, <strong>共轭方向由迭代更新得到</strong>, 唯一的不同在于CG方法用了<strong>一阶甚至是二阶信息</strong>来更新共轭方向(<strong>补充一句, 对于一般的非二次函数并没有共轭一说, 这里可以理解为沿用共轭一词</strong>). 以FR(Fletcher-Reeves)方法为例: <span class="math display">\[\beta_{k+1}^{FR}=\nabla f_{k+1}^T\nabla f_{k+1}/\nabla f_{k}^T\nabla f_{k}, p_{k+1}=-\nabla f_{k+1}+\beta_{k+1}^{FR}p_k\]</span>其有许多变体, 具体到<code>SciPy</code>中的这里CG方法指的是PR(Polak-Ribiere)方法:<span class="math display">\[\beta_{k+1}^{PR}=\nabla f_{k+1}^T(\nabla f_{k+1}-\nabla f_{k})/\nabla f_{k}^T\nabla f_{k}, p_{k+1}=-\nabla f_{k+1}+\beta_{k+1}^{FR}p_k\]</span>此外还有PR+方法, HS方法, FR-PR方法等可见Numerical Optimization一书5.2节. 且这里除了HS方法是<strong>二阶方法</strong>, 其余涉及的均为<strong>一阶方法</strong>.</p>
-<p>上述<strong>初值<span class="math inline">\(p_0\)</span>可直接取为负梯度方向</strong>, 另外值得注意的是, 这里关于<span class="math inline">\(p_k\)</span>的一维巡查方法一般需要满足<a href="https://en.wikipedia.org/wiki/Wolfe_conditions#Strong_Wolfe_condition_on_curvature" target="_blank" rel="noopener">强Wolfe条件</a>, 且<span class="math inline">\(c_2&lt;\frac{1}{2}\)</span>.</p>
+<p>CG为Conjugate Gradient的缩写, 即<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Conjugate_gradient_method">共轭梯度法</a>, 这是利用一组共轭方向求解线性方程组<span class="math inline">\(Ax=b\)</span>的算法, 其中<span class="math inline">\(A\)</span>为<span class="math inline">\(n\)</span>阶对称正定方阵, 而共轭方向一般通过构造一个关于<span class="math inline">\(A\)</span>的Krylov子空间来得到, 且为一阶半方法, 详见Numerical Optimization一书算法5.1. 不难发现线性方程组的求解等价于最小化二次函数<span class="math inline">\(f(x)=\frac{1}{2}x^TAx-b^Tx\)</span>. 事实上, CG方法也可用于一般的优化问题, 其与上述Powell方法类似, <strong>共轭方向由迭代更新得到</strong>, 唯一的不同在于CG方法用了<strong>一阶甚至是二阶信息</strong>来更新共轭方向(<strong>补充一句, 对于一般的非二次函数并没有共轭一说, 这里可以理解为沿用共轭一词</strong>). 以FR(Fletcher-Reeves)方法为例: <span class="math display">\[\beta_{k+1}^{FR}=\nabla f_{k+1}^T\nabla f_{k+1}/\nabla f_{k}^T\nabla f_{k}, p_{k+1}=-\nabla f_{k+1}+\beta_{k+1}^{FR}p_k\]</span>其有许多变体, 具体到<code>SciPy</code>中的这里CG方法指的是PR(Polak-Ribiere)方法:<span class="math display">\[\beta_{k+1}^{PR}=\nabla f_{k+1}^T(\nabla f_{k+1}-\nabla f_{k})/\nabla f_{k}^T\nabla f_{k}, p_{k+1}=-\nabla f_{k+1}+\beta_{k+1}^{FR}p_k\]</span>此外还有PR+方法, HS方法, FR-PR方法等可见Numerical Optimization一书5.2节. 且这里除了HS方法是<strong>二阶方法</strong>, 其余涉及的均为<strong>一阶方法</strong>.</p>
+<p>上述<strong>初值<span class="math inline">\(p_0\)</span>可直接取为负梯度方向</strong>, 另外值得注意的是, 这里关于<span class="math inline">\(p_k\)</span>的一维巡查方法一般需要满足<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Wolfe_conditions#Strong_Wolfe_condition_on_curvature">强Wolfe条件</a>, 且<span class="math inline">\(c_2&lt;\frac{1}{2}\)</span>.</p>
 <hr />
 <h3 id="bfgs方法">BFGS方法</h3>
-<p><a href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm" target="_blank" rel="noopener">BFGS</a>作为一种的<strong>拟牛顿方法</strong>, 其不直接计算Hessian阵, 而是<strong>用梯度信息近似计算Hessian阵的逆</strong>并迭代更新, 因此是<strong>一阶方法</strong>, 其更新公式如下:<span class="math display">\[H_{k+1}=(I-\rho_ks_ky_k^T)H_k(I-\rho_ky_ks_k^T)+\rho_ks_ks_k^T\]</span>其中<span class="math inline">\(s_k=x_{k+1}-x_k, y_k=\nabla f_{k+1}-\nabla f_k, \rho_k=1/y_k^Ts_k&gt;0\)</span>. 由于<span class="math inline">\(H_{k+1}\)</span>直接为Hessian阵的<strong>逆</strong>的近似, 因此搜索方向为<span class="math inline">\(p_{k+1}=-H_{k+1}\nabla f_{k+1}\)</span>.</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm">BFGS</a>作为一种的<strong>拟牛顿方法</strong>, 其不直接计算Hessian阵, 而是<strong>用梯度信息近似计算Hessian阵的逆</strong>并迭代更新, 因此是<strong>一阶方法</strong>, 其更新公式如下:<span class="math display">\[H_{k+1}=(I-\rho_ks_ky_k^T)H_k(I-\rho_ky_ks_k^T)+\rho_ks_ks_k^T\]</span>其中<span class="math inline">\(s_k=x_{k+1}-x_k, y_k=\nabla f_{k+1}-\nabla f_k, \rho_k=1/y_k^Ts_k&gt;0\)</span>. 由于<span class="math inline">\(H_{k+1}\)</span>直接为Hessian阵的<strong>逆</strong>的近似, 因此搜索方向为<span class="math inline">\(p_{k+1}=-H_{k+1}\nabla f_{k+1}\)</span>.</p>
 <p>DFP方法与BFGS方法唯一的不同在于<strong>迭代更新Hessian阵本身</strong>而不是逆, 但由于仍然需要求逆操作, 因此计算量会比BFGS大上一圈. DFP方法的迭代公式可参考Numerical Optimization一书6.1节, 另一种的常见拟牛顿方法SR1可参考Numerical Optimization一书6.2节.</p>
-<p>最后值得注意的是, BFGS常用<a href="https://en.wikipedia.org/wiki/Wolfe_conditions" target="_blank" rel="noopener">Wolfe条件</a>做为巡查条件.</p>
+<p>最后值得注意的是, BFGS常用<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Wolfe_conditions">Wolfe条件</a>做为巡查条件.</p>
 <hr />
 <h3 id="newton-cg方法">Newton-CG方法</h3>
-<p>Newton-CG方法是一种<a href="https://en.m.wikipedia.org/wiki/Truncated_Newton_method" target="_blank" rel="noopener">截断牛顿方法</a>, 而截断牛顿方法则是近似去解牛顿方程来得到巡查方向的思路, 解牛顿方程即为了获得牛顿方向, 而截断意味着近似解方程要在截断的迭代次数内, 因而是近似.</p>
+<p>Newton-CG方法是一种<a target="_blank" rel="noopener" href="https://en.m.wikipedia.org/wiki/Truncated_Newton_method">截断牛顿方法</a>, 而截断牛顿方法则是近似去解牛顿方程来得到巡查方向的思路, 解牛顿方程即为了获得牛顿方向, 而截断意味着近似解方程要在截断的迭代次数内, 因而是近似.</p>
 <p>选用CG方法来近似求解牛顿方程(<span class="math inline">\(\nabla^2f_k p_k+\nabla f_k=0\)</span>), 我们就得到了Newton-CG方法, 由于要求得到<span class="math inline">\(\nabla^2 f_k\)</span>, 因此Newton-CG方法为<strong>二阶方法</strong>.</p>
 <p>关于算法的更多细节可见Numerical Optimization一书算法7.1. 另外通过观察算法不难发现, 若能提供Hseeian-vector products函数, 那么Newton-CG方法此时就是<strong>一阶半方法</strong>.</p>
 <p>Newton-CG方法的主要计算量在CG迭代部分, preconditioning可加速CG迭代过程, 见Numerical Optimization一书page118.</p>
 <hr />
 <h3 id="dogleg法">Dogleg法</h3>
-<p>狗腿法是一种<a href="https://optimization.mccormick.northwestern.edu/index.php/Trust-region_methods" target="_blank" rel="noopener">信赖域方法</a>, 简单介绍信赖域方法, 与线搜索方法先确定方向后确定步长不同的是, 信赖域方法在<strong>确定方向前首先给定一个信赖域半径</strong><span class="math inline">\(\Delta\)</span>, 要求搜索方向在该信赖域内.</p>
+<p>狗腿法是一种<a target="_blank" rel="noopener" href="https://optimization.mccormick.northwestern.edu/index.php/Trust-region_methods">信赖域方法</a>, 简单介绍信赖域方法, 与线搜索方法先确定方向后确定步长不同的是, 信赖域方法在<strong>确定方向前首先给定一个信赖域半径</strong><span class="math inline">\(\Delta\)</span>, 要求搜索方向在该信赖域内.</p>
 <p>涉及信赖域方法就不得不谈信赖域子问题: <span class="math display">\[\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\]</span>且一般的, 这里的<span class="math inline">\(B_k\)</span><strong>仅仅要求对称, 一致有界</strong>. 关于这点可见Numerical Optimization一书page68; 但具体到这里的狗腿法仍然需要加上<strong>正定性</strong>的要求.</p>
 <p>回过头来看狗腿法, 狗腿法实际上是<strong>对信赖域子问题最优解曲线的近似</strong>, 从图中可以看到, 第一段是沿着负梯度方向到达柯西点, 这里的柯西点指的是<strong>沿着负梯度方向极小化信赖域子问题</strong>得到的极小值点; 接着像狗腿那样拐弯, 直奔<strong>信赖域子问题的最优解</strong>而去, 因此信赖域半径的作用就是决定了上述过程能跑多远.</p>
 <div data-align="center">
@@ -378,7 +378,7 @@
 <p>preconditioning可加速CG迭代过程, 见Numerical Optimization一书page118.</p>
 <hr />
 <h3 id="trust-krylov方法">Trust-krylov方法</h3>
-<p>其实应该叫Trust-Lanczos方法, <a href="https://en.wikipedia.org/wiki/Lanczos_algorithm" target="_blank" rel="noopener">Lanczos方法</a>可以用来三对角化矩阵, 同时构造出了一个Krylov子空间. 上述过程的应用之一就是用来解线性方程<span class="math inline">\(Ax=b\)</span>, 因此也可解牛顿方程, 参见矩阵计算第三版9.3节.</p>
+<p>其实应该叫Trust-Lanczos方法, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Lanczos_algorithm">Lanczos方法</a>可以用来三对角化矩阵, 同时构造出了一个Krylov子空间. 上述过程的应用之一就是用来解线性方程<span class="math inline">\(Ax=b\)</span>, 因此也可解牛顿方程, 参见矩阵计算第三版9.3节.</p>
 <p>与Trust-ncg方法相比, Trust-krylov方法只是将CG方法换成了<strong>Lanczos方法</strong>, 且本身仍为<strong>二阶方法</strong>, 同样若能提供Hseeian-vector products函数, Trust-krylov方法也是<strong>一阶半方法</strong>.</p>
 <hr />
 <h3 id="trust-exact方法">Trust-exact方法</h3>
@@ -474,7 +474,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#minimize函数"><span class="nav-number">1.</span> <span class="nav-text">minimize函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无约束优化"><span class="nav-number">2.</span> <span class="nav-text">无约束优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nelder-mead方法"><span class="nav-number">2.1.</span> <span class="nav-text">Nelder-Mead方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#powell方法"><span class="nav-number">2.2.</span> <span class="nav-text">Powell方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cg方法"><span class="nav-number">2.3.</span> <span class="nav-text">CG方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bfgs方法"><span class="nav-number">2.4.</span> <span class="nav-text">BFGS方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#newton-cg方法"><span class="nav-number">2.5.</span> <span class="nav-text">Newton-CG方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dogleg法"><span class="nav-number">2.6.</span> <span class="nav-text">Dogleg法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trust-ncg方法"><span class="nav-number">2.7.</span> <span class="nav-text">Trust-ncg方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trust-krylov方法"><span class="nav-number">2.8.</span> <span class="nav-text">Trust-krylov方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trust-exact方法"><span class="nav-number">2.9.</span> <span class="nav-text">Trust-exact方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有界约束优化"><span class="nav-number">3.</span> <span class="nav-text">有界约束优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#l-bfgs-b方法"><span class="nav-number">3.1.</span> <span class="nav-text">L-BFGS-B方法</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#minimize%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">minimize函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E7%BA%A6%E6%9D%9F%E4%BC%98%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">无约束优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nelder-mead%E6%96%B9%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">Nelder-Mead方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#powell%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">Powell方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cg%E6%96%B9%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">CG方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bfgs%E6%96%B9%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text">BFGS方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#newton-cg%E6%96%B9%E6%B3%95"><span class="nav-number">2.5.</span> <span class="nav-text">Newton-CG方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dogleg%E6%B3%95"><span class="nav-number">2.6.</span> <span class="nav-text">Dogleg法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trust-ncg%E6%96%B9%E6%B3%95"><span class="nav-number">2.7.</span> <span class="nav-text">Trust-ncg方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trust-krylov%E6%96%B9%E6%B3%95"><span class="nav-number">2.8.</span> <span class="nav-text">Trust-krylov方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trust-exact%E6%96%B9%E6%B3%95"><span class="nav-number">2.9.</span> <span class="nav-text">Trust-exact方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E7%95%8C%E7%BA%A6%E6%9D%9F%E4%BC%98%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">有界约束优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#l-bfgs-b%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">L-BFGS-B方法</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -540,7 +540,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">msgsxj</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0

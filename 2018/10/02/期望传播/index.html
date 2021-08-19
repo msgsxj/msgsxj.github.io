@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-fruit.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-fruit.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-fruit.png">
@@ -287,22 +287,22 @@
 
       
         <p>前言: 本文主要是关于期望传播, 这是一种用指数族分布去近似复杂目标分布的方法, 其本质上为变分推断逆过来, 主要参考了Thomas P Minka的博士论文A family of algorithms for approximate Bayesian inference、维基百科及PRML一书10.7节.</p>
-<a id="more"></a>
+<span id="more"></span>
 <hr />
 <h2 id="指数族分布">指数族分布</h2>
-<p>首先来看一个重要概念<a href="https://en.wikipedia.org/wiki/Exponential_family" target="_blank" rel="noopener">指数族分布</a>, 称<span class="math inline">\(X\)</span>为指数族分布, 若其密度函数:<span class="math display">\[f(x\mid \theta )=h(x)\exp \left(\eta (\theta )^TT(x)-A(\theta )\right), \theta\in\Theta\]</span>其中:</p>
+<p>首先来看一个重要概念<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Exponential_family">指数族分布</a>, 称<span class="math inline">\(X\)</span>为指数族分布, 若其密度函数:<span class="math display">\[f(x\mid \theta )=h(x)\exp \left(\eta (\theta )^TT(x)-A(\theta )\right), \theta\in\Theta\]</span>其中:</p>
 <ul>
 <li><span class="math inline">\(T(x)\)</span>为<span class="math inline">\(X\)</span>的充分统计量. 样本<span class="math inline">\(x=\{x_1,..,x_m\}\)</span>, <span class="math inline">\(x_i\sim f(x\mid \theta)\)</span>, 统计量(比方说)<span class="math display">\[T(x)=(\bar{x}, \frac{1}{m}\sum_{i=1}^n (x_i-x)^2)\]</span>可理解为对样本<span class="math inline">\(x\)</span>的粗加工, 其将对样本的信息量由<span class="math inline">\(m\)</span>维降至<span class="math inline">\(2\)</span>维; 而充分统计量<span class="math inline">\(T(x)\)</span>则是那些能够充分说明原样本的统计量, 定义为: 若<span class="math inline">\(x\mid T(x)\)</span>的条件分布与未知参数<span class="math inline">\(\theta\)</span>无关, 则称<span class="math inline">\(T(x)\)</span>为充分统计量. <span class="math inline">\((\bar{x}, \frac{1}{m}\sum_{i=1}^n (x_i-\bar{x})^2)\)</span>就是正态分布的一个充分统计量(充分统计量不唯一).</li>
 <li>当<span class="math inline">\(\eta (\theta )=\theta\)</span>取实值, 此时指数族分布称为是自然形式的指数族分布.</li>
 <li><span class="math inline">\(A(\theta)\)</span>称为是归一化因子<span class="math display">\[A(\theta )=\ln \left(\int h(x)\exp(\theta ^T T(x))\,\mathrm {d} x\right)\]</span>它的存在保证了这个函数是个密度函数. 有时这个归一化因子会写在外面, 因此指数族分布的密度函数有如下等价形式:<span class="math display">\[f(x\mid \theta )=h(x)g(\theta )\exp \left(\theta ^T T(x)\right)\]</span>此时<span class="math inline">\(g(\theta)\)</span>满足<span class="math inline">\(g(\theta)^{-1}=\int h(x)\exp \left(\theta ^T T(x)\right)dx\)</span>.</li>
 <li>参数空间<span class="math inline">\(\Theta\)</span>中的每一个元<span class="math inline">\(\theta\)</span>都应当使得归一化因子为正数: <span class="math inline">\(A(\theta)\in(0,+\infty)\)</span>; 而所使得归一化因子为正数的<span class="math inline">\(\theta\)</span>构成的参数空间<span class="math inline">\(\Theta\)</span>称为是自然参数空间, 且自然形式下的指数族分布的自然参数空间为欧式空间中的凸集.</li>
 </ul>
-<p>指数族分布是一大类分布的集合, 包括正态分布, 指数分布, 二项分布, 泊松分布, Beta分布, Gamma分布, 狄利克雷分布等, 具体见<a href="https://en.wikipedia.org/wiki/Exponential_family#Table_of_distributions" target="_blank" rel="noopener">维基百科上的总结</a>, 有兴趣的读者不妨拿一个验证一下. 以密度函数的第二个形式为例, 归一化因子满足条件的等式的两边对参数<span class="math inline">\(\theta\)</span>求导可以得到自然形式指数族分布的一个重要性质, 能轻易表示出<span class="math inline">\(T(x)\)</span>的各阶矩: <span class="math display">\[g(\theta)^{-2}\frac{dg(\theta)}{d\theta} =  \int h(x)\exp \left(\theta ^T T(x)\right)T(x)dx \]</span>两边同乘<span class="math inline">\(g(\theta)\)</span>得:<span class="math display">\[-\nabla\ln g(\theta)=\mathbb{E}_{f(x\mid \theta )}T(x)\]</span>再次对<span class="math inline">\(\theta\)</span>求导可得:<span class="math display">\[-\nabla^2 \ln g(\theta)=\mathbb{E}_{f(x\mid \theta )}T^2(x)\]</span>当然如果此时密度函数取第一个形式, 形式会更简单: <span class="math display">\[\nabla A(\theta)=\mathbb{E}_{f(x\mid \theta )}T(x), \nabla^2 A(\theta)=\mathbb{E}_{f(x\mid \theta )}T^2(x)\]</span>关于更多指数族分布或是统计量可参考数理统计的教材, 比如韦博成的参数统计教程, 陈希孺的高等数理统计学.</p>
+<p>指数族分布是一大类分布的集合, 包括正态分布, 指数分布, 二项分布, 泊松分布, Beta分布, Gamma分布, 狄利克雷分布等, 具体见<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Exponential_family#Table_of_distributions">维基百科上的总结</a>, 有兴趣的读者不妨拿一个验证一下. 以密度函数的第二个形式为例, 归一化因子满足条件的等式的两边对参数<span class="math inline">\(\theta\)</span>求导可以得到自然形式指数族分布的一个重要性质, 能轻易表示出<span class="math inline">\(T(x)\)</span>的各阶矩: <span class="math display">\[g(\theta)^{-2}\frac{dg(\theta)}{d\theta} =  \int h(x)\exp \left(\theta ^T T(x)\right)T(x)dx \]</span>两边同乘<span class="math inline">\(g(\theta)\)</span>得:<span class="math display">\[-\nabla\ln g(\theta)=\mathbb{E}_{f(x\mid \theta )}T(x)\]</span>再次对<span class="math inline">\(\theta\)</span>求导可得:<span class="math display">\[-\nabla^2 \ln g(\theta)=\mathbb{E}_{f(x\mid \theta )}T^2(x)\]</span>当然如果此时密度函数取第一个形式, 形式会更简单: <span class="math display">\[\nabla A(\theta)=\mathbb{E}_{f(x\mid \theta )}T(x), \nabla^2 A(\theta)=\mathbb{E}_{f(x\mid \theta )}T^2(x)\]</span>关于更多指数族分布或是统计量可参考数理统计的教材, 比如韦博成的参数统计教程, 陈希孺的高等数理统计学.</p>
 <hr />
 <h2 id="期望传播">期望传播</h2>
 <p>下面来看期望传播:</p>
 <ul>
-<li>首先简单回顾变分推断, 变分推断做的是通过最小化KL散度(以EM算法中E步为例, 详见<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/">贝叶斯方法</a>的3.1节.):<span class="math display">\[\mathcal{KL}(q(T)\Vert P(T\mid X, \theta))\]</span> <span class="math inline">\(\mathcal{KL}\)</span>散度的定义见<a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence" target="_blank" rel="noopener">维基百科</a>, 这里的<span class="math inline">\(X\)</span>为机器学习中的样本矩阵, 已给定, 不同于变量<span class="math inline">\(x\)</span>; <span class="math inline">\(\theta\)</span>为未知参数; <span class="math inline">\(T\)</span>本为隐变量, 这里为了不和上文<span class="math inline">\(T\)</span>重名, 简记为<span class="math display">\[\mathcal{KL}(q(x)\Vert P(x\mid X, \theta))\]</span>这里做的事情就是从一个相对简单的单分布族<span class="math inline">\(Q\)</span>中找到一个<span class="math inline">\(q(x)\)</span>去逼近复杂分布<span class="math inline">\(P(x\mid X, \theta)\)</span>. 和下文的期望传播以示区别, 这里我们称之为<span class="math inline">\(q(x)\)</span>从左逼近<span class="math inline">\(P(x\mid X, \theta)\)</span>, 这种从左逼近的方法的最大的好处就是不必去考虑关于<span class="math inline">\(X, \theta\)</span>的分布, 即不必计算<span class="math inline">\(P(X, \theta)\)</span>.</li>
+<li>首先简单回顾变分推断, 变分推断做的是通过最小化KL散度(以EM算法中E步为例, 详见<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/">贝叶斯方法</a>的3.1节.):<span class="math display">\[\mathcal{KL}(q(T)\Vert P(T\mid X, \theta))\]</span> <span class="math inline">\(\mathcal{KL}\)</span>散度的定义见<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">维基百科</a>, 这里的<span class="math inline">\(X\)</span>为机器学习中的样本矩阵, 已给定, 不同于变量<span class="math inline">\(x\)</span>; <span class="math inline">\(\theta\)</span>为未知参数; <span class="math inline">\(T\)</span>本为隐变量, 这里为了不和上文<span class="math inline">\(T\)</span>重名, 简记为<span class="math display">\[\mathcal{KL}(q(x)\Vert P(x\mid X, \theta))\]</span>这里做的事情就是从一个相对简单的单分布族<span class="math inline">\(Q\)</span>中找到一个<span class="math inline">\(q(x)\)</span>去逼近复杂分布<span class="math inline">\(P(x\mid X, \theta)\)</span>. 和下文的期望传播以示区别, 这里我们称之为<span class="math inline">\(q(x)\)</span>从左逼近<span class="math inline">\(P(x\mid X, \theta)\)</span>, 这种从左逼近的方法的最大的好处就是不必去考虑关于<span class="math inline">\(X, \theta\)</span>的分布, 即不必计算<span class="math inline">\(P(X, \theta)\)</span>.</li>
 <li>期望传播(Expectation Propagation: EP)做的则是最小化逆过来的KL散度:<span class="math display">\[\mathcal{KL}( P(x\mid X, \theta)\Vert q(x))\]</span>这里我们称之为<span class="math inline">\(q(x)\)</span>从右逼近<span class="math inline">\(P(x\mid X, \theta)\)</span>, 这种从右逼近的方法的好处就是, 若这里的<span class="math inline">\(q(x)\)</span>限定在指数族分布的范围内, 即<span class="math inline">\(q(x\mid\tilde{\theta})=h(x)g(\tilde{\theta} )\exp \left(\tilde{\theta} ^T T(x)\right)\)</span>(<span class="math inline">\(\tilde{\theta}\)</span>与<span class="math inline">\(\theta\)</span>是不同的未知参数), 此时最小化上述<span class="math inline">\(\mathcal{KL}\)</span>散度就等价于充分统计量<span class="math inline">\(T(x)\)</span>关于两个分布<span class="math inline">\(q(x)\)</span>和<span class="math inline">\(P(x\mid X, \theta)\)</span>的期望相等: <span class="math display">\[\begin{aligned} \mathcal{KL}( P(x\mid X, \theta)\Vert q(x)) &amp; =  \int P(x\mid X, \theta)\ln\frac{P(x\mid X, \theta)}{q(x)}dx\\\
 &amp; =  \int P(x\mid X, \theta)\ln\frac{P(x\mid X, \theta)}{h(x)g(\tilde{\theta} )\exp \left(\tilde{\theta} ^T T(x)\right)}dx\\\
 (let \, P=P(x\mid X, \theta)) \,&amp; = \int P\ln Pdx - \int P\ln h(x)dx-\int P\ln g(\tilde{\theta})dx- \int P\tilde{\theta} ^T T(x)dx\\\
@@ -401,7 +401,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#指数族分布"><span class="nav-number">1.</span> <span class="nav-text">指数族分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#期望传播"><span class="nav-number">2.</span> <span class="nav-text">期望传播</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E6%95%B0%E6%97%8F%E5%88%86%E5%B8%83"><span class="nav-number">1.</span> <span class="nav-text">指数族分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD"><span class="nav-number">2.</span> <span class="nav-text">期望传播</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -467,7 +467,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">msgsxj</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0

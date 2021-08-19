@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-fruit.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-fruit.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-fruit.png">
@@ -283,13 +283,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>前言:最近读Léon Bottou的18年2月的文章<a href="https://arxiv.org/pdf/1606.04838.pdf" target="_blank" rel="noopener">Optimization Methods for Large-Scale Machine Learning</a>时,读到式(2.7)觉得怪怪的,于是特此将笔者看到过的有关VC bound的证明整理一下,分直观证明和理论证明去叙述:</p>
+        <p>前言:最近读Léon Bottou的18年2月的文章<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1606.04838.pdf">Optimization Methods for Large-Scale Machine Learning</a>时,读到式(2.7)觉得怪怪的,于是特此将笔者看到过的有关VC bound的证明整理一下,分直观证明和理论证明去叙述:</p>
 <ul>
 <li>直观证明来自台湾大学林轩田的机器学习基石课程.</li>
 <li>理论证明来自Shai Shalve-Shwartz的UNDERSTANDING MACHINE LEARNIN[UML]一书.</li>
 </ul>
 <p><code>p.s.</code> 读本文需要读者至少知道VC维的含义, VC界的含义.</p>
-<a id="more"></a>
+<span id="more"></span>
 <hr />
 <h2 id="motivation">motivation</h2>
 <p>Léon Bottou今年2月发的文章中式(2.7): <span class="math display">\[
@@ -308,20 +308,20 @@
 <ol type="1">
 <li><span class="math inline">\(L_{\mathcal{D}}\)</span>没法处理, 设法用<span class="math inline">\(L_{S&#39;}\)</span>取代<span class="math inline">\(L_{\mathcal{D}}\)</span>: <span class="math display">\[
 \frac{1}{2}\mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right] \le \mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{S&#39;}(h)\right|&gt;\frac{\varepsilon}{2}\right]
-\]</span>这一步是难点, <a href="https://link.springer.com/content/pdf/10.1007%2F978-3-319-21852-6.pdf" target="_blank" rel="noopener">这篇文章</a>page42的引理2给出了证明, 笔者在这里给出自己的直观理解: 显然有<span class="math inline">\(\mathbb{E}_{S\sim \mathcal{D}}L_{S}(h)=L_{\mathcal{D}}(h)\)</span>, 简单将<span class="math inline">\(L_{S}(h)\)</span>视为正态分布, 其期望则是<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>, 若存在一个<span class="math inline">\(h\)</span>, <span class="math display">\[\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\]</span>而<span class="math inline">\(L_{S&#39;}(h)\)</span>大概率会落在离<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>比较近的区域, 也就是大概率会有:<span class="math display">\[\left|L_{S}(h)-L_{S&#39;}(h)\right|&gt;\frac{\varepsilon}{2}\]</span></li>
+\]</span>这一步是难点, <a target="_blank" rel="noopener" href="https://link.springer.com/content/pdf/10.1007%2F978-3-319-21852-6.pdf">这篇文章</a>page42的引理2给出了证明, 笔者在这里给出自己的直观理解: 显然有<span class="math inline">\(\mathbb{E}_{S\sim \mathcal{D}}L_{S}(h)=L_{\mathcal{D}}(h)\)</span>, 简单将<span class="math inline">\(L_{S}(h)\)</span>视为正态分布, 其期望则是<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>, 若存在一个<span class="math inline">\(h\)</span>, <span class="math display">\[\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\]</span>而<span class="math inline">\(L_{S&#39;}(h)\)</span>大概率会落在离<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>比较近的区域, 也就是大概率会有:<span class="math display">\[\left|L_{S}(h)-L_{S&#39;}(h)\right|&gt;\frac{\varepsilon}{2}\]</span></li>
 <li>期望找到一个多项式增长的函数<span class="math inline">\(\tau_{\mathcal{H}}(m)\)</span>(事实上,<span class="math inline">\(\tau_{\mathcal{H}}(m)=\max_{|C|=m}\left|\mathcal{H}_{C}\right|\)</span>,其中<span class="math inline">\(\mathcal{H}_{C}\)</span>为<span class="math inline">\(\mathcal{H}\)</span>限制在<span class="math inline">\(C\)</span>上)满足 <span class="math display">\[
 \begin{aligned}\mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right] &amp; \le 2\mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{S&#39;}}(h)\right|&gt;\frac{\varepsilon}{2}\right]\\\
 &amp; = 2\mathbb{P}\left[\exists h \in\mathcal{H} s.t.\left|L_{S}(h)-L_{\mathcal{S&#39;}}(h)\right|&gt;\frac{\varepsilon}{2}\right]\\\
 &amp;\le 2\tau_{\mathcal{H}}(m)\mathbb{P}\left[{\rm fixed} \ h \ s.t.\left|L_{S}(h)-L_{\mathcal{S&#39;}}(h)\right|&gt;\frac{\varepsilon}{2}\right]
 \end{aligned}
 \]</span></li>
-<li>考虑<a href="https://en.wikipedia.org/wiki/Hoeffding%27s_inequality" target="_blank" rel="noopener">霍夫丁不等式</a><span class="math inline">\(\mathbb{P}\left\{\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right\}\le2\exp\left(-2\varepsilon^{2}m\right)\)</span>: <span class="math display">\[
+<li>考虑<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hoeffding%27s_inequality">霍夫丁不等式</a><span class="math inline">\(\mathbb{P}\left\{\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right\}\le2\exp\left(-2\varepsilon^{2}m\right)\)</span>: <span class="math display">\[
 \mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right] \le 4\tau_{\mathcal{H}}(m)\exp\left(-2\left(\frac{\varepsilon}{2}\right)^{2}m\right)
 \]</span>注意到此时<span class="math inline">\(\mathcal{D}\)</span>替换成了<span class="math inline">\(S&#39;\)</span>, 而<span class="math inline">\(S\)</span>,<span class="math inline">\(S&#39;\)</span>均有<span class="math inline">\(m\)</span>个样本故将<span class="math inline">\(\tau_{\mathcal{H}}(m)\)</span>修正为<span class="math inline">\(\tau_{\mathcal{H}}(2m)\)</span>, 另外 <span class="math display">\[
 \left|L_{S}(h)-L_{\mathcal{S&#39;}}(h)\right|&gt;\frac{\varepsilon}{2}\Leftrightarrow\left|L_{S}(h)-\left(L_{\mathcal{S&#39;}}(h)+L_{S}(h)\right)/2\right|&gt;\frac{\varepsilon}{4}
 \]</span>故<span class="math inline">\(\frac{\varepsilon}{2}\)</span>修正为<span class="math inline">\(\frac{\varepsilon}{4}\)</span> ,得到: <span class="math display">\[
 \mathbb{P}\left[\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right] \le 4\tau_{\mathcal{H}}(2m)\exp\left(-2\left(\frac{\varepsilon}{4}\right)^{2}m\right)
-\]</span>这个式子也能在上面那篇<a href="https://link.springer.com/content/pdf/10.1007%2F978-3-319-21852-6.pdf" target="_blank" rel="noopener">文章</a>page42的定理2中找到.</li>
+\]</span>这个式子也能在上面那篇<a target="_blank" rel="noopener" href="https://link.springer.com/content/pdf/10.1007%2F978-3-319-21852-6.pdf">文章</a>page42的定理2中找到.</li>
 <li>归纳法可证:<span class="math inline">\(\tau_{\mathcal{H}}(m)\le\sum_{i=0}^{d_{\mathcal{H}}}\binom{m}{i}\)</span>,林老师在这里粗糙的放大成<span class="math inline">\(\sum_{i=0}^{d_{\mathcal{H}}}\binom{m}{i}&lt;m^{d_{\mathcal{H}}}\)</span>,整理得到: <span class="math display">\[
 \mathbb{P}\left\{\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|&gt;\varepsilon\right\}\le4 (2m)^{d_{\mathcal{H}}}\exp\left(-\frac{\varepsilon^{2}}{8}m\right)
 \]</span></li>
@@ -373,7 +373,7 @@
 &amp; = \frac{1}{m}\sum_{i=1}^{m}\mathbb{E}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\\\
 &amp; = 0
 \end{aligned}
-\]</span> 且<span class="math inline">\(\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\)</span>是在<span class="math inline">\([-1,1]\)</span>(确切说是<span class="math inline">\(\{-1,0,1\}\)</span>)上取值的独立随机变量,因此满足<a href="https://en.wikipedia.org/wiki/Hoeffding%27s_inequality" target="_blank" rel="noopener">霍夫丁不等式</a>的条件,得<span class="math inline">\(\forall \rho&gt;0,\)</span> <span class="math display">\[
+\]</span> 且<span class="math inline">\(\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\)</span>是在<span class="math inline">\([-1,1]\)</span>(确切说是<span class="math inline">\(\{-1,0,1\}\)</span>)上取值的独立随机变量,因此满足<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hoeffding%27s_inequality">霍夫丁不等式</a>的条件,得<span class="math inline">\(\forall \rho&gt;0,\)</span> <span class="math display">\[
 \mathbb{P}\left[\left|\theta_{h}\right|&gt;\rho\right]\le2\exp(-2m\rho^{2})
 \]</span>即 <span class="math display">\[
 \mathbb{P}\left[\frac{1}{m}\left|\sum_{i=1}^{m}\sigma_{i}\left(l(h,x_{i}&#39;)-l(h,x_{i})\right)\right|&gt;\rho\right]\le2\exp(-2m\rho^{2})
@@ -583,7 +583,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">msgsxj</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0

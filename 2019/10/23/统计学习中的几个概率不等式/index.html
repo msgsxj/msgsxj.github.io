@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-fruit.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-fruit.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-fruit.png">
@@ -285,17 +285,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>前言: 福特的实习总算快结束了, 忙里偷闲写博客. 本文的初衷用简明扼要的语言说一说统计学习理论中的常见的概率不等式, 证明过程略, 只为了方便快速回忆. 主要参考了Shai Shalev-Shwartz的Understanding machine learning一书、<a href="https://murongxixi.github.io/2013/10/26/%E5%87%A0%E4%B8%AA%E6%A6%82%E7%8E%87%E4%B8%8D%E7%AD%89%E5%BC%8F/" target="_blank" rel="noopener">这篇博客</a>以及维基百科.</p>
-<a id="more"></a>
+        <p>前言: 福特的实习总算快结束了, 忙里偷闲写博客. 本文的初衷用简明扼要的语言说一说统计学习理论中的常见的概率不等式, 证明过程略, 只为了方便快速回忆. 主要参考了Shai Shalev-Shwartz的Understanding machine learning一书、<a target="_blank" rel="noopener" href="https://murongxixi.github.io/2013/10/26/%E5%87%A0%E4%B8%AA%E6%A6%82%E7%8E%87%E4%B8%8D%E7%AD%89%E5%BC%8F/">这篇博客</a>以及维基百科.</p>
+<span id="more"></span>
 <p>设<span class="math inline">\(Z_i, i=1,...,m\)</span>是一列独立同分布的随机变量序列, 且在本文讨论的范围统计学习理论中, 这里的<span class="math inline">\(Z_i\)</span>可以直接理解为每个样本分类的正确与否, 因此有如下几个事实:</p>
 <ul>
 <li><span class="math inline">\(Z_i\)</span>有界, 且<span class="math inline">\(0\le Z_i\le1\)</span></li>
 <li><span class="math inline">\(\frac{1}{m}\sum_{i=1}^{m}Z_i\)</span>即为大小为<span class="math inline">\(m\)</span>的训练集的分类正确率, 且<span class="math inline">\(0\le \frac{1}{m}\sum_{i=1}^{m}Z_i\le1\)</span></li>
-<li>假定优化过程中训练集的分类错误率不断减小, 因此<span class="math inline">\(1-\frac{1}{m}\sum_{i=1}^{m}Z_i\)</span>为<a href="https://en.wikipedia.org/wiki/Martingale_(probability_theory)" target="_blank" rel="noopener">上鞅</a>的假设视为合理.</li>
+<li>假定优化过程中训练集的分类错误率不断减小, 因此<span class="math inline">\(1-\frac{1}{m}\sum_{i=1}^{m}Z_i\)</span>为<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Martingale_(probability_theory)">上鞅</a>的假设视为合理.</li>
 </ul>
 <p>上述假设均可直接带入下述不等式去理解.</p>
 <h2 id="moment-based-bound">Moment Based Bound</h2>
-<p>基于矩的界主要是<a href="https://en.wikipedia.org/wiki/Markov%27s_inequality" target="_blank" rel="noopener">Markov Inequality</a>和<a href="https://en.wikipedia.org/wiki/Chebyshev%27s_inequality" target="_blank" rel="noopener">Chebyshev Inequality</a>.</p>
+<p>基于矩的界主要是<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Markov%27s_inequality">Markov Inequality</a>和<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Chebyshev%27s_inequality">Chebyshev Inequality</a>.</p>
 <h3 id="markov-inequality">Markov Inequality</h3>
 <blockquote>
 <p>设<span class="math inline">\(Z\)</span>为非负随机变量, <span class="math inline">\(\forall a &gt;0\)</span> <span class="math display">\[\mathbb{P}(Z\ge a)\le\frac{\mathbb{E}(Z)}{a}\]</span></p>
@@ -307,8 +307,8 @@
 <h2 id="chernoff-bound">Chernoff Bound</h2>
 <p>Chernoff Bound一般指用指数函数的单调性及Markov Inequality得到的界. 笔者按自己的理解再细分成了两类:</p>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Chernoff_bound#Example" target="_blank" rel="noopener">Chernoff Inequality</a>、<a href="https://en.wikipedia.org/wiki/Bennett%27s_inequality" target="_blank" rel="noopener">Bennett Inequality</a> and <a href="https://en.wikipedia.org/wiki/Bernstein_inequalities_(probability_theory)" target="_blank" rel="noopener">Bernstein Inequality</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Hoeffding%27s_inequality" target="_blank" rel="noopener">Hoeffding Inequality</a> 、<a href="https://en.wikipedia.org/wiki/Doob_martingale#McDiarmid&#39;s_inequality" target="_blank" rel="noopener">McDiarmid inequality</a> and <a href="https://en.wikipedia.org/wiki/Azuma%27s_inequality" target="_blank" rel="noopener">Azuma–Hoeffding inequality</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Chernoff_bound#Example">Chernoff Inequality</a>、<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Bennett%27s_inequality">Bennett Inequality</a> and <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Bernstein_inequalities_(probability_theory)">Bernstein Inequality</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hoeffding%27s_inequality">Hoeffding Inequality</a> 、<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Doob_martingale#McDiarmid&#39;s_inequality">McDiarmid inequality</a> and <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Azuma%27s_inequality">Azuma–Hoeffding inequality</a></li>
 </ul>
 <h3 id="chernoff-inequality">Chernoff Inequality</h3>
 <blockquote>
@@ -497,7 +497,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">msgsxj</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0

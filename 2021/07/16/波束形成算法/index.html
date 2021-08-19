@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-fruit.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-fruit.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-fruit.png">
@@ -54,7 +54,7 @@
 <meta property="og:description" content="前言: 本文根据张小飞的阵列信号处理理论与应用第2版一书整理了波束形成算法">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-07-16T10:08:12.000Z">
-<meta property="article:modified_time" content="2021-07-16T10:15:08.364Z">
+<meta property="article:modified_time" content="2021-08-19T08:34:39.530Z">
 <meta property="article:author" content="msgsxj">
 <meta property="article:tag" content="信号">
 <meta name="twitter:card" content="summary">
@@ -250,10 +250,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-07-16 18:08:12 / 修改时间：18:15:08" itemprop="dateCreated datePublished" datetime="2021-07-16T18:08:12+08:00">2021-07-16</time>
+              <time title="创建时间：2021-07-16 18:08:12" itemprop="dateCreated datePublished" datetime="2021-07-16T18:08:12+08:00">2021-07-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-19 16:34:39" itemprop="dateModified" datetime="2021-08-19T16:34:39+08:00">2021-08-19</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -278,7 +284,8 @@
 
       
         <p>前言: 本文根据张小飞的阵列信号处理理论与应用第2版一书整理了波束形成算法</p>
-<a id="more"></a>
+<span id="more"></span>
+<h1 id="波束形成">波束形成</h1>
 <p>自适应波束形成(Adaptive beamforming), 又称空域滤波, 它能够根据阵列信号<span class="math inline">\(\mathbf{x}[t]\)</span>的变化自适应的改变权重向量<span class="math inline">\(\mathbf{w}\)</span>, 输出对阵列输出加权求和<span class="math inline">\(y[n]\)</span>, 以达到增强期望信号, 抑制干扰的目的。<strong>p.s. </strong>粗体<span class="math inline">\(\mathbf{w}\)</span>表示向量/矩阵, 常规体<span class="math inline">\(d[t]\)</span>表示标量。 <span class="math display">\[
 y[t]=\mathbf{w}^H\mathbf{x}[t]
 \]</span> 几个要点:</p>
@@ -298,52 +305,62 @@ P(\mathbf{w})=\mathbb{E}\left[\left\vert y[t]\right\vert^2\right]=\mathbb{E}\lef
 \mbox{s.t.}\quad
 &amp;\mathbf{w}^H\mathbf{a}(\theta_d)=f
 \end{alignat}
-\]</span> 其中<span class="math inline">\(\mathbf{R}\in\mathbb{C}^{M\times M}\)</span>为阵列阵列信号<span class="math inline">\(\mathbf{x}[t]\)</span>的协方差矩阵. Lagrange乘子方法求得LCMV波束形成的最优权向量: <span class="math display">\[
-\mathbf{w}_o=\frac{f^*\mathbf{R}^{-1}\mathbf{a}(\theta_d)}{\mathbf{a}^H(\theta_d)\mathbf{R}^{-1}\mathbf{a}(\theta_d)}
-\]</span> 而<span class="math inline">\(d[t]=\mathbf{w}_o^H\mathbf{x}[t]\)</span>, 下面不再赘述. 特别地, 当<span class="math inline">\(f=1\)</span>时称MVDR波束形成.</p>
-<p>要点</p>
+\]</span> 其中<span class="math inline">\(\mathbf{R}\in\mathbb{C}^{M\times M}\)</span>为阵列阵列信号<span class="math inline">\(\mathbf{x}[t]\)</span>的协方差矩阵. Lagrange乘子方法求得LCMV波束形成的最优权向量(Linearly Constrained Minimum Variance, LCMV): <span class="math display">\[
+\mathbf{w}_{_{LCMV}}=\frac{f^*\mathbf{R}^{-1}\mathbf{a}(\theta_d)}{\mathbf{a}^H(\theta_d)\mathbf{R}^{-1}\mathbf{a}(\theta_d)}
+\]</span> 而<span class="math inline">\(d[t]=\mathbf{w}_o^H\mathbf{x}[t]\)</span>, 下面不再赘述. 特别地, 当<span class="math inline">\(f=1\)</span>时称MVDR(Minimum Variance Distortionless Response)波束形成.</p>
+<p>要点:</p>
 <ol type="1">
 <li>需要知道精确的期望信号导向向量<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>.</li>
 </ol>
 <h2 id="gsc波束形成">GSC波束形成</h2>
-<p>GSC波束形成的优化问题如下: <span class="math display">\[
+<p>GSC波束形成本质上只是在LCMV的基础上增加了约束的个数, GSC的优化问题如下: <span class="math display">\[
 \begin{alignat}{2}
 \min_{\mathbf{w}} \quad &amp; \mathbf{w}^H\mathbf{R}\mathbf{w}\\
 \mbox{s.t.}\quad
 &amp;\mathbf{C}^H\mathbf{w}=\mathbf{f}
 \end{alignat}
-\]</span> 其中<span class="math inline">\(\mathbf{C}\)</span>为<span class="math inline">\(M\times(J+1)\)</span>维约束矩阵. 可由Lagrange乘子方法求得GSC波束形成的最优权向量: <span class="math display">\[
-\mathbf{w}_o=\mathbf{R}^{-1}\mathbf{C}(\mathbf{C}^H\mathbf{R}^{-1}\mathbf{C})^{-1}\mathbf{f}\label{GSC1}
+\]</span> 其中<span class="math inline">\(\mathbf{C}\)</span>为<span class="math inline">\(M\times(J+1)\)</span>维约束矩阵. 可由Lagrange乘子方法求得GSC波束形成的最优权向量(Generalized Sidelobe Canceller, GSC): <span class="math display">\[
+\mathbf{w}_{_{GSC}}=\mathbf{R}^{-1}\mathbf{C}(\mathbf{C}^H\mathbf{R}^{-1}\mathbf{C})^{-1}\mathbf{f}\label{GSC1}
 \]</span> 也可由正交子空间方法求得最优权向量: <span class="math display">\[
-\mathbf{w}_o=\mathbf{w}_{q}-\mathbf{B}\mathbf{w}_a=\mathbf{w}_{q}-\mathbf{B}(\mathbf{B}^H\mathbf{R}\mathbf{B})^{-1}\mathbf{B}^H\mathbf{R}\mathbf{w}_q\label{GSC2}
+\mathbf{w}_{_{GSC}}=\mathbf{w}_{q}-\mathbf{B}\mathbf{w}_a=\mathbf{w}_{q}-\mathbf{B}(\mathbf{B}^H\mathbf{R}\mathbf{B})^{-1}\mathbf{B}^H\mathbf{R}\mathbf{w}_q\label{GSC2}
 \]</span> 其中<span class="math inline">\(\mathbf{w}_q=(\mathbf{C\mathbf{C}^H})^{-1}\mathbf{C}\mathbf{f}\)</span>, 阻塞矩阵<span class="math inline">\(\mathbf{B}\)</span>的列向量位<span class="math inline">\(\mathbf{C}\)</span>的正交补空间中.</p>
 <p>要点:</p>
 <ol type="1">
 <li><span class="math inline">\(\mathbf{C}\)</span>, <span class="math inline">\(\mathbf{f}\)</span>需要人为确定, 且<span class="math inline">\(\mathbf{C}\)</span>包含<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>.</li>
 <li>由于阵元增益存在幅度误差和相位误差<span class="math inline">\(\mathbf{G}\)</span>, 实际的期望信号导向向量<span class="math inline">\(\mathbf{G}\mathbf{a}(\theta_d)\)</span>不完全在<span class="math inline">\(\mathbf{C}\)</span>张成的空间中, 此时<span class="math inline">\(\mathbf{B}^H\mathbf{G}\mathbf{a}(\theta_d)d[t]\neq 0\)</span>, 就会出现期望相消的现象.</li>
-<li>要求<span class="math inline">\(J+1&lt;M\)</span>.</li>
+<li>正交子空间方法要求<span class="math inline">\(J+1&lt;M\)</span>.</li>
 </ol>
 <h3 id="igsc波束形成">IGSC波束形成</h3>
-<p>对协方差矩阵<span class="math inline">\(\mathbf{R}\in\mathbb{C}^{M\times M}\)</span>进行特征值分解, 用最大的<span class="math inline">\(J+1\)</span>个特征值对应的特征向量构成信号子空间<span class="math inline">\(\mathbf{U}\)</span>, 并将<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>投影到信号子空间中: <span class="math display">\[
-\mathbf{a}&#39;(\theta_d)=\mathbf{U}\mathbf{U}^H\mathbf{a}(\theta_d)
-\]</span> 这里假定假定<span class="math inline">\(\mathbf{C}=\mathbf{a}&#39;(\theta_d)\)</span>, 按照公式<span class="math inline">\(\ref{GSC1}\)</span>或<span class="math inline">\(\ref{GSC2}\)</span>计算求得最优权向量.</p>
-<p>要点:</p>
+<p>首先将协方差矩阵通过EVD分解为信号-干扰子空间<span class="math inline">\(S\)</span>与噪声子空间<span class="math inline">\(N\)</span>: <span class="math display">\[
+\mathbf{R}=\mathbf{U}_S\Sigma_S\mathbf{U}_S^H+\mathbf{U}_N\Sigma_N\mathbf{U}_N^H
+\]</span> 接着将<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>​投影到信号-干扰子空间中: <span class="math display">\[
+\mathbf{a}&#39;(\theta_d)=\mathbf{U}_S\mathbf{U}_S^H\mathbf{a}(\theta_d)
+\]</span> 最后只需带入公式<span class="math inline">\(\ref{GSC1}\)</span>或<span class="math inline">\(\ref{GSC2}\)</span>计算求得解(为了方便理解, 这里假定约束个数只有一个, 因此只需将<span class="math inline">\(\mathbf{a}&#39;(\theta_d)\)</span>带换<span class="math inline">\(\mathbf{C}\)</span>​​​​​) <span class="math display">\[
+\mathbf{w}_{_{IGSC}}=\mathbf{R}^{-1}\mathbf{a}&#39;(\theta_d)(\mathbf{a}&#39;(\theta_d)^H\mathbf{R}^{-1}\mathbf{a}&#39;(\theta_d))^{-1}\mathbf{f}
+\]</span> 要点:</p>
 <ol type="1">
-<li>假设实际的导向向量<span class="math inline">\(\mathbf{G}\mathbf{a}(\theta_d)\)</span>在信号子空间<span class="math inline">\(\mathbf{U}\)</span>中, <span class="math inline">\(\mathbf{a}&#39;(\theta_d)\)</span>会比<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>更加接近实际的导向向量<span class="math inline">\(\mathbf{G}\mathbf{a}(\theta_d)\)</span>.</li>
-<li>当白噪声信号的能量较大, 信号子空间会包含噪声, 波束形成图会有畸变.</li>
-<li>要求<span class="math inline">\(J+1&lt;M\)</span>, 且当<span class="math inline">\(J+1=M\)</span>时, 投影为恒等变换.</li>
+<li>在实际的导向向量<span class="math inline">\(\mathbf{G}\mathbf{a}(\theta_d)\)</span>属于信号-干扰子空间<span class="math inline">\(S\)</span>中的假设条件下, 投影后的导向向量<span class="math inline">\(\mathbf{U}_S\mathbf{U}_S^H\mathbf{a}(\theta_d)\)</span>会比<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>更加接近实际的导向向量<span class="math inline">\(\mathbf{G}\mathbf{a}(\theta_d)\)</span>, 从而能够带来更精确的解.</li>
+<li>当白噪声信号的能量较大, 即SNR值较低, 此时EVD分解没法很好的区分信号-干扰子空间与噪声子空间​, 信号子空间会包含噪声, 波束形成图会有畸变.</li>
+<li>要求<span class="math inline">\(J+1&lt;M\)</span>​, 且当<span class="math inline">\(J+1=M\)</span>​时, 投影为恒等变换.</li>
+<li><span class="math inline">\(J\)</span>此时实际上也为信号-干扰子空间<span class="math inline">\(S\)</span>的维数, 必须恰当选取.</li>
 </ol>
 <h3 id="es-gsc波束形成">ES-GSC波束形成</h3>
-<p>对协方差矩阵<span class="math inline">\(\mathbf{R}\in\mathbb{C}^{M\times M}\)</span>进行特征值分解, 用最大的<span class="math inline">\(J+1\)</span>或<span class="math inline">\(J\)</span>个特征值对应的特征向量与期望信号的导向向量<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>构成信号子空间<span class="math inline">\(\mathbf{U}\)</span>, 对<span class="math inline">\(\mathbf{U}\)</span>再做奇异值分解, 最后按照公式<span class="math inline">\(\ref{GSC1}\)</span>或<span class="math inline">\(\ref{GSC2}\)</span>计算求得的最优权向量<span class="math inline">\(\mathbf{w}_{_{GSC}}\)</span>投影至左奇异向量构成的空间<span class="math inline">\(\mathbf{U}_S\)</span>中: <span class="math display">\[
-\mathbf{w}_{_{ES-GSC}}=\mathbf{U}_S\mathbf{U}_S^H\mathbf{w}_{_{GSC}}
+<p>首先将协方差矩阵通过EVD分解为信号-干扰子空间<span class="math inline">\(S\)</span>与噪声子空间<span class="math inline">\(N\)</span>: <span class="math display">\[
+\mathbf{R}=\mathbf{U}_S\Sigma_S\mathbf{U}_S^H+\mathbf{U}_N\Sigma_N\mathbf{U}_N^H
+\]</span> 接着用<span class="math inline">\(\mathbf{U}_S\)</span>​与期望信号的导向向量<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>​构成广义信号-干扰子空间<span class="math inline">\(\mathbf{U}\)</span>​, 对<span class="math inline">\(\mathbf{U}\)</span>​再做SVD得到左奇异空间<span class="math inline">\(\mathbf{U}_{L}\)</span>​, 最后按照公式<span class="math inline">\(\ref{GSC1}\)</span>​或<span class="math inline">\(\ref{GSC2}\)</span>​计算求得的最优权向量<span class="math inline">\(\mathbf{w}_{_{GSC}}\)</span>​投影至左奇异向量构成的空间<span class="math inline">\(\mathbf{U}_L\)</span>​中: <span class="math display">\[
+\mathbf{w}_{_{ES-GSC}}=\mathbf{U}_L\mathbf{U}_L^H\mathbf{w}_{_{GSC}}
 \]</span> 要点:</p>
 <ol type="1">
 <li>带上期望信号导向向量<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>的信号子空间<span class="math inline">\(\mathbf{U}\)</span>再对<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>做投影失去意义, 因此直接投影最优权向量.</li>
 <li>引入<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>, 这降低了信号子空间的噪声, 因此具有较好的噪声鲁棒性.</li>
-<li>要求<span class="math inline">\(J+1&lt;M\)</span>.</li>
+<li>正交子空间方法要求<span class="math inline">\(J+1&lt;M\)</span>.</li>
 </ol>
 <h2 id="ebs波束形成">EBS波束形成</h2>
-<p>对协方差矩阵<span class="math inline">\(\mathbf{R}\in\mathbb{C}^{M\times M}\)</span>进行特征值分解, 用最大的<span class="math inline">\(J+1\)</span>个特征值对应的特征向量构成信号子空间<span class="math inline">\(\mathbf{U}_S\)</span>, 剩下的特征值对应的特征向量构成噪声子空间<span class="math inline">\(\mathbf{U}_N\)</span>. 将SMI波束形成算法(LCMV波束形成属于其中)得到的最优权向量<span class="math inline">\(\mathbf{w}_o=\mu\mathbf{R}^{-1}\mathbf{a}(\theta_d)\)</span>投影至信号子空间<span class="math inline">\(\mathbf{U}_S\)</span>中: <span class="math display">\[
+<p>首先将协方差矩阵通过EVD分解为信号-干扰子空间<span class="math inline">\(S\)</span>与噪声子空间<span class="math inline">\(N\)</span>: <span class="math display">\[
+\mathbf{R}=\mathbf{U}_S\Sigma_S\mathbf{U}_S^H+\mathbf{U}_N\Sigma_N\mathbf{U}_N^H
+\]</span> 将SMI波束形成算法得到的最优权向量 <span class="math display">\[
+\mathbf{w}_o=\mu\mathbf{R}^{-1}\mathbf{a}(\theta_d)
+\]</span> (<strong>p.s.</strong>当<span class="math inline">\(\mu=\frac{f^*}{\mathbf{a}^H(\theta_d)\mathbf{R}^{-1}\mathbf{a}(\theta_d)}\)</span>即LCMV)投影至信号子空间<span class="math inline">\(\mathbf{U}_S\)</span>中: <span class="math display">\[
 \mathbf{w}_{_{EBS}}=\mathbf{U}_S\mathbf{U}_S^H\mathbf{w}_{o}
 \]</span> 要点:</p>
 <ol type="1">
@@ -353,7 +370,7 @@ P(\mathbf{w})=\mathbb{E}\left[\left\vert y[t]\right\vert^2\right]=\mathbb{E}\lef
 <li>要求<span class="math inline">\(J+1&lt;M\)</span>, 且当<span class="math inline">\(J+1=M\)</span>时, 投影为恒等变换.</li>
 </ol>
 <h3 id="iebs波束形成">IEBS波束形成</h3>
-<p>对协方差矩阵<span class="math inline">\(\mathbf{R}\in\mathbb{C}^{M\times M}\)</span>进行特征值分解, 用最大的<span class="math inline">\(J+1\)</span>或<span class="math inline">\(J\)</span>个特征值对应的特征向量与期望信号的导向向量<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>构成信号子空间<span class="math inline">\(\mathbf{U}\)</span>, 对<span class="math inline">\(\mathbf{U}\)</span>再做奇异值分解, 将SMI波束形成算法(LCMV波束形成属于其中)得到的最优权向量<span class="math inline">\(\mathbf{w}_o=\mu\mathbf{R}^{-1}\mathbf{a}(\theta_d)\)</span>投影至左奇异向量构成的空间<span class="math inline">\(\mathbf{U}_S\)</span>中: <span class="math display">\[
+<p>对协方差矩阵<span class="math inline">\(\mathbf{R}\in\mathbb{C}^{M\times M}\)</span>​​进行特征值分解, 用最大的<span class="math inline">\(J+1\)</span>​​或<span class="math inline">\(J\)</span>​​个特征值对应的特征向量与期望信号的导向向量<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>​​构成信号子空间<span class="math inline">\(\mathbf{U}\)</span>​​, 对<span class="math inline">\(\mathbf{U}\)</span>​​再做奇异值分解, 将SMI波束形成算法得到的最优权向量<span class="math inline">\(\mathbf{w}_o\)</span>​​投影至左奇异向量构成的空间<span class="math inline">\(\mathbf{U}_S\)</span>​​中: <span class="math display">\[
 \mathbf{w}_{_{IEBS}}=\mathbf{U}_S\mathbf{U}_S^H\mathbf{w}_{o}
 \]</span> 要点:</p>
 <ol type="1">
@@ -437,7 +454,212 @@ C_{4m}&amp; =cum\{a_1(\theta_d)d[t], a_1^*(\theta_d)d^*[t], a_1^*(\theta_d)d^*[t
 \]</span> 因此<span class="math inline">\(\beta=\vert a_1(\theta_d)\vert^2a_1^*(\theta_d)cum\{d[t], d^*[t], d^*[t], d[t]\}\)</span>. 当干扰信号<span class="math inline">\(i_1[t]\)</span>为非高斯信号, 此时<span class="math inline">\(\mathbf{C}_4=\beta_1\mathbf{a}(\theta_d)+\beta_2\mathbf{a}(\theta_1)\)</span>, 且<span class="math inline">\(\beta_2=\vert a_1(\theta_1)\vert^2a_1^*(\theta_1)cum\{i_1[t], i_1^*[t], i_1^*[t], i_1[t]\}\)</span>.</p></li>
 </ol>
 <h2 id="cab波束形成">CAB波束形成</h2>
-<p>未完待续......</p>
+<blockquote>
+<p>关于周期平稳信号:</p>
+<ol type="1">
+<li><p>对于阵列接收信号矢量<span class="math inline">\(\mathbf{x}[k]\)</span>​​, 其周期平稳相关矩阵定义为 <span class="math display">\[
+\phi_{\mathbf{x}\mathbf{x}}(n_0,\alpha)=\overline{[\mathbf{x}[k]\mathbf{x}^H[k]e^{-j2\pi\alpha k}]_{\infty}}=\lim_{N\to\infty}\frac{1}{N}\sum_{k=1}^N\mathbf{x}[k]\mathbf{x}^H[k]e^{-j2\pi\alpha k}
+\]</span> 类似的, 周期共轭平稳相关矩阵定义为 <span class="math display">\[
+\phi_{\mathbf{x}\mathbf{x}}(n_0,\alpha)=\overline{[\mathbf{x}[k]\mathbf{x}^T[k]e^{-j2\pi\alpha k}]_{\infty}}=\lim_{N\to\infty}\frac{1}{N}\sum_{k=1}^N\mathbf{x}[k]\mathbf{x}^T[k]e^{-j2\pi\alpha k}
+\]</span> 如果信号在时延<span class="math inline">\(n_0\)</span>​和频率偏<span class="math inline">\(\alpha\)</span>时非零, 则此信号称为周期平稳信号.</p></li>
+<li><p>实际计算过程中均采用有限采样长度<span class="math inline">\(N\)</span>的时间平均, 并可将周期平稳相关矩阵和周期共轭平稳相关矩阵统一记号, 记作 <span class="math display">\[
+\hat{R}_{\mathbf{x}\mathbf{u}}=\left\{
+\begin{aligned}
+\hat{\phi}_{\mathbf{x}\mathbf{x}}(n_0,\alpha) &amp; =  \overline{[\mathbf{x}[k]\mathbf{x}^H[k]e^{-j2\pi\alpha k}]_{N}} \\
+\hat{\phi}_{\mathbf{x}\mathbf{x}^*}(n_0,\alpha) &amp; =  \overline{[\mathbf{x}[k]\mathbf{x}^T[k]e^{-j2\pi\alpha k}]_{N}}
+\end{aligned}
+\right.
+\]</span> 这里<span class="math inline">\(\mathbf{u}[k]=\mathbf{x}[k+n_0]e^{j2\pi\alpha k}\)</span>​​表示时频位移矢量.</p></li>
+</ol>
+</blockquote>
+<p>CAB波束形成的优化问题如下: <span class="math display">\[
+\begin{alignat}{2}
+\max_{\mathbf{w}, \mathbf{c}} \quad &amp;  \mathbf{w}^H\hat{R}_{\mathbf{x}\mathbf{u}}cc^H\hat{R}_{\mathbf{x}\mathbf{u}}^{H}\mathbf{w}\\
+\mbox{s.t.}\quad
+&amp;\mathbf{w}^H\mathbf{w}=\mathbf{c}^H\mathbf{c}=1
+\end{alignat}
+\]</span> 假定这里的<span class="math inline">\(\mathbf{w}, \mathbf{c}\)</span>​能使得标量信号<span class="math inline">\(\mathbf{w}^H\mathbf{x}[t]\)</span>​和<span class="math inline">\(\mathbf{c}^H\mathbf{u}[t]\)</span>​有极高的相关值, 即最大化时间平均量<span class="math inline">\(\left\vert[\mathbf{w}^H\mathbf{x}[t]\mathbf{c}\mathbf{u}^H[t]]_N\right\vert^2\)</span>​,这也就顺便获得了期望信号. 由拉格朗日乘子法得<span class="math inline">\(\mathbf{w}, \mathbf{c}\)</span>​分别为<span class="math inline">\(\hat{R}_{\mathbf{x}\mathbf{u}}\)</span>​的最大奇异值对应的左右奇异向量, 记<span class="math inline">\(\mathbf{w}_{_{CAB}}\)</span>​.</p>
+<p>要点:</p>
+<ol type="1">
+<li>假定了期望信号为周期平稳信号.</li>
+<li>假定了期望信号与干扰信号不相关.</li>
+</ol>
+<h3 id="c-cab波束形成">C-CAB波束形成</h3>
+<p>C-CAB波束形成在CAB的基础上应用MVDR, 其优化问题如下: <span class="math display">\[
+\begin{alignat}{2}
+\min_{\mathbf{w}} \quad &amp; \mathbf{w}^H\mathbf{R}\mathbf{w}\\
+\mbox{s.t.}\quad
+&amp;\mathbf{w}^H\mathbf{w}_{_{CAB}}=1
+\end{alignat}
+\]</span> 这里<span class="math inline">\(\mathbf{R}\in\mathbb{C}^{M\times M}\)</span>​为阵列阵列信号<span class="math inline">\(\mathbf{x}[t]\)</span>​的协方差矩阵.由拉格朗日乘子法得 <span class="math display">\[
+\mathbf{w}_{_{C-CAB}}=\mathbf{R}^{-1}\mathbf{w}_{_{CAB}}
+\]</span> 要点:</p>
+<ol type="1">
+<li>继承了MVDR的问题.</li>
+</ol>
+<h3 id="r-cab波束形成">R-CAB波束形成</h3>
+<p>R-CAB在C-CAB的基础上采用传统的对角线加载技术 <span class="math display">\[
+\mathbf{w}_{_{R-CAB}}=(\mathbf{R}-\mathbf{R}_s+\gamma I)^{-1}\mathbf{w}_{_{CAB}}
+\]</span> 这里的<span class="math inline">\(\mathbf{R}_s\)</span>​为期望信号部分的自相关矩阵, 单个期望信号的情况下有<span class="math inline">\(\mathbf{R}_s=\sigma_s^2 \mathbf{w}_{_{CAB}}\mathbf{w}_{_{CAB}}^H\)</span>​​​​, <span class="math inline">\(\sigma_s^2\)</span>​​为期望信号的方差.</p>
+<p>要点:</p>
+<ol type="1">
+<li>对角线加载技术通过增大小特征值信号(噪声信号)的特征值的方式来减小噪声信号特征值的扰动, 从而减弱了小特征值信号在快拍数有限时的影响.</li>
+</ol>
+<h2 id="基于恒模的盲波束形成">基于恒模的盲波束形成</h2>
+<p>基于恒模的盲波束形成的优化问题如下 <span class="math display">\[
+\begin{alignat}{2}
+\min_{\mathbf{w}} \mathbb{E}\left[\left\vert\left\vert \mathbf{w}^H\mathbf{x}[t]\right\vert^p -1\right\vert^q\right]
+\end{alignat}
+\]</span> 可直接用随机梯度下降方法(最新一个样本)或高斯牛顿方法(最新K个样本)解之, 对应随机梯度恒模算法和LS-CMA.</p>
+<p>要点:</p>
+<ol type="1">
+<li>基于恒模的方法仅仅对期望信号的模做了约束.</li>
+</ol>
+<h2 id="smi波束形成">SMI波束形成</h2>
+<p>SMI波束形成是LCMV波束形成的一种一般化 <span class="math display">\[
+\mathbf{w}_o=\mu\mathbf{R}^{-1}\mathbf{a}(\theta_d)
+\]</span> 这里<span class="math inline">\(\mathbf{R}\in\mathbb{C}^{M\times M}\)</span>​为阵列信号<span class="math inline">\(\mathbf{x}[t]\)</span>​的协方差矩阵. 当<span class="math inline">\(\mu=\frac{f^*}{\mathbf{a}^H(\theta_d)\mathbf{R}^{-1}\mathbf{a}(\theta_d)}\)</span>​即LCMV.</p>
+<p>要点:</p>
+<ol type="1">
+<li><p>假定阵列接收信号由<span class="math inline">\(P\)</span>​个信号构成, 体现在协方差矩阵<span class="math inline">\(\mathbf{R}\)</span>​​由特征值较大的信号和特征值较小的噪声两部分组成 <span class="math display">\[
+\mathbf{R}=\sum_{i=1}^P\lambda_i\mathbf{u}_i\mathbf{u}_i^H+\sigma_n^2\sum_{i=P+1}^M\mathbf{u}_i\mathbf{u}_i^H=\sum_{i=1}^P(\lambda_i-\sigma_n^2)\mathbf{u}_i\mathbf{u}_i^H+\sigma_n^2\mathbf{I}
+\]</span> 其中<span class="math inline">\(\lambda_1\ge \lambda_2\ge\dots\ge\lambda_P&gt;\lambda_{P+1}=\dots=\lambda_M=\sigma_n^2\)</span>​, 继而由矩阵求逆引理得 <span class="math display">\[
+\mathbf{w}_o=\mu\mathbf{R}^{-1}\mathbf{a}(\theta_d)=\frac{\mu}{\sigma_n^2}\left[\mathbf{a}(\theta_d)-\sum_{i=1}^P\frac{\lambda_i-\sigma_n^2}{\lambda_i}\mathbf{u}_i\mathbf{u}_i^H\mathbf{a}(\theta_d)\right]
+\]</span></p></li>
+<li><p>实际计算由<span class="math inline">\(K\)</span>​次采样信号来得到<span class="math inline">\(\mathbf{R}\)</span>​的估计值<span class="math inline">\(\hat{\mathbf{R}}=\frac{1}{K}\sum_{i=1}^K\mathbf{x(t_i)}\mathbf{x(t_i)}^H\)</span>​, 此时<span class="math inline">\(\hat{\mathbf{R}}\)</span>​的特征值很有可能不满足后<span class="math inline">\(M\)</span>​​个都一样, 因此就没法完全消除噪声信号带来的影响 <span class="math display">\[
+\hat{\mathbf{w}}_o=\mu\hat{\mathbf{R}}^{-1}\mathbf{a}(\theta_d)=\frac{\mu}{\hat{\lambda}_M}\left[\mathbf{a}(\theta_d)-\sum_{i=1}^M\frac{\hat{\lambda}_i-\hat{\lambda}_M}{\hat{\lambda}_i}\mathbf{u}_i\mathbf{u}_i^H\mathbf{a}(\theta_d)\right]
+\]</span> 我们需要一些技术来降低噪声信号带来的影响.</p></li>
+</ol>
+<h3 id="adl-smi波束形成">ADL-SMI波束形成</h3>
+<p>ADL-SMI是在SMI的基础上加上了自适应的加载量 <span class="math display">\[
+\mathbf{w}_o=\mu(\mathbf{R}+L\mathbf{I})^{-1}\mathbf{a}(\theta_d)
+\]</span> 此时 <span class="math display">\[
+\hat{\mathbf{w}}_o=\mu\hat{\mathbf{R}}^{-1}\mathbf{a}(\theta_d)=\frac{\mu}{\hat{\lambda}_M}\left[\mathbf{a}(\theta_d)-\sum_{i=1}^M\frac{\hat{\lambda}_i-\hat{\lambda}_M}{\hat{\lambda}_i+L}\mathbf{u}_i\mathbf{u}_i^H\mathbf{a}(\theta_d)\right]
+\]</span> ADL-SMI波束形成的加载量<span class="math inline">\(L\)</span>可由如下方式确定</p>
+<ol type="1">
+<li>计算<span class="math inline">\(\xi=\frac{1}{M-P}\sum_{i=P+1}^M\lambda_i\)</span>​​​​​</li>
+<li>给定常数字<span class="math inline">\(d\)</span>​​, <span class="math inline">\(\xi&gt;d\)</span>​​视为信噪比较低的情况, 取<span class="math inline">\(L=0\)</span>​​; <span class="math inline">\(\xi\le d\)</span>​​视为信噪比较高的情况, 取<span class="math inline">\(L\)</span>​逐渐变大.</li>
+</ol>
+<p>要点:</p>
+<ol type="1">
+<li>加载量<span class="math inline">\(L\)</span>过大, 同时也会抑制信号,导致SINR降低; 加载量<span class="math inline">\(L\)</span>过小, 对噪声的抑制就不明显.</li>
+<li>加载量<span class="math inline">\(L\)</span>的确定可通过画出方向图<span class="math inline">\(G(\mathbf{w},\theta)=\mathbf{w}^H\mathbf{a}(\theta)\)</span>来判断, 信号一般具有明显的方向性, 而噪声一般不具备. 适中的<span class="math inline">\(L\)</span>能够较好的保留信号同时抑制噪声.</li>
+</ol>
+<h2 id="基于空间频域的波束形成">基于空间频域的波束形成</h2>
+<h3 id="flms-abf">FLMS-ABF</h3>
+<ol type="1">
+<li>首先对阵列信号<span class="math inline">\(\mathbf{x}[t]\)</span>​进行FFT</li>
+</ol>
+<p><span class="math display">\[
+\mathbf{r}[t]=\mathbf{W}\mathbf{x}[t]
+\]</span></p>
+<p>这里<span class="math inline">\(\mathbf{W}\)</span>​​​为<span class="math inline">\(M\times M\)</span>​​​​的对称矩阵、酉矩阵 <span class="math display">\[
+\mathbf{W}[u,v]=\frac{1}{\sqrt{M}}\exp(\frac{-j2\pi u v}{M})\quad u,v\in[0,M-1]
+\]</span></p>
+<ol start="2" type="1">
+<li>LMS求解 <span class="math display">\[
+\min_{V} \mathbb{E}\left[(d[t]-V^T[t]\mathbf{r}[t])^2\right]
+\]</span> 其中<span class="math inline">\(d[t]\)</span>​为期望信号, 算法输出值为 <span class="math display">\[
+y[t]=V^T[t]\mathbf{r}[t]
+\]</span></li>
+</ol>
+<p>要点:</p>
+<ol type="1">
+<li><p>LMS本质上为随机梯度方法, 在目标函数强凸(这里的二次函数显然满足)且步长满足<span class="math inline">\(O(1/k)\)</span>​​的衰减速率的前提下, 随机梯度方法能以<span class="math inline">\(O(\kappa/k)\)</span>​​的速率收敛到其最小值点. 这里的<span class="math inline">\(\kappa\)</span>​​指带问题的条件数, 特别地, 这里二次问题的条件数<span class="math inline">\(\kappa\)</span>​​恰为矩阵<span class="math inline">\(\mathbf{r}[t]\)</span>​​的最大/最小奇异值的模之比<span class="math inline">\(\kappa (\mathbf{r}[t])={\frac {\sigma _{\text{max}}(\mathbf{r}[t])}{\sigma _{\text{min}}(\mathbf{r}[t])}}\)</span>​​, 也即<span class="math inline">\(\mathbf{r}[t]\)</span>​​​的自相关矩阵的最大最小特征值之比再开根号.</p></li>
+<li><p>对于一般的矩阵范数, 矩阵的条件数定义为<span class="math inline">\(\kappa(A)=\Vert A\Vert\Vert A^{-1}\Vert\)</span>​​​, 由 <span class="math display">\[
+\kappa(AB)=\|AB\|\,\|(AB)^{-1} \| \le \|A\|\,\|B\|\,\|B^{-1}\|\,\|A^{-1} \| =\kappa(A)\kappa(B)
+\]</span> 以及<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Condition_number">酉矩阵的条件数为1</a>知, 对阵列信号<span class="math inline">\(\mathbf{x}[t]\)</span>进行FFT至少不会增加条件数.</p></li>
+<li><p>也可在FFT之后再做一步带通滤波, 即 <span class="math display">\[
+\mathbf{r}[t]=\mathbf{W}_B\mathbf{W}\mathbf{x}[t]
+\]</span></p></li>
+</ol>
+<h3 id="小波域的波束形成">小波域的波束形成</h3>
+<ol type="1">
+<li>首先对阵列信号<span class="math inline">\(\mathbf{x}[t]\)</span>​​进行小波变换</li>
+</ol>
+<p><span class="math display">\[
+\mathbf{r}[t]=\mathbf{W}\mathbf{x}[t]
+\]</span></p>
+<p>这里<span class="math inline">\(\mathbf{W}\)</span>.</p>
+<ol start="2" type="1">
+<li>LMS求解 <span class="math display">\[
+\min_{V} \mathbb{E}\left[(d[t]-V^T[t]\mathbf{r}[t])^2\right]
+\]</span> 其中<span class="math inline">\(d[t]\)</span>​为期望信号, 算法输出值为 <span class="math display">\[
+y[t]=V^T[t]\mathbf{r}[t]
+\]</span></li>
+</ol>
+<p>要点:</p>
+<ol type="1">
+<li>小波变换后的信号自相关性下降, 这进一步改善了问题的条件数.</li>
+</ol>
+<h2 id="鲁棒的波束形成">鲁棒的波束形成</h2>
+<p>LCMV方法的最大特点为需要知道<strong>精确</strong>的期望信号导向向量<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>​, 而实际情况中的期望信号的导向向量往往不是精确的, 为了提高LCMV波束形成对导向向量<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>​​的鲁棒性, 我们有以下几种改进方法.</p>
+<h3 id="基于二次正则的方法">基于二次正则的方法</h3>
+<p>基于二次正则的方法为在MVDR(即LCMV中<span class="math inline">\(f=1\)</span>​​)优化目标函数的基础上加了一个二次正则: <span class="math display">\[
+\begin{alignat}{2}
+\min_{\mathbf{w}} \quad &amp; \mathbf{w}^H\mathbf{R}\mathbf{w}+\xi\mathbf{w}^H\mathbf{w} \\
+\mbox{s.t.}\quad
+&amp;\mathbf{w}^H\mathbf{a}(\theta_d)=1
+\end{alignat}
+\]</span> Lagrange乘子方法求得解为(Diagonal Loading-Sample Matrix Inversion, DL-SMI): <span class="math display">\[
+\mathbf{w}_{_{DL-SMI}}=\frac{(\mathbf{R}+\xi \mathbf{I})^{-1}\mathbf{a}(\theta_d)}{\mathbf{a}^H(\theta_d)(\mathbf{R}+\xi \mathbf{I})^{-1}\mathbf{a}(\theta_d)}
+\]</span> 要点:</p>
+<ol type="1">
+<li>加二次正则等价于对协方差矩阵的特征值都加上了一个常数, 这显著改善问题的条件数(自相关矩阵的最大最小特征值之比再开根号), 增强了解的鲁棒性.</li>
+<li>对角加载系数<span class="math inline">\(\xi\)</span>​​​需要人为确定.</li>
+</ol>
+<h3 id="基于子空间的方法">基于子空间的方法</h3>
+<p>首先将协方差矩阵通过EVD分解为信号-干扰子空间<span class="math inline">\(S\)</span>与噪声子空间<span class="math inline">\(N\)</span>: <span class="math display">\[
+\mathbf{R}=\mathbf{U}_S\Sigma_S\mathbf{U}_S^H+\mathbf{U}_N\Sigma_N\mathbf{U}_N^H
+\]</span> 再将导向向量<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>投影至信号-干扰子空间<span class="math inline">\(S\)</span>. 此时最优权向量为(Sub Space-Sample Matrix Inversion, SS-SMI), SS): <span class="math display">\[
+\mathbf{w}_{_{SS-SMI}}=\mathbf{R}^{-1}\mathbf{U}_S\mathbf{U}_S^H\mathbf{a}(\theta_d)
+\]</span> 要点:</p>
+<ol type="1">
+<li>仅适用SNR值较高的情形. 当SNR值较高, 信号-干扰子空间<span class="math inline">\(S\)</span>与噪声子空间<span class="math inline">\(N\)</span>可通过特征值分解鲁棒地区分开来; 当SNR值较低, 信号-干扰子空间<span class="math inline">\(S\)</span>与噪声子空间<span class="math inline">\(N\)</span>​就没法通过特征值分解鲁棒地区分开来.</li>
+<li>在实际的导向向量<span class="math inline">\(\mathbf{G}\mathbf{a}(\theta_d)\)</span>属于信号-干扰子空间<span class="math inline">\(S\)</span>中的假设条件下, 投影后的导向向量<span class="math inline">\(\mathbf{U}_S\mathbf{U}_S^H\mathbf{a}(\theta_d)\)</span>会比<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>更加接近实际的导向向量<span class="math inline">\(\mathbf{G}\mathbf{a}(\theta_d)\)</span>​, 从而能够带来更精确的解.</li>
+<li>从数学上子空间投影的角度看, 投影操作本身就能够减小导向向量<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>​​的误差, 从而增强了鲁棒性.</li>
+<li>信号子空间<span class="math inline">\(S\)</span>​的维数需要人为确定.</li>
+</ol>
+<h3 id="基于贝叶斯的方法">基于贝叶斯的方法</h3>
+<p>基于贝叶斯的方法的波束形成的最优权向量为(Bayes-Diagonal Loading-Sample Matrix Inversion, B-DL-SMI): <span class="math display">\[
+\mathbf{w}_{_{B-DL-SMI}}=\sum_{i=1}^Lp(\theta_i\mid \mathbf{X})\mathbf{w}_{_{DL-SMI}}(\theta_i)
+\]</span> 其中<span class="math inline">\(\mathbf{X}\)</span>​为<span class="math inline">\(K\)</span>​个快拍采样的阵列信号; <span class="math inline">\(\mathbf{w}_{_{DL-SMI}}(\theta_i)\)</span>​为DL-SMI波束形成以<span class="math inline">\(\theta_i\)</span>​作为期望方向的解.</p>
+<p>要点:</p>
+<ol type="1">
+<li>在DL-SMI的基础上, 结合了加权平均, 这增强了鲁棒性.</li>
+<li>需要根据<span class="math inline">\(\mathbf{X}\)</span>给出DOA角度的概率估计<span class="math inline">\(p(\theta_i\mid \mathbf{X})\)</span>.</li>
+<li>DL-SMI波束形部分的对角加载系数<span class="math inline">\(\xi\)</span>​​需要人为确定.</li>
+</ol>
+<h3 id="基于最坏情况的方法">基于最坏情况的方法</h3>
+<p>这种方法给导向向量<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>​​的留下了一些误差余地<span class="math inline">\(\varepsilon\)</span>: <span class="math display">\[
+\begin{alignat}{2}
+\min_{\mathbf{w}} \quad &amp; \mathbf{w}^H\mathbf{R}\mathbf{w} \\
+\mbox{s.t.}\quad &amp;\left\vert\mathbf{w}^H\left(\mathbf{a}(\theta_d)+\delta\right)\right\vert\ge 1, \quad \forall \Vert\delta\Vert\le\varepsilon\\
+\end{alignat}
+\]</span> 其中<span class="math inline">\(\delta\)</span>为导向向量的真实误差, <span class="math inline">\(\mathbf{a}(\theta_d)+\delta\)</span>表示真实的导向向量. 可用Lagrange乘子方法求得最优权向量(Worst-Sample Matrix Inversion, W-SMI): <span class="math display">\[
+\mathbf{w}_{_{W-SMI}}=\frac{(\mathbf{R}+\lambda\varepsilon^2\mathbf{I})^{-1}\mathbf{a}(\theta_d)}{\lambda\mathbf{a}^H(\theta_d)(\mathbf{R}+\lambda\varepsilon^2 \mathbf{I})^{-1}\mathbf{a}(\theta_d)-1}
+\]</span> 要点:</p>
+<ol type="1">
+<li>给导向向量<span class="math inline">\(\mathbf{a}(\theta_d)\)</span>​​留下的了一些误差余地带来了鲁棒性.</li>
+<li>Lagrange乘子<span class="math inline">\(\lambda\)</span>​​​​​需要将最优权向量入原问题后用Newton迭代得到, 计算量较大.</li>
+<li>误差余地<span class="math inline">\(\varepsilon\)</span>需要人为确定.</li>
+</ol>
+<h3 id="基于概率约束的方法">基于概率约束的方法</h3>
+<p>当导向向量误差<span class="math inline">\(\delta\)</span>的分布已知, 可仅约束发生概率充分大的那些真实导向向量(Probability Constraint-Sample Matrix Inversion, PC-SMI) <span class="math display">\[
+\begin{alignat}{2}
+\min_{\mathbf{w}} \quad &amp; \mathbf{w}^H\mathbf{R}\mathbf{w} \\
+\mbox{s.t.}\quad &amp;\mbox{Pr}\left\{\left\vert\mathbf{w}^H\left(\mathbf{a}(\theta_d)+\delta\right)\right\vert\ge 1\right\}\ge p\\
+\end{alignat}
+\]</span> 比如假定导向向量误差<span class="math inline">\(\delta\)</span>​满足零均值复高斯分布, 上述问题等价于 <span class="math display">\[
+\begin{alignat}{2}
+\min_{\mathbf{w}} \quad &amp; \mathbf{w}^H\mathbf{R}\mathbf{w} \\
+\mbox{s.t.}\quad &amp;\sqrt{2}\mbox{erf}^{-1}(\sqrt{p})\Vert \mathbf{C}_{\delta}^{1/2}\mathbf{w}\Vert\le\mathbf{w}^H\mathbf{a}(\theta_d)-1\\
+\end{alignat}
+\]</span> 其中<span class="math inline">\(\mbox{erf}^{-1}(z)=\frac{2}{\sqrt{\pi}}\int_{0}^z e^{-x^2}\mbox{d}x\)</span>, <span class="math inline">\(\mathbf{C}_{\delta}\)</span>为导向向量误差<span class="math inline">\(\delta\)</span>的二阶统计. 当<span class="math inline">\(\mathbf{C}_{\delta}=\sigma_{\delta}^2\mathbf{I}\)</span>和<span class="math inline">\(\varepsilon=\sigma_{\delta}\sqrt{2}\mbox{erf}^{-1}(\sqrt{p})\)</span>, 基于概率约束的方法就等价于基于最坏情况的方法.</p>
+<p>要点:</p>
+<ol type="1">
+<li>概率值<span class="math inline">\(p\)</span>需要人为确定.</li>
+</ol>
 
     </div>
 
@@ -519,7 +741,7 @@ C_{4m}&amp; =cum\{a_1(\theta_d)d[t], a_1^*(\theta_d)d^*[t], a_1^*(\theta_d)d^*[t
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lcmv波束形成"><span class="nav-number">1.</span> <span class="nav-text">LCMV波束形成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gsc波束形成"><span class="nav-number">2.</span> <span class="nav-text">GSC波束形成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#igsc波束形成"><span class="nav-number">2.1.</span> <span class="nav-text">IGSC波束形成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#es-gsc波束形成"><span class="nav-number">2.2.</span> <span class="nav-text">ES-GSC波束形成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ebs波束形成"><span class="nav-number">3.</span> <span class="nav-text">EBS波束形成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iebs波束形成"><span class="nav-number">3.1.</span> <span class="nav-text">IEBS波束形成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于斜投影的波束形成"><span class="nav-number">4.</span> <span class="nav-text">基于斜投影的波束形成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#amv波束形成"><span class="nav-number">5.</span> <span class="nav-text">AMV波束形成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于四阶累积量的波束形成"><span class="nav-number">6.</span> <span class="nav-text">基于四阶累积量的波束形成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cab波束形成"><span class="nav-number">7.</span> <span class="nav-text">CAB波束形成</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.</span> <span class="nav-text">波束形成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lcmv%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.1.</span> <span class="nav-text">LCMV波束形成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gsc%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.2.</span> <span class="nav-text">GSC波束形成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#igsc%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.2.1.</span> <span class="nav-text">IGSC波束形成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#es-gsc%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.2.2.</span> <span class="nav-text">ES-GSC波束形成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ebs%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.3.</span> <span class="nav-text">EBS波束形成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iebs%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.3.1.</span> <span class="nav-text">IEBS波束形成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%96%9C%E6%8A%95%E5%BD%B1%E7%9A%84%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.4.</span> <span class="nav-text">基于斜投影的波束形成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#amv%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.5.</span> <span class="nav-text">AMV波束形成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%9B%9B%E9%98%B6%E7%B4%AF%E7%A7%AF%E9%87%8F%E7%9A%84%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.6.</span> <span class="nav-text">基于四阶累积量的波束形成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cab%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.7.</span> <span class="nav-text">CAB波束形成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#c-cab%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.7.1.</span> <span class="nav-text">C-CAB波束形成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#r-cab%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.7.2.</span> <span class="nav-text">R-CAB波束形成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%81%92%E6%A8%A1%E7%9A%84%E7%9B%B2%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.8.</span> <span class="nav-text">基于恒模的盲波束形成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#smi%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.9.</span> <span class="nav-text">SMI波束形成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#adl-smi%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.9.1.</span> <span class="nav-text">ADL-SMI波束形成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%A9%BA%E9%97%B4%E9%A2%91%E5%9F%9F%E7%9A%84%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.10.</span> <span class="nav-text">基于空间频域的波束形成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#flms-abf"><span class="nav-number">1.10.1.</span> <span class="nav-text">FLMS-ABF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E6%B3%A2%E5%9F%9F%E7%9A%84%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.10.2.</span> <span class="nav-text">小波域的波束形成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%B2%81%E6%A3%92%E7%9A%84%E6%B3%A2%E6%9D%9F%E5%BD%A2%E6%88%90"><span class="nav-number">1.11.</span> <span class="nav-text">鲁棒的波束形成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E4%BA%8C%E6%AC%A1%E6%AD%A3%E5%88%99%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.11.1.</span> <span class="nav-text">基于二次正则的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%AD%90%E7%A9%BA%E9%97%B4%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.11.2.</span> <span class="nav-text">基于子空间的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.11.3.</span> <span class="nav-text">基于贝叶斯的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%9C%80%E5%9D%8F%E6%83%85%E5%86%B5%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.11.4.</span> <span class="nav-text">基于最坏情况的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%A6%82%E7%8E%87%E7%BA%A6%E6%9D%9F%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.11.5.</span> <span class="nav-text">基于概率约束的方法</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -585,7 +807,7 @@ C_{4m}&amp; =cum\{a_1(\theta_d)d[t], a_1^*(\theta_d)d^*[t], a_1^*(\theta_d)d^*[t
   </span>
   <span class="author" itemprop="copyrightHolder">msgsxj</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0

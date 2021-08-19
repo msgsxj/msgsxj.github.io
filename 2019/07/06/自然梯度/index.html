@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-fruit.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-fruit.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-fruit.png">
@@ -287,7 +287,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>前言: 本文介绍自然梯度算法, 这种方法考虑到许多问题的参数空间具有某种结构, 因此考虑放在非欧式空间中优化(但实际优化计算过程仍然在欧式空间), 有兴趣的同学可以读一读原论文<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf" target="_blank" rel="noopener">Natural Gradient</a>. <a id="more"></a></p>
+        <p>前言: 本文介绍自然梯度算法, 这种方法考虑到许多问题的参数空间具有某种结构, 因此考虑放在非欧式空间中优化(但实际优化计算过程仍然在欧式空间), 有兴趣的同学可以读一读原论文<a target="_blank" rel="noopener" href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient</a>. <span id="more"></span></p>
 <h2 id="欧式空间与黎曼空间">欧式空间与黎曼空间</h2>
 <p>什么是欧式空间?</p>
 <blockquote>
@@ -313,18 +313,18 @@
 <blockquote>
 <p>A differentiable manifold provided with a <strong>Riemannian metric</strong>.</p>
 </blockquote>
-<p>微分流形(differentiable manifold又名光滑流形, 其最简单的例子就是三维空间中的球面, 在这里可简单理解为向量空间; 黎曼度量(Riemannian metric.)又名<a href="https://zh.wikipedia.org/wiki/%E5%BA%A6%E9%87%8F%E5%BC%A0%E9%87%8F" target="_blank" rel="noopener">度量张量</a>, 黎曼度量张量或是度规张量, 这里可简单理解为某<span class="math inline">\(n\)</span>阶方阵<span class="math inline">\(G\)</span>或是<span class="math inline">\((g_{ij})\)</span>. 有了它我们就可以用它来度量空间中两点<span class="math inline">\(x,x+dx\)</span>之间的距离: <span class="math display">\[dx^2=\sum_{ij}g_{ij}dx_i dx_j=dx^TGdx\]</span>其中<span class="math inline">\(dx_i\)</span>为<span class="math inline">\(dx\)</span>的第<span class="math inline">\(i\)</span>个分量. 特别的, 若取<span class="math inline">\(G\)</span>为<span class="math inline">\(n\)</span>阶单位阵(对角线上元素为1, 其余为0), 此时<span class="math inline">\(dx^2=\sum_{i}^ndx_i^2\)</span>. 这就与带有正交坐标系的欧式空间一致了(点乘内积). 小结一下:</p>
+<p>微分流形(differentiable manifold又名光滑流形, 其最简单的例子就是三维空间中的球面, 在这里可简单理解为向量空间; 黎曼度量(Riemannian metric.)又名<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%BA%A6%E9%87%8F%E5%BC%A0%E9%87%8F">度量张量</a>, 黎曼度量张量或是度规张量, 这里可简单理解为某<span class="math inline">\(n\)</span>阶方阵<span class="math inline">\(G\)</span>或是<span class="math inline">\((g_{ij})\)</span>. 有了它我们就可以用它来度量空间中两点<span class="math inline">\(x,x+dx\)</span>之间的距离: <span class="math display">\[dx^2=\sum_{ij}g_{ij}dx_i dx_j=dx^TGdx\]</span>其中<span class="math inline">\(dx_i\)</span>为<span class="math inline">\(dx\)</span>的第<span class="math inline">\(i\)</span>个分量. 特别的, 若取<span class="math inline">\(G\)</span>为<span class="math inline">\(n\)</span>阶单位阵(对角线上元素为1, 其余为0), 此时<span class="math inline">\(dx^2=\sum_{i}^ndx_i^2\)</span>. 这就与带有正交坐标系的欧式空间一致了(点乘内积). 小结一下:</p>
 <ul>
 <li>黎曼空间可视为欧式空间的推广, 但一般情况下, 黎曼空间为非欧空间.</li>
 <li>确定了<span class="math inline">\(G\)</span>就相当于确定了一个黎曼空间, 另外形式上类似欧式空间中的<span class="math inline">\(Q\)</span> norm但没有正定性的要求.</li>
 </ul>
 <h2 id="自然梯度">自然梯度</h2>
-<p>带正交坐标系的欧式空间中, 我们知道负梯度方向<span class="math inline">\(-\nabla L(w)\)</span>为<span class="math inline">\(L(w)\)</span>的最速下降方向; 类似的, 黎曼空间中的<span class="math inline">\(L(w)\)</span>最速下降方向为<span class="math inline">\(-G^{-1}(w)\nabla L(w)\)</span>, 这被称为是自然梯度, 证明可见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf" target="_blank" rel="noopener">Natural Gradient Works Efficiently in Learning</a>的定理1. 下面举个例子加以说明:</p>
+<p>带正交坐标系的欧式空间中, 我们知道负梯度方向<span class="math inline">\(-\nabla L(w)\)</span>为<span class="math inline">\(L(w)\)</span>的最速下降方向; 类似的, 黎曼空间中的<span class="math inline">\(L(w)\)</span>最速下降方向为<span class="math inline">\(-G^{-1}(w)\nabla L(w)\)</span>, 这被称为是自然梯度, 证明可见<a target="_blank" rel="noopener" href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient Works Efficiently in Learning</a>的定理1. 下面举个例子加以说明:</p>
 <ul>
 <li>现有一族带参的分布族<span class="math inline">\(\{p(z\mid w)\}\)</span>, 目标是找到最优参数<span class="math inline">\(w=w^*\)</span>使得<span class="math inline">\(p(z\mid w)\)</span>尽可能的接近未知的密度函数<span class="math inline">\(q(z)\)</span>.</li>
 <li>事实上, 很多机器学习任务可归结为上述问题, 比方说<span class="math inline">\(q(z)=q(x,y)\)</span>表示某监督学习任务的样本真实分布, <span class="math inline">\(w\)</span>表示某个NN的参数.</li>
 <li>一个常用的损失函数就是最小化交叉熵的负数:<span class="math display">\[L(w)=-\mathbb{E}_{q(z)}[\log p(z\mid w)]=\mathcal{KL}(q(z)\Vert p(z\mid w))-\mathbb{E}_{q(z)}[\log q(z)]\]</span>其中<span class="math inline">\(\mathcal{KL}(q(z)\Vert p(z\mid w))=\mathbb{E}_{q(z)}[\log\frac{q(z)}{p(z\mid w)}]=\int q(z)\log\frac{q(z)}{p(z\mid w)}dz\)</span>, 且第二项与<span class="math inline">\(w\)</span>无关.</li>
-<li>Information geometry (Amari, 1985)给出了利用<a href="https://en.wikipedia.org/wiki/Fisher_information" target="_blank" rel="noopener">Fisher信息阵</a>定义<span class="math inline">\(G\)</span>(概率密度函数族可以看做与参数空间同胚的黎曼流形, Fisher信息矩阵可以看做是该流形上的黎曼度量, 可以证明这一度量是外围欧式空间在该流形上的诱导度量): <span class="math display">\[G_{ij}(w)=I_{ij}(w)=-\mathbb{E}_{p(z\mid w)}\left [\frac{\partial \log p(z\mid w)}{\partial w_i}\frac{\partial \log p(z\mid w)}{\partial w_j}\right]\]</span></li>
+<li>Information geometry (Amari, 1985)给出了利用<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>定义<span class="math inline">\(G\)</span>(概率密度函数族可以看做与参数空间同胚的黎曼流形, Fisher信息矩阵可以看做是该流形上的黎曼度量, 可以证明这一度量是外围欧式空间在该流形上的诱导度量): <span class="math display">\[G_{ij}(w)=I_{ij}(w)=-\mathbb{E}_{p(z\mid w)}\left [\frac{\partial \log p(z\mid w)}{\partial w_i}\frac{\partial \log p(z\mid w)}{\partial w_j}\right]\]</span></li>
 <li>最后假设有一堆独立同分布样本<span class="math inline">\(z_i \sim p(z)\)</span>, 就可用stochastic或batch的思路去优化. 此时<span class="math inline">\(L(w)\)</span>的自然梯度方向即为<span class="math inline">\(-I^{-1}(w)\nabla L(w)\)</span>, 这又被称为是<strong>Fisher scoring algorithm</strong>.</li>
 </ul>
 <p>回过头来看, 对<span class="math inline">\(q(z)\)</span>的参数化近似<span class="math inline">\(p(z,w)\)</span>必定赋予了它某种结构(比方说对<span class="math inline">\(w\)</span>迈出一大步未必能导致<span class="math inline">\(p(z,w)\)</span>的大的变化), 而要想利用这种结构, 最大的难点就是如何找到对应的黎曼空间, 或者说<span class="math inline">\(G\)</span>.</p>
@@ -333,7 +333,7 @@
 <li>第7节给出了<span class="math inline">\(m\)</span>阶非奇异方阵构成的空间中自然梯度的求法; 第8节给出了系统空间中的自然梯度.</li>
 </ul>
 <h2 id="自然梯度与牛顿类法">自然梯度与牛顿类法</h2>
-<p>形式上, 自然梯度法类似于牛顿法: <span class="math display">\[G(w)=-\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right], \nabla ^2L (w)=-\mathbb{E}_{q(z)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]\]</span>且随着优化算法的进行, <span class="math inline">\(p(z\mid w)\)</span>会越来越接近<span class="math inline">\(q(z)\)</span>, 此时两者的表现会相近.当然, 实际任务中因为实际分布一般不知道因此再多一层近似, 即用batch或是stochastic近似上述右式. 最后, 由于<a href="https://en.wikipedia.org/wiki/Fisher_information" target="_blank" rel="noopener">Fisher信息阵</a>的一个特殊性质, 在满足<a href="https://en.wikipedia.org/wiki/Cram%C3%A9r%E2%80%93Rao_bound#Regularity_conditions" target="_blank" rel="noopener">CR条件</a>的前提下, 有<span class="math display">\[\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]=\mathbb{E}_{p(z\mid w)}\left[ (\frac{\partial\log p(z\mid w)}{\partial w})(\frac{\partial\log p(z\mid w)}{\partial w})^T\right]\]</span>若我把上式中的<span class="math inline">\(p(z\mid w)\)</span>换成<span class="math inline">\(q(z)\)</span>, <a href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm" target="_blank" rel="noopener">Gauss-Newton法</a>就跃然纸上.</p>
+<p>形式上, 自然梯度法类似于牛顿法: <span class="math display">\[G(w)=-\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right], \nabla ^2L (w)=-\mathbb{E}_{q(z)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]\]</span>且随着优化算法的进行, <span class="math inline">\(p(z\mid w)\)</span>会越来越接近<span class="math inline">\(q(z)\)</span>, 此时两者的表现会相近.当然, 实际任务中因为实际分布一般不知道因此再多一层近似, 即用batch或是stochastic近似上述右式. 最后, 由于<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>的一个特殊性质, 在满足<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Cram%C3%A9r%E2%80%93Rao_bound#Regularity_conditions">CR条件</a>的前提下, 有<span class="math display">\[\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]=\mathbb{E}_{p(z\mid w)}\left[ (\frac{\partial\log p(z\mid w)}{\partial w})(\frac{\partial\log p(z\mid w)}{\partial w})^T\right]\]</span>若我把上式中的<span class="math inline">\(p(z\mid w)\)</span>换成<span class="math inline">\(q(z)\)</span>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm">Gauss-Newton法</a>就跃然纸上.</p>
 
     </div>
 
@@ -422,7 +422,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#欧式空间与黎曼空间"><span class="nav-number">1.</span> <span class="nav-text">欧式空间与黎曼空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自然梯度"><span class="nav-number">2.</span> <span class="nav-text">自然梯度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自然梯度与牛顿类法"><span class="nav-number">3.</span> <span class="nav-text">自然梯度与牛顿类法</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AC%A7%E5%BC%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E9%BB%8E%E6%9B%BC%E7%A9%BA%E9%97%B4"><span class="nav-number">1.</span> <span class="nav-text">欧式空间与黎曼空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E7%84%B6%E6%A2%AF%E5%BA%A6"><span class="nav-number">2.</span> <span class="nav-text">自然梯度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E7%84%B6%E6%A2%AF%E5%BA%A6%E4%B8%8E%E7%89%9B%E9%A1%BF%E7%B1%BB%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">自然梯度与牛顿类法</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -488,7 +488,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">msgsxj</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0

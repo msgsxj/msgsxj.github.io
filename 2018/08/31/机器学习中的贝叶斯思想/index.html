@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-fruit.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-fruit.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-fruit.png">
@@ -290,7 +290,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>前言:本文主要是关于机器学习中的贝叶斯思想的一些简单认识, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week1. <a id="more"></a></p>
+        <p>前言:本文主要是关于机器学习中的贝叶斯思想的一些简单认识, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week1. <span id="more"></span></p>
 <hr />
 <h2 id="引言">引言</h2>
 <p>我们先来直观感受一下贝叶斯思想, 首先来看一道选择题, 在灭霸还没有诞生的时间节点, 纽约街头有一人在跑步, 你觉得?</p>
@@ -325,7 +325,7 @@
 <p>有了上述两个例子, 想必大家都有了自己的理解, 在机器学习中, 模型<span class="math inline">\(P(y\mid X, \omega)\)</span>的选取与先验<span class="math inline">\(P(\omega)\)</span>成为了两个最关键的要素, 而模型<span class="math inline">\(P(y\mid X, \omega)\)</span>的选取是我们首先要考虑的,下面来看:</p>
 <hr />
 <h2 id="如何定义一个模型">如何定义一个模型</h2>
-一般的监督学习任务, 我们所有的是一堆互相相关的特征, 目标是试图从中找出一些因果关系, 一个自然地想法就是试图用一些箭头来表示这种因果关系, 图片来自<a href="https://en.wikipedia.org/wiki/Bayesian_network" target="_blank" rel="noopener">贝叶斯网络</a>的维基百科:
+一般的监督学习任务, 我们所有的是一堆互相相关的特征, 目标是试图从中找出一些因果关系, 一个自然地想法就是试图用一些箭头来表示这种因果关系, 图片来自<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Bayesian_network">贝叶斯网络</a>的维基百科:
 <div data-align="center">
 <img src="/pictures/bayes in ml/SimpleBayesNepng.png" width="80%" height="50%" />
 </div>
@@ -438,7 +438,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贝叶斯学派与频率学派"><span class="nav-number">2.</span> <span class="nav-text">贝叶斯学派与频率学派</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贝叶斯公式"><span class="nav-number">3.</span> <span class="nav-text">贝叶斯公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何定义一个模型"><span class="nav-number">4.</span> <span class="nav-text">如何定义一个模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共轭先验"><span class="nav-number">5.</span> <span class="nav-text">共轭先验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贝叶斯视角下的线性回归与最小二乘线性回归"><span class="nav-number">6.</span> <span class="nav-text">贝叶斯视角下的线性回归与最小二乘线性回归</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%AD%A6%E6%B4%BE%E4%B8%8E%E9%A2%91%E7%8E%87%E5%AD%A6%E6%B4%BE"><span class="nav-number">2.</span> <span class="nav-text">贝叶斯学派与频率学派</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">贝叶斯公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%A8%A1%E5%9E%8B"><span class="nav-number">4.</span> <span class="nav-text">如何定义一个模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B1%E8%BD%AD%E5%85%88%E9%AA%8C"><span class="nav-number">5.</span> <span class="nav-text">共轭先验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%B8%8E%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="nav-number">6.</span> <span class="nav-text">贝叶斯视角下的线性回归与最小二乘线性回归</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -504,7 +504,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">msgsxj</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0

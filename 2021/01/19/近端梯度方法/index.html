@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-fruit.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-fruit.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-fruit.png">
@@ -279,7 +279,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>前言: 本文的主角是近端梯度方法(Proximal Gradient Method), 这是一个在数学优化领域广为人知，在机器学习领域却很少看到的数学优化方法，它在非光滑优化领域发挥着巨大的作用，下面我们从一个机器学习问题开始了解它能够解决什么问题。 <a id="more"></a></p>
+        <p>前言: 本文的主角是近端梯度方法(Proximal Gradient Method), 这是一个在数学优化领域广为人知，在机器学习领域却很少看到的数学优化方法，它在非光滑优化领域发挥着巨大的作用，下面我们从一个机器学习问题开始了解它能够解决什么问题。 <span id="more"></span></p>
 <h3 id="正则化损失最小化">正则化损失最小化</h3>
 <p>正则化损失最小化(Regularized Loss Minimization, RLM)是机 器学习领域中一种联合最小化经验⻛险和正则化函数的学习范式，其形式如下: <span class="math display">\[
 \min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)
@@ -423,7 +423,7 @@ L_S(\omega)+\alpha\mathcal{R}(\omega) &amp; \leq L_S(\omega_k)+\left\langle\nabl
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#正则化损失最小化"><span class="nav-number">1.</span> <span class="nav-text">正则化损失最小化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#近端梯度方法解决ell_1正则化问题"><span class="nav-number">2.</span> <span class="nav-text">近端梯度方法解决\(\ell_1\)正则化问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#近端梯度方法解决其它正则问题"><span class="nav-number">3.</span> <span class="nav-text">近端梯度方法解决其它正则问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#近端梯度方法的一种直观理解"><span class="nav-number">4.</span> <span class="nav-text">近端梯度方法的一种直观理解</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E5%8C%96%E6%8D%9F%E5%A4%B1%E6%9C%80%E5%B0%8F%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">正则化损失最小化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%91%E7%AB%AF%E6%A2%AF%E5%BA%A6%E6%96%B9%E6%B3%95%E8%A7%A3%E5%86%B3ell_1%E6%AD%A3%E5%88%99%E5%8C%96%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">近端梯度方法解决\(\ell_1\)正则化问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%91%E7%AB%AF%E6%A2%AF%E5%BA%A6%E6%96%B9%E6%B3%95%E8%A7%A3%E5%86%B3%E5%85%B6%E5%AE%83%E6%AD%A3%E5%88%99%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">近端梯度方法解决其它正则问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%91%E7%AB%AF%E6%A2%AF%E5%BA%A6%E6%96%B9%E6%B3%95%E7%9A%84%E4%B8%80%E7%A7%8D%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3"><span class="nav-number">4.</span> <span class="nav-text">近端梯度方法的一种直观理解</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -489,7 +489,7 @@ L_S(\omega)+\alpha\mathcal{R}(\omega) &amp; \leq L_S(\omega_k)+\left\langle\nabl
   </span>
   <span class="author" itemprop="copyrightHolder">msgsxj</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
