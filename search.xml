@@ -70,6 +70,58 @@
       </tags>
   </entry>
   <entry>
+    <title>2018腾讯广告算法大赛初赛lgb</title>
+    <url>/2018/05/29/2018%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A%E7%AE%97%E6%B3%95%E5%A4%A7%E8%B5%9B%E5%88%9D%E8%B5%9Blgb/</url>
+    <content><![CDATA[<p>前言:最近参加了2018腾讯广告算法大赛,虽然没进复赛,但也花了不少时间,算是为下次参加比赛试试水,最终初赛线上最好成绩是0.745764,特此记录.</p>
+<span id="more"></span>
+<p>主要参考了<a href="https://github.com/YouChouNoBB/2018-tencent-ad-competition-baseline">bryan开源</a>的lgb模型,代码如下:</p>
+<h2 id="code">code</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> lightgbm <span class="keyword">as</span> lgb</span><br><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> CountVectorizer</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> OneHotEncoder,LabelEncoder</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> sparse</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> gc</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line">homedir = os.getcwd()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getdata</span>():</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;read data&quot;</span>)</span><br><span class="line">    adFeature = pd.read_csv(homedir + <span class="string">&#x27;\\data\\adFeature.csv&#x27;</span>) <span class="comment">#7KB</span></span><br><span class="line">    test1 = pd.read_csv(homedir + <span class="string">&#x27;\\data\\test2.csv&#x27;</span>)<span class="comment"># 29MB</span></span><br><span class="line">    train = pd.read_csv(homedir + <span class="string">&#x27;\\data\\train.csv&#x27;</span>) <span class="comment"># 140MB</span></span><br><span class="line">    <span class="keyword">if</span> os.path.exists(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_11.csv&#x27;</span>):</span><br><span class="line">        userFeature = pd.read_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_0.csv&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;read one million&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">11</span>):</span><br><span class="line">            userFeature = userFeature.append(pd.read_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_&#x27;</span> + <span class="built_in">str</span>(i+<span class="number">1</span>) + <span class="string">&#x27;.csv&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;read one million&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        userFeature_list = []</span><br><span class="line">        userFeature = []</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(homedir + <span class="string">&#x27;\\data\\userFeature.data&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f: <span class="comment"># 4173MB</span></span><br><span class="line">            <span class="keyword">for</span> i, line <span class="keyword">in</span> <span class="built_in">enumerate</span>(f):</span><br><span class="line">                line = line.strip().split(<span class="string">&#x27;|&#x27;</span>)</span><br><span class="line">                userFeature_dict = &#123;&#125;</span><br><span class="line">                <span class="keyword">for</span> each <span class="keyword">in</span> line:</span><br><span class="line">                    each_list = each.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">                    userFeature_dict[each_list[<span class="number">0</span>]] = <span class="string">&#x27; &#x27;</span>.join(each_list[<span class="number">1</span>:])</span><br><span class="line">                userFeature_list.append(userFeature_dict)</span><br><span class="line">                <span class="keyword">if</span> i % <span class="number">100000</span> == <span class="number">0</span>:</span><br><span class="line">                    <span class="built_in">print</span>(i)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">11</span>):</span><br><span class="line">            userFeature_temp = pd.DataFrame(userFeature_list[i*<span class="number">1000000</span>:(i+<span class="number">1</span>)*<span class="number">1000000</span>])</span><br><span class="line">            userFeature_temp.to_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_&#x27;</span> + <span class="built_in">str</span>(i) + <span class="string">&#x27;.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;save one million&quot;</span>)</span><br><span class="line">            <span class="keyword">del</span> userFeature_temp</span><br><span class="line">            gc.collect()</span><br><span class="line">        userFeature_temp = pd.DataFrame(userFeature_list[<span class="number">11000000</span>:])</span><br><span class="line">        userFeature_temp.to_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_11.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;save as csv successfully&quot;</span>)</span><br><span class="line">        <span class="keyword">del</span> userFeature_temp</span><br><span class="line">        gc.collect()</span><br><span class="line">    <span class="keyword">return</span> mergedata(adFeature, test1, train, userFeature)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mergedata</span>(<span class="params">adFeature, test1, train, userFeature</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;merge data and set na as -1&quot;</span>)</span><br><span class="line">    train.loc[train[<span class="string">&#x27;label&#x27;</span>]==-<span class="number">1</span>, <span class="string">&#x27;label&#x27;</span>] = <span class="number">0</span></span><br><span class="line">    test1[<span class="string">&#x27;label&#x27;</span>] = -<span class="number">1</span></span><br><span class="line">    data = pd.concat([train, test1])</span><br><span class="line">    data = pd.merge(data, adFeature, on=<span class="string">&#x27;aid&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    data = pd.merge(data, userFeature, on=<span class="string">&#x27;uid&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    data = data.fillna(<span class="string">&#x27;-1&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">batch_predict</span>(<span class="params">data,index</span>):</span></span><br><span class="line">    one_hot_feature=[<span class="string">&#x27;LBS&#x27;</span>,<span class="string">&#x27;age&#x27;</span>,<span class="string">&#x27;carrier&#x27;</span>,<span class="string">&#x27;consumptionAbility&#x27;</span>,<span class="string">&#x27;education&#x27;</span>,<span class="string">&#x27;gender&#x27;</span>,<span class="string">&#x27;house&#x27;</span>,<span class="string">&#x27;os&#x27;</span>,<span class="string">&#x27;ct&#x27;</span>,<span class="string">&#x27;marriageStatus&#x27;</span>,<span class="string">&#x27;advertiserId&#x27;</span>,<span class="string">&#x27;campaignId&#x27;</span>, <span class="string">&#x27;creativeId&#x27;</span>,</span><br><span class="line">           <span class="string">&#x27;adCategoryId&#x27;</span>, <span class="string">&#x27;productId&#x27;</span>, <span class="string">&#x27;productType&#x27;</span>]</span><br><span class="line">    vector_feature=[<span class="string">&#x27;appIdAction&#x27;</span>,<span class="string">&#x27;appIdInstall&#x27;</span>,<span class="string">&#x27;interest1&#x27;</span>,<span class="string">&#x27;interest2&#x27;</span>,<span class="string">&#x27;interest3&#x27;</span>,<span class="string">&#x27;interest4&#x27;</span>,<span class="string">&#x27;interest5&#x27;</span>,<span class="string">&#x27;kw1&#x27;</span>,<span class="string">&#x27;kw2&#x27;</span>,<span class="string">&#x27;kw3&#x27;</span>,<span class="string">&#x27;topic1&#x27;</span>,<span class="string">&#x27;topic2&#x27;</span>,<span class="string">&#x27;topic3&#x27;</span>]</span><br><span class="line">    <span class="keyword">for</span> feature <span class="keyword">in</span> one_hot_feature:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            data[feature] = LabelEncoder().fit_transform(data[feature].apply(<span class="built_in">int</span>))</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            data[feature] = LabelEncoder().fit_transform(data[feature])</span><br><span class="line"></span><br><span class="line">    train=data[data.label!=-<span class="number">1</span>]</span><br><span class="line">    train_y=train.pop(<span class="string">&#x27;label&#x27;</span>)</span><br><span class="line">    test=data[data.label==-<span class="number">1</span>]</span><br><span class="line">    res=test[[<span class="string">&#x27;aid&#x27;</span>,<span class="string">&#x27;uid&#x27;</span>]]</span><br><span class="line">    test=test.drop(<span class="string">&#x27;label&#x27;</span>,axis=<span class="number">1</span>)</span><br><span class="line">    enc = OneHotEncoder()</span><br><span class="line">    train_x=train[[<span class="string">&#x27;creativeSize&#x27;</span>]]</span><br><span class="line">    test_x=test[[<span class="string">&#x27;creativeSize&#x27;</span>]]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> feature <span class="keyword">in</span> one_hot_feature:</span><br><span class="line">        enc.fit(data[feature].values.reshape(-<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">del</span> data[feature]</span><br><span class="line">        gc.collect()</span><br><span class="line">        train_a = enc.transform(train[feature].values.reshape(-<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">        test_a = enc.transform(test[feature].values.reshape(-<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">        train_x = sparse.hstack((train_x, train_a))</span><br><span class="line">        test_x = sparse.hstack((test_x, test_a))</span><br><span class="line">        <span class="built_in">print</span>(feature+<span class="string">&#x27; finish&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    cv=CountVectorizer()</span><br><span class="line">    <span class="keyword">for</span> feature <span class="keyword">in</span> vector_feature:</span><br><span class="line">        cv.fit(data[feature])</span><br><span class="line">        <span class="keyword">del</span> data[feature]</span><br><span class="line">        gc.collect()</span><br><span class="line">        train_a = cv.transform(train[feature])</span><br><span class="line">        test_a = cv.transform(test[feature])</span><br><span class="line">        train_x = sparse.hstack((train_x, train_a))</span><br><span class="line">        test_x = sparse.hstack((test_x, test_a))</span><br><span class="line">        <span class="built_in">print</span>(feature + <span class="string">&#x27; finish&#x27;</span>)</span><br><span class="line">    <span class="keyword">del</span> data</span><br><span class="line">    gc.collect()</span><br><span class="line">    <span class="keyword">return</span> LGB_predict(train_x, train_y, test_x, res, index)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LGB_predict</span>(<span class="params">train_x, train_y, test_x, res, index</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;split train data as train and eval&quot;</span>)</span><br><span class="line">    train_x, evals_x, train_y, evals_y = train_test_split(train_x, train_y,test_size=<span class="number">0.2</span>)</span><br><span class="line">    gc.collect()</span><br><span class="line">    clf = lgb.LGBMClassifier(</span><br><span class="line">        boosting_type=<span class="string">&#x27;gbdt&#x27;</span>, num_leaves=<span class="number">127</span>, reg_alpha=<span class="number">10</span>, reg_lambda=<span class="number">10</span>,</span><br><span class="line">        max_depth=<span class="number">8</span>, n_estimators=<span class="number">10000</span>, objective=<span class="string">&#x27;binary&#x27;</span>, metric= <span class="string">&#x27;binary_logloss&#x27;</span>,</span><br><span class="line">        subsample=<span class="number">0.7</span>, colsample_bytree=<span class="number">0.7</span>, subsample_freq=<span class="number">1</span>,</span><br><span class="line">        learning_rate=<span class="number">0.05</span>, min_child_weight=<span class="number">20</span>, random_state=<span class="number">2018</span>, n_jobs=-<span class="number">1</span></span><br><span class="line">    )</span><br><span class="line">    clf.fit(train_x, train_y, eval_set=[(evals_x, evals_y)], eval_metric=<span class="string">&#x27;auc&#x27;</span>,early_stopping_rounds=<span class="number">200</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;predict&quot;</span>)</span><br><span class="line">    res[<span class="string">&#x27;score&#x27;</span>+<span class="built_in">str</span>(index)] = clf.predict_proba(test_x)[:,<span class="number">1</span>]</span><br><span class="line">    res[<span class="string">&#x27;score&#x27;</span>+<span class="built_in">str</span>(index)] = res[<span class="string">&#x27;score&#x27;</span>+<span class="built_in">str</span>(index)].apply(<span class="keyword">lambda</span> x: <span class="built_in">float</span>(<span class="string">&#x27;%.6f&#x27;</span> % x))</span><br><span class="line">    auc_valid = clf.evals_result_[<span class="string">&#x27;valid_0&#x27;</span>][<span class="string">&#x27;auc&#x27;</span>]</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;save valid auc curve&quot;</span>)</span><br><span class="line">    plt.figure(figsize=(<span class="number">60</span>, <span class="number">40</span>))</span><br><span class="line">    plt.plot(auc_valid)</span><br><span class="line">    plt.title(<span class="built_in">max</span>(clf.evals_result_[<span class="string">&#x27;valid_0&#x27;</span>][<span class="string">&#x27;auc&#x27;</span>]))</span><br><span class="line">    plt.savefig(<span class="string">&#x27;./picture/&#x27;</span>+ <span class="built_in">str</span>(i) + <span class="string">&#x27;.png&#x27;</span>)</span><br><span class="line">    plt.show()</span><br><span class="line">    gc.collect()</span><br><span class="line">    res=res.reset_index(drop=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> res[<span class="string">&#x27;score&#x27;</span>+<span class="built_in">str</span>(index)]</span><br><span class="line"></span><br><span class="line"><span class="comment">#数据分片处理，对每片分别训练预测，然后求平均</span></span><br><span class="line">data=getdata()</span><br><span class="line">train=data[data[<span class="string">&#x27;label&#x27;</span>]!=-<span class="number">1</span>]</span><br><span class="line">test=data[data[<span class="string">&#x27;label&#x27;</span>]==-<span class="number">1</span>]</span><br><span class="line"><span class="keyword">del</span> data</span><br><span class="line">gc.collect()</span><br><span class="line">predict=pd.read_csv(<span class="string">&#x27;./data/test2.csv&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;分片&quot;</span>)</span><br><span class="line">cnt = <span class="number">1</span></span><br><span class="line">size = math.ceil(<span class="built_in">len</span>(train) / cnt)</span><br><span class="line">result=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(cnt):</span><br><span class="line">    start = size * i</span><br><span class="line">    end = (i + <span class="number">1</span>) * size <span class="keyword">if</span> (i + <span class="number">1</span>) * size &lt; <span class="built_in">len</span>(train) <span class="keyword">else</span> <span class="built_in">len</span>(train)</span><br><span class="line">    <span class="built_in">slice</span> = train[start:end]</span><br><span class="line">    result.append(batch_predict(pd.concat([<span class="built_in">slice</span>,test]),i))</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">str</span>(i),<span class="string">&#x27;/&#x27;</span>,<span class="built_in">str</span>(cnt))</span><br><span class="line">    gc.collect()</span><br><span class="line"></span><br><span class="line">result=pd.concat(result,axis=<span class="number">1</span>)</span><br><span class="line">result[<span class="string">&#x27;score&#x27;</span>]=np.mean(result,axis=<span class="number">1</span>)</span><br><span class="line">result[<span class="string">&#x27;score&#x27;</span>] = result[<span class="string">&#x27;score&#x27;</span>].apply(<span class="keyword">lambda</span> x: <span class="built_in">float</span>(<span class="string">&#x27;%.6f&#x27;</span> % x))</span><br><span class="line">result=result.reset_index(drop=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;save as csv&quot;</span>)</span><br><span class="line">result=pd.concat([predict[[<span class="string">&#x27;aid&#x27;</span>,<span class="string">&#x27;uid&#x27;</span>]].reset_index(drop=<span class="literal">True</span>),result[<span class="string">&#x27;score&#x27;</span>]],axis=<span class="number">1</span>)</span><br><span class="line">result[[<span class="string">&#x27;aid&#x27;</span>,<span class="string">&#x27;uid&#x27;</span>,<span class="string">&#x27;score&#x27;</span>]].to_csv(<span class="string">&#x27;./submission.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<hr />
+<h2 id="hyperparameters">hyperparameters</h2>
+<p>这里给出调参的一点心得,上述最关键lgb模型参数部分为: <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">clf = lgb.LGBMClassifier(</span><br><span class="line">    boosting_type=<span class="string">&#x27;gbdt&#x27;</span>, num_leaves=<span class="number">127</span>, reg_alpha=<span class="number">10</span>, reg_lambda=<span class="number">10</span>,</span><br><span class="line">    max_depth=<span class="number">8</span>, n_estimators=<span class="number">10000</span>, objective=<span class="string">&#x27;binary&#x27;</span>, metric= <span class="string">&#x27;binary_logloss&#x27;</span>,</span><br><span class="line">    subsample=<span class="number">0.7</span>, colsample_bytree=<span class="number">0.7</span>, subsample_freq=<span class="number">1</span>,</span><br><span class="line">    learning_rate=<span class="number">0.05</span>, min_child_weight=<span class="number">20</span>, random_state=<span class="number">2018</span>, n_jobs=-<span class="number">1</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure> 以超参数正则化项系数为例子:</p>
+<ol type="1">
+<li>第一次试验l1,l2正则化项系数均为1,线下0.760,线上0.7451</li>
+<li>第二次试验l1,l2正则化项系数均为10,线下0.759,线上0.7457</li>
+<li>第三次试验l1,l2正则化项系数均为100,线下0.740,线上0.7347</li>
+</ol>
+<p>显然第三次试验正则化系数加的过多导致严重欠拟合,对上述系数(1,10,100)取倒数,再取log可得(0,-1,-2),从第三次试验到第一次试验为正则化项系数减少方向,也即模型复杂程度增加方向,也即VC维增加方向(不清楚地朋友可以看我的第一篇博文博文统计学习基本定理的1.3.4节),故此时线下正确率可大致视为指数型递减,线上大致可视为二次曲线或某凸函数. 大致画出此时线上线下1-auc(auc为ROC曲线下方的面积大小,也是此次比赛评估模型优劣的参数)的图像,蓝线表示线下,绿线表示线上,由图像猜测第一次试验过拟合,第二次第三次试验欠拟合: <img src="/pictures/p2.png" alt="l1_l2" /></p>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2021</title>
+    <url>/2022/01/05/2021/</url>
+    <content><![CDATA[<p>前言:已经好久没立flag了,记录2021,为2022立flag. <span id="more"></span></p>
+<figure>
+<img src="/pictures/2021.jpeg" alt="2021" /><figcaption aria-hidden="true">2021</figcaption>
+</figure>
+<h2 id="section">2021</h2>
+<ol type="1">
+<li>爷爷离开了</li>
+<li>工作地点从常熟的创新中心换到了苏州的思必驰</li>
+<li>逐渐养成习惯在山姆买东西</li>
+<li>在年末遇到了猪猪</li>
+</ol>
+<h2 id="section-1">2022</h2>
+<ol type="1">
+<li>想要保护好自己的牙齿</li>
+<li>想要好好谈恋爱</li>
+</ol>
+]]></content>
+      <categories>
+        <category>聊聊生活</category>
+      </categories>
+      <tags>
+        <tag>回顾</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>EM算法</title>
     <url>/2018/09/02/EM%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<p>前言:本文主要是关于EM算法, 这是用来求解隐变量模型的算法, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week2. <span id="more"></span></p>
@@ -157,35 +209,10 @@
         <category>机器学习</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>EM算法</tag>
         <tag>隐变量模型</tag>
         <tag>Jensen不等式</tag>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2018腾讯广告算法大赛初赛lgb</title>
-    <url>/2018/05/29/2018%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A%E7%AE%97%E6%B3%95%E5%A4%A7%E8%B5%9B%E5%88%9D%E8%B5%9Blgb/</url>
-    <content><![CDATA[<p>前言:最近参加了2018腾讯广告算法大赛,虽然没进复赛,但也花了不少时间,算是为下次参加比赛试试水,最终初赛线上最好成绩是0.745764,特此记录.</p>
-<span id="more"></span>
-<p>主要参考了<a href="https://github.com/YouChouNoBB/2018-tencent-ad-competition-baseline">bryan开源</a>的lgb模型,代码如下:</p>
-<h2 id="code">code</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> lightgbm <span class="keyword">as</span> lgb</span><br><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> CountVectorizer</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> OneHotEncoder,LabelEncoder</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> sparse</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> gc</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line">homedir = os.getcwd()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getdata</span>():</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;read data&quot;</span>)</span><br><span class="line">    adFeature = pd.read_csv(homedir + <span class="string">&#x27;\\data\\adFeature.csv&#x27;</span>) <span class="comment">#7KB</span></span><br><span class="line">    test1 = pd.read_csv(homedir + <span class="string">&#x27;\\data\\test2.csv&#x27;</span>)<span class="comment"># 29MB</span></span><br><span class="line">    train = pd.read_csv(homedir + <span class="string">&#x27;\\data\\train.csv&#x27;</span>) <span class="comment"># 140MB</span></span><br><span class="line">    <span class="keyword">if</span> os.path.exists(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_11.csv&#x27;</span>):</span><br><span class="line">        userFeature = pd.read_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_0.csv&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;read one million&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">11</span>):</span><br><span class="line">            userFeature = userFeature.append(pd.read_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_&#x27;</span> + <span class="built_in">str</span>(i+<span class="number">1</span>) + <span class="string">&#x27;.csv&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;read one million&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        userFeature_list = []</span><br><span class="line">        userFeature = []</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(homedir + <span class="string">&#x27;\\data\\userFeature.data&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f: <span class="comment"># 4173MB</span></span><br><span class="line">            <span class="keyword">for</span> i, line <span class="keyword">in</span> <span class="built_in">enumerate</span>(f):</span><br><span class="line">                line = line.strip().split(<span class="string">&#x27;|&#x27;</span>)</span><br><span class="line">                userFeature_dict = &#123;&#125;</span><br><span class="line">                <span class="keyword">for</span> each <span class="keyword">in</span> line:</span><br><span class="line">                    each_list = each.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">                    userFeature_dict[each_list[<span class="number">0</span>]] = <span class="string">&#x27; &#x27;</span>.join(each_list[<span class="number">1</span>:])</span><br><span class="line">                userFeature_list.append(userFeature_dict)</span><br><span class="line">                <span class="keyword">if</span> i % <span class="number">100000</span> == <span class="number">0</span>:</span><br><span class="line">                    <span class="built_in">print</span>(i)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">11</span>):</span><br><span class="line">            userFeature_temp = pd.DataFrame(userFeature_list[i*<span class="number">1000000</span>:(i+<span class="number">1</span>)*<span class="number">1000000</span>])</span><br><span class="line">            userFeature_temp.to_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_&#x27;</span> + <span class="built_in">str</span>(i) + <span class="string">&#x27;.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;save one million&quot;</span>)</span><br><span class="line">            <span class="keyword">del</span> userFeature_temp</span><br><span class="line">            gc.collect()</span><br><span class="line">        userFeature_temp = pd.DataFrame(userFeature_list[<span class="number">11000000</span>:])</span><br><span class="line">        userFeature_temp.to_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_11.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;save as csv successfully&quot;</span>)</span><br><span class="line">        <span class="keyword">del</span> userFeature_temp</span><br><span class="line">        gc.collect()</span><br><span class="line">    <span class="keyword">return</span> mergedata(adFeature, test1, train, userFeature)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mergedata</span>(<span class="params">adFeature, test1, train, userFeature</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;merge data and set na as -1&quot;</span>)</span><br><span class="line">    train.loc[train[<span class="string">&#x27;label&#x27;</span>]==-<span class="number">1</span>, <span class="string">&#x27;label&#x27;</span>] = <span class="number">0</span></span><br><span class="line">    test1[<span class="string">&#x27;label&#x27;</span>] = -<span class="number">1</span></span><br><span class="line">    data = pd.concat([train, test1])</span><br><span class="line">    data = pd.merge(data, adFeature, on=<span class="string">&#x27;aid&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    data = pd.merge(data, userFeature, on=<span class="string">&#x27;uid&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">    data = data.fillna(<span class="string">&#x27;-1&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">batch_predict</span>(<span class="params">data,index</span>):</span></span><br><span class="line">    one_hot_feature=[<span class="string">&#x27;LBS&#x27;</span>,<span class="string">&#x27;age&#x27;</span>,<span class="string">&#x27;carrier&#x27;</span>,<span class="string">&#x27;consumptionAbility&#x27;</span>,<span class="string">&#x27;education&#x27;</span>,<span class="string">&#x27;gender&#x27;</span>,<span class="string">&#x27;house&#x27;</span>,<span class="string">&#x27;os&#x27;</span>,<span class="string">&#x27;ct&#x27;</span>,<span class="string">&#x27;marriageStatus&#x27;</span>,<span class="string">&#x27;advertiserId&#x27;</span>,<span class="string">&#x27;campaignId&#x27;</span>, <span class="string">&#x27;creativeId&#x27;</span>,</span><br><span class="line">           <span class="string">&#x27;adCategoryId&#x27;</span>, <span class="string">&#x27;productId&#x27;</span>, <span class="string">&#x27;productType&#x27;</span>]</span><br><span class="line">    vector_feature=[<span class="string">&#x27;appIdAction&#x27;</span>,<span class="string">&#x27;appIdInstall&#x27;</span>,<span class="string">&#x27;interest1&#x27;</span>,<span class="string">&#x27;interest2&#x27;</span>,<span class="string">&#x27;interest3&#x27;</span>,<span class="string">&#x27;interest4&#x27;</span>,<span class="string">&#x27;interest5&#x27;</span>,<span class="string">&#x27;kw1&#x27;</span>,<span class="string">&#x27;kw2&#x27;</span>,<span class="string">&#x27;kw3&#x27;</span>,<span class="string">&#x27;topic1&#x27;</span>,<span class="string">&#x27;topic2&#x27;</span>,<span class="string">&#x27;topic3&#x27;</span>]</span><br><span class="line">    <span class="keyword">for</span> feature <span class="keyword">in</span> one_hot_feature:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            data[feature] = LabelEncoder().fit_transform(data[feature].apply(<span class="built_in">int</span>))</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            data[feature] = LabelEncoder().fit_transform(data[feature])</span><br><span class="line"></span><br><span class="line">    train=data[data.label!=-<span class="number">1</span>]</span><br><span class="line">    train_y=train.pop(<span class="string">&#x27;label&#x27;</span>)</span><br><span class="line">    test=data[data.label==-<span class="number">1</span>]</span><br><span class="line">    res=test[[<span class="string">&#x27;aid&#x27;</span>,<span class="string">&#x27;uid&#x27;</span>]]</span><br><span class="line">    test=test.drop(<span class="string">&#x27;label&#x27;</span>,axis=<span class="number">1</span>)</span><br><span class="line">    enc = OneHotEncoder()</span><br><span class="line">    train_x=train[[<span class="string">&#x27;creativeSize&#x27;</span>]]</span><br><span class="line">    test_x=test[[<span class="string">&#x27;creativeSize&#x27;</span>]]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> feature <span class="keyword">in</span> one_hot_feature:</span><br><span class="line">        enc.fit(data[feature].values.reshape(-<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">del</span> data[feature]</span><br><span class="line">        gc.collect()</span><br><span class="line">        train_a = enc.transform(train[feature].values.reshape(-<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">        test_a = enc.transform(test[feature].values.reshape(-<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">        train_x = sparse.hstack((train_x, train_a))</span><br><span class="line">        test_x = sparse.hstack((test_x, test_a))</span><br><span class="line">        <span class="built_in">print</span>(feature+<span class="string">&#x27; finish&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    cv=CountVectorizer()</span><br><span class="line">    <span class="keyword">for</span> feature <span class="keyword">in</span> vector_feature:</span><br><span class="line">        cv.fit(data[feature])</span><br><span class="line">        <span class="keyword">del</span> data[feature]</span><br><span class="line">        gc.collect()</span><br><span class="line">        train_a = cv.transform(train[feature])</span><br><span class="line">        test_a = cv.transform(test[feature])</span><br><span class="line">        train_x = sparse.hstack((train_x, train_a))</span><br><span class="line">        test_x = sparse.hstack((test_x, test_a))</span><br><span class="line">        <span class="built_in">print</span>(feature + <span class="string">&#x27; finish&#x27;</span>)</span><br><span class="line">    <span class="keyword">del</span> data</span><br><span class="line">    gc.collect()</span><br><span class="line">    <span class="keyword">return</span> LGB_predict(train_x, train_y, test_x, res, index)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LGB_predict</span>(<span class="params">train_x, train_y, test_x, res, index</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;split train data as train and eval&quot;</span>)</span><br><span class="line">    train_x, evals_x, train_y, evals_y = train_test_split(train_x, train_y,test_size=<span class="number">0.2</span>)</span><br><span class="line">    gc.collect()</span><br><span class="line">    clf = lgb.LGBMClassifier(</span><br><span class="line">        boosting_type=<span class="string">&#x27;gbdt&#x27;</span>, num_leaves=<span class="number">127</span>, reg_alpha=<span class="number">10</span>, reg_lambda=<span class="number">10</span>,</span><br><span class="line">        max_depth=<span class="number">8</span>, n_estimators=<span class="number">10000</span>, objective=<span class="string">&#x27;binary&#x27;</span>, metric= <span class="string">&#x27;binary_logloss&#x27;</span>,</span><br><span class="line">        subsample=<span class="number">0.7</span>, colsample_bytree=<span class="number">0.7</span>, subsample_freq=<span class="number">1</span>,</span><br><span class="line">        learning_rate=<span class="number">0.05</span>, min_child_weight=<span class="number">20</span>, random_state=<span class="number">2018</span>, n_jobs=-<span class="number">1</span></span><br><span class="line">    )</span><br><span class="line">    clf.fit(train_x, train_y, eval_set=[(evals_x, evals_y)], eval_metric=<span class="string">&#x27;auc&#x27;</span>,early_stopping_rounds=<span class="number">200</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;predict&quot;</span>)</span><br><span class="line">    res[<span class="string">&#x27;score&#x27;</span>+<span class="built_in">str</span>(index)] = clf.predict_proba(test_x)[:,<span class="number">1</span>]</span><br><span class="line">    res[<span class="string">&#x27;score&#x27;</span>+<span class="built_in">str</span>(index)] = res[<span class="string">&#x27;score&#x27;</span>+<span class="built_in">str</span>(index)].apply(<span class="keyword">lambda</span> x: <span class="built_in">float</span>(<span class="string">&#x27;%.6f&#x27;</span> % x))</span><br><span class="line">    auc_valid = clf.evals_result_[<span class="string">&#x27;valid_0&#x27;</span>][<span class="string">&#x27;auc&#x27;</span>]</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;save valid auc curve&quot;</span>)</span><br><span class="line">    plt.figure(figsize=(<span class="number">60</span>, <span class="number">40</span>))</span><br><span class="line">    plt.plot(auc_valid)</span><br><span class="line">    plt.title(<span class="built_in">max</span>(clf.evals_result_[<span class="string">&#x27;valid_0&#x27;</span>][<span class="string">&#x27;auc&#x27;</span>]))</span><br><span class="line">    plt.savefig(<span class="string">&#x27;./picture/&#x27;</span>+ <span class="built_in">str</span>(i) + <span class="string">&#x27;.png&#x27;</span>)</span><br><span class="line">    plt.show()</span><br><span class="line">    gc.collect()</span><br><span class="line">    res=res.reset_index(drop=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> res[<span class="string">&#x27;score&#x27;</span>+<span class="built_in">str</span>(index)]</span><br><span class="line"></span><br><span class="line"><span class="comment">#数据分片处理，对每片分别训练预测，然后求平均</span></span><br><span class="line">data=getdata()</span><br><span class="line">train=data[data[<span class="string">&#x27;label&#x27;</span>]!=-<span class="number">1</span>]</span><br><span class="line">test=data[data[<span class="string">&#x27;label&#x27;</span>]==-<span class="number">1</span>]</span><br><span class="line"><span class="keyword">del</span> data</span><br><span class="line">gc.collect()</span><br><span class="line">predict=pd.read_csv(<span class="string">&#x27;./data/test2.csv&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;分片&quot;</span>)</span><br><span class="line">cnt = <span class="number">1</span></span><br><span class="line">size = math.ceil(<span class="built_in">len</span>(train) / cnt)</span><br><span class="line">result=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(cnt):</span><br><span class="line">    start = size * i</span><br><span class="line">    end = (i + <span class="number">1</span>) * size <span class="keyword">if</span> (i + <span class="number">1</span>) * size &lt; <span class="built_in">len</span>(train) <span class="keyword">else</span> <span class="built_in">len</span>(train)</span><br><span class="line">    <span class="built_in">slice</span> = train[start:end]</span><br><span class="line">    result.append(batch_predict(pd.concat([<span class="built_in">slice</span>,test]),i))</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">str</span>(i),<span class="string">&#x27;/&#x27;</span>,<span class="built_in">str</span>(cnt))</span><br><span class="line">    gc.collect()</span><br><span class="line"></span><br><span class="line">result=pd.concat(result,axis=<span class="number">1</span>)</span><br><span class="line">result[<span class="string">&#x27;score&#x27;</span>]=np.mean(result,axis=<span class="number">1</span>)</span><br><span class="line">result[<span class="string">&#x27;score&#x27;</span>] = result[<span class="string">&#x27;score&#x27;</span>].apply(<span class="keyword">lambda</span> x: <span class="built_in">float</span>(<span class="string">&#x27;%.6f&#x27;</span> % x))</span><br><span class="line">result=result.reset_index(drop=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;save as csv&quot;</span>)</span><br><span class="line">result=pd.concat([predict[[<span class="string">&#x27;aid&#x27;</span>,<span class="string">&#x27;uid&#x27;</span>]].reset_index(drop=<span class="literal">True</span>),result[<span class="string">&#x27;score&#x27;</span>]],axis=<span class="number">1</span>)</span><br><span class="line">result[[<span class="string">&#x27;aid&#x27;</span>,<span class="string">&#x27;uid&#x27;</span>,<span class="string">&#x27;score&#x27;</span>]].to_csv(<span class="string">&#x27;./submission.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<hr />
-<h2 id="hyperparameters">hyperparameters</h2>
-<p>这里给出调参的一点心得,上述最关键lgb模型参数部分为: <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">clf = lgb.LGBMClassifier(</span><br><span class="line">    boosting_type=<span class="string">&#x27;gbdt&#x27;</span>, num_leaves=<span class="number">127</span>, reg_alpha=<span class="number">10</span>, reg_lambda=<span class="number">10</span>,</span><br><span class="line">    max_depth=<span class="number">8</span>, n_estimators=<span class="number">10000</span>, objective=<span class="string">&#x27;binary&#x27;</span>, metric= <span class="string">&#x27;binary_logloss&#x27;</span>,</span><br><span class="line">    subsample=<span class="number">0.7</span>, colsample_bytree=<span class="number">0.7</span>, subsample_freq=<span class="number">1</span>,</span><br><span class="line">    learning_rate=<span class="number">0.05</span>, min_child_weight=<span class="number">20</span>, random_state=<span class="number">2018</span>, n_jobs=-<span class="number">1</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure> 以超参数正则化项系数为例子:</p>
-<ol type="1">
-<li>第一次试验l1,l2正则化项系数均为1,线下0.760,线上0.7451</li>
-<li>第二次试验l1,l2正则化项系数均为10,线下0.759,线上0.7457</li>
-<li>第三次试验l1,l2正则化项系数均为100,线下0.740,线上0.7347</li>
-</ol>
-<p>显然第三次试验正则化系数加的过多导致严重欠拟合,对上述系数(1,10,100)取倒数,再取log可得(0,-1,-2),从第三次试验到第一次试验为正则化项系数减少方向,也即模型复杂程度增加方向,也即VC维增加方向(不清楚地朋友可以看我的第一篇博文博文统计学习基本定理的1.3.4节),故此时线下正确率可大致视为指数型递减,线上大致可视为二次曲线或某凸函数. 大致画出此时线上线下1-auc(auc为ROC曲线下方的面积大小,也是此次比赛评估模型优劣的参数)的图像,蓝线表示线下,绿线表示线上,由图像猜测第一次试验过拟合,第二次第三次试验欠拟合: <img src="/pictures/p2.png" alt="l1_l2" /></p>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1622,6 +1649,222 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
       </tags>
   </entry>
   <entry>
+    <title>拉普拉斯方法</title>
+    <url>/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>前言: 本文主要是关于拉普拉斯近似方法, 这是一种用来近似计算积分的方法, 主要参考了维基百科及PRML一书6.4节. <span id="more"></span></p>
+<hr />
+<h2 id="拉普拉斯近似方法">拉普拉斯近似方法</h2>
+拉普拉斯近似方法(<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">Laplace's method</a>)是一种近似计算积分的方法, 目标积分形如<span class="math display">\[\int_a^be^{Mf(x)}dx\]</span>其中<span class="math inline">\(f(x)\)</span>要求是二次可微的, <span class="math inline">\(M\)</span>要求是一个较大的数. 其想法是假定<span class="math inline">\(x_0\)</span>是<span class="math inline">\(f(x)\)</span>唯一的最大值点, 因此<span class="math inline">\(f(x_0)&gt;f(x)\)</span>, 乘上一个较大的M, 在经过指数函数的作用, 其差值事实上会变得很大, 不难想象随着<span class="math inline">\(M\)</span>的增大积分内的函数会越来越像一个单峰函数, 事实上确实会逼近对一个正态分布进行积分的值. 举个例子<span class="math inline">\(f(x)=sinx/x\)</span>, 分别画出<span class="math inline">\(e^{sinx/x}\)</span>和<span class="math inline">\(e^{3sinx/x}\)</span>的函数图像:
+<div data-align="center">
+<img src="/pictures/laplace_method/exp%283sinx_x%29.png" width="60%" height="50%" />
+</div>
+<div data-align="center">
+<img src="/pictures/laplace_method/exp%28sinx_x%29.png" width="60%" height="50%" />
+</div>
+<p>考虑多元情形, 假定<span class="math inline">\(x_0\)</span>为f(x)的最大值点, 因此有<span class="math inline">\(\nabla f(x_0)=0\)</span>且Hessian矩阵<span class="math inline">\(H(x_0)负定\)</span>. 将<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处泰勒展开得<span class="math display">\[f(x)\approx f(x_0)+\frac{1}{2!}(x-x_0)^TH(x_0)(x-x_0)\]</span>此时积分近似为<span class="math display">\[\int_a^be^{Mf(x)}dx\approx e^{Mf(x_0)}\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\]</span>假设<span class="math inline">\(x_0\)</span>包含在区间<span class="math inline">\([a,b]\)</span>内, 那么右式可以直接视为在<span class="math inline">\((-\infty,+\infty)\)</span>上的积分, 因为随着<span class="math inline">\(M\)</span>的增大区间之外的积分会越来越小. 而此时右边的积分即为一个对多元正态分布的积分, 且该积分可以通过变量代换<span class="math inline">\(t=H(x_0)^{\frac{1}{2}}(x-x_0)\)</span>化成标准的多元正态分布计算出来:<span class="math display">\[\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\approx \int_{-\infty}^{+\infty} e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx=\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里的<span class="math inline">\(d\)</span>指的是自变量<span class="math inline">\(x\)</span>的维度, <span class="math inline">\(H(x_0)\)</span>指<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处的Hessian矩阵. 因此得到结论:<span class="math display">\[\int_a^be^{Mf(x)}dx\approx  e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>本质上来说, 倘若暂时先不考虑<span class="math inline">\(M\)</span>的大小, 用二阶泰勒展开对<span class="math inline">\(f(x)\)</span>进行近似的方法实际上是把被积函数视为多元正态分布. 一元情形的相关定理描述及证明请移步<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">维基百科</a>, 最后来看一个更一般的结论:<span class="math display">\[\int_a^bh(x)e^{Mf(x)}dx\approx  h(x_0)e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里要求<span class="math inline">\(h(x)&gt;0\)</span>.</p>
+<hr />
+<h2 id="例子">例子</h2>
+<p>例子参考了PRML一书6.4节, 来自高斯过程分类中的预测问题, 目标也是求一个积分<span class="math display">\[P(a_{N+1}\mid t_N)=\int P(a_{N+1}\mid a_N)P(a_N\mid t_N)da_N\]</span>这里的目标变量<span class="math inline">\(t\in\{0, 1\}\)</span>为二分变量; 被积函数第一部分<span class="math inline">\(P(a_{N+1}\mid a_N)\)</span>是个正态分布, 即为高斯过程回归做预测时的核心结论. 本质上来说, 拉普拉斯近似方法把被积函数或者是被积函数的一部分代换成多元正态分布<span class="math inline">\(N(\mu, \Sigma)\)</span>, 这里仅把被积函数的第二部分代换掉. 回想多元正态分布的<a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">密度函数</a>, 因此只要计算<span class="math inline">\(\log P(a_N\mid t_N)\)</span>关于变量<span class="math inline">\(a_N\)</span>的梯度<span class="math inline">\(\nabla\)</span>和Hessian矩阵<span class="math inline">\(\nabla^2\)</span>, 此时<span class="math inline">\(\mu\)</span>即为<span class="math inline">\(\nabla=0\)</span>的解, <span class="math inline">\(\Sigma=-\nabla^2\)</span>. 接着由两个正态分布积分的一些性质(PRML一书2.115), 可以得到目标积分的近似结果仍为一个正态分布. 然后我们可以用它来做预测<span class="math display">\[P(t_{N+1}=1\mid t_N)=\int P(t_{N+1}=1\mid a_{N+1})P(a_{N+1}\mid t_N)da_{N+1}\]</span>具体计算时被积函数的第一部分利用自己本身的性质近似成了正态分布的分布函数(而非密度函数)(PRML一书4.153). <code>p.s.</code>: 高斯过程分类中的参数也可以用拉普拉斯近似方法得到, 这里就不再赘述, 最后建议细细读一读PRML一书6.4节.</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>拉普拉斯方法</tag>
+        <tag>积分近似</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>拉德马赫复杂度</title>
+    <url>/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/</url>
+    <content><![CDATA[<p>前言: 本文主要讲了拉德马赫复杂度(<a href="https://en.wikipedia.org/wiki/Rademacher_complexity">Rademacher complexity</a>), 主要参考了Understanding machine learning一书26章.</p>
+<span id="more"></span>
+<hr />
+<p>首先应当接触以下几个概念:</p>
+<ul>
+<li>样本空间: 对于监督学习而言为带标签的样本<span class="math inline">\((x,y)\)</span>的取值空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>, 学习的目标是映射<span class="math inline">\(f: \mathcal{X}\to\mathcal{Y}\)</span>, 以用于产生对新样本<span class="math inline">\(x_{new}\)</span>的标签的可靠预测<span class="math inline">\(f(x_{new})\)</span>. <code>p.s.</code>对无监督学习而言为不带标签的样本<span class="math inline">\(x\)</span>的取值空间<span class="math inline">\(\mathcal{X}\)</span>, 学习目标为对<span class="math inline">\(\mathcal{X}\)</span>的可靠分类.</li>
+<li>目标函数: 通常记为<span class="math inline">\(f\)</span>, 即上述监督学习中所说的映射<span class="math inline">\(f\)</span>. 对于分类问题就是我们希望得到的真实的分类函数.</li>
+<li>训练集: 通常记为<span class="math inline">\(S\)</span>, 由定义在样本空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>上的概率分布<span class="math inline">\(\mathcal{D}\)</span>抽样得到 <span class="math display">\[S=\{(x_{1},y_{1}),....,(x_{m},y_{m})\}\]</span></li>
+<li>学习算法: 通常记为<span class="math inline">\(A\)</span>, 即我们构建的、能从数据中学到东西的学习算法, 期望其能从假设类中返回良好的假设.</li>
+<li>假设类: 通常记为<span class="math inline">\(\mathcal{H}\)</span>, 对目标函数<span class="math inline">\(f\)</span>的假设构成的空间, 学习器从中选择.</li>
+<li>预测器(predictor): 或者说分类器(classifier)、假设(hypothesis), 通常记为<span class="math inline">\(h\)</span>, 即学习器输出的一个函数:<span class="math inline">\(h:\mathcal{X}\to\mathcal{Y}\)</span>, 且应当和目标函数<span class="math inline">\(f\)</span>有相近的函数值.</li>
+<li>损失函数: 通常记为<span class="math inline">\(l(h, (x, y))\)</span>, 其定义在预测器<span class="math inline">\(h\)</span>和单个样本<span class="math inline">\((x, y)\)</span>上. 对于二分类问题, 一个常用的损失函数为<span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>, 即分对了就为0, 分错了就为1.</li>
+<li>训练误差: 通常记为<span class="math inline">\(L_{S}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在训练集<span class="math inline">\(S\)</span>上的平均损失<span class="math display">\[L_{S}(h)=\frac{1}{m}\sum_{i=1}^m l(h, (x_i, y_i))\]</span></li>
+<li>泛化误差: 通常记为<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在<span class="math inline">\((\mathcal{X}, \mathcal{Y})\)</span>上的平均损失<span class="math display">\[\mathbb{E}_{(x, y)\sim (\mathcal{X}, \mathcal{Y})}l(h, (x, y))\]</span></li>
+<li><span class="math inline">\(\varepsilon\)</span>-代表性样本: 一个训练集被称为<span class="math inline">\(\varepsilon\)</span>-代表性样本(定义在域<span class="math inline">\(Z\)</span>, 假设类<span class="math inline">\(\mathcal{H}\)</span>, 损失函数<span class="math inline">\(l\)</span>和分布<span class="math inline">\(\mathcal{D}\)</span>上), 如果满足<span class="math display">\[\sup_{h\in\mathcal{H}}|L_{S}(h)-L_{\mathcal{D}}(h)|\le\varepsilon\]</span></li>
+</ul>
+<p>接着应当知道如下基本事实:</p>
+<blockquote>
+<p>如果<span class="math inline">\(S\)</span>是<span class="math inline">\(\varepsilon/2\)</span>-代表性样本, 那么在ERM准则下它是<span class="math inline">\(\varepsilon\)</span>-一致的, 即<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))\le \min_{h\in\mathcal{H}}L_{\mathcal{D}}(h)+\varepsilon\]</span></p>
+</blockquote>
+<hr />
+<h3 id="拉德马赫复杂度">拉德马赫复杂度</h3>
+<p>回顾之前针对二分类问题建立的<a href="https://msgsxj.cn/2018/06/14/VC-bound/">VC bound</a>:<span class="math display">\[
+\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
+\]</span>注意到要定义训练误差与泛化误差必须要定义损失函数, 损失函数实际上选定了二分类问题的常用的损失函数0-1损失: <span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>; 因此上述VC bound又可以写作:<span class="math display">\[
+\sup_{f\in\mathcal{F}}\left|L_{S}(f)-L_{\mathcal{D}}(f)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
+\]</span>这里的<span class="math inline">\(\mathcal{F}\)</span>定义为<span class="math display">\[l \circ \mathcal{H}=\{z\mapsto l(h, z):h\in\mathcal{H}\}\]</span> 相应的<span class="math inline">\(L_{S}(f)=\frac{1}{m}\sum_{i=1}^m f(z_i)\)</span>, <span class="math inline">\(L_{\mathcal{D}}(f)=\mathbb{E}_{z\sim \mathcal{D}}f(z)\)</span>, 当然这里的<span class="math inline">\(l\)</span>已经固定为0-1损失. 定义训练集<span class="math inline">\(S\)</span>在<span class="math inline">\(\mathcal{F}\)</span>上的代表性为:<span class="math display">\[Rep_{\mathcal{D}}(\mathcal{F}, S)\doteq\sup_{f\in\mathcal{F}}(L_{\mathcal{D}}(f)-L_{S}(f))\]</span>一般来说, 训练误差<span class="math inline">\(L_{S}\)</span>能通过优化达到一个非常接近于0的数值, 比如<a href="https://arxiv.org/abs/1811.03804">这篇文章</a>说明了用梯度下降训练ResNet能在多项式时间内达到0训练误差, 即达到全局最优; 泛化误差<span class="math inline">\(L_{\mathcal{D}}\)</span>则会略大于训练误差. 显然当<span class="math inline">\(S\)</span>越能代表<span class="math inline">\(\mathcal{D}\)</span>, 上数值会越接近于0. 现在想要仅仅依靠训练集<span class="math inline">\(S\)</span>本身去估计其代表性, 一个自然地想法是将<span class="math inline">\(S\)</span>分成两个不相交的子集<span class="math inline">\(S=S_1\cup S_2\)</span>, <span class="math inline">\(S_1\)</span>作为验证集, <span class="math inline">\(S_2\)</span>作为训练集, 此时训练集代表性的一个近似为:<span class="math display">\[\sup_{f\in\mathcal{F}}(L_{\mathcal{S_1}}(f)-L_{S_2}(f))\]</span>再设多元随机变量<span class="math display">\[\sigma=(\sigma_1, \sigma_2,...,\sigma_m)\in\{\pm 1\}^m\]</span> 并按如下方式取定随机变量的值<span class="math inline">\(S_1=\{z_i:\sigma_i=1\}\)</span>, <span class="math inline">\(S_2=\{z_i:\sigma_i=-1\}\)</span>, 上式可写成更简单的形式:<span class="math display">\[\frac{1}{m}\sup_{f\in\mathcal{F}}\sum_{i=1}^m \sigma_i f(z_i)\]</span> 此时随机变量的不同的取值代表不同的验证集和训练集的组合, <strong>拉德马赫复杂度</strong>定义为上式近似对随机变量<span class="math inline">\(\sigma\)</span>的期望:<span class="math display">\[R(\mathcal{F}\circ S)\doteq\frac{1}{m}\mathop{\mathbb{E}}_{\sigma\sim\{\pm 1\}^m} [\sup_{f\in\mathcal{F}}\sum_{i=1}^m \sigma_i f(z_i)]\]</span>可以证明, 在期望意义下, 集合<span class="math inline">\(S\)</span>的代表性不超过2倍的拉德马赫复杂度<span class="math display">\[\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[Rep_{\mathcal{D}}(\mathcal{F}, S)]\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(\mathcal{F}\circ S)]\]</span>证明见Understanding machine learning一书引理26.2.</p>
+<hr />
+<h3 id="数据相关界">数据相关界</h3>
+<p>首先来看一个重要的不等式, 有限偏差集中不等式, 又称<a href="https://en.wikipedia.org/wiki/Doob_martingale#McDiarmid&#39;s_inequality">McDiarmid 不等式</a>, 这个不等式可见维基, 这个不等式可用来推出一个与训练集<span class="math inline">\(S\)</span>相关的界:</p>
+<blockquote>
+<p>假设对所有的<span class="math inline">\(z\)</span>和<span class="math inline">\(h\in\mathcal{H}\)</span>, <span class="math inline">\(|l(h, z)|\le c\)</span>, 那么以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(l \circ \mathcal{H}\circ S)]+c\sqrt{\frac{2\log(2/\delta)}{m}}\]</span>以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2R(l \circ \mathcal{H}\circ S)+4c\sqrt{\frac{2\log(4/\delta)}{m}}\]</span> 以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))-L_{\mathcal{D}}(h)\le 2R(l \circ \mathcal{H}\circ S)+5c\sqrt{\frac{2\log(8/\delta)}{m}}\]</span></p>
+</blockquote>
+<p>有兴趣的朋友不妨试着去推一推, 上述1, 2的界的推导类似于西瓜书定理12.5, 唯一不同的是这里满足在常数为<span class="math inline">\(2c/m\)</span>下的有界偏差条件, 而西瓜书直接为1; 第三个不等式则是多一步霍夫丁不等式.</p>
+<ul>
+<li>注意到第2, 3个界实际上由具体的训练集<span class="math inline">\(S\)</span>计算出来的, 因此这两个界被称为是数据相关界, 这也是与VC bound最大的不同之处.</li>
+<li>第二个界可以用来评估当前分类器<span class="math inline">\(h\)</span>在实际数据集<span class="math inline">\(\mathcal{D}\)</span>上的表现, 即<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>.</li>
+<li>第三个界可以用来评估利用ERM原则得到的分类器<span class="math inline">\(h\)</span>与理论最佳分类器的实际差距, 因此希望这个界越小越好; 显然假设类<span class="math inline">\(\mathcal{H}\)</span>越复杂, 这个界越大, 因此某种意义上这个界能用来评估假设类<span class="math inline">\(\mathcal{H}\)</span>的优劣.</li>
+</ul>
+<hr />
+<h3 id="拉德马赫复杂度的性质">拉德马赫复杂度的性质</h3>
+<p>首先给出拉德马赫复杂度的更一般化定义: 给定一个向量集合<span class="math inline">\(A\in\mathbb{R}^m\)</span> <span class="math display">\[R(A)\doteq\frac{1}{m}\mathop{\mathbb{E}}_{\sigma\sim\{\pm 1\}^m} [\sup_{a\in A}\sum_{i=1}^m \sigma_i a_i]\]</span>这里例举拉德马赫复杂度的几条性质, 具体见Understanding machine learning一书26章:</p>
+<ul>
+<li>A的凸包与A具有一样的拉德马赫复杂度.</li>
+<li>一个有限集合的拉德马赫复杂度随着集合大小增长而对数增长.</li>
+<li>如果给集合A作用一个Lipschitz连续的函数, 并不会增大其拉德马赫复杂度.</li>
+</ul>
+<hr />
+<h3 id="线性类的拉德马赫复杂度">线性类的拉德马赫复杂度</h3>
+<p>本节给出两个线性的假设类的拉德马赫复杂度, 假定<span class="math inline">\(x\)</span>的维数为<span class="math inline">\(n\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\mathcal{H}_1=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_1\le 1\}\)</span></li>
+<li><span class="math inline">\(\mathcal{H}_2=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_2\le 1\}\)</span></li>
+</ul>
+<p><span class="math inline">\(\mathcal{H}_1\circ S\)</span>定义为<span class="math inline">\(\{(&lt;\omega, x_i&gt;, i=1...,m):\Vert\omega\Vert_1\le 1\}\)</span>, <span class="math inline">\(\mathcal{H}_2\circ S\)</span>类似的定义, 有如下两个结果, 证明见[UML]一书引理26.10、26.11:</p>
+<ul>
+<li><span class="math inline">\(R(\mathcal{H}_1\circ S) \le \max_i\Vert x_i\Vert_{\infty}\sqrt{\frac{2\log(2n)}{m}}\)</span></li>
+<li><span class="math inline">\(R(\mathcal{H}_2\circ S) \le\frac{\max_i\Vert x_i\Vert_2}{\sqrt{m}}\)</span></li>
+</ul>
+<p><strong>p.s.</strong> 此外还有软硬间隔SVM的泛化误差界的推导, 见26.3, 26.4; 另一种度量集合复杂度的方法为覆盖数, 见27章.</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>拉德马赫复杂度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>智能时代-读书笔记</title>
+    <url>/2018/05/02/%E6%99%BA%E8%83%BD%E6%97%B6%E4%BB%A3-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>前言:之前读过吴军博士的浪潮之巅,让我对各大IT企业有了一个了解,这次又买了吴博士的智能时代,特此记录我的一些读书笔记. ps:由于笔者从本科到研究生都在数学系,所以习惯用从定义到例子这样的方式去理解一个概念,定义内容主要参考了维基百科.</p>
+<span id="more"></span>
+<hr />
+<h2 id="数据-人类文明的基石">数据-人类文明的基石</h2>
+<p>如果我们把资本和机械动能作为大航海时代以来全球近代化的推动力,那么数据将成为智能革命的核心动力. <a href="https://en.wikipedia.org/wiki/Data">数据</a>:</p>
+<blockquote>
+<p>Data is a set of values of qualitative or quantitative variables.</p>
+</blockquote>
+<p>值得注意的是数据虽然本身是客观存在的,但他的范畴是随着文明进程不断变化和扩大的;计算机出现以前,一般书籍上的文字不认为是数据,而在今天它确实很重要的数据形式,可以想象不久的将来数据的范围一定会进一步扩大.</p>
+<p><a href="https://en.wikipedia.org/wiki/Information">信息</a>:</p>
+<blockquote>
+<p>Information is any entity or form that resolves uncertainty or provides the answer to a question of some kind.</p>
+</blockquote>
+<p>通常我们的目标就是从数据中挖掘出有用的信息来为我们所用,但我们能拿到的数据往往是有用的数据和没用的数据(伪造数据)混在一起,这无疑会干扰我们获取有用的信息.</p>
+<p><a href="https://en.wikipedia.org/wiki/Mathematical_model">数学模型</a>:</p>
+<blockquote>
+<p>A mathematical model is a description of a system using mathematical concepts and language.A model may help to explain a system and to study the effects of different components, and to make predictions about behaviour.</p>
+</blockquote>
+<p>很多时候,我们没法直接使用数据,但我们可以将相关的信息量化,然后通过数学模型,间接的得到想要的信息. 另外我们通常对数据有两个方面的要求,质和量,质表示得到数据必须具有一定的代表性,量则是数据量必须充足.</p>
+<p><a href="https://en.wikipedia.org/wiki/Data-driven">数据驱动</a>:</p>
+<blockquote>
+<p>The adjective data-driven means that progress in an activity is compelled by data.</p>
+</blockquote>
+<p>数学模型的选择不是一件容易的事情,其中数据驱动方法是目前的主流,它的主要内容就是选择一个或简单或复杂的模型,然后用很多数据去拟合.比方说DNN的数学模型可以说非常简单了,但它往往都有很多层隐藏层,从这个层面讲这个模型可以说的上是复杂. 数据驱动方法最大优势在于他可以最大程度上得益于计算机技术的进步,尽管一开始数据量不够、计算力不够时会显得粗糙,随着时间的推移,数据驱动方法可以非常准确.相比之下非数据驱动方法的进步需要理论上的突破,因此改进周期长.</p>
+<hr />
+<h2 id="大数据与机器智能">大数据与机器智能</h2>
+<p>在有大数据之前,计算机并不擅长解决需要人类智能的问题,但今天这些问题能够得以解决,其核心就是变智能问题为数据问题,由此开始了新一轮技术革命-智能革命. 机器智能又名<a href="https://en.wikipedia.org/wiki/AI">人工智能</a>:</p>
+<blockquote>
+<p>In computer science AI research is defined as the study of "intelligent agents": any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals.</p>
+</blockquote>
+<p>人工智能1.0:1956年夏天的<a href="https://en.wikipedia.org/wiki/Dartmouth_workshop">Dartmouth workshop</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Big_data">大数据</a>:</p>
+<blockquote>
+<p>Big data is data sets that are so voluminous and complex that traditional data-processing application software are inadequate to deal with them.</p>
+</blockquote>
+<p>大数据的三个特征:</p>
+<ul>
+<li>Vast(2005是大数据的元年,第一次参加<a href="https://en.wikipedia.org/wiki/National_Institute_of_Standards_and_Technology">NIST</a>评测的Google机器翻译团队以巨大优势取得第一,原因在于使用了万倍的数据量建立了六元模型而不是三元模型).</li>
+<li>Variety(百度发布的<a href="https://baike.baidu.com/item/%E4%B8%AD%E5%9B%BD%E5%8D%81%E5%A4%A7%E5%90%83%E8%B4%A7%E7%9C%81%E5%B8%82%E6%8E%92%E8%A1%8C%E6%A6%9C/15408979">中国十大吃货省市排行榜</a>说明了正是大数据的多样性,我们才能从中获得更多有价值的结果)</li>
+<li>Completeness(<a href="https://en.wikipedia.org/wiki/Nate_Silver">Nade Silver</a>通过搜集社交网络上的相对反映真实想法的数据,对2012美国大选做出非常漂亮的预测)</li>
+</ul>
+<hr />
+<h2 id="思维的革命">思维的革命</h2>
+<p>数据所包含的信息能帮助我们消除不确定性,数据的相关性一定程度上能取代原来的因果关系. 上一章我们从技术层面分析了大数据的重要性,这一张我们将从方法论层面描述其重要性. <a href="https://en.wikipedia.org/wiki/Mechanical_philosophy">机械思维</a>:</p>
+<blockquote>
+<p>the universe is reducible to completely mechanical principles—that is, the motion and collision of matter.</p>
+</blockquote>
+<p>机械思维的形成:</p>
+<ul>
+<li><p>欧几里得创立了基于公理化体系的几何学</p></li>
+<li><p>托勒密总结出:通过观察获得数学模型的雏形,然后利用数据来细化模型</p></li>
+<li><p>笛卡尔总结出:大胆假设,小心求证</p></li>
+<li><p>牛顿不仅把欧几里得通过逻辑建立起来的方法论从数学扩展到自然科学领域,而且把托勒密用机械运动描述天体的规律扩展到对世界任何规律的描述,后来人们将牛顿的方法论概括为机械思维,其核心思想有三:</p>
+<ol type="1">
+<li>世界的变化规律是确定的</li>
+<li>规律不仅可以被认知,而且可以用简单的语言描述</li>
+<li>这些规律可以在未知领域指导实践</li>
+</ol></li>
+</ul>
+<p>机械思维的局限性:</p>
+<ul>
+<li>否认了不确定性(量子力学中测不准原理<span class="math inline">\(\Delta t\cdot\Delta p&gt;\varepsilon\)</span>)</li>
+</ul>
+<p><a href="https://en.wikipedia.org/wiki/Entropy">熵</a>:</p>
+<blockquote>
+<p>In statistical mechanics, entropy is an extensive property of a thermodynamic system. It is closely related to the number Ω of microscopic configurations (known as microstates) that are consistent with the macroscopic quantities that characterize the system (such as its volume, pressure and temperature). Under the assumption that each microstate is equally probable, the entropy S is the natural logarithm of the number of microstates, multiplied by the Boltzmann constant <span class="math inline">\(k_{B}\)</span>. Formally,<span class="math inline">\(S=k_{B}\ln\Omega\)</span>.</p>
+</blockquote>
+<p>香农在信息论中借用了热力学中熵的概念,描述了一个信息系统的不确定性.<a href="https://en.wikipedia.org/wiki/Information_theory">信息论</a>主要包括自信息(self-information),互信息(mutual-information),香农第一定律(噪声信道编码定理)和香农第二定律:</p>
+<ul>
+<li>自信息:<span class="math inline">\(H(X)=\mathbb {E}_{X}[I(x)]=-\sum_{x\in \mathbb {X} }p(x)\log p(x)\)</span></li>
+<li>互信息:<span class="math inline">\(I(X;Y)=\mathbb {E}_{X,Y}[SI(x,y)]=\sum_{x,y}p(x,y)\log {\frac {p(x,y)}{p(x)\,p(y)}}\)</span></li>
+<li>香农第一定律(<a href="https://en.wikipedia.org/wiki/Shannon%27s_source_coding_theorem">Shannon's source coding theorem</a>):对于信号源发出的所有信息设置一种编码,那么编码的平均长度一定大于该源的信息熵;且一定存在一种编码,这种编码的平均长度能无限接近于它的信息熵(这种编码又称为是<a href="https://en.wikipedia.org/wiki/Huffman_coding">霍夫曼编码</a>)</li>
+<li>香农第二定律(<a href="https://en.wikipedia.org/wiki/Noisy-channel_coding_theorem">Noisy-channel coding theorem</a>):信息传播速率不可能超过信道的容量</li>
+</ul>
+<p>关于信息论,还有一个原理必须了解,那就是<a href="https://en.wikipedia.org/wiki/Principle_of_maximum_entropy">最大熵原理</a>:</p>
+<blockquote>
+<p>The principle of maximum entropy states that the probability distribution which best represents the current state of knowledge is the one with largest entropy, in the context of precisely stated prior data (such as a proposition that expresses testable information).</p>
+</blockquote>
+<p>这原理的大意为,当我们要对未知寻求一个概率模型时,这个模型应当满足我们所有已经看到的数据,但对未知的情况不要做任何假设.这事实上截然不同于笛卡尔总结出:大胆假设,小心求证的方法论.</p>
+<p>在无法确定因果关系时,数据所包含的信息能帮助我们消除不确定性,研究数据的相关性为我们从数据中得到信息提供一种更高效的方法(而不是直接研究因果关系),这两点便是大数据思维的核心.</p>
+<hr />
+<h2 id="大数据与商业">大数据与商业</h2>
+<p>可以预见的是,在未来,大数据会如同水电,由专门的公司提供给全社会使用.</p>
+<hr />
+<h2 id="大数据和智能革命的技术挑战">大数据和智能革命的技术挑战</h2>
+<p>大数据的数据量大、维度多、数据完备等特点使得它从数据收集到存储和处理都与过去的数据方法有很大不同,因此,这需要我们在技术上采用不同的方法.</p>
+<hr />
+<h2 id="未来智能化产业">未来智能化产业</h2>
+<p>现有产业+机器智能=新产业</p>
+<hr />
+<h2 id="智能革命和未来社会">智能革命和未来社会</h2>
+<p>在美国,很多道路在交通高峰期要求车上必须有两个及以上人才能使用快速车道,这些车道被称为拼车车道.</p>
+<hr />
+<h3 id="区块链">区块链</h3>
+<p>区块链(<a href="https://en.wikipedia.org/wiki/Blockchain">Block Chain</a>):</p>
+<ul>
+<li>Block:一个账户存储信息</li>
+<li>Chain:一连串的交易信息</li>
+</ul>
+<p>区块链的一项重要应用比特币实际上是由随机数算法产生的随机数,这个随机数在整个互联网上是唯一的,而且是可以验其真伪的.比特币在被矿工挖出时,就产生一个带有这样的特殊随机数的Block,当这个比特币通过交易到达第二个人手里时,在该Block中就记录下了这笔交易的信息,这个过程本质上是一个加密信息传输过程,一旦交易完成了,它就会被广播到整个互联网上.所有的比特币散布在整个互联网上,且通过公开秘钥来发送和传播,且没有一个中心去控制.</p>
+<p>比特币(<a href="https://en.wikipedia.org/wiki/Bitcoin">Bitcion</a>):</p>
+<ul>
+<li>a cryptocurrency and worldwide payment system</li>
+<li>without a central bank or single administrator</li>
+<li>the network is peer-to-peer</li>
+<li>transactions are verified by network nodes through the use of cryptography and recorded in a public distributed ledger called a blockchain</li>
+</ul>
+<p>区块链的另外一项重要应用是商品溯源,如果一个商品制造出来时产生这样一个区块链,并且它在被运输和交易时利用区块链记录全过程,那么当最终消费者购买到这个商品后,他可以看到这个商品是如何一步步到自己手上的.因为商品与区块链是一一对应的,这样子就能从理论上杜绝假货.</p>
+]]></content>
+      <categories>
+        <category>读书笔记</category>
+      </categories>
+      <tags>
+        <tag>智能时代</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>凸优化学习笔记</title>
     <url>/2018/02/23/%E5%87%B8%E4%BC%98%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>前言:主要参考了凸优化理论一书及讨论班上的ppt, <span class="math inline">\(\mathbb{R}\)</span>表示实数域. <span id="more"></span></p>
@@ -2227,222 +2470,6 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
       </tags>
   </entry>
   <entry>
-    <title>拉德马赫复杂度</title>
-    <url>/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/</url>
-    <content><![CDATA[<p>前言: 本文主要讲了拉德马赫复杂度(<a href="https://en.wikipedia.org/wiki/Rademacher_complexity">Rademacher complexity</a>), 主要参考了Understanding machine learning一书26章.</p>
-<span id="more"></span>
-<hr />
-<p>首先应当接触以下几个概念:</p>
-<ul>
-<li>样本空间: 对于监督学习而言为带标签的样本<span class="math inline">\((x,y)\)</span>的取值空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>, 学习的目标是映射<span class="math inline">\(f: \mathcal{X}\to\mathcal{Y}\)</span>, 以用于产生对新样本<span class="math inline">\(x_{new}\)</span>的标签的可靠预测<span class="math inline">\(f(x_{new})\)</span>. <code>p.s.</code>对无监督学习而言为不带标签的样本<span class="math inline">\(x\)</span>的取值空间<span class="math inline">\(\mathcal{X}\)</span>, 学习目标为对<span class="math inline">\(\mathcal{X}\)</span>的可靠分类.</li>
-<li>目标函数: 通常记为<span class="math inline">\(f\)</span>, 即上述监督学习中所说的映射<span class="math inline">\(f\)</span>. 对于分类问题就是我们希望得到的真实的分类函数.</li>
-<li>训练集: 通常记为<span class="math inline">\(S\)</span>, 由定义在样本空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>上的概率分布<span class="math inline">\(\mathcal{D}\)</span>抽样得到 <span class="math display">\[S=\{(x_{1},y_{1}),....,(x_{m},y_{m})\}\]</span></li>
-<li>学习算法: 通常记为<span class="math inline">\(A\)</span>, 即我们构建的、能从数据中学到东西的学习算法, 期望其能从假设类中返回良好的假设.</li>
-<li>假设类: 通常记为<span class="math inline">\(\mathcal{H}\)</span>, 对目标函数<span class="math inline">\(f\)</span>的假设构成的空间, 学习器从中选择.</li>
-<li>预测器(predictor): 或者说分类器(classifier)、假设(hypothesis), 通常记为<span class="math inline">\(h\)</span>, 即学习器输出的一个函数:<span class="math inline">\(h:\mathcal{X}\to\mathcal{Y}\)</span>, 且应当和目标函数<span class="math inline">\(f\)</span>有相近的函数值.</li>
-<li>损失函数: 通常记为<span class="math inline">\(l(h, (x, y))\)</span>, 其定义在预测器<span class="math inline">\(h\)</span>和单个样本<span class="math inline">\((x, y)\)</span>上. 对于二分类问题, 一个常用的损失函数为<span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>, 即分对了就为0, 分错了就为1.</li>
-<li>训练误差: 通常记为<span class="math inline">\(L_{S}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在训练集<span class="math inline">\(S\)</span>上的平均损失<span class="math display">\[L_{S}(h)=\frac{1}{m}\sum_{i=1}^m l(h, (x_i, y_i))\]</span></li>
-<li>泛化误差: 通常记为<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在<span class="math inline">\((\mathcal{X}, \mathcal{Y})\)</span>上的平均损失<span class="math display">\[\mathbb{E}_{(x, y)\sim (\mathcal{X}, \mathcal{Y})}l(h, (x, y))\]</span></li>
-<li><span class="math inline">\(\varepsilon\)</span>-代表性样本: 一个训练集被称为<span class="math inline">\(\varepsilon\)</span>-代表性样本(定义在域<span class="math inline">\(Z\)</span>, 假设类<span class="math inline">\(\mathcal{H}\)</span>, 损失函数<span class="math inline">\(l\)</span>和分布<span class="math inline">\(\mathcal{D}\)</span>上), 如果满足<span class="math display">\[\sup_{h\in\mathcal{H}}|L_{S}(h)-L_{\mathcal{D}}(h)|\le\varepsilon\]</span></li>
-</ul>
-<p>接着应当知道如下基本事实:</p>
-<blockquote>
-<p>如果<span class="math inline">\(S\)</span>是<span class="math inline">\(\varepsilon/2\)</span>-代表性样本, 那么在ERM准则下它是<span class="math inline">\(\varepsilon\)</span>-一致的, 即<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))\le \min_{h\in\mathcal{H}}L_{\mathcal{D}}(h)+\varepsilon\]</span></p>
-</blockquote>
-<hr />
-<h3 id="拉德马赫复杂度">拉德马赫复杂度</h3>
-<p>回顾之前针对二分类问题建立的<a href="https://msgsxj.cn/2018/06/14/VC-bound/">VC bound</a>:<span class="math display">\[
-\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
-\]</span>注意到要定义训练误差与泛化误差必须要定义损失函数, 损失函数实际上选定了二分类问题的常用的损失函数0-1损失: <span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>; 因此上述VC bound又可以写作:<span class="math display">\[
-\sup_{f\in\mathcal{F}}\left|L_{S}(f)-L_{\mathcal{D}}(f)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
-\]</span>这里的<span class="math inline">\(\mathcal{F}\)</span>定义为<span class="math display">\[l \circ \mathcal{H}=\{z\mapsto l(h, z):h\in\mathcal{H}\}\]</span> 相应的<span class="math inline">\(L_{S}(f)=\frac{1}{m}\sum_{i=1}^m f(z_i)\)</span>, <span class="math inline">\(L_{\mathcal{D}}(f)=\mathbb{E}_{z\sim \mathcal{D}}f(z)\)</span>, 当然这里的<span class="math inline">\(l\)</span>已经固定为0-1损失. 定义训练集<span class="math inline">\(S\)</span>在<span class="math inline">\(\mathcal{F}\)</span>上的代表性为:<span class="math display">\[Rep_{\mathcal{D}}(\mathcal{F}, S)\doteq\sup_{f\in\mathcal{F}}(L_{\mathcal{D}}(f)-L_{S}(f))\]</span>一般来说, 训练误差<span class="math inline">\(L_{S}\)</span>能通过优化达到一个非常接近于0的数值, 比如<a href="https://arxiv.org/abs/1811.03804">这篇文章</a>说明了用梯度下降训练ResNet能在多项式时间内达到0训练误差, 即达到全局最优; 泛化误差<span class="math inline">\(L_{\mathcal{D}}\)</span>则会略大于训练误差. 显然当<span class="math inline">\(S\)</span>越能代表<span class="math inline">\(\mathcal{D}\)</span>, 上数值会越接近于0. 现在想要仅仅依靠训练集<span class="math inline">\(S\)</span>本身去估计其代表性, 一个自然地想法是将<span class="math inline">\(S\)</span>分成两个不相交的子集<span class="math inline">\(S=S_1\cup S_2\)</span>, <span class="math inline">\(S_1\)</span>作为验证集, <span class="math inline">\(S_2\)</span>作为训练集, 此时训练集代表性的一个近似为:<span class="math display">\[\sup_{f\in\mathcal{F}}(L_{\mathcal{S_1}}(f)-L_{S_2}(f))\]</span>再设多元随机变量<span class="math display">\[\sigma=(\sigma_1, \sigma_2,...,\sigma_m)\in\{\pm 1\}^m\]</span> 并按如下方式取定随机变量的值<span class="math inline">\(S_1=\{z_i:\sigma_i=1\}\)</span>, <span class="math inline">\(S_2=\{z_i:\sigma_i=-1\}\)</span>, 上式可写成更简单的形式:<span class="math display">\[\frac{1}{m}\sup_{f\in\mathcal{F}}\sum_{i=1}^m \sigma_i f(z_i)\]</span> 此时随机变量的不同的取值代表不同的验证集和训练集的组合, <strong>拉德马赫复杂度</strong>定义为上式近似对随机变量<span class="math inline">\(\sigma\)</span>的期望:<span class="math display">\[R(\mathcal{F}\circ S)\doteq\frac{1}{m}\mathop{\mathbb{E}}_{\sigma\sim\{\pm 1\}^m} [\sup_{f\in\mathcal{F}}\sum_{i=1}^m \sigma_i f(z_i)]\]</span>可以证明, 在期望意义下, 集合<span class="math inline">\(S\)</span>的代表性不超过2倍的拉德马赫复杂度<span class="math display">\[\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[Rep_{\mathcal{D}}(\mathcal{F}, S)]\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(\mathcal{F}\circ S)]\]</span>证明见Understanding machine learning一书引理26.2.</p>
-<hr />
-<h3 id="数据相关界">数据相关界</h3>
-<p>首先来看一个重要的不等式, 有限偏差集中不等式, 又称<a href="https://en.wikipedia.org/wiki/Doob_martingale#McDiarmid&#39;s_inequality">McDiarmid 不等式</a>, 这个不等式可见维基, 这个不等式可用来推出一个与训练集<span class="math inline">\(S\)</span>相关的界:</p>
-<blockquote>
-<p>假设对所有的<span class="math inline">\(z\)</span>和<span class="math inline">\(h\in\mathcal{H}\)</span>, <span class="math inline">\(|l(h, z)|\le c\)</span>, 那么以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(l \circ \mathcal{H}\circ S)]+c\sqrt{\frac{2\log(2/\delta)}{m}}\]</span>以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2R(l \circ \mathcal{H}\circ S)+4c\sqrt{\frac{2\log(4/\delta)}{m}}\]</span> 以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))-L_{\mathcal{D}}(h)\le 2R(l \circ \mathcal{H}\circ S)+5c\sqrt{\frac{2\log(8/\delta)}{m}}\]</span></p>
-</blockquote>
-<p>有兴趣的朋友不妨试着去推一推, 上述1, 2的界的推导类似于西瓜书定理12.5, 唯一不同的是这里满足在常数为<span class="math inline">\(2c/m\)</span>下的有界偏差条件, 而西瓜书直接为1; 第三个不等式则是多一步霍夫丁不等式.</p>
-<ul>
-<li>注意到第2, 3个界实际上由具体的训练集<span class="math inline">\(S\)</span>计算出来的, 因此这两个界被称为是数据相关界, 这也是与VC bound最大的不同之处.</li>
-<li>第二个界可以用来评估当前分类器<span class="math inline">\(h\)</span>在实际数据集<span class="math inline">\(\mathcal{D}\)</span>上的表现, 即<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>.</li>
-<li>第三个界可以用来评估利用ERM原则得到的分类器<span class="math inline">\(h\)</span>与理论最佳分类器的实际差距, 因此希望这个界越小越好; 显然假设类<span class="math inline">\(\mathcal{H}\)</span>越复杂, 这个界越大, 因此某种意义上这个界能用来评估假设类<span class="math inline">\(\mathcal{H}\)</span>的优劣.</li>
-</ul>
-<hr />
-<h3 id="拉德马赫复杂度的性质">拉德马赫复杂度的性质</h3>
-<p>首先给出拉德马赫复杂度的更一般化定义: 给定一个向量集合<span class="math inline">\(A\in\mathbb{R}^m\)</span> <span class="math display">\[R(A)\doteq\frac{1}{m}\mathop{\mathbb{E}}_{\sigma\sim\{\pm 1\}^m} [\sup_{a\in A}\sum_{i=1}^m \sigma_i a_i]\]</span>这里例举拉德马赫复杂度的几条性质, 具体见Understanding machine learning一书26章:</p>
-<ul>
-<li>A的凸包与A具有一样的拉德马赫复杂度.</li>
-<li>一个有限集合的拉德马赫复杂度随着集合大小增长而对数增长.</li>
-<li>如果给集合A作用一个Lipschitz连续的函数, 并不会增大其拉德马赫复杂度.</li>
-</ul>
-<hr />
-<h3 id="线性类的拉德马赫复杂度">线性类的拉德马赫复杂度</h3>
-<p>本节给出两个线性的假设类的拉德马赫复杂度, 假定<span class="math inline">\(x\)</span>的维数为<span class="math inline">\(n\)</span>:</p>
-<ul>
-<li><span class="math inline">\(\mathcal{H}_1=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_1\le 1\}\)</span></li>
-<li><span class="math inline">\(\mathcal{H}_2=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_2\le 1\}\)</span></li>
-</ul>
-<p><span class="math inline">\(\mathcal{H}_1\circ S\)</span>定义为<span class="math inline">\(\{(&lt;\omega, x_i&gt;, i=1...,m):\Vert\omega\Vert_1\le 1\}\)</span>, <span class="math inline">\(\mathcal{H}_2\circ S\)</span>类似的定义, 有如下两个结果, 证明见[UML]一书引理26.10、26.11:</p>
-<ul>
-<li><span class="math inline">\(R(\mathcal{H}_1\circ S) \le \max_i\Vert x_i\Vert_{\infty}\sqrt{\frac{2\log(2n)}{m}}\)</span></li>
-<li><span class="math inline">\(R(\mathcal{H}_2\circ S) \le\frac{\max_i\Vert x_i\Vert_2}{\sqrt{m}}\)</span></li>
-</ul>
-<p><strong>p.s.</strong> 此外还有软硬间隔SVM的泛化误差界的推导, 见26.3, 26.4; 另一种度量集合复杂度的方法为覆盖数, 见27章.</p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>拉德马赫复杂度</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>拉普拉斯方法</title>
-    <url>/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>前言: 本文主要是关于拉普拉斯近似方法, 这是一种用来近似计算积分的方法, 主要参考了维基百科及PRML一书6.4节. <span id="more"></span></p>
-<hr />
-<h2 id="拉普拉斯近似方法">拉普拉斯近似方法</h2>
-拉普拉斯近似方法(<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">Laplace's method</a>)是一种近似计算积分的方法, 目标积分形如<span class="math display">\[\int_a^be^{Mf(x)}dx\]</span>其中<span class="math inline">\(f(x)\)</span>要求是二次可微的, <span class="math inline">\(M\)</span>要求是一个较大的数. 其想法是假定<span class="math inline">\(x_0\)</span>是<span class="math inline">\(f(x)\)</span>唯一的最大值点, 因此<span class="math inline">\(f(x_0)&gt;f(x)\)</span>, 乘上一个较大的M, 在经过指数函数的作用, 其差值事实上会变得很大, 不难想象随着<span class="math inline">\(M\)</span>的增大积分内的函数会越来越像一个单峰函数, 事实上确实会逼近对一个正态分布进行积分的值. 举个例子<span class="math inline">\(f(x)=sinx/x\)</span>, 分别画出<span class="math inline">\(e^{sinx/x}\)</span>和<span class="math inline">\(e^{3sinx/x}\)</span>的函数图像:
-<div data-align="center">
-<img src="/pictures/laplace_method/exp%283sinx_x%29.png" width="60%" height="50%" />
-</div>
-<div data-align="center">
-<img src="/pictures/laplace_method/exp%28sinx_x%29.png" width="60%" height="50%" />
-</div>
-<p>考虑多元情形, 假定<span class="math inline">\(x_0\)</span>为f(x)的最大值点, 因此有<span class="math inline">\(\nabla f(x_0)=0\)</span>且Hessian矩阵<span class="math inline">\(H(x_0)负定\)</span>. 将<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处泰勒展开得<span class="math display">\[f(x)\approx f(x_0)+\frac{1}{2!}(x-x_0)^TH(x_0)(x-x_0)\]</span>此时积分近似为<span class="math display">\[\int_a^be^{Mf(x)}dx\approx e^{Mf(x_0)}\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\]</span>假设<span class="math inline">\(x_0\)</span>包含在区间<span class="math inline">\([a,b]\)</span>内, 那么右式可以直接视为在<span class="math inline">\((-\infty,+\infty)\)</span>上的积分, 因为随着<span class="math inline">\(M\)</span>的增大区间之外的积分会越来越小. 而此时右边的积分即为一个对多元正态分布的积分, 且该积分可以通过变量代换<span class="math inline">\(t=H(x_0)^{\frac{1}{2}}(x-x_0)\)</span>化成标准的多元正态分布计算出来:<span class="math display">\[\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\approx \int_{-\infty}^{+\infty} e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx=\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里的<span class="math inline">\(d\)</span>指的是自变量<span class="math inline">\(x\)</span>的维度, <span class="math inline">\(H(x_0)\)</span>指<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处的Hessian矩阵. 因此得到结论:<span class="math display">\[\int_a^be^{Mf(x)}dx\approx  e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>本质上来说, 倘若暂时先不考虑<span class="math inline">\(M\)</span>的大小, 用二阶泰勒展开对<span class="math inline">\(f(x)\)</span>进行近似的方法实际上是把被积函数视为多元正态分布. 一元情形的相关定理描述及证明请移步<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">维基百科</a>, 最后来看一个更一般的结论:<span class="math display">\[\int_a^bh(x)e^{Mf(x)}dx\approx  h(x_0)e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里要求<span class="math inline">\(h(x)&gt;0\)</span>.</p>
-<hr />
-<h2 id="例子">例子</h2>
-<p>例子参考了PRML一书6.4节, 来自高斯过程分类中的预测问题, 目标也是求一个积分<span class="math display">\[P(a_{N+1}\mid t_N)=\int P(a_{N+1}\mid a_N)P(a_N\mid t_N)da_N\]</span>这里的目标变量<span class="math inline">\(t\in\{0, 1\}\)</span>为二分变量; 被积函数第一部分<span class="math inline">\(P(a_{N+1}\mid a_N)\)</span>是个正态分布, 即为高斯过程回归做预测时的核心结论. 本质上来说, 拉普拉斯近似方法把被积函数或者是被积函数的一部分代换成多元正态分布<span class="math inline">\(N(\mu, \Sigma)\)</span>, 这里仅把被积函数的第二部分代换掉. 回想多元正态分布的<a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">密度函数</a>, 因此只要计算<span class="math inline">\(\log P(a_N\mid t_N)\)</span>关于变量<span class="math inline">\(a_N\)</span>的梯度<span class="math inline">\(\nabla\)</span>和Hessian矩阵<span class="math inline">\(\nabla^2\)</span>, 此时<span class="math inline">\(\mu\)</span>即为<span class="math inline">\(\nabla=0\)</span>的解, <span class="math inline">\(\Sigma=-\nabla^2\)</span>. 接着由两个正态分布积分的一些性质(PRML一书2.115), 可以得到目标积分的近似结果仍为一个正态分布. 然后我们可以用它来做预测<span class="math display">\[P(t_{N+1}=1\mid t_N)=\int P(t_{N+1}=1\mid a_{N+1})P(a_{N+1}\mid t_N)da_{N+1}\]</span>具体计算时被积函数的第一部分利用自己本身的性质近似成了正态分布的分布函数(而非密度函数)(PRML一书4.153). <code>p.s.</code>: 高斯过程分类中的参数也可以用拉普拉斯近似方法得到, 这里就不再赘述, 最后建议细细读一读PRML一书6.4节.</p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>拉普拉斯方法</tag>
-        <tag>积分近似</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>智能时代-读书笔记</title>
-    <url>/2018/05/02/%E6%99%BA%E8%83%BD%E6%97%B6%E4%BB%A3-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>前言:之前读过吴军博士的浪潮之巅,让我对各大IT企业有了一个了解,这次又买了吴博士的智能时代,特此记录我的一些读书笔记. ps:由于笔者从本科到研究生都在数学系,所以习惯用从定义到例子这样的方式去理解一个概念,定义内容主要参考了维基百科.</p>
-<span id="more"></span>
-<hr />
-<h2 id="数据-人类文明的基石">数据-人类文明的基石</h2>
-<p>如果我们把资本和机械动能作为大航海时代以来全球近代化的推动力,那么数据将成为智能革命的核心动力. <a href="https://en.wikipedia.org/wiki/Data">数据</a>:</p>
-<blockquote>
-<p>Data is a set of values of qualitative or quantitative variables.</p>
-</blockquote>
-<p>值得注意的是数据虽然本身是客观存在的,但他的范畴是随着文明进程不断变化和扩大的;计算机出现以前,一般书籍上的文字不认为是数据,而在今天它确实很重要的数据形式,可以想象不久的将来数据的范围一定会进一步扩大.</p>
-<p><a href="https://en.wikipedia.org/wiki/Information">信息</a>:</p>
-<blockquote>
-<p>Information is any entity or form that resolves uncertainty or provides the answer to a question of some kind.</p>
-</blockquote>
-<p>通常我们的目标就是从数据中挖掘出有用的信息来为我们所用,但我们能拿到的数据往往是有用的数据和没用的数据(伪造数据)混在一起,这无疑会干扰我们获取有用的信息.</p>
-<p><a href="https://en.wikipedia.org/wiki/Mathematical_model">数学模型</a>:</p>
-<blockquote>
-<p>A mathematical model is a description of a system using mathematical concepts and language.A model may help to explain a system and to study the effects of different components, and to make predictions about behaviour.</p>
-</blockquote>
-<p>很多时候,我们没法直接使用数据,但我们可以将相关的信息量化,然后通过数学模型,间接的得到想要的信息. 另外我们通常对数据有两个方面的要求,质和量,质表示得到数据必须具有一定的代表性,量则是数据量必须充足.</p>
-<p><a href="https://en.wikipedia.org/wiki/Data-driven">数据驱动</a>:</p>
-<blockquote>
-<p>The adjective data-driven means that progress in an activity is compelled by data.</p>
-</blockquote>
-<p>数学模型的选择不是一件容易的事情,其中数据驱动方法是目前的主流,它的主要内容就是选择一个或简单或复杂的模型,然后用很多数据去拟合.比方说DNN的数学模型可以说非常简单了,但它往往都有很多层隐藏层,从这个层面讲这个模型可以说的上是复杂. 数据驱动方法最大优势在于他可以最大程度上得益于计算机技术的进步,尽管一开始数据量不够、计算力不够时会显得粗糙,随着时间的推移,数据驱动方法可以非常准确.相比之下非数据驱动方法的进步需要理论上的突破,因此改进周期长.</p>
-<hr />
-<h2 id="大数据与机器智能">大数据与机器智能</h2>
-<p>在有大数据之前,计算机并不擅长解决需要人类智能的问题,但今天这些问题能够得以解决,其核心就是变智能问题为数据问题,由此开始了新一轮技术革命-智能革命. 机器智能又名<a href="https://en.wikipedia.org/wiki/AI">人工智能</a>:</p>
-<blockquote>
-<p>In computer science AI research is defined as the study of "intelligent agents": any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals.</p>
-</blockquote>
-<p>人工智能1.0:1956年夏天的<a href="https://en.wikipedia.org/wiki/Dartmouth_workshop">Dartmouth workshop</a></p>
-<p><a href="https://en.wikipedia.org/wiki/Big_data">大数据</a>:</p>
-<blockquote>
-<p>Big data is data sets that are so voluminous and complex that traditional data-processing application software are inadequate to deal with them.</p>
-</blockquote>
-<p>大数据的三个特征:</p>
-<ul>
-<li>Vast(2005是大数据的元年,第一次参加<a href="https://en.wikipedia.org/wiki/National_Institute_of_Standards_and_Technology">NIST</a>评测的Google机器翻译团队以巨大优势取得第一,原因在于使用了万倍的数据量建立了六元模型而不是三元模型).</li>
-<li>Variety(百度发布的<a href="https://baike.baidu.com/item/%E4%B8%AD%E5%9B%BD%E5%8D%81%E5%A4%A7%E5%90%83%E8%B4%A7%E7%9C%81%E5%B8%82%E6%8E%92%E8%A1%8C%E6%A6%9C/15408979">中国十大吃货省市排行榜</a>说明了正是大数据的多样性,我们才能从中获得更多有价值的结果)</li>
-<li>Completeness(<a href="https://en.wikipedia.org/wiki/Nate_Silver">Nade Silver</a>通过搜集社交网络上的相对反映真实想法的数据,对2012美国大选做出非常漂亮的预测)</li>
-</ul>
-<hr />
-<h2 id="思维的革命">思维的革命</h2>
-<p>数据所包含的信息能帮助我们消除不确定性,数据的相关性一定程度上能取代原来的因果关系. 上一章我们从技术层面分析了大数据的重要性,这一张我们将从方法论层面描述其重要性. <a href="https://en.wikipedia.org/wiki/Mechanical_philosophy">机械思维</a>:</p>
-<blockquote>
-<p>the universe is reducible to completely mechanical principles—that is, the motion and collision of matter.</p>
-</blockquote>
-<p>机械思维的形成:</p>
-<ul>
-<li><p>欧几里得创立了基于公理化体系的几何学</p></li>
-<li><p>托勒密总结出:通过观察获得数学模型的雏形,然后利用数据来细化模型</p></li>
-<li><p>笛卡尔总结出:大胆假设,小心求证</p></li>
-<li><p>牛顿不仅把欧几里得通过逻辑建立起来的方法论从数学扩展到自然科学领域,而且把托勒密用机械运动描述天体的规律扩展到对世界任何规律的描述,后来人们将牛顿的方法论概括为机械思维,其核心思想有三:</p>
-<ol type="1">
-<li>世界的变化规律是确定的</li>
-<li>规律不仅可以被认知,而且可以用简单的语言描述</li>
-<li>这些规律可以在未知领域指导实践</li>
-</ol></li>
-</ul>
-<p>机械思维的局限性:</p>
-<ul>
-<li>否认了不确定性(量子力学中测不准原理<span class="math inline">\(\Delta t\cdot\Delta p&gt;\varepsilon\)</span>)</li>
-</ul>
-<p><a href="https://en.wikipedia.org/wiki/Entropy">熵</a>:</p>
-<blockquote>
-<p>In statistical mechanics, entropy is an extensive property of a thermodynamic system. It is closely related to the number Ω of microscopic configurations (known as microstates) that are consistent with the macroscopic quantities that characterize the system (such as its volume, pressure and temperature). Under the assumption that each microstate is equally probable, the entropy S is the natural logarithm of the number of microstates, multiplied by the Boltzmann constant <span class="math inline">\(k_{B}\)</span>. Formally,<span class="math inline">\(S=k_{B}\ln\Omega\)</span>.</p>
-</blockquote>
-<p>香农在信息论中借用了热力学中熵的概念,描述了一个信息系统的不确定性.<a href="https://en.wikipedia.org/wiki/Information_theory">信息论</a>主要包括自信息(self-information),互信息(mutual-information),香农第一定律(噪声信道编码定理)和香农第二定律:</p>
-<ul>
-<li>自信息:<span class="math inline">\(H(X)=\mathbb {E}_{X}[I(x)]=-\sum_{x\in \mathbb {X} }p(x)\log p(x)\)</span></li>
-<li>互信息:<span class="math inline">\(I(X;Y)=\mathbb {E}_{X,Y}[SI(x,y)]=\sum_{x,y}p(x,y)\log {\frac {p(x,y)}{p(x)\,p(y)}}\)</span></li>
-<li>香农第一定律(<a href="https://en.wikipedia.org/wiki/Shannon%27s_source_coding_theorem">Shannon's source coding theorem</a>):对于信号源发出的所有信息设置一种编码,那么编码的平均长度一定大于该源的信息熵;且一定存在一种编码,这种编码的平均长度能无限接近于它的信息熵(这种编码又称为是<a href="https://en.wikipedia.org/wiki/Huffman_coding">霍夫曼编码</a>)</li>
-<li>香农第二定律(<a href="https://en.wikipedia.org/wiki/Noisy-channel_coding_theorem">Noisy-channel coding theorem</a>):信息传播速率不可能超过信道的容量</li>
-</ul>
-<p>关于信息论,还有一个原理必须了解,那就是<a href="https://en.wikipedia.org/wiki/Principle_of_maximum_entropy">最大熵原理</a>:</p>
-<blockquote>
-<p>The principle of maximum entropy states that the probability distribution which best represents the current state of knowledge is the one with largest entropy, in the context of precisely stated prior data (such as a proposition that expresses testable information).</p>
-</blockquote>
-<p>这原理的大意为,当我们要对未知寻求一个概率模型时,这个模型应当满足我们所有已经看到的数据,但对未知的情况不要做任何假设.这事实上截然不同于笛卡尔总结出:大胆假设,小心求证的方法论.</p>
-<p>在无法确定因果关系时,数据所包含的信息能帮助我们消除不确定性,研究数据的相关性为我们从数据中得到信息提供一种更高效的方法(而不是直接研究因果关系),这两点便是大数据思维的核心.</p>
-<hr />
-<h2 id="大数据与商业">大数据与商业</h2>
-<p>可以预见的是,在未来,大数据会如同水电,由专门的公司提供给全社会使用.</p>
-<hr />
-<h2 id="大数据和智能革命的技术挑战">大数据和智能革命的技术挑战</h2>
-<p>大数据的数据量大、维度多、数据完备等特点使得它从数据收集到存储和处理都与过去的数据方法有很大不同,因此,这需要我们在技术上采用不同的方法.</p>
-<hr />
-<h2 id="未来智能化产业">未来智能化产业</h2>
-<p>现有产业+机器智能=新产业</p>
-<hr />
-<h2 id="智能革命和未来社会">智能革命和未来社会</h2>
-<p>在美国,很多道路在交通高峰期要求车上必须有两个及以上人才能使用快速车道,这些车道被称为拼车车道.</p>
-<hr />
-<h3 id="区块链">区块链</h3>
-<p>区块链(<a href="https://en.wikipedia.org/wiki/Blockchain">Block Chain</a>):</p>
-<ul>
-<li>Block:一个账户存储信息</li>
-<li>Chain:一连串的交易信息</li>
-</ul>
-<p>区块链的一项重要应用比特币实际上是由随机数算法产生的随机数,这个随机数在整个互联网上是唯一的,而且是可以验其真伪的.比特币在被矿工挖出时,就产生一个带有这样的特殊随机数的Block,当这个比特币通过交易到达第二个人手里时,在该Block中就记录下了这笔交易的信息,这个过程本质上是一个加密信息传输过程,一旦交易完成了,它就会被广播到整个互联网上.所有的比特币散布在整个互联网上,且通过公开秘钥来发送和传播,且没有一个中心去控制.</p>
-<p>比特币(<a href="https://en.wikipedia.org/wiki/Bitcoin">Bitcion</a>):</p>
-<ul>
-<li>a cryptocurrency and worldwide payment system</li>
-<li>without a central bank or single administrator</li>
-<li>the network is peer-to-peer</li>
-<li>transactions are verified by network nodes through the use of cryptography and recorded in a public distributed ledger called a blockchain</li>
-</ul>
-<p>区块链的另外一项重要应用是商品溯源,如果一个商品制造出来时产生这样一个区块链,并且它在被运输和交易时利用区块链记录全过程,那么当最终消费者购买到这个商品后,他可以看到这个商品是如何一步步到自己手上的.因为商品与区块链是一一对应的,这样子就能从理论上杜绝假货.</p>
-]]></content>
-      <categories>
-        <category>读书笔记</category>
-      </categories>
-      <tags>
-        <tag>智能时代</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>最小作用量原理</title>
     <url>/2019/03/28/%E6%9C%80%E5%B0%8F%E4%BD%9C%E7%94%A8%E9%87%8F%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<p>前言: 最近在读最佳可能的世界一书, 这里简单分享一下最小作用量原理. <span id="more"></span></p>
@@ -2984,7 +3011,7 @@ y[t]=V^T[t]\mathbf{r}[t]
         <category>优化算法</category>
       </categories>
       <tags>
-        <tag>信号</tag>
+        <tag>信号处理</tag>
       </tags>
   </entry>
   <entry>
@@ -3058,6 +3085,139 @@ y[t]=V^T[t]\mathbf{r}[t]
         <tag>统计学习</tag>
         <tag>概率论</tag>
         <tag>不等式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自然梯度</title>
+    <url>/2019/07/06/%E8%87%AA%E7%84%B6%E6%A2%AF%E5%BA%A6/</url>
+    <content><![CDATA[<p>前言: 本文介绍自然梯度算法, 这种方法考虑到许多问题的参数空间具有某种结构, 因此考虑放在非欧式空间中优化(但实际优化计算过程仍然在欧式空间), 有兴趣的同学可以读一读原论文<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient</a>. <span id="more"></span></p>
+<h2 id="欧式空间与黎曼空间">欧式空间与黎曼空间</h2>
+<p>什么是欧式空间?</p>
+<blockquote>
+<p>A finite dimensional real vector space equipped with an inner product <span class="math inline">\(\left&lt; x,y \right&gt;\)</span>, is called a <strong>Eulidean space</strong>, if it is endowed with the norm <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}\)</span>, which is referred to as <strong>Eulidean norm</strong>.</p>
+</blockquote>
+<p>通俗的讲, 首先得有一个向量空间<span class="math inline">\(\mathbb{R}^n\)</span>, 接着在这个空间上定义内积(inner product), 这个内积可以是常见的内积点乘, 也可以是其它内积:</p>
+<ul>
+<li>dot product: <span class="math inline">\(\left&lt; x,y \right&gt;=\sum_{i=1}^nx_iy_i\)</span>, 其中<span class="math inline">\(x_i\)</span>为<span class="math inline">\(x\)</span>的第<span class="math inline">\(i\)</span>个分量.</li>
+<li><span class="math inline">\(Q\)</span> inner: <span class="math inline">\(\left&lt; x,y \right&gt;=x^TQy\)</span>, 其<span class="math inline">\(Q\)</span>为<span class="math inline">\(n\)</span>阶正定阵.</li>
+</ul>
+<p>然后由内积可以诱导出对应的范数:</p>
+<ul>
+<li><span class="math inline">\(l_2\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{ \sum_{i=1}^n x_i^2 }\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_2\)</span>.</li>
+<li><span class="math inline">\(Q\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{x^TQx}\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_Q\)</span>.</li>
+</ul>
+<p>有了范数, 我们就可以度量两个点<span class="math inline">\(x,x+dx\)</span>之间的距离(点乘内积): <span class="math display">\[\Vert x + dx-x\Vert=\Vert dx\Vert=\sqrt{ \sum_{i=1}^n dx_i^2 }.\]</span></p>
+<p>小结一下:</p>
+<ul>
+<li>欧式空间是一个向量空间, 且带有内积和范数;</li>
+<li>最重要的是, 该范数一定是要由内积根据上式诱导出来的.</li>
+</ul>
+<p>什么是黎曼空间?</p>
+<blockquote>
+<p>A differentiable manifold provided with a <strong>Riemannian metric</strong>.</p>
+</blockquote>
+<p>微分流形(differentiable manifold又名光滑流形, 其最简单的例子就是三维空间中的球面, 在这里可简单理解为向量空间; 黎曼度量(Riemannian metric.)又名<a href="https://zh.wikipedia.org/wiki/%E5%BA%A6%E9%87%8F%E5%BC%A0%E9%87%8F">度量张量</a>, 黎曼度量张量或是度规张量, 这里可简单理解为某<span class="math inline">\(n\)</span>阶方阵<span class="math inline">\(G\)</span>或是<span class="math inline">\((g_{ij})\)</span>. 有了它我们就可以用它来度量空间中两点<span class="math inline">\(x,x+dx\)</span>之间的距离: <span class="math display">\[dx^2=\sum_{ij}g_{ij}dx_i dx_j=dx^TGdx\]</span>其中<span class="math inline">\(dx_i\)</span>为<span class="math inline">\(dx\)</span>的第<span class="math inline">\(i\)</span>个分量. 特别的, 若取<span class="math inline">\(G\)</span>为<span class="math inline">\(n\)</span>阶单位阵(对角线上元素为1, 其余为0), 此时<span class="math inline">\(dx^2=\sum_{i}^ndx_i^2\)</span>. 这就与带有正交坐标系的欧式空间一致了(点乘内积). 小结一下:</p>
+<ul>
+<li>黎曼空间可视为欧式空间的推广, 但一般情况下, 黎曼空间为非欧空间.</li>
+<li>确定了<span class="math inline">\(G\)</span>就相当于确定了一个黎曼空间, 另外形式上类似欧式空间中的<span class="math inline">\(Q\)</span> norm但没有正定性的要求.</li>
+</ul>
+<h2 id="自然梯度">自然梯度</h2>
+<p>带正交坐标系的欧式空间中, 我们知道负梯度方向<span class="math inline">\(-\nabla L(w)\)</span>为<span class="math inline">\(L(w)\)</span>的最速下降方向; 类似的, 黎曼空间中的<span class="math inline">\(L(w)\)</span>最速下降方向为<span class="math inline">\(-G^{-1}(w)\nabla L(w)\)</span>, 这被称为是自然梯度, 证明可见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient Works Efficiently in Learning</a>的定理1. 下面举个例子加以说明:</p>
+<ul>
+<li>现有一族带参的分布族<span class="math inline">\(\{p(z\mid w)\}\)</span>, 目标是找到最优参数<span class="math inline">\(w=w^*\)</span>使得<span class="math inline">\(p(z\mid w)\)</span>尽可能的接近未知的密度函数<span class="math inline">\(q(z)\)</span>.</li>
+<li>事实上, 很多机器学习任务可归结为上述问题, 比方说<span class="math inline">\(q(z)=q(x,y)\)</span>表示某监督学习任务的样本真实分布, <span class="math inline">\(w\)</span>表示某个NN的参数.</li>
+<li>一个常用的损失函数就是最小化交叉熵的负数:<span class="math display">\[L(w)=-\mathbb{E}_{q(z)}[\log p(z\mid w)]=\mathcal{KL}(q(z)\Vert p(z\mid w))-\mathbb{E}_{q(z)}[\log q(z)]\]</span>其中<span class="math inline">\(\mathcal{KL}(q(z)\Vert p(z\mid w))=\mathbb{E}_{q(z)}[\log\frac{q(z)}{p(z\mid w)}]=\int q(z)\log\frac{q(z)}{p(z\mid w)}dz\)</span>, 且第二项与<span class="math inline">\(w\)</span>无关.</li>
+<li>Information geometry (Amari, 1985)给出了利用<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>定义<span class="math inline">\(G\)</span>(概率密度函数族可以看做与参数空间同胚的黎曼流形, Fisher信息矩阵可以看做是该流形上的黎曼度量, 可以证明这一度量是外围欧式空间在该流形上的诱导度量): <span class="math display">\[G_{ij}(w)=I_{ij}(w)=-\mathbb{E}_{p(z\mid w)}\left [\frac{\partial \log p(z\mid w)}{\partial w_i}\frac{\partial \log p(z\mid w)}{\partial w_j}\right]\]</span></li>
+<li>最后假设有一堆独立同分布样本<span class="math inline">\(z_i \sim p(z)\)</span>, 就可用stochastic或batch的思路去优化. 此时<span class="math inline">\(L(w)\)</span>的自然梯度方向即为<span class="math inline">\(-I^{-1}(w)\nabla L(w)\)</span>, 这又被称为是<strong>Fisher scoring algorithm</strong>.</li>
+</ul>
+<p>回过头来看, 对<span class="math inline">\(q(z)\)</span>的参数化近似<span class="math inline">\(p(z,w)\)</span>必定赋予了它某种结构(比方说对<span class="math inline">\(w\)</span>迈出一大步未必能导致<span class="math inline">\(p(z,w)\)</span>的大的变化), 而要想利用这种结构, 最大的难点就是如何找到对应的黎曼空间, 或者说<span class="math inline">\(G\)</span>.</p>
+<ul>
+<li>第6节给出了<strong>感知机模型</strong>的参数空间的相对应<span class="math inline">\(G, G^{-1}\)</span>的详细求解过程, 同时还有<strong>多层感知机模型</strong>的<span class="math inline">\(G\)</span>.</li>
+<li>第7节给出了<span class="math inline">\(m\)</span>阶非奇异方阵构成的空间中自然梯度的求法; 第8节给出了系统空间中的自然梯度.</li>
+</ul>
+<h2 id="自然梯度与牛顿类法">自然梯度与牛顿类法</h2>
+<p>形式上, 自然梯度法类似于牛顿法: <span class="math display">\[G(w)=-\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right], \nabla ^2L (w)=-\mathbb{E}_{q(z)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]\]</span>且随着优化算法的进行, <span class="math inline">\(p(z\mid w)\)</span>会越来越接近<span class="math inline">\(q(z)\)</span>, 此时两者的表现会相近.当然, 实际任务中因为实际分布一般不知道因此再多一层近似, 即用batch或是stochastic近似上述右式. 最后, 由于<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>的一个特殊性质, 在满足<a href="https://en.wikipedia.org/wiki/Cram%C3%A9r%E2%80%93Rao_bound#Regularity_conditions">CR条件</a>的前提下, 有<span class="math display">\[\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]=\mathbb{E}_{p(z\mid w)}\left[ (\frac{\partial\log p(z\mid w)}{\partial w})(\frac{\partial\log p(z\mid w)}{\partial w})^T\right]\]</span>若我把上式中的<span class="math inline">\(p(z\mid w)\)</span>换成<span class="math inline">\(q(z)\)</span>, <a href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm">Gauss-Newton法</a>就跃然纸上.</p>
+]]></content>
+      <categories>
+        <category>优化算法</category>
+      </categories>
+      <tags>
+        <tag>优化</tag>
+        <tag>黎曼空间</tag>
+        <tag>欧式空间</tag>
+        <tag>Fisher信息</tag>
+        <tag>自然梯度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>近端梯度方法</title>
+    <url>/2021/01/19/%E8%BF%91%E7%AB%AF%E6%A2%AF%E5%BA%A6%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>前言: 本文的主角是近端梯度方法(Proximal Gradient Method), 这是一个在数学优化领域广为人知，在机器学习领域却很少看到的数学优化方法，它在非光滑优化领域发挥着巨大的作用，下面我们从一个机器学习问题开始了解它能够解决什么问题。 <span id="more"></span></p>
+<h3 id="正则化损失最小化">正则化损失最小化</h3>
+<p>正则化损失最小化(Regularized Loss Minimization, RLM)是机 器学习领域中一种联合最小化经验⻛险和正则化函数的学习范式，其形式如下: <span class="math display">\[
+\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)
+\]</span></p>
+<p>这里假定<span class="math inline">\(L_S(\omega)\)</span>表示关于训练样本集<span class="math inline">\(S\)</span>和模型系数<span class="math inline">\(\omega\)</span>的经验⻛险项，代表模型对训练 样本集<span class="math inline">\(S\)</span>拟合的好坏程度;<span class="math inline">\(\mathcal{R}(\omega)\)</span>表示关于模型系数<span class="math inline">\(\omega\)</span>的正则项，代表我们 对模型的额外偏好;正则项系数<span class="math inline">\(\alpha\)</span>用于控制正则ß程度。以回归为例，当经验⻛险项为最小二乘损 失<span class="math inline">\(L_S(\omega)=(X\omega-Y)^T(X\omega-Y)\)</span>时，若正则项为<span class="math inline">\(\ell_2\)</span>正则<span class="math inline">\(\mathcal{R} (\omega)=\Vert\omega\Vert_2^2\)</span>，此时RLM问题为 <span class="math display">\[
+\min_{\omega}(X\omega-Y)^T(X\omega-Y)+\alpha\Vert\omega\Vert_2^2
+\]</span></p>
+<p>其有闭式解<span class="math inline">\(\omega_*=(X^TX+\alpha I)^{-1}X^TY\)</span>; 若正则项为<span class="math inline">\(\ell_1\)</span>正则<span class="math inline">\(\mathcal{R}(\omega)=\Vert\omega\Vert_1\)</span>，此时RLM问题为</p>
+<p><span class="math display">\[\min_{\omega}(X\omega-Y)^T(X\omega-Y)+\alpha\Vert\omega\Vert_1\]</span> 上述问题又名Lasso问题，可以采用坐标下降方法、近端梯度方法(Proximal Gradient Method, PGM)去解决，且相比<span class="math inline">\(\ell_2\)</span>正则，<span class="math inline">\(\ell_1\)</span>正则得到的解更为稀疏。</p>
+<h3 id="近端梯度方法解决ell_1正则化问题">近端梯度方法解决<span class="math inline">\(\ell_1\)</span>正则化问题</h3>
+<p>一般的，考虑如下问题带正则项的机器学习问题</p>
+<p><span class="math display">\[\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)\]</span> 其中<span class="math inline">\(L_S(\omega)\)</span>具有L-smooth性质，即<span class="math inline">\(\Vert\nabla_\omega L_S(x)-\nabla_\omega L_S(y)\Vert_2\le L\Vert x-y\Vert_2\)</span>。近端梯度方法处理的方式为迭代地进行如下计算</p>
+<ol type="1">
+<li>计算</li>
+</ol>
+<p><span class="math display">\[
+z_k=\omega_k-\frac{1}{L}\nabla L_S(\omega_k)
+\]</span></p>
+<ol start="2" type="1">
+<li>求解</li>
+</ol>
+<p><span class="math display">\[
+\begin{aligned}
+\omega_{k+1} &amp;= \arg\min_\omega\ \frac{L}{2}\Vert \omega-z_k\Vert_2^2+\alpha \mathcal{R}(\omega) \\
+&amp;=\arg\min_\omega\ \frac{1}{2}\Vert \omega-z_k\Vert_2^2+\frac{\alpha}{L} \mathcal{R}(\omega)\\
+\end{aligned}
+\]</span></p>
+<p>第一步中的 <span class="math inline">\(\nabla L_S(\omega_k)\)</span> 表示<span class="math inline">\(L_S(\omega)\)</span>在<span class="math inline">\(\omega=\omega_k\)</span>处的梯度；第二步的计算复杂度则依赖于<span class="math inline">\(\mathcal{R}(\omega)\)</span>的选取。接下来我们从第二步的计算中抽象出近端算子<span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>的概念</p>
+<p><span class="math display">\[
+\operatorname{prox}_{h}(z)=\underset{\omega \in \mathbb{R}^{n}}{\arg \min }\ \frac{1}{2}\|\omega-z\|_{2}^{2}+h(\omega)
+\]</span></p>
+<p>当<span class="math inline">\(h(\omega)=\lambda\|\omega\|_{1}\)</span>，<span class="math inline">\(\lambda&gt;0\)</span>，<span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>恰为软阈值算子(Soft Thresholding)[1]</p>
+<p><span class="math display">\[
+\left[\operatorname{prox}_{h}(z)\right]_{i}=\left\{\begin{array}{ll}
+0 &amp; \text { if }\left|z_{i}\right| \leq \lambda \\
+z_{i}-\lambda &amp; \text { if } z_{i}&gt;\lambda \\
+z_{i}+\lambda &amp; \text { if } z_{i}&lt;-\lambda
+\end{array} \quad i=1, \ldots, n\right.;
+\]</span></p>
+<p>上述闭式解意味着对于正则项为<span class="math inline">\(\ell_1\)</span>的RLM问题，近端梯度方法能够高效的解决。</p>
+<h3 id="近端梯度方法解决其它正则问题">近端梯度方法解决其它正则问题</h3>
+<p>当<span class="math inline">\(h(\omega)=\sum_{i=1}^{n}\left(\lambda^{2}-\left(\left|\omega_{i}\right|-\lambda\right)^{2} \mathbb{I}\left(\left|\omega_{i}\right|&lt;\lambda\right)\right)\)</span>, <span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>恰为硬阈值算子(Hard Thresholding)[2]; 当<span class="math inline">\(h(\omega)=\|\omega\|_{1}-\lambda\|\omega\|_{2}\)</span>, [3]给出了闭式解。因此，对于上述两种正则的RLM问题而言，近端梯度方法也能够高效的解决。</p>
+<h3 id="近端梯度方法的一种直观理解">近端梯度方法的一种直观理解</h3>
+<p>回到近端梯度方法处理的问题上来</p>
+<p><span class="math display">\[
+\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)
+\]</span></p>
+<p>近端梯度方法做的事可以理解为分步最优化原目标函数的一个上界 <span class="math display">\[
+\begin{aligned}
+L_S(\omega)+\alpha\mathcal{R}(\omega) &amp; \leq L_S(\omega_k)+\left\langle\nabla L_S(\omega_k), \omega-\omega_k\right\rangle+\frac{L}{2}\left\|\omega-\omega_k\right\|_{2}^{2}+\alpha\mathcal{R}(\omega) \\
+&amp;=\frac{L}{2}\left\|\omega-\left(\omega_k-\frac{1}{L} \nabla L_S(\omega_k)\right)\right\|_{2}^{2}+\alpha\mathcal{R}(\omega) \\
+\end{aligned}
+\]</span> 第一个不等式可由L-smooth性质得到，而近端梯度方法等价于最小化上式。</p>
+<hr />
+<p>[1] Boyd, Stephen, Stephen P. Boyd, and Lieven Vandenberghe. Convex optimization. Cambridge university press, 2004.</p>
+<p>[2] Antoniadis, Anestis. "Wavelets in statistics: a review." Journal of the Italian Statistical Society 6.2 (1997): 97.</p>
+<p>[3] Lou, Yifei, and Ming Yan. "Fast L1–L2 minimization via a proximal operator." Journal of Scientific Computing 74.2 (2018): 767-785.</p>
+]]></content>
+      <categories>
+        <category>优化算法</category>
+      </categories>
+      <tags>
+        <tag>近端</tag>
+        <tag>近端梯度</tag>
+        <tag>正则</tag>
       </tags>
   </entry>
   <entry>
@@ -3347,139 +3507,6 @@ y[t]=V^T[t]\mathbf{r}[t]
         <tag>SRM</tag>
         <tag>MDL</tag>
         <tag>奥卡姆剃刀</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>自然梯度</title>
-    <url>/2019/07/06/%E8%87%AA%E7%84%B6%E6%A2%AF%E5%BA%A6/</url>
-    <content><![CDATA[<p>前言: 本文介绍自然梯度算法, 这种方法考虑到许多问题的参数空间具有某种结构, 因此考虑放在非欧式空间中优化(但实际优化计算过程仍然在欧式空间), 有兴趣的同学可以读一读原论文<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient</a>. <span id="more"></span></p>
-<h2 id="欧式空间与黎曼空间">欧式空间与黎曼空间</h2>
-<p>什么是欧式空间?</p>
-<blockquote>
-<p>A finite dimensional real vector space equipped with an inner product <span class="math inline">\(\left&lt; x,y \right&gt;\)</span>, is called a <strong>Eulidean space</strong>, if it is endowed with the norm <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}\)</span>, which is referred to as <strong>Eulidean norm</strong>.</p>
-</blockquote>
-<p>通俗的讲, 首先得有一个向量空间<span class="math inline">\(\mathbb{R}^n\)</span>, 接着在这个空间上定义内积(inner product), 这个内积可以是常见的内积点乘, 也可以是其它内积:</p>
-<ul>
-<li>dot product: <span class="math inline">\(\left&lt; x,y \right&gt;=\sum_{i=1}^nx_iy_i\)</span>, 其中<span class="math inline">\(x_i\)</span>为<span class="math inline">\(x\)</span>的第<span class="math inline">\(i\)</span>个分量.</li>
-<li><span class="math inline">\(Q\)</span> inner: <span class="math inline">\(\left&lt; x,y \right&gt;=x^TQy\)</span>, 其<span class="math inline">\(Q\)</span>为<span class="math inline">\(n\)</span>阶正定阵.</li>
-</ul>
-<p>然后由内积可以诱导出对应的范数:</p>
-<ul>
-<li><span class="math inline">\(l_2\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{ \sum_{i=1}^n x_i^2 }\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_2\)</span>.</li>
-<li><span class="math inline">\(Q\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{x^TQx}\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_Q\)</span>.</li>
-</ul>
-<p>有了范数, 我们就可以度量两个点<span class="math inline">\(x,x+dx\)</span>之间的距离(点乘内积): <span class="math display">\[\Vert x + dx-x\Vert=\Vert dx\Vert=\sqrt{ \sum_{i=1}^n dx_i^2 }.\]</span></p>
-<p>小结一下:</p>
-<ul>
-<li>欧式空间是一个向量空间, 且带有内积和范数;</li>
-<li>最重要的是, 该范数一定是要由内积根据上式诱导出来的.</li>
-</ul>
-<p>什么是黎曼空间?</p>
-<blockquote>
-<p>A differentiable manifold provided with a <strong>Riemannian metric</strong>.</p>
-</blockquote>
-<p>微分流形(differentiable manifold又名光滑流形, 其最简单的例子就是三维空间中的球面, 在这里可简单理解为向量空间; 黎曼度量(Riemannian metric.)又名<a href="https://zh.wikipedia.org/wiki/%E5%BA%A6%E9%87%8F%E5%BC%A0%E9%87%8F">度量张量</a>, 黎曼度量张量或是度规张量, 这里可简单理解为某<span class="math inline">\(n\)</span>阶方阵<span class="math inline">\(G\)</span>或是<span class="math inline">\((g_{ij})\)</span>. 有了它我们就可以用它来度量空间中两点<span class="math inline">\(x,x+dx\)</span>之间的距离: <span class="math display">\[dx^2=\sum_{ij}g_{ij}dx_i dx_j=dx^TGdx\]</span>其中<span class="math inline">\(dx_i\)</span>为<span class="math inline">\(dx\)</span>的第<span class="math inline">\(i\)</span>个分量. 特别的, 若取<span class="math inline">\(G\)</span>为<span class="math inline">\(n\)</span>阶单位阵(对角线上元素为1, 其余为0), 此时<span class="math inline">\(dx^2=\sum_{i}^ndx_i^2\)</span>. 这就与带有正交坐标系的欧式空间一致了(点乘内积). 小结一下:</p>
-<ul>
-<li>黎曼空间可视为欧式空间的推广, 但一般情况下, 黎曼空间为非欧空间.</li>
-<li>确定了<span class="math inline">\(G\)</span>就相当于确定了一个黎曼空间, 另外形式上类似欧式空间中的<span class="math inline">\(Q\)</span> norm但没有正定性的要求.</li>
-</ul>
-<h2 id="自然梯度">自然梯度</h2>
-<p>带正交坐标系的欧式空间中, 我们知道负梯度方向<span class="math inline">\(-\nabla L(w)\)</span>为<span class="math inline">\(L(w)\)</span>的最速下降方向; 类似的, 黎曼空间中的<span class="math inline">\(L(w)\)</span>最速下降方向为<span class="math inline">\(-G^{-1}(w)\nabla L(w)\)</span>, 这被称为是自然梯度, 证明可见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient Works Efficiently in Learning</a>的定理1. 下面举个例子加以说明:</p>
-<ul>
-<li>现有一族带参的分布族<span class="math inline">\(\{p(z\mid w)\}\)</span>, 目标是找到最优参数<span class="math inline">\(w=w^*\)</span>使得<span class="math inline">\(p(z\mid w)\)</span>尽可能的接近未知的密度函数<span class="math inline">\(q(z)\)</span>.</li>
-<li>事实上, 很多机器学习任务可归结为上述问题, 比方说<span class="math inline">\(q(z)=q(x,y)\)</span>表示某监督学习任务的样本真实分布, <span class="math inline">\(w\)</span>表示某个NN的参数.</li>
-<li>一个常用的损失函数就是最小化交叉熵的负数:<span class="math display">\[L(w)=-\mathbb{E}_{q(z)}[\log p(z\mid w)]=\mathcal{KL}(q(z)\Vert p(z\mid w))-\mathbb{E}_{q(z)}[\log q(z)]\]</span>其中<span class="math inline">\(\mathcal{KL}(q(z)\Vert p(z\mid w))=\mathbb{E}_{q(z)}[\log\frac{q(z)}{p(z\mid w)}]=\int q(z)\log\frac{q(z)}{p(z\mid w)}dz\)</span>, 且第二项与<span class="math inline">\(w\)</span>无关.</li>
-<li>Information geometry (Amari, 1985)给出了利用<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>定义<span class="math inline">\(G\)</span>(概率密度函数族可以看做与参数空间同胚的黎曼流形, Fisher信息矩阵可以看做是该流形上的黎曼度量, 可以证明这一度量是外围欧式空间在该流形上的诱导度量): <span class="math display">\[G_{ij}(w)=I_{ij}(w)=-\mathbb{E}_{p(z\mid w)}\left [\frac{\partial \log p(z\mid w)}{\partial w_i}\frac{\partial \log p(z\mid w)}{\partial w_j}\right]\]</span></li>
-<li>最后假设有一堆独立同分布样本<span class="math inline">\(z_i \sim p(z)\)</span>, 就可用stochastic或batch的思路去优化. 此时<span class="math inline">\(L(w)\)</span>的自然梯度方向即为<span class="math inline">\(-I^{-1}(w)\nabla L(w)\)</span>, 这又被称为是<strong>Fisher scoring algorithm</strong>.</li>
-</ul>
-<p>回过头来看, 对<span class="math inline">\(q(z)\)</span>的参数化近似<span class="math inline">\(p(z,w)\)</span>必定赋予了它某种结构(比方说对<span class="math inline">\(w\)</span>迈出一大步未必能导致<span class="math inline">\(p(z,w)\)</span>的大的变化), 而要想利用这种结构, 最大的难点就是如何找到对应的黎曼空间, 或者说<span class="math inline">\(G\)</span>.</p>
-<ul>
-<li>第6节给出了<strong>感知机模型</strong>的参数空间的相对应<span class="math inline">\(G, G^{-1}\)</span>的详细求解过程, 同时还有<strong>多层感知机模型</strong>的<span class="math inline">\(G\)</span>.</li>
-<li>第7节给出了<span class="math inline">\(m\)</span>阶非奇异方阵构成的空间中自然梯度的求法; 第8节给出了系统空间中的自然梯度.</li>
-</ul>
-<h2 id="自然梯度与牛顿类法">自然梯度与牛顿类法</h2>
-<p>形式上, 自然梯度法类似于牛顿法: <span class="math display">\[G(w)=-\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right], \nabla ^2L (w)=-\mathbb{E}_{q(z)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]\]</span>且随着优化算法的进行, <span class="math inline">\(p(z\mid w)\)</span>会越来越接近<span class="math inline">\(q(z)\)</span>, 此时两者的表现会相近.当然, 实际任务中因为实际分布一般不知道因此再多一层近似, 即用batch或是stochastic近似上述右式. 最后, 由于<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>的一个特殊性质, 在满足<a href="https://en.wikipedia.org/wiki/Cram%C3%A9r%E2%80%93Rao_bound#Regularity_conditions">CR条件</a>的前提下, 有<span class="math display">\[\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]=\mathbb{E}_{p(z\mid w)}\left[ (\frac{\partial\log p(z\mid w)}{\partial w})(\frac{\partial\log p(z\mid w)}{\partial w})^T\right]\]</span>若我把上式中的<span class="math inline">\(p(z\mid w)\)</span>换成<span class="math inline">\(q(z)\)</span>, <a href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm">Gauss-Newton法</a>就跃然纸上.</p>
-]]></content>
-      <categories>
-        <category>优化算法</category>
-      </categories>
-      <tags>
-        <tag>优化</tag>
-        <tag>黎曼空间</tag>
-        <tag>欧式空间</tag>
-        <tag>Fisher信息</tag>
-        <tag>自然梯度</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>近端梯度方法</title>
-    <url>/2021/01/19/%E8%BF%91%E7%AB%AF%E6%A2%AF%E5%BA%A6%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>前言: 本文的主角是近端梯度方法(Proximal Gradient Method), 这是一个在数学优化领域广为人知，在机器学习领域却很少看到的数学优化方法，它在非光滑优化领域发挥着巨大的作用，下面我们从一个机器学习问题开始了解它能够解决什么问题。 <span id="more"></span></p>
-<h3 id="正则化损失最小化">正则化损失最小化</h3>
-<p>正则化损失最小化(Regularized Loss Minimization, RLM)是机 器学习领域中一种联合最小化经验⻛险和正则化函数的学习范式，其形式如下: <span class="math display">\[
-\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)
-\]</span></p>
-<p>这里假定<span class="math inline">\(L_S(\omega)\)</span>表示关于训练样本集<span class="math inline">\(S\)</span>和模型系数<span class="math inline">\(\omega\)</span>的经验⻛险项，代表模型对训练 样本集<span class="math inline">\(S\)</span>拟合的好坏程度;<span class="math inline">\(\mathcal{R}(\omega)\)</span>表示关于模型系数<span class="math inline">\(\omega\)</span>的正则项，代表我们 对模型的额外偏好;正则项系数<span class="math inline">\(\alpha\)</span>用于控制正则ß程度。以回归为例，当经验⻛险项为最小二乘损 失<span class="math inline">\(L_S(\omega)=(X\omega-Y)^T(X\omega-Y)\)</span>时，若正则项为<span class="math inline">\(\ell_2\)</span>正则<span class="math inline">\(\mathcal{R} (\omega)=\Vert\omega\Vert_2^2\)</span>，此时RLM问题为 <span class="math display">\[
-\min_{\omega}(X\omega-Y)^T(X\omega-Y)+\alpha\Vert\omega\Vert_2^2
-\]</span></p>
-<p>其有闭式解<span class="math inline">\(\omega_*=(X^TX+\alpha I)^{-1}X^TY\)</span>; 若正则项为<span class="math inline">\(\ell_1\)</span>正则<span class="math inline">\(\mathcal{R}(\omega)=\Vert\omega\Vert_1\)</span>，此时RLM问题为</p>
-<p><span class="math display">\[\min_{\omega}(X\omega-Y)^T(X\omega-Y)+\alpha\Vert\omega\Vert_1\]</span> 上述问题又名Lasso问题，可以采用坐标下降方法、近端梯度方法(Proximal Gradient Method, PGM)去解决，且相比<span class="math inline">\(\ell_2\)</span>正则，<span class="math inline">\(\ell_1\)</span>正则得到的解更为稀疏。</p>
-<h3 id="近端梯度方法解决ell_1正则化问题">近端梯度方法解决<span class="math inline">\(\ell_1\)</span>正则化问题</h3>
-<p>一般的，考虑如下问题带正则项的机器学习问题</p>
-<p><span class="math display">\[\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)\]</span> 其中<span class="math inline">\(L_S(\omega)\)</span>具有L-smooth性质，即<span class="math inline">\(\Vert\nabla_\omega L_S(x)-\nabla_\omega L_S(y)\Vert_2\le L\Vert x-y\Vert_2\)</span>。近端梯度方法处理的方式为迭代地进行如下计算</p>
-<ol type="1">
-<li>计算</li>
-</ol>
-<p><span class="math display">\[
-z_k=\omega_k-\frac{1}{L}\nabla L_S(\omega_k)
-\]</span></p>
-<ol start="2" type="1">
-<li>求解</li>
-</ol>
-<p><span class="math display">\[
-\begin{aligned}
-\omega_{k+1} &amp;= \arg\min_\omega\ \frac{L}{2}\Vert \omega-z_k\Vert_2^2+\alpha \mathcal{R}(\omega) \\
-&amp;=\arg\min_\omega\ \frac{1}{2}\Vert \omega-z_k\Vert_2^2+\frac{\alpha}{L} \mathcal{R}(\omega)\\
-\end{aligned}
-\]</span></p>
-<p>第一步中的 <span class="math inline">\(\nabla L_S(\omega_k)\)</span> 表示<span class="math inline">\(L_S(\omega)\)</span>在<span class="math inline">\(\omega=\omega_k\)</span>处的梯度；第二步的计算复杂度则依赖于<span class="math inline">\(\mathcal{R}(\omega)\)</span>的选取。接下来我们从第二步的计算中抽象出近端算子<span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>的概念</p>
-<p><span class="math display">\[
-\operatorname{prox}_{h}(z)=\underset{\omega \in \mathbb{R}^{n}}{\arg \min }\ \frac{1}{2}\|\omega-z\|_{2}^{2}+h(\omega)
-\]</span></p>
-<p>当<span class="math inline">\(h(\omega)=\lambda\|\omega\|_{1}\)</span>，<span class="math inline">\(\lambda&gt;0\)</span>，<span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>恰为软阈值算子(Soft Thresholding)[1]</p>
-<p><span class="math display">\[
-\left[\operatorname{prox}_{h}(z)\right]_{i}=\left\{\begin{array}{ll}
-0 &amp; \text { if }\left|z_{i}\right| \leq \lambda \\
-z_{i}-\lambda &amp; \text { if } z_{i}&gt;\lambda \\
-z_{i}+\lambda &amp; \text { if } z_{i}&lt;-\lambda
-\end{array} \quad i=1, \ldots, n\right.;
-\]</span></p>
-<p>上述闭式解意味着对于正则项为<span class="math inline">\(\ell_1\)</span>的RLM问题，近端梯度方法能够高效的解决。</p>
-<h3 id="近端梯度方法解决其它正则问题">近端梯度方法解决其它正则问题</h3>
-<p>当<span class="math inline">\(h(\omega)=\sum_{i=1}^{n}\left(\lambda^{2}-\left(\left|\omega_{i}\right|-\lambda\right)^{2} \mathbb{I}\left(\left|\omega_{i}\right|&lt;\lambda\right)\right)\)</span>, <span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>恰为硬阈值算子(Hard Thresholding)[2]; 当<span class="math inline">\(h(\omega)=\|\omega\|_{1}-\lambda\|\omega\|_{2}\)</span>, [3]给出了闭式解。因此，对于上述两种正则的RLM问题而言，近端梯度方法也能够高效的解决。</p>
-<h3 id="近端梯度方法的一种直观理解">近端梯度方法的一种直观理解</h3>
-<p>回到近端梯度方法处理的问题上来</p>
-<p><span class="math display">\[
-\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)
-\]</span></p>
-<p>近端梯度方法做的事可以理解为分步最优化原目标函数的一个上界 <span class="math display">\[
-\begin{aligned}
-L_S(\omega)+\alpha\mathcal{R}(\omega) &amp; \leq L_S(\omega_k)+\left\langle\nabla L_S(\omega_k), \omega-\omega_k\right\rangle+\frac{L}{2}\left\|\omega-\omega_k\right\|_{2}^{2}+\alpha\mathcal{R}(\omega) \\
-&amp;=\frac{L}{2}\left\|\omega-\left(\omega_k-\frac{1}{L} \nabla L_S(\omega_k)\right)\right\|_{2}^{2}+\alpha\mathcal{R}(\omega) \\
-\end{aligned}
-\]</span> 第一个不等式可由L-smooth性质得到，而近端梯度方法等价于最小化上式。</p>
-<hr />
-<p>[1] Boyd, Stephen, Stephen P. Boyd, and Lieven Vandenberghe. Convex optimization. Cambridge university press, 2004.</p>
-<p>[2] Antoniadis, Anestis. "Wavelets in statistics: a review." Journal of the Italian Statistical Society 6.2 (1997): 97.</p>
-<p>[3] Lou, Yifei, and Ming Yan. "Fast L1–L2 minimization via a proximal operator." Journal of Scientific Computing 74.2 (2018): 767-785.</p>
-]]></content>
-      <categories>
-        <category>优化算法</category>
-      </categories>
-      <tags>
-        <tag>近端</tag>
-        <tag>近端梯度</tag>
-        <tag>正则</tag>
       </tags>
   </entry>
   <entry>
