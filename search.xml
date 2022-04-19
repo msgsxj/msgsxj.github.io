@@ -815,6 +815,92 @@
       </tags>
   </entry>
   <entry>
+    <title>Latent Dirichlet Allocation</title>
+    <url>/2018/10/16/Latent-Dirichlet-Allocation/</url>
+    <content><![CDATA[<p>前言: 本文主要是关于Latent Dirichlet Allocation模型, 这是一类能够从文档集合中挖掘出抽象主题的模型, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3. <span id="more"></span></p>
+<hr />
+<h2 id="隐狄利克雷分配模型">隐狄利克雷分配模型</h2>
+<p>以推荐系统为例, 假如我读过东野圭吾的新参者, 我希望推荐系统能把白夜行也推荐给我. 在自然语言处理(Natural Language Processing: NLP)中, 主题模型(Topic Model)是一类能够从文档集合中挖掘出抽象主题的模型, 其中用的最多的大概就是隐狄利克雷分配模型(Latent Dirichlet Allocation: LDA). 比方说给定50个主题数量, 其想法是对每一篇文档给出一个关于50个主题数量的分布, 例如新参者的主题是70%的推理类, 10%的叉叉类等, 因此如果能得到每篇文档的主题分布, 就能给出书之间的相似度.</p>
+<p>下面我们来看什么是LDA模型, 并给出一些记号. 假设有文档<span class="math inline">\(D\)</span>篇, 其中第<span class="math inline">\(d\)</span>篇文档有<span class="math inline">\(N_d\)</span>个单词, 给定主题数量<span class="math inline">\(T\)</span>, 记第<span class="math inline">\(d\)</span>篇文档的主题为<span class="math inline">\(\theta_d\)</span>, 显然<span class="math inline">\(\theta_d\)</span>为一个<span class="math inline">\(T\)</span>维向量, <span class="math inline">\(z_{dn}\)</span>是第<span class="math inline">\(d\)</span>篇文档的第<span class="math inline">\(n\)</span>个单词的主题分布, <span class="math inline">\(w_{dn}\)</span>是第<span class="math inline">\(d\)</span>篇文档的第<span class="math inline">\(n\)</span>个单词本身(一般给长度为<span class="math inline">\(\left|w_{set}\right|\)</span>定词汇表<span class="math inline">\(w_{set}\)</span>后用一个长度为<span class="math inline">\(\left|w_{set}\right|\)</span>的向量去表示).</p>
+<p>给定主题数量<span class="math inline">\(T=50\)</span>, 目前我们有了三个关键要素:</p>
+<ul>
+<li>每篇文档的主题分布:<span class="math inline">\(\theta\)</span></li>
+<li>每篇文档每个单词的主题分布:<span class="math inline">\(z\)</span></li>
+<li>每篇文档每个单词:<span class="math inline">\(w\)</span></li>
+</ul>
+<p>遵循一些直观的假象, 我们分三步尝试去构造模型:</p>
+<ul>
+<li>首先要有每篇文档的主题<span class="math inline">\(\theta_d\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>.</li>
+<li>简单假设每个单词的主题<span class="math inline">\(z_{dn}\)</span>与所在文档的主题<span class="math inline">\(\theta_d\)</span>一致, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
+<li>每个单词确定了主题之后就能按照一定的概率分布从主题中选择单词出来. 比方说给定词汇表<span class="math inline">\(w_{set}\)</span>, 其包含<span class="math inline">\(\left|w_{set}\right|\)</span>个单词, 假设第<span class="math inline">\(t\)</span>主题有一个单词表上的概率分布<span class="math inline">\(\varphi_{\cdot t}\)</span>, 显然<span class="math inline">\(\varphi_{\cdot t}\)</span>为<span class="math inline">\(\left|w_{set}\right|\)</span>维列向量, 那么<span class="math inline">\(\varphi\)</span>为<span class="math inline">\(\left|w_{set}\right|\times T\)</span>的未知参数矩阵.</li>
+</ul>
+<p>将上述三要素视为随机变量, 此时可以写出三者的联合分布函数: <span class="math display">\[P(W, Z, \Theta)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>显然文档主题<span class="math inline">\(\theta_d\)</span>和单词主题<span class="math inline">\(z_{dn}\)</span>是无法观测得到的, 因此作为LDA模型中的L(Lantent), D(Dirichlet)则是指随机变量<span class="math inline">\(\theta_d\)</span>满足Dirichlet分布:</p>
+<ul>
+<li>假定文章的来源一致, 即<span class="math inline">\(\theta_d\)</span>独立同分布: 服从<a href="https://en.wikipedia.org/wiki/Dirichlet_distribution">Dirichlet分布</a><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(\alpha\)</span>为<span class="math inline">\(T\)</span>维列向量; <span class="math inline">\(B(\alpha)\)</span>为多元Beta函数, 可表示为<span class="math inline">\(B(\alpha)=\frac{\prod_{i=1}^{T}\Gamma(\alpha_i)}{\Gamma(\sum_{i=1}^{T}\alpha_i)}\)</span>, <span class="math inline">\(\Gamma\)</span>为<a href="https://en.wikipedia.org/wiki/Gamma_function">Gamma函数</a>, 详见维基百科.</li>
+<li>值得注意的是, <span class="math inline">\(\alpha\)</span>增大能导致每篇文档的话题数量变多(关于这点可以参考维基百科上的一张<a href="https://upload.wikimedia.org/wikipedia/commons/5/54/LogDirichletDensity-alpha_0.3_to_alpha_2.0.gif">动图</a>), 所以另一种思路是把<span class="math inline">\(\alpha\)</span>视为超参去调.</li>
+<li>假定每个单词的主题<span class="math inline">\(z_{dn}\)</span>与所在文档的主题<span class="math inline">\(\theta_d\)</span>一致, 即<span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 写得直观些, 即<span class="math inline">\(P(z_{dn}=t\mid\theta_d)=\theta_{dt}\)</span>, <span class="math inline">\(\theta_{dt}\)</span>表示<span class="math inline">\(\theta_d\)</span>的第<span class="math inline">\(t\)</span>个分量.</li>
+<li><span class="math inline">\(T\)</span>个主题与词汇表<span class="math inline">\(w_{set}\)</span>的分布记为<span class="math inline">\(\phi\)</span>, 这里的<span class="math inline">\(\phi\)</span>为<span class="math inline">\(\left|w_{set}\right|\times T\)</span>的矩阵. 即<span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{z_{dn}w_{dn}}\)</span>, 写得直观些, <span class="math inline">\(v\)</span>为不超过<span class="math inline">\(\left|w_{set}\right|\)</span>的正整数, <span class="math inline">\(P(w_{dn}=v\mid z_{dn})=\varphi_{v z_{dn}}\)</span>.</li>
+</ul>
+<p>若用大小字母表示小写字母的总和, 参数仍简记为小写字母, 我们现有五个关键要素: <span class="math inline">\(W\)</span>为数据集; <span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>为未知参数.</p>
+板表示法(plate notation)是一种表示在图形模型中重复的变量的方法, 下面采用板表示法的贝叶斯网络表达上述模型:
+<div data-align="center">
+<img src="/pictures/bayes in ml/LDA_plate_model_1.png" width="60%"/>
+</div>
+<p>这里的虚线框右下角的字母表示框中的部分应该重复画字母次, 所以板表示法的好处就很明显:</p>
+<ul>
+<li>简化图模型,更美观.</li>
+<li>同时模型表达式变得一模了然.</li>
+</ul>
+<p>最后把该LDA模型用较为简练的语言再写一遍(可以对照图去写): <span class="math display">\[P(W, Z, \Theta\mid \varphi, \alpha)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>其中:</p>
+<ul>
+<li><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>, <span class="math inline">\(T\)</span>给定.</li>
+<li><span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
+<li><span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{w_{dn}z_{dn}}\)</span>, 给定词汇表<span class="math inline">\(w_{set}\)</span>, <span class="math inline">\(w_{dn}\in\{1,2,...,\left|w_{set}\right|\}\)</span>.</li>
+</ul>
+<p>大小字母表示小写字母的总和, 参数仍简记为小写字母, 总结如下:</p>
+<ul>
+<li>未知:<span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>未知参数.</li>
+<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
+<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
+</ul>
+<p>这个模型因为属于隐变量模型, 故可用<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>求解: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:</p>
+<ul>
+<li>E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>.</li>
+<li>M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
+</ul>
+<p>若后验<span class="math inline">\(P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>难以处理, 则可以用一些近似方法取求得期望, 如<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/">变分贝叶斯</a>, <a href="https://msgsxj.cn/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/">Laplace近似方法</a>, <a href="https://msgsxj.cn/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/">期望传播方法</a>, <a href="https://msgsxj.cn/2018/09/18/MCMC/">MCMC方法</a>等</p>
+<hr />
+<h2 id="lda模型的拓展">LDA模型的拓展</h2>
+<h3 id="phi"><span class="math inline">\(\Phi\)</span></h3>
+若把未知参数<span class="math inline">\(\varphi\)</span>视为随机变量, 重新记为<span class="math inline">\(\Phi\)</span>, 假定<span class="math inline">\(\Phi_{i\cdot}\sim Dir(\beta_i)\)</span>, 即假定第<span class="math inline">\(i\)</span>个单词的主题分布满足参数为<span class="math inline">\(\beta_i\)</span>的狄利克雷分布(回忆开头狄利克雷分布的特性), 这里假定<span class="math inline">\(i\)</span>的取值集合<span class="math inline">\(w_{set}\)</span>的大小为<span class="math inline">\(S\)</span>, 上述修改后的模型用板表示法表示如下:
+<div data-align="center">
+<img src="/pictures/bayes in ml/LDA_plate_model_2.png" width="60%"/>
+</div>
+<p><span class="math display">\[P(W, Z, \Theta, \Phi\mid  \alpha, \beta)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}\prod_{i=1}^{S}P(z_{dn}=i\mid\theta_d)P(w_{dn}\mid z_{dn}=i, \Phi_{i\cdot})P(\Phi_{i\cdot})\]</span>与上文的模型相比只是把参数<span class="math inline">\(\varphi\)</span>视为随机变量<span class="math inline">\(\Phi\)</span>, 且<span class="math inline">\(\Phi_{i\cdot}\sim Dir(\beta_i)\)</span>, 其余不变. 总结如下:</p>
+<ul>
+<li>未知:<span class="math inline">\(Z, \Theta, \Phi\)</span>为隐变量; $ , $为未知参数.</li>
+<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
+<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
+</ul>
+<h3 id="logit-normal-distribution">Logit-normal distribution</h3>
+<p><span class="math inline">\(\theta_d\sim Dir(\alpha)\)</span>的一个良好替代是假定<span class="math inline">\(\theta_d\sim \mathcal{P}(N(\mu, \Sigma))\)</span>, 即满足<a href="https://en.wikipedia.org/wiki/Logit-normal_distribution">Logit-normal分布</a>. 逻辑正态分布: 若<span class="math inline">\(Y\sim N(\mu, \Sigma)\)</span>, 则称<span class="math inline">\(X=\mathcal{P}(Y)\)</span>为逻辑正态(Logit-normal)分布, 其中<span class="math inline">\(\mathcal{P}()\)</span>为逻辑函数. 下面来看这两个分布的异同:</p>
+<ul>
+<li>与狄利克雷分布相比, 逻辑正态分布能捕捉<span class="math inline">\(\theta_d\)</span>之间的相关性, 因而更受欢迎.</li>
+<li>虽然任何参数<span class="math inline">\(\mu, \Sigma, \alpha\)</span>的选择都不能让两个的密度函数相等, 但通过最小化<span class="math inline">\(\mathcal{KL}\)</span>散度的方式来让逻辑正态分布去逼近狄利克雷分布的方式, 即最小化<span class="math display">\[\mathcal{KL}(p, q)=\int p(x\mid \alpha)\log\frac{p(x\mid\alpha)}{q(x\mid\mu, \Sigma)}dx\]</span>可以得到关于<span class="math inline">\(\alpha\)</span>的参数<span class="math inline">\(\mu,\Sigma\)</span>在<span class="math inline">\(\mathcal{KL}\)</span>散度意义下的最优选择, 详见<a href="https://en.wikipedia.org/wiki/Logit-normal_distribution">维基百科</a>, 这里要说明的是, 当<span class="math inline">\(\alpha\)</span>的每个分量都趋于无穷, <span class="math inline">\(p(x\mid \alpha)\to q(x\mid\mu, \Sigma)\)</span>, 也就是说<span class="math inline">\(\alpha\)</span>很大时两者可以变得非常靠近.</li>
+</ul>
+<h3 id="dynamic-topic-models">Dynamic Topic Models</h3>
+<p>此外还有动态主题模型, 见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.62.2783&amp;rep=rep1&amp;type=pdf">这篇文章</a></p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>隐变量模型</tag>
+        <tag>LDA模型</tag>
+        <tag>Dirichlet分布</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MCMC</title>
     <url>/2018/09/18/MCMC/</url>
     <content><![CDATA[<p>前言:本文主要是关于MCMC, 这是一类对概率进行采样的方法, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week4. <span id="more"></span></p>
@@ -932,204 +1018,6 @@ t_d^{k+1}&amp;\sim P(T_d\mid T_1=t_1^{k}, T_2=t_2^{k},..., T_{d-1}=t_{d-1}^{k}, 
       </tags>
   </entry>
   <entry>
-    <title>Latent Dirichlet Allocation</title>
-    <url>/2018/10/16/Latent-Dirichlet-Allocation/</url>
-    <content><![CDATA[<p>前言: 本文主要是关于Latent Dirichlet Allocation模型, 这是一类能够从文档集合中挖掘出抽象主题的模型, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3. <span id="more"></span></p>
-<hr />
-<h2 id="隐狄利克雷分配模型">隐狄利克雷分配模型</h2>
-<p>以推荐系统为例, 假如我读过东野圭吾的新参者, 我希望推荐系统能把白夜行也推荐给我. 在自然语言处理(Natural Language Processing: NLP)中, 主题模型(Topic Model)是一类能够从文档集合中挖掘出抽象主题的模型, 其中用的最多的大概就是隐狄利克雷分配模型(Latent Dirichlet Allocation: LDA). 比方说给定50个主题数量, 其想法是对每一篇文档给出一个关于50个主题数量的分布, 例如新参者的主题是70%的推理类, 10%的叉叉类等, 因此如果能得到每篇文档的主题分布, 就能给出书之间的相似度.</p>
-<p>下面我们来看什么是LDA模型, 并给出一些记号. 假设有文档<span class="math inline">\(D\)</span>篇, 其中第<span class="math inline">\(d\)</span>篇文档有<span class="math inline">\(N_d\)</span>个单词, 给定主题数量<span class="math inline">\(T\)</span>, 记第<span class="math inline">\(d\)</span>篇文档的主题为<span class="math inline">\(\theta_d\)</span>, 显然<span class="math inline">\(\theta_d\)</span>为一个<span class="math inline">\(T\)</span>维向量, <span class="math inline">\(z_{dn}\)</span>是第<span class="math inline">\(d\)</span>篇文档的第<span class="math inline">\(n\)</span>个单词的主题分布, <span class="math inline">\(w_{dn}\)</span>是第<span class="math inline">\(d\)</span>篇文档的第<span class="math inline">\(n\)</span>个单词本身(一般给长度为<span class="math inline">\(\left|w_{set}\right|\)</span>定词汇表<span class="math inline">\(w_{set}\)</span>后用一个长度为<span class="math inline">\(\left|w_{set}\right|\)</span>的向量去表示).</p>
-<p>给定主题数量<span class="math inline">\(T=50\)</span>, 目前我们有了三个关键要素:</p>
-<ul>
-<li>每篇文档的主题分布:<span class="math inline">\(\theta\)</span></li>
-<li>每篇文档每个单词的主题分布:<span class="math inline">\(z\)</span></li>
-<li>每篇文档每个单词:<span class="math inline">\(w\)</span></li>
-</ul>
-<p>遵循一些直观的假象, 我们分三步尝试去构造模型:</p>
-<ul>
-<li>首先要有每篇文档的主题<span class="math inline">\(\theta_d\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>.</li>
-<li>简单假设每个单词的主题<span class="math inline">\(z_{dn}\)</span>与所在文档的主题<span class="math inline">\(\theta_d\)</span>一致, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
-<li>每个单词确定了主题之后就能按照一定的概率分布从主题中选择单词出来. 比方说给定词汇表<span class="math inline">\(w_{set}\)</span>, 其包含<span class="math inline">\(\left|w_{set}\right|\)</span>个单词, 假设第<span class="math inline">\(t\)</span>主题有一个单词表上的概率分布<span class="math inline">\(\varphi_{\cdot t}\)</span>, 显然<span class="math inline">\(\varphi_{\cdot t}\)</span>为<span class="math inline">\(\left|w_{set}\right|\)</span>维列向量, 那么<span class="math inline">\(\varphi\)</span>为<span class="math inline">\(\left|w_{set}\right|\times T\)</span>的未知参数矩阵.</li>
-</ul>
-<p>将上述三要素视为随机变量, 此时可以写出三者的联合分布函数: <span class="math display">\[P(W, Z, \Theta)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>显然文档主题<span class="math inline">\(\theta_d\)</span>和单词主题<span class="math inline">\(z_{dn}\)</span>是无法观测得到的, 因此作为LDA模型中的L(Lantent), D(Dirichlet)则是指随机变量<span class="math inline">\(\theta_d\)</span>满足Dirichlet分布:</p>
-<ul>
-<li>假定文章的来源一致, 即<span class="math inline">\(\theta_d\)</span>独立同分布: 服从<a href="https://en.wikipedia.org/wiki/Dirichlet_distribution">Dirichlet分布</a><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(\alpha\)</span>为<span class="math inline">\(T\)</span>维列向量; <span class="math inline">\(B(\alpha)\)</span>为多元Beta函数, 可表示为<span class="math inline">\(B(\alpha)=\frac{\prod_{i=1}^{T}\Gamma(\alpha_i)}{\Gamma(\sum_{i=1}^{T}\alpha_i)}\)</span>, <span class="math inline">\(\Gamma\)</span>为<a href="https://en.wikipedia.org/wiki/Gamma_function">Gamma函数</a>, 详见维基百科.</li>
-<li>值得注意的是, <span class="math inline">\(\alpha\)</span>增大能导致每篇文档的话题数量变多(关于这点可以参考维基百科上的一张<a href="https://upload.wikimedia.org/wikipedia/commons/5/54/LogDirichletDensity-alpha_0.3_to_alpha_2.0.gif">动图</a>), 所以另一种思路是把<span class="math inline">\(\alpha\)</span>视为超参去调.</li>
-<li>假定每个单词的主题<span class="math inline">\(z_{dn}\)</span>与所在文档的主题<span class="math inline">\(\theta_d\)</span>一致, 即<span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 写得直观些, 即<span class="math inline">\(P(z_{dn}=t\mid\theta_d)=\theta_{dt}\)</span>, <span class="math inline">\(\theta_{dt}\)</span>表示<span class="math inline">\(\theta_d\)</span>的第<span class="math inline">\(t\)</span>个分量.</li>
-<li><span class="math inline">\(T\)</span>个主题与词汇表<span class="math inline">\(w_{set}\)</span>的分布记为<span class="math inline">\(\phi\)</span>, 这里的<span class="math inline">\(\phi\)</span>为<span class="math inline">\(\left|w_{set}\right|\times T\)</span>的矩阵. 即<span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{z_{dn}w_{dn}}\)</span>, 写得直观些, <span class="math inline">\(v\)</span>为不超过<span class="math inline">\(\left|w_{set}\right|\)</span>的正整数, <span class="math inline">\(P(w_{dn}=v\mid z_{dn})=\varphi_{v z_{dn}}\)</span>.</li>
-</ul>
-<p>若用大小字母表示小写字母的总和, 参数仍简记为小写字母, 我们现有五个关键要素: <span class="math inline">\(W\)</span>为数据集; <span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>为未知参数.</p>
-板表示法(plate notation)是一种表示在图形模型中重复的变量的方法, 下面采用板表示法的贝叶斯网络表达上述模型:
-<div data-align="center">
-<img src="/pictures/bayes in ml/LDA_plate_model_1.png" width="60%"/>
-</div>
-<p>这里的虚线框右下角的字母表示框中的部分应该重复画字母次, 所以板表示法的好处就很明显:</p>
-<ul>
-<li>简化图模型,更美观.</li>
-<li>同时模型表达式变得一模了然.</li>
-</ul>
-<p>最后把该LDA模型用较为简练的语言再写一遍(可以对照图去写): <span class="math display">\[P(W, Z, \Theta\mid \varphi, \alpha)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>其中:</p>
-<ul>
-<li><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>, <span class="math inline">\(T\)</span>给定.</li>
-<li><span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
-<li><span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{w_{dn}z_{dn}}\)</span>, 给定词汇表<span class="math inline">\(w_{set}\)</span>, <span class="math inline">\(w_{dn}\in\{1,2,...,\left|w_{set}\right|\}\)</span>.</li>
-</ul>
-<p>大小字母表示小写字母的总和, 参数仍简记为小写字母, 总结如下:</p>
-<ul>
-<li>未知:<span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>未知参数.</li>
-<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
-<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
-</ul>
-<p>这个模型因为属于隐变量模型, 故可用<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>求解: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:</p>
-<ul>
-<li>E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>.</li>
-<li>M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
-</ul>
-<p>若后验<span class="math inline">\(P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>难以处理, 则可以用一些近似方法取求得期望, 如<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/">变分贝叶斯</a>, <a href="https://msgsxj.cn/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/">Laplace近似方法</a>, <a href="https://msgsxj.cn/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/">期望传播方法</a>, <a href="https://msgsxj.cn/2018/09/18/MCMC/">MCMC方法</a>等</p>
-<hr />
-<h2 id="lda模型的拓展">LDA模型的拓展</h2>
-<h3 id="phi"><span class="math inline">\(\Phi\)</span></h3>
-若把未知参数<span class="math inline">\(\varphi\)</span>视为随机变量, 重新记为<span class="math inline">\(\Phi\)</span>, 假定<span class="math inline">\(\Phi_{i\cdot}\sim Dir(\beta_i)\)</span>, 即假定第<span class="math inline">\(i\)</span>个单词的主题分布满足参数为<span class="math inline">\(\beta_i\)</span>的狄利克雷分布(回忆开头狄利克雷分布的特性), 这里假定<span class="math inline">\(i\)</span>的取值集合<span class="math inline">\(w_{set}\)</span>的大小为<span class="math inline">\(S\)</span>, 上述修改后的模型用板表示法表示如下:
-<div data-align="center">
-<img src="/pictures/bayes in ml/LDA_plate_model_2.png" width="60%"/>
-</div>
-<p><span class="math display">\[P(W, Z, \Theta, \Phi\mid  \alpha, \beta)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}\prod_{i=1}^{S}P(z_{dn}=i\mid\theta_d)P(w_{dn}\mid z_{dn}=i, \Phi_{i\cdot})P(\Phi_{i\cdot})\]</span>与上文的模型相比只是把参数<span class="math inline">\(\varphi\)</span>视为随机变量<span class="math inline">\(\Phi\)</span>, 且<span class="math inline">\(\Phi_{i\cdot}\sim Dir(\beta_i)\)</span>, 其余不变. 总结如下:</p>
-<ul>
-<li>未知:<span class="math inline">\(Z, \Theta, \Phi\)</span>为隐变量; $ , $为未知参数.</li>
-<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
-<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
-</ul>
-<h3 id="logit-normal-distribution">Logit-normal distribution</h3>
-<p><span class="math inline">\(\theta_d\sim Dir(\alpha)\)</span>的一个良好替代是假定<span class="math inline">\(\theta_d\sim \mathcal{P}(N(\mu, \Sigma))\)</span>, 即满足<a href="https://en.wikipedia.org/wiki/Logit-normal_distribution">Logit-normal分布</a>. 逻辑正态分布: 若<span class="math inline">\(Y\sim N(\mu, \Sigma)\)</span>, 则称<span class="math inline">\(X=\mathcal{P}(Y)\)</span>为逻辑正态(Logit-normal)分布, 其中<span class="math inline">\(\mathcal{P}()\)</span>为逻辑函数. 下面来看这两个分布的异同:</p>
-<ul>
-<li>与狄利克雷分布相比, 逻辑正态分布能捕捉<span class="math inline">\(\theta_d\)</span>之间的相关性, 因而更受欢迎.</li>
-<li>虽然任何参数<span class="math inline">\(\mu, \Sigma, \alpha\)</span>的选择都不能让两个的密度函数相等, 但通过最小化<span class="math inline">\(\mathcal{KL}\)</span>散度的方式来让逻辑正态分布去逼近狄利克雷分布的方式, 即最小化<span class="math display">\[\mathcal{KL}(p, q)=\int p(x\mid \alpha)\log\frac{p(x\mid\alpha)}{q(x\mid\mu, \Sigma)}dx\]</span>可以得到关于<span class="math inline">\(\alpha\)</span>的参数<span class="math inline">\(\mu,\Sigma\)</span>在<span class="math inline">\(\mathcal{KL}\)</span>散度意义下的最优选择, 详见<a href="https://en.wikipedia.org/wiki/Logit-normal_distribution">维基百科</a>, 这里要说明的是, 当<span class="math inline">\(\alpha\)</span>的每个分量都趋于无穷, <span class="math inline">\(p(x\mid \alpha)\to q(x\mid\mu, \Sigma)\)</span>, 也就是说<span class="math inline">\(\alpha\)</span>很大时两者可以变得非常靠近.</li>
-</ul>
-<h3 id="dynamic-topic-models">Dynamic Topic Models</h3>
-<p>此外还有动态主题模型, 见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.62.2783&amp;rep=rep1&amp;type=pdf">这篇文章</a></p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>隐变量模型</tag>
-        <tag>LDA模型</tag>
-        <tag>Dirichlet分布</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SciPy中的经典优化算法</title>
-    <url>/2019/02/20/SciPy%E4%B8%AD%E7%9A%84%E7%BB%8F%E5%85%B8%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>前言: 本文的初衷是试图用尽量简明形象的语言说一说<code>scipy.optimize.minimize</code>函数涉及到的经典优化算法的特点, 方便速查与快速回忆; 严格理论的部分可见<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize">官方文档</a>Notes部分的内容, 其对每一种方法都给出了参考论文, 而笔者关于这些算法的理解大多来自于Jorge Nocedal的Numerical Optimization. <span id="more"></span></p>
-<p>首先来看<code>scipy.optimize</code>这个包的<a href="https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html">官方文档</a>, 右侧的目录告诉我们这个包大致分为6块内容:</p>
-<ul>
-<li>多元函数无约束优化</li>
-<li>多元函数约束优化</li>
-<li>最小二乘优化</li>
-<li>一元函数优化</li>
-<li>自定义优化器</li>
-<li>寻根问题</li>
-</ul>
-<h2 id="minimize函数">minimize函数</h2>
-<p>可以看到<code>scipy.optimize.minimize</code>函数对应于第一第二块内容, 具体<code>minimize</code>的<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize">文档</a>, 可以看到<code>method</code>参数中罗列着以下14种方法:</p>
-<ul>
-<li>Nelder-Mead</li>
-<li>Powell</li>
-<li>CG</li>
-<li>BFGS</li>
-<li>Newton-CG</li>
-<li>L-BFGS-B</li>
-<li>TNC</li>
-<li>COBYLA</li>
-<li>SLSQP</li>
-<li>trust-constr</li>
-<li>dogleg</li>
-<li>trust-ncg</li>
-<li>trust-exact</li>
-<li>trust-krylov</li>
-</ul>
-<p>优化是对目标函数的进行迭代求最小值的过程, 若优化过程只需求得目标函数的在迭代点处函数值, 那么这类方法称为是<strong>无导数优化</strong>; 若需要求得目标函数的一阶信息(梯度向量值), 那么这类方法称为是<strong>一阶方法</strong>; 若需要求得二阶信息(Hessian阵), 那么这类方法称为是<strong>二阶方法</strong>. 显然三类方法的计算量的越来越大.</p>
-<p>上面罗列的算法中<strong>无导数优化</strong>方法有: Nelder-Mead, Powell, COBYLA; <strong>一阶方法</strong>有: CG, BFGS, L-BFGS-B, TNC, SLSQP; <strong>二阶方法</strong>有: Newton-CG, trust-constr, dogleg, trust-ncg, trust-exact, trust-krylov; 特别的, 二阶方法中的trust-constr, trust-ncg, trust-krylov若能提供Hessian右乘任意向量p的结果(即关于迭代点x和任意向量p的函数), 这样的函数一般来说计算量会小于直接计算Hessian阵, 因此实际上计算量会介于一阶方法与二阶方法之间, 这里笔者称之为<strong>一阶半方法</strong>, 这类方法适合大规模问题.</p>
-<p>下面按优化问题的不同分无约束优化, 有界约束优化与约束优化分别来看:</p>
-<h2 id="无约束优化">无约束优化</h2>
-<hr />
-<h3 id="nelder-mead方法">Nelder-Mead方法</h3>
-<p>Nelder-Mead方法是<strong>无导数优化方法</strong>, 其保持了对<span class="math inline">\(\mathbb{R}^n\)</span>中的<span class="math inline">\(n+1\)</span>个点的函数值追踪, 且这些点的凸包构成了一个<strong>非退化的单纯形</strong>. 比方说目标函数为<span class="math inline">\(\mathbb{R}^2\)</span>中的函数, Nelder-Mead方法就保持了对<span class="math inline">\(3\)</span>个点的函数值追踪, 非退化指的是这三者不能共线.</p>
-<p>下面以<a href="https://en.wikipedia.org/wiki/Nelder%E2%80%93Mead_method">维基百科</a>上的关于Rosenbrock函数的动图为例, 记手中的<span class="math inline">\(n+1\)</span>个点为<span class="math inline">\(\{x_1,...,x_{n+1}\}\)</span>, 并将它们按函数值大小排序<span class="math inline">\(f(x_1)\le\cdots\le f(x_{n+1})\)</span>, <span class="math inline">\(n\)</span>个最好的点的形心为<span class="math inline">\(\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i\)</span>此时<span class="math inline">\(\bar{x}\)</span>与最差的点<span class="math inline">\(x_{n+1}\)</span>之间的连线即为: <span class="math display">\[\bar{x}(t)=\bar{x}+t(x_{n+1}-\bar{x})\]</span>Nelder-Mead方法出于<strong>尽量远离函数值最高的点的想法</strong>, 去观察<span class="math inline">\(\bar{x}(-1)\)</span>的值</p>
-<ul>
-<li>若<span class="math inline">\(f(x_1)\le f(\bar{x}(-1))&lt;f(x_n)\)</span>, 则用<span class="math inline">\(\bar{x}(-1)\)</span>取代<span class="math inline">\(x_{n+1}\)</span>;</li>
-<li>若<span class="math inline">\(f(\bar{x}(-1))&lt;f(x_1)\)</span>, 继续观察<span class="math inline">\(\bar{x}(-2)\)</span>是否会带来更进一步下降, 择优选择取代<span class="math inline">\(x_{n+1}\)</span>;</li>
-<li>若<span class="math inline">\(f(x_n)\le f(\bar{x}(-1))&lt;f(x_{n+1})\)</span>, 先后观察<span class="math inline">\(\bar{x}(-\frac{1}{2})\)</span>与<span class="math inline">\(\bar{x}(\frac{1}{2})\)</span>是否会带来更进一步下降, 注意到先后的顺序也体现了尽量远离<span class="math inline">\(x_{n+1}\)</span>;</li>
-<li>最后若上述条件均不满足, 则整体向函数值最小的点<span class="math inline">\(x_1\)</span>挪一半.</li>
-</ul>
-上述算法可见Numerical Optimization一书9.5节, 对应到下图中的第一步迭代, 不难看出第一次迭代点的选择为<span class="math inline">\(\bar{x}(\frac{1}{2})\)</span>.
-<div data-align="center">
-<img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Nelder-Mead_Rosenbrock.gif" width="420">
-</div>
-<hr />
-<h3 id="powell方法">Powell方法</h3>
-<p><a href="https://en.wikipedia.org/wiki/Powell%27s_method">Powell方法</a>是共轭方向法的一种变体, 先来看什么是共轭方向法, <strong>共轭方向法</strong>是<strong>给定一共轭方向的集合</strong><span class="math inline">\(\{p_1....,p_n\}\)</span>, 对集合中的方向依次进一维巡查的方法, 因此显然是<strong>无导数优化方法</strong>.</p>
-<p>以最简单的二次函数<span class="math inline">\(f(x)=\frac{1}{2}x^TAx-b^Tx\)</span>为例, 其中<span class="math inline">\(A\)</span>为<span class="math inline">\(n\)</span>阶对称正定方阵, 此时共轭的概念有了具体的要求: <span class="math inline">\(p_i^TAp_j=0\)</span>. 若<span class="math inline">\(A\)</span>恰为对角阵, 如左图所示, 共轭方向集合可取为坐标轴方向<span class="math inline">\(\{e_1, e_2\}\)</span>; 若<span class="math inline">\(A\)</span>不为对角阵, 如右图所示, 此时<span class="math inline">\(\{e_1, e_2\}\)</span>不能作为一组共轭方向, 图中的<strong>红线</strong>和<strong>蓝线</strong>则是给出了两个不同的共轭方向集合.</p>
-<p>值得注意的是, 此时<strong>至多</strong><span class="math inline">\(n\)</span>步共轭方向法会收敛到最小值点<span class="math inline">\(x^*\)</span>, 证明可见Numerical Optimization一书定理5.1</p>
-<p><img src="/pictures/scipy_optimization/1.png" /></p>
-<p>回到Powell方法, 仍然以上述二次函数为例, 其与标准共轭方向法唯一的不同在于<strong>迭代地得到共轭方向的集合</strong>, 且共轭方向的集合的初始化可简单取为<span class="math inline">\(\{e_1, e_2\}\)</span>. 以右图为例,</p>
-<ul>
-<li>第一步从<span class="math inline">\(x_0\)</span>出发沿着<span class="math inline">\(e_1\)</span>做一维巡查得到<span class="math inline">\(x_1\)</span>;</li>
-<li>第二步先分别对<span class="math inline">\(\{e_2,e_1\}\)</span>做一维巡查得到<span class="math inline">\(x_2,x_3\)</span>, 由此得到真巡查方向<span class="math inline">\(x_3-x_1\)</span>, 从<span class="math inline">\(x_1\)</span>出发沿着<span class="math inline">\(x_3-x_1\)</span>做一维巡查就能直接到达<span class="math inline">\(x^*\)</span>(不难验证<span class="math inline">\(x_3-x_1\)</span>与<span class="math inline">\(e_1\)</span>关于<span class="math inline">\(A\)</span>共轭), 且此时共轭方向的集合更新为<span class="math inline">\(\{e_1, x_3-x_1\}\)</span>.</li>
-</ul>
-<p>容易看到Powell方法不涉及一阶信息因此为<strong>无导数优化方法</strong>. 上述括号内的性质称为是<strong>并行子空间性质</strong>: 记函数<span class="math inline">\(f(x)\)</span>在两条平行线<span class="math inline">\(l_1(\alpha)=x_0+\alpha e_1\)</span>, <span class="math inline">\(l_2(\alpha)=x_2+\alpha e_1\)</span>上的最小值点分别为<span class="math inline">\(x_1, x_3\)</span>, 那么<span class="math inline">\(x_3-x_1\)</span>与<span class="math inline">\(e_1\)</span>关于<span class="math inline">\(A\)</span>共轭. 该性质也容易推广到<span class="math inline">\(n\)</span>维情形.</p>
-<p>上述性质可参考Numerical Optimization一书9.4节, 最后要注意的是对于一般的函数只需将精确的一维巡查改为<strong>非精确搜索</strong>.</p>
-<hr />
-<h3 id="cg方法">CG方法</h3>
-<p>CG为Conjugate Gradient的缩写, 即<a href="https://en.wikipedia.org/wiki/Conjugate_gradient_method">共轭梯度法</a>, 这是利用一组共轭方向求解线性方程组<span class="math inline">\(Ax=b\)</span>的算法, 其中<span class="math inline">\(A\)</span>为<span class="math inline">\(n\)</span>阶对称正定方阵, 而共轭方向一般通过构造一个关于<span class="math inline">\(A\)</span>的Krylov子空间来得到, 且为一阶半方法, 详见Numerical Optimization一书算法5.1. 不难发现线性方程组的求解等价于最小化二次函数<span class="math inline">\(f(x)=\frac{1}{2}x^TAx-b^Tx\)</span>. 事实上, CG方法也可用于一般的优化问题, 其与上述Powell方法类似, <strong>共轭方向由迭代更新得到</strong>, 唯一的不同在于CG方法用了<strong>一阶甚至是二阶信息</strong>来更新共轭方向(<strong>补充一句, 对于一般的非二次函数并没有共轭一说, 这里可以理解为沿用共轭一词</strong>). 以FR(Fletcher-Reeves)方法为例: <span class="math display">\[\beta_{k+1}^{FR}=\nabla f_{k+1}^T\nabla f_{k+1}/\nabla f_{k}^T\nabla f_{k}, p_{k+1}=-\nabla f_{k+1}+\beta_{k+1}^{FR}p_k\]</span>其有许多变体, 具体到<code>SciPy</code>中的这里CG方法指的是PR(Polak-Ribiere)方法:<span class="math display">\[\beta_{k+1}^{PR}=\nabla f_{k+1}^T(\nabla f_{k+1}-\nabla f_{k})/\nabla f_{k}^T\nabla f_{k}, p_{k+1}=-\nabla f_{k+1}+\beta_{k+1}^{FR}p_k\]</span>此外还有PR+方法, HS方法, FR-PR方法等可见Numerical Optimization一书5.2节. 且这里除了HS方法是<strong>二阶方法</strong>, 其余涉及的均为<strong>一阶方法</strong>.</p>
-<p>上述<strong>初值<span class="math inline">\(p_0\)</span>可直接取为负梯度方向</strong>, 另外值得注意的是, 这里关于<span class="math inline">\(p_k\)</span>的一维巡查方法一般需要满足<a href="https://en.wikipedia.org/wiki/Wolfe_conditions#Strong_Wolfe_condition_on_curvature">强Wolfe条件</a>, 且<span class="math inline">\(c_2&lt;\frac{1}{2}\)</span>.</p>
-<hr />
-<h3 id="bfgs方法">BFGS方法</h3>
-<p><a href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm">BFGS</a>作为一种的<strong>拟牛顿方法</strong>, 其不直接计算Hessian阵, 而是<strong>用梯度信息近似计算Hessian阵的逆</strong>并迭代更新, 因此是<strong>一阶方法</strong>, 其更新公式如下:<span class="math display">\[H_{k+1}=(I-\rho_ks_ky_k^T)H_k(I-\rho_ky_ks_k^T)+\rho_ks_ks_k^T\]</span>其中<span class="math inline">\(s_k=x_{k+1}-x_k, y_k=\nabla f_{k+1}-\nabla f_k, \rho_k=1/y_k^Ts_k&gt;0\)</span>. 由于<span class="math inline">\(H_{k+1}\)</span>直接为Hessian阵的<strong>逆</strong>的近似, 因此搜索方向为<span class="math inline">\(p_{k+1}=-H_{k+1}\nabla f_{k+1}\)</span>.</p>
-<p>DFP方法与BFGS方法唯一的不同在于<strong>迭代更新Hessian阵本身</strong>而不是逆, 但由于仍然需要求逆操作, 因此计算量会比BFGS大上一圈. DFP方法的迭代公式可参考Numerical Optimization一书6.1节, 另一种的常见拟牛顿方法SR1可参考Numerical Optimization一书6.2节.</p>
-<p>最后值得注意的是, BFGS常用<a href="https://en.wikipedia.org/wiki/Wolfe_conditions">Wolfe条件</a>做为巡查条件.</p>
-<hr />
-<h3 id="newton-cg方法">Newton-CG方法</h3>
-<p>Newton-CG方法是一种<a href="https://en.m.wikipedia.org/wiki/Truncated_Newton_method">截断牛顿方法</a>, 而截断牛顿方法则是近似去解牛顿方程来得到巡查方向的思路, 解牛顿方程即为了获得牛顿方向, 而截断意味着近似解方程要在截断的迭代次数内, 因而是近似.</p>
-<p>选用CG方法来近似求解牛顿方程(<span class="math inline">\(\nabla^2f_k p_k+\nabla f_k=0\)</span>), 我们就得到了Newton-CG方法, 由于要求得到<span class="math inline">\(\nabla^2 f_k\)</span>, 因此Newton-CG方法为<strong>二阶方法</strong>.</p>
-<p>关于算法的更多细节可见Numerical Optimization一书算法7.1. 另外通过观察算法不难发现, 若能提供Hseeian-vector products函数, 那么Newton-CG方法此时就是<strong>一阶半方法</strong>.</p>
-<p>Newton-CG方法的主要计算量在CG迭代部分, preconditioning可加速CG迭代过程, 见Numerical Optimization一书page118.</p>
-<hr />
-<h3 id="dogleg法">Dogleg法</h3>
-<p>狗腿法是一种<a href="https://optimization.mccormick.northwestern.edu/index.php/Trust-region_methods">信赖域方法</a>, 简单介绍信赖域方法, 与线搜索方法先确定方向后确定步长不同的是, 信赖域方法在<strong>确定方向前首先给定一个信赖域半径</strong><span class="math inline">\(\Delta\)</span>, 要求搜索方向在该信赖域内.</p>
-<p>涉及信赖域方法就不得不谈信赖域子问题: <span class="math display">\[\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\]</span>且一般的, 这里的<span class="math inline">\(B_k\)</span><strong>仅仅要求对称, 一致有界</strong>. 关于这点可见Numerical Optimization一书page68; 但具体到这里的狗腿法仍然需要加上<strong>正定性</strong>的要求.</p>
-<p>回过头来看狗腿法, 狗腿法实际上是<strong>对信赖域子问题最优解曲线的近似</strong>, 从图中可以看到, 第一段是沿着负梯度方向到达柯西点, 这里的柯西点指的是<strong>沿着负梯度方向极小化信赖域子问题</strong>得到的极小值点; 接着像狗腿那样拐弯, 直奔<strong>信赖域子问题的最优解</strong>而去, 因此信赖域半径的作用就是决定了上述过程能跑多远.</p>
-<div data-align="center">
-<img src="/pictures/scipy_optimization/2.png" width="420">
-</div>
-<hr />
-<h3 id="trust-ncg方法">Trust-ncg方法</h3>
-<p>信赖域Newton-CG方法与Newton-CG方法的区别在于不是直接用CG方法解牛顿方程(<span class="math inline">\(\nabla^2f_k p_k+\nabla f_k=0\)</span>), 而是<strong>解信赖域子问题</strong> <span class="math display">\[\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\]</span> 这里<span class="math inline">\(B_k=\nabla^2 f_k\)</span>. 另外步长可<strong>直接设为1</strong>而不需要做一维巡查.</p>
-<p>与Newton-CG方法类似, 显然Trust-ncg法本身是<strong>二阶方法</strong>, 但若能提供Hseeian-vector products函数, Trust-ncg方法也是<strong>一阶半方法</strong>. 算法细节可见Numerical Optimization一书算法7.2.</p>
-<p>preconditioning可加速CG迭代过程, 见Numerical Optimization一书page118.</p>
-<hr />
-<h3 id="trust-krylov方法">Trust-krylov方法</h3>
-<p>其实应该叫Trust-Lanczos方法, <a href="https://en.wikipedia.org/wiki/Lanczos_algorithm">Lanczos方法</a>可以用来三对角化矩阵, 同时构造出了一个Krylov子空间. 上述过程的应用之一就是用来解线性方程<span class="math inline">\(Ax=b\)</span>, 因此也可解牛顿方程, 参见矩阵计算第三版9.3节.</p>
-<p>与Trust-ncg方法相比, Trust-krylov方法只是将CG方法换成了<strong>Lanczos方法</strong>, 且本身仍为<strong>二阶方法</strong>, 同样若能提供Hseeian-vector products函数, Trust-krylov方法也是<strong>一阶半方法</strong>.</p>
-<hr />
-<h3 id="trust-exact方法">Trust-exact方法</h3>
-<p>exact指的是信赖域子问题 <span class="math display">\[\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\]</span>中的<span class="math inline">\(B_k=\nabla^2 f_k\)</span>再进行直接求解. 形式上与Trust-ncg方法、Trust-krylov方法非常类似, 但计算量显然要大一些, 因此只适合小规模问题.</p>
-<p>显然Trust-exact方法为<strong>二阶方法</strong>.</p>
-<hr />
-<h2 id="有界约束优化">有界约束优化</h2>
-<h3 id="l-bfgs-b方法">L-BFGS-B方法</h3>
-<p>To be continued...</p>
-]]></content>
-      <categories>
-        <category>优化算法</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>SciPy</tag>
-        <tag>优化</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Ubuntu16.04下便捷安装tensorflow</title>
     <url>/2018/12/23/Ubuntu1604%E4%B8%8B%E4%BE%BF%E6%8D%B7%E5%AE%89%E8%A3%85tensorflow/</url>
     <content><![CDATA[<p>前言: 这篇博文记载了Ubuntu16.04下便捷安装tensorflow的方法. <span id="more"></span> 摸索了几天, 发现一种Ubuntu下便捷安装tensorflow的方法, 特此分享. 过程大致分为2步:</p>
@@ -1172,53 +1060,6 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
         <tag>Ubuntu</tag>
         <tag>tensorflow</tag>
         <tag>cuda</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu食用记录</title>
-    <url>/2018/04/18/Ubuntu%E9%A3%9F%E7%94%A8%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<p>前言:上中国大学MOOC上面的一门慕课(人工智能实践：Tensorflow笔记)时装了Ubuntu16.04,按照课程视屏方法顺利安装,特此开文记录使用中碰到的一些有意思的事. <span id="more"></span></p>
-<hr />
-<p>Q:如何安装Ubuntu?</p>
-<p>A:参见中国大学MOOC北大课程tensorflow笔记的第一周视频.</p>
-<hr />
-<p>Q:如何进入Ubuntu?</p>
-<p>A:开机狂按Esc,然后F9,选择进入Ubuntu.</p>
-<hr />
-<p>Q:Ubuntu默认的python模块有哪些(已安装tensorflow)?</p>
-<p>A： <img src="/pictures/Ubuntu/piplist.png" alt="avatar" /></p>
-<hr />
-<p>Q:Firefox浏览器无法播放中国大学MOOC上的视频怎么办?</p>
-<p>A:为Friefox安装flash插件(Flash Block)然并.</p>
-<hr />
-<p>Q:如何为Ubuntu安装chrome?</p>
-<p>A:参见:https://blog.csdn.net/qq551551/article/details/78885704</p>
-<hr />
-<p>Q:如何在Ubuntu启动root用户?</p>
-<p>A: <img src="/pictures/Ubuntu/root.png" alt="avatar" /></p>
-<hr />
-<p>Q:如何在Ubuntu翻墙?</p>
-<p>A:参见:https://blog.csdn.net/superbfly/article/details/54950451</p>
-<p>SS启动方式为在文档下打开<code>terminal</code>,输入: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sslocal -c SS.JSON</span><br></pre></td></tr></table></figure> ps:SS.JSON为已配置好信息的文件</p>
-<hr />
-<p>Q:怎么解决“The TensorFlow library wasn't compiled to use SSE4.1 instructions”?</p>
-<p>A: <img src="/pictures/Ubuntu/tf_cpp_min_log_level_2.png" alt="avatar" /></p>
-<hr />
-<p>Q:如何将tab键设定为4个空格?</p>
-<p>A:任意目录打开 <code>terminal</code>,输入 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi ~/.vimrc</span><br></pre></td></tr></table></figure> 最后键入以下内容: <img src="/pictures/Ubuntu/tab.png" alt="tab=4" /></p>
-<hr />
-<p>Q:Adam,GD,Momentum三种优化算法实际表现?</p>
-<p>A:一个简单的比较如下,在这个比较中Momentum是收敛最快的,其次是Adam,最慢是GD: 1. Adam <img src="/pictures/Ubuntu/Adam.png" alt="Adam" /> 2. GD <img src="/pictures/Ubuntu/BGD.png" alt="GD" /> 3. Momentum <img src="/pictures/Ubuntu/Momentum.png" alt="Momentum" /></p>
-<hr />
-<p>Q:ubuntu下安装matplotlib模块？</p>
-<p>A: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install python-matplotlib</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>Ubuntu</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>tensorflow</tag>
       </tags>
   </entry>
   <entry>
@@ -1383,6 +1224,165 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
       </tags>
   </entry>
   <entry>
+    <title>Ubuntu食用记录</title>
+    <url>/2018/04/18/Ubuntu%E9%A3%9F%E7%94%A8%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<p>前言:上中国大学MOOC上面的一门慕课(人工智能实践：Tensorflow笔记)时装了Ubuntu16.04,按照课程视屏方法顺利安装,特此开文记录使用中碰到的一些有意思的事. <span id="more"></span></p>
+<hr />
+<p>Q:如何安装Ubuntu?</p>
+<p>A:参见中国大学MOOC北大课程tensorflow笔记的第一周视频.</p>
+<hr />
+<p>Q:如何进入Ubuntu?</p>
+<p>A:开机狂按Esc,然后F9,选择进入Ubuntu.</p>
+<hr />
+<p>Q:Ubuntu默认的python模块有哪些(已安装tensorflow)?</p>
+<p>A： <img src="/pictures/Ubuntu/piplist.png" alt="avatar" /></p>
+<hr />
+<p>Q:Firefox浏览器无法播放中国大学MOOC上的视频怎么办?</p>
+<p>A:为Friefox安装flash插件(Flash Block)然并.</p>
+<hr />
+<p>Q:如何为Ubuntu安装chrome?</p>
+<p>A:参见:https://blog.csdn.net/qq551551/article/details/78885704</p>
+<hr />
+<p>Q:如何在Ubuntu启动root用户?</p>
+<p>A: <img src="/pictures/Ubuntu/root.png" alt="avatar" /></p>
+<hr />
+<p>Q:如何在Ubuntu翻墙?</p>
+<p>A:参见:https://blog.csdn.net/superbfly/article/details/54950451</p>
+<p>SS启动方式为在文档下打开<code>terminal</code>,输入: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sslocal -c SS.JSON</span><br></pre></td></tr></table></figure> ps:SS.JSON为已配置好信息的文件</p>
+<hr />
+<p>Q:怎么解决“The TensorFlow library wasn't compiled to use SSE4.1 instructions”?</p>
+<p>A: <img src="/pictures/Ubuntu/tf_cpp_min_log_level_2.png" alt="avatar" /></p>
+<hr />
+<p>Q:如何将tab键设定为4个空格?</p>
+<p>A:任意目录打开 <code>terminal</code>,输入 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi ~/.vimrc</span><br></pre></td></tr></table></figure> 最后键入以下内容: <img src="/pictures/Ubuntu/tab.png" alt="tab=4" /></p>
+<hr />
+<p>Q:Adam,GD,Momentum三种优化算法实际表现?</p>
+<p>A:一个简单的比较如下,在这个比较中Momentum是收敛最快的,其次是Adam,最慢是GD: 1. Adam <img src="/pictures/Ubuntu/Adam.png" alt="Adam" /> 2. GD <img src="/pictures/Ubuntu/BGD.png" alt="GD" /> 3. Momentum <img src="/pictures/Ubuntu/Momentum.png" alt="Momentum" /></p>
+<hr />
+<p>Q:ubuntu下安装matplotlib模块？</p>
+<p>A: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install python-matplotlib</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>tensorflow</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SciPy中的经典优化算法</title>
+    <url>/2019/02/20/SciPy%E4%B8%AD%E7%9A%84%E7%BB%8F%E5%85%B8%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>前言: 本文的初衷是试图用尽量简明形象的语言说一说<code>scipy.optimize.minimize</code>函数涉及到的经典优化算法的特点, 方便速查与快速回忆; 严格理论的部分可见<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize">官方文档</a>Notes部分的内容, 其对每一种方法都给出了参考论文, 而笔者关于这些算法的理解大多来自于Jorge Nocedal的Numerical Optimization. <span id="more"></span></p>
+<p>首先来看<code>scipy.optimize</code>这个包的<a href="https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html">官方文档</a>, 右侧的目录告诉我们这个包大致分为6块内容:</p>
+<ul>
+<li>多元函数无约束优化</li>
+<li>多元函数约束优化</li>
+<li>最小二乘优化</li>
+<li>一元函数优化</li>
+<li>自定义优化器</li>
+<li>寻根问题</li>
+</ul>
+<h2 id="minimize函数">minimize函数</h2>
+<p>可以看到<code>scipy.optimize.minimize</code>函数对应于第一第二块内容, 具体<code>minimize</code>的<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize">文档</a>, 可以看到<code>method</code>参数中罗列着以下14种方法:</p>
+<ul>
+<li>Nelder-Mead</li>
+<li>Powell</li>
+<li>CG</li>
+<li>BFGS</li>
+<li>Newton-CG</li>
+<li>L-BFGS-B</li>
+<li>TNC</li>
+<li>COBYLA</li>
+<li>SLSQP</li>
+<li>trust-constr</li>
+<li>dogleg</li>
+<li>trust-ncg</li>
+<li>trust-exact</li>
+<li>trust-krylov</li>
+</ul>
+<p>优化是对目标函数的进行迭代求最小值的过程, 若优化过程只需求得目标函数的在迭代点处函数值, 那么这类方法称为是<strong>无导数优化</strong>; 若需要求得目标函数的一阶信息(梯度向量值), 那么这类方法称为是<strong>一阶方法</strong>; 若需要求得二阶信息(Hessian阵), 那么这类方法称为是<strong>二阶方法</strong>. 显然三类方法的计算量的越来越大.</p>
+<p>上面罗列的算法中<strong>无导数优化</strong>方法有: Nelder-Mead, Powell, COBYLA; <strong>一阶方法</strong>有: CG, BFGS, L-BFGS-B, TNC, SLSQP; <strong>二阶方法</strong>有: Newton-CG, trust-constr, dogleg, trust-ncg, trust-exact, trust-krylov; 特别的, 二阶方法中的trust-constr, trust-ncg, trust-krylov若能提供Hessian右乘任意向量p的结果(即关于迭代点x和任意向量p的函数), 这样的函数一般来说计算量会小于直接计算Hessian阵, 因此实际上计算量会介于一阶方法与二阶方法之间, 这里笔者称之为<strong>一阶半方法</strong>, 这类方法适合大规模问题.</p>
+<p>下面按优化问题的不同分无约束优化, 有界约束优化与约束优化分别来看:</p>
+<h2 id="无约束优化">无约束优化</h2>
+<hr />
+<h3 id="nelder-mead方法">Nelder-Mead方法</h3>
+<p>Nelder-Mead方法是<strong>无导数优化方法</strong>, 其保持了对<span class="math inline">\(\mathbb{R}^n\)</span>中的<span class="math inline">\(n+1\)</span>个点的函数值追踪, 且这些点的凸包构成了一个<strong>非退化的单纯形</strong>. 比方说目标函数为<span class="math inline">\(\mathbb{R}^2\)</span>中的函数, Nelder-Mead方法就保持了对<span class="math inline">\(3\)</span>个点的函数值追踪, 非退化指的是这三者不能共线.</p>
+<p>下面以<a href="https://en.wikipedia.org/wiki/Nelder%E2%80%93Mead_method">维基百科</a>上的关于Rosenbrock函数的动图为例, 记手中的<span class="math inline">\(n+1\)</span>个点为<span class="math inline">\(\{x_1,...,x_{n+1}\}\)</span>, 并将它们按函数值大小排序<span class="math inline">\(f(x_1)\le\cdots\le f(x_{n+1})\)</span>, <span class="math inline">\(n\)</span>个最好的点的形心为<span class="math inline">\(\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i\)</span>此时<span class="math inline">\(\bar{x}\)</span>与最差的点<span class="math inline">\(x_{n+1}\)</span>之间的连线即为: <span class="math display">\[\bar{x}(t)=\bar{x}+t(x_{n+1}-\bar{x})\]</span>Nelder-Mead方法出于<strong>尽量远离函数值最高的点的想法</strong>, 去观察<span class="math inline">\(\bar{x}(-1)\)</span>的值</p>
+<ul>
+<li>若<span class="math inline">\(f(x_1)\le f(\bar{x}(-1))&lt;f(x_n)\)</span>, 则用<span class="math inline">\(\bar{x}(-1)\)</span>取代<span class="math inline">\(x_{n+1}\)</span>;</li>
+<li>若<span class="math inline">\(f(\bar{x}(-1))&lt;f(x_1)\)</span>, 继续观察<span class="math inline">\(\bar{x}(-2)\)</span>是否会带来更进一步下降, 择优选择取代<span class="math inline">\(x_{n+1}\)</span>;</li>
+<li>若<span class="math inline">\(f(x_n)\le f(\bar{x}(-1))&lt;f(x_{n+1})\)</span>, 先后观察<span class="math inline">\(\bar{x}(-\frac{1}{2})\)</span>与<span class="math inline">\(\bar{x}(\frac{1}{2})\)</span>是否会带来更进一步下降, 注意到先后的顺序也体现了尽量远离<span class="math inline">\(x_{n+1}\)</span>;</li>
+<li>最后若上述条件均不满足, 则整体向函数值最小的点<span class="math inline">\(x_1\)</span>挪一半.</li>
+</ul>
+上述算法可见Numerical Optimization一书9.5节, 对应到下图中的第一步迭代, 不难看出第一次迭代点的选择为<span class="math inline">\(\bar{x}(\frac{1}{2})\)</span>.
+<div data-align="center">
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Nelder-Mead_Rosenbrock.gif" width="420">
+</div>
+<hr />
+<h3 id="powell方法">Powell方法</h3>
+<p><a href="https://en.wikipedia.org/wiki/Powell%27s_method">Powell方法</a>是共轭方向法的一种变体, 先来看什么是共轭方向法, <strong>共轭方向法</strong>是<strong>给定一共轭方向的集合</strong><span class="math inline">\(\{p_1....,p_n\}\)</span>, 对集合中的方向依次进一维巡查的方法, 因此显然是<strong>无导数优化方法</strong>.</p>
+<p>以最简单的二次函数<span class="math inline">\(f(x)=\frac{1}{2}x^TAx-b^Tx\)</span>为例, 其中<span class="math inline">\(A\)</span>为<span class="math inline">\(n\)</span>阶对称正定方阵, 此时共轭的概念有了具体的要求: <span class="math inline">\(p_i^TAp_j=0\)</span>. 若<span class="math inline">\(A\)</span>恰为对角阵, 如左图所示, 共轭方向集合可取为坐标轴方向<span class="math inline">\(\{e_1, e_2\}\)</span>; 若<span class="math inline">\(A\)</span>不为对角阵, 如右图所示, 此时<span class="math inline">\(\{e_1, e_2\}\)</span>不能作为一组共轭方向, 图中的<strong>红线</strong>和<strong>蓝线</strong>则是给出了两个不同的共轭方向集合.</p>
+<p>值得注意的是, 此时<strong>至多</strong><span class="math inline">\(n\)</span>步共轭方向法会收敛到最小值点<span class="math inline">\(x^*\)</span>, 证明可见Numerical Optimization一书定理5.1</p>
+<p><img src="/pictures/scipy_optimization/1.png" /></p>
+<p>回到Powell方法, 仍然以上述二次函数为例, 其与标准共轭方向法唯一的不同在于<strong>迭代地得到共轭方向的集合</strong>, 且共轭方向的集合的初始化可简单取为<span class="math inline">\(\{e_1, e_2\}\)</span>. 以右图为例,</p>
+<ul>
+<li>第一步从<span class="math inline">\(x_0\)</span>出发沿着<span class="math inline">\(e_1\)</span>做一维巡查得到<span class="math inline">\(x_1\)</span>;</li>
+<li>第二步先分别对<span class="math inline">\(\{e_2,e_1\}\)</span>做一维巡查得到<span class="math inline">\(x_2,x_3\)</span>, 由此得到真巡查方向<span class="math inline">\(x_3-x_1\)</span>, 从<span class="math inline">\(x_1\)</span>出发沿着<span class="math inline">\(x_3-x_1\)</span>做一维巡查就能直接到达<span class="math inline">\(x^*\)</span>(不难验证<span class="math inline">\(x_3-x_1\)</span>与<span class="math inline">\(e_1\)</span>关于<span class="math inline">\(A\)</span>共轭), 且此时共轭方向的集合更新为<span class="math inline">\(\{e_1, x_3-x_1\}\)</span>.</li>
+</ul>
+<p>容易看到Powell方法不涉及一阶信息因此为<strong>无导数优化方法</strong>. 上述括号内的性质称为是<strong>并行子空间性质</strong>: 记函数<span class="math inline">\(f(x)\)</span>在两条平行线<span class="math inline">\(l_1(\alpha)=x_0+\alpha e_1\)</span>, <span class="math inline">\(l_2(\alpha)=x_2+\alpha e_1\)</span>上的最小值点分别为<span class="math inline">\(x_1, x_3\)</span>, 那么<span class="math inline">\(x_3-x_1\)</span>与<span class="math inline">\(e_1\)</span>关于<span class="math inline">\(A\)</span>共轭. 该性质也容易推广到<span class="math inline">\(n\)</span>维情形.</p>
+<p>上述性质可参考Numerical Optimization一书9.4节, 最后要注意的是对于一般的函数只需将精确的一维巡查改为<strong>非精确搜索</strong>.</p>
+<hr />
+<h3 id="cg方法">CG方法</h3>
+<p>CG为Conjugate Gradient的缩写, 即<a href="https://en.wikipedia.org/wiki/Conjugate_gradient_method">共轭梯度法</a>, 这是利用一组共轭方向求解线性方程组<span class="math inline">\(Ax=b\)</span>的算法, 其中<span class="math inline">\(A\)</span>为<span class="math inline">\(n\)</span>阶对称正定方阵, 而共轭方向一般通过构造一个关于<span class="math inline">\(A\)</span>的Krylov子空间来得到, 且为一阶半方法, 详见Numerical Optimization一书算法5.1. 不难发现线性方程组的求解等价于最小化二次函数<span class="math inline">\(f(x)=\frac{1}{2}x^TAx-b^Tx\)</span>. 事实上, CG方法也可用于一般的优化问题, 其与上述Powell方法类似, <strong>共轭方向由迭代更新得到</strong>, 唯一的不同在于CG方法用了<strong>一阶甚至是二阶信息</strong>来更新共轭方向(<strong>补充一句, 对于一般的非二次函数并没有共轭一说, 这里可以理解为沿用共轭一词</strong>). 以FR(Fletcher-Reeves)方法为例: <span class="math display">\[\beta_{k+1}^{FR}=\nabla f_{k+1}^T\nabla f_{k+1}/\nabla f_{k}^T\nabla f_{k}, p_{k+1}=-\nabla f_{k+1}+\beta_{k+1}^{FR}p_k\]</span>其有许多变体, 具体到<code>SciPy</code>中的这里CG方法指的是PR(Polak-Ribiere)方法:<span class="math display">\[\beta_{k+1}^{PR}=\nabla f_{k+1}^T(\nabla f_{k+1}-\nabla f_{k})/\nabla f_{k}^T\nabla f_{k}, p_{k+1}=-\nabla f_{k+1}+\beta_{k+1}^{FR}p_k\]</span>此外还有PR+方法, HS方法, FR-PR方法等可见Numerical Optimization一书5.2节. 且这里除了HS方法是<strong>二阶方法</strong>, 其余涉及的均为<strong>一阶方法</strong>.</p>
+<p>上述<strong>初值<span class="math inline">\(p_0\)</span>可直接取为负梯度方向</strong>, 另外值得注意的是, 这里关于<span class="math inline">\(p_k\)</span>的一维巡查方法一般需要满足<a href="https://en.wikipedia.org/wiki/Wolfe_conditions#Strong_Wolfe_condition_on_curvature">强Wolfe条件</a>, 且<span class="math inline">\(c_2&lt;\frac{1}{2}\)</span>.</p>
+<hr />
+<h3 id="bfgs方法">BFGS方法</h3>
+<p><a href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm">BFGS</a>作为一种的<strong>拟牛顿方法</strong>, 其不直接计算Hessian阵, 而是<strong>用梯度信息近似计算Hessian阵的逆</strong>并迭代更新, 因此是<strong>一阶方法</strong>, 其更新公式如下:<span class="math display">\[H_{k+1}=(I-\rho_ks_ky_k^T)H_k(I-\rho_ky_ks_k^T)+\rho_ks_ks_k^T\]</span>其中<span class="math inline">\(s_k=x_{k+1}-x_k, y_k=\nabla f_{k+1}-\nabla f_k, \rho_k=1/y_k^Ts_k&gt;0\)</span>. 由于<span class="math inline">\(H_{k+1}\)</span>直接为Hessian阵的<strong>逆</strong>的近似, 因此搜索方向为<span class="math inline">\(p_{k+1}=-H_{k+1}\nabla f_{k+1}\)</span>.</p>
+<p>DFP方法与BFGS方法唯一的不同在于<strong>迭代更新Hessian阵本身</strong>而不是逆, 但由于仍然需要求逆操作, 因此计算量会比BFGS大上一圈. DFP方法的迭代公式可参考Numerical Optimization一书6.1节, 另一种的常见拟牛顿方法SR1可参考Numerical Optimization一书6.2节.</p>
+<p>最后值得注意的是, BFGS常用<a href="https://en.wikipedia.org/wiki/Wolfe_conditions">Wolfe条件</a>做为巡查条件.</p>
+<hr />
+<h3 id="newton-cg方法">Newton-CG方法</h3>
+<p>Newton-CG方法是一种<a href="https://en.m.wikipedia.org/wiki/Truncated_Newton_method">截断牛顿方法</a>, 而截断牛顿方法则是近似去解牛顿方程来得到巡查方向的思路, 解牛顿方程即为了获得牛顿方向, 而截断意味着近似解方程要在截断的迭代次数内, 因而是近似.</p>
+<p>选用CG方法来近似求解牛顿方程(<span class="math inline">\(\nabla^2f_k p_k+\nabla f_k=0\)</span>), 我们就得到了Newton-CG方法, 由于要求得到<span class="math inline">\(\nabla^2 f_k\)</span>, 因此Newton-CG方法为<strong>二阶方法</strong>.</p>
+<p>关于算法的更多细节可见Numerical Optimization一书算法7.1. 另外通过观察算法不难发现, 若能提供Hseeian-vector products函数, 那么Newton-CG方法此时就是<strong>一阶半方法</strong>.</p>
+<p>Newton-CG方法的主要计算量在CG迭代部分, preconditioning可加速CG迭代过程, 见Numerical Optimization一书page118.</p>
+<hr />
+<h3 id="dogleg法">Dogleg法</h3>
+<p>狗腿法是一种<a href="https://optimization.mccormick.northwestern.edu/index.php/Trust-region_methods">信赖域方法</a>, 简单介绍信赖域方法, 与线搜索方法先确定方向后确定步长不同的是, 信赖域方法在<strong>确定方向前首先给定一个信赖域半径</strong><span class="math inline">\(\Delta\)</span>, 要求搜索方向在该信赖域内.</p>
+<p>涉及信赖域方法就不得不谈信赖域子问题: <span class="math display">\[\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\]</span>且一般的, 这里的<span class="math inline">\(B_k\)</span><strong>仅仅要求对称, 一致有界</strong>. 关于这点可见Numerical Optimization一书page68; 但具体到这里的狗腿法仍然需要加上<strong>正定性</strong>的要求.</p>
+<p>回过头来看狗腿法, 狗腿法实际上是<strong>对信赖域子问题最优解曲线的近似</strong>, 从图中可以看到, 第一段是沿着负梯度方向到达柯西点, 这里的柯西点指的是<strong>沿着负梯度方向极小化信赖域子问题</strong>得到的极小值点; 接着像狗腿那样拐弯, 直奔<strong>信赖域子问题的最优解</strong>而去, 因此信赖域半径的作用就是决定了上述过程能跑多远.</p>
+<div data-align="center">
+<img src="/pictures/scipy_optimization/2.png" width="420">
+</div>
+<hr />
+<h3 id="trust-ncg方法">Trust-ncg方法</h3>
+<p>信赖域Newton-CG方法与Newton-CG方法的区别在于不是直接用CG方法解牛顿方程(<span class="math inline">\(\nabla^2f_k p_k+\nabla f_k=0\)</span>), 而是<strong>解信赖域子问题</strong> <span class="math display">\[\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\]</span> 这里<span class="math inline">\(B_k=\nabla^2 f_k\)</span>. 另外步长可<strong>直接设为1</strong>而不需要做一维巡查.</p>
+<p>与Newton-CG方法类似, 显然Trust-ncg法本身是<strong>二阶方法</strong>, 但若能提供Hseeian-vector products函数, Trust-ncg方法也是<strong>一阶半方法</strong>. 算法细节可见Numerical Optimization一书算法7.2.</p>
+<p>preconditioning可加速CG迭代过程, 见Numerical Optimization一书page118.</p>
+<hr />
+<h3 id="trust-krylov方法">Trust-krylov方法</h3>
+<p>其实应该叫Trust-Lanczos方法, <a href="https://en.wikipedia.org/wiki/Lanczos_algorithm">Lanczos方法</a>可以用来三对角化矩阵, 同时构造出了一个Krylov子空间. 上述过程的应用之一就是用来解线性方程<span class="math inline">\(Ax=b\)</span>, 因此也可解牛顿方程, 参见矩阵计算第三版9.3节.</p>
+<p>与Trust-ncg方法相比, Trust-krylov方法只是将CG方法换成了<strong>Lanczos方法</strong>, 且本身仍为<strong>二阶方法</strong>, 同样若能提供Hseeian-vector products函数, Trust-krylov方法也是<strong>一阶半方法</strong>.</p>
+<hr />
+<h3 id="trust-exact方法">Trust-exact方法</h3>
+<p>exact指的是信赖域子问题 <span class="math display">\[\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\]</span>中的<span class="math inline">\(B_k=\nabla^2 f_k\)</span>再进行直接求解. 形式上与Trust-ncg方法、Trust-krylov方法非常类似, 但计算量显然要大一些, 因此只适合小规模问题.</p>
+<p>显然Trust-exact方法为<strong>二阶方法</strong>.</p>
+<hr />
+<h2 id="有界约束优化">有界约束优化</h2>
+<h3 id="l-bfgs-b方法">L-BFGS-B方法</h3>
+<p>To be continued...</p>
+]]></content>
+      <categories>
+        <category>优化算法</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>SciPy</tag>
+        <tag>优化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>个人博客进化史</title>
     <url>/2018/03/24/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%BF%9B%E5%8C%96%E5%8F%B2/</url>
     <content><![CDATA[<p>前言:本文记录了本博客的进化史. <span id="more"></span></p>
@@ -1484,6 +1484,193 @@ cov(v_2,v_1)&amp;=cov(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_2,\
         <tag>特征向量</tag>
         <tag>ICA</tag>
         <tag>PCA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>变分贝叶斯方法</title>
+    <url>/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>前言:本文主要是关于变分贝叶斯方法, 这是一类用简单分布去逼近目标分布的方法, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3. <span id="more"></span></p>
+<hr />
+<p>本文主要是关于变分推断, 或者说<a href="https://en.wikipedia.org/wiki/Variational_Bayesian_methods">变分贝叶斯方法</a>, 它是一类用来计算难以计算积分的方法. 本文的定位是对EM算法的有益补充, 因此会结合EM算法去讲一讲什么是变分推断及平均场近似, 并得到EM算法的三种变体.</p>
+<p>关于EM算法可以参见我的另一篇博文<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>, 简单的说,EM算法是专门处理隐变量模型的算法. 下文我们会以隐狄利克雷分配模型(Latent Dirichlet Allocation: LDA)为例来说明本文的主角, 当然这是一个隐变量模型.</p>
+<hr />
+<h2 id="隐变量模型">隐变量模型</h2>
+<p><a href="https://en.wikipedia.org/wiki/Latent_variable_model">隐变量模型</a>, 隐变量模型含有未观测到值的变量, 且该隐变量解释了观测到的变量之间的相关性(<a href="https://en.wikipedia.org/wiki/Local_independence">局部独立性</a>), 简言之引进的隐变量不能没有用, 举个例子来说明这个性质(来自维基百科):</p>
+<table>
+<thead>
+<tr class="header">
+<th>本科生</th>
+<th>读过机器学习</th>
+<th>没读过机器学习</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>读过凸优化</strong></td>
+<td>260</td>
+<td>140</td>
+</tr>
+<tr class="even">
+<td><strong>没读过凸优化</strong></td>
+<td>240</td>
+<td>360</td>
+</tr>
+</tbody>
+</table>
+<p>容易看到读过机器学习的概率是<span class="math inline">\(\frac{500}{1000}=0.5\)</span>, 读过凸优化的概率是<span class="math inline">\(\frac{400}{1000}=0.4\)</span>, 但是两者都读过的概率是<span class="math inline">\(\frac{260}{1000}=0.26\)</span>, 不等于<span class="math inline">\(\frac{500}{1000}\times\frac{400}{1000}=0.2\)</span>, 因此并不独立. 若我们引进变量本科高年级生和本科低年级生:</p>
+<table>
+<thead>
+<tr class="header">
+<th>高年级/低年级</th>
+<th>读过机器学习</th>
+<th>没读过机器学习</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>读过凸优化</strong></td>
+<td>240/20</td>
+<td>60/80</td>
+</tr>
+<tr class="even">
+<td><strong>没读过凸优化</strong></td>
+<td>160/80</td>
+<td>40/320</td>
+</tr>
+</tbody>
+</table>
+<p>就会发现, 对高年级生<span class="math inline">\(\frac{400}{500}\times\frac{300}{500}=\frac{240}{500}\)</span>; 对低年级生<span class="math inline">\(\frac{100}{500}\times\frac{100}{500}=\frac{20}{500}\)</span>, 此时相关性已经被隐变量解释掉了.</p>
+<hr />
+<h2 id="隐狄利克雷分配模型">隐狄利克雷分配模型</h2>
+<p>下面举个隐变量模型的例子, 隐狄利克雷分配模型. 假如我读过东野圭吾的新参者, 我希望推荐系统能把白夜行也推荐给我. 这里直接给出模型的完整形式, 具体怎么来的请见博文<a href="https://msgsxj.cn/2018/10/16/Latent-Dirichlet-Allocation/">Latent Dirichlet Allocation</a>的第一节. <span class="math display">\[P(W, Z, \Theta\mid \varphi, \alpha)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>其中:</p>
+<ul>
+<li><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>, <span class="math inline">\(T\)</span>给定.</li>
+<li><span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
+<li><span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{w_{dn}z_{dn}}\)</span>, 给定词汇表<span class="math inline">\(w_{set}\)</span>, <span class="math inline">\(w_{dn}\in\{1,2,...,\left|w_{set}\right|\}\)</span>.</li>
+</ul>
+<p>大小字母表示小写字母的总和, 参数仍简记为小写字母, 总结如下:</p>
+<ul>
+<li>未知:<span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>未知参数.</li>
+<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
+<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
+</ul>
+<hr />
+<h2 id="变分贝叶斯方法">变分贝叶斯方法</h2>
+<h3 id="em算法">EM算法</h3>
+<p>下面尝试用4种方法来解决这个模型, 首先从我们最熟悉的EM算法开始(不熟悉的话可以参见我的另一篇博文<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>): EM算法的目标是极大化对数似然函数<span class="math inline">\(\log P(W\mid\varphi, \alpha)\)</span>, 且每一步迭代又给出隐变量<span class="math inline">\(Z, \Theta\)</span>的概率分布以及<span class="math inline">\(\varphi, \alpha\)</span>的点估计. 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:</p>
+<ul>
+<li>E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>.</li>
+<li>M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
+</ul>
+<p><strong>p.s.</strong> EM算法的迭代过程没有涉及参数<span class="math inline">\(\varphi, \alpha\)</span>分布, 且没有引进先验分布, 因而仍然算是频率学派的方法, 下面来看一种明显是属于贝叶斯学派的方法:变分推断</p>
+<h3 id="变分推断">变分推断</h3>
+<p>根据贝叶斯思想, 我们将参数<span class="math inline">\(\varphi, \alpha\)</span>视为随机变量, 因此必须给出参数<span class="math inline">\(\varphi, \alpha\)</span>的先验假设<span class="math inline">\(P(\varphi), P(\alpha)\)</span>, 如果能直接算出隐变量及未知参数<span class="math inline">\(Z, \Theta, \varphi, \alpha\)</span>的概率分布<span class="math inline">\(P(Z, \Theta, \varphi, \alpha\mid W)\)</span>, 那么就能很方便的得到想要的参数值(比如说通过极大后验分布MAP). 事实上, 我们已经有了<span class="math inline">\(P(W, Z, \Theta\mid \varphi, \alpha)\)</span>, 根据贝叶斯公式:<span class="math display">\[P(Z, \Theta, \varphi, \alpha\mid W)=\frac{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}{P(W)}=\frac{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}{\int_{Z, \Theta, \varphi, \alpha} P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}\]</span>通过分析不难发现, 如果给出的参数<span class="math inline">\(\varphi, \alpha\)</span>的先验恰为共轭先验, 那么上式就非常好求, 否则就不可避免的要计算<span class="math inline">\(P(W)\)</span>, 而这事实上相当难处理.</p>
+<p>变分推断则是试图绕过求<span class="math inline">\(P(W)\)</span>, 去找一个对<span class="math inline">\(P(Z, \Theta, \varphi, \alpha\mid W)\)</span>的良好逼近<span class="math inline">\(q(Z, \Theta, \varphi, \alpha)\)</span>, 其中<span class="math inline">\(q(Z, \Theta, \varphi, \alpha)\)</span>会来自一个简单得多的分布族, 比如<span class="math inline">\(Q=N(\mu, \Sigma)\)</span>, 其中<span class="math inline">\(\Sigma\)</span>为对角阵; 而逼近的方法一般则是最小化<span class="math inline">\(\mathcal{KL}\)</span>散度:<span class="math display">\[q=\arg\min_{q\in Q}\mathcal{KL}(q(Z, \Theta, \varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W))\]</span>关于<span class="math inline">\(\mathcal{KL}\)</span>散度的定义见<a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">维基百科</a>, 这里简单理解为衡量两个分布的距离就好. 下式告诉我们, 变分推断确实可以绕开<span class="math inline">\(P(W)\)</span>, 下面把<span class="math inline">\(q(Z, \Theta, \varphi, \alpha)\)</span>简记为<span class="math inline">\(q\)</span>: <span class="math display">\[\begin{aligned} \mathcal{KL}(q\Vert P(Z, \Theta, \varphi, \alpha\mid W)) &amp; =  \mathcal{KL}(q\Vert \frac{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}{P(W)}) \\\
+&amp; =\int  q\log \frac{q}{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)/P(W)} dZd \Theta d\varphi d\alpha\\\
+&amp; = \int \left( q\log \frac{q}{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}dZd \Theta  +  q\log P(W) \right)dZd \Theta d\varphi d\alpha\\\
+&amp; =  \mathcal{KL}(q\Vert P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha))+\log P(W) \end{aligned}\]</span>其中第一个等号为简单带入, 第二个等号由<span class="math inline">\(\mathcal{KL}\)</span>散度的定义, 第三个等号为简单化简, 第四个等号由<span class="math inline">\(\mathcal{KL}\)</span>散度定义. 容易看到, 最后一个等式的后一项<span class="math inline">\(\log P(W)\)</span>与<span class="math inline">\(q\)</span>无关, 因而成功绕开了<span class="math inline">\(P(W)\)</span>, 这便是变分推断.</p>
+<p><strong>p.s.</strong> 变分推断需要给出参数的先验分布和分布族<span class="math inline">\(Q\)</span>. 如果<span class="math inline">\(Q\)</span>足够大, 则有<span class="math display">\[q(Z, \Theta, \varphi, \alpha)=P(Z, \Theta, \varphi, \alpha\mid W)\]</span>并没有简化计算. 所以这个分布族<span class="math inline">\(Q\)</span>的选取也是一件麻烦的事情, 既要考虑<span class="math inline">\(Z, \Theta\)</span>实际上是有关的, 又要考虑参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>是无关的. 一个合理的想法是预先假定<span class="math inline">\(\varphi, \alpha\)</span>与<span class="math inline">\(Z, \Theta\)</span>是无关的, 在变分推断的基础上于是有了平均场近似的变分推断:</p>
+<h3 id="平均场近变分推断">平均场近变分推断</h3>
+<p>其想法很简单, 在变分推断<span class="math display">\[q=\arg\min_{q\in Q}\mathcal{KL}(q(Z, \Theta, \varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W))\]</span>的基础上, 预先假定参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>的独立性, 得到 <span class="math display">\[\begin{aligned}q(Z, \Theta)&amp;=\arg\min_{q(Z, \Theta)\in Q_1}\mathcal{KL}(q(Z, \Theta) q(\varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W)) \\\
+q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \Theta)q(\varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W))\end{aligned}\]</span>这样计算上有了一定程度的减小, 当然准确度也有可能有一定的损失, 但其实际上不失为一个好的假设. 下面来看平均长近似后的形式, 为了表述方便, 记<span class="math inline">\(q(Z, \Theta)=q_1\)</span>, <span class="math inline">\(q(\varphi, \alpha)=q_2\)</span>, <span class="math inline">\(P(Z, \Theta, \varphi, \alpha\mid W)=\hat{P}\)</span>, <span class="math inline">\(dZd \Theta d\varphi d\alpha=d\hat{Z}\)</span>, 目标则简化为<span class="math display">\[q_i=\arg\min_{q_i\in Q_i}\mathcal{KL}(\prod_{i=1}^2 q_i\Vert \hat{P})\]</span>下面来看, 目标是对<span class="math inline">\(q_k\in Q_k\)</span>求最小值点, <span class="math inline">\(k=1, 2\)</span>: <span class="math display">\[\begin{aligned} \mathcal{KL}(\prod_{i=1}^2 q_i\Vert \hat{P}) &amp; =  \int  \prod_{j=1}^2 q_j\log \frac{\prod_{i=1}^2 q_i}{\hat{P}} d\hat{Z} \\\
+&amp; =\sum_{i=1}^2\int   \prod_{j=1}^2q_j\log q_i d\hat{Z}-\int   \prod_{j=1}^2q_j\log \hat{P}d\hat{Z}\\\
+&amp; = \int   \prod_{j=1}^2q_j\log q_k d\hat{Z}+\sum_{i\neq k}^2\int   \prod_{j=1}^2q_j\log q_i d\hat{Z}-\int   \prod_{j=1}^2q_j\log \hat{P} d\hat{Z} \\\
+&amp;=\int   q_k\log q_k d\hat{Z}_k+\sum_{i\neq k}^2\int   \prod_{j\neq k}^2q_j\log q_i d\hat{Z}_{-k}-\int   \prod_{j=1}^2q_j\log \hat{P} d\hat{Z} \\\
+&amp;= \int   q_k\log q_k d\hat{Z}_k-\int q_k\left[\int   \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}\right]d\hat{Z}_k + C\\\
+&amp;=\int   q_k\left[\log q_k -\int   \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}\right]d\hat{Z}_k + C \end{aligned}\]</span>这里的<span class="math inline">\(d\hat{Z}\)</span>为<span class="math inline">\(dZd \Theta d\varphi d\alpha\)</span>, <span class="math inline">\(d\hat{Z}_k\)</span>为对<span class="math inline">\(q_k\)</span>的变量积分, 比方说<span class="math inline">\(k=1\)</span>, 即为<span class="math inline">\(dZ d\Theta\)</span>, <span class="math inline">\(d\hat{Z}_{-k}\)</span>为对除<span class="math inline">\(q_k\)</span>的之外的变量积分.</p>
+<p>稍作解释:第一个等号由<span class="math inline">\(\mathcal{KL}\)</span>散度的定义; 第二个等号为简单化简; 第三个等号为将第一项拆成<span class="math inline">\(i=k\)</span>和<span class="math inline">\(i\neq k\)</span>两项; 第四个等号为对第一第二项中能积分的先积掉; 第五个等号为将第三项对<span class="math inline">\(q_k\)</span>的积分拎到最前面, 且此时第二项与<span class="math inline">\(q_k\)</span>无关, 视为常数<span class="math inline">\(C\)</span>; 第六个等号即为简单合并.</p>
+<p>下面继续, 把我们把<span class="math inline">\(\int \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}=\mathbb{E}_{q_{-k}}\log \hat{P}\)</span>记作<span class="math inline">\(h(\hat{Z}_k)\)</span>, 再令<span class="math inline">\(t(\hat{Z}_k)=\frac{exp(h(\hat{Z}_k))}{\int exp(h(\hat{Z}_k))d\hat{Z}_k}\)</span>, 除以正则项确保是个概率分布, 上式可继续化为: <span class="math display">\[\begin{aligned} \mathcal{KL}(\prod_{i=1}^2 q_i\Vert \hat{P}) &amp; =  \int   q_k\left[\log q_k -\int   \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}\right]d\hat{Z}_k + C\\\
+&amp; =  \int   q_k\left[\log q_k d\hat{Z}_k-h(\hat{Z}_k)\right]d\hat{Z}_k + C\\\
+&amp;=\int   q_k\log \frac{q_k}{t} d\hat{Z}_k + C \end{aligned}\]</span>注意到第一项即为KL散度, 那么此时关于<span class="math inline">\(q_k\)</span>取极小只需令<span class="math inline">\(q_k=t=\frac{exp(h(\hat{Z}_k))}{\int exp(h(\hat{Z}_k))d\hat{Z}_k}\)</span>, 其中<span class="math inline">\(h(\hat{Z}_k)=\mathbb{E}_{q_{-k}}\log \hat{P}\)</span>再取对数得到<span class="math display">\[\log q_k=\mathbb{E}_{q_{-k}}\log \hat{P}+C\]</span>其中<span class="math inline">\(\hat{P}=P(Z, \Theta, \varphi, \alpha\mid W)\)</span>在LDA模型这个例子中, 上述结果化为: <span class="math display">\[\begin{aligned}\log q(Z, \Theta)&amp;=\mathbb{E}_{q(\varphi, \alpha)}\log P(Z, \Theta, \varphi, \alpha\mid W)+C_1  \\\
+\log q(\varphi, \alpha)&amp;=\mathbb{E}_{q(Z, \Theta)}\log P(Z, \Theta, \varphi, \alpha\mid W)+C_2\end{aligned}\]</span></p>
+<p><strong>p.s.</strong> 相比变分推断, 这个平均场近似的变分推断实际是将参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>进行了分开处理, 降低了模型复杂度, 同时明显也降低了计算的维度, 但由于对参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>的独立性假设非常合理, 所以也不会有太多精度上的损失, 甚至会使得模型更稳健. 另外顺便得到了一个非常有用的式子, 这个式子能在<a href="https://en.wikipedia.org/wiki/Variational_Bayesian_methods">变分贝叶斯方法</a> 的维基百科的Mean field approximation一节找到, 只是没有上述的推导过程.</p>
+<p>EM算法也是将参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>进行了分开处理, 并且对隐变量<span class="math inline">\(Z, \Theta\)</span>同样是通过对<span class="math inline">\(\mathcal{KL}\)</span>散度最小化求得分布, 而EM算法对未知参数则是直接采用了点估计的方法而不是变分推断. 因此相比平均场近似的变分推断, EM算法进一步降低了计算复杂度, , 我想这大概就是EM算法流行的理由之一.</p>
+<h3 id="平均场em算法">平均场EM算法</h3>
+<p>平均场EM算法实际上是在EM算法基础上进一步对隐变量<span class="math inline">\(Z, \Theta\)</span>进行了独立性假设. 下面分两步在EM算法的基础上推导出平均场EM算法:</p>
+<ol type="1">
+<li>EM算法: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:
+<ul>
+<li>E步: <span class="math inline">\(q^{k+1}(Z, \Theta)=\arg\min_{q(Z, \Theta)\in Q_1}\mathcal{KL}(q(Z, \Theta)\Vert P(Z, \Theta\mid W, \varphi, \alpha))\)</span>.</li>
+<li>M步: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
+</ul></li>
+<li>假定<span class="math inline">\(q(Z, \Theta)=q(Z)q(\Theta)\)</span>, 由平均场近似得到的公式, 得到平均场EM算法: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:
+<ul>
+<li>E步:<span class="math inline">\(\begin{aligned}\log q^{k+1}(Z)&amp;=\mathbb{E}_{q(\Theta)}\log P(Z, \Theta\mid \varphi^k, \alpha^k, W)+C_1 \\\
+\log q^{k+1}(\Theta)&amp;=\mathbb{E}_{q(Z)}\log P(Z, \Theta\mid \varphi^k, \alpha^k, W)+C_2\end{aligned}\)</span></li>
+<li>M步: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}(Z, \Theta)}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span></li>
+</ul></li>
+</ol>
+<p><strong>p.s.</strong> 平均场EM算法比EM算法多了一个隐变量之间独立的假设, 但一般隐变量之间应该不独立, 比方说这个LDA模型中<span class="math inline">\(Z\)</span>代表每篇文档每个单词的主题分布, <span class="math inline">\(\Theta\)</span>代表每篇文档的主题分布, 两者应该不独立, 所以平均场EM算法不适合这个例子. 另外相比EM算法, 平均场EM算法因为多了一个独立性假设, 模型应该会变得简单一些, 但精度有可能会有些损失.</p>
+<h3 id="总结">总结</h3>
+<p>最后用一张表格总结上述4中算法:</p>
+<table>
+<thead>
+<tr class="header">
+<th>算法</th>
+<th>模型复杂度</th>
+<th>需要的计算资源</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>变分推断</strong></td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td><strong>平均场变分推断</strong></td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td><strong>EM算法</strong></td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td><strong>平均场EM算法</strong></td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>EM算法作为其中比较折中的选择, 兼顾了模型复杂度与计算资源.</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>LDA模型</tag>
+        <tag>变分贝叶斯</tag>
+        <tag>变分推断</tag>
+        <tag>平均场近似</tag>
+        <tag>KL散度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>拉普拉斯方法</title>
+    <url>/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>前言: 本文主要是关于拉普拉斯近似方法, 这是一种用来近似计算积分的方法, 主要参考了维基百科及PRML一书6.4节. <span id="more"></span></p>
+<hr />
+<h2 id="拉普拉斯近似方法">拉普拉斯近似方法</h2>
+拉普拉斯近似方法(<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">Laplace's method</a>)是一种近似计算积分的方法, 目标积分形如<span class="math display">\[\int_a^be^{Mf(x)}dx\]</span>其中<span class="math inline">\(f(x)\)</span>要求是二次可微的, <span class="math inline">\(M\)</span>要求是一个较大的数. 其想法是假定<span class="math inline">\(x_0\)</span>是<span class="math inline">\(f(x)\)</span>唯一的最大值点, 因此<span class="math inline">\(f(x_0)&gt;f(x)\)</span>, 乘上一个较大的M, 在经过指数函数的作用, 其差值事实上会变得很大, 不难想象随着<span class="math inline">\(M\)</span>的增大积分内的函数会越来越像一个单峰函数, 事实上确实会逼近对一个正态分布进行积分的值. 举个例子<span class="math inline">\(f(x)=sinx/x\)</span>, 分别画出<span class="math inline">\(e^{sinx/x}\)</span>和<span class="math inline">\(e^{3sinx/x}\)</span>的函数图像:
+<div data-align="center">
+<img src="/pictures/laplace_method/exp%283sinx_x%29.png" width="60%" height="50%" />
+</div>
+<div data-align="center">
+<img src="/pictures/laplace_method/exp%28sinx_x%29.png" width="60%" height="50%" />
+</div>
+<p>考虑多元情形, 假定<span class="math inline">\(x_0\)</span>为f(x)的最大值点, 因此有<span class="math inline">\(\nabla f(x_0)=0\)</span>且Hessian矩阵<span class="math inline">\(H(x_0)负定\)</span>. 将<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处泰勒展开得<span class="math display">\[f(x)\approx f(x_0)+\frac{1}{2!}(x-x_0)^TH(x_0)(x-x_0)\]</span>此时积分近似为<span class="math display">\[\int_a^be^{Mf(x)}dx\approx e^{Mf(x_0)}\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\]</span>假设<span class="math inline">\(x_0\)</span>包含在区间<span class="math inline">\([a,b]\)</span>内, 那么右式可以直接视为在<span class="math inline">\((-\infty,+\infty)\)</span>上的积分, 因为随着<span class="math inline">\(M\)</span>的增大区间之外的积分会越来越小. 而此时右边的积分即为一个对多元正态分布的积分, 且该积分可以通过变量代换<span class="math inline">\(t=H(x_0)^{\frac{1}{2}}(x-x_0)\)</span>化成标准的多元正态分布计算出来:<span class="math display">\[\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\approx \int_{-\infty}^{+\infty} e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx=\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里的<span class="math inline">\(d\)</span>指的是自变量<span class="math inline">\(x\)</span>的维度, <span class="math inline">\(H(x_0)\)</span>指<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处的Hessian矩阵. 因此得到结论:<span class="math display">\[\int_a^be^{Mf(x)}dx\approx  e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>本质上来说, 倘若暂时先不考虑<span class="math inline">\(M\)</span>的大小, 用二阶泰勒展开对<span class="math inline">\(f(x)\)</span>进行近似的方法实际上是把被积函数视为多元正态分布. 一元情形的相关定理描述及证明请移步<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">维基百科</a>, 最后来看一个更一般的结论:<span class="math display">\[\int_a^bh(x)e^{Mf(x)}dx\approx  h(x_0)e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里要求<span class="math inline">\(h(x)&gt;0\)</span>.</p>
+<hr />
+<h2 id="例子">例子</h2>
+<p>例子参考了PRML一书6.4节, 来自高斯过程分类中的预测问题, 目标也是求一个积分<span class="math display">\[P(a_{N+1}\mid t_N)=\int P(a_{N+1}\mid a_N)P(a_N\mid t_N)da_N\]</span>这里的目标变量<span class="math inline">\(t\in\{0, 1\}\)</span>为二分变量; 被积函数第一部分<span class="math inline">\(P(a_{N+1}\mid a_N)\)</span>是个正态分布, 即为高斯过程回归做预测时的核心结论. 本质上来说, 拉普拉斯近似方法把被积函数或者是被积函数的一部分代换成多元正态分布<span class="math inline">\(N(\mu, \Sigma)\)</span>, 这里仅把被积函数的第二部分代换掉. 回想多元正态分布的<a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">密度函数</a>, 因此只要计算<span class="math inline">\(\log P(a_N\mid t_N)\)</span>关于变量<span class="math inline">\(a_N\)</span>的梯度<span class="math inline">\(\nabla\)</span>和Hessian矩阵<span class="math inline">\(\nabla^2\)</span>, 此时<span class="math inline">\(\mu\)</span>即为<span class="math inline">\(\nabla=0\)</span>的解, <span class="math inline">\(\Sigma=-\nabla^2\)</span>. 接着由两个正态分布积分的一些性质(PRML一书2.115), 可以得到目标积分的近似结果仍为一个正态分布. 然后我们可以用它来做预测<span class="math display">\[P(t_{N+1}=1\mid t_N)=\int P(t_{N+1}=1\mid a_{N+1})P(a_{N+1}\mid t_N)da_{N+1}\]</span>具体计算时被积函数的第一部分利用自己本身的性质近似成了正态分布的分布函数(而非密度函数)(PRML一书4.153). <code>p.s.</code>: 高斯过程分类中的参数也可以用拉普拉斯近似方法得到, 这里就不再赘述, 最后建议细细读一读PRML一书6.4节.</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>拉普拉斯方法</tag>
+        <tag>积分近似</tag>
       </tags>
   </entry>
   <entry>
@@ -2092,167 +2279,6 @@ cov(v_2,v_1)&amp;=cov(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_2,\
       </tags>
   </entry>
   <entry>
-    <title>变分贝叶斯方法</title>
-    <url>/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>前言:本文主要是关于变分贝叶斯方法, 这是一类用简单分布去逼近目标分布的方法, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3. <span id="more"></span></p>
-<hr />
-<p>本文主要是关于变分推断, 或者说<a href="https://en.wikipedia.org/wiki/Variational_Bayesian_methods">变分贝叶斯方法</a>, 它是一类用来计算难以计算积分的方法. 本文的定位是对EM算法的有益补充, 因此会结合EM算法去讲一讲什么是变分推断及平均场近似, 并得到EM算法的三种变体.</p>
-<p>关于EM算法可以参见我的另一篇博文<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>, 简单的说,EM算法是专门处理隐变量模型的算法. 下文我们会以隐狄利克雷分配模型(Latent Dirichlet Allocation: LDA)为例来说明本文的主角, 当然这是一个隐变量模型.</p>
-<hr />
-<h2 id="隐变量模型">隐变量模型</h2>
-<p><a href="https://en.wikipedia.org/wiki/Latent_variable_model">隐变量模型</a>, 隐变量模型含有未观测到值的变量, 且该隐变量解释了观测到的变量之间的相关性(<a href="https://en.wikipedia.org/wiki/Local_independence">局部独立性</a>), 简言之引进的隐变量不能没有用, 举个例子来说明这个性质(来自维基百科):</p>
-<table>
-<thead>
-<tr class="header">
-<th>本科生</th>
-<th>读过机器学习</th>
-<th>没读过机器学习</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>读过凸优化</strong></td>
-<td>260</td>
-<td>140</td>
-</tr>
-<tr class="even">
-<td><strong>没读过凸优化</strong></td>
-<td>240</td>
-<td>360</td>
-</tr>
-</tbody>
-</table>
-<p>容易看到读过机器学习的概率是<span class="math inline">\(\frac{500}{1000}=0.5\)</span>, 读过凸优化的概率是<span class="math inline">\(\frac{400}{1000}=0.4\)</span>, 但是两者都读过的概率是<span class="math inline">\(\frac{260}{1000}=0.26\)</span>, 不等于<span class="math inline">\(\frac{500}{1000}\times\frac{400}{1000}=0.2\)</span>, 因此并不独立. 若我们引进变量本科高年级生和本科低年级生:</p>
-<table>
-<thead>
-<tr class="header">
-<th>高年级/低年级</th>
-<th>读过机器学习</th>
-<th>没读过机器学习</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>读过凸优化</strong></td>
-<td>240/20</td>
-<td>60/80</td>
-</tr>
-<tr class="even">
-<td><strong>没读过凸优化</strong></td>
-<td>160/80</td>
-<td>40/320</td>
-</tr>
-</tbody>
-</table>
-<p>就会发现, 对高年级生<span class="math inline">\(\frac{400}{500}\times\frac{300}{500}=\frac{240}{500}\)</span>; 对低年级生<span class="math inline">\(\frac{100}{500}\times\frac{100}{500}=\frac{20}{500}\)</span>, 此时相关性已经被隐变量解释掉了.</p>
-<hr />
-<h2 id="隐狄利克雷分配模型">隐狄利克雷分配模型</h2>
-<p>下面举个隐变量模型的例子, 隐狄利克雷分配模型. 假如我读过东野圭吾的新参者, 我希望推荐系统能把白夜行也推荐给我. 这里直接给出模型的完整形式, 具体怎么来的请见博文<a href="https://msgsxj.cn/2018/10/16/Latent-Dirichlet-Allocation/">Latent Dirichlet Allocation</a>的第一节. <span class="math display">\[P(W, Z, \Theta\mid \varphi, \alpha)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>其中:</p>
-<ul>
-<li><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>, <span class="math inline">\(T\)</span>给定.</li>
-<li><span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
-<li><span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{w_{dn}z_{dn}}\)</span>, 给定词汇表<span class="math inline">\(w_{set}\)</span>, <span class="math inline">\(w_{dn}\in\{1,2,...,\left|w_{set}\right|\}\)</span>.</li>
-</ul>
-<p>大小字母表示小写字母的总和, 参数仍简记为小写字母, 总结如下:</p>
-<ul>
-<li>未知:<span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>未知参数.</li>
-<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
-<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
-</ul>
-<hr />
-<h2 id="变分贝叶斯方法">变分贝叶斯方法</h2>
-<h3 id="em算法">EM算法</h3>
-<p>下面尝试用4种方法来解决这个模型, 首先从我们最熟悉的EM算法开始(不熟悉的话可以参见我的另一篇博文<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>): EM算法的目标是极大化对数似然函数<span class="math inline">\(\log P(W\mid\varphi, \alpha)\)</span>, 且每一步迭代又给出隐变量<span class="math inline">\(Z, \Theta\)</span>的概率分布以及<span class="math inline">\(\varphi, \alpha\)</span>的点估计. 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:</p>
-<ul>
-<li>E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>.</li>
-<li>M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
-</ul>
-<p><strong>p.s.</strong> EM算法的迭代过程没有涉及参数<span class="math inline">\(\varphi, \alpha\)</span>分布, 且没有引进先验分布, 因而仍然算是频率学派的方法, 下面来看一种明显是属于贝叶斯学派的方法:变分推断</p>
-<h3 id="变分推断">变分推断</h3>
-<p>根据贝叶斯思想, 我们将参数<span class="math inline">\(\varphi, \alpha\)</span>视为随机变量, 因此必须给出参数<span class="math inline">\(\varphi, \alpha\)</span>的先验假设<span class="math inline">\(P(\varphi), P(\alpha)\)</span>, 如果能直接算出隐变量及未知参数<span class="math inline">\(Z, \Theta, \varphi, \alpha\)</span>的概率分布<span class="math inline">\(P(Z, \Theta, \varphi, \alpha\mid W)\)</span>, 那么就能很方便的得到想要的参数值(比如说通过极大后验分布MAP). 事实上, 我们已经有了<span class="math inline">\(P(W, Z, \Theta\mid \varphi, \alpha)\)</span>, 根据贝叶斯公式:<span class="math display">\[P(Z, \Theta, \varphi, \alpha\mid W)=\frac{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}{P(W)}=\frac{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}{\int_{Z, \Theta, \varphi, \alpha} P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}\]</span>通过分析不难发现, 如果给出的参数<span class="math inline">\(\varphi, \alpha\)</span>的先验恰为共轭先验, 那么上式就非常好求, 否则就不可避免的要计算<span class="math inline">\(P(W)\)</span>, 而这事实上相当难处理.</p>
-<p>变分推断则是试图绕过求<span class="math inline">\(P(W)\)</span>, 去找一个对<span class="math inline">\(P(Z, \Theta, \varphi, \alpha\mid W)\)</span>的良好逼近<span class="math inline">\(q(Z, \Theta, \varphi, \alpha)\)</span>, 其中<span class="math inline">\(q(Z, \Theta, \varphi, \alpha)\)</span>会来自一个简单得多的分布族, 比如<span class="math inline">\(Q=N(\mu, \Sigma)\)</span>, 其中<span class="math inline">\(\Sigma\)</span>为对角阵; 而逼近的方法一般则是最小化<span class="math inline">\(\mathcal{KL}\)</span>散度:<span class="math display">\[q=\arg\min_{q\in Q}\mathcal{KL}(q(Z, \Theta, \varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W))\]</span>关于<span class="math inline">\(\mathcal{KL}\)</span>散度的定义见<a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">维基百科</a>, 这里简单理解为衡量两个分布的距离就好. 下式告诉我们, 变分推断确实可以绕开<span class="math inline">\(P(W)\)</span>, 下面把<span class="math inline">\(q(Z, \Theta, \varphi, \alpha)\)</span>简记为<span class="math inline">\(q\)</span>: <span class="math display">\[\begin{aligned} \mathcal{KL}(q\Vert P(Z, \Theta, \varphi, \alpha\mid W)) &amp; =  \mathcal{KL}(q\Vert \frac{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}{P(W)}) \\\
-&amp; =\int  q\log \frac{q}{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)/P(W)} dZd \Theta d\varphi d\alpha\\\
-&amp; = \int \left( q\log \frac{q}{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}dZd \Theta  +  q\log P(W) \right)dZd \Theta d\varphi d\alpha\\\
-&amp; =  \mathcal{KL}(q\Vert P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha))+\log P(W) \end{aligned}\]</span>其中第一个等号为简单带入, 第二个等号由<span class="math inline">\(\mathcal{KL}\)</span>散度的定义, 第三个等号为简单化简, 第四个等号由<span class="math inline">\(\mathcal{KL}\)</span>散度定义. 容易看到, 最后一个等式的后一项<span class="math inline">\(\log P(W)\)</span>与<span class="math inline">\(q\)</span>无关, 因而成功绕开了<span class="math inline">\(P(W)\)</span>, 这便是变分推断.</p>
-<p><strong>p.s.</strong> 变分推断需要给出参数的先验分布和分布族<span class="math inline">\(Q\)</span>. 如果<span class="math inline">\(Q\)</span>足够大, 则有<span class="math display">\[q(Z, \Theta, \varphi, \alpha)=P(Z, \Theta, \varphi, \alpha\mid W)\]</span>并没有简化计算. 所以这个分布族<span class="math inline">\(Q\)</span>的选取也是一件麻烦的事情, 既要考虑<span class="math inline">\(Z, \Theta\)</span>实际上是有关的, 又要考虑参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>是无关的. 一个合理的想法是预先假定<span class="math inline">\(\varphi, \alpha\)</span>与<span class="math inline">\(Z, \Theta\)</span>是无关的, 在变分推断的基础上于是有了平均场近似的变分推断:</p>
-<h3 id="平均场近变分推断">平均场近变分推断</h3>
-<p>其想法很简单, 在变分推断<span class="math display">\[q=\arg\min_{q\in Q}\mathcal{KL}(q(Z, \Theta, \varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W))\]</span>的基础上, 预先假定参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>的独立性, 得到 <span class="math display">\[\begin{aligned}q(Z, \Theta)&amp;=\arg\min_{q(Z, \Theta)\in Q_1}\mathcal{KL}(q(Z, \Theta) q(\varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W)) \\\
-q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \Theta)q(\varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W))\end{aligned}\]</span>这样计算上有了一定程度的减小, 当然准确度也有可能有一定的损失, 但其实际上不失为一个好的假设. 下面来看平均长近似后的形式, 为了表述方便, 记<span class="math inline">\(q(Z, \Theta)=q_1\)</span>, <span class="math inline">\(q(\varphi, \alpha)=q_2\)</span>, <span class="math inline">\(P(Z, \Theta, \varphi, \alpha\mid W)=\hat{P}\)</span>, <span class="math inline">\(dZd \Theta d\varphi d\alpha=d\hat{Z}\)</span>, 目标则简化为<span class="math display">\[q_i=\arg\min_{q_i\in Q_i}\mathcal{KL}(\prod_{i=1}^2 q_i\Vert \hat{P})\]</span>下面来看, 目标是对<span class="math inline">\(q_k\in Q_k\)</span>求最小值点, <span class="math inline">\(k=1, 2\)</span>: <span class="math display">\[\begin{aligned} \mathcal{KL}(\prod_{i=1}^2 q_i\Vert \hat{P}) &amp; =  \int  \prod_{j=1}^2 q_j\log \frac{\prod_{i=1}^2 q_i}{\hat{P}} d\hat{Z} \\\
-&amp; =\sum_{i=1}^2\int   \prod_{j=1}^2q_j\log q_i d\hat{Z}-\int   \prod_{j=1}^2q_j\log \hat{P}d\hat{Z}\\\
-&amp; = \int   \prod_{j=1}^2q_j\log q_k d\hat{Z}+\sum_{i\neq k}^2\int   \prod_{j=1}^2q_j\log q_i d\hat{Z}-\int   \prod_{j=1}^2q_j\log \hat{P} d\hat{Z} \\\
-&amp;=\int   q_k\log q_k d\hat{Z}_k+\sum_{i\neq k}^2\int   \prod_{j\neq k}^2q_j\log q_i d\hat{Z}_{-k}-\int   \prod_{j=1}^2q_j\log \hat{P} d\hat{Z} \\\
-&amp;= \int   q_k\log q_k d\hat{Z}_k-\int q_k\left[\int   \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}\right]d\hat{Z}_k + C\\\
-&amp;=\int   q_k\left[\log q_k -\int   \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}\right]d\hat{Z}_k + C \end{aligned}\]</span>这里的<span class="math inline">\(d\hat{Z}\)</span>为<span class="math inline">\(dZd \Theta d\varphi d\alpha\)</span>, <span class="math inline">\(d\hat{Z}_k\)</span>为对<span class="math inline">\(q_k\)</span>的变量积分, 比方说<span class="math inline">\(k=1\)</span>, 即为<span class="math inline">\(dZ d\Theta\)</span>, <span class="math inline">\(d\hat{Z}_{-k}\)</span>为对除<span class="math inline">\(q_k\)</span>的之外的变量积分.</p>
-<p>稍作解释:第一个等号由<span class="math inline">\(\mathcal{KL}\)</span>散度的定义; 第二个等号为简单化简; 第三个等号为将第一项拆成<span class="math inline">\(i=k\)</span>和<span class="math inline">\(i\neq k\)</span>两项; 第四个等号为对第一第二项中能积分的先积掉; 第五个等号为将第三项对<span class="math inline">\(q_k\)</span>的积分拎到最前面, 且此时第二项与<span class="math inline">\(q_k\)</span>无关, 视为常数<span class="math inline">\(C\)</span>; 第六个等号即为简单合并.</p>
-<p>下面继续, 把我们把<span class="math inline">\(\int \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}=\mathbb{E}_{q_{-k}}\log \hat{P}\)</span>记作<span class="math inline">\(h(\hat{Z}_k)\)</span>, 再令<span class="math inline">\(t(\hat{Z}_k)=\frac{exp(h(\hat{Z}_k))}{\int exp(h(\hat{Z}_k))d\hat{Z}_k}\)</span>, 除以正则项确保是个概率分布, 上式可继续化为: <span class="math display">\[\begin{aligned} \mathcal{KL}(\prod_{i=1}^2 q_i\Vert \hat{P}) &amp; =  \int   q_k\left[\log q_k -\int   \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}\right]d\hat{Z}_k + C\\\
-&amp; =  \int   q_k\left[\log q_k d\hat{Z}_k-h(\hat{Z}_k)\right]d\hat{Z}_k + C\\\
-&amp;=\int   q_k\log \frac{q_k}{t} d\hat{Z}_k + C \end{aligned}\]</span>注意到第一项即为KL散度, 那么此时关于<span class="math inline">\(q_k\)</span>取极小只需令<span class="math inline">\(q_k=t=\frac{exp(h(\hat{Z}_k))}{\int exp(h(\hat{Z}_k))d\hat{Z}_k}\)</span>, 其中<span class="math inline">\(h(\hat{Z}_k)=\mathbb{E}_{q_{-k}}\log \hat{P}\)</span>再取对数得到<span class="math display">\[\log q_k=\mathbb{E}_{q_{-k}}\log \hat{P}+C\]</span>其中<span class="math inline">\(\hat{P}=P(Z, \Theta, \varphi, \alpha\mid W)\)</span>在LDA模型这个例子中, 上述结果化为: <span class="math display">\[\begin{aligned}\log q(Z, \Theta)&amp;=\mathbb{E}_{q(\varphi, \alpha)}\log P(Z, \Theta, \varphi, \alpha\mid W)+C_1  \\\
-\log q(\varphi, \alpha)&amp;=\mathbb{E}_{q(Z, \Theta)}\log P(Z, \Theta, \varphi, \alpha\mid W)+C_2\end{aligned}\]</span></p>
-<p><strong>p.s.</strong> 相比变分推断, 这个平均场近似的变分推断实际是将参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>进行了分开处理, 降低了模型复杂度, 同时明显也降低了计算的维度, 但由于对参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>的独立性假设非常合理, 所以也不会有太多精度上的损失, 甚至会使得模型更稳健. 另外顺便得到了一个非常有用的式子, 这个式子能在<a href="https://en.wikipedia.org/wiki/Variational_Bayesian_methods">变分贝叶斯方法</a> 的维基百科的Mean field approximation一节找到, 只是没有上述的推导过程.</p>
-<p>EM算法也是将参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>进行了分开处理, 并且对隐变量<span class="math inline">\(Z, \Theta\)</span>同样是通过对<span class="math inline">\(\mathcal{KL}\)</span>散度最小化求得分布, 而EM算法对未知参数则是直接采用了点估计的方法而不是变分推断. 因此相比平均场近似的变分推断, EM算法进一步降低了计算复杂度, , 我想这大概就是EM算法流行的理由之一.</p>
-<h3 id="平均场em算法">平均场EM算法</h3>
-<p>平均场EM算法实际上是在EM算法基础上进一步对隐变量<span class="math inline">\(Z, \Theta\)</span>进行了独立性假设. 下面分两步在EM算法的基础上推导出平均场EM算法:</p>
-<ol type="1">
-<li>EM算法: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:
-<ul>
-<li>E步: <span class="math inline">\(q^{k+1}(Z, \Theta)=\arg\min_{q(Z, \Theta)\in Q_1}\mathcal{KL}(q(Z, \Theta)\Vert P(Z, \Theta\mid W, \varphi, \alpha))\)</span>.</li>
-<li>M步: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
-</ul></li>
-<li>假定<span class="math inline">\(q(Z, \Theta)=q(Z)q(\Theta)\)</span>, 由平均场近似得到的公式, 得到平均场EM算法: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:
-<ul>
-<li>E步:<span class="math inline">\(\begin{aligned}\log q^{k+1}(Z)&amp;=\mathbb{E}_{q(\Theta)}\log P(Z, \Theta\mid \varphi^k, \alpha^k, W)+C_1 \\\
-\log q^{k+1}(\Theta)&amp;=\mathbb{E}_{q(Z)}\log P(Z, \Theta\mid \varphi^k, \alpha^k, W)+C_2\end{aligned}\)</span></li>
-<li>M步: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}(Z, \Theta)}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span></li>
-</ul></li>
-</ol>
-<p><strong>p.s.</strong> 平均场EM算法比EM算法多了一个隐变量之间独立的假设, 但一般隐变量之间应该不独立, 比方说这个LDA模型中<span class="math inline">\(Z\)</span>代表每篇文档每个单词的主题分布, <span class="math inline">\(\Theta\)</span>代表每篇文档的主题分布, 两者应该不独立, 所以平均场EM算法不适合这个例子. 另外相比EM算法, 平均场EM算法因为多了一个独立性假设, 模型应该会变得简单一些, 但精度有可能会有些损失.</p>
-<h3 id="总结">总结</h3>
-<p>最后用一张表格总结上述4中算法:</p>
-<table>
-<thead>
-<tr class="header">
-<th>算法</th>
-<th>模型复杂度</th>
-<th>需要的计算资源</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>变分推断</strong></td>
-<td>4</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td><strong>平均场变分推断</strong></td>
-<td>3</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td><strong>EM算法</strong></td>
-<td>2</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td><strong>平均场EM算法</strong></td>
-<td>1</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<p>EM算法作为其中比较折中的选择, 兼顾了模型复杂度与计算资源.</p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>LDA模型</tag>
-        <tag>变分贝叶斯</tag>
-        <tag>变分推断</tag>
-        <tag>平均场近似</tag>
-        <tag>KL散度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>拉德马赫复杂度</title>
     <url>/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/</url>
     <content><![CDATA[<p>前言: 本文主要讲了拉德马赫复杂度(<a href="https://en.wikipedia.org/wiki/Rademacher_complexity">Rademacher complexity</a>), 主要参考了Understanding machine learning一书26章.</p>
@@ -2321,32 +2347,6 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
       </categories>
       <tags>
         <tag>拉德马赫复杂度</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>拉普拉斯方法</title>
-    <url>/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>前言: 本文主要是关于拉普拉斯近似方法, 这是一种用来近似计算积分的方法, 主要参考了维基百科及PRML一书6.4节. <span id="more"></span></p>
-<hr />
-<h2 id="拉普拉斯近似方法">拉普拉斯近似方法</h2>
-拉普拉斯近似方法(<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">Laplace's method</a>)是一种近似计算积分的方法, 目标积分形如<span class="math display">\[\int_a^be^{Mf(x)}dx\]</span>其中<span class="math inline">\(f(x)\)</span>要求是二次可微的, <span class="math inline">\(M\)</span>要求是一个较大的数. 其想法是假定<span class="math inline">\(x_0\)</span>是<span class="math inline">\(f(x)\)</span>唯一的最大值点, 因此<span class="math inline">\(f(x_0)&gt;f(x)\)</span>, 乘上一个较大的M, 在经过指数函数的作用, 其差值事实上会变得很大, 不难想象随着<span class="math inline">\(M\)</span>的增大积分内的函数会越来越像一个单峰函数, 事实上确实会逼近对一个正态分布进行积分的值. 举个例子<span class="math inline">\(f(x)=sinx/x\)</span>, 分别画出<span class="math inline">\(e^{sinx/x}\)</span>和<span class="math inline">\(e^{3sinx/x}\)</span>的函数图像:
-<div data-align="center">
-<img src="/pictures/laplace_method/exp%283sinx_x%29.png" width="60%" height="50%" />
-</div>
-<div data-align="center">
-<img src="/pictures/laplace_method/exp%28sinx_x%29.png" width="60%" height="50%" />
-</div>
-<p>考虑多元情形, 假定<span class="math inline">\(x_0\)</span>为f(x)的最大值点, 因此有<span class="math inline">\(\nabla f(x_0)=0\)</span>且Hessian矩阵<span class="math inline">\(H(x_0)负定\)</span>. 将<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处泰勒展开得<span class="math display">\[f(x)\approx f(x_0)+\frac{1}{2!}(x-x_0)^TH(x_0)(x-x_0)\]</span>此时积分近似为<span class="math display">\[\int_a^be^{Mf(x)}dx\approx e^{Mf(x_0)}\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\]</span>假设<span class="math inline">\(x_0\)</span>包含在区间<span class="math inline">\([a,b]\)</span>内, 那么右式可以直接视为在<span class="math inline">\((-\infty,+\infty)\)</span>上的积分, 因为随着<span class="math inline">\(M\)</span>的增大区间之外的积分会越来越小. 而此时右边的积分即为一个对多元正态分布的积分, 且该积分可以通过变量代换<span class="math inline">\(t=H(x_0)^{\frac{1}{2}}(x-x_0)\)</span>化成标准的多元正态分布计算出来:<span class="math display">\[\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\approx \int_{-\infty}^{+\infty} e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx=\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里的<span class="math inline">\(d\)</span>指的是自变量<span class="math inline">\(x\)</span>的维度, <span class="math inline">\(H(x_0)\)</span>指<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处的Hessian矩阵. 因此得到结论:<span class="math display">\[\int_a^be^{Mf(x)}dx\approx  e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>本质上来说, 倘若暂时先不考虑<span class="math inline">\(M\)</span>的大小, 用二阶泰勒展开对<span class="math inline">\(f(x)\)</span>进行近似的方法实际上是把被积函数视为多元正态分布. 一元情形的相关定理描述及证明请移步<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">维基百科</a>, 最后来看一个更一般的结论:<span class="math display">\[\int_a^bh(x)e^{Mf(x)}dx\approx  h(x_0)e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里要求<span class="math inline">\(h(x)&gt;0\)</span>.</p>
-<hr />
-<h2 id="例子">例子</h2>
-<p>例子参考了PRML一书6.4节, 来自高斯过程分类中的预测问题, 目标也是求一个积分<span class="math display">\[P(a_{N+1}\mid t_N)=\int P(a_{N+1}\mid a_N)P(a_N\mid t_N)da_N\]</span>这里的目标变量<span class="math inline">\(t\in\{0, 1\}\)</span>为二分变量; 被积函数第一部分<span class="math inline">\(P(a_{N+1}\mid a_N)\)</span>是个正态分布, 即为高斯过程回归做预测时的核心结论. 本质上来说, 拉普拉斯近似方法把被积函数或者是被积函数的一部分代换成多元正态分布<span class="math inline">\(N(\mu, \Sigma)\)</span>, 这里仅把被积函数的第二部分代换掉. 回想多元正态分布的<a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">密度函数</a>, 因此只要计算<span class="math inline">\(\log P(a_N\mid t_N)\)</span>关于变量<span class="math inline">\(a_N\)</span>的梯度<span class="math inline">\(\nabla\)</span>和Hessian矩阵<span class="math inline">\(\nabla^2\)</span>, 此时<span class="math inline">\(\mu\)</span>即为<span class="math inline">\(\nabla=0\)</span>的解, <span class="math inline">\(\Sigma=-\nabla^2\)</span>. 接着由两个正态分布积分的一些性质(PRML一书2.115), 可以得到目标积分的近似结果仍为一个正态分布. 然后我们可以用它来做预测<span class="math display">\[P(t_{N+1}=1\mid t_N)=\int P(t_{N+1}=1\mid a_{N+1})P(a_{N+1}\mid t_N)da_{N+1}\]</span>具体计算时被积函数的第一部分利用自己本身的性质近似成了正态分布的分布函数(而非密度函数)(PRML一书4.153). <code>p.s.</code>: 高斯过程分类中的参数也可以用拉普拉斯近似方法得到, 这里就不再赘述, 最后建议细细读一读PRML一书6.4节.</p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>拉普拉斯方法</tag>
-        <tag>积分近似</tag>
       </tags>
   </entry>
   <entry>
@@ -2624,79 +2624,6 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
         <tag>共轭先验</tag>
         <tag>机器学习</tag>
         <tag>线性回归</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>统计学习中的几个概率不等式</title>
-    <url>/2019/10/23/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%A6%82%E7%8E%87%E4%B8%8D%E7%AD%89%E5%BC%8F/</url>
-    <content><![CDATA[<p>前言: 福特的实习总算快结束了, 忙里偷闲写博客. 本文的初衷用简明扼要的语言说一说统计学习理论中的常见的概率不等式, 证明过程略, 只为了方便快速回忆. 主要参考了Shai Shalev-Shwartz的Understanding machine learning一书、<a href="https://murongxixi.github.io/2013/10/26/%E5%87%A0%E4%B8%AA%E6%A6%82%E7%8E%87%E4%B8%8D%E7%AD%89%E5%BC%8F/">这篇博客</a>以及维基百科.</p>
-<span id="more"></span>
-<p>设<span class="math inline">\(Z_i, i=1,...,m\)</span>是一列独立同分布的随机变量序列, 且在本文讨论的范围统计学习理论中, 这里的<span class="math inline">\(Z_i\)</span>可以直接理解为每个样本分类的正确与否, 因此有如下几个事实:</p>
-<ul>
-<li><span class="math inline">\(Z_i\)</span>有界, 且<span class="math inline">\(0\le Z_i\le1\)</span></li>
-<li><span class="math inline">\(\frac{1}{m}\sum_{i=1}^{m}Z_i\)</span>即为大小为<span class="math inline">\(m\)</span>的训练集的分类正确率, 且<span class="math inline">\(0\le \frac{1}{m}\sum_{i=1}^{m}Z_i\le1\)</span></li>
-<li>假定优化过程中训练集的分类错误率不断减小, 因此<span class="math inline">\(1-\frac{1}{m}\sum_{i=1}^{m}Z_i\)</span>为<a href="https://en.wikipedia.org/wiki/Martingale_(probability_theory)">上鞅</a>的假设视为合理.</li>
-</ul>
-<p>上述假设均可直接带入下述不等式去理解.</p>
-<h2 id="moment-based-bound">Moment Based Bound</h2>
-<p>基于矩的界主要是<a href="https://en.wikipedia.org/wiki/Markov%27s_inequality">Markov Inequality</a>和<a href="https://en.wikipedia.org/wiki/Chebyshev%27s_inequality">Chebyshev Inequality</a>.</p>
-<h3 id="markov-inequality">Markov Inequality</h3>
-<blockquote>
-<p>设<span class="math inline">\(Z\)</span>为非负随机变量, <span class="math inline">\(\forall a &gt;0\)</span> <span class="math display">\[\mathbb{P}(Z\ge a)\le\frac{\mathbb{E}(Z)}{a}\]</span></p>
-</blockquote>
-<h3 id="chebyshev-inequality">Chebyshev Inequality</h3>
-<blockquote>
-<p><span class="math inline">\(\forall a &gt;0\)</span> <span class="math display">\[\mathbb{P}(\left|Z-\mathbb{E}(Z)\right|\ge a)\le\frac{Var(Z)}{a^2}\]</span></p>
-</blockquote>
-<h2 id="chernoff-bound">Chernoff Bound</h2>
-<p>Chernoff Bound一般指用指数函数的单调性及Markov Inequality得到的界. 笔者按自己的理解再细分成了两类:</p>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Chernoff_bound#Example">Chernoff Inequality</a>、<a href="https://en.wikipedia.org/wiki/Bennett%27s_inequality">Bennett Inequality</a> and <a href="https://en.wikipedia.org/wiki/Bernstein_inequalities_(probability_theory)">Bernstein Inequality</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Hoeffding%27s_inequality">Hoeffding Inequality</a> 、<a href="https://en.wikipedia.org/wiki/Doob_martingale#McDiarmid&#39;s_inequality">McDiarmid inequality</a> and <a href="https://en.wikipedia.org/wiki/Azuma%27s_inequality">Azuma–Hoeffding inequality</a></li>
-</ul>
-<h3 id="chernoff-inequality">Chernoff Inequality</h3>
-<blockquote>
-<p>设<span class="math inline">\(Z_i \sim B(1,p_i), i=1,...,m\)</span>为独立的伯努利随机变量序列, 那么对于<span class="math inline">\(\forall a &gt;0\)</span> <span class="math display">\[
-\begin{aligned}\mathbb{P}\left(\frac{1}{m}\sum_{i=1}^{m} Z_i&gt;(1+a)\frac{1}{m}\sum_{i=1}^m p_i\right) &amp; \le \exp\left(- \frac{a^2}{2+2a/3}\sum_{i=1}^m p_i\right)\\\
-\mathbb{P}\left(\frac{1}{m}\sum_{i=1}^{m} Z_i&lt;(1-a)\frac{1}{m}\sum_{i=1}^m p_i\right) &amp; \le \exp\left(- \frac{a^2}{2+2a/3}\sum_{i=1}^m p_i\right)\end{aligned}
-\]</span></p>
-</blockquote>
-<h3 id="bennett-inequality">Bennett Inequality</h3>
-<blockquote>
-<p>设<span class="math inline">\(Z_i , i=1,...,m\)</span>为0均值独立随机变量序列, 且几乎处处有<span class="math inline">\(Z_i\le c\)</span>. 那么对于<span class="math inline">\(\forall a &gt;0\)</span>,<span class="math inline">\(\forall \sigma^2\ge\frac{1}{m}\sum_{i=1}^{m}\mathbb{E}\left[Z_i^2\right]\)</span> <span class="math display">\[
-\begin{aligned}\mathbb{P}\left(\frac{1}{m}\sum_{i=1}^{m} Z_i&gt;a \right) &amp; \le \exp\left(- \frac{m\sigma^2}{c^2}h\left(\frac{ac}{\sigma^2}\right)\right)\end{aligned}
-\]</span>其中<span class="math inline">\(h(x)=(1+x)\log(1+x)-x\)</span></p>
-</blockquote>
-<h3 id="bernstein-inequality">Bernstein Inequality</h3>
-<blockquote>
-<p>设<span class="math inline">\(Z_i , i=1,...,m\)</span>为0均值独立随机变量序列, 且几乎处处有<span class="math inline">\(\left\vert Z_i\right\vert\le c\)</span>. 那么对于<span class="math inline">\(\forall a &gt;0\)</span> <span class="math display">\[
-\begin{aligned}\mathbb{P}\left(\frac{1}{m}\sum_{i=1}^{m} Z_i&gt;a \right) &amp; \le \exp\left(- \frac{m^2 a^2}{2\sum_{j=1}^m\mathbb{E}[Z_j^2]+2acm/3}\right)\end{aligned}
-\]</span></p>
-</blockquote>
-<h3 id="hoeffding-inequality">Hoeffding Inequality</h3>
-<blockquote>
-<p>设<span class="math inline">\(Z_i , i=1,...,m\)</span>为独立随机变量序列, 且几乎处处有<span class="math inline">\(l_i\le Z_i\le u_i\)</span>. 那么对于<span class="math inline">\(\forall a &gt;0\)</span> <span class="math display">\[
-\begin{aligned}\mathbb{P}\left(\frac{1}{m}\sum_{i=1}^{m} Z_i - \mathbb{E}\left[\frac{1}{m}\sum_{i=1}^{m} Z_i \right] \ge a\right) &amp; \le\exp\left(- \frac{2m^2a^2}{\sum_{i=1}^m(u_i-l_i)^2}\right)\\\
-\mathbb{P}\left(\frac{1}{m}\sum_{i=1}^{m} Z_i - \mathbb{E}\left[\frac{1}{m}\sum_{i=1}^{m} Z_i \right] \le -a\right) &amp; \le\exp\left(- \frac{2m^2a^2}{\sum_{i=1}^m(u_i-l_i)^2}\right)\end{aligned}
-\]</span></p>
-</blockquote>
-<h3 id="mcdiarmid-inequality">McDiarmid inequality</h3>
-<blockquote>
-<p>设<span class="math inline">\(Z_i , i=1,...,m\)</span>为独立随机变量序列, <span class="math inline">\(f(Z_1,...,Z_m)\)</span>为一映射, 且几乎处处有<span class="math display">\[\sup_{z_1,...,z_i,z_i&#39;,...,z_m}|f(z_1,...,z_i,...,z_m)-f(z_1,...,z_i&#39;,...,z_m)|\le c_i\]</span>成立. 那么对于<span class="math inline">\(\forall a&gt;0\)</span> <span class="math display">\[\begin{aligned}\mathbb{P}\left(f(Z_1,...,Z_m)- \mathbb{E}\left[f(Z_1,...,Z_m) \right] \ge a\right) &amp; \le\exp\left(- \frac{2a^2}{\sum_{i=1}^mc_i^2}\right) \\\       \mathbb{P}\left(f(Z_1,...,Z_m)- \mathbb{E}\left[f(Z_1,...,Z_m) \right] \le -a\right) &amp; \le\exp\left(- \frac{2a^2}{\sum_{i=1}^mc_i^2}\right)\end{aligned}\]</span></p>
-</blockquote>
-<p><code>p.s.</code> 该不等式可视为Hoeffding’s Inequality的推广, <span class="math inline">\(f\)</span>取为均值映射就是Hoeffding’s Inequality.</p>
-<h3 id="azumahoeffding-inequality">Azuma–Hoeffding inequality</h3>
-<blockquote>
-<p>设<span class="math inline">\(Z_i , i=0,1,...,m\)</span>为一个鞅(上鞅), 且几乎处处有<span class="math inline">\(|Z_k-Z_{k-1}|\le c_k\)</span>成立. 那么对于<span class="math inline">\(\forall a&gt;0\)</span> <span class="math display">\[\begin{aligned}\mathbb{P}\left(Z_m-Z_0  \ge a\right) &amp; \le\exp\left(- \frac{a^2}{2\sum_{i=1}^mc_i^2}\right) \\\       \mathbb{P}\left(Z_m-Z_0  \le -a\right) &amp; \le\exp\left(- \frac{a^2}{2\sum_{i=1}^mc_i^2}\right)\end{aligned}\]</span></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>统计学习</tag>
-        <tag>概率论</tag>
-        <tag>不等式</tag>
       </tags>
   </entry>
   <entry>
@@ -3087,6 +3014,79 @@ y[t]=V^T[t]\mathbf{r}[t]
       </tags>
   </entry>
   <entry>
+    <title>统计学习中的几个概率不等式</title>
+    <url>/2019/10/23/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%A6%82%E7%8E%87%E4%B8%8D%E7%AD%89%E5%BC%8F/</url>
+    <content><![CDATA[<p>前言: 福特的实习总算快结束了, 忙里偷闲写博客. 本文的初衷用简明扼要的语言说一说统计学习理论中的常见的概率不等式, 证明过程略, 只为了方便快速回忆. 主要参考了Shai Shalev-Shwartz的Understanding machine learning一书、<a href="https://murongxixi.github.io/2013/10/26/%E5%87%A0%E4%B8%AA%E6%A6%82%E7%8E%87%E4%B8%8D%E7%AD%89%E5%BC%8F/">这篇博客</a>以及维基百科.</p>
+<span id="more"></span>
+<p>设<span class="math inline">\(Z_i, i=1,...,m\)</span>是一列独立同分布的随机变量序列, 且在本文讨论的范围统计学习理论中, 这里的<span class="math inline">\(Z_i\)</span>可以直接理解为每个样本分类的正确与否, 因此有如下几个事实:</p>
+<ul>
+<li><span class="math inline">\(Z_i\)</span>有界, 且<span class="math inline">\(0\le Z_i\le1\)</span></li>
+<li><span class="math inline">\(\frac{1}{m}\sum_{i=1}^{m}Z_i\)</span>即为大小为<span class="math inline">\(m\)</span>的训练集的分类正确率, 且<span class="math inline">\(0\le \frac{1}{m}\sum_{i=1}^{m}Z_i\le1\)</span></li>
+<li>假定优化过程中训练集的分类错误率不断减小, 因此<span class="math inline">\(1-\frac{1}{m}\sum_{i=1}^{m}Z_i\)</span>为<a href="https://en.wikipedia.org/wiki/Martingale_(probability_theory)">上鞅</a>的假设视为合理.</li>
+</ul>
+<p>上述假设均可直接带入下述不等式去理解.</p>
+<h2 id="moment-based-bound">Moment Based Bound</h2>
+<p>基于矩的界主要是<a href="https://en.wikipedia.org/wiki/Markov%27s_inequality">Markov Inequality</a>和<a href="https://en.wikipedia.org/wiki/Chebyshev%27s_inequality">Chebyshev Inequality</a>.</p>
+<h3 id="markov-inequality">Markov Inequality</h3>
+<blockquote>
+<p>设<span class="math inline">\(Z\)</span>为非负随机变量, <span class="math inline">\(\forall a &gt;0\)</span> <span class="math display">\[\mathbb{P}(Z\ge a)\le\frac{\mathbb{E}(Z)}{a}\]</span></p>
+</blockquote>
+<h3 id="chebyshev-inequality">Chebyshev Inequality</h3>
+<blockquote>
+<p><span class="math inline">\(\forall a &gt;0\)</span> <span class="math display">\[\mathbb{P}(\left|Z-\mathbb{E}(Z)\right|\ge a)\le\frac{Var(Z)}{a^2}\]</span></p>
+</blockquote>
+<h2 id="chernoff-bound">Chernoff Bound</h2>
+<p>Chernoff Bound一般指用指数函数的单调性及Markov Inequality得到的界. 笔者按自己的理解再细分成了两类:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Chernoff_bound#Example">Chernoff Inequality</a>、<a href="https://en.wikipedia.org/wiki/Bennett%27s_inequality">Bennett Inequality</a> and <a href="https://en.wikipedia.org/wiki/Bernstein_inequalities_(probability_theory)">Bernstein Inequality</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Hoeffding%27s_inequality">Hoeffding Inequality</a> 、<a href="https://en.wikipedia.org/wiki/Doob_martingale#McDiarmid&#39;s_inequality">McDiarmid inequality</a> and <a href="https://en.wikipedia.org/wiki/Azuma%27s_inequality">Azuma–Hoeffding inequality</a></li>
+</ul>
+<h3 id="chernoff-inequality">Chernoff Inequality</h3>
+<blockquote>
+<p>设<span class="math inline">\(Z_i \sim B(1,p_i), i=1,...,m\)</span>为独立的伯努利随机变量序列, 那么对于<span class="math inline">\(\forall a &gt;0\)</span> <span class="math display">\[
+\begin{aligned}\mathbb{P}\left(\frac{1}{m}\sum_{i=1}^{m} Z_i&gt;(1+a)\frac{1}{m}\sum_{i=1}^m p_i\right) &amp; \le \exp\left(- \frac{a^2}{2+2a/3}\sum_{i=1}^m p_i\right)\\\
+\mathbb{P}\left(\frac{1}{m}\sum_{i=1}^{m} Z_i&lt;(1-a)\frac{1}{m}\sum_{i=1}^m p_i\right) &amp; \le \exp\left(- \frac{a^2}{2+2a/3}\sum_{i=1}^m p_i\right)\end{aligned}
+\]</span></p>
+</blockquote>
+<h3 id="bennett-inequality">Bennett Inequality</h3>
+<blockquote>
+<p>设<span class="math inline">\(Z_i , i=1,...,m\)</span>为0均值独立随机变量序列, 且几乎处处有<span class="math inline">\(Z_i\le c\)</span>. 那么对于<span class="math inline">\(\forall a &gt;0\)</span>,<span class="math inline">\(\forall \sigma^2\ge\frac{1}{m}\sum_{i=1}^{m}\mathbb{E}\left[Z_i^2\right]\)</span> <span class="math display">\[
+\begin{aligned}\mathbb{P}\left(\frac{1}{m}\sum_{i=1}^{m} Z_i&gt;a \right) &amp; \le \exp\left(- \frac{m\sigma^2}{c^2}h\left(\frac{ac}{\sigma^2}\right)\right)\end{aligned}
+\]</span>其中<span class="math inline">\(h(x)=(1+x)\log(1+x)-x\)</span></p>
+</blockquote>
+<h3 id="bernstein-inequality">Bernstein Inequality</h3>
+<blockquote>
+<p>设<span class="math inline">\(Z_i , i=1,...,m\)</span>为0均值独立随机变量序列, 且几乎处处有<span class="math inline">\(\left\vert Z_i\right\vert\le c\)</span>. 那么对于<span class="math inline">\(\forall a &gt;0\)</span> <span class="math display">\[
+\begin{aligned}\mathbb{P}\left(\frac{1}{m}\sum_{i=1}^{m} Z_i&gt;a \right) &amp; \le \exp\left(- \frac{m^2 a^2}{2\sum_{j=1}^m\mathbb{E}[Z_j^2]+2acm/3}\right)\end{aligned}
+\]</span></p>
+</blockquote>
+<h3 id="hoeffding-inequality">Hoeffding Inequality</h3>
+<blockquote>
+<p>设<span class="math inline">\(Z_i , i=1,...,m\)</span>为独立随机变量序列, 且几乎处处有<span class="math inline">\(l_i\le Z_i\le u_i\)</span>. 那么对于<span class="math inline">\(\forall a &gt;0\)</span> <span class="math display">\[
+\begin{aligned}\mathbb{P}\left(\frac{1}{m}\sum_{i=1}^{m} Z_i - \mathbb{E}\left[\frac{1}{m}\sum_{i=1}^{m} Z_i \right] \ge a\right) &amp; \le\exp\left(- \frac{2m^2a^2}{\sum_{i=1}^m(u_i-l_i)^2}\right)\\\
+\mathbb{P}\left(\frac{1}{m}\sum_{i=1}^{m} Z_i - \mathbb{E}\left[\frac{1}{m}\sum_{i=1}^{m} Z_i \right] \le -a\right) &amp; \le\exp\left(- \frac{2m^2a^2}{\sum_{i=1}^m(u_i-l_i)^2}\right)\end{aligned}
+\]</span></p>
+</blockquote>
+<h3 id="mcdiarmid-inequality">McDiarmid inequality</h3>
+<blockquote>
+<p>设<span class="math inline">\(Z_i , i=1,...,m\)</span>为独立随机变量序列, <span class="math inline">\(f(Z_1,...,Z_m)\)</span>为一映射, 且几乎处处有<span class="math display">\[\sup_{z_1,...,z_i,z_i&#39;,...,z_m}|f(z_1,...,z_i,...,z_m)-f(z_1,...,z_i&#39;,...,z_m)|\le c_i\]</span>成立. 那么对于<span class="math inline">\(\forall a&gt;0\)</span> <span class="math display">\[\begin{aligned}\mathbb{P}\left(f(Z_1,...,Z_m)- \mathbb{E}\left[f(Z_1,...,Z_m) \right] \ge a\right) &amp; \le\exp\left(- \frac{2a^2}{\sum_{i=1}^mc_i^2}\right) \\\       \mathbb{P}\left(f(Z_1,...,Z_m)- \mathbb{E}\left[f(Z_1,...,Z_m) \right] \le -a\right) &amp; \le\exp\left(- \frac{2a^2}{\sum_{i=1}^mc_i^2}\right)\end{aligned}\]</span></p>
+</blockquote>
+<p><code>p.s.</code> 该不等式可视为Hoeffding’s Inequality的推广, <span class="math inline">\(f\)</span>取为均值映射就是Hoeffding’s Inequality.</p>
+<h3 id="azumahoeffding-inequality">Azuma–Hoeffding inequality</h3>
+<blockquote>
+<p>设<span class="math inline">\(Z_i , i=0,1,...,m\)</span>为一个鞅(上鞅), 且几乎处处有<span class="math inline">\(|Z_k-Z_{k-1}|\le c_k\)</span>成立. 那么对于<span class="math inline">\(\forall a&gt;0\)</span> <span class="math display">\[\begin{aligned}\mathbb{P}\left(Z_m-Z_0  \ge a\right) &amp; \le\exp\left(- \frac{a^2}{2\sum_{i=1}^mc_i^2}\right) \\\       \mathbb{P}\left(Z_m-Z_0  \le -a\right) &amp; \le\exp\left(- \frac{a^2}{2\sum_{i=1}^mc_i^2}\right)\end{aligned}\]</span></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>统计学习</tag>
+        <tag>概率论</tag>
+        <tag>不等式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>自然梯度</title>
     <url>/2019/07/06/%E8%87%AA%E7%84%B6%E6%A2%AF%E5%BA%A6/</url>
     <content><![CDATA[<p>前言: 本文介绍自然梯度算法, 这种方法考虑到许多问题的参数空间具有某种结构, 因此考虑放在非欧式空间中优化(但实际优化计算过程仍然在欧式空间), 有兴趣的同学可以读一读原论文<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient</a>. <span id="more"></span></p>
@@ -3146,6 +3146,295 @@ y[t]=V^T[t]\mathbf{r}[t]
         <tag>欧式空间</tag>
         <tag>Fisher信息</tag>
         <tag>自然梯度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>统计学习的基本定理</title>
+    <url>/2017/08/13/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/</url>
+    <content><![CDATA[<p>本文主要参考了Shai Shalev-Shwartz的深入理解机器学习第2-7章以及coursera上林轩田的机器学习基石课程,这部分内容较为详细的描述了机器学习的理论部分,主要包括以下三部分内容:</p>
+<ol type="1">
+<li>统计学习理论的基本定理,涉及:一致收敛性、PAC学习理论、VC维及没有免费的午餐定理.</li>
+<li>三个可学习的概念:PAC可学习、不一致可学习及一致性(Consistency).</li>
+<li>三种学习范式:经验风险最小化(ERM)、结构风险最小化(SRM)及最小描述长度(MDL).</li>
+</ol>
+<p>最后要强调的是这块理论是针对监督学习中的二分类问题而言的,对于多分类问题,可将VC维拓展为<a href="https://link.springer.com/content/pdf/10.1007%2FBF00114804.pdf">Natarajan维</a>.</p>
+<span id="more"></span>
+<h1 id="统计学习理论的基本定理">统计学习理论的基本定理</h1>
+<p>在给出最核心的定理之前, 应当接触以下几个概念:</p>
+<ul>
+<li>样本空间: 对于监督学习而言为带标签的样本<span class="math inline">\((x,y)\)</span>的取值空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>, 学习的目标是映射<span class="math inline">\(f: \mathcal{X}\to\mathcal{Y}\)</span>, 以用于产生对新样本<span class="math inline">\(x_{new}\)</span>的标签的可靠预测<span class="math inline">\(f(x_{new})\)</span>. <code>p.s.</code>对无监督学习而言为不带标签的样本<span class="math inline">\(x\)</span>的取值空间<span class="math inline">\(\mathcal{X}\)</span>, 学习目标为对<span class="math inline">\(\mathcal{X}\)</span>的可靠分类.</li>
+<li>目标函数: 通常记为<span class="math inline">\(f\)</span>, 即上述监督学习中所说的映射<span class="math inline">\(f\)</span>. 对于分类问题就是我们希望得到的真实的分类函数.</li>
+<li>训练集: 通常记为<span class="math inline">\(S\)</span>, 由定义在样本空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>上的概率分布<span class="math inline">\(\mathcal{D}\)</span>抽样得到 <span class="math display">\[S=\{(x_{1},y_{1}),....,(x_{m},y_{m})\}\]</span></li>
+<li>学习算法: 通常记为<span class="math inline">\(A\)</span>, 即我们构建的、能从数据中学到东西的学习算法, 期望其能从假设类中返回良好的假设.</li>
+<li>假设类: 通常记为<span class="math inline">\(\mathcal{H}\)</span>, 对目标函数<span class="math inline">\(f\)</span>的假设构成的空间, 学习器从中选择.</li>
+<li>预测器(predictor): 或者说分类器(classifier)、假设(hypothesis), 通常记为<span class="math inline">\(h\)</span>, 即学习器输出的一个函数:<span class="math inline">\(h:\mathcal{X}\to\mathcal{Y}\)</span>, 且应当和目标函数<span class="math inline">\(f\)</span>有相近的函数值.</li>
+<li>损失函数: 通常记为<span class="math inline">\(l(h, (x, y))\)</span>, 其定义在预测器<span class="math inline">\(h\)</span>和单个样本<span class="math inline">\((x, y)\)</span>上. 对于二分类问题, 一个常用的损失函数为<span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>, 即分对了就为0, 分错了就为1.</li>
+<li>训练误差: 通常记为<span class="math inline">\(L_{S}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在训练集<span class="math inline">\(S\)</span>上的平均损失<span class="math display">\[L_{S}(h)=\frac{1}{m}\sum_{i=1}^m l(h, (x_i, y_i))\]</span></li>
+<li>泛化误差: 通常记为<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在<span class="math inline">\((\mathcal{X}, \mathcal{Y})\)</span>上的平均损失<span class="math display">\[\mathbb{E}_{(x, y)\sim (\mathcal{X}, \mathcal{Y})}l(h, (x, y))\]</span></li>
+</ul>
+<p>这里给出的概念及记号借鉴了深入理解机器学习一书中的写法. 下面的内容适合有一定基础的同学阅读, 这里给出最核心的定理:</p>
+<blockquote>
+<p>令<span class="math inline">\(\mathcal{H}\)</span>是一个由<span class="math inline">\(\mathcal{X}\to\{0,1\}\)</span>的映射函数构成的假设空间, 且令损失函数为0-1损失. 那么,下述陈述等价:</p>
+<ol type="1">
+<li><span class="math inline">\(\mathcal{H}\)</span>有一致收敛性.</li>
+<li>任何ERM规则都是对于<span class="math inline">\(\mathcal{H}\)</span>成功的不可知PAC学习器.</li>
+<li><span class="math inline">\(\mathcal{H}\)</span>是不可知PAC可学习的.</li>
+<li><span class="math inline">\(\mathcal{H}\)</span>是PAC可学习的.</li>
+<li>任何ERM规则都是对于<span class="math inline">\(\mathcal{H}\)</span>成功的PAC学习器.</li>
+<li><span class="math inline">\(\mathcal{H}\)</span>的VC维有限.</li>
+</ol>
+</blockquote>
+<p>下面我会一一解释上述出现的名词并证明该定理, 证明分两块</p>
+<ul>
+<li>1推2推3推4推6推1</li>
+<li>1推2推5推6推1</li>
+</ul>
+<p>其中6推1为难点.</p>
+<h2 id="一致收敛性">一致收敛性</h2>
+<h3 id="varepsilon-代表性样本"><span class="math inline">\(\varepsilon\)</span>-代表性样本</h3>
+<p><span class="math inline">\(\varepsilon\)</span>-代表性样本(<span class="math inline">\(\varepsilon\)</span>-representative sample):</p>
+<blockquote>
+<p>如果满足下列不等式:<span class="math inline">\(\forall h \in\mathcal{H},|L_{S}(h)-L_{\mathcal{D}}(h)|\le\varepsilon\)</span>,训练集<span class="math inline">\(S\)</span>就称作<span class="math inline">\(\varepsilon\)</span>-代表性样本.</p>
+</blockquote>
+<p>泛化误差<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>为<span class="math inline">\(h\)</span>在概率分布<span class="math inline">\(\mathcal{D}\)</span>上的表现, 定义为<span class="math display">\[L_{\mathcal{D}}(h)=\mathbb{P}_{(x,y)\in \mathcal{D}}[h(x)\neq y]\]</span>它是能反应假设<span class="math inline">\(h\)</span>的性能的最真实的误差. 但一般情况下, 我们无法知道<span class="math inline">\(\mathcal{D}\)</span>和<span class="math inline">\(f\)</span>是什么样子的, 所以无法直接获知真实的误差. 一种思路是转而去关心训练误差和泛化误差界:</p>
+<ul>
+<li>训练误差<span class="math inline">\(L_{S}(h)\)</span>为<span class="math inline">\(h\)</span>在训练样本<span class="math inline">\(S\)</span>上的表现, 定义为<span class="math display">\[L_{S}(h)=\frac{1}{|S|}\sum_{(x,y)\in S}I\{h(x)\neq y\}\]</span>由于这里的<span class="math inline">\(S\)</span>已知, 因此能够计算得到训练误差.</li>
+<li>泛化误差界定义为<span class="math display">\[\sup_{h\in\mathcal{H}}|L_{S}(h)-L_{\mathcal{D}}(h)|\]</span>一般来说, 有关泛化误差界的一些结果如<a href="https://msgsxj.cn/2018/06/14/VC-bound/">VC界</a>等总是在以<span class="math inline">\(1-\delta\)</span>概率成立的意义下, 显然这个界会与假设类<span class="math inline">\(\mathcal{H}\)</span>的选择有关.</li>
+</ul>
+<p>控制好了这两个量, 就可以认为泛化误差也被控制住了.</p>
+<p><code>p.s.</code> <span class="math inline">\(S\)</span>是<span class="math inline">\(\varepsilon\)</span>-代表性样本即说明哪怕<span class="math inline">\(h\)</span>是闭着眼睛瞎选的, 它在<span class="math inline">\(\mathcal{D}\)</span>和<span class="math inline">\(S\)</span>上的表现都会差不多, 这说明此时训练集<span class="math inline">\(S\)</span>是足以去代表<span class="math inline">\(\mathcal{D}\)</span>的.</p>
+<h3 id="一致收敛性-1">一致收敛性</h3>
+<p>一致收敛性(Uniform Convergence, UC)这一概念从学习成功所需训练集大小的角度刻画了假设类的复杂度:</p>
+<blockquote>
+<p>称假设类<span class="math inline">\(\mathcal{H}\)</span>具有一致收敛性, 若存在一个函数<span class="math display">\[m^{UC}_{\mathcal{H}}:(0,1)\times (0,1)\to\mathbb{N}\]</span> 使得对于<span class="math inline">\(\forall\varepsilon,\delta\in(0,1)\)</span>、<span class="math inline">\(Z\)</span>上的任一概率分布<span class="math inline">\(\mathcal{D}\)</span>、从<span class="math inline">\(\mathcal{D}\)</span>独立抽样得到的大小为<span class="math inline">\(m\)</span>的训练集<span class="math inline">\(S\)</span>, 只要<span class="math inline">\(m\ge m^{UC}_{\mathcal{H}}(\varepsilon,\delta)\)</span>, 就有至少在概率<span class="math inline">\(1-\delta\)</span>下, <span class="math inline">\(S\)</span>是<span class="math inline">\(\varepsilon\)</span>-代表性的.</p>
+</blockquote>
+<p>这里的一致指的是对假设类<span class="math inline">\(\mathcal{H}\)</span>中的假设<span class="math inline">\(h\)</span>和<span class="math inline">\(Z\)</span>上任意概率分布<span class="math inline">\(\mathcal{D}\)</span>的一致性, 满足一致收敛的类也叫做Glivenko-Cantelli类.</p>
+<p><code>p.s.</code> <span class="math inline">\(\varepsilon\)</span>-代表性可以理解为训练集足够好, 好到泛化误差界<span class="math display">\[\sup_{h\in\mathcal{H}}|L_{S}(h)-L_{\mathcal{D}}(h)|\]</span>能被<span class="math inline">\(\varepsilon\)</span>控制住. 若假设类<span class="math inline">\(\mathcal{H}\)</span>具有一致收敛性, 那么不管是什么样的要求, 只要训练集的样本数<span class="math inline">\(m\)</span>足够大且是独立抽样得到, 那我就能在一定概率下保证泛化误差能被<span class="math inline">\(\varepsilon\)</span>控制住. 假想这么一种情况, 假设类<span class="math inline">\(\mathcal{H}\)</span>足够复杂, 因此对于任意的<span class="math inline">\(S\)</span>, 遍历<span class="math inline">\(h\in\mathcal{H}\)</span>就能让<span class="math inline">\(L_{S}(h)\)</span>遍历<span class="math inline">\([0,1]\)</span>, 继而我总能找到一个<span class="math inline">\(h\)</span>, 使得<span class="math display">\[|L_{S}(h)-L_{\mathcal{D}}(h)|&gt;\varepsilon\]</span>事实上, 一致收敛性中对<span class="math inline">\(h\in\mathcal{H}\)</span>的一致性的要求本质上要求了假设类<span class="math inline">\(\mathcal{H}\)</span>不能过于复杂.</p>
+<h3 id="经验风险最小化erm">经验风险最小化(ERM)</h3>
+<p>经验风险最小化(ERM:Empirical Risk Minimization):</p>
+<blockquote>
+<p>对于学习器来说, 训练样本是真实世界的一个缩影, 一种很自然的想法就是通过最小化训练误差<span class="math inline">\(L_{S}(h)\)</span>来寻找<span class="math inline">\(h\)</span>, 这种最小化<span class="math inline">\(L_{S}(h)\)</span>的学习范式称为是经验风险最小化.</p>
+</blockquote>
+<p><code>p.s.</code> 按照同时控制训练误差和泛化误差界这两个量的思路, 我们只需要设计好算法来最小化训练误差, 同时恰当选择假设类以控制好泛化误差界, 就能控制住泛化误差, 即所谓的学习成功.</p>
+<h2 id="pac可学习">PAC可学习</h2>
+<p>PAC(Probably Approximately Correct)可学习的概念主要包括不可知PAC可学习(Agnostic PAC Learnability), PAC可学习(PAC Learnability)及广义损失函数下的不可知PAC可学习(Agnostic PAC Learnability for General Loss Functions)这三个概念.</p>
+<h3 id="不可知pac可学习">不可知PAC可学习</h3>
+<p>不可知PAC可学习(Agnostic PAC Learnability):</p>
+<blockquote>
+<p>称假设类<span class="math inline">\(\mathcal{H}\)</span>是不可知PAC可学习的, 若存在一个函数<span class="math display">\[m_{\mathcal{H}}:(0,1)\times(0,1)\to\mathbb{N}\]</span>和一个学习算法<span class="math inline">\(A\)</span>, 使得对于<span class="math inline">\(\forall\varepsilon,\delta\in(0,1)\)</span>、<span class="math inline">\(Z\)</span>上的任一概率分布<span class="math inline">\(\mathcal{D}\)</span>、从<span class="math inline">\(\mathcal{D}\)</span>独立抽样得到的大小为<span class="math inline">\(m\)</span>的训练集<span class="math inline">\(S\)</span>, 只要<span class="math inline">\(m\ge m_{\mathcal{H}}(\varepsilon, \delta)\)</span>, 算法<span class="math inline">\(A\)</span>通过最小化训练误差<span class="math inline">\(L_{S}(h)\)</span>将以不小于<span class="math inline">\(1-\delta\)</span>的概率返回一个假设类<span class="math inline">\(h\)</span>, 满足<span class="math inline">\(L_{\mathcal{D}}(h)\le \min_{h&#39;\in\mathcal{H}}L_{\mathcal{D}}(h&#39;)+\varepsilon\)</span>.</p>
+</blockquote>
+<p>倘若此时假设类<span class="math inline">\(\mathcal{H}\)</span>只包含贝叶斯最优分类器, 即以概率1满足<span class="math inline">\(L_{\mathcal{D}}(h)\le \min_{h&#39;\in\mathcal{H}}L_{\mathcal{D}}(h&#39;)+\varepsilon\)</span>, 此时我只需将贝叶斯最优分类器的函数值取其对立面(将函数输出结果的01对调), 就能将概率1降为概率0.5. 从这个层面看, 不可知PAC可学习也要求了假设类不能过于复杂.</p>
+<p><code>p.s.</code> 与一致收敛性不同的是, 不可知PAC可学习通过考察<strong>假设类中的最优假设</strong>和<strong>最优秀的算法返回的假设</strong>之间的泛化误差差距来控制假设类的复杂度, 因而需要剔除训练误差优秀、泛化误差垃圾的假设; 而一致收敛性要求假设类中的一致性同样要求将训练误差优秀、泛化误差垃圾的假设剔除.</p>
+<p><code>p.s.</code>回头来看定理的第一第二条. <span class="math inline">\(\mathcal{H}\)</span>有一致收敛性等价于任何ERM规则都是对于<span class="math inline">\(\mathcal{H}\)</span>成功的不可知PAC学习器, 也就是说不可知PAC学习器再加上一个不错的方法(ERM规则), 就能等同于一致收敛性.</p>
+<h3 id="pac可学习-1">PAC可学习</h3>
+<p>PAC可学习(PAC Learnability):</p>
+<blockquote>
+<p>称假设类<span class="math inline">\(\mathcal{H}\)</span>是PAC可学习的, 若存在一个函数<span class="math display">\[m_{\mathcal{H}}:(0,1)\times(0,1)\to\mathbb{N}\]</span>和一个学习算法<span class="math inline">\(A\)</span>, 使得对于<span class="math inline">\(\forall\varepsilon,\delta\in(0,1)\)</span>和在<span class="math inline">\(Z\)</span>上的任一概率分布<span class="math inline">\(\mathcal{D}\)</span>, 任意的<span class="math inline">\(f:\mathcal{X}\to\{0,1\}\)</span>, 如果在<span class="math inline">\(\mathcal{H},\mathcal{D},f\)</span>下满足可实现的假设, 那么当样本数量<span class="math inline">\(m\ge m_{\mathcal{H}}(\varepsilon,\delta)\)</span>时, 其中的样本由分布<span class="math inline">\(\mathcal{D}\)</span>独立同分布采样得到并由<span class="math inline">\(f\)</span>标记, 算法将以不小于<span class="math inline">\(1-\delta\)</span>的概率返回一个假设类<span class="math inline">\(h\)</span>, 使该假设类<span class="math inline">\(h\)</span>满足<span class="math inline">\(L_{\mathcal{D}}(h)\le \varepsilon\)</span>.</p>
+</blockquote>
+<p>不可知PAC可学习实际上是PAC可学习的范化, 这里假定样本的标签由<span class="math inline">\(f(x)\)</span>给出, 这实际上假设了不出现样本相同标签不同的情况. 另外由<span class="math inline">\(L_{\mathcal{D}}(f)=0\)</span>可知, PAC可学习还要求了假设类<span class="math inline">\(\mathcal{H}\)</span>必然包含<span class="math inline">\(f\)</span>.</p>
+<p>如果假设类<span class="math inline">\(\mathcal{H}\)</span>是PAC可学习的, 有很多函数<span class="math inline">\(m_{\mathcal{H}}\)</span>满足PAC可学习的定义给出的条件, 我们定义采样复杂度为满足条件的最小函数, 下面是有限假设类的一个例子:</p>
+<blockquote>
+<p>任意有限假设类是PAC可学习的,其采样复杂度满足:<span class="math inline">\(m_{\mathcal{H}}(\varepsilon,\delta)\le [\frac{log(|\mathcal{H}|)/\delta}{\varepsilon}]\)</span>.</p>
+</blockquote>
+<p>该定理用霍夫丁不等式(<a href="https://en.wikipedia.org/wiki/Hoeffding%27s_inequality">Hoeffding's inequality</a>)可证, 霍夫丁不等式的证明可见链接或是深入理解机器学习一书附录B.4, 该定理的详细证明可见深入理解机器学习一书2.3节.</p>
+<p><code>p.s.</code> 霍夫丁不等式(Hoeffding's inequality):</p>
+<blockquote>
+<p><span class="math inline">\(\theta_{1},...,\theta_{m}\)</span>是一个独立同分布的r.v.序列, 假设对所有的<span class="math inline">\(i\)</span>, <span class="math inline">\(E[\theta_{i}]=\mu\)</span>,且<span class="math inline">\(\mathbb{P}[a\le\theta_{i}\le b]=1\)</span>, 则对于<span class="math inline">\(\forall\varepsilon&gt;0\)</span> <span class="math display">\[\mathbb{P}[|\frac{1}{m}\sum^{m}_{i=1}\theta_{i}-\mu|&gt;\varepsilon]\le2\exp(-2m\varepsilon^{2}/(b-a)^{2})\]</span></p>
+</blockquote>
+<h3 id="广义损失函数下的不可知pac可学习">广义损失函数下的不可知PAC可学习</h3>
+<p>为了能处理其他学习任务比方说多分类, 回归问题, 我们将损失函数进行如下范化: 广义损失函数:</p>
+<ul>
+<li>0-1损失, 这个损失函数用在二分类或者多分类问题中. <span class="math display">\[ l_{0-1}(h,(x,y))=0,where\{h(x)=y\};1,where \{h(x)\neq y\}\]</span></li>
+<li>平方损失,这个损失函数用在回归问题中. <span class="math display">\[l_{sq}(h,(x,y))=(h(x)-y)^{2}\]</span></li>
+</ul>
+<p>广义损失函数下的不可知PAC可学习(Agnostic PAC Learnability for General Loss Functions):</p>
+<blockquote>
+<p>对于集合<span class="math inline">\(Z\)</span>和损失函数<span class="math inline">\(l:\mathcal{H}×Z\to \mathbb{R}_{+}\)</span>, 若存在一个函数<span class="math inline">\(m_{\mathcal{H}}:(0,1)^{2}\to\mathbb{N}\)</span>和一个学习算法<span class="math inline">\(A\)</span>, 使得对于<span class="math inline">\(\forall\varepsilon,\delta\in(0,1)\)</span>和在<span class="math inline">\(Z\)</span>上的任一概率分布<span class="math inline">\(\mathcal{D}\)</span>, 当样本数量<span class="math inline">\(m\ge m_{\mathcal{H}}(\varepsilon,\delta)\)</span>时, 其中的样本由分布<span class="math inline">\(\mathcal{D}\)</span>独立同分布采样得到, 算法将以不小于<span class="math inline">\(1-\delta\)</span>的概率返回一个假设类<span class="math inline">\(h\)</span>, 使该假设类<span class="math inline">\(h\)</span>满足<span class="math inline">\(L_{\mathcal{D}}(h)\le \min_{h&#39;\in\mathcal{H}}L_{\mathcal{D}}(h&#39;)+\varepsilon\)</span>.</p>
+</blockquote>
+<h3 id="对不可知的探讨">对不可知的探讨</h3>
+<p>上文提到不可知PAC可学习是对PAC可学习的范化, 因为假设类<span class="math inline">\(\mathcal{H}\)</span>中未必有一个完美的分类器<span class="math inline">\(h\)</span>, 而这又有两种可能的深层原因:</p>
+<ul>
+<li><span class="math inline">\(\mathcal{H}\)</span>取得不够大, 没能包含能将西瓜完美分类的目标函数<span class="math inline">\(f\)</span>.</li>
+<li><span class="math inline">\(\mathcal{H}\)</span>取得够大了, 但<span class="math inline">\(\mathcal{H}\)</span>仍没能包含能将西瓜完美分类的目标函数<span class="math inline">\(f\)</span>, 一种合理的推测就是根本不存在能将西瓜完美分类的<span class="math inline">\(f\)</span>. 比方说因为<span class="math inline">\(\mathcal{X}\)</span>中特征选取不是太好, 某好瓜和某坏瓜在选取的特征上的数据完全一致, 此时<span class="math inline">\(f\)</span>当然没法把他们区分开来.</li>
+</ul>
+<p>前者相对好办, 只要扩大<span class="math inline">\(\mathcal{H}\)</span>, 而后者就需要去寻找或者构造新的特征以区分好坏瓜.</p>
+<h2 id="vc维">VC维</h2>
+<p>由上节PAC可学习我们已经知道, 有限假设类假设类<span class="math inline">\(\mathcal{H}\)</span>是PAC可学习的充分条件. 但是否为必要条件呢? 答案是否定的. 事实上, 无限假设类也能是PAC可学习的, 只要它的VC维有限, 下面来介绍VC维.</p>
+<p>我们先来看一个著名的定理: 没有免费的午餐定理(No-Free-Lunch), 这个定理说明了如果不对假设类加以限制, 任何学习算法总有很差表现的时候.</p>
+<h3 id="没有免费的午餐定理">没有免费的午餐定理</h3>
+<p>没有免费的午餐定理(No-Free-Lunch):</p>
+<blockquote>
+<p>对实例空间<span class="math inline">\(\mathcal{X}\)</span>上的0-1损失的二分任务, <span class="math inline">\(A\)</span>表示任意的学习算法. 样本大小<span class="math inline">\(m\)</span>为小于<span class="math inline">\(|\mathcal{X}|/2\)</span>的任意数.则在<span class="math inline">\(\mathcal{X}×\{0,1\}\)</span>上存在一个分布<span class="math inline">\(\mathcal{D}\)</span>, 使得:</p>
+<ol type="1">
+<li>存在一个函数<span class="math inline">\(f:\mathcal{X}\to\{0,1\}\)</span>满足<span class="math inline">\(L_{\mathcal{D}}(f)=0\)</span>.</li>
+<li>样本量为<span class="math inline">\(m\)</span>的样本集<span class="math inline">\(S\)</span>, 由分布<span class="math inline">\(\mathcal{D}\)</span>独立同分布采样得到, 以至少<span class="math inline">\(\frac{1}{7}\)</span>的概率满足:<span class="math inline">\(L_{\mathcal{D}}(A(S))\ge \frac{1}{8}\)</span>.</li>
+</ol>
+</blockquote>
+<p>这个定理陈述的是对每个学习器<span class="math inline">\(A\)</span>, 都存在一个学习任务(分布<span class="math inline">\(\mathcal{D}\)</span>)使其失败, 即使这个任务存能被另一个学习器成功学习(比方说关于假设类<span class="math inline">\(\mathcal{H}=\{f\}\)</span>的一个ERM学习器).</p>
+<p>下面是没有免费的午餐定理的证明: 一个直观的看法如下, 令<span class="math inline">\(C\)</span>是大小为<span class="math inline">\(2m\)</span>的集合<span class="math inline">\(\mathcal{X}\)</span>的子集, 任何只观测到空间<span class="math inline">\(C\)</span>中一半样本的学习算法<span class="math inline">\(A\)</span>, 都不具有信息来反映<span class="math inline">\(C\)</span>中剩余样本. 因此存在一个可能性, 在<span class="math inline">\(C\)</span>中未观测到的样本上, 目标函数<span class="math inline">\(f\)</span>与<span class="math inline">\(A(S)\)</span>预测的完全不同(详细证明见深入理解机器学习一书5.1节):</p>
+<ol type="1">
+<li>从<span class="math inline">\(\mathcal{X}\to\{0,1\}\)</span>有<span class="math inline">\(T=2^{|\mathcal{X}|}\)</span>个函数,记为<span class="math inline">\(f_{1},...,f_{T}\)</span>. 对每个<span class="math inline">\(f_{i}\)</span>取分布<span class="math inline">\(\mathcal{D_{i}}\)</span>满足<span class="math inline">\(f_{i}\)</span>, 即如果<span class="math inline">\(y\neq f(x)\)</span>, 分布<span class="math inline">\(\mathcal{D_{i}}\)</span>抽取样本<span class="math inline">\(x×y\)</span>的概率置为0.</li>
+<li>事实上, 此时<span class="math inline">\(|\mathcal{X}|\)</span>可直接取为<span class="math inline">\(2m\)</span>, 假定对<span class="math inline">\(|\mathcal{X}|=2m\)</span>定理得证, 那么此时任意加入新样本,只需将新样本的标签取成<span class="math inline">\(|1-A(S)|\)</span>, 就能保证<span class="math inline">\(L_{\mathcal{D}}(A(S))\)</span>仍大于<span class="math inline">\(\frac{1}{8}\)</span>, 而<span class="math inline">\(f\)</span>及<span class="math inline">\(\mathcal{D}\)</span>只需要做相应修改.</li>
+<li>对任意学习算法<span class="math inline">\(A\)</span>从1.中的<span class="math inline">\(\{\mathcal{D}_{i}\}\)</span>找一个<span class="math inline">\(\mathcal{D}_{i}\)</span>使得<span class="math inline">\(E[L_{\mathcal{D_{i}}}(A(S))]\ge \frac{1}{4}\)</span>.</li>
+<li><span class="math inline">\(P[L_{\mathcal{D}_{i}}(A(S))\ge\frac{1}{8}]\ge\frac{1}{7}\)</span></li>
+</ol>
+<p>注意到定理中并没有对假设类<span class="math inline">\(\mathcal{H}\)</span>加以限制, 假设类<span class="math inline">\(\mathcal{H}\)</span>的规模是随着样本量大小而指数型增长的, 从而导致学习失败. 于是乎如果我们要想学习成功, 就必须对假设类<span class="math inline">\(\mathcal{H}\)</span>加以限制, 那么如何去限制呢？</p>
+<ul>
+<li>我们已经知道任何有限假设类都是可学习的(Hoeffding测度集中不等式可证).</li>
+<li>那么无限类呢?事实上, 有一个叫VC维的东西可以刻画出PAC可学习的假设类的增长速度如何, 直观的去看, VC维有限的假设类就是那些限制在集合<span class="math inline">\(C\)</span>上并且只能随着<span class="math inline">\(|C|\)</span>的增长而多项式增长而不是指数型增长的这类假设类, 这也被称为是小的有效规模.</li>
+</ul>
+<h3 id="打散">打散</h3>
+<p>打散(Shattering):</p>
+<blockquote>
+<p>如果限制<span class="math inline">\(\mathcal{H}\)</span>在<span class="math inline">\(C\)</span>上是从<span class="math inline">\(C\)</span>到<span class="math inline">\(\{0,1\}\)</span>的所有函数的集合, 那么我们称<span class="math inline">\(\mathcal{H}\)</span>打散了集合<span class="math inline">\(C\)</span>, 此时<span class="math inline">\(|\mathcal{H}_{C}|=2^{|C|}\)</span>.</p>
+</blockquote>
+<p>这里<span class="math inline">\(\mathcal{H}\)</span>的状态也就是上文说的不加以限制的状态.</p>
+<h3 id="vc维-1">VC维</h3>
+<p>VC维(VC-dimension):</p>
+<blockquote>
+<p>假设类<span class="math inline">\(\mathcal{H}\)</span>的VC维, 记为<span class="math inline">\(VCdim(\mathcal{H})\)</span>可以打散的最大的集合的大小. 如果<span class="math inline">\(\mathcal{H}\)</span>可以打散任何集合大小,我们说<span class="math inline">\(\mathcal{H}\)</span>的VC维是无穷的.</p>
+</blockquote>
+<p>回头再来看没有免费午餐定理,我们易得下述推论:</p>
+<blockquote>
+<p><span class="math inline">\(\mathcal{X}\)</span>为一个无限定义域集, <span class="math inline">\(\mathcal{H}\)</span>为从<span class="math inline">\(\mathcal{X}\to\{0,1\}\)</span>上的所有映射集, 即<span class="math inline">\(VCdim(\mathcal{H})=+\infty\)</span>,则<span class="math inline">\(\mathcal{H}\)</span>不是PAC可学习的.</p>
+</blockquote>
+<h3 id="偏差与复杂性权衡与偏差方差权衡">偏差与复杂性权衡与偏差方差权衡</h3>
+<p>在PAC可学习框架下, 我们所用的方式是: 对于给定的假设类<span class="math inline">\(\mathcal{H}\)</span>(先验知识), 采用ERM范式(最小化训练误差)从中选取分类器<span class="math inline">\(h\)</span>.</p>
+<p>我们将ERM范式返回的假设<span class="math inline">\(h_{ERM}\)</span>的泛化误差<span class="math inline">\(L_{\mathcal{D}}(h_{ERM})\)</span>分解为两部分, 第一部分叫偏差, 由假设类具有的最小风险<span class="math inline">\(\min_{h\in\mathcal{H}}L_{\mathcal{D}}(h)\)</span>所决定, 它反映了先验知识的质量; 第二部分叫复杂性<span class="math inline">\(L_{\mathcal{D}}(h_{ERM})-\min_{h\in\mathcal{H}}L_{\mathcal{D}}(h)\)</span>, 是由过拟合引起的误差, 取决于假设类的大小或是复杂度, 又称为估计误差. 随着假设类变得越复杂, 偏差会变小, 但是复杂性会变大.</p>
+<p>另一种更常见的分解方式是将ERM范式返回的假设<span class="math inline">\(h_{ERM}\)</span>的泛化误差<span class="math inline">\(L_{\mathcal{D}}(h_{ERM})\)</span>分解为训练误差<span class="math inline">\(\min_{h\in\mathcal{H}}L_{S}(h)\)</span>和方差<span class="math inline">\(L_{\mathcal{D}}(h_{ERM})-\min_{h\in\mathcal{H}}L_{S}(h)\)</span>, 随着假设类变得越复杂, 训练误差会越来越小, 而泛化误差会有一个先增后减的过程. <img src="/pictures/vc2.svg" alt="机器学习3" /></p>
+<h2 id="定理的证明">定理的证明</h2>
+<p>定义说完了, 下面来看证明:</p>
+<h3 id="推2">1推2</h3>
+<p>一句话证明1推2:<span class="math inline">\(\mathcal{H}\)</span>一致收敛也就是说样本量足够时, <span class="math inline">\(S\)</span>是<span class="math inline">\(\varepsilon\)</span>-代表性样本, 现用<span class="math inline">\(\varepsilon/2\)</span>取代<span class="math inline">\(\varepsilon\)</span>, <span class="math inline">\(\varepsilon\)</span>-代表性样本的定义及ERM的返回规则得:对<span class="math inline">\(\forall h\in \mathcal{H}\)</span>,<span class="math display">\[L_{\mathcal{D}}(h_{S})\le L_{\mathcal{S}}(h_{S})+\varepsilon/2\le L_{\mathcal{S}}(h)+\varepsilon/2 \le L_{\mathcal{D}}(h)+\varepsilon/2+\varepsilon/2=L_{\mathcal{D}}(h)+\varepsilon\]</span>即由ERM(S)返回<span class="math inline">\(h_{S}\)</span>的泛化误差<span class="math inline">\(L_{\mathcal{D}}(h_{S})\)</span>能保证学习成功.</p>
+<h3 id="推3">2推3</h3>
+<p>2推3就非常显然, 2是对于假设类<span class="math inline">\(\mathcal{H}\)</span>采用了ERM学习算法的学习器在<span class="math inline">\(\mathcal{H}\)</span>能成功, 要证明3只要证明存在一个学习算法能成功, 显然存在(ERM).</p>
+<h3 id="推4">3推4</h3>
+<p>3推4更显然, 3是4的泛化, 所以4的条件成立时3必然能用, 再加上<span class="math inline">\(f\)</span>满足可实现的假设, 即存在完美的分类器使得泛化误差为0, 得证.</p>
+<h3 id="推5">2推5</h3>
+<p>2推5同上可证.</p>
+<h3 id="推6">4推6</h3>
+<p>4推6用到了没有免费的午餐定理, 这个定理可以叙述为如果<span class="math inline">\(\mathcal{H}\)</span>的VC维无限, 那么<span class="math inline">\(\mathcal{H}\)</span>就不是PAC可学习的, 来看这个命题的逆否命题, 即如果<span class="math inline">\(\mathcal{H}\)</span>是PAC可学习的, 那么<span class="math inline">\(\mathcal{H}\)</span>的VC维有限.</p>
+<h3 id="推6-1">5推6</h3>
+<p>5推6的话同样用到了免费的午餐定理, 假设<span class="math inline">\(\mathcal{H}\)</span>的VC维无穷, 那么<span class="math inline">\(\mathcal{H}\)</span>不是PAC可学习的, 然后铁定不是采取了ERM之后的PAC可学习的了.</p>
+<h3 id="推1">6推1</h3>
+<p>这里只叙述证明思路:</p>
+<ul>
+<li>如果<span class="math inline">\(VCdim(\mathcal{H})=d&lt;+\infty\)</span>, 那么即使<span class="math inline">\(\mathcal{H}\)</span>无限, 当将其限制在一有限集合<span class="math inline">\(C\)</span>时, 其有效规模<span class="math inline">\(|\mathcal{H}_{C}|\)</span>只有<span class="math inline">\(O(|C|^{d})\)</span>.</li>
+<li>假设类有一个小的有效规模时其一致收敛成立, 小的有效规模指的是<span class="math inline">\(|\mathcal{H}_{C}|\)</span>随<span class="math inline">\(|C|\)</span>按多项式方式增长.</li>
+</ul>
+<p>其中第一步实际上是将<span class="math inline">\(\mathcal{H}\)</span>的VC维有限时, <span class="math inline">\(\mathcal{H}\)</span>的增长速度为多项式增长这一事实明确下来, 证明用到了Sauer引理, 详细见深入理解机器学习一书6.5.1节; 2.的证明见深入理解机器学习一书6.5.2节.<span class="math inline">\(□\)</span></p>
+<h1 id="统计学习的基本定理-定量形式">统计学习的基本定理-定量形式</h1>
+<blockquote>
+<p><span class="math inline">\(\mathcal{H}\)</span>是一个由<span class="math inline">\(\mathcal{X}\to \{0,1\}\)</span>的映射函数构成的假设类, 且令损失函数为0-1损失. 假定<span class="math inline">\(VCdim(\mathcal{H})&lt;\infty\)</span>, 那么, 存在绝对常数<span class="math inline">\(C_{1},C_{2}\)</span>使得:</p>
+</blockquote>
+<blockquote>
+<ol type="1">
+<li><span class="math inline">\(\mathcal{H}\)</span>一致收敛, 若其样本复杂度满足: <span class="math display">\[C_{1}\frac{d+log(1/\delta)}{\varepsilon^{2}}\le m^{UC}_{\mathcal{H}}(\varepsilon,\delta)\le C_{2}\frac{d+log(1/\delta)}{\varepsilon^{2}}\]</span></li>
+<li><span class="math inline">\(\mathcal{H}\)</span>是不可知PAC可学习的, 若其样本复杂度满足: <span class="math display">\[C_{1}\frac{d+log(1/\delta)}{\varepsilon^{2}}\le m_{\mathcal{H}}(\varepsilon,\delta)\le C_{2}\frac{d+log(1/\delta)}{\varepsilon^{2}}\]</span></li>
+<li><span class="math inline">\(\mathcal{H}\)</span>是PAC可学习的, 若其样本复杂度满足: <span class="math display">\[C_{1}\frac{d+log(1/\delta)}{\varepsilon}\le m_{\mathcal{H}}(\varepsilon,\delta)\le C_{2}\frac{dlog(1/\varepsilon)+log(1/\delta)}{\varepsilon^{2}}\]</span></li>
+</ol>
+</blockquote>
+<p><code>p.s.</code>由上述定理可以看出, 一致收敛与不可知PAC可学习的需要的样本量一致, 而PAC可学习的需要的样本量少一些. 该定理的证明在深入理解机器学习一书第28章给出.</p>
+<h1 id="不一致可学习">不一致可学习</h1>
+<p>上文所讨论的PAC可学习的概念是考虑精度和置信参数来决定样本数量, 且样本标签分布与内在的样本数据分布是一致的. 因此, PAC可学习等价于VC维有限. 下面要讨论的是不一致可学习这个概念, 这个概念是不可知PAC可学习的严格松弛, 它允许样本数量依赖假设空间<span class="math inline">\(\mathcal{H}\)</span>, 下面来看其定义:</p>
+<p>不一致可学习(Nonuniform learnability):</p>
+<blockquote>
+<p>称假设类<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的若存在一个学习算法<span class="math inline">\(A\)</span>和一个函数<span class="math display">\[m^{NUL}_{\mathcal{H}}:(0,1)\times(0,1)×\mathcal{H}\to\mathbb{N}\]</span>使得对于<span class="math inline">\(\forall\varepsilon,\delta\in(0,1)\)</span>和<span class="math inline">\(h\in\mathcal{H}\)</span>, 如果样本数量<span class="math inline">\(m\ge m^{NUL}_{\mathcal{H}}(\varepsilon,\delta,h)\)</span>, 那么对每个分布<span class="math inline">\(\mathcal{D}\)</span>, 下式成立的概率不小于<span class="math inline">\(1-\delta\)</span>, <span class="math inline">\(L_{\mathcal{D}}(A(S))\le L_{\mathcal{D}}(h)+\varepsilon\)</span>.</p>
+</blockquote>
+<p>这个概念要求输出假设与假设类中其他假设相比具有<span class="math inline">\((\varepsilon,\delta)\)</span>的竞争力, 同时从定义也很容易得到不可知PAC可学习一定能推得不一致可学习, 且不一致可学习是不可知PAC可学习的严格松弛. 下面举个例子说明两者的严格松弛关系:</p>
+<ul>
+<li>考虑二分问题, 假设<span class="math inline">\(\mathcal{H}_{n}\)</span>是<span class="math inline">\(n\)</span>次多项式构成的假设类, 即<span class="math inline">\(\mathcal{H}_{n}\)</span>为<span class="math inline">\(h(x)=sign(p(x))\)</span>的分类器的集合.这里<span class="math inline">\(p(x)\)</span>是<span class="math inline">\(\mathbb{R}\to\mathbb{R}\)</span>的<span class="math inline">\(n\)</span>次多项式.令<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>. 容易得到<span class="math inline">\(VCdim(\mathcal{H})=+\infty\)</span>, 但<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的.</li>
+</ul>
+<p>事实上, 有一个定理清晰的描述了两者的关系:</p>
+<blockquote>
+<p>两分类器的假设类<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的, 当且仅当它是不可知PAC可学习的可数并.</p>
+</blockquote>
+<p>下面来看这个定理的证明:</p>
+<ul>
+<li><p>必要性: 假定<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的, 对于每个<span class="math inline">\(n\in\mathbb{N}\)</span>,令<span class="math display">\[\mathcal{H}_{n}=\{h\in\mathcal{H}:m^{NUL}_{\mathcal{H}}(\frac{1}{8},\frac{1}{7},h)\le n\}\]</span>显然<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>. 此外, 由<span class="math inline">\(m^{NUL}_{\mathcal{H}}\)</span>定义知, 对于任何关于<span class="math inline">\(\mathcal{H}_{n}\)</span>满足可实现性假设的分布<span class="math inline">\(\mathcal{D}\)</span>, <span class="math inline">\(S\)</span>由<span class="math inline">\(\mathcal{D}\)</span>独立抽样得到, 选择样本<span class="math inline">\(S\)</span>的概率大于等于<span class="math inline">\(\frac{6}{7}\)</span>. 则<span class="math inline">\(L_{\mathcal{D}}(A(S))\le\frac{1}{8}\)</span>. 由统计学习基本定理知, <span class="math inline">\(VCdim(\mathcal{H}_{n})&lt;+\infty\)</span>, 因此<span class="math inline">\(\mathcal{H}_{n}\)</span>是不可知PAC可学习的.</p></li>
+<li><p>充分性: 充分性的证明依赖于下述引理:</p>
+<blockquote>
+<p><span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>, 如果<span class="math inline">\(\mathcal{H}_{n}\)</span>是一致收敛的, 那么<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的.</p>
+</blockquote></li>
+</ul>
+<p>该引理证明留给下小节, 那么由统计学习基本定理知, 不可知PAC可学习与一致收敛性等价,即得证<span class="math inline">\(□\)</span></p>
+<h2 id="结构风险最小化srm">结构风险最小化SRM</h2>
+<p>本节主要是关于结构风险最小化(SRM:Structural Risk Minimization)以及利用结构风险最小化算法来证明上节未证明的引理.</p>
+<p>目前为止, 我们都是通过具体化一个假设类<span class="math inline">\(\mathcal{H}\)</span>来利用先验知识, 并且相信这样一个假设类中包含完成当前任务的有效预测器. 而另一种表达先验知识的方法则是将假设类<span class="math inline">\(\mathcal{H}\)</span>上的偏好具体化.</p>
+<p>在结构风险最小化范式中, 我们首先假定假设类<span class="math inline">\(\mathcal{H}\)</span>能够写成<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>,<span class="math inline">\(\mathcal{H}_{n}\)</span>满足一致收敛, 且样本复杂度函数为<span class="math inline">\(m^{UC}_{\mathcal{H}_{n}}(\varepsilon,\delta)\)</span>, 然后具体化一个权重函数<span class="math display">\[\omega:\mathbb{N}\to[0,1],s.t.\sum_{n}\omega(n)\le1\]</span>这个权重函数可也反映每个假设类的重要性, 或是假设类复杂性的度量.例如<span class="math inline">\(\mathcal{H}\)</span>是所有多项式分类器构成的类, <span class="math inline">\(\mathcal{H}_{n}\)</span>表示<span class="math inline">\(n\)</span>次多项式分类器构成的类.定义下式函数<span class="math inline">\(\varepsilon_{n}\)</span>:<span class="math inline">\(\mathbb{N}×(0,1)\to(0,1)\)</span> <span class="math display">\[\varepsilon_{n}(m,\delta)=\min\{\varepsilon\in (0,1):m^{UC}_{\mathcal{H}_{n}}(\varepsilon,\delta)\le m\}\]</span>由<span class="math inline">\(\mathcal{H}_{n}\)</span>满足一致收敛性, <span class="math inline">\(\forall m\in\mathbb{N}\)</span>,<span class="math inline">\(\forall\delta\in(0,1)\)</span>, 大小为<span class="math inline">\(m\)</span>的样本<span class="math inline">\(S\)</span>由<span class="math inline">\(\mathcal{D}\)</span>独立抽样得到, 下式成立的概率不小于<span class="math inline">\(1-\delta\)</span> <span class="math display">\[\forall h \in \mathcal{H}_{n},|L_{\mathcal{D}}(h)-L_{S}(h)|\le\varepsilon_{n}(m,\delta)\]</span>这就是我们所关心的训练误差与泛化误差之间的差值. 此时权重函数可取成<span class="math inline">\(\omega(n)=\frac{6}{\pi^{2}n^{2}}\)</span>或是<span class="math inline">\(\omega(n)=2^{-n}\)</span>.</p>
+<p>下面将上述例子写成定理的形式,并由此引出结构风险最小化(SRM):</p>
+<blockquote>
+<p>假设类<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>,<span class="math inline">\(\mathcal{H}_{n}\)</span>一致收敛, 且复杂度函数为<span class="math inline">\(m^{UC}_{\mathcal{H}_{n}}\)</span>. 令<span class="math inline">\(\omega:\mathbb{N}\to[0,1],s.t.\sum_{n}\omega(n)\le1\)</span>为一权重函数. 令<span class="math display">\[\varepsilon_{n}(m,\delta)=\min\{\varepsilon\in (0,1):m^{UC}_{\mathcal{H}_{n}}(\varepsilon,\delta)\le m\}\]</span> 则对<span class="math inline">\(\forall\delta\in(0,1)\)</span>,任意的分布<span class="math inline">\(\mathcal{D}\)</span>, 下式成立的概率不小于<span class="math inline">\(1-\delta\)</span>:<span class="math display">\[\forall h \in \mathcal{H}_{n},L_{\mathcal{D}}(h)\le L_{S}(h)+\varepsilon_{n(h)}(m,\omega(n(h))·\delta)\]</span>其中<span class="math inline">\(n(h)=\min\{n:h\in\mathcal{H}_{n}\}\)</span>.</p>
+</blockquote>
+<p>证明: 对<span class="math inline">\(\forall n\in\mathbb{N}\)</span>, 定义<span class="math inline">\(\delta_{n}=\omega(n)\delta\)</span>, 固定<span class="math inline">\(n\)</span>, 由一致收敛性, 在选择样本<span class="math inline">\(S\)</span>的概率不低于<span class="math inline">\(1-\delta\)</span>的条件下, <span class="math display">\[\forall h \in \mathcal{H}_{n},|L_{\mathcal{D}}(h)-L_{S}(h)|\le\varepsilon_{n}(m,\delta_{n})\]</span>应用<span class="math inline">\(n=1,2,...,\)</span>的联合界, 我们得到上述结论以不低于<span class="math display">\[1-\sum_{n}\delta_{n}=1-\delta\sum_{n}\omega(n)\ge1-\delta\]</span>的概率对<span class="math inline">\(\forall n\in\mathbb{N}\)</span>都成立, 最后令<span class="math inline">\(n(h)=\min\{n:h\in\mathcal{H}_{n}\}\)</span>自然也成立.<span class="math inline">\(□\)</span></p>
+<p>结构风险最小化(SRM)则是寻找<span class="math inline">\(h\)</span>来最小化这个上界, 以保证<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>不是那么大, 下面是结构风险最小化(SRM)的定义:</p>
+<ol type="1">
+<li>先验:<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>, <span class="math inline">\(\mathcal{H}_{n}\)</span>一致收敛, 且复杂度函数为<span class="math inline">\(m^{UC}_{\mathcal{H}_{n}}\)</span>; 权重函数<span class="math inline">\(\omega:\mathbb{N}\to[0,1],s.t.\sum_{n}\omega(n)\le1\)</span>.</li>
+<li>定义:<span class="math inline">\(\varepsilon_{n}(m,\delta)=min\{\varepsilon\in(0,1):m^{UC}_{\mathcal{H}_{n}}(\varepsilon,\delta)\le m\}\)</span>; <span class="math inline">\(n(h)=min\{n:h\in\mathcal{H}_{n}\}\)</span>.</li>
+<li>输入:训练集<span class="math inline">\(S\)</span>, 置信度<span class="math inline">\(\delta\)</span>.</li>
+<li>输出:<span class="math inline">\(h\in argmin_{h\in\mathcal{H}}[L_{S}(h)+\varepsilon_{n(h)}(m,\omega(n(h))·\delta)]\)</span>.</li>
+</ol>
+<p><code>p.s.</code>结构风险最小化(SRM)与经验风险最小化(ERM)最大的不同就是, 经验风险最小化(ERM)只关心训练误差<span class="math inline">\(L_{\mathcal{S}}(h)\)</span>, 而结构风险最小化(SRM)兼顾了训练误差<span class="math inline">\(L_{\mathcal{S}}(h)\)</span>和训练误差与泛化误差之间的差值<span class="math inline">\(\varepsilon_{n(h)}(m,\omega(n(h))·\delta)\)</span>.</p>
+<p>下面用SRM来证明上节未能证明的一个引理:</p>
+<blockquote>
+<p><span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>, 如果<span class="math inline">\(\mathcal{H}_{n}\)</span>是一致收敛的, 那么<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的.</p>
+</blockquote>
+<p>事实上利用SRM算法我们能得到下述更进一步的结论:</p>
+<blockquote>
+<p>假设类<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>, <span class="math inline">\(\mathcal{H}_{n}\)</span>一致收敛, 且复杂度函数为<span class="math inline">\(m^{UC}_{\mathcal{H}_{n}}\)</span>.如果<span class="math inline">\(\omega\)</span>:<span class="math inline">\(\mathbb{N}\to[0,1]\)</span>, <span class="math inline">\(s.t.\omega(n)=\frac{6}{\pi^{2}n^{2}}\)</span>, 那么<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的, 且满足有<span class="math display">\[m^{NUL}_{\mathcal{H}}(\varepsilon,\delta,h)\le m^{UC}_{\mathcal{H}_{n(h)}}(\frac{\varepsilon}{2},\frac{6\delta}{(\pi n(h))^{2}})\]</span></p>
+</blockquote>
+<p>证明: 假定<span class="math inline">\(A\)</span>是考虑权重函数<span class="math inline">\(\omega\)</span>的结构风险最小化算法, 对于<span class="math inline">\(\forall h\in\mathcal{H}_{n},\forall\varepsilon,\delta\in(0,1)\)</span>, 令<span class="math inline">\(m\ge m^{UC}_{\mathcal{H}_{n(h)}}(\varepsilon,\omega(n(h))·\delta)\)</span>,应用上述定理, 可以得到<span class="math display">\[\forall h \in \mathcal{H}_{n},L_{\mathcal{D}}(h)\le L_{S}(h)+\varepsilon_{n(h)}(m,\omega(n(h))·\delta)\]</span>这个定理对于由结构风险规则返回的假设<span class="math inline">\(A(S)\)</span>成立. 通过结构风险最小化的定义可得,<span class="math display">\[L_{\mathcal{D}}(A(S))\le\min_{h}[L_{S}(h)+\varepsilon_{n(h)}(m,\omega(n(h))·\delta)]\le L_{S}(h)+\varepsilon_{n(h)}(m,\omega(n(h))·\delta)\]</span>如果<span class="math inline">\(m\ge m^{UC}_{\mathcal{H}_{n(h)}}(\frac{\varepsilon}{2},\omega(n(h))·\delta)\)</span>, 那么<span class="math inline">\(\varepsilon_{n(h)}(m,\omega(n(h))·\delta)\le\frac{\varepsilon}{2}\)</span>. 此外, 从每个<span class="math inline">\(\mathcal{H}_{n}\)</span>的一致收敛性, 我们可得到下式成立的概率大于<span class="math inline">\(1-\delta\)</span>,<span class="math display">\[L_{S}(h)\le L_{\mathcal{D}}(h)+\frac{\varepsilon}{2}\]</span>综上所述, 可得<span class="math inline">\(L_{\mathcal{D}}(A(S))\le L_{\mathcal{D}}(h)+\varepsilon\)</span>, 定理得证.<span class="math inline">\(□\)</span></p>
+<p>单独比较不一致可学习和不可知PAC可学习是非常有意思的, 算法会在全空间<span class="math inline">\(\mathcal{H}\)</span>上搜索一个模型, 而不是在特定的<span class="math inline">\(\mathcal{H}_{n}\)</span>上搜索一个模型, 利用先验知识的缺陷所带来的成本就是增加复杂度与特定的<span class="math inline">\(h\in\mathcal{H}_{n}\)</span>相竞争.假定对于所有的<span class="math inline">\(n\)</span>, <span class="math inline">\(VCdim(\mathcal{H}_{n})=n\)</span>, 由统计学习的基本定理-定量形式知<span class="math display">\[m^{UC}_{\mathcal{H}_{n}}(\varepsilon,\delta)\le C\frac{n+log(1/\delta)}{\varepsilon^{2}}\]</span> 一个直接的计算表明<span class="math display">\[m^{NUL}_{\mathcal{H}_{n}}(\varepsilon,\delta,h)-m^{UC}_{\mathcal{H}_{n}}(\frac{\varepsilon}{2},\delta)\le 4C\frac{2\log(2n)}{\varepsilon^{2}}\]</span>代价增加了类的索引, 可以解释为反映已知的假设类<span class="math inline">\(\mathcal{H}\)</span>的好的先验知识的排序值.</p>
+<h3 id="不一致可学习的没有免费午餐定理">不一致可学习的没有免费午餐定理</h3>
+<p>在不一致可学习框架下,没有免费的午餐定理(No-Free-Lunch for Nonuniform Learnability)也是成立的,也就是说, 当样本域无限时, 不存在关于所有确定性二分类器所构成的类的不一致学习器(尽管对于每一个分类器存在一个尝试算法能够学习包含这些分类器假设的结构风险最小化).</p>
+<h2 id="最小描述长度mdl">最小描述长度MDL</h2>
+<p><span class="math inline">\(\mathcal{H}\)</span>为假设类, 将<span class="math inline">\(\mathcal{H}\)</span>写成单个类的可数并, 即<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\{h_{n}\}\)</span>.</p>
+<p>由Hoeffding不等式知, 每一个单类有一致收敛性, 收敛速率<span class="math inline">\(m^{UC}(\varepsilon,\delta)=\frac{\log(2/ \delta)}{2\varepsilon^{2}}\)</span>, 该结果的证明见深入理解机器学习一书page26. 因此, <span class="math display">\[\varepsilon_{n}(m,\delta)=\min\{\varepsilon\in (0,1):m^{UC}(\varepsilon,\delta)\le m\}\]</span>所给出的函数<span class="math inline">\(\varepsilon_{n}\)</span>变成了<span class="math display">\[\varepsilon_{n}(m,\delta)=\sqrt{\frac{\log(2/\delta)}{2m}}\]</span>且结构风险最小化SRM变成了:<span class="math display">\[argmin_{h_{n}\in\mathcal{H}}L_{S}(h)+\sqrt{\frac{-\log(\omega(n))+\log(2/\delta)}{2m}}\]</span>等价的, 我们可以认为<span class="math inline">\(\omega\)</span>是从<span class="math inline">\(\mathcal{H}\to[0,1]\)</span>的函数, 然后结构结构风险最小化SRM变成了:<span class="math display">\[argmin_{h\in\mathcal{H}}L_{S}(h)+\sqrt{\frac{-\log(\omega(h))+\log(2/\delta)}{2m}}\]</span>这节讨论一种特别方便的方式定义权重函数<span class="math inline">\(\omega(h)=\frac{1}{2^{|h|}}\)</span>, 这个函数与假设的描述长度有关. 下面介绍其背景:</p>
+<p>对于每个假设类<span class="math inline">\(\mathcal{H}\)</span>, 我们想知道如何描述和表示每一个类的假设<span class="math inline">\(h\)</span>, 英语, 汇编语言, 数学公式等等形式, 当我们选定某种语言形式, 那么一个假设<span class="math inline">\(h\)</span>肯定能被一些特定字母<span class="math inline">\(\Sigma\)</span>组成的有限字符串所描述, <span class="math inline">\(\Sigma\)</span>我们称之为字母表. 例如, 令<span class="math inline">\(\Sigma=\{0,1\}\)</span>, <span class="math inline">\(\sigma=(0,1,1,1,0)\)</span>为一字符串且字符串的长度<span class="math inline">\(|\sigma|=5\)</span>, 所有有限长度的字符串用<span class="math inline">\(\Sigma^{+}\)</span>表示, 对假设类<span class="math inline">\(\mathcal{H}\)</span>的描述可用一个函数<span class="math inline">\(d:\mathcal{H}\to\Sigma^{+}\)</span>表示, <span class="math inline">\(d(h)\)</span>将<span class="math inline">\(\mathcal{H}\)</span>中每个假设<span class="math inline">\(h\)</span>映射为一个字符串<span class="math inline">\(d(h)\)</span>, <span class="math inline">\(d(h)\)</span>称为<span class="math inline">\(h\)</span>的描述长度, <span class="math inline">\(|h|\)</span>表示<span class="math inline">\(d(h)\)</span>的长度. 我们要求描述语言<span class="math inline">\(d(h)\)</span>无前缀, 即不同的<span class="math inline">\(h\)</span>, <span class="math inline">\(h&#39;\)</span>, <span class="math inline">\(d(h)\)</span>不是<span class="math inline">\(d(h&#39;)\)</span>的前缀. 无前缀的字符串满足如下组合性质:</p>
+<p>Kraft不等式:</p>
+<blockquote>
+<p>如果<span class="math inline">\(S\subset\{0,1\}^{+}\)</span>是一个无前缀的字符串集合,则<span class="math inline">\(\sum_{\sigma\in S}\frac{1}{2^{|\sigma|}}\le1\)</span>.</p>
+</blockquote>
+<p>根据Kraft不等式, 任何无前缀的语言都能给出假设类<span class="math inline">\(\mathcal{H}\)</span>的权重函数<span class="math inline">\(\omega\)</span>, 我们可简单的设置为<span class="math inline">\(\omega(h)=\frac{1}{2^{|h|}}\)</span>,于是便有了下述定理:</p>
+<blockquote>
+<p><span class="math inline">\(\mathcal{H}\)</span>是一假设类, <span class="math inline">\(d:\mathcal{H}\to\{0,1\}^{+}\)</span>是<span class="math inline">\(\mathcal{H}\)</span>的一无前缀描述语言,对于样本量<span class="math inline">\(m\)</span>, 置信参数<span class="math inline">\(\delta&gt;0\)</span>和概率分布<span class="math inline">\(\mathcal{D}\)</span>, 下式成立的概率大于<span class="math inline">\(1-\delta\)</span>:<span class="math display">\[\forall h \in \mathcal{H},L_{\mathcal{D}}(h)\le L_{S}(h)+\sqrt{\frac{|h|+\log(2/\delta)}{2m}}\]</span>这里<span class="math inline">\(|h|\)</span>是指<span class="math inline">\(d(h)\)</span>的长度.</p>
+</blockquote>
+<p>类似结构风险最小化(SRM), 最小描述长度(MDL)这种考虑了训练误差和减小描述长度, 这就得到了减小描述长度的学习范式. 最小描述长度(MDL:Minimum Description Length):</p>
+<ol type="1">
+<li>先验: 假设类<span class="math inline">\(\mathcal{H}\)</span>由定义在<span class="math inline">\(\{0,1\}\)</span>上的无前缀语言<span class="math inline">\(d\)</span>描述;对于任何一个<span class="math inline">\(h\in\mathcal{H}\)</span>, <span class="math inline">\(|h|\)</span>表示<span class="math inline">\(d(h)\)</span>的长度.</li>
+<li>输入: 训练集<span class="math inline">\(S\)</span>, 置信度<span class="math inline">\(\delta\)</span>.</li>
+<li>输出: <span class="math inline">\(h\in argmin_{h\in\mathcal{H}}L_{S}(h)+\sqrt{\frac{|h|+\log(2/\delta)}{2m}}\)</span></li>
+</ol>
+<h3 id="奥卡姆剃刀原理">奥卡姆剃刀原理</h3>
+<p>上届的定理指出, 对于经验风险相同的两个假设, 描述长度较小的假设, 其真实风险的误差界更小, 因此这个结果表达了一个哲学理念, 这也是著名的奥卡姆剃刀原理(Occam’s Razor):</p>
+<blockquote>
+<p>短的解析更有效.</p>
+</blockquote>
+<p><code>p.s.</code>假象下列情形, 两个假设<span class="math inline">\(h\)</span>, <span class="math inline">\(h&#39;\)</span>在数学语言下的描述长度分别为10,100; 但在中文下的长度分别为100,10. 因此这里笔者理解为对大多数语言的来说短的解析, 或是期望意义下的最短的解析.</p>
+<h1 id="一致性">一致性</h1>
+<p>最后给出一个比不一致可学习更松弛的可学习概念: 一致性, 这个概念允许所欲要的样本不仅依赖于<span class="math inline">\(\varepsilon,\delta\)</span>和<span class="math inline">\(h\)</span>,而且依赖于数据所依托的分布<span class="math inline">\(\mathcal{D}\)</span>.</p>
+<p>一致性(Consistency):</p>
+<blockquote>
+<p><span class="math inline">\(\mathcal{P}\)</span>表示<span class="math inline">\(Z\)</span>上的概率分布, 称一个学习规则<span class="math inline">\(A\)</span>关于<span class="math inline">\(\mathcal{H}\)</span>和<span class="math inline">\(\mathcal{P}\)</span>满足一致性, 若存在一个函数<span class="math display">\[m^{CON}_{\mathcal{H}}:(0,1)^{2}×\mathcal{H}×\mathcal{P}\to\mathbb{N}\]</span>使得对<span class="math inline">\(\forall h\in\mathcal{H}\)</span>,<span class="math inline">\(\forall\mathcal{D}\in\mathcal{P}\)</span>,<span class="math inline">\(\forall\varepsilon\)</span>,<span class="math inline">\(\delta\in(0,1)\)</span>, <span class="math inline">\(m\ge m^{NUL}_{\mathcal{H}}(\varepsilon,\delta,h,\mathcal{D})\)</span>,下式成立的概率不小于1-δ<span class="math inline">\(L_{\mathcal{D}}(A(S))\le L_{\mathcal{D}}(h)+\varepsilon\)</span>.</p>
+</blockquote>
+<h2 id="memorize算法">Memorize算法</h2>
+<p>考虑如下定义的分类预测算法Memorize, 这个算法对新样本的预测永远都是某个固定的标签,比如说是训练集中出现次数最多的标签. 事实上, Memorize算法对于任何数据集上所有函数构成的类都满足一致性, 但这个算法很明显没有什么用.</p>
+<p><code>写在最后</code>: 本文主要是写了写PAC可学习框架下有关VC维的内容, 这个VC维(Vapnik–Chervonenkis dimension)其实代表两位大牛:svm发明者<a href="https://en.wikipedia.org/wiki/Vladimir_Vapnik">Vapnik</a>和俄罗斯的数学家<a href="https://en.wikipedia.org/wiki/Alexey_Chervonenkis">Chervonenkis</a>. 进一步内容的Rademacher复杂度则是我下一篇博客的内容, 西瓜书将其放在12.5节, 深入理解机器学习一书则是将其放在第四部分高级理论26-27章, 针对多分类问题的Natarajan维在29章.</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>PAC可学习</tag>
+        <tag>一致收敛性</tag>
+        <tag>没有免费午餐定理</tag>
+        <tag>VC维</tag>
+        <tag>不一致可学习</tag>
+        <tag>一致性</tag>
+        <tag>ERM</tag>
+        <tag>SRM</tag>
+        <tag>MDL</tag>
+        <tag>奥卡姆剃刀</tag>
       </tags>
   </entry>
   <entry>
@@ -3603,295 +3892,6 @@ L_S(\omega)+\alpha\mathcal{R}(\omega) &amp; \leq L_S(\omega_k)+\left\langle\nabl
       </categories>
       <tags>
         <tag>高效能人士的七个习惯</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>统计学习的基本定理</title>
-    <url>/2017/08/13/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/</url>
-    <content><![CDATA[<p>本文主要参考了Shai Shalev-Shwartz的深入理解机器学习第2-7章以及coursera上林轩田的机器学习基石课程,这部分内容较为详细的描述了机器学习的理论部分,主要包括以下三部分内容:</p>
-<ol type="1">
-<li>统计学习理论的基本定理,涉及:一致收敛性、PAC学习理论、VC维及没有免费的午餐定理.</li>
-<li>三个可学习的概念:PAC可学习、不一致可学习及一致性(Consistency).</li>
-<li>三种学习范式:经验风险最小化(ERM)、结构风险最小化(SRM)及最小描述长度(MDL).</li>
-</ol>
-<p>最后要强调的是这块理论是针对监督学习中的二分类问题而言的,对于多分类问题,可将VC维拓展为<a href="https://link.springer.com/content/pdf/10.1007%2FBF00114804.pdf">Natarajan维</a>.</p>
-<span id="more"></span>
-<h1 id="统计学习理论的基本定理">统计学习理论的基本定理</h1>
-<p>在给出最核心的定理之前, 应当接触以下几个概念:</p>
-<ul>
-<li>样本空间: 对于监督学习而言为带标签的样本<span class="math inline">\((x,y)\)</span>的取值空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>, 学习的目标是映射<span class="math inline">\(f: \mathcal{X}\to\mathcal{Y}\)</span>, 以用于产生对新样本<span class="math inline">\(x_{new}\)</span>的标签的可靠预测<span class="math inline">\(f(x_{new})\)</span>. <code>p.s.</code>对无监督学习而言为不带标签的样本<span class="math inline">\(x\)</span>的取值空间<span class="math inline">\(\mathcal{X}\)</span>, 学习目标为对<span class="math inline">\(\mathcal{X}\)</span>的可靠分类.</li>
-<li>目标函数: 通常记为<span class="math inline">\(f\)</span>, 即上述监督学习中所说的映射<span class="math inline">\(f\)</span>. 对于分类问题就是我们希望得到的真实的分类函数.</li>
-<li>训练集: 通常记为<span class="math inline">\(S\)</span>, 由定义在样本空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>上的概率分布<span class="math inline">\(\mathcal{D}\)</span>抽样得到 <span class="math display">\[S=\{(x_{1},y_{1}),....,(x_{m},y_{m})\}\]</span></li>
-<li>学习算法: 通常记为<span class="math inline">\(A\)</span>, 即我们构建的、能从数据中学到东西的学习算法, 期望其能从假设类中返回良好的假设.</li>
-<li>假设类: 通常记为<span class="math inline">\(\mathcal{H}\)</span>, 对目标函数<span class="math inline">\(f\)</span>的假设构成的空间, 学习器从中选择.</li>
-<li>预测器(predictor): 或者说分类器(classifier)、假设(hypothesis), 通常记为<span class="math inline">\(h\)</span>, 即学习器输出的一个函数:<span class="math inline">\(h:\mathcal{X}\to\mathcal{Y}\)</span>, 且应当和目标函数<span class="math inline">\(f\)</span>有相近的函数值.</li>
-<li>损失函数: 通常记为<span class="math inline">\(l(h, (x, y))\)</span>, 其定义在预测器<span class="math inline">\(h\)</span>和单个样本<span class="math inline">\((x, y)\)</span>上. 对于二分类问题, 一个常用的损失函数为<span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>, 即分对了就为0, 分错了就为1.</li>
-<li>训练误差: 通常记为<span class="math inline">\(L_{S}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在训练集<span class="math inline">\(S\)</span>上的平均损失<span class="math display">\[L_{S}(h)=\frac{1}{m}\sum_{i=1}^m l(h, (x_i, y_i))\]</span></li>
-<li>泛化误差: 通常记为<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在<span class="math inline">\((\mathcal{X}, \mathcal{Y})\)</span>上的平均损失<span class="math display">\[\mathbb{E}_{(x, y)\sim (\mathcal{X}, \mathcal{Y})}l(h, (x, y))\]</span></li>
-</ul>
-<p>这里给出的概念及记号借鉴了深入理解机器学习一书中的写法. 下面的内容适合有一定基础的同学阅读, 这里给出最核心的定理:</p>
-<blockquote>
-<p>令<span class="math inline">\(\mathcal{H}\)</span>是一个由<span class="math inline">\(\mathcal{X}\to\{0,1\}\)</span>的映射函数构成的假设空间, 且令损失函数为0-1损失. 那么,下述陈述等价:</p>
-<ol type="1">
-<li><span class="math inline">\(\mathcal{H}\)</span>有一致收敛性.</li>
-<li>任何ERM规则都是对于<span class="math inline">\(\mathcal{H}\)</span>成功的不可知PAC学习器.</li>
-<li><span class="math inline">\(\mathcal{H}\)</span>是不可知PAC可学习的.</li>
-<li><span class="math inline">\(\mathcal{H}\)</span>是PAC可学习的.</li>
-<li>任何ERM规则都是对于<span class="math inline">\(\mathcal{H}\)</span>成功的PAC学习器.</li>
-<li><span class="math inline">\(\mathcal{H}\)</span>的VC维有限.</li>
-</ol>
-</blockquote>
-<p>下面我会一一解释上述出现的名词并证明该定理, 证明分两块</p>
-<ul>
-<li>1推2推3推4推6推1</li>
-<li>1推2推5推6推1</li>
-</ul>
-<p>其中6推1为难点.</p>
-<h2 id="一致收敛性">一致收敛性</h2>
-<h3 id="varepsilon-代表性样本"><span class="math inline">\(\varepsilon\)</span>-代表性样本</h3>
-<p><span class="math inline">\(\varepsilon\)</span>-代表性样本(<span class="math inline">\(\varepsilon\)</span>-representative sample):</p>
-<blockquote>
-<p>如果满足下列不等式:<span class="math inline">\(\forall h \in\mathcal{H},|L_{S}(h)-L_{\mathcal{D}}(h)|\le\varepsilon\)</span>,训练集<span class="math inline">\(S\)</span>就称作<span class="math inline">\(\varepsilon\)</span>-代表性样本.</p>
-</blockquote>
-<p>泛化误差<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>为<span class="math inline">\(h\)</span>在概率分布<span class="math inline">\(\mathcal{D}\)</span>上的表现, 定义为<span class="math display">\[L_{\mathcal{D}}(h)=\mathbb{P}_{(x,y)\in \mathcal{D}}[h(x)\neq y]\]</span>它是能反应假设<span class="math inline">\(h\)</span>的性能的最真实的误差. 但一般情况下, 我们无法知道<span class="math inline">\(\mathcal{D}\)</span>和<span class="math inline">\(f\)</span>是什么样子的, 所以无法直接获知真实的误差. 一种思路是转而去关心训练误差和泛化误差界:</p>
-<ul>
-<li>训练误差<span class="math inline">\(L_{S}(h)\)</span>为<span class="math inline">\(h\)</span>在训练样本<span class="math inline">\(S\)</span>上的表现, 定义为<span class="math display">\[L_{S}(h)=\frac{1}{|S|}\sum_{(x,y)\in S}I\{h(x)\neq y\}\]</span>由于这里的<span class="math inline">\(S\)</span>已知, 因此能够计算得到训练误差.</li>
-<li>泛化误差界定义为<span class="math display">\[\sup_{h\in\mathcal{H}}|L_{S}(h)-L_{\mathcal{D}}(h)|\]</span>一般来说, 有关泛化误差界的一些结果如<a href="https://msgsxj.cn/2018/06/14/VC-bound/">VC界</a>等总是在以<span class="math inline">\(1-\delta\)</span>概率成立的意义下, 显然这个界会与假设类<span class="math inline">\(\mathcal{H}\)</span>的选择有关.</li>
-</ul>
-<p>控制好了这两个量, 就可以认为泛化误差也被控制住了.</p>
-<p><code>p.s.</code> <span class="math inline">\(S\)</span>是<span class="math inline">\(\varepsilon\)</span>-代表性样本即说明哪怕<span class="math inline">\(h\)</span>是闭着眼睛瞎选的, 它在<span class="math inline">\(\mathcal{D}\)</span>和<span class="math inline">\(S\)</span>上的表现都会差不多, 这说明此时训练集<span class="math inline">\(S\)</span>是足以去代表<span class="math inline">\(\mathcal{D}\)</span>的.</p>
-<h3 id="一致收敛性-1">一致收敛性</h3>
-<p>一致收敛性(Uniform Convergence, UC)这一概念从学习成功所需训练集大小的角度刻画了假设类的复杂度:</p>
-<blockquote>
-<p>称假设类<span class="math inline">\(\mathcal{H}\)</span>具有一致收敛性, 若存在一个函数<span class="math display">\[m^{UC}_{\mathcal{H}}:(0,1)\times (0,1)\to\mathbb{N}\]</span> 使得对于<span class="math inline">\(\forall\varepsilon,\delta\in(0,1)\)</span>、<span class="math inline">\(Z\)</span>上的任一概率分布<span class="math inline">\(\mathcal{D}\)</span>、从<span class="math inline">\(\mathcal{D}\)</span>独立抽样得到的大小为<span class="math inline">\(m\)</span>的训练集<span class="math inline">\(S\)</span>, 只要<span class="math inline">\(m\ge m^{UC}_{\mathcal{H}}(\varepsilon,\delta)\)</span>, 就有至少在概率<span class="math inline">\(1-\delta\)</span>下, <span class="math inline">\(S\)</span>是<span class="math inline">\(\varepsilon\)</span>-代表性的.</p>
-</blockquote>
-<p>这里的一致指的是对假设类<span class="math inline">\(\mathcal{H}\)</span>中的假设<span class="math inline">\(h\)</span>和<span class="math inline">\(Z\)</span>上任意概率分布<span class="math inline">\(\mathcal{D}\)</span>的一致性, 满足一致收敛的类也叫做Glivenko-Cantelli类.</p>
-<p><code>p.s.</code> <span class="math inline">\(\varepsilon\)</span>-代表性可以理解为训练集足够好, 好到泛化误差界<span class="math display">\[\sup_{h\in\mathcal{H}}|L_{S}(h)-L_{\mathcal{D}}(h)|\]</span>能被<span class="math inline">\(\varepsilon\)</span>控制住. 若假设类<span class="math inline">\(\mathcal{H}\)</span>具有一致收敛性, 那么不管是什么样的要求, 只要训练集的样本数<span class="math inline">\(m\)</span>足够大且是独立抽样得到, 那我就能在一定概率下保证泛化误差能被<span class="math inline">\(\varepsilon\)</span>控制住. 假想这么一种情况, 假设类<span class="math inline">\(\mathcal{H}\)</span>足够复杂, 因此对于任意的<span class="math inline">\(S\)</span>, 遍历<span class="math inline">\(h\in\mathcal{H}\)</span>就能让<span class="math inline">\(L_{S}(h)\)</span>遍历<span class="math inline">\([0,1]\)</span>, 继而我总能找到一个<span class="math inline">\(h\)</span>, 使得<span class="math display">\[|L_{S}(h)-L_{\mathcal{D}}(h)|&gt;\varepsilon\]</span>事实上, 一致收敛性中对<span class="math inline">\(h\in\mathcal{H}\)</span>的一致性的要求本质上要求了假设类<span class="math inline">\(\mathcal{H}\)</span>不能过于复杂.</p>
-<h3 id="经验风险最小化erm">经验风险最小化(ERM)</h3>
-<p>经验风险最小化(ERM:Empirical Risk Minimization):</p>
-<blockquote>
-<p>对于学习器来说, 训练样本是真实世界的一个缩影, 一种很自然的想法就是通过最小化训练误差<span class="math inline">\(L_{S}(h)\)</span>来寻找<span class="math inline">\(h\)</span>, 这种最小化<span class="math inline">\(L_{S}(h)\)</span>的学习范式称为是经验风险最小化.</p>
-</blockquote>
-<p><code>p.s.</code> 按照同时控制训练误差和泛化误差界这两个量的思路, 我们只需要设计好算法来最小化训练误差, 同时恰当选择假设类以控制好泛化误差界, 就能控制住泛化误差, 即所谓的学习成功.</p>
-<h2 id="pac可学习">PAC可学习</h2>
-<p>PAC(Probably Approximately Correct)可学习的概念主要包括不可知PAC可学习(Agnostic PAC Learnability), PAC可学习(PAC Learnability)及广义损失函数下的不可知PAC可学习(Agnostic PAC Learnability for General Loss Functions)这三个概念.</p>
-<h3 id="不可知pac可学习">不可知PAC可学习</h3>
-<p>不可知PAC可学习(Agnostic PAC Learnability):</p>
-<blockquote>
-<p>称假设类<span class="math inline">\(\mathcal{H}\)</span>是不可知PAC可学习的, 若存在一个函数<span class="math display">\[m_{\mathcal{H}}:(0,1)\times(0,1)\to\mathbb{N}\]</span>和一个学习算法<span class="math inline">\(A\)</span>, 使得对于<span class="math inline">\(\forall\varepsilon,\delta\in(0,1)\)</span>、<span class="math inline">\(Z\)</span>上的任一概率分布<span class="math inline">\(\mathcal{D}\)</span>、从<span class="math inline">\(\mathcal{D}\)</span>独立抽样得到的大小为<span class="math inline">\(m\)</span>的训练集<span class="math inline">\(S\)</span>, 只要<span class="math inline">\(m\ge m_{\mathcal{H}}(\varepsilon, \delta)\)</span>, 算法<span class="math inline">\(A\)</span>通过最小化训练误差<span class="math inline">\(L_{S}(h)\)</span>将以不小于<span class="math inline">\(1-\delta\)</span>的概率返回一个假设类<span class="math inline">\(h\)</span>, 满足<span class="math inline">\(L_{\mathcal{D}}(h)\le \min_{h&#39;\in\mathcal{H}}L_{\mathcal{D}}(h&#39;)+\varepsilon\)</span>.</p>
-</blockquote>
-<p>倘若此时假设类<span class="math inline">\(\mathcal{H}\)</span>只包含贝叶斯最优分类器, 即以概率1满足<span class="math inline">\(L_{\mathcal{D}}(h)\le \min_{h&#39;\in\mathcal{H}}L_{\mathcal{D}}(h&#39;)+\varepsilon\)</span>, 此时我只需将贝叶斯最优分类器的函数值取其对立面(将函数输出结果的01对调), 就能将概率1降为概率0.5. 从这个层面看, 不可知PAC可学习也要求了假设类不能过于复杂.</p>
-<p><code>p.s.</code> 与一致收敛性不同的是, 不可知PAC可学习通过考察<strong>假设类中的最优假设</strong>和<strong>最优秀的算法返回的假设</strong>之间的泛化误差差距来控制假设类的复杂度, 因而需要剔除训练误差优秀、泛化误差垃圾的假设; 而一致收敛性要求假设类中的一致性同样要求将训练误差优秀、泛化误差垃圾的假设剔除.</p>
-<p><code>p.s.</code>回头来看定理的第一第二条. <span class="math inline">\(\mathcal{H}\)</span>有一致收敛性等价于任何ERM规则都是对于<span class="math inline">\(\mathcal{H}\)</span>成功的不可知PAC学习器, 也就是说不可知PAC学习器再加上一个不错的方法(ERM规则), 就能等同于一致收敛性.</p>
-<h3 id="pac可学习-1">PAC可学习</h3>
-<p>PAC可学习(PAC Learnability):</p>
-<blockquote>
-<p>称假设类<span class="math inline">\(\mathcal{H}\)</span>是PAC可学习的, 若存在一个函数<span class="math display">\[m_{\mathcal{H}}:(0,1)\times(0,1)\to\mathbb{N}\]</span>和一个学习算法<span class="math inline">\(A\)</span>, 使得对于<span class="math inline">\(\forall\varepsilon,\delta\in(0,1)\)</span>和在<span class="math inline">\(Z\)</span>上的任一概率分布<span class="math inline">\(\mathcal{D}\)</span>, 任意的<span class="math inline">\(f:\mathcal{X}\to\{0,1\}\)</span>, 如果在<span class="math inline">\(\mathcal{H},\mathcal{D},f\)</span>下满足可实现的假设, 那么当样本数量<span class="math inline">\(m\ge m_{\mathcal{H}}(\varepsilon,\delta)\)</span>时, 其中的样本由分布<span class="math inline">\(\mathcal{D}\)</span>独立同分布采样得到并由<span class="math inline">\(f\)</span>标记, 算法将以不小于<span class="math inline">\(1-\delta\)</span>的概率返回一个假设类<span class="math inline">\(h\)</span>, 使该假设类<span class="math inline">\(h\)</span>满足<span class="math inline">\(L_{\mathcal{D}}(h)\le \varepsilon\)</span>.</p>
-</blockquote>
-<p>不可知PAC可学习实际上是PAC可学习的范化, 这里假定样本的标签由<span class="math inline">\(f(x)\)</span>给出, 这实际上假设了不出现样本相同标签不同的情况. 另外由<span class="math inline">\(L_{\mathcal{D}}(f)=0\)</span>可知, PAC可学习还要求了假设类<span class="math inline">\(\mathcal{H}\)</span>必然包含<span class="math inline">\(f\)</span>.</p>
-<p>如果假设类<span class="math inline">\(\mathcal{H}\)</span>是PAC可学习的, 有很多函数<span class="math inline">\(m_{\mathcal{H}}\)</span>满足PAC可学习的定义给出的条件, 我们定义采样复杂度为满足条件的最小函数, 下面是有限假设类的一个例子:</p>
-<blockquote>
-<p>任意有限假设类是PAC可学习的,其采样复杂度满足:<span class="math inline">\(m_{\mathcal{H}}(\varepsilon,\delta)\le [\frac{log(|\mathcal{H}|)/\delta}{\varepsilon}]\)</span>.</p>
-</blockquote>
-<p>该定理用霍夫丁不等式(<a href="https://en.wikipedia.org/wiki/Hoeffding%27s_inequality">Hoeffding's inequality</a>)可证, 霍夫丁不等式的证明可见链接或是深入理解机器学习一书附录B.4, 该定理的详细证明可见深入理解机器学习一书2.3节.</p>
-<p><code>p.s.</code> 霍夫丁不等式(Hoeffding's inequality):</p>
-<blockquote>
-<p><span class="math inline">\(\theta_{1},...,\theta_{m}\)</span>是一个独立同分布的r.v.序列, 假设对所有的<span class="math inline">\(i\)</span>, <span class="math inline">\(E[\theta_{i}]=\mu\)</span>,且<span class="math inline">\(\mathbb{P}[a\le\theta_{i}\le b]=1\)</span>, 则对于<span class="math inline">\(\forall\varepsilon&gt;0\)</span> <span class="math display">\[\mathbb{P}[|\frac{1}{m}\sum^{m}_{i=1}\theta_{i}-\mu|&gt;\varepsilon]\le2\exp(-2m\varepsilon^{2}/(b-a)^{2})\]</span></p>
-</blockquote>
-<h3 id="广义损失函数下的不可知pac可学习">广义损失函数下的不可知PAC可学习</h3>
-<p>为了能处理其他学习任务比方说多分类, 回归问题, 我们将损失函数进行如下范化: 广义损失函数:</p>
-<ul>
-<li>0-1损失, 这个损失函数用在二分类或者多分类问题中. <span class="math display">\[ l_{0-1}(h,(x,y))=0,where\{h(x)=y\};1,where \{h(x)\neq y\}\]</span></li>
-<li>平方损失,这个损失函数用在回归问题中. <span class="math display">\[l_{sq}(h,(x,y))=(h(x)-y)^{2}\]</span></li>
-</ul>
-<p>广义损失函数下的不可知PAC可学习(Agnostic PAC Learnability for General Loss Functions):</p>
-<blockquote>
-<p>对于集合<span class="math inline">\(Z\)</span>和损失函数<span class="math inline">\(l:\mathcal{H}×Z\to \mathbb{R}_{+}\)</span>, 若存在一个函数<span class="math inline">\(m_{\mathcal{H}}:(0,1)^{2}\to\mathbb{N}\)</span>和一个学习算法<span class="math inline">\(A\)</span>, 使得对于<span class="math inline">\(\forall\varepsilon,\delta\in(0,1)\)</span>和在<span class="math inline">\(Z\)</span>上的任一概率分布<span class="math inline">\(\mathcal{D}\)</span>, 当样本数量<span class="math inline">\(m\ge m_{\mathcal{H}}(\varepsilon,\delta)\)</span>时, 其中的样本由分布<span class="math inline">\(\mathcal{D}\)</span>独立同分布采样得到, 算法将以不小于<span class="math inline">\(1-\delta\)</span>的概率返回一个假设类<span class="math inline">\(h\)</span>, 使该假设类<span class="math inline">\(h\)</span>满足<span class="math inline">\(L_{\mathcal{D}}(h)\le \min_{h&#39;\in\mathcal{H}}L_{\mathcal{D}}(h&#39;)+\varepsilon\)</span>.</p>
-</blockquote>
-<h3 id="对不可知的探讨">对不可知的探讨</h3>
-<p>上文提到不可知PAC可学习是对PAC可学习的范化, 因为假设类<span class="math inline">\(\mathcal{H}\)</span>中未必有一个完美的分类器<span class="math inline">\(h\)</span>, 而这又有两种可能的深层原因:</p>
-<ul>
-<li><span class="math inline">\(\mathcal{H}\)</span>取得不够大, 没能包含能将西瓜完美分类的目标函数<span class="math inline">\(f\)</span>.</li>
-<li><span class="math inline">\(\mathcal{H}\)</span>取得够大了, 但<span class="math inline">\(\mathcal{H}\)</span>仍没能包含能将西瓜完美分类的目标函数<span class="math inline">\(f\)</span>, 一种合理的推测就是根本不存在能将西瓜完美分类的<span class="math inline">\(f\)</span>. 比方说因为<span class="math inline">\(\mathcal{X}\)</span>中特征选取不是太好, 某好瓜和某坏瓜在选取的特征上的数据完全一致, 此时<span class="math inline">\(f\)</span>当然没法把他们区分开来.</li>
-</ul>
-<p>前者相对好办, 只要扩大<span class="math inline">\(\mathcal{H}\)</span>, 而后者就需要去寻找或者构造新的特征以区分好坏瓜.</p>
-<h2 id="vc维">VC维</h2>
-<p>由上节PAC可学习我们已经知道, 有限假设类假设类<span class="math inline">\(\mathcal{H}\)</span>是PAC可学习的充分条件. 但是否为必要条件呢? 答案是否定的. 事实上, 无限假设类也能是PAC可学习的, 只要它的VC维有限, 下面来介绍VC维.</p>
-<p>我们先来看一个著名的定理: 没有免费的午餐定理(No-Free-Lunch), 这个定理说明了如果不对假设类加以限制, 任何学习算法总有很差表现的时候.</p>
-<h3 id="没有免费的午餐定理">没有免费的午餐定理</h3>
-<p>没有免费的午餐定理(No-Free-Lunch):</p>
-<blockquote>
-<p>对实例空间<span class="math inline">\(\mathcal{X}\)</span>上的0-1损失的二分任务, <span class="math inline">\(A\)</span>表示任意的学习算法. 样本大小<span class="math inline">\(m\)</span>为小于<span class="math inline">\(|\mathcal{X}|/2\)</span>的任意数.则在<span class="math inline">\(\mathcal{X}×\{0,1\}\)</span>上存在一个分布<span class="math inline">\(\mathcal{D}\)</span>, 使得:</p>
-<ol type="1">
-<li>存在一个函数<span class="math inline">\(f:\mathcal{X}\to\{0,1\}\)</span>满足<span class="math inline">\(L_{\mathcal{D}}(f)=0\)</span>.</li>
-<li>样本量为<span class="math inline">\(m\)</span>的样本集<span class="math inline">\(S\)</span>, 由分布<span class="math inline">\(\mathcal{D}\)</span>独立同分布采样得到, 以至少<span class="math inline">\(\frac{1}{7}\)</span>的概率满足:<span class="math inline">\(L_{\mathcal{D}}(A(S))\ge \frac{1}{8}\)</span>.</li>
-</ol>
-</blockquote>
-<p>这个定理陈述的是对每个学习器<span class="math inline">\(A\)</span>, 都存在一个学习任务(分布<span class="math inline">\(\mathcal{D}\)</span>)使其失败, 即使这个任务存能被另一个学习器成功学习(比方说关于假设类<span class="math inline">\(\mathcal{H}=\{f\}\)</span>的一个ERM学习器).</p>
-<p>下面是没有免费的午餐定理的证明: 一个直观的看法如下, 令<span class="math inline">\(C\)</span>是大小为<span class="math inline">\(2m\)</span>的集合<span class="math inline">\(\mathcal{X}\)</span>的子集, 任何只观测到空间<span class="math inline">\(C\)</span>中一半样本的学习算法<span class="math inline">\(A\)</span>, 都不具有信息来反映<span class="math inline">\(C\)</span>中剩余样本. 因此存在一个可能性, 在<span class="math inline">\(C\)</span>中未观测到的样本上, 目标函数<span class="math inline">\(f\)</span>与<span class="math inline">\(A(S)\)</span>预测的完全不同(详细证明见深入理解机器学习一书5.1节):</p>
-<ol type="1">
-<li>从<span class="math inline">\(\mathcal{X}\to\{0,1\}\)</span>有<span class="math inline">\(T=2^{|\mathcal{X}|}\)</span>个函数,记为<span class="math inline">\(f_{1},...,f_{T}\)</span>. 对每个<span class="math inline">\(f_{i}\)</span>取分布<span class="math inline">\(\mathcal{D_{i}}\)</span>满足<span class="math inline">\(f_{i}\)</span>, 即如果<span class="math inline">\(y\neq f(x)\)</span>, 分布<span class="math inline">\(\mathcal{D_{i}}\)</span>抽取样本<span class="math inline">\(x×y\)</span>的概率置为0.</li>
-<li>事实上, 此时<span class="math inline">\(|\mathcal{X}|\)</span>可直接取为<span class="math inline">\(2m\)</span>, 假定对<span class="math inline">\(|\mathcal{X}|=2m\)</span>定理得证, 那么此时任意加入新样本,只需将新样本的标签取成<span class="math inline">\(|1-A(S)|\)</span>, 就能保证<span class="math inline">\(L_{\mathcal{D}}(A(S))\)</span>仍大于<span class="math inline">\(\frac{1}{8}\)</span>, 而<span class="math inline">\(f\)</span>及<span class="math inline">\(\mathcal{D}\)</span>只需要做相应修改.</li>
-<li>对任意学习算法<span class="math inline">\(A\)</span>从1.中的<span class="math inline">\(\{\mathcal{D}_{i}\}\)</span>找一个<span class="math inline">\(\mathcal{D}_{i}\)</span>使得<span class="math inline">\(E[L_{\mathcal{D_{i}}}(A(S))]\ge \frac{1}{4}\)</span>.</li>
-<li><span class="math inline">\(P[L_{\mathcal{D}_{i}}(A(S))\ge\frac{1}{8}]\ge\frac{1}{7}\)</span></li>
-</ol>
-<p>注意到定理中并没有对假设类<span class="math inline">\(\mathcal{H}\)</span>加以限制, 假设类<span class="math inline">\(\mathcal{H}\)</span>的规模是随着样本量大小而指数型增长的, 从而导致学习失败. 于是乎如果我们要想学习成功, 就必须对假设类<span class="math inline">\(\mathcal{H}\)</span>加以限制, 那么如何去限制呢？</p>
-<ul>
-<li>我们已经知道任何有限假设类都是可学习的(Hoeffding测度集中不等式可证).</li>
-<li>那么无限类呢?事实上, 有一个叫VC维的东西可以刻画出PAC可学习的假设类的增长速度如何, 直观的去看, VC维有限的假设类就是那些限制在集合<span class="math inline">\(C\)</span>上并且只能随着<span class="math inline">\(|C|\)</span>的增长而多项式增长而不是指数型增长的这类假设类, 这也被称为是小的有效规模.</li>
-</ul>
-<h3 id="打散">打散</h3>
-<p>打散(Shattering):</p>
-<blockquote>
-<p>如果限制<span class="math inline">\(\mathcal{H}\)</span>在<span class="math inline">\(C\)</span>上是从<span class="math inline">\(C\)</span>到<span class="math inline">\(\{0,1\}\)</span>的所有函数的集合, 那么我们称<span class="math inline">\(\mathcal{H}\)</span>打散了集合<span class="math inline">\(C\)</span>, 此时<span class="math inline">\(|\mathcal{H}_{C}|=2^{|C|}\)</span>.</p>
-</blockquote>
-<p>这里<span class="math inline">\(\mathcal{H}\)</span>的状态也就是上文说的不加以限制的状态.</p>
-<h3 id="vc维-1">VC维</h3>
-<p>VC维(VC-dimension):</p>
-<blockquote>
-<p>假设类<span class="math inline">\(\mathcal{H}\)</span>的VC维, 记为<span class="math inline">\(VCdim(\mathcal{H})\)</span>可以打散的最大的集合的大小. 如果<span class="math inline">\(\mathcal{H}\)</span>可以打散任何集合大小,我们说<span class="math inline">\(\mathcal{H}\)</span>的VC维是无穷的.</p>
-</blockquote>
-<p>回头再来看没有免费午餐定理,我们易得下述推论:</p>
-<blockquote>
-<p><span class="math inline">\(\mathcal{X}\)</span>为一个无限定义域集, <span class="math inline">\(\mathcal{H}\)</span>为从<span class="math inline">\(\mathcal{X}\to\{0,1\}\)</span>上的所有映射集, 即<span class="math inline">\(VCdim(\mathcal{H})=+\infty\)</span>,则<span class="math inline">\(\mathcal{H}\)</span>不是PAC可学习的.</p>
-</blockquote>
-<h3 id="偏差与复杂性权衡与偏差方差权衡">偏差与复杂性权衡与偏差方差权衡</h3>
-<p>在PAC可学习框架下, 我们所用的方式是: 对于给定的假设类<span class="math inline">\(\mathcal{H}\)</span>(先验知识), 采用ERM范式(最小化训练误差)从中选取分类器<span class="math inline">\(h\)</span>.</p>
-<p>我们将ERM范式返回的假设<span class="math inline">\(h_{ERM}\)</span>的泛化误差<span class="math inline">\(L_{\mathcal{D}}(h_{ERM})\)</span>分解为两部分, 第一部分叫偏差, 由假设类具有的最小风险<span class="math inline">\(\min_{h\in\mathcal{H}}L_{\mathcal{D}}(h)\)</span>所决定, 它反映了先验知识的质量; 第二部分叫复杂性<span class="math inline">\(L_{\mathcal{D}}(h_{ERM})-\min_{h\in\mathcal{H}}L_{\mathcal{D}}(h)\)</span>, 是由过拟合引起的误差, 取决于假设类的大小或是复杂度, 又称为估计误差. 随着假设类变得越复杂, 偏差会变小, 但是复杂性会变大.</p>
-<p>另一种更常见的分解方式是将ERM范式返回的假设<span class="math inline">\(h_{ERM}\)</span>的泛化误差<span class="math inline">\(L_{\mathcal{D}}(h_{ERM})\)</span>分解为训练误差<span class="math inline">\(\min_{h\in\mathcal{H}}L_{S}(h)\)</span>和方差<span class="math inline">\(L_{\mathcal{D}}(h_{ERM})-\min_{h\in\mathcal{H}}L_{S}(h)\)</span>, 随着假设类变得越复杂, 训练误差会越来越小, 而泛化误差会有一个先增后减的过程. <img src="/pictures/vc2.svg" alt="机器学习3" /></p>
-<h2 id="定理的证明">定理的证明</h2>
-<p>定义说完了, 下面来看证明:</p>
-<h3 id="推2">1推2</h3>
-<p>一句话证明1推2:<span class="math inline">\(\mathcal{H}\)</span>一致收敛也就是说样本量足够时, <span class="math inline">\(S\)</span>是<span class="math inline">\(\varepsilon\)</span>-代表性样本, 现用<span class="math inline">\(\varepsilon/2\)</span>取代<span class="math inline">\(\varepsilon\)</span>, <span class="math inline">\(\varepsilon\)</span>-代表性样本的定义及ERM的返回规则得:对<span class="math inline">\(\forall h\in \mathcal{H}\)</span>,<span class="math display">\[L_{\mathcal{D}}(h_{S})\le L_{\mathcal{S}}(h_{S})+\varepsilon/2\le L_{\mathcal{S}}(h)+\varepsilon/2 \le L_{\mathcal{D}}(h)+\varepsilon/2+\varepsilon/2=L_{\mathcal{D}}(h)+\varepsilon\]</span>即由ERM(S)返回<span class="math inline">\(h_{S}\)</span>的泛化误差<span class="math inline">\(L_{\mathcal{D}}(h_{S})\)</span>能保证学习成功.</p>
-<h3 id="推3">2推3</h3>
-<p>2推3就非常显然, 2是对于假设类<span class="math inline">\(\mathcal{H}\)</span>采用了ERM学习算法的学习器在<span class="math inline">\(\mathcal{H}\)</span>能成功, 要证明3只要证明存在一个学习算法能成功, 显然存在(ERM).</p>
-<h3 id="推4">3推4</h3>
-<p>3推4更显然, 3是4的泛化, 所以4的条件成立时3必然能用, 再加上<span class="math inline">\(f\)</span>满足可实现的假设, 即存在完美的分类器使得泛化误差为0, 得证.</p>
-<h3 id="推5">2推5</h3>
-<p>2推5同上可证.</p>
-<h3 id="推6">4推6</h3>
-<p>4推6用到了没有免费的午餐定理, 这个定理可以叙述为如果<span class="math inline">\(\mathcal{H}\)</span>的VC维无限, 那么<span class="math inline">\(\mathcal{H}\)</span>就不是PAC可学习的, 来看这个命题的逆否命题, 即如果<span class="math inline">\(\mathcal{H}\)</span>是PAC可学习的, 那么<span class="math inline">\(\mathcal{H}\)</span>的VC维有限.</p>
-<h3 id="推6-1">5推6</h3>
-<p>5推6的话同样用到了免费的午餐定理, 假设<span class="math inline">\(\mathcal{H}\)</span>的VC维无穷, 那么<span class="math inline">\(\mathcal{H}\)</span>不是PAC可学习的, 然后铁定不是采取了ERM之后的PAC可学习的了.</p>
-<h3 id="推1">6推1</h3>
-<p>这里只叙述证明思路:</p>
-<ul>
-<li>如果<span class="math inline">\(VCdim(\mathcal{H})=d&lt;+\infty\)</span>, 那么即使<span class="math inline">\(\mathcal{H}\)</span>无限, 当将其限制在一有限集合<span class="math inline">\(C\)</span>时, 其有效规模<span class="math inline">\(|\mathcal{H}_{C}|\)</span>只有<span class="math inline">\(O(|C|^{d})\)</span>.</li>
-<li>假设类有一个小的有效规模时其一致收敛成立, 小的有效规模指的是<span class="math inline">\(|\mathcal{H}_{C}|\)</span>随<span class="math inline">\(|C|\)</span>按多项式方式增长.</li>
-</ul>
-<p>其中第一步实际上是将<span class="math inline">\(\mathcal{H}\)</span>的VC维有限时, <span class="math inline">\(\mathcal{H}\)</span>的增长速度为多项式增长这一事实明确下来, 证明用到了Sauer引理, 详细见深入理解机器学习一书6.5.1节; 2.的证明见深入理解机器学习一书6.5.2节.<span class="math inline">\(□\)</span></p>
-<h1 id="统计学习的基本定理-定量形式">统计学习的基本定理-定量形式</h1>
-<blockquote>
-<p><span class="math inline">\(\mathcal{H}\)</span>是一个由<span class="math inline">\(\mathcal{X}\to \{0,1\}\)</span>的映射函数构成的假设类, 且令损失函数为0-1损失. 假定<span class="math inline">\(VCdim(\mathcal{H})&lt;\infty\)</span>, 那么, 存在绝对常数<span class="math inline">\(C_{1},C_{2}\)</span>使得:</p>
-</blockquote>
-<blockquote>
-<ol type="1">
-<li><span class="math inline">\(\mathcal{H}\)</span>一致收敛, 若其样本复杂度满足: <span class="math display">\[C_{1}\frac{d+log(1/\delta)}{\varepsilon^{2}}\le m^{UC}_{\mathcal{H}}(\varepsilon,\delta)\le C_{2}\frac{d+log(1/\delta)}{\varepsilon^{2}}\]</span></li>
-<li><span class="math inline">\(\mathcal{H}\)</span>是不可知PAC可学习的, 若其样本复杂度满足: <span class="math display">\[C_{1}\frac{d+log(1/\delta)}{\varepsilon^{2}}\le m_{\mathcal{H}}(\varepsilon,\delta)\le C_{2}\frac{d+log(1/\delta)}{\varepsilon^{2}}\]</span></li>
-<li><span class="math inline">\(\mathcal{H}\)</span>是PAC可学习的, 若其样本复杂度满足: <span class="math display">\[C_{1}\frac{d+log(1/\delta)}{\varepsilon}\le m_{\mathcal{H}}(\varepsilon,\delta)\le C_{2}\frac{dlog(1/\varepsilon)+log(1/\delta)}{\varepsilon^{2}}\]</span></li>
-</ol>
-</blockquote>
-<p><code>p.s.</code>由上述定理可以看出, 一致收敛与不可知PAC可学习的需要的样本量一致, 而PAC可学习的需要的样本量少一些. 该定理的证明在深入理解机器学习一书第28章给出.</p>
-<h1 id="不一致可学习">不一致可学习</h1>
-<p>上文所讨论的PAC可学习的概念是考虑精度和置信参数来决定样本数量, 且样本标签分布与内在的样本数据分布是一致的. 因此, PAC可学习等价于VC维有限. 下面要讨论的是不一致可学习这个概念, 这个概念是不可知PAC可学习的严格松弛, 它允许样本数量依赖假设空间<span class="math inline">\(\mathcal{H}\)</span>, 下面来看其定义:</p>
-<p>不一致可学习(Nonuniform learnability):</p>
-<blockquote>
-<p>称假设类<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的若存在一个学习算法<span class="math inline">\(A\)</span>和一个函数<span class="math display">\[m^{NUL}_{\mathcal{H}}:(0,1)\times(0,1)×\mathcal{H}\to\mathbb{N}\]</span>使得对于<span class="math inline">\(\forall\varepsilon,\delta\in(0,1)\)</span>和<span class="math inline">\(h\in\mathcal{H}\)</span>, 如果样本数量<span class="math inline">\(m\ge m^{NUL}_{\mathcal{H}}(\varepsilon,\delta,h)\)</span>, 那么对每个分布<span class="math inline">\(\mathcal{D}\)</span>, 下式成立的概率不小于<span class="math inline">\(1-\delta\)</span>, <span class="math inline">\(L_{\mathcal{D}}(A(S))\le L_{\mathcal{D}}(h)+\varepsilon\)</span>.</p>
-</blockquote>
-<p>这个概念要求输出假设与假设类中其他假设相比具有<span class="math inline">\((\varepsilon,\delta)\)</span>的竞争力, 同时从定义也很容易得到不可知PAC可学习一定能推得不一致可学习, 且不一致可学习是不可知PAC可学习的严格松弛. 下面举个例子说明两者的严格松弛关系:</p>
-<ul>
-<li>考虑二分问题, 假设<span class="math inline">\(\mathcal{H}_{n}\)</span>是<span class="math inline">\(n\)</span>次多项式构成的假设类, 即<span class="math inline">\(\mathcal{H}_{n}\)</span>为<span class="math inline">\(h(x)=sign(p(x))\)</span>的分类器的集合.这里<span class="math inline">\(p(x)\)</span>是<span class="math inline">\(\mathbb{R}\to\mathbb{R}\)</span>的<span class="math inline">\(n\)</span>次多项式.令<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>. 容易得到<span class="math inline">\(VCdim(\mathcal{H})=+\infty\)</span>, 但<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的.</li>
-</ul>
-<p>事实上, 有一个定理清晰的描述了两者的关系:</p>
-<blockquote>
-<p>两分类器的假设类<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的, 当且仅当它是不可知PAC可学习的可数并.</p>
-</blockquote>
-<p>下面来看这个定理的证明:</p>
-<ul>
-<li><p>必要性: 假定<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的, 对于每个<span class="math inline">\(n\in\mathbb{N}\)</span>,令<span class="math display">\[\mathcal{H}_{n}=\{h\in\mathcal{H}:m^{NUL}_{\mathcal{H}}(\frac{1}{8},\frac{1}{7},h)\le n\}\]</span>显然<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>. 此外, 由<span class="math inline">\(m^{NUL}_{\mathcal{H}}\)</span>定义知, 对于任何关于<span class="math inline">\(\mathcal{H}_{n}\)</span>满足可实现性假设的分布<span class="math inline">\(\mathcal{D}\)</span>, <span class="math inline">\(S\)</span>由<span class="math inline">\(\mathcal{D}\)</span>独立抽样得到, 选择样本<span class="math inline">\(S\)</span>的概率大于等于<span class="math inline">\(\frac{6}{7}\)</span>. 则<span class="math inline">\(L_{\mathcal{D}}(A(S))\le\frac{1}{8}\)</span>. 由统计学习基本定理知, <span class="math inline">\(VCdim(\mathcal{H}_{n})&lt;+\infty\)</span>, 因此<span class="math inline">\(\mathcal{H}_{n}\)</span>是不可知PAC可学习的.</p></li>
-<li><p>充分性: 充分性的证明依赖于下述引理:</p>
-<blockquote>
-<p><span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>, 如果<span class="math inline">\(\mathcal{H}_{n}\)</span>是一致收敛的, 那么<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的.</p>
-</blockquote></li>
-</ul>
-<p>该引理证明留给下小节, 那么由统计学习基本定理知, 不可知PAC可学习与一致收敛性等价,即得证<span class="math inline">\(□\)</span></p>
-<h2 id="结构风险最小化srm">结构风险最小化SRM</h2>
-<p>本节主要是关于结构风险最小化(SRM:Structural Risk Minimization)以及利用结构风险最小化算法来证明上节未证明的引理.</p>
-<p>目前为止, 我们都是通过具体化一个假设类<span class="math inline">\(\mathcal{H}\)</span>来利用先验知识, 并且相信这样一个假设类中包含完成当前任务的有效预测器. 而另一种表达先验知识的方法则是将假设类<span class="math inline">\(\mathcal{H}\)</span>上的偏好具体化.</p>
-<p>在结构风险最小化范式中, 我们首先假定假设类<span class="math inline">\(\mathcal{H}\)</span>能够写成<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>,<span class="math inline">\(\mathcal{H}_{n}\)</span>满足一致收敛, 且样本复杂度函数为<span class="math inline">\(m^{UC}_{\mathcal{H}_{n}}(\varepsilon,\delta)\)</span>, 然后具体化一个权重函数<span class="math display">\[\omega:\mathbb{N}\to[0,1],s.t.\sum_{n}\omega(n)\le1\]</span>这个权重函数可也反映每个假设类的重要性, 或是假设类复杂性的度量.例如<span class="math inline">\(\mathcal{H}\)</span>是所有多项式分类器构成的类, <span class="math inline">\(\mathcal{H}_{n}\)</span>表示<span class="math inline">\(n\)</span>次多项式分类器构成的类.定义下式函数<span class="math inline">\(\varepsilon_{n}\)</span>:<span class="math inline">\(\mathbb{N}×(0,1)\to(0,1)\)</span> <span class="math display">\[\varepsilon_{n}(m,\delta)=\min\{\varepsilon\in (0,1):m^{UC}_{\mathcal{H}_{n}}(\varepsilon,\delta)\le m\}\]</span>由<span class="math inline">\(\mathcal{H}_{n}\)</span>满足一致收敛性, <span class="math inline">\(\forall m\in\mathbb{N}\)</span>,<span class="math inline">\(\forall\delta\in(0,1)\)</span>, 大小为<span class="math inline">\(m\)</span>的样本<span class="math inline">\(S\)</span>由<span class="math inline">\(\mathcal{D}\)</span>独立抽样得到, 下式成立的概率不小于<span class="math inline">\(1-\delta\)</span> <span class="math display">\[\forall h \in \mathcal{H}_{n},|L_{\mathcal{D}}(h)-L_{S}(h)|\le\varepsilon_{n}(m,\delta)\]</span>这就是我们所关心的训练误差与泛化误差之间的差值. 此时权重函数可取成<span class="math inline">\(\omega(n)=\frac{6}{\pi^{2}n^{2}}\)</span>或是<span class="math inline">\(\omega(n)=2^{-n}\)</span>.</p>
-<p>下面将上述例子写成定理的形式,并由此引出结构风险最小化(SRM):</p>
-<blockquote>
-<p>假设类<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>,<span class="math inline">\(\mathcal{H}_{n}\)</span>一致收敛, 且复杂度函数为<span class="math inline">\(m^{UC}_{\mathcal{H}_{n}}\)</span>. 令<span class="math inline">\(\omega:\mathbb{N}\to[0,1],s.t.\sum_{n}\omega(n)\le1\)</span>为一权重函数. 令<span class="math display">\[\varepsilon_{n}(m,\delta)=\min\{\varepsilon\in (0,1):m^{UC}_{\mathcal{H}_{n}}(\varepsilon,\delta)\le m\}\]</span> 则对<span class="math inline">\(\forall\delta\in(0,1)\)</span>,任意的分布<span class="math inline">\(\mathcal{D}\)</span>, 下式成立的概率不小于<span class="math inline">\(1-\delta\)</span>:<span class="math display">\[\forall h \in \mathcal{H}_{n},L_{\mathcal{D}}(h)\le L_{S}(h)+\varepsilon_{n(h)}(m,\omega(n(h))·\delta)\]</span>其中<span class="math inline">\(n(h)=\min\{n:h\in\mathcal{H}_{n}\}\)</span>.</p>
-</blockquote>
-<p>证明: 对<span class="math inline">\(\forall n\in\mathbb{N}\)</span>, 定义<span class="math inline">\(\delta_{n}=\omega(n)\delta\)</span>, 固定<span class="math inline">\(n\)</span>, 由一致收敛性, 在选择样本<span class="math inline">\(S\)</span>的概率不低于<span class="math inline">\(1-\delta\)</span>的条件下, <span class="math display">\[\forall h \in \mathcal{H}_{n},|L_{\mathcal{D}}(h)-L_{S}(h)|\le\varepsilon_{n}(m,\delta_{n})\]</span>应用<span class="math inline">\(n=1,2,...,\)</span>的联合界, 我们得到上述结论以不低于<span class="math display">\[1-\sum_{n}\delta_{n}=1-\delta\sum_{n}\omega(n)\ge1-\delta\]</span>的概率对<span class="math inline">\(\forall n\in\mathbb{N}\)</span>都成立, 最后令<span class="math inline">\(n(h)=\min\{n:h\in\mathcal{H}_{n}\}\)</span>自然也成立.<span class="math inline">\(□\)</span></p>
-<p>结构风险最小化(SRM)则是寻找<span class="math inline">\(h\)</span>来最小化这个上界, 以保证<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>不是那么大, 下面是结构风险最小化(SRM)的定义:</p>
-<ol type="1">
-<li>先验:<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>, <span class="math inline">\(\mathcal{H}_{n}\)</span>一致收敛, 且复杂度函数为<span class="math inline">\(m^{UC}_{\mathcal{H}_{n}}\)</span>; 权重函数<span class="math inline">\(\omega:\mathbb{N}\to[0,1],s.t.\sum_{n}\omega(n)\le1\)</span>.</li>
-<li>定义:<span class="math inline">\(\varepsilon_{n}(m,\delta)=min\{\varepsilon\in(0,1):m^{UC}_{\mathcal{H}_{n}}(\varepsilon,\delta)\le m\}\)</span>; <span class="math inline">\(n(h)=min\{n:h\in\mathcal{H}_{n}\}\)</span>.</li>
-<li>输入:训练集<span class="math inline">\(S\)</span>, 置信度<span class="math inline">\(\delta\)</span>.</li>
-<li>输出:<span class="math inline">\(h\in argmin_{h\in\mathcal{H}}[L_{S}(h)+\varepsilon_{n(h)}(m,\omega(n(h))·\delta)]\)</span>.</li>
-</ol>
-<p><code>p.s.</code>结构风险最小化(SRM)与经验风险最小化(ERM)最大的不同就是, 经验风险最小化(ERM)只关心训练误差<span class="math inline">\(L_{\mathcal{S}}(h)\)</span>, 而结构风险最小化(SRM)兼顾了训练误差<span class="math inline">\(L_{\mathcal{S}}(h)\)</span>和训练误差与泛化误差之间的差值<span class="math inline">\(\varepsilon_{n(h)}(m,\omega(n(h))·\delta)\)</span>.</p>
-<p>下面用SRM来证明上节未能证明的一个引理:</p>
-<blockquote>
-<p><span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>, 如果<span class="math inline">\(\mathcal{H}_{n}\)</span>是一致收敛的, 那么<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的.</p>
-</blockquote>
-<p>事实上利用SRM算法我们能得到下述更进一步的结论:</p>
-<blockquote>
-<p>假设类<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\mathcal{H}_{n}\)</span>, <span class="math inline">\(\mathcal{H}_{n}\)</span>一致收敛, 且复杂度函数为<span class="math inline">\(m^{UC}_{\mathcal{H}_{n}}\)</span>.如果<span class="math inline">\(\omega\)</span>:<span class="math inline">\(\mathbb{N}\to[0,1]\)</span>, <span class="math inline">\(s.t.\omega(n)=\frac{6}{\pi^{2}n^{2}}\)</span>, 那么<span class="math inline">\(\mathcal{H}\)</span>是不一致可学习的, 且满足有<span class="math display">\[m^{NUL}_{\mathcal{H}}(\varepsilon,\delta,h)\le m^{UC}_{\mathcal{H}_{n(h)}}(\frac{\varepsilon}{2},\frac{6\delta}{(\pi n(h))^{2}})\]</span></p>
-</blockquote>
-<p>证明: 假定<span class="math inline">\(A\)</span>是考虑权重函数<span class="math inline">\(\omega\)</span>的结构风险最小化算法, 对于<span class="math inline">\(\forall h\in\mathcal{H}_{n},\forall\varepsilon,\delta\in(0,1)\)</span>, 令<span class="math inline">\(m\ge m^{UC}_{\mathcal{H}_{n(h)}}(\varepsilon,\omega(n(h))·\delta)\)</span>,应用上述定理, 可以得到<span class="math display">\[\forall h \in \mathcal{H}_{n},L_{\mathcal{D}}(h)\le L_{S}(h)+\varepsilon_{n(h)}(m,\omega(n(h))·\delta)\]</span>这个定理对于由结构风险规则返回的假设<span class="math inline">\(A(S)\)</span>成立. 通过结构风险最小化的定义可得,<span class="math display">\[L_{\mathcal{D}}(A(S))\le\min_{h}[L_{S}(h)+\varepsilon_{n(h)}(m,\omega(n(h))·\delta)]\le L_{S}(h)+\varepsilon_{n(h)}(m,\omega(n(h))·\delta)\]</span>如果<span class="math inline">\(m\ge m^{UC}_{\mathcal{H}_{n(h)}}(\frac{\varepsilon}{2},\omega(n(h))·\delta)\)</span>, 那么<span class="math inline">\(\varepsilon_{n(h)}(m,\omega(n(h))·\delta)\le\frac{\varepsilon}{2}\)</span>. 此外, 从每个<span class="math inline">\(\mathcal{H}_{n}\)</span>的一致收敛性, 我们可得到下式成立的概率大于<span class="math inline">\(1-\delta\)</span>,<span class="math display">\[L_{S}(h)\le L_{\mathcal{D}}(h)+\frac{\varepsilon}{2}\]</span>综上所述, 可得<span class="math inline">\(L_{\mathcal{D}}(A(S))\le L_{\mathcal{D}}(h)+\varepsilon\)</span>, 定理得证.<span class="math inline">\(□\)</span></p>
-<p>单独比较不一致可学习和不可知PAC可学习是非常有意思的, 算法会在全空间<span class="math inline">\(\mathcal{H}\)</span>上搜索一个模型, 而不是在特定的<span class="math inline">\(\mathcal{H}_{n}\)</span>上搜索一个模型, 利用先验知识的缺陷所带来的成本就是增加复杂度与特定的<span class="math inline">\(h\in\mathcal{H}_{n}\)</span>相竞争.假定对于所有的<span class="math inline">\(n\)</span>, <span class="math inline">\(VCdim(\mathcal{H}_{n})=n\)</span>, 由统计学习的基本定理-定量形式知<span class="math display">\[m^{UC}_{\mathcal{H}_{n}}(\varepsilon,\delta)\le C\frac{n+log(1/\delta)}{\varepsilon^{2}}\]</span> 一个直接的计算表明<span class="math display">\[m^{NUL}_{\mathcal{H}_{n}}(\varepsilon,\delta,h)-m^{UC}_{\mathcal{H}_{n}}(\frac{\varepsilon}{2},\delta)\le 4C\frac{2\log(2n)}{\varepsilon^{2}}\]</span>代价增加了类的索引, 可以解释为反映已知的假设类<span class="math inline">\(\mathcal{H}\)</span>的好的先验知识的排序值.</p>
-<h3 id="不一致可学习的没有免费午餐定理">不一致可学习的没有免费午餐定理</h3>
-<p>在不一致可学习框架下,没有免费的午餐定理(No-Free-Lunch for Nonuniform Learnability)也是成立的,也就是说, 当样本域无限时, 不存在关于所有确定性二分类器所构成的类的不一致学习器(尽管对于每一个分类器存在一个尝试算法能够学习包含这些分类器假设的结构风险最小化).</p>
-<h2 id="最小描述长度mdl">最小描述长度MDL</h2>
-<p><span class="math inline">\(\mathcal{H}\)</span>为假设类, 将<span class="math inline">\(\mathcal{H}\)</span>写成单个类的可数并, 即<span class="math inline">\(\mathcal{H}=\cup_{n\in\mathbb{N}}\{h_{n}\}\)</span>.</p>
-<p>由Hoeffding不等式知, 每一个单类有一致收敛性, 收敛速率<span class="math inline">\(m^{UC}(\varepsilon,\delta)=\frac{\log(2/ \delta)}{2\varepsilon^{2}}\)</span>, 该结果的证明见深入理解机器学习一书page26. 因此, <span class="math display">\[\varepsilon_{n}(m,\delta)=\min\{\varepsilon\in (0,1):m^{UC}(\varepsilon,\delta)\le m\}\]</span>所给出的函数<span class="math inline">\(\varepsilon_{n}\)</span>变成了<span class="math display">\[\varepsilon_{n}(m,\delta)=\sqrt{\frac{\log(2/\delta)}{2m}}\]</span>且结构风险最小化SRM变成了:<span class="math display">\[argmin_{h_{n}\in\mathcal{H}}L_{S}(h)+\sqrt{\frac{-\log(\omega(n))+\log(2/\delta)}{2m}}\]</span>等价的, 我们可以认为<span class="math inline">\(\omega\)</span>是从<span class="math inline">\(\mathcal{H}\to[0,1]\)</span>的函数, 然后结构结构风险最小化SRM变成了:<span class="math display">\[argmin_{h\in\mathcal{H}}L_{S}(h)+\sqrt{\frac{-\log(\omega(h))+\log(2/\delta)}{2m}}\]</span>这节讨论一种特别方便的方式定义权重函数<span class="math inline">\(\omega(h)=\frac{1}{2^{|h|}}\)</span>, 这个函数与假设的描述长度有关. 下面介绍其背景:</p>
-<p>对于每个假设类<span class="math inline">\(\mathcal{H}\)</span>, 我们想知道如何描述和表示每一个类的假设<span class="math inline">\(h\)</span>, 英语, 汇编语言, 数学公式等等形式, 当我们选定某种语言形式, 那么一个假设<span class="math inline">\(h\)</span>肯定能被一些特定字母<span class="math inline">\(\Sigma\)</span>组成的有限字符串所描述, <span class="math inline">\(\Sigma\)</span>我们称之为字母表. 例如, 令<span class="math inline">\(\Sigma=\{0,1\}\)</span>, <span class="math inline">\(\sigma=(0,1,1,1,0)\)</span>为一字符串且字符串的长度<span class="math inline">\(|\sigma|=5\)</span>, 所有有限长度的字符串用<span class="math inline">\(\Sigma^{+}\)</span>表示, 对假设类<span class="math inline">\(\mathcal{H}\)</span>的描述可用一个函数<span class="math inline">\(d:\mathcal{H}\to\Sigma^{+}\)</span>表示, <span class="math inline">\(d(h)\)</span>将<span class="math inline">\(\mathcal{H}\)</span>中每个假设<span class="math inline">\(h\)</span>映射为一个字符串<span class="math inline">\(d(h)\)</span>, <span class="math inline">\(d(h)\)</span>称为<span class="math inline">\(h\)</span>的描述长度, <span class="math inline">\(|h|\)</span>表示<span class="math inline">\(d(h)\)</span>的长度. 我们要求描述语言<span class="math inline">\(d(h)\)</span>无前缀, 即不同的<span class="math inline">\(h\)</span>, <span class="math inline">\(h&#39;\)</span>, <span class="math inline">\(d(h)\)</span>不是<span class="math inline">\(d(h&#39;)\)</span>的前缀. 无前缀的字符串满足如下组合性质:</p>
-<p>Kraft不等式:</p>
-<blockquote>
-<p>如果<span class="math inline">\(S\subset\{0,1\}^{+}\)</span>是一个无前缀的字符串集合,则<span class="math inline">\(\sum_{\sigma\in S}\frac{1}{2^{|\sigma|}}\le1\)</span>.</p>
-</blockquote>
-<p>根据Kraft不等式, 任何无前缀的语言都能给出假设类<span class="math inline">\(\mathcal{H}\)</span>的权重函数<span class="math inline">\(\omega\)</span>, 我们可简单的设置为<span class="math inline">\(\omega(h)=\frac{1}{2^{|h|}}\)</span>,于是便有了下述定理:</p>
-<blockquote>
-<p><span class="math inline">\(\mathcal{H}\)</span>是一假设类, <span class="math inline">\(d:\mathcal{H}\to\{0,1\}^{+}\)</span>是<span class="math inline">\(\mathcal{H}\)</span>的一无前缀描述语言,对于样本量<span class="math inline">\(m\)</span>, 置信参数<span class="math inline">\(\delta&gt;0\)</span>和概率分布<span class="math inline">\(\mathcal{D}\)</span>, 下式成立的概率大于<span class="math inline">\(1-\delta\)</span>:<span class="math display">\[\forall h \in \mathcal{H},L_{\mathcal{D}}(h)\le L_{S}(h)+\sqrt{\frac{|h|+\log(2/\delta)}{2m}}\]</span>这里<span class="math inline">\(|h|\)</span>是指<span class="math inline">\(d(h)\)</span>的长度.</p>
-</blockquote>
-<p>类似结构风险最小化(SRM), 最小描述长度(MDL)这种考虑了训练误差和减小描述长度, 这就得到了减小描述长度的学习范式. 最小描述长度(MDL:Minimum Description Length):</p>
-<ol type="1">
-<li>先验: 假设类<span class="math inline">\(\mathcal{H}\)</span>由定义在<span class="math inline">\(\{0,1\}\)</span>上的无前缀语言<span class="math inline">\(d\)</span>描述;对于任何一个<span class="math inline">\(h\in\mathcal{H}\)</span>, <span class="math inline">\(|h|\)</span>表示<span class="math inline">\(d(h)\)</span>的长度.</li>
-<li>输入: 训练集<span class="math inline">\(S\)</span>, 置信度<span class="math inline">\(\delta\)</span>.</li>
-<li>输出: <span class="math inline">\(h\in argmin_{h\in\mathcal{H}}L_{S}(h)+\sqrt{\frac{|h|+\log(2/\delta)}{2m}}\)</span></li>
-</ol>
-<h3 id="奥卡姆剃刀原理">奥卡姆剃刀原理</h3>
-<p>上届的定理指出, 对于经验风险相同的两个假设, 描述长度较小的假设, 其真实风险的误差界更小, 因此这个结果表达了一个哲学理念, 这也是著名的奥卡姆剃刀原理(Occam’s Razor):</p>
-<blockquote>
-<p>短的解析更有效.</p>
-</blockquote>
-<p><code>p.s.</code>假象下列情形, 两个假设<span class="math inline">\(h\)</span>, <span class="math inline">\(h&#39;\)</span>在数学语言下的描述长度分别为10,100; 但在中文下的长度分别为100,10. 因此这里笔者理解为对大多数语言的来说短的解析, 或是期望意义下的最短的解析.</p>
-<h1 id="一致性">一致性</h1>
-<p>最后给出一个比不一致可学习更松弛的可学习概念: 一致性, 这个概念允许所欲要的样本不仅依赖于<span class="math inline">\(\varepsilon,\delta\)</span>和<span class="math inline">\(h\)</span>,而且依赖于数据所依托的分布<span class="math inline">\(\mathcal{D}\)</span>.</p>
-<p>一致性(Consistency):</p>
-<blockquote>
-<p><span class="math inline">\(\mathcal{P}\)</span>表示<span class="math inline">\(Z\)</span>上的概率分布, 称一个学习规则<span class="math inline">\(A\)</span>关于<span class="math inline">\(\mathcal{H}\)</span>和<span class="math inline">\(\mathcal{P}\)</span>满足一致性, 若存在一个函数<span class="math display">\[m^{CON}_{\mathcal{H}}:(0,1)^{2}×\mathcal{H}×\mathcal{P}\to\mathbb{N}\]</span>使得对<span class="math inline">\(\forall h\in\mathcal{H}\)</span>,<span class="math inline">\(\forall\mathcal{D}\in\mathcal{P}\)</span>,<span class="math inline">\(\forall\varepsilon\)</span>,<span class="math inline">\(\delta\in(0,1)\)</span>, <span class="math inline">\(m\ge m^{NUL}_{\mathcal{H}}(\varepsilon,\delta,h,\mathcal{D})\)</span>,下式成立的概率不小于1-δ<span class="math inline">\(L_{\mathcal{D}}(A(S))\le L_{\mathcal{D}}(h)+\varepsilon\)</span>.</p>
-</blockquote>
-<h2 id="memorize算法">Memorize算法</h2>
-<p>考虑如下定义的分类预测算法Memorize, 这个算法对新样本的预测永远都是某个固定的标签,比如说是训练集中出现次数最多的标签. 事实上, Memorize算法对于任何数据集上所有函数构成的类都满足一致性, 但这个算法很明显没有什么用.</p>
-<p><code>写在最后</code>: 本文主要是写了写PAC可学习框架下有关VC维的内容, 这个VC维(Vapnik–Chervonenkis dimension)其实代表两位大牛:svm发明者<a href="https://en.wikipedia.org/wiki/Vladimir_Vapnik">Vapnik</a>和俄罗斯的数学家<a href="https://en.wikipedia.org/wiki/Alexey_Chervonenkis">Chervonenkis</a>. 进一步内容的Rademacher复杂度则是我下一篇博客的内容, 西瓜书将其放在12.5节, 深入理解机器学习一书则是将其放在第四部分高级理论26-27章, 针对多分类问题的Natarajan维在29章.</p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>PAC可学习</tag>
-        <tag>一致收敛性</tag>
-        <tag>没有免费午餐定理</tag>
-        <tag>VC维</tag>
-        <tag>不一致可学习</tag>
-        <tag>一致性</tag>
-        <tag>ERM</tag>
-        <tag>SRM</tag>
-        <tag>MDL</tag>
-        <tag>奥卡姆剃刀</tag>
       </tags>
   </entry>
   <entry>
