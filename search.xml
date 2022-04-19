@@ -1018,6 +1018,118 @@ t_d^{k+1}&amp;\sim P(T_d\mid T_1=t_1^{k}, T_2=t_2^{k},..., T_{d-1}=t_{d-1}^{k}, 
       </tags>
   </entry>
   <entry>
+    <title>SciPy中的经典优化算法</title>
+    <url>/2019/02/20/SciPy%E4%B8%AD%E7%9A%84%E7%BB%8F%E5%85%B8%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>前言: 本文的初衷是试图用尽量简明形象的语言说一说<code>scipy.optimize.minimize</code>函数涉及到的经典优化算法的特点, 方便速查与快速回忆; 严格理论的部分可见<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize">官方文档</a>Notes部分的内容, 其对每一种方法都给出了参考论文, 而笔者关于这些算法的理解大多来自于Jorge Nocedal的Numerical Optimization. <span id="more"></span></p>
+<p>首先来看<code>scipy.optimize</code>这个包的<a href="https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html">官方文档</a>, 右侧的目录告诉我们这个包大致分为6块内容:</p>
+<ul>
+<li>多元函数无约束优化</li>
+<li>多元函数约束优化</li>
+<li>最小二乘优化</li>
+<li>一元函数优化</li>
+<li>自定义优化器</li>
+<li>寻根问题</li>
+</ul>
+<h2 id="minimize函数">minimize函数</h2>
+<p>可以看到<code>scipy.optimize.minimize</code>函数对应于第一第二块内容, 具体<code>minimize</code>的<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize">文档</a>, 可以看到<code>method</code>参数中罗列着以下14种方法:</p>
+<ul>
+<li>Nelder-Mead</li>
+<li>Powell</li>
+<li>CG</li>
+<li>BFGS</li>
+<li>Newton-CG</li>
+<li>L-BFGS-B</li>
+<li>TNC</li>
+<li>COBYLA</li>
+<li>SLSQP</li>
+<li>trust-constr</li>
+<li>dogleg</li>
+<li>trust-ncg</li>
+<li>trust-exact</li>
+<li>trust-krylov</li>
+</ul>
+<p>优化是对目标函数的进行迭代求最小值的过程, 若优化过程只需求得目标函数的在迭代点处函数值, 那么这类方法称为是<strong>无导数优化</strong>; 若需要求得目标函数的一阶信息(梯度向量值), 那么这类方法称为是<strong>一阶方法</strong>; 若需要求得二阶信息(Hessian阵), 那么这类方法称为是<strong>二阶方法</strong>. 显然三类方法的计算量的越来越大.</p>
+<p>上面罗列的算法中<strong>无导数优化</strong>方法有: Nelder-Mead, Powell, COBYLA; <strong>一阶方法</strong>有: CG, BFGS, L-BFGS-B, TNC, SLSQP; <strong>二阶方法</strong>有: Newton-CG, trust-constr, dogleg, trust-ncg, trust-exact, trust-krylov; 特别的, 二阶方法中的trust-constr, trust-ncg, trust-krylov若能提供Hessian右乘任意向量p的结果(即关于迭代点x和任意向量p的函数), 这样的函数一般来说计算量会小于直接计算Hessian阵, 因此实际上计算量会介于一阶方法与二阶方法之间, 这里笔者称之为<strong>一阶半方法</strong>, 这类方法适合大规模问题.</p>
+<p>下面按优化问题的不同分无约束优化, 有界约束优化与约束优化分别来看:</p>
+<h2 id="无约束优化">无约束优化</h2>
+<hr />
+<h3 id="nelder-mead方法">Nelder-Mead方法</h3>
+<p>Nelder-Mead方法是<strong>无导数优化方法</strong>, 其保持了对<span class="math inline">\(\mathbb{R}^n\)</span>中的<span class="math inline">\(n+1\)</span>个点的函数值追踪, 且这些点的凸包构成了一个<strong>非退化的单纯形</strong>. 比方说目标函数为<span class="math inline">\(\mathbb{R}^2\)</span>中的函数, Nelder-Mead方法就保持了对<span class="math inline">\(3\)</span>个点的函数值追踪, 非退化指的是这三者不能共线.</p>
+<p>下面以<a href="https://en.wikipedia.org/wiki/Nelder%E2%80%93Mead_method">维基百科</a>上的关于Rosenbrock函数的动图为例, 记手中的<span class="math inline">\(n+1\)</span>个点为<span class="math inline">\(\{x_1,...,x_{n+1}\}\)</span>, 并将它们按函数值大小排序<span class="math inline">\(f(x_1)\le\cdots\le f(x_{n+1})\)</span>, <span class="math inline">\(n\)</span>个最好的点的形心为<span class="math inline">\(\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i\)</span>此时<span class="math inline">\(\bar{x}\)</span>与最差的点<span class="math inline">\(x_{n+1}\)</span>之间的连线即为: <span class="math display">\[\bar{x}(t)=\bar{x}+t(x_{n+1}-\bar{x})\]</span>Nelder-Mead方法出于<strong>尽量远离函数值最高的点的想法</strong>, 去观察<span class="math inline">\(\bar{x}(-1)\)</span>的值</p>
+<ul>
+<li>若<span class="math inline">\(f(x_1)\le f(\bar{x}(-1))&lt;f(x_n)\)</span>, 则用<span class="math inline">\(\bar{x}(-1)\)</span>取代<span class="math inline">\(x_{n+1}\)</span>;</li>
+<li>若<span class="math inline">\(f(\bar{x}(-1))&lt;f(x_1)\)</span>, 继续观察<span class="math inline">\(\bar{x}(-2)\)</span>是否会带来更进一步下降, 择优选择取代<span class="math inline">\(x_{n+1}\)</span>;</li>
+<li>若<span class="math inline">\(f(x_n)\le f(\bar{x}(-1))&lt;f(x_{n+1})\)</span>, 先后观察<span class="math inline">\(\bar{x}(-\frac{1}{2})\)</span>与<span class="math inline">\(\bar{x}(\frac{1}{2})\)</span>是否会带来更进一步下降, 注意到先后的顺序也体现了尽量远离<span class="math inline">\(x_{n+1}\)</span>;</li>
+<li>最后若上述条件均不满足, 则整体向函数值最小的点<span class="math inline">\(x_1\)</span>挪一半.</li>
+</ul>
+上述算法可见Numerical Optimization一书9.5节, 对应到下图中的第一步迭代, 不难看出第一次迭代点的选择为<span class="math inline">\(\bar{x}(\frac{1}{2})\)</span>.
+<div data-align="center">
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Nelder-Mead_Rosenbrock.gif" width="420">
+</div>
+<hr />
+<h3 id="powell方法">Powell方法</h3>
+<p><a href="https://en.wikipedia.org/wiki/Powell%27s_method">Powell方法</a>是共轭方向法的一种变体, 先来看什么是共轭方向法, <strong>共轭方向法</strong>是<strong>给定一共轭方向的集合</strong><span class="math inline">\(\{p_1....,p_n\}\)</span>, 对集合中的方向依次进一维巡查的方法, 因此显然是<strong>无导数优化方法</strong>.</p>
+<p>以最简单的二次函数<span class="math inline">\(f(x)=\frac{1}{2}x^TAx-b^Tx\)</span>为例, 其中<span class="math inline">\(A\)</span>为<span class="math inline">\(n\)</span>阶对称正定方阵, 此时共轭的概念有了具体的要求: <span class="math inline">\(p_i^TAp_j=0\)</span>. 若<span class="math inline">\(A\)</span>恰为对角阵, 如左图所示, 共轭方向集合可取为坐标轴方向<span class="math inline">\(\{e_1, e_2\}\)</span>; 若<span class="math inline">\(A\)</span>不为对角阵, 如右图所示, 此时<span class="math inline">\(\{e_1, e_2\}\)</span>不能作为一组共轭方向, 图中的<strong>红线</strong>和<strong>蓝线</strong>则是给出了两个不同的共轭方向集合.</p>
+<p>值得注意的是, 此时<strong>至多</strong><span class="math inline">\(n\)</span>步共轭方向法会收敛到最小值点<span class="math inline">\(x^*\)</span>, 证明可见Numerical Optimization一书定理5.1</p>
+<p><img src="/pictures/scipy_optimization/1.png" /></p>
+<p>回到Powell方法, 仍然以上述二次函数为例, 其与标准共轭方向法唯一的不同在于<strong>迭代地得到共轭方向的集合</strong>, 且共轭方向的集合的初始化可简单取为<span class="math inline">\(\{e_1, e_2\}\)</span>. 以右图为例,</p>
+<ul>
+<li>第一步从<span class="math inline">\(x_0\)</span>出发沿着<span class="math inline">\(e_1\)</span>做一维巡查得到<span class="math inline">\(x_1\)</span>;</li>
+<li>第二步先分别对<span class="math inline">\(\{e_2,e_1\}\)</span>做一维巡查得到<span class="math inline">\(x_2,x_3\)</span>, 由此得到真巡查方向<span class="math inline">\(x_3-x_1\)</span>, 从<span class="math inline">\(x_1\)</span>出发沿着<span class="math inline">\(x_3-x_1\)</span>做一维巡查就能直接到达<span class="math inline">\(x^*\)</span>(不难验证<span class="math inline">\(x_3-x_1\)</span>与<span class="math inline">\(e_1\)</span>关于<span class="math inline">\(A\)</span>共轭), 且此时共轭方向的集合更新为<span class="math inline">\(\{e_1, x_3-x_1\}\)</span>.</li>
+</ul>
+<p>容易看到Powell方法不涉及一阶信息因此为<strong>无导数优化方法</strong>. 上述括号内的性质称为是<strong>并行子空间性质</strong>: 记函数<span class="math inline">\(f(x)\)</span>在两条平行线<span class="math inline">\(l_1(\alpha)=x_0+\alpha e_1\)</span>, <span class="math inline">\(l_2(\alpha)=x_2+\alpha e_1\)</span>上的最小值点分别为<span class="math inline">\(x_1, x_3\)</span>, 那么<span class="math inline">\(x_3-x_1\)</span>与<span class="math inline">\(e_1\)</span>关于<span class="math inline">\(A\)</span>共轭. 该性质也容易推广到<span class="math inline">\(n\)</span>维情形.</p>
+<p>上述性质可参考Numerical Optimization一书9.4节, 最后要注意的是对于一般的函数只需将精确的一维巡查改为<strong>非精确搜索</strong>.</p>
+<hr />
+<h3 id="cg方法">CG方法</h3>
+<p>CG为Conjugate Gradient的缩写, 即<a href="https://en.wikipedia.org/wiki/Conjugate_gradient_method">共轭梯度法</a>, 这是利用一组共轭方向求解线性方程组<span class="math inline">\(Ax=b\)</span>的算法, 其中<span class="math inline">\(A\)</span>为<span class="math inline">\(n\)</span>阶对称正定方阵, 而共轭方向一般通过构造一个关于<span class="math inline">\(A\)</span>的Krylov子空间来得到, 且为一阶半方法, 详见Numerical Optimization一书算法5.1. 不难发现线性方程组的求解等价于最小化二次函数<span class="math inline">\(f(x)=\frac{1}{2}x^TAx-b^Tx\)</span>. 事实上, CG方法也可用于一般的优化问题, 其与上述Powell方法类似, <strong>共轭方向由迭代更新得到</strong>, 唯一的不同在于CG方法用了<strong>一阶甚至是二阶信息</strong>来更新共轭方向(<strong>补充一句, 对于一般的非二次函数并没有共轭一说, 这里可以理解为沿用共轭一词</strong>). 以FR(Fletcher-Reeves)方法为例: <span class="math display">\[\beta_{k+1}^{FR}=\nabla f_{k+1}^T\nabla f_{k+1}/\nabla f_{k}^T\nabla f_{k}, p_{k+1}=-\nabla f_{k+1}+\beta_{k+1}^{FR}p_k\]</span>其有许多变体, 具体到<code>SciPy</code>中的这里CG方法指的是PR(Polak-Ribiere)方法:<span class="math display">\[\beta_{k+1}^{PR}=\nabla f_{k+1}^T(\nabla f_{k+1}-\nabla f_{k})/\nabla f_{k}^T\nabla f_{k}, p_{k+1}=-\nabla f_{k+1}+\beta_{k+1}^{FR}p_k\]</span>此外还有PR+方法, HS方法, FR-PR方法等可见Numerical Optimization一书5.2节. 且这里除了HS方法是<strong>二阶方法</strong>, 其余涉及的均为<strong>一阶方法</strong>.</p>
+<p>上述<strong>初值<span class="math inline">\(p_0\)</span>可直接取为负梯度方向</strong>, 另外值得注意的是, 这里关于<span class="math inline">\(p_k\)</span>的一维巡查方法一般需要满足<a href="https://en.wikipedia.org/wiki/Wolfe_conditions#Strong_Wolfe_condition_on_curvature">强Wolfe条件</a>, 且<span class="math inline">\(c_2&lt;\frac{1}{2}\)</span>.</p>
+<hr />
+<h3 id="bfgs方法">BFGS方法</h3>
+<p><a href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm">BFGS</a>作为一种的<strong>拟牛顿方法</strong>, 其不直接计算Hessian阵, 而是<strong>用梯度信息近似计算Hessian阵的逆</strong>并迭代更新, 因此是<strong>一阶方法</strong>, 其更新公式如下:<span class="math display">\[H_{k+1}=(I-\rho_ks_ky_k^T)H_k(I-\rho_ky_ks_k^T)+\rho_ks_ks_k^T\]</span>其中<span class="math inline">\(s_k=x_{k+1}-x_k, y_k=\nabla f_{k+1}-\nabla f_k, \rho_k=1/y_k^Ts_k&gt;0\)</span>. 由于<span class="math inline">\(H_{k+1}\)</span>直接为Hessian阵的<strong>逆</strong>的近似, 因此搜索方向为<span class="math inline">\(p_{k+1}=-H_{k+1}\nabla f_{k+1}\)</span>.</p>
+<p>DFP方法与BFGS方法唯一的不同在于<strong>迭代更新Hessian阵本身</strong>而不是逆, 但由于仍然需要求逆操作, 因此计算量会比BFGS大上一圈. DFP方法的迭代公式可参考Numerical Optimization一书6.1节, 另一种的常见拟牛顿方法SR1可参考Numerical Optimization一书6.2节.</p>
+<p>最后值得注意的是, BFGS常用<a href="https://en.wikipedia.org/wiki/Wolfe_conditions">Wolfe条件</a>做为巡查条件.</p>
+<hr />
+<h3 id="newton-cg方法">Newton-CG方法</h3>
+<p>Newton-CG方法是一种<a href="https://en.m.wikipedia.org/wiki/Truncated_Newton_method">截断牛顿方法</a>, 而截断牛顿方法则是近似去解牛顿方程来得到巡查方向的思路, 解牛顿方程即为了获得牛顿方向, 而截断意味着近似解方程要在截断的迭代次数内, 因而是近似.</p>
+<p>选用CG方法来近似求解牛顿方程(<span class="math inline">\(\nabla^2f_k p_k+\nabla f_k=0\)</span>), 我们就得到了Newton-CG方法, 由于要求得到<span class="math inline">\(\nabla^2 f_k\)</span>, 因此Newton-CG方法为<strong>二阶方法</strong>.</p>
+<p>关于算法的更多细节可见Numerical Optimization一书算法7.1. 另外通过观察算法不难发现, 若能提供Hseeian-vector products函数, 那么Newton-CG方法此时就是<strong>一阶半方法</strong>.</p>
+<p>Newton-CG方法的主要计算量在CG迭代部分, preconditioning可加速CG迭代过程, 见Numerical Optimization一书page118.</p>
+<hr />
+<h3 id="dogleg法">Dogleg法</h3>
+<p>狗腿法是一种<a href="https://optimization.mccormick.northwestern.edu/index.php/Trust-region_methods">信赖域方法</a>, 简单介绍信赖域方法, 与线搜索方法先确定方向后确定步长不同的是, 信赖域方法在<strong>确定方向前首先给定一个信赖域半径</strong><span class="math inline">\(\Delta\)</span>, 要求搜索方向在该信赖域内.</p>
+<p>涉及信赖域方法就不得不谈信赖域子问题: <span class="math display">\[\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\]</span>且一般的, 这里的<span class="math inline">\(B_k\)</span><strong>仅仅要求对称, 一致有界</strong>. 关于这点可见Numerical Optimization一书page68; 但具体到这里的狗腿法仍然需要加上<strong>正定性</strong>的要求.</p>
+<p>回过头来看狗腿法, 狗腿法实际上是<strong>对信赖域子问题最优解曲线的近似</strong>, 从图中可以看到, 第一段是沿着负梯度方向到达柯西点, 这里的柯西点指的是<strong>沿着负梯度方向极小化信赖域子问题</strong>得到的极小值点; 接着像狗腿那样拐弯, 直奔<strong>信赖域子问题的最优解</strong>而去, 因此信赖域半径的作用就是决定了上述过程能跑多远.</p>
+<div data-align="center">
+<img src="/pictures/scipy_optimization/2.png" width="420">
+</div>
+<hr />
+<h3 id="trust-ncg方法">Trust-ncg方法</h3>
+<p>信赖域Newton-CG方法与Newton-CG方法的区别在于不是直接用CG方法解牛顿方程(<span class="math inline">\(\nabla^2f_k p_k+\nabla f_k=0\)</span>), 而是<strong>解信赖域子问题</strong> <span class="math display">\[\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\]</span> 这里<span class="math inline">\(B_k=\nabla^2 f_k\)</span>. 另外步长可<strong>直接设为1</strong>而不需要做一维巡查.</p>
+<p>与Newton-CG方法类似, 显然Trust-ncg法本身是<strong>二阶方法</strong>, 但若能提供Hseeian-vector products函数, Trust-ncg方法也是<strong>一阶半方法</strong>. 算法细节可见Numerical Optimization一书算法7.2.</p>
+<p>preconditioning可加速CG迭代过程, 见Numerical Optimization一书page118.</p>
+<hr />
+<h3 id="trust-krylov方法">Trust-krylov方法</h3>
+<p>其实应该叫Trust-Lanczos方法, <a href="https://en.wikipedia.org/wiki/Lanczos_algorithm">Lanczos方法</a>可以用来三对角化矩阵, 同时构造出了一个Krylov子空间. 上述过程的应用之一就是用来解线性方程<span class="math inline">\(Ax=b\)</span>, 因此也可解牛顿方程, 参见矩阵计算第三版9.3节.</p>
+<p>与Trust-ncg方法相比, Trust-krylov方法只是将CG方法换成了<strong>Lanczos方法</strong>, 且本身仍为<strong>二阶方法</strong>, 同样若能提供Hseeian-vector products函数, Trust-krylov方法也是<strong>一阶半方法</strong>.</p>
+<hr />
+<h3 id="trust-exact方法">Trust-exact方法</h3>
+<p>exact指的是信赖域子问题 <span class="math display">\[\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\]</span>中的<span class="math inline">\(B_k=\nabla^2 f_k\)</span>再进行直接求解. 形式上与Trust-ncg方法、Trust-krylov方法非常类似, 但计算量显然要大一些, 因此只适合小规模问题.</p>
+<p>显然Trust-exact方法为<strong>二阶方法</strong>.</p>
+<hr />
+<h2 id="有界约束优化">有界约束优化</h2>
+<h3 id="l-bfgs-b方法">L-BFGS-B方法</h3>
+<p>To be continued...</p>
+]]></content>
+      <categories>
+        <category>优化算法</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>SciPy</tag>
+        <tag>优化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ubuntu16.04下便捷安装tensorflow</title>
     <url>/2018/12/23/Ubuntu1604%E4%B8%8B%E4%BE%BF%E6%8D%B7%E5%AE%89%E8%A3%85tensorflow/</url>
     <content><![CDATA[<p>前言: 这篇博文记载了Ubuntu16.04下便捷安装tensorflow的方法. <span id="more"></span> 摸索了几天, 发现一种Ubuntu下便捷安装tensorflow的方法, 特此分享. 过程大致分为2步:</p>
@@ -1060,6 +1172,53 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
         <tag>Ubuntu</tag>
         <tag>tensorflow</tag>
         <tag>cuda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu食用记录</title>
+    <url>/2018/04/18/Ubuntu%E9%A3%9F%E7%94%A8%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<p>前言:上中国大学MOOC上面的一门慕课(人工智能实践：Tensorflow笔记)时装了Ubuntu16.04,按照课程视屏方法顺利安装,特此开文记录使用中碰到的一些有意思的事. <span id="more"></span></p>
+<hr />
+<p>Q:如何安装Ubuntu?</p>
+<p>A:参见中国大学MOOC北大课程tensorflow笔记的第一周视频.</p>
+<hr />
+<p>Q:如何进入Ubuntu?</p>
+<p>A:开机狂按Esc,然后F9,选择进入Ubuntu.</p>
+<hr />
+<p>Q:Ubuntu默认的python模块有哪些(已安装tensorflow)?</p>
+<p>A： <img src="/pictures/Ubuntu/piplist.png" alt="avatar" /></p>
+<hr />
+<p>Q:Firefox浏览器无法播放中国大学MOOC上的视频怎么办?</p>
+<p>A:为Friefox安装flash插件(Flash Block)然并.</p>
+<hr />
+<p>Q:如何为Ubuntu安装chrome?</p>
+<p>A:参见:https://blog.csdn.net/qq551551/article/details/78885704</p>
+<hr />
+<p>Q:如何在Ubuntu启动root用户?</p>
+<p>A: <img src="/pictures/Ubuntu/root.png" alt="avatar" /></p>
+<hr />
+<p>Q:如何在Ubuntu翻墙?</p>
+<p>A:参见:https://blog.csdn.net/superbfly/article/details/54950451</p>
+<p>SS启动方式为在文档下打开<code>terminal</code>,输入: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sslocal -c SS.JSON</span><br></pre></td></tr></table></figure> ps:SS.JSON为已配置好信息的文件</p>
+<hr />
+<p>Q:怎么解决“The TensorFlow library wasn't compiled to use SSE4.1 instructions”?</p>
+<p>A: <img src="/pictures/Ubuntu/tf_cpp_min_log_level_2.png" alt="avatar" /></p>
+<hr />
+<p>Q:如何将tab键设定为4个空格?</p>
+<p>A:任意目录打开 <code>terminal</code>,输入 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi ~/.vimrc</span><br></pre></td></tr></table></figure> 最后键入以下内容: <img src="/pictures/Ubuntu/tab.png" alt="tab=4" /></p>
+<hr />
+<p>Q:Adam,GD,Momentum三种优化算法实际表现?</p>
+<p>A:一个简单的比较如下,在这个比较中Momentum是收敛最快的,其次是Adam,最慢是GD: 1. Adam <img src="/pictures/Ubuntu/Adam.png" alt="Adam" /> 2. GD <img src="/pictures/Ubuntu/BGD.png" alt="GD" /> 3. Momentum <img src="/pictures/Ubuntu/Momentum.png" alt="Momentum" /></p>
+<hr />
+<p>Q:ubuntu下安装matplotlib模块？</p>
+<p>A: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install python-matplotlib</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>tensorflow</tag>
       </tags>
   </entry>
   <entry>
@@ -1221,165 +1380,6 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
       </categories>
       <tags>
         <tag>VC bound</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu食用记录</title>
-    <url>/2018/04/18/Ubuntu%E9%A3%9F%E7%94%A8%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<p>前言:上中国大学MOOC上面的一门慕课(人工智能实践：Tensorflow笔记)时装了Ubuntu16.04,按照课程视屏方法顺利安装,特此开文记录使用中碰到的一些有意思的事. <span id="more"></span></p>
-<hr />
-<p>Q:如何安装Ubuntu?</p>
-<p>A:参见中国大学MOOC北大课程tensorflow笔记的第一周视频.</p>
-<hr />
-<p>Q:如何进入Ubuntu?</p>
-<p>A:开机狂按Esc,然后F9,选择进入Ubuntu.</p>
-<hr />
-<p>Q:Ubuntu默认的python模块有哪些(已安装tensorflow)?</p>
-<p>A： <img src="/pictures/Ubuntu/piplist.png" alt="avatar" /></p>
-<hr />
-<p>Q:Firefox浏览器无法播放中国大学MOOC上的视频怎么办?</p>
-<p>A:为Friefox安装flash插件(Flash Block)然并.</p>
-<hr />
-<p>Q:如何为Ubuntu安装chrome?</p>
-<p>A:参见:https://blog.csdn.net/qq551551/article/details/78885704</p>
-<hr />
-<p>Q:如何在Ubuntu启动root用户?</p>
-<p>A: <img src="/pictures/Ubuntu/root.png" alt="avatar" /></p>
-<hr />
-<p>Q:如何在Ubuntu翻墙?</p>
-<p>A:参见:https://blog.csdn.net/superbfly/article/details/54950451</p>
-<p>SS启动方式为在文档下打开<code>terminal</code>,输入: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sslocal -c SS.JSON</span><br></pre></td></tr></table></figure> ps:SS.JSON为已配置好信息的文件</p>
-<hr />
-<p>Q:怎么解决“The TensorFlow library wasn't compiled to use SSE4.1 instructions”?</p>
-<p>A: <img src="/pictures/Ubuntu/tf_cpp_min_log_level_2.png" alt="avatar" /></p>
-<hr />
-<p>Q:如何将tab键设定为4个空格?</p>
-<p>A:任意目录打开 <code>terminal</code>,输入 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi ~/.vimrc</span><br></pre></td></tr></table></figure> 最后键入以下内容: <img src="/pictures/Ubuntu/tab.png" alt="tab=4" /></p>
-<hr />
-<p>Q:Adam,GD,Momentum三种优化算法实际表现?</p>
-<p>A:一个简单的比较如下,在这个比较中Momentum是收敛最快的,其次是Adam,最慢是GD: 1. Adam <img src="/pictures/Ubuntu/Adam.png" alt="Adam" /> 2. GD <img src="/pictures/Ubuntu/BGD.png" alt="GD" /> 3. Momentum <img src="/pictures/Ubuntu/Momentum.png" alt="Momentum" /></p>
-<hr />
-<p>Q:ubuntu下安装matplotlib模块？</p>
-<p>A: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install python-matplotlib</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>Ubuntu</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>tensorflow</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SciPy中的经典优化算法</title>
-    <url>/2019/02/20/SciPy%E4%B8%AD%E7%9A%84%E7%BB%8F%E5%85%B8%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>前言: 本文的初衷是试图用尽量简明形象的语言说一说<code>scipy.optimize.minimize</code>函数涉及到的经典优化算法的特点, 方便速查与快速回忆; 严格理论的部分可见<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize">官方文档</a>Notes部分的内容, 其对每一种方法都给出了参考论文, 而笔者关于这些算法的理解大多来自于Jorge Nocedal的Numerical Optimization. <span id="more"></span></p>
-<p>首先来看<code>scipy.optimize</code>这个包的<a href="https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html">官方文档</a>, 右侧的目录告诉我们这个包大致分为6块内容:</p>
-<ul>
-<li>多元函数无约束优化</li>
-<li>多元函数约束优化</li>
-<li>最小二乘优化</li>
-<li>一元函数优化</li>
-<li>自定义优化器</li>
-<li>寻根问题</li>
-</ul>
-<h2 id="minimize函数">minimize函数</h2>
-<p>可以看到<code>scipy.optimize.minimize</code>函数对应于第一第二块内容, 具体<code>minimize</code>的<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize">文档</a>, 可以看到<code>method</code>参数中罗列着以下14种方法:</p>
-<ul>
-<li>Nelder-Mead</li>
-<li>Powell</li>
-<li>CG</li>
-<li>BFGS</li>
-<li>Newton-CG</li>
-<li>L-BFGS-B</li>
-<li>TNC</li>
-<li>COBYLA</li>
-<li>SLSQP</li>
-<li>trust-constr</li>
-<li>dogleg</li>
-<li>trust-ncg</li>
-<li>trust-exact</li>
-<li>trust-krylov</li>
-</ul>
-<p>优化是对目标函数的进行迭代求最小值的过程, 若优化过程只需求得目标函数的在迭代点处函数值, 那么这类方法称为是<strong>无导数优化</strong>; 若需要求得目标函数的一阶信息(梯度向量值), 那么这类方法称为是<strong>一阶方法</strong>; 若需要求得二阶信息(Hessian阵), 那么这类方法称为是<strong>二阶方法</strong>. 显然三类方法的计算量的越来越大.</p>
-<p>上面罗列的算法中<strong>无导数优化</strong>方法有: Nelder-Mead, Powell, COBYLA; <strong>一阶方法</strong>有: CG, BFGS, L-BFGS-B, TNC, SLSQP; <strong>二阶方法</strong>有: Newton-CG, trust-constr, dogleg, trust-ncg, trust-exact, trust-krylov; 特别的, 二阶方法中的trust-constr, trust-ncg, trust-krylov若能提供Hessian右乘任意向量p的结果(即关于迭代点x和任意向量p的函数), 这样的函数一般来说计算量会小于直接计算Hessian阵, 因此实际上计算量会介于一阶方法与二阶方法之间, 这里笔者称之为<strong>一阶半方法</strong>, 这类方法适合大规模问题.</p>
-<p>下面按优化问题的不同分无约束优化, 有界约束优化与约束优化分别来看:</p>
-<h2 id="无约束优化">无约束优化</h2>
-<hr />
-<h3 id="nelder-mead方法">Nelder-Mead方法</h3>
-<p>Nelder-Mead方法是<strong>无导数优化方法</strong>, 其保持了对<span class="math inline">\(\mathbb{R}^n\)</span>中的<span class="math inline">\(n+1\)</span>个点的函数值追踪, 且这些点的凸包构成了一个<strong>非退化的单纯形</strong>. 比方说目标函数为<span class="math inline">\(\mathbb{R}^2\)</span>中的函数, Nelder-Mead方法就保持了对<span class="math inline">\(3\)</span>个点的函数值追踪, 非退化指的是这三者不能共线.</p>
-<p>下面以<a href="https://en.wikipedia.org/wiki/Nelder%E2%80%93Mead_method">维基百科</a>上的关于Rosenbrock函数的动图为例, 记手中的<span class="math inline">\(n+1\)</span>个点为<span class="math inline">\(\{x_1,...,x_{n+1}\}\)</span>, 并将它们按函数值大小排序<span class="math inline">\(f(x_1)\le\cdots\le f(x_{n+1})\)</span>, <span class="math inline">\(n\)</span>个最好的点的形心为<span class="math inline">\(\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i\)</span>此时<span class="math inline">\(\bar{x}\)</span>与最差的点<span class="math inline">\(x_{n+1}\)</span>之间的连线即为: <span class="math display">\[\bar{x}(t)=\bar{x}+t(x_{n+1}-\bar{x})\]</span>Nelder-Mead方法出于<strong>尽量远离函数值最高的点的想法</strong>, 去观察<span class="math inline">\(\bar{x}(-1)\)</span>的值</p>
-<ul>
-<li>若<span class="math inline">\(f(x_1)\le f(\bar{x}(-1))&lt;f(x_n)\)</span>, 则用<span class="math inline">\(\bar{x}(-1)\)</span>取代<span class="math inline">\(x_{n+1}\)</span>;</li>
-<li>若<span class="math inline">\(f(\bar{x}(-1))&lt;f(x_1)\)</span>, 继续观察<span class="math inline">\(\bar{x}(-2)\)</span>是否会带来更进一步下降, 择优选择取代<span class="math inline">\(x_{n+1}\)</span>;</li>
-<li>若<span class="math inline">\(f(x_n)\le f(\bar{x}(-1))&lt;f(x_{n+1})\)</span>, 先后观察<span class="math inline">\(\bar{x}(-\frac{1}{2})\)</span>与<span class="math inline">\(\bar{x}(\frac{1}{2})\)</span>是否会带来更进一步下降, 注意到先后的顺序也体现了尽量远离<span class="math inline">\(x_{n+1}\)</span>;</li>
-<li>最后若上述条件均不满足, 则整体向函数值最小的点<span class="math inline">\(x_1\)</span>挪一半.</li>
-</ul>
-上述算法可见Numerical Optimization一书9.5节, 对应到下图中的第一步迭代, 不难看出第一次迭代点的选择为<span class="math inline">\(\bar{x}(\frac{1}{2})\)</span>.
-<div data-align="center">
-<img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Nelder-Mead_Rosenbrock.gif" width="420">
-</div>
-<hr />
-<h3 id="powell方法">Powell方法</h3>
-<p><a href="https://en.wikipedia.org/wiki/Powell%27s_method">Powell方法</a>是共轭方向法的一种变体, 先来看什么是共轭方向法, <strong>共轭方向法</strong>是<strong>给定一共轭方向的集合</strong><span class="math inline">\(\{p_1....,p_n\}\)</span>, 对集合中的方向依次进一维巡查的方法, 因此显然是<strong>无导数优化方法</strong>.</p>
-<p>以最简单的二次函数<span class="math inline">\(f(x)=\frac{1}{2}x^TAx-b^Tx\)</span>为例, 其中<span class="math inline">\(A\)</span>为<span class="math inline">\(n\)</span>阶对称正定方阵, 此时共轭的概念有了具体的要求: <span class="math inline">\(p_i^TAp_j=0\)</span>. 若<span class="math inline">\(A\)</span>恰为对角阵, 如左图所示, 共轭方向集合可取为坐标轴方向<span class="math inline">\(\{e_1, e_2\}\)</span>; 若<span class="math inline">\(A\)</span>不为对角阵, 如右图所示, 此时<span class="math inline">\(\{e_1, e_2\}\)</span>不能作为一组共轭方向, 图中的<strong>红线</strong>和<strong>蓝线</strong>则是给出了两个不同的共轭方向集合.</p>
-<p>值得注意的是, 此时<strong>至多</strong><span class="math inline">\(n\)</span>步共轭方向法会收敛到最小值点<span class="math inline">\(x^*\)</span>, 证明可见Numerical Optimization一书定理5.1</p>
-<p><img src="/pictures/scipy_optimization/1.png" /></p>
-<p>回到Powell方法, 仍然以上述二次函数为例, 其与标准共轭方向法唯一的不同在于<strong>迭代地得到共轭方向的集合</strong>, 且共轭方向的集合的初始化可简单取为<span class="math inline">\(\{e_1, e_2\}\)</span>. 以右图为例,</p>
-<ul>
-<li>第一步从<span class="math inline">\(x_0\)</span>出发沿着<span class="math inline">\(e_1\)</span>做一维巡查得到<span class="math inline">\(x_1\)</span>;</li>
-<li>第二步先分别对<span class="math inline">\(\{e_2,e_1\}\)</span>做一维巡查得到<span class="math inline">\(x_2,x_3\)</span>, 由此得到真巡查方向<span class="math inline">\(x_3-x_1\)</span>, 从<span class="math inline">\(x_1\)</span>出发沿着<span class="math inline">\(x_3-x_1\)</span>做一维巡查就能直接到达<span class="math inline">\(x^*\)</span>(不难验证<span class="math inline">\(x_3-x_1\)</span>与<span class="math inline">\(e_1\)</span>关于<span class="math inline">\(A\)</span>共轭), 且此时共轭方向的集合更新为<span class="math inline">\(\{e_1, x_3-x_1\}\)</span>.</li>
-</ul>
-<p>容易看到Powell方法不涉及一阶信息因此为<strong>无导数优化方法</strong>. 上述括号内的性质称为是<strong>并行子空间性质</strong>: 记函数<span class="math inline">\(f(x)\)</span>在两条平行线<span class="math inline">\(l_1(\alpha)=x_0+\alpha e_1\)</span>, <span class="math inline">\(l_2(\alpha)=x_2+\alpha e_1\)</span>上的最小值点分别为<span class="math inline">\(x_1, x_3\)</span>, 那么<span class="math inline">\(x_3-x_1\)</span>与<span class="math inline">\(e_1\)</span>关于<span class="math inline">\(A\)</span>共轭. 该性质也容易推广到<span class="math inline">\(n\)</span>维情形.</p>
-<p>上述性质可参考Numerical Optimization一书9.4节, 最后要注意的是对于一般的函数只需将精确的一维巡查改为<strong>非精确搜索</strong>.</p>
-<hr />
-<h3 id="cg方法">CG方法</h3>
-<p>CG为Conjugate Gradient的缩写, 即<a href="https://en.wikipedia.org/wiki/Conjugate_gradient_method">共轭梯度法</a>, 这是利用一组共轭方向求解线性方程组<span class="math inline">\(Ax=b\)</span>的算法, 其中<span class="math inline">\(A\)</span>为<span class="math inline">\(n\)</span>阶对称正定方阵, 而共轭方向一般通过构造一个关于<span class="math inline">\(A\)</span>的Krylov子空间来得到, 且为一阶半方法, 详见Numerical Optimization一书算法5.1. 不难发现线性方程组的求解等价于最小化二次函数<span class="math inline">\(f(x)=\frac{1}{2}x^TAx-b^Tx\)</span>. 事实上, CG方法也可用于一般的优化问题, 其与上述Powell方法类似, <strong>共轭方向由迭代更新得到</strong>, 唯一的不同在于CG方法用了<strong>一阶甚至是二阶信息</strong>来更新共轭方向(<strong>补充一句, 对于一般的非二次函数并没有共轭一说, 这里可以理解为沿用共轭一词</strong>). 以FR(Fletcher-Reeves)方法为例: <span class="math display">\[\beta_{k+1}^{FR}=\nabla f_{k+1}^T\nabla f_{k+1}/\nabla f_{k}^T\nabla f_{k}, p_{k+1}=-\nabla f_{k+1}+\beta_{k+1}^{FR}p_k\]</span>其有许多变体, 具体到<code>SciPy</code>中的这里CG方法指的是PR(Polak-Ribiere)方法:<span class="math display">\[\beta_{k+1}^{PR}=\nabla f_{k+1}^T(\nabla f_{k+1}-\nabla f_{k})/\nabla f_{k}^T\nabla f_{k}, p_{k+1}=-\nabla f_{k+1}+\beta_{k+1}^{FR}p_k\]</span>此外还有PR+方法, HS方法, FR-PR方法等可见Numerical Optimization一书5.2节. 且这里除了HS方法是<strong>二阶方法</strong>, 其余涉及的均为<strong>一阶方法</strong>.</p>
-<p>上述<strong>初值<span class="math inline">\(p_0\)</span>可直接取为负梯度方向</strong>, 另外值得注意的是, 这里关于<span class="math inline">\(p_k\)</span>的一维巡查方法一般需要满足<a href="https://en.wikipedia.org/wiki/Wolfe_conditions#Strong_Wolfe_condition_on_curvature">强Wolfe条件</a>, 且<span class="math inline">\(c_2&lt;\frac{1}{2}\)</span>.</p>
-<hr />
-<h3 id="bfgs方法">BFGS方法</h3>
-<p><a href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm">BFGS</a>作为一种的<strong>拟牛顿方法</strong>, 其不直接计算Hessian阵, 而是<strong>用梯度信息近似计算Hessian阵的逆</strong>并迭代更新, 因此是<strong>一阶方法</strong>, 其更新公式如下:<span class="math display">\[H_{k+1}=(I-\rho_ks_ky_k^T)H_k(I-\rho_ky_ks_k^T)+\rho_ks_ks_k^T\]</span>其中<span class="math inline">\(s_k=x_{k+1}-x_k, y_k=\nabla f_{k+1}-\nabla f_k, \rho_k=1/y_k^Ts_k&gt;0\)</span>. 由于<span class="math inline">\(H_{k+1}\)</span>直接为Hessian阵的<strong>逆</strong>的近似, 因此搜索方向为<span class="math inline">\(p_{k+1}=-H_{k+1}\nabla f_{k+1}\)</span>.</p>
-<p>DFP方法与BFGS方法唯一的不同在于<strong>迭代更新Hessian阵本身</strong>而不是逆, 但由于仍然需要求逆操作, 因此计算量会比BFGS大上一圈. DFP方法的迭代公式可参考Numerical Optimization一书6.1节, 另一种的常见拟牛顿方法SR1可参考Numerical Optimization一书6.2节.</p>
-<p>最后值得注意的是, BFGS常用<a href="https://en.wikipedia.org/wiki/Wolfe_conditions">Wolfe条件</a>做为巡查条件.</p>
-<hr />
-<h3 id="newton-cg方法">Newton-CG方法</h3>
-<p>Newton-CG方法是一种<a href="https://en.m.wikipedia.org/wiki/Truncated_Newton_method">截断牛顿方法</a>, 而截断牛顿方法则是近似去解牛顿方程来得到巡查方向的思路, 解牛顿方程即为了获得牛顿方向, 而截断意味着近似解方程要在截断的迭代次数内, 因而是近似.</p>
-<p>选用CG方法来近似求解牛顿方程(<span class="math inline">\(\nabla^2f_k p_k+\nabla f_k=0\)</span>), 我们就得到了Newton-CG方法, 由于要求得到<span class="math inline">\(\nabla^2 f_k\)</span>, 因此Newton-CG方法为<strong>二阶方法</strong>.</p>
-<p>关于算法的更多细节可见Numerical Optimization一书算法7.1. 另外通过观察算法不难发现, 若能提供Hseeian-vector products函数, 那么Newton-CG方法此时就是<strong>一阶半方法</strong>.</p>
-<p>Newton-CG方法的主要计算量在CG迭代部分, preconditioning可加速CG迭代过程, 见Numerical Optimization一书page118.</p>
-<hr />
-<h3 id="dogleg法">Dogleg法</h3>
-<p>狗腿法是一种<a href="https://optimization.mccormick.northwestern.edu/index.php/Trust-region_methods">信赖域方法</a>, 简单介绍信赖域方法, 与线搜索方法先确定方向后确定步长不同的是, 信赖域方法在<strong>确定方向前首先给定一个信赖域半径</strong><span class="math inline">\(\Delta\)</span>, 要求搜索方向在该信赖域内.</p>
-<p>涉及信赖域方法就不得不谈信赖域子问题: <span class="math display">\[\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\]</span>且一般的, 这里的<span class="math inline">\(B_k\)</span><strong>仅仅要求对称, 一致有界</strong>. 关于这点可见Numerical Optimization一书page68; 但具体到这里的狗腿法仍然需要加上<strong>正定性</strong>的要求.</p>
-<p>回过头来看狗腿法, 狗腿法实际上是<strong>对信赖域子问题最优解曲线的近似</strong>, 从图中可以看到, 第一段是沿着负梯度方向到达柯西点, 这里的柯西点指的是<strong>沿着负梯度方向极小化信赖域子问题</strong>得到的极小值点; 接着像狗腿那样拐弯, 直奔<strong>信赖域子问题的最优解</strong>而去, 因此信赖域半径的作用就是决定了上述过程能跑多远.</p>
-<div data-align="center">
-<img src="/pictures/scipy_optimization/2.png" width="420">
-</div>
-<hr />
-<h3 id="trust-ncg方法">Trust-ncg方法</h3>
-<p>信赖域Newton-CG方法与Newton-CG方法的区别在于不是直接用CG方法解牛顿方程(<span class="math inline">\(\nabla^2f_k p_k+\nabla f_k=0\)</span>), 而是<strong>解信赖域子问题</strong> <span class="math display">\[\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\]</span> 这里<span class="math inline">\(B_k=\nabla^2 f_k\)</span>. 另外步长可<strong>直接设为1</strong>而不需要做一维巡查.</p>
-<p>与Newton-CG方法类似, 显然Trust-ncg法本身是<strong>二阶方法</strong>, 但若能提供Hseeian-vector products函数, Trust-ncg方法也是<strong>一阶半方法</strong>. 算法细节可见Numerical Optimization一书算法7.2.</p>
-<p>preconditioning可加速CG迭代过程, 见Numerical Optimization一书page118.</p>
-<hr />
-<h3 id="trust-krylov方法">Trust-krylov方法</h3>
-<p>其实应该叫Trust-Lanczos方法, <a href="https://en.wikipedia.org/wiki/Lanczos_algorithm">Lanczos方法</a>可以用来三对角化矩阵, 同时构造出了一个Krylov子空间. 上述过程的应用之一就是用来解线性方程<span class="math inline">\(Ax=b\)</span>, 因此也可解牛顿方程, 参见矩阵计算第三版9.3节.</p>
-<p>与Trust-ncg方法相比, Trust-krylov方法只是将CG方法换成了<strong>Lanczos方法</strong>, 且本身仍为<strong>二阶方法</strong>, 同样若能提供Hseeian-vector products函数, Trust-krylov方法也是<strong>一阶半方法</strong>.</p>
-<hr />
-<h3 id="trust-exact方法">Trust-exact方法</h3>
-<p>exact指的是信赖域子问题 <span class="math display">\[\min_{p}m_k(p)=f_k+\nabla f_k^Tp_k+\frac{1}{2}p^TB_kp\ \ \operatorname{ s.t. }\Vert p\Vert\le\Delta\]</span>中的<span class="math inline">\(B_k=\nabla^2 f_k\)</span>再进行直接求解. 形式上与Trust-ncg方法、Trust-krylov方法非常类似, 但计算量显然要大一些, 因此只适合小规模问题.</p>
-<p>显然Trust-exact方法为<strong>二阶方法</strong>.</p>
-<hr />
-<h2 id="有界约束优化">有界约束优化</h2>
-<h3 id="l-bfgs-b方法">L-BFGS-B方法</h3>
-<p>To be continued...</p>
-]]></content>
-      <categories>
-        <category>优化算法</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>SciPy</tag>
-        <tag>优化</tag>
       </tags>
   </entry>
   <entry>
@@ -1648,29 +1648,74 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
       </tags>
   </entry>
   <entry>
-    <title>拉普拉斯方法</title>
-    <url>/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>前言: 本文主要是关于拉普拉斯近似方法, 这是一种用来近似计算积分的方法, 主要参考了维基百科及PRML一书6.4节. <span id="more"></span></p>
+    <title>拉德马赫复杂度</title>
+    <url>/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/</url>
+    <content><![CDATA[<p>前言: 本文主要讲了拉德马赫复杂度(<a href="https://en.wikipedia.org/wiki/Rademacher_complexity">Rademacher complexity</a>), 主要参考了Understanding machine learning一书26章.</p>
+<span id="more"></span>
 <hr />
-<h2 id="拉普拉斯近似方法">拉普拉斯近似方法</h2>
-拉普拉斯近似方法(<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">Laplace's method</a>)是一种近似计算积分的方法, 目标积分形如<span class="math display">\[\int_a^be^{Mf(x)}dx\]</span>其中<span class="math inline">\(f(x)\)</span>要求是二次可微的, <span class="math inline">\(M\)</span>要求是一个较大的数. 其想法是假定<span class="math inline">\(x_0\)</span>是<span class="math inline">\(f(x)\)</span>唯一的最大值点, 因此<span class="math inline">\(f(x_0)&gt;f(x)\)</span>, 乘上一个较大的M, 在经过指数函数的作用, 其差值事实上会变得很大, 不难想象随着<span class="math inline">\(M\)</span>的增大积分内的函数会越来越像一个单峰函数, 事实上确实会逼近对一个正态分布进行积分的值. 举个例子<span class="math inline">\(f(x)=sinx/x\)</span>, 分别画出<span class="math inline">\(e^{sinx/x}\)</span>和<span class="math inline">\(e^{3sinx/x}\)</span>的函数图像:
-<div data-align="center">
-<img src="/pictures/laplace_method/exp%283sinx_x%29.png" width="60%" height="50%" />
-</div>
-<div data-align="center">
-<img src="/pictures/laplace_method/exp%28sinx_x%29.png" width="60%" height="50%" />
-</div>
-<p>考虑多元情形, 假定<span class="math inline">\(x_0\)</span>为f(x)的最大值点, 因此有<span class="math inline">\(\nabla f(x_0)=0\)</span>且Hessian矩阵<span class="math inline">\(H(x_0)负定\)</span>. 将<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处泰勒展开得<span class="math display">\[f(x)\approx f(x_0)+\frac{1}{2!}(x-x_0)^TH(x_0)(x-x_0)\]</span>此时积分近似为<span class="math display">\[\int_a^be^{Mf(x)}dx\approx e^{Mf(x_0)}\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\]</span>假设<span class="math inline">\(x_0\)</span>包含在区间<span class="math inline">\([a,b]\)</span>内, 那么右式可以直接视为在<span class="math inline">\((-\infty,+\infty)\)</span>上的积分, 因为随着<span class="math inline">\(M\)</span>的增大区间之外的积分会越来越小. 而此时右边的积分即为一个对多元正态分布的积分, 且该积分可以通过变量代换<span class="math inline">\(t=H(x_0)^{\frac{1}{2}}(x-x_0)\)</span>化成标准的多元正态分布计算出来:<span class="math display">\[\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\approx \int_{-\infty}^{+\infty} e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx=\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里的<span class="math inline">\(d\)</span>指的是自变量<span class="math inline">\(x\)</span>的维度, <span class="math inline">\(H(x_0)\)</span>指<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处的Hessian矩阵. 因此得到结论:<span class="math display">\[\int_a^be^{Mf(x)}dx\approx  e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>本质上来说, 倘若暂时先不考虑<span class="math inline">\(M\)</span>的大小, 用二阶泰勒展开对<span class="math inline">\(f(x)\)</span>进行近似的方法实际上是把被积函数视为多元正态分布. 一元情形的相关定理描述及证明请移步<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">维基百科</a>, 最后来看一个更一般的结论:<span class="math display">\[\int_a^bh(x)e^{Mf(x)}dx\approx  h(x_0)e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里要求<span class="math inline">\(h(x)&gt;0\)</span>.</p>
+<p>首先应当接触以下几个概念:</p>
+<ul>
+<li>样本空间: 对于监督学习而言为带标签的样本<span class="math inline">\((x,y)\)</span>的取值空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>, 学习的目标是映射<span class="math inline">\(f: \mathcal{X}\to\mathcal{Y}\)</span>, 以用于产生对新样本<span class="math inline">\(x_{new}\)</span>的标签的可靠预测<span class="math inline">\(f(x_{new})\)</span>. <code>p.s.</code>对无监督学习而言为不带标签的样本<span class="math inline">\(x\)</span>的取值空间<span class="math inline">\(\mathcal{X}\)</span>, 学习目标为对<span class="math inline">\(\mathcal{X}\)</span>的可靠分类.</li>
+<li>目标函数: 通常记为<span class="math inline">\(f\)</span>, 即上述监督学习中所说的映射<span class="math inline">\(f\)</span>. 对于分类问题就是我们希望得到的真实的分类函数.</li>
+<li>训练集: 通常记为<span class="math inline">\(S\)</span>, 由定义在样本空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>上的概率分布<span class="math inline">\(\mathcal{D}\)</span>抽样得到 <span class="math display">\[S=\{(x_{1},y_{1}),....,(x_{m},y_{m})\}\]</span></li>
+<li>学习算法: 通常记为<span class="math inline">\(A\)</span>, 即我们构建的、能从数据中学到东西的学习算法, 期望其能从假设类中返回良好的假设.</li>
+<li>假设类: 通常记为<span class="math inline">\(\mathcal{H}\)</span>, 对目标函数<span class="math inline">\(f\)</span>的假设构成的空间, 学习器从中选择.</li>
+<li>预测器(predictor): 或者说分类器(classifier)、假设(hypothesis), 通常记为<span class="math inline">\(h\)</span>, 即学习器输出的一个函数:<span class="math inline">\(h:\mathcal{X}\to\mathcal{Y}\)</span>, 且应当和目标函数<span class="math inline">\(f\)</span>有相近的函数值.</li>
+<li>损失函数: 通常记为<span class="math inline">\(l(h, (x, y))\)</span>, 其定义在预测器<span class="math inline">\(h\)</span>和单个样本<span class="math inline">\((x, y)\)</span>上. 对于二分类问题, 一个常用的损失函数为<span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>, 即分对了就为0, 分错了就为1.</li>
+<li>训练误差: 通常记为<span class="math inline">\(L_{S}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在训练集<span class="math inline">\(S\)</span>上的平均损失<span class="math display">\[L_{S}(h)=\frac{1}{m}\sum_{i=1}^m l(h, (x_i, y_i))\]</span></li>
+<li>泛化误差: 通常记为<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在<span class="math inline">\((\mathcal{X}, \mathcal{Y})\)</span>上的平均损失<span class="math display">\[\mathbb{E}_{(x, y)\sim (\mathcal{X}, \mathcal{Y})}l(h, (x, y))\]</span></li>
+<li><span class="math inline">\(\varepsilon\)</span>-代表性样本: 一个训练集被称为<span class="math inline">\(\varepsilon\)</span>-代表性样本(定义在域<span class="math inline">\(Z\)</span>, 假设类<span class="math inline">\(\mathcal{H}\)</span>, 损失函数<span class="math inline">\(l\)</span>和分布<span class="math inline">\(\mathcal{D}\)</span>上), 如果满足<span class="math display">\[\sup_{h\in\mathcal{H}}|L_{S}(h)-L_{\mathcal{D}}(h)|\le\varepsilon\]</span></li>
+</ul>
+<p>接着应当知道如下基本事实:</p>
+<blockquote>
+<p>如果<span class="math inline">\(S\)</span>是<span class="math inline">\(\varepsilon/2\)</span>-代表性样本, 那么在ERM准则下它是<span class="math inline">\(\varepsilon\)</span>-一致的, 即<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))\le \min_{h\in\mathcal{H}}L_{\mathcal{D}}(h)+\varepsilon\]</span></p>
+</blockquote>
 <hr />
-<h2 id="例子">例子</h2>
-<p>例子参考了PRML一书6.4节, 来自高斯过程分类中的预测问题, 目标也是求一个积分<span class="math display">\[P(a_{N+1}\mid t_N)=\int P(a_{N+1}\mid a_N)P(a_N\mid t_N)da_N\]</span>这里的目标变量<span class="math inline">\(t\in\{0, 1\}\)</span>为二分变量; 被积函数第一部分<span class="math inline">\(P(a_{N+1}\mid a_N)\)</span>是个正态分布, 即为高斯过程回归做预测时的核心结论. 本质上来说, 拉普拉斯近似方法把被积函数或者是被积函数的一部分代换成多元正态分布<span class="math inline">\(N(\mu, \Sigma)\)</span>, 这里仅把被积函数的第二部分代换掉. 回想多元正态分布的<a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">密度函数</a>, 因此只要计算<span class="math inline">\(\log P(a_N\mid t_N)\)</span>关于变量<span class="math inline">\(a_N\)</span>的梯度<span class="math inline">\(\nabla\)</span>和Hessian矩阵<span class="math inline">\(\nabla^2\)</span>, 此时<span class="math inline">\(\mu\)</span>即为<span class="math inline">\(\nabla=0\)</span>的解, <span class="math inline">\(\Sigma=-\nabla^2\)</span>. 接着由两个正态分布积分的一些性质(PRML一书2.115), 可以得到目标积分的近似结果仍为一个正态分布. 然后我们可以用它来做预测<span class="math display">\[P(t_{N+1}=1\mid t_N)=\int P(t_{N+1}=1\mid a_{N+1})P(a_{N+1}\mid t_N)da_{N+1}\]</span>具体计算时被积函数的第一部分利用自己本身的性质近似成了正态分布的分布函数(而非密度函数)(PRML一书4.153). <code>p.s.</code>: 高斯过程分类中的参数也可以用拉普拉斯近似方法得到, 这里就不再赘述, 最后建议细细读一读PRML一书6.4节.</p>
+<h3 id="拉德马赫复杂度">拉德马赫复杂度</h3>
+<p>回顾之前针对二分类问题建立的<a href="https://msgsxj.cn/2018/06/14/VC-bound/">VC bound</a>:<span class="math display">\[
+\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
+\]</span>注意到要定义训练误差与泛化误差必须要定义损失函数, 损失函数实际上选定了二分类问题的常用的损失函数0-1损失: <span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>; 因此上述VC bound又可以写作:<span class="math display">\[
+\sup_{f\in\mathcal{F}}\left|L_{S}(f)-L_{\mathcal{D}}(f)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
+\]</span>这里的<span class="math inline">\(\mathcal{F}\)</span>定义为<span class="math display">\[l \circ \mathcal{H}=\{z\mapsto l(h, z):h\in\mathcal{H}\}\]</span> 相应的<span class="math inline">\(L_{S}(f)=\frac{1}{m}\sum_{i=1}^m f(z_i)\)</span>, <span class="math inline">\(L_{\mathcal{D}}(f)=\mathbb{E}_{z\sim \mathcal{D}}f(z)\)</span>, 当然这里的<span class="math inline">\(l\)</span>已经固定为0-1损失. 定义训练集<span class="math inline">\(S\)</span>在<span class="math inline">\(\mathcal{F}\)</span>上的代表性为:<span class="math display">\[Rep_{\mathcal{D}}(\mathcal{F}, S)\doteq\sup_{f\in\mathcal{F}}(L_{\mathcal{D}}(f)-L_{S}(f))\]</span>一般来说, 训练误差<span class="math inline">\(L_{S}\)</span>能通过优化达到一个非常接近于0的数值, 比如<a href="https://arxiv.org/abs/1811.03804">这篇文章</a>说明了用梯度下降训练ResNet能在多项式时间内达到0训练误差, 即达到全局最优; 泛化误差<span class="math inline">\(L_{\mathcal{D}}\)</span>则会略大于训练误差. 显然当<span class="math inline">\(S\)</span>越能代表<span class="math inline">\(\mathcal{D}\)</span>, 上数值会越接近于0. 现在想要仅仅依靠训练集<span class="math inline">\(S\)</span>本身去估计其代表性, 一个自然地想法是将<span class="math inline">\(S\)</span>分成两个不相交的子集<span class="math inline">\(S=S_1\cup S_2\)</span>, <span class="math inline">\(S_1\)</span>作为验证集, <span class="math inline">\(S_2\)</span>作为训练集, 此时训练集代表性的一个近似为:<span class="math display">\[\sup_{f\in\mathcal{F}}(L_{\mathcal{S_1}}(f)-L_{S_2}(f))\]</span>再设多元随机变量<span class="math display">\[\sigma=(\sigma_1, \sigma_2,...,\sigma_m)\in\{\pm 1\}^m\]</span> 并按如下方式取定随机变量的值<span class="math inline">\(S_1=\{z_i:\sigma_i=1\}\)</span>, <span class="math inline">\(S_2=\{z_i:\sigma_i=-1\}\)</span>, 上式可写成更简单的形式:<span class="math display">\[\frac{1}{m}\sup_{f\in\mathcal{F}}\sum_{i=1}^m \sigma_i f(z_i)\]</span> 此时随机变量的不同的取值代表不同的验证集和训练集的组合, <strong>拉德马赫复杂度</strong>定义为上式近似对随机变量<span class="math inline">\(\sigma\)</span>的期望:<span class="math display">\[R(\mathcal{F}\circ S)\doteq\frac{1}{m}\mathop{\mathbb{E}}_{\sigma\sim\{\pm 1\}^m} [\sup_{f\in\mathcal{F}}\sum_{i=1}^m \sigma_i f(z_i)]\]</span>可以证明, 在期望意义下, 集合<span class="math inline">\(S\)</span>的代表性不超过2倍的拉德马赫复杂度<span class="math display">\[\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[Rep_{\mathcal{D}}(\mathcal{F}, S)]\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(\mathcal{F}\circ S)]\]</span>证明见Understanding machine learning一书引理26.2.</p>
+<hr />
+<h3 id="数据相关界">数据相关界</h3>
+<p>首先来看一个重要的不等式, 有限偏差集中不等式, 又称<a href="https://en.wikipedia.org/wiki/Doob_martingale#McDiarmid&#39;s_inequality">McDiarmid 不等式</a>, 这个不等式可见维基, 这个不等式可用来推出一个与训练集<span class="math inline">\(S\)</span>相关的界:</p>
+<blockquote>
+<p>假设对所有的<span class="math inline">\(z\)</span>和<span class="math inline">\(h\in\mathcal{H}\)</span>, <span class="math inline">\(|l(h, z)|\le c\)</span>, 那么以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(l \circ \mathcal{H}\circ S)]+c\sqrt{\frac{2\log(2/\delta)}{m}}\]</span>以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2R(l \circ \mathcal{H}\circ S)+4c\sqrt{\frac{2\log(4/\delta)}{m}}\]</span> 以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))-L_{\mathcal{D}}(h)\le 2R(l \circ \mathcal{H}\circ S)+5c\sqrt{\frac{2\log(8/\delta)}{m}}\]</span></p>
+</blockquote>
+<p>有兴趣的朋友不妨试着去推一推, 上述1, 2的界的推导类似于西瓜书定理12.5, 唯一不同的是这里满足在常数为<span class="math inline">\(2c/m\)</span>下的有界偏差条件, 而西瓜书直接为1; 第三个不等式则是多一步霍夫丁不等式.</p>
+<ul>
+<li>注意到第2, 3个界实际上由具体的训练集<span class="math inline">\(S\)</span>计算出来的, 因此这两个界被称为是数据相关界, 这也是与VC bound最大的不同之处.</li>
+<li>第二个界可以用来评估当前分类器<span class="math inline">\(h\)</span>在实际数据集<span class="math inline">\(\mathcal{D}\)</span>上的表现, 即<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>.</li>
+<li>第三个界可以用来评估利用ERM原则得到的分类器<span class="math inline">\(h\)</span>与理论最佳分类器的实际差距, 因此希望这个界越小越好; 显然假设类<span class="math inline">\(\mathcal{H}\)</span>越复杂, 这个界越大, 因此某种意义上这个界能用来评估假设类<span class="math inline">\(\mathcal{H}\)</span>的优劣.</li>
+</ul>
+<hr />
+<h3 id="拉德马赫复杂度的性质">拉德马赫复杂度的性质</h3>
+<p>首先给出拉德马赫复杂度的更一般化定义: 给定一个向量集合<span class="math inline">\(A\in\mathbb{R}^m\)</span> <span class="math display">\[R(A)\doteq\frac{1}{m}\mathop{\mathbb{E}}_{\sigma\sim\{\pm 1\}^m} [\sup_{a\in A}\sum_{i=1}^m \sigma_i a_i]\]</span>这里例举拉德马赫复杂度的几条性质, 具体见Understanding machine learning一书26章:</p>
+<ul>
+<li>A的凸包与A具有一样的拉德马赫复杂度.</li>
+<li>一个有限集合的拉德马赫复杂度随着集合大小增长而对数增长.</li>
+<li>如果给集合A作用一个Lipschitz连续的函数, 并不会增大其拉德马赫复杂度.</li>
+</ul>
+<hr />
+<h3 id="线性类的拉德马赫复杂度">线性类的拉德马赫复杂度</h3>
+<p>本节给出两个线性的假设类的拉德马赫复杂度, 假定<span class="math inline">\(x\)</span>的维数为<span class="math inline">\(n\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\mathcal{H}_1=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_1\le 1\}\)</span></li>
+<li><span class="math inline">\(\mathcal{H}_2=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_2\le 1\}\)</span></li>
+</ul>
+<p><span class="math inline">\(\mathcal{H}_1\circ S\)</span>定义为<span class="math inline">\(\{(&lt;\omega, x_i&gt;, i=1...,m):\Vert\omega\Vert_1\le 1\}\)</span>, <span class="math inline">\(\mathcal{H}_2\circ S\)</span>类似的定义, 有如下两个结果, 证明见[UML]一书引理26.10、26.11:</p>
+<ul>
+<li><span class="math inline">\(R(\mathcal{H}_1\circ S) \le \max_i\Vert x_i\Vert_{\infty}\sqrt{\frac{2\log(2n)}{m}}\)</span></li>
+<li><span class="math inline">\(R(\mathcal{H}_2\circ S) \le\frac{\max_i\Vert x_i\Vert_2}{\sqrt{m}}\)</span></li>
+</ul>
+<p><strong>p.s.</strong> 此外还有软硬间隔SVM的泛化误差界的推导, 见26.3, 26.4; 另一种度量集合复杂度的方法为覆盖数, 见27章.</p>
 ]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>拉普拉斯方法</tag>
-        <tag>积分近似</tag>
+        <tag>拉德马赫复杂度</tag>
       </tags>
   </entry>
   <entry>
@@ -2279,74 +2324,29 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
       </tags>
   </entry>
   <entry>
-    <title>拉德马赫复杂度</title>
-    <url>/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/</url>
-    <content><![CDATA[<p>前言: 本文主要讲了拉德马赫复杂度(<a href="https://en.wikipedia.org/wiki/Rademacher_complexity">Rademacher complexity</a>), 主要参考了Understanding machine learning一书26章.</p>
-<span id="more"></span>
+    <title>拉普拉斯方法</title>
+    <url>/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>前言: 本文主要是关于拉普拉斯近似方法, 这是一种用来近似计算积分的方法, 主要参考了维基百科及PRML一书6.4节. <span id="more"></span></p>
 <hr />
-<p>首先应当接触以下几个概念:</p>
-<ul>
-<li>样本空间: 对于监督学习而言为带标签的样本<span class="math inline">\((x,y)\)</span>的取值空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>, 学习的目标是映射<span class="math inline">\(f: \mathcal{X}\to\mathcal{Y}\)</span>, 以用于产生对新样本<span class="math inline">\(x_{new}\)</span>的标签的可靠预测<span class="math inline">\(f(x_{new})\)</span>. <code>p.s.</code>对无监督学习而言为不带标签的样本<span class="math inline">\(x\)</span>的取值空间<span class="math inline">\(\mathcal{X}\)</span>, 学习目标为对<span class="math inline">\(\mathcal{X}\)</span>的可靠分类.</li>
-<li>目标函数: 通常记为<span class="math inline">\(f\)</span>, 即上述监督学习中所说的映射<span class="math inline">\(f\)</span>. 对于分类问题就是我们希望得到的真实的分类函数.</li>
-<li>训练集: 通常记为<span class="math inline">\(S\)</span>, 由定义在样本空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>上的概率分布<span class="math inline">\(\mathcal{D}\)</span>抽样得到 <span class="math display">\[S=\{(x_{1},y_{1}),....,(x_{m},y_{m})\}\]</span></li>
-<li>学习算法: 通常记为<span class="math inline">\(A\)</span>, 即我们构建的、能从数据中学到东西的学习算法, 期望其能从假设类中返回良好的假设.</li>
-<li>假设类: 通常记为<span class="math inline">\(\mathcal{H}\)</span>, 对目标函数<span class="math inline">\(f\)</span>的假设构成的空间, 学习器从中选择.</li>
-<li>预测器(predictor): 或者说分类器(classifier)、假设(hypothesis), 通常记为<span class="math inline">\(h\)</span>, 即学习器输出的一个函数:<span class="math inline">\(h:\mathcal{X}\to\mathcal{Y}\)</span>, 且应当和目标函数<span class="math inline">\(f\)</span>有相近的函数值.</li>
-<li>损失函数: 通常记为<span class="math inline">\(l(h, (x, y))\)</span>, 其定义在预测器<span class="math inline">\(h\)</span>和单个样本<span class="math inline">\((x, y)\)</span>上. 对于二分类问题, 一个常用的损失函数为<span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>, 即分对了就为0, 分错了就为1.</li>
-<li>训练误差: 通常记为<span class="math inline">\(L_{S}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在训练集<span class="math inline">\(S\)</span>上的平均损失<span class="math display">\[L_{S}(h)=\frac{1}{m}\sum_{i=1}^m l(h, (x_i, y_i))\]</span></li>
-<li>泛化误差: 通常记为<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在<span class="math inline">\((\mathcal{X}, \mathcal{Y})\)</span>上的平均损失<span class="math display">\[\mathbb{E}_{(x, y)\sim (\mathcal{X}, \mathcal{Y})}l(h, (x, y))\]</span></li>
-<li><span class="math inline">\(\varepsilon\)</span>-代表性样本: 一个训练集被称为<span class="math inline">\(\varepsilon\)</span>-代表性样本(定义在域<span class="math inline">\(Z\)</span>, 假设类<span class="math inline">\(\mathcal{H}\)</span>, 损失函数<span class="math inline">\(l\)</span>和分布<span class="math inline">\(\mathcal{D}\)</span>上), 如果满足<span class="math display">\[\sup_{h\in\mathcal{H}}|L_{S}(h)-L_{\mathcal{D}}(h)|\le\varepsilon\]</span></li>
-</ul>
-<p>接着应当知道如下基本事实:</p>
-<blockquote>
-<p>如果<span class="math inline">\(S\)</span>是<span class="math inline">\(\varepsilon/2\)</span>-代表性样本, 那么在ERM准则下它是<span class="math inline">\(\varepsilon\)</span>-一致的, 即<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))\le \min_{h\in\mathcal{H}}L_{\mathcal{D}}(h)+\varepsilon\]</span></p>
-</blockquote>
+<h2 id="拉普拉斯近似方法">拉普拉斯近似方法</h2>
+拉普拉斯近似方法(<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">Laplace's method</a>)是一种近似计算积分的方法, 目标积分形如<span class="math display">\[\int_a^be^{Mf(x)}dx\]</span>其中<span class="math inline">\(f(x)\)</span>要求是二次可微的, <span class="math inline">\(M\)</span>要求是一个较大的数. 其想法是假定<span class="math inline">\(x_0\)</span>是<span class="math inline">\(f(x)\)</span>唯一的最大值点, 因此<span class="math inline">\(f(x_0)&gt;f(x)\)</span>, 乘上一个较大的M, 在经过指数函数的作用, 其差值事实上会变得很大, 不难想象随着<span class="math inline">\(M\)</span>的增大积分内的函数会越来越像一个单峰函数, 事实上确实会逼近对一个正态分布进行积分的值. 举个例子<span class="math inline">\(f(x)=sinx/x\)</span>, 分别画出<span class="math inline">\(e^{sinx/x}\)</span>和<span class="math inline">\(e^{3sinx/x}\)</span>的函数图像:
+<div data-align="center">
+<img src="/pictures/laplace_method/exp%283sinx_x%29.png" width="60%" height="50%" />
+</div>
+<div data-align="center">
+<img src="/pictures/laplace_method/exp%28sinx_x%29.png" width="60%" height="50%" />
+</div>
+<p>考虑多元情形, 假定<span class="math inline">\(x_0\)</span>为f(x)的最大值点, 因此有<span class="math inline">\(\nabla f(x_0)=0\)</span>且Hessian矩阵<span class="math inline">\(H(x_0)负定\)</span>. 将<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处泰勒展开得<span class="math display">\[f(x)\approx f(x_0)+\frac{1}{2!}(x-x_0)^TH(x_0)(x-x_0)\]</span>此时积分近似为<span class="math display">\[\int_a^be^{Mf(x)}dx\approx e^{Mf(x_0)}\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\]</span>假设<span class="math inline">\(x_0\)</span>包含在区间<span class="math inline">\([a,b]\)</span>内, 那么右式可以直接视为在<span class="math inline">\((-\infty,+\infty)\)</span>上的积分, 因为随着<span class="math inline">\(M\)</span>的增大区间之外的积分会越来越小. 而此时右边的积分即为一个对多元正态分布的积分, 且该积分可以通过变量代换<span class="math inline">\(t=H(x_0)^{\frac{1}{2}}(x-x_0)\)</span>化成标准的多元正态分布计算出来:<span class="math display">\[\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\approx \int_{-\infty}^{+\infty} e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx=\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里的<span class="math inline">\(d\)</span>指的是自变量<span class="math inline">\(x\)</span>的维度, <span class="math inline">\(H(x_0)\)</span>指<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处的Hessian矩阵. 因此得到结论:<span class="math display">\[\int_a^be^{Mf(x)}dx\approx  e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>本质上来说, 倘若暂时先不考虑<span class="math inline">\(M\)</span>的大小, 用二阶泰勒展开对<span class="math inline">\(f(x)\)</span>进行近似的方法实际上是把被积函数视为多元正态分布. 一元情形的相关定理描述及证明请移步<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">维基百科</a>, 最后来看一个更一般的结论:<span class="math display">\[\int_a^bh(x)e^{Mf(x)}dx\approx  h(x_0)e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里要求<span class="math inline">\(h(x)&gt;0\)</span>.</p>
 <hr />
-<h3 id="拉德马赫复杂度">拉德马赫复杂度</h3>
-<p>回顾之前针对二分类问题建立的<a href="https://msgsxj.cn/2018/06/14/VC-bound/">VC bound</a>:<span class="math display">\[
-\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
-\]</span>注意到要定义训练误差与泛化误差必须要定义损失函数, 损失函数实际上选定了二分类问题的常用的损失函数0-1损失: <span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>; 因此上述VC bound又可以写作:<span class="math display">\[
-\sup_{f\in\mathcal{F}}\left|L_{S}(f)-L_{\mathcal{D}}(f)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
-\]</span>这里的<span class="math inline">\(\mathcal{F}\)</span>定义为<span class="math display">\[l \circ \mathcal{H}=\{z\mapsto l(h, z):h\in\mathcal{H}\}\]</span> 相应的<span class="math inline">\(L_{S}(f)=\frac{1}{m}\sum_{i=1}^m f(z_i)\)</span>, <span class="math inline">\(L_{\mathcal{D}}(f)=\mathbb{E}_{z\sim \mathcal{D}}f(z)\)</span>, 当然这里的<span class="math inline">\(l\)</span>已经固定为0-1损失. 定义训练集<span class="math inline">\(S\)</span>在<span class="math inline">\(\mathcal{F}\)</span>上的代表性为:<span class="math display">\[Rep_{\mathcal{D}}(\mathcal{F}, S)\doteq\sup_{f\in\mathcal{F}}(L_{\mathcal{D}}(f)-L_{S}(f))\]</span>一般来说, 训练误差<span class="math inline">\(L_{S}\)</span>能通过优化达到一个非常接近于0的数值, 比如<a href="https://arxiv.org/abs/1811.03804">这篇文章</a>说明了用梯度下降训练ResNet能在多项式时间内达到0训练误差, 即达到全局最优; 泛化误差<span class="math inline">\(L_{\mathcal{D}}\)</span>则会略大于训练误差. 显然当<span class="math inline">\(S\)</span>越能代表<span class="math inline">\(\mathcal{D}\)</span>, 上数值会越接近于0. 现在想要仅仅依靠训练集<span class="math inline">\(S\)</span>本身去估计其代表性, 一个自然地想法是将<span class="math inline">\(S\)</span>分成两个不相交的子集<span class="math inline">\(S=S_1\cup S_2\)</span>, <span class="math inline">\(S_1\)</span>作为验证集, <span class="math inline">\(S_2\)</span>作为训练集, 此时训练集代表性的一个近似为:<span class="math display">\[\sup_{f\in\mathcal{F}}(L_{\mathcal{S_1}}(f)-L_{S_2}(f))\]</span>再设多元随机变量<span class="math display">\[\sigma=(\sigma_1, \sigma_2,...,\sigma_m)\in\{\pm 1\}^m\]</span> 并按如下方式取定随机变量的值<span class="math inline">\(S_1=\{z_i:\sigma_i=1\}\)</span>, <span class="math inline">\(S_2=\{z_i:\sigma_i=-1\}\)</span>, 上式可写成更简单的形式:<span class="math display">\[\frac{1}{m}\sup_{f\in\mathcal{F}}\sum_{i=1}^m \sigma_i f(z_i)\]</span> 此时随机变量的不同的取值代表不同的验证集和训练集的组合, <strong>拉德马赫复杂度</strong>定义为上式近似对随机变量<span class="math inline">\(\sigma\)</span>的期望:<span class="math display">\[R(\mathcal{F}\circ S)\doteq\frac{1}{m}\mathop{\mathbb{E}}_{\sigma\sim\{\pm 1\}^m} [\sup_{f\in\mathcal{F}}\sum_{i=1}^m \sigma_i f(z_i)]\]</span>可以证明, 在期望意义下, 集合<span class="math inline">\(S\)</span>的代表性不超过2倍的拉德马赫复杂度<span class="math display">\[\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[Rep_{\mathcal{D}}(\mathcal{F}, S)]\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(\mathcal{F}\circ S)]\]</span>证明见Understanding machine learning一书引理26.2.</p>
-<hr />
-<h3 id="数据相关界">数据相关界</h3>
-<p>首先来看一个重要的不等式, 有限偏差集中不等式, 又称<a href="https://en.wikipedia.org/wiki/Doob_martingale#McDiarmid&#39;s_inequality">McDiarmid 不等式</a>, 这个不等式可见维基, 这个不等式可用来推出一个与训练集<span class="math inline">\(S\)</span>相关的界:</p>
-<blockquote>
-<p>假设对所有的<span class="math inline">\(z\)</span>和<span class="math inline">\(h\in\mathcal{H}\)</span>, <span class="math inline">\(|l(h, z)|\le c\)</span>, 那么以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(l \circ \mathcal{H}\circ S)]+c\sqrt{\frac{2\log(2/\delta)}{m}}\]</span>以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2R(l \circ \mathcal{H}\circ S)+4c\sqrt{\frac{2\log(4/\delta)}{m}}\]</span> 以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))-L_{\mathcal{D}}(h)\le 2R(l \circ \mathcal{H}\circ S)+5c\sqrt{\frac{2\log(8/\delta)}{m}}\]</span></p>
-</blockquote>
-<p>有兴趣的朋友不妨试着去推一推, 上述1, 2的界的推导类似于西瓜书定理12.5, 唯一不同的是这里满足在常数为<span class="math inline">\(2c/m\)</span>下的有界偏差条件, 而西瓜书直接为1; 第三个不等式则是多一步霍夫丁不等式.</p>
-<ul>
-<li>注意到第2, 3个界实际上由具体的训练集<span class="math inline">\(S\)</span>计算出来的, 因此这两个界被称为是数据相关界, 这也是与VC bound最大的不同之处.</li>
-<li>第二个界可以用来评估当前分类器<span class="math inline">\(h\)</span>在实际数据集<span class="math inline">\(\mathcal{D}\)</span>上的表现, 即<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>.</li>
-<li>第三个界可以用来评估利用ERM原则得到的分类器<span class="math inline">\(h\)</span>与理论最佳分类器的实际差距, 因此希望这个界越小越好; 显然假设类<span class="math inline">\(\mathcal{H}\)</span>越复杂, 这个界越大, 因此某种意义上这个界能用来评估假设类<span class="math inline">\(\mathcal{H}\)</span>的优劣.</li>
-</ul>
-<hr />
-<h3 id="拉德马赫复杂度的性质">拉德马赫复杂度的性质</h3>
-<p>首先给出拉德马赫复杂度的更一般化定义: 给定一个向量集合<span class="math inline">\(A\in\mathbb{R}^m\)</span> <span class="math display">\[R(A)\doteq\frac{1}{m}\mathop{\mathbb{E}}_{\sigma\sim\{\pm 1\}^m} [\sup_{a\in A}\sum_{i=1}^m \sigma_i a_i]\]</span>这里例举拉德马赫复杂度的几条性质, 具体见Understanding machine learning一书26章:</p>
-<ul>
-<li>A的凸包与A具有一样的拉德马赫复杂度.</li>
-<li>一个有限集合的拉德马赫复杂度随着集合大小增长而对数增长.</li>
-<li>如果给集合A作用一个Lipschitz连续的函数, 并不会增大其拉德马赫复杂度.</li>
-</ul>
-<hr />
-<h3 id="线性类的拉德马赫复杂度">线性类的拉德马赫复杂度</h3>
-<p>本节给出两个线性的假设类的拉德马赫复杂度, 假定<span class="math inline">\(x\)</span>的维数为<span class="math inline">\(n\)</span>:</p>
-<ul>
-<li><span class="math inline">\(\mathcal{H}_1=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_1\le 1\}\)</span></li>
-<li><span class="math inline">\(\mathcal{H}_2=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_2\le 1\}\)</span></li>
-</ul>
-<p><span class="math inline">\(\mathcal{H}_1\circ S\)</span>定义为<span class="math inline">\(\{(&lt;\omega, x_i&gt;, i=1...,m):\Vert\omega\Vert_1\le 1\}\)</span>, <span class="math inline">\(\mathcal{H}_2\circ S\)</span>类似的定义, 有如下两个结果, 证明见[UML]一书引理26.10、26.11:</p>
-<ul>
-<li><span class="math inline">\(R(\mathcal{H}_1\circ S) \le \max_i\Vert x_i\Vert_{\infty}\sqrt{\frac{2\log(2n)}{m}}\)</span></li>
-<li><span class="math inline">\(R(\mathcal{H}_2\circ S) \le\frac{\max_i\Vert x_i\Vert_2}{\sqrt{m}}\)</span></li>
-</ul>
-<p><strong>p.s.</strong> 此外还有软硬间隔SVM的泛化误差界的推导, 见26.3, 26.4; 另一种度量集合复杂度的方法为覆盖数, 见27章.</p>
+<h2 id="例子">例子</h2>
+<p>例子参考了PRML一书6.4节, 来自高斯过程分类中的预测问题, 目标也是求一个积分<span class="math display">\[P(a_{N+1}\mid t_N)=\int P(a_{N+1}\mid a_N)P(a_N\mid t_N)da_N\]</span>这里的目标变量<span class="math inline">\(t\in\{0, 1\}\)</span>为二分变量; 被积函数第一部分<span class="math inline">\(P(a_{N+1}\mid a_N)\)</span>是个正态分布, 即为高斯过程回归做预测时的核心结论. 本质上来说, 拉普拉斯近似方法把被积函数或者是被积函数的一部分代换成多元正态分布<span class="math inline">\(N(\mu, \Sigma)\)</span>, 这里仅把被积函数的第二部分代换掉. 回想多元正态分布的<a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">密度函数</a>, 因此只要计算<span class="math inline">\(\log P(a_N\mid t_N)\)</span>关于变量<span class="math inline">\(a_N\)</span>的梯度<span class="math inline">\(\nabla\)</span>和Hessian矩阵<span class="math inline">\(\nabla^2\)</span>, 此时<span class="math inline">\(\mu\)</span>即为<span class="math inline">\(\nabla=0\)</span>的解, <span class="math inline">\(\Sigma=-\nabla^2\)</span>. 接着由两个正态分布积分的一些性质(PRML一书2.115), 可以得到目标积分的近似结果仍为一个正态分布. 然后我们可以用它来做预测<span class="math display">\[P(t_{N+1}=1\mid t_N)=\int P(t_{N+1}=1\mid a_{N+1})P(a_{N+1}\mid t_N)da_{N+1}\]</span>具体计算时被积函数的第一部分利用自己本身的性质近似成了正态分布的分布函数(而非密度函数)(PRML一书4.153). <code>p.s.</code>: 高斯过程分类中的参数也可以用拉普拉斯近似方法得到, 这里就不再赘述, 最后建议细细读一读PRML一书6.4节.</p>
 ]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>拉德马赫复杂度</tag>
+        <tag>拉普拉斯方法</tag>
+        <tag>积分近似</tag>
       </tags>
   </entry>
   <entry>
