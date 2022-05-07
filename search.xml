@@ -95,100 +95,6 @@
       </tags>
   </entry>
   <entry>
-    <title>EM算法</title>
-    <url>/2018/09/02/EM%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>前言:本文主要是关于EM算法, 这是用来求解隐变量模型的算法, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week2. <span id="more"></span></p>
-<p>首先简单说明EM算法:</p>
-<ul>
-<li>EM算法是一种迭代算法, 它的每次迭代由两步组成, E步, 求期望(Expectation); M步, 求极大(Maximization).</li>
-<li>EM算法是一种针对隐变量模型的算法, 这里的隐变量指的是未观测到值的变量, 比方说人为引入的变量或是数据缺失的变量. 针对隐变量模型的算法有多种, EM是其中兼顾了高效以及精度的方法, 因此比较流行.</li>
-<li>记隐变量为<span class="math inline">\(T\)</span>, 数据为<span class="math inline">\(X\)</span>, 未知参数为<span class="math inline">\(\theta\)</span>, 乍看之下, EM算法是对<span class="math inline">\(\log P(X\mid\theta)\)</span>的极大似然估计, 但其每一步迭代又给出了隐变量<span class="math inline">\(T\)</span>的概率分布以及<span class="math inline">\(\theta\)</span>的点估计.</li>
-</ul>
-<hr />
-<h2 id="隐变量模型">隐变量模型</h2>
-<p><a href="https://en.wikipedia.org/wiki/Latent_variable_model">隐变量模型</a>, 隐变量模型含有未观测到值的变量, 且该隐变量解释了观测到的变量之间的相关性(<a href="https://en.wikipedia.org/wiki/Local_independence">局部独立性</a>), 简言之引进的隐变量不能没有用.</p>
-<p>下面举一个隐变量模型的例子, 例子来自Week2的课件:</p>
-<ul>
-<li>考虑银行是否发放信用卡的问题, 现有客户收入及负债的数据如下图:
-<div data-align="center">
-<img src="/pictures/bayes in ml/GMM_EM_origin.png" width="80%" height="50%" />
-</div>
-通过探索性数据分析发现客户可大致分为三类, 并假定每一类服从高斯分布, 故可以采用高斯混合模型(Gaussian Mixture Model: GMM), 此时模型为:<span class="math display">\[P(x\mid\theta)=\pi_1N(\mu_1,\Sigma_1)+\pi_2N(\mu_2,\Sigma_2)+\pi_3N(\mu_3,\Sigma_3)\]</span>其中<span class="math inline">\(\theta=\{\pi_1, \pi_2\, \pi_3,\mu_1, \mu_2, \mu_3, \Sigma_1, \Sigma_2, \Sigma_3\}\)</span>, 且<span class="math inline">\(\pi_1+\pi_2+\pi_3=1\)</span>. 引入隐变量<span class="math inline">\(t\)</span>, <span class="math inline">\(t=1,2or3\)</span>代表了客户所属人群类别, 显然我们没有隐变量<span class="math inline">\(t\)</span>的观测值. 假定<span class="math display">\[P(t=c\mid\theta)=\pi_c$, $P(x\mid t=c, \theta)=N(\mu_c, \Sigma_c)\]</span>我们就有了:<span class="math display">\[P(x\mid\theta)=\sum_{c=1}^3P(x\mid t=c, \theta)P(t=c\mid\theta)\]</span>目标则是对最大化上式得到参数值<span class="math inline">\(\theta\)</span>. 故对于每一个样本<span class="math inline">\(x_i\)</span>, 计算<span class="math inline">\(P(t=c\mid x_i, \theta)\)</span>从而推测出其所属类别.</li>
-</ul>
-<hr />
-<h2 id="em算法">EM算法</h2>
-汇总一下上文叙述的GMM模型:<span class="math display">\[P(x\mid\theta)=\sum_{c=1}^3P(x\mid t=c, \theta)P(t=c\mid\theta)\]</span>其中<span class="math inline">\(\theta=\{\pi_c, \mu_c, \Sigma_c\mid c=\{1,2,3\}\}\)</span>,且<span class="math inline">\(P(x\mid t=c, \theta)=N(\mu_c, \Sigma_c)\)</span>,<span class="math inline">\(P(t=c\mid\theta)=\pi_c\ge 0\)</span>, <span class="math inline">\(\sum_{c=1}^3\pi_c=1\)</span>如果能求出参数<span class="math inline">\(\theta\)</span>的值, 此时模型就确定下来了, 一个自然地想法是极大化对数似然函数:<span class="math display">\[\hat\theta=\arg\max_{\theta}{\log P(X\mid\theta)}\]</span>EM算法没有直接对对数似然函数进行优化求解, 而是通过E步先求对目标函数下界的极大化逼近, 此时下界函数往往是凹函数, 再进行优化求解就简单很多, 下面来看:假设有<span class="math inline">\(m\)</span>个样本, 对每个样本任取的概率分布<span class="math inline">\(q(t_i=c)\)</span>,<span class="math inline">\(i=1,...,m\)</span> <span class="math display">\[\begin{aligned} \log P(X\mid\theta)&amp; =  \sum_{i=1}^{m}\log P(x_i\mid\theta)\\\
-&amp; =  \sum_{i=1}^{m}\log \sum_{c=1}^3P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)\\\
-&amp; =  \sum_{i=1}^{m}\log \sum_{c=1}^3q(t_i=c)\frac{P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)}{q(t_i=c)}\\\
-&amp; \ge  \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log\frac{P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)}{q(t_i=c)}\\\
-&amp; \doteq \mathcal{L}(\theta, q) \end{aligned}\]</span> 其中唯一的一个不等号用到了<a href="https://en.wikipedia.org/wiki/Jensen%27s_inequality">Jensen不等式</a>(概率形式), 其余等号都是基本的化简. 值得注意的是这里的<span class="math inline">\(q\)</span>是任取的:
-<div data-align="center">
-<img src="/pictures/bayes in ml/EM_L.png" width="80%" height="50%" />
-</div>
-<p>下面做的事情则是考虑在<span class="math inline">\(\theta\)</span>给定的情况下, 如何取<span class="math inline">\(q\)</span>才能让<span class="math inline">\(\mathcal{L}(\theta, q)\)</span>尽可能的靠近<span class="math inline">\(\log P(X\mid\theta)\)</span>. 事实上, 观察两者之差可以发现: <span class="math display">\[\begin{aligned} \log P(X\mid\theta)-\mathcal{L}(\theta, q)&amp; =  \sum_{i=1}^{m}\log P(x_i\mid\theta)-\sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log\frac{P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)}{q(t_i=c)}\\\
-&amp; =  \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\left(\log P(x_i\mid\theta)-\log\frac{P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)}{q(t_i=c)}\right)\\\
-&amp; = \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log\frac{P(x_i\mid\theta)q(t_i=c)}{P(x_i, t_i=c\mid \theta)}\\\
-&amp; =  \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log\frac{q(t_i=c)}{P(t_i=c\mid x_i, \theta)}\\\
-&amp; = \mathcal{KL}(q(T)\Vert P(T\mid X, \theta)) \end{aligned}\]</span>恰为某<span class="math inline">\(\mathcal{KL}\)</span>散度, <span class="math inline">\(\mathcal{KL}\)</span>散度定义见<a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">维基百科</a>, <span class="math inline">\(\mathcal{KL}\)</span>散度定义为两个分布之间距离的度量, 必然<span class="math inline">\(\ge 0\)</span>, 且只在两个分布相同的情况下取<span class="math inline">\(0\)</span>. 可取<span class="math inline">\(q(T)=P(T\mid X, \theta)\)</span>. 最后对下界函数<span class="math inline">\(\mathcal{L}(\theta, q)\)</span>稍作化简: <span class="math display">\[\begin{aligned} \mathcal{L}(\theta, q)&amp; =  \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log\frac{P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)}{q(t_i=c)}\\\
-&amp; =  \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log P(x_i, t_i=c\mid \theta)-\sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log q(t_i=c)\\\
-&amp; =  \mathbb{E}_q\log P(X, T\mid\theta)+C \end{aligned}\]</span>这里<span class="math inline">\(C\)</span>与<span class="math inline">\(\theta\)</span>无关, 此时EM算法已经出来了, 第k+1次迭代, 参数为<span class="math inline">\(\theta^k\)</span>:</p>
-<ol type="1">
-<li>E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(X, T\mid\theta)\)</span>, 其中<span class="math inline">\(q^{k+1}(T)=P(T\mid X, \theta^k)\)</span>(有些书会说E步是求隐变量的分布, 但个人觉得称其为求期望的一步会比较恰当).</li>
-<li>M步求极大: <span class="math inline">\(\theta^{k+1}=\arg\max_{\theta}\mathbb{E}_{q^{k+1}}\log P(X, T\mid\theta)\)</span>.</li>
-</ol>
-<hr />
-<h2 id="em算法收敛性">EM算法收敛性</h2>
-<p>易得<span class="math inline">\(\log P(X\mid\theta^{k+1})\ge\mathcal{L}(\theta^{k+1}, q^{k+1})\ge\mathcal{L}(\theta^{k}, q^{k+1})=\log P(X\mid\theta^{k})\)</span>, 其中第一个不等号因为对于任意的<span class="math inline">\(q\)</span>不等号都成立; 第二个不等号由M步易得; 第三个等号由E步易得.</p>
-<hr />
-<h2 id="gmm模型的em算法">GMM模型的EM算法</h2>
-<p>为了加深印象, 将</p>
-<ul>
-<li><span class="math inline">\(P(x\mid t=c, \theta)=N(\mu_c, \Sigma_c)\)</span></li>
-<li><span class="math inline">\(P(t=c\mid\theta)=\pi_c\ge 0\)</span></li>
-<li><span class="math inline">\(\sum_{c=1}^3\pi_c=1\)</span></li>
-</ul>
-<p>条件带入来走一遍EM算法流程, 这里建议读者手动算一遍.第k+1次迭代, 参数为<span class="math inline">\(\theta^k\)</span>, 并计算<span class="math display">\[P(t_i=c\mid x_i, \theta^k)=\frac{P(x_i\mid t_i=c, \theta_k)P(t_i=c\mid \theta_k)}{\sum_{c=1}^3P(x_i\mid t_i=c, \theta_k)P(t_i=c\mid \theta_k)}\]</span></p>
-<ol type="1">
-<li>E步: 求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(X, T\mid\theta)\)</span>, 其中<span class="math inline">\(q^{k+1}(t_i=c)=P(t_i=c\mid x_i, \theta^k)\)</span>:<span class="math display">\[\begin{aligned} \mathbb{E}_{q^{k+1}}\log P(X, T\mid\theta)&amp; =  \sum_{i=1}^{m} \sum_{c=1}^3P(t_i=c\mid x_i, \theta^k)\log P(x_i, t_i=c\mid \theta)\\\
-&amp; =  \sum_{i=1}^{m} \sum_{c=1}^3P(t_i=c\mid x_i, \theta^k)\log P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)\\\
-&amp; = \sum_{i=1}^{m} \sum_{c=1}^3P(t_i=c\mid x_i, \theta^k)\left(\log\frac{\pi_c}{\sqrt{(2\pi)^d|\Sigma_c|}}-\frac{1}{2}(x_i-\mu_c)^T\Sigma_c^{-1}(x_i-\mu_c)\right) \end{aligned}\]</span></li>
-<li>M步: 令<span class="math inline">\(\frac{\partial\mathbb{E}_{q^{k+1}}\log P(X, T\mid\theta)}{\partial \mu_c}=0\)</span>, 可得<span class="math inline">\(\sum_{i=1}^{m}P(t_i=c\mid x_i, \theta^k)(-\Sigma_c^{-1}(x_i-\mu_c))=0\)</span>,即<span class="math display">\[\mu_c=\frac{\sum_{i=1}^{m}P(t_i=c\mid x_i, \theta^k)x_i}{\sum_{i=1}^{m}P(t_i=c\mid x_i, \theta^k)}\]</span>对<span class="math inline">\(\Sigma_c\)</span>求导时遇到了一些困难, 这里做出一些简化假设, 即令<span class="math inline">\(\Sigma_c=\sigma_c^2 I\)</span>, 令<span class="math inline">\(\frac{\partial\mathbb{E}_{q^{k+1}}\log P(X, T\mid\theta)}{\partial \sigma_c}=0\)</span>, 可得<span class="math display">\[\sigma_c^2=\frac{\sum_{i=1}^{m}P(t_i=c\mid x_i, \theta^k)(x_i-\mu_c)^T(x_i-\mu_c)}{\sum_{i=1}^{m}P(t_i=c\mid x_i, \theta^k)}\]</span>至于对<span class="math inline">\(\pi_c\)</span>这样的有一个等式约束的优化可以用拉格朗日乘子法:<span class="math display">\[\pi_c=\frac{\sum_{i=1}^{m}P(t_i=c\mid x_i, \theta^k)}{m}\]</span></li>
-</ol>
-<hr />
-<h2 id="gmm模型的em算法的python实现">GMM模型的EM算法的Python实现</h2>
-<p>首先下载<a href="/download/samples.npz">数据集</a>, 放在与py文件同一目录下.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Created on Mon Sep  3 00:19:21 2018</span></span><br><span class="line"><span class="string">@author: msgsxj</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> numpy.linalg <span class="keyword">import</span>  solve</span><br><span class="line"><span class="comment">#!conda install -c conda-forge pyqt=4 -y</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">samples = np.load(<span class="string">&#x27;samples.npz&#x27;</span>)</span><br><span class="line">X = samples[<span class="string">&#x27;data&#x27;</span>]</span><br><span class="line">pi0 = samples[<span class="string">&#x27;pi0&#x27;</span>]</span><br><span class="line">mu0 = samples[<span class="string">&#x27;mu0&#x27;</span>]</span><br><span class="line">sigma0 = samples[<span class="string">&#x27;sigma0&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(pi0)</span><br><span class="line"><span class="built_in">print</span>(mu0.shape)</span><br><span class="line"></span><br><span class="line">plt.scatter(X[:, <span class="number">0</span>], X[:, <span class="number">1</span>], c=<span class="string">&#x27;grey&#x27;</span>, s=<span class="number">30</span>)</span><br><span class="line">plt.axis(<span class="string">&#x27;equal&#x27;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">E_step</span>(<span class="params">X, pi, mu, sigma</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Performs E-step on GMM model</span></span><br><span class="line"><span class="string">    Each input is numpy array:</span></span><br><span class="line"><span class="string">    X: (N x d), data points</span></span><br><span class="line"><span class="string">    pi: (C), mixture component weights</span></span><br><span class="line"><span class="string">    mu: (C x d), mixture component means</span></span><br><span class="line"><span class="string">    sigma: (C x d x d), mixture component covariance matrices</span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">    gamma: (N x C), probabilities of clusters for objects</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    N = X.shape[<span class="number">0</span>] <span class="comment"># number of objects</span></span><br><span class="line">    C = pi.shape[<span class="number">0</span>] <span class="comment"># number of clusters</span></span><br><span class="line">    d = mu.shape[<span class="number">1</span>] <span class="comment"># dimension of each object</span></span><br><span class="line">    gamma = np.zeros((N, C)) <span class="comment"># distribution q(T)</span></span><br><span class="line">    <span class="comment"># compute det of sigma</span></span><br><span class="line">    sigma_det = []</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(C):</span><br><span class="line">        sign, logdet = np.linalg.slogdet(sigma[j])</span><br><span class="line">        sigma_det.append(sign * np.exp(logdet))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(C):</span><br><span class="line">            gamma[i, j] = np.power(sigma_det[j], -<span class="number">0.5</span>) * np.exp(-<span class="number">0.5</span> * np.dot(X[i,:] - mu[j], solve(sigma[j], X[i,:] - mu[j]))) * pi[j]</span><br><span class="line">        gamma[i,:] /= <span class="built_in">sum</span>(gamma[i,:])</span><br><span class="line">    <span class="keyword">return</span> gamma</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">M_step</span>(<span class="params">X, gamma</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Performs M-step on GMM model</span></span><br><span class="line"><span class="string">    Each input is numpy array:</span></span><br><span class="line"><span class="string">    X: (N x d), data points</span></span><br><span class="line"><span class="string">    gamma: (N x C), distribution q(T)</span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">    pi: (C)</span></span><br><span class="line"><span class="string">    mu: (C x d)</span></span><br><span class="line"><span class="string">    sigma: (C x d x d)</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    N = X.shape[<span class="number">0</span>] <span class="comment"># number of objects</span></span><br><span class="line">    C = gamma.shape[<span class="number">1</span>] <span class="comment"># number of clusters</span></span><br><span class="line">    d = X.shape[<span class="number">1</span>] <span class="comment"># dimension of each object</span></span><br><span class="line">    mu = np.zeros((C, d))</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(C):</span><br><span class="line">        mu[j,:] = np.<span class="built_in">sum</span>(np.transpose(np.multiply(gamma[:,j], np.transpose(X))), axis = <span class="number">0</span>)/np.<span class="built_in">sum</span>(gamma[:,j])</span><br><span class="line">    sigma = np.zeros((C, d, d))</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(C):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            sigma[j,:,:] += np.multiply(gamma[i,j], np.outer(X[i,:] - mu[j,:], X[i,:] - mu[j,:]))</span><br><span class="line">        sigma[j,:,:] /= np.<span class="built_in">sum</span>(gamma[:,j])</span><br><span class="line">    pi = np.zeros((C,))</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(C):</span><br><span class="line">        pi[j] = np.<span class="built_in">sum</span>(gamma[:,j])/N</span><br><span class="line">    <span class="keyword">return</span> pi, mu, sigma</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compute_vlb</span>(<span class="params">X, pi, mu, sigma, gamma</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Each input is numpy array:</span></span><br><span class="line"><span class="string">    X: (N x d), data points</span></span><br><span class="line"><span class="string">    gamma: (N x C), distribution q(T)</span></span><br><span class="line"><span class="string">    pi: (C)</span></span><br><span class="line"><span class="string">    mu: (C x d)</span></span><br><span class="line"><span class="string">    sigma: (C x d x d)</span></span><br><span class="line"><span class="string">    Returns value of variational lower bound</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    N = X.shape[<span class="number">0</span>] <span class="comment"># number of objects</span></span><br><span class="line">    C = gamma.shape[<span class="number">1</span>] <span class="comment"># number of clusters</span></span><br><span class="line">    d = X.shape[<span class="number">1</span>] <span class="comment"># dimension of each object</span></span><br><span class="line">    <span class="comment"># compute det of sigma</span></span><br><span class="line">    sigma_det = []</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(C):</span><br><span class="line">        sign, logdet = np.linalg.slogdet(sigma[j])</span><br><span class="line">        sigma_det.append(sign * np.exp(logdet))</span><br><span class="line">    loss = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(C):</span><br><span class="line">            loss += gamma[i ,j] * (np.log(pi[j]) +</span><br><span class="line">                                   np.log(<span class="number">1</span>/np.sqrt(np.power(<span class="number">2</span> * np.pi, d) * sigma_det[j])) -<span class="number">0.5</span> * np.dot(X[i,:] - mu[j], solve(sigma[j], X[i,:] - mu[j])) -</span><br><span class="line">                                   np.log(gamma[i,j]))</span><br><span class="line">    <span class="keyword">return</span> loss</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_EM</span>(<span class="params">X, C, rtol=<span class="number">1e-3</span>, max_iter=<span class="number">100</span>, restarts=<span class="number">10</span></span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    Starts with random initialization *restarts* times</span></span><br><span class="line"><span class="string">    Runs optimization until saturation with *rtol* reached</span></span><br><span class="line"><span class="string">    or *max_iter* iterations were made.</span></span><br><span class="line"><span class="string">    X: (N, d), data points</span></span><br><span class="line"><span class="string">    C: int, number of clusters</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    N = X.shape[<span class="number">0</span>] <span class="comment"># number of objects</span></span><br><span class="line">    d = X.shape[<span class="number">1</span>] <span class="comment"># dimension of each object</span></span><br><span class="line">    best_loss = <span class="number">0</span></span><br><span class="line">    best_pi = np.zeros((C,))</span><br><span class="line">    best_mu = np.zeros((C, d))</span><br><span class="line">    best_sigma = np.zeros((C, d, d))</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(restarts):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            temp = np.random.random(C)</span><br><span class="line">            best_pi = temp/np.<span class="built_in">sum</span>(temp)</span><br><span class="line">            best_sigma[:,:,:] = np.eye(<span class="number">2</span>)</span><br><span class="line">            best_mu = X[np.random.randint(N, size=<span class="number">3</span>),:]</span><br><span class="line">            gamma = E_step(X, best_pi, best_mu, best_sigma)</span><br><span class="line">            best_pi, best_mu, best_sigma = M_step(X, gamma)</span><br><span class="line">            loss_pre = compute_vlb(X, best_pi, best_mu, best_sigma, gamma)</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(max_iter):</span><br><span class="line">                gamma = E_step(X, best_pi, best_mu, best_sigma)</span><br><span class="line">                best_pi, best_mu, best_sigma = M_step(X, gamma)</span><br><span class="line">                best_loss = compute_vlb(X, best_pi, best_mu, best_sigma, gamma)</span><br><span class="line">                <span class="keyword">if</span>(np.<span class="built_in">abs</span>((best_loss - loss_pre)/loss_pre)&lt;rtol):</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                loss_pre = best_loss</span><br><span class="line">        <span class="keyword">except</span> np.linalg.LinAlgError:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Singular matrix: components collapsed&quot;</span>)</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">return</span> best_loss, best_pi, best_mu, best_sigma</span><br><span class="line"></span><br><span class="line">best_loss, best_pi, best_mu, best_sigma = train_EM(X, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">gamma = E_step(X, best_pi, best_mu, best_sigma)</span><br><span class="line">labels = gamma.argmax(<span class="number">1</span>)</span><br><span class="line">plt.figure()</span><br><span class="line">plt.figure(figsize=(<span class="number">16</span>, <span class="number">12</span>))</span><br><span class="line">plt.scatter(X[:, <span class="number">0</span>], X[:, <span class="number">1</span>], c=labels, s=<span class="number">30</span>)</span><br><span class="line">plt.axis(<span class="string">&#x27;equal&#x27;</span>)</span><br><span class="line">plt.savefig(<span class="string">&quot;GMM_EM.png&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-运行结果图如下:
-<div data-align="center">
-<img src="/pictures/bayes in ml/GMM_EM.png" width="80%" height="50%" />
-</div>
-<hr />
-<h2 id="em算法的变体">EM算法的变体</h2>
-<p>事实上,EM算法的E步其实是采用了变分推断的方法, 变分推断又称<a href="https://en.wikipedia.org/wiki/Variational_Bayesian_methods">变分贝叶斯方法</a>, 它是用来计算难以计算积分的一类方法(求期望本质上是求积分):</p>
-<ul>
-<li>在一个给定分布族<span class="math inline">\(Q\)</span>中找到<span class="math inline">\(q(T)\)</span>, 使其逼近<span class="math inline">\(P(T\mid X, \theta)\)</span>, 且一般选用最小化<span class="math inline">\(\mathcal{KL}\)</span>散度<span class="math inline">\(\mathcal{KL}(q(T)\Vert P(T\mid X, \theta))\)</span></li>
-<li>计算目标积分时进行近似计算: <span class="math inline">\(\mathbb{E}_{P(T\mid X, \theta)}\log P(X,T\mid\theta)\approx \mathbb{E}_{q(T)}\log P(X,T\mid\theta)\)</span></li>
-<li>完整版的EM算法则可以视为此时分布族<span class="math inline">\(Q\)</span>取得足够大了, 因而包含<span class="math inline">\(P(T\mid X, \theta)\)</span>, 也就必然有<span class="math inline">\(q(T) = P(T\mid X, \theta)\)</span>; 而一般分布族<span class="math inline">\(Q\)</span>选取可为正态分布, 且其协方差阵为对角阵这样的简单分布.</li>
-<li>此外对变量之间做出额外的独立性假定的方法被称为是平均场近似法, 显然这样的假定能降低计算量, 这种方法、变分推断与EM算法结合可以产生不同的变体, 详见我的另外一篇博文<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/">变分贝叶斯方法</a>.</li>
-</ul>
-<p>除了变分推断, 还有三类非常著名的方法同样能够用来计算难以计算的积分, 分别是: <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">MCMC</a>, <a href="https://en.wikipedia.org/wiki/Expectation_propagation">期望传播</a>(Expectation Propagation: EP)及<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">拉普拉斯近似方法</a>(Laplace Approximation):</p>
-<ul>
-<li>MCMC是一类对分布进行抽样的方法: <span class="math inline">\(T_s \sim P(T\mid X, \theta)\)</span>, 其本质是构建稳态分布恰为所需分布<span class="math inline">\(P(T\mid X, \theta)\)</span>的马尔可夫链. 概率论中的极限理论告诉我们, <span class="math inline">\(\frac{1}{M} \sum_{s=1}^M\log P(X,T_s\mid\Theta)\)</span>会慢慢逼近<span class="math inline">\(\mathbb{E}_{P(T\mid X, \theta)}\log P(X,T\mid\Theta)\)</span>, 因此随着抽样数的增大, 其近似值会越来越精确. 这块内容详见我的另一篇博文<a href="https://msgsxj.cn/2018/09/18/MCMC/">MCMC</a>.</li>
-<li>期望传播方法可以简单理解为变分贝叶斯中最小化的<span class="math inline">\(\mathcal{KL}\)</span>散度逆过来, 即最小化<span class="math inline">\(\mathcal{KL}(P(T\mid X, \theta)\Vert q(T))\)</span>, 见<a href="https://msgsxj.cn/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/">期望传播</a>.</li>
-<li>拉普拉斯近似方法本质上是将被积函数视为正态分布, 见<a href="https://msgsxj.cn/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/">拉普拉斯方法</a>.</li>
-</ul>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>EM算法</tag>
-        <tag>隐变量模型</tag>
-        <tag>Jensen不等式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2021</title>
     <url>/2022/01/05/2021/</url>
     <content><![CDATA[<p>前言:已经好久没立flag了,记录2021,为2022立flag.</p>
@@ -386,6 +292,100 @@
       </categories>
       <tags>
         <tag>R</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>EM算法</title>
+    <url>/2018/09/02/EM%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>前言:本文主要是关于EM算法, 这是用来求解隐变量模型的算法, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week2. <span id="more"></span></p>
+<p>首先简单说明EM算法:</p>
+<ul>
+<li>EM算法是一种迭代算法, 它的每次迭代由两步组成, E步, 求期望(Expectation); M步, 求极大(Maximization).</li>
+<li>EM算法是一种针对隐变量模型的算法, 这里的隐变量指的是未观测到值的变量, 比方说人为引入的变量或是数据缺失的变量. 针对隐变量模型的算法有多种, EM是其中兼顾了高效以及精度的方法, 因此比较流行.</li>
+<li>记隐变量为<span class="math inline">\(T\)</span>, 数据为<span class="math inline">\(X\)</span>, 未知参数为<span class="math inline">\(\theta\)</span>, 乍看之下, EM算法是对<span class="math inline">\(\log P(X\mid\theta)\)</span>的极大似然估计, 但其每一步迭代又给出了隐变量<span class="math inline">\(T\)</span>的概率分布以及<span class="math inline">\(\theta\)</span>的点估计.</li>
+</ul>
+<hr />
+<h2 id="隐变量模型">隐变量模型</h2>
+<p><a href="https://en.wikipedia.org/wiki/Latent_variable_model">隐变量模型</a>, 隐变量模型含有未观测到值的变量, 且该隐变量解释了观测到的变量之间的相关性(<a href="https://en.wikipedia.org/wiki/Local_independence">局部独立性</a>), 简言之引进的隐变量不能没有用.</p>
+<p>下面举一个隐变量模型的例子, 例子来自Week2的课件:</p>
+<ul>
+<li>考虑银行是否发放信用卡的问题, 现有客户收入及负债的数据如下图:
+<div data-align="center">
+<img src="/pictures/bayes in ml/GMM_EM_origin.png" width="80%" height="50%" />
+</div>
+通过探索性数据分析发现客户可大致分为三类, 并假定每一类服从高斯分布, 故可以采用高斯混合模型(Gaussian Mixture Model: GMM), 此时模型为:<span class="math display">\[P(x\mid\theta)=\pi_1N(\mu_1,\Sigma_1)+\pi_2N(\mu_2,\Sigma_2)+\pi_3N(\mu_3,\Sigma_3)\]</span>其中<span class="math inline">\(\theta=\{\pi_1, \pi_2\, \pi_3,\mu_1, \mu_2, \mu_3, \Sigma_1, \Sigma_2, \Sigma_3\}\)</span>, 且<span class="math inline">\(\pi_1+\pi_2+\pi_3=1\)</span>. 引入隐变量<span class="math inline">\(t\)</span>, <span class="math inline">\(t=1,2or3\)</span>代表了客户所属人群类别, 显然我们没有隐变量<span class="math inline">\(t\)</span>的观测值. 假定<span class="math display">\[P(t=c\mid\theta)=\pi_c$, $P(x\mid t=c, \theta)=N(\mu_c, \Sigma_c)\]</span>我们就有了:<span class="math display">\[P(x\mid\theta)=\sum_{c=1}^3P(x\mid t=c, \theta)P(t=c\mid\theta)\]</span>目标则是对最大化上式得到参数值<span class="math inline">\(\theta\)</span>. 故对于每一个样本<span class="math inline">\(x_i\)</span>, 计算<span class="math inline">\(P(t=c\mid x_i, \theta)\)</span>从而推测出其所属类别.</li>
+</ul>
+<hr />
+<h2 id="em算法">EM算法</h2>
+汇总一下上文叙述的GMM模型:<span class="math display">\[P(x\mid\theta)=\sum_{c=1}^3P(x\mid t=c, \theta)P(t=c\mid\theta)\]</span>其中<span class="math inline">\(\theta=\{\pi_c, \mu_c, \Sigma_c\mid c=\{1,2,3\}\}\)</span>,且<span class="math inline">\(P(x\mid t=c, \theta)=N(\mu_c, \Sigma_c)\)</span>,<span class="math inline">\(P(t=c\mid\theta)=\pi_c\ge 0\)</span>, <span class="math inline">\(\sum_{c=1}^3\pi_c=1\)</span>如果能求出参数<span class="math inline">\(\theta\)</span>的值, 此时模型就确定下来了, 一个自然地想法是极大化对数似然函数:<span class="math display">\[\hat\theta=\arg\max_{\theta}{\log P(X\mid\theta)}\]</span>EM算法没有直接对对数似然函数进行优化求解, 而是通过E步先求对目标函数下界的极大化逼近, 此时下界函数往往是凹函数, 再进行优化求解就简单很多, 下面来看:假设有<span class="math inline">\(m\)</span>个样本, 对每个样本任取的概率分布<span class="math inline">\(q(t_i=c)\)</span>,<span class="math inline">\(i=1,...,m\)</span> <span class="math display">\[\begin{aligned} \log P(X\mid\theta)&amp; =  \sum_{i=1}^{m}\log P(x_i\mid\theta)\\\
+&amp; =  \sum_{i=1}^{m}\log \sum_{c=1}^3P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)\\\
+&amp; =  \sum_{i=1}^{m}\log \sum_{c=1}^3q(t_i=c)\frac{P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)}{q(t_i=c)}\\\
+&amp; \ge  \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log\frac{P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)}{q(t_i=c)}\\\
+&amp; \doteq \mathcal{L}(\theta, q) \end{aligned}\]</span> 其中唯一的一个不等号用到了<a href="https://en.wikipedia.org/wiki/Jensen%27s_inequality">Jensen不等式</a>(概率形式), 其余等号都是基本的化简. 值得注意的是这里的<span class="math inline">\(q\)</span>是任取的:
+<div data-align="center">
+<img src="/pictures/bayes in ml/EM_L.png" width="80%" height="50%" />
+</div>
+<p>下面做的事情则是考虑在<span class="math inline">\(\theta\)</span>给定的情况下, 如何取<span class="math inline">\(q\)</span>才能让<span class="math inline">\(\mathcal{L}(\theta, q)\)</span>尽可能的靠近<span class="math inline">\(\log P(X\mid\theta)\)</span>. 事实上, 观察两者之差可以发现: <span class="math display">\[\begin{aligned} \log P(X\mid\theta)-\mathcal{L}(\theta, q)&amp; =  \sum_{i=1}^{m}\log P(x_i\mid\theta)-\sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log\frac{P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)}{q(t_i=c)}\\\
+&amp; =  \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\left(\log P(x_i\mid\theta)-\log\frac{P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)}{q(t_i=c)}\right)\\\
+&amp; = \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log\frac{P(x_i\mid\theta)q(t_i=c)}{P(x_i, t_i=c\mid \theta)}\\\
+&amp; =  \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log\frac{q(t_i=c)}{P(t_i=c\mid x_i, \theta)}\\\
+&amp; = \mathcal{KL}(q(T)\Vert P(T\mid X, \theta)) \end{aligned}\]</span>恰为某<span class="math inline">\(\mathcal{KL}\)</span>散度, <span class="math inline">\(\mathcal{KL}\)</span>散度定义见<a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">维基百科</a>, <span class="math inline">\(\mathcal{KL}\)</span>散度定义为两个分布之间距离的度量, 必然<span class="math inline">\(\ge 0\)</span>, 且只在两个分布相同的情况下取<span class="math inline">\(0\)</span>. 可取<span class="math inline">\(q(T)=P(T\mid X, \theta)\)</span>. 最后对下界函数<span class="math inline">\(\mathcal{L}(\theta, q)\)</span>稍作化简: <span class="math display">\[\begin{aligned} \mathcal{L}(\theta, q)&amp; =  \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log\frac{P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)}{q(t_i=c)}\\\
+&amp; =  \sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log P(x_i, t_i=c\mid \theta)-\sum_{i=1}^{m} \sum_{c=1}^3q(t_i=c)\log q(t_i=c)\\\
+&amp; =  \mathbb{E}_q\log P(X, T\mid\theta)+C \end{aligned}\]</span>这里<span class="math inline">\(C\)</span>与<span class="math inline">\(\theta\)</span>无关, 此时EM算法已经出来了, 第k+1次迭代, 参数为<span class="math inline">\(\theta^k\)</span>:</p>
+<ol type="1">
+<li>E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(X, T\mid\theta)\)</span>, 其中<span class="math inline">\(q^{k+1}(T)=P(T\mid X, \theta^k)\)</span>(有些书会说E步是求隐变量的分布, 但个人觉得称其为求期望的一步会比较恰当).</li>
+<li>M步求极大: <span class="math inline">\(\theta^{k+1}=\arg\max_{\theta}\mathbb{E}_{q^{k+1}}\log P(X, T\mid\theta)\)</span>.</li>
+</ol>
+<hr />
+<h2 id="em算法收敛性">EM算法收敛性</h2>
+<p>易得<span class="math inline">\(\log P(X\mid\theta^{k+1})\ge\mathcal{L}(\theta^{k+1}, q^{k+1})\ge\mathcal{L}(\theta^{k}, q^{k+1})=\log P(X\mid\theta^{k})\)</span>, 其中第一个不等号因为对于任意的<span class="math inline">\(q\)</span>不等号都成立; 第二个不等号由M步易得; 第三个等号由E步易得.</p>
+<hr />
+<h2 id="gmm模型的em算法">GMM模型的EM算法</h2>
+<p>为了加深印象, 将</p>
+<ul>
+<li><span class="math inline">\(P(x\mid t=c, \theta)=N(\mu_c, \Sigma_c)\)</span></li>
+<li><span class="math inline">\(P(t=c\mid\theta)=\pi_c\ge 0\)</span></li>
+<li><span class="math inline">\(\sum_{c=1}^3\pi_c=1\)</span></li>
+</ul>
+<p>条件带入来走一遍EM算法流程, 这里建议读者手动算一遍.第k+1次迭代, 参数为<span class="math inline">\(\theta^k\)</span>, 并计算<span class="math display">\[P(t_i=c\mid x_i, \theta^k)=\frac{P(x_i\mid t_i=c, \theta_k)P(t_i=c\mid \theta_k)}{\sum_{c=1}^3P(x_i\mid t_i=c, \theta_k)P(t_i=c\mid \theta_k)}\]</span></p>
+<ol type="1">
+<li>E步: 求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(X, T\mid\theta)\)</span>, 其中<span class="math inline">\(q^{k+1}(t_i=c)=P(t_i=c\mid x_i, \theta^k)\)</span>:<span class="math display">\[\begin{aligned} \mathbb{E}_{q^{k+1}}\log P(X, T\mid\theta)&amp; =  \sum_{i=1}^{m} \sum_{c=1}^3P(t_i=c\mid x_i, \theta^k)\log P(x_i, t_i=c\mid \theta)\\\
+&amp; =  \sum_{i=1}^{m} \sum_{c=1}^3P(t_i=c\mid x_i, \theta^k)\log P(x_i\mid t_i=c, \theta)P(t_i=c\mid\theta)\\\
+&amp; = \sum_{i=1}^{m} \sum_{c=1}^3P(t_i=c\mid x_i, \theta^k)\left(\log\frac{\pi_c}{\sqrt{(2\pi)^d|\Sigma_c|}}-\frac{1}{2}(x_i-\mu_c)^T\Sigma_c^{-1}(x_i-\mu_c)\right) \end{aligned}\]</span></li>
+<li>M步: 令<span class="math inline">\(\frac{\partial\mathbb{E}_{q^{k+1}}\log P(X, T\mid\theta)}{\partial \mu_c}=0\)</span>, 可得<span class="math inline">\(\sum_{i=1}^{m}P(t_i=c\mid x_i, \theta^k)(-\Sigma_c^{-1}(x_i-\mu_c))=0\)</span>,即<span class="math display">\[\mu_c=\frac{\sum_{i=1}^{m}P(t_i=c\mid x_i, \theta^k)x_i}{\sum_{i=1}^{m}P(t_i=c\mid x_i, \theta^k)}\]</span>对<span class="math inline">\(\Sigma_c\)</span>求导时遇到了一些困难, 这里做出一些简化假设, 即令<span class="math inline">\(\Sigma_c=\sigma_c^2 I\)</span>, 令<span class="math inline">\(\frac{\partial\mathbb{E}_{q^{k+1}}\log P(X, T\mid\theta)}{\partial \sigma_c}=0\)</span>, 可得<span class="math display">\[\sigma_c^2=\frac{\sum_{i=1}^{m}P(t_i=c\mid x_i, \theta^k)(x_i-\mu_c)^T(x_i-\mu_c)}{\sum_{i=1}^{m}P(t_i=c\mid x_i, \theta^k)}\]</span>至于对<span class="math inline">\(\pi_c\)</span>这样的有一个等式约束的优化可以用拉格朗日乘子法:<span class="math display">\[\pi_c=\frac{\sum_{i=1}^{m}P(t_i=c\mid x_i, \theta^k)}{m}\]</span></li>
+</ol>
+<hr />
+<h2 id="gmm模型的em算法的python实现">GMM模型的EM算法的Python实现</h2>
+<p>首先下载<a href="/download/samples.npz">数据集</a>, 放在与py文件同一目录下.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Created on Mon Sep  3 00:19:21 2018</span></span><br><span class="line"><span class="string">@author: msgsxj</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> numpy.linalg <span class="keyword">import</span>  solve</span><br><span class="line"><span class="comment">#!conda install -c conda-forge pyqt=4 -y</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">samples = np.load(<span class="string">&#x27;samples.npz&#x27;</span>)</span><br><span class="line">X = samples[<span class="string">&#x27;data&#x27;</span>]</span><br><span class="line">pi0 = samples[<span class="string">&#x27;pi0&#x27;</span>]</span><br><span class="line">mu0 = samples[<span class="string">&#x27;mu0&#x27;</span>]</span><br><span class="line">sigma0 = samples[<span class="string">&#x27;sigma0&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(pi0)</span><br><span class="line"><span class="built_in">print</span>(mu0.shape)</span><br><span class="line"></span><br><span class="line">plt.scatter(X[:, <span class="number">0</span>], X[:, <span class="number">1</span>], c=<span class="string">&#x27;grey&#x27;</span>, s=<span class="number">30</span>)</span><br><span class="line">plt.axis(<span class="string">&#x27;equal&#x27;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">E_step</span>(<span class="params">X, pi, mu, sigma</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Performs E-step on GMM model</span></span><br><span class="line"><span class="string">    Each input is numpy array:</span></span><br><span class="line"><span class="string">    X: (N x d), data points</span></span><br><span class="line"><span class="string">    pi: (C), mixture component weights</span></span><br><span class="line"><span class="string">    mu: (C x d), mixture component means</span></span><br><span class="line"><span class="string">    sigma: (C x d x d), mixture component covariance matrices</span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">    gamma: (N x C), probabilities of clusters for objects</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    N = X.shape[<span class="number">0</span>] <span class="comment"># number of objects</span></span><br><span class="line">    C = pi.shape[<span class="number">0</span>] <span class="comment"># number of clusters</span></span><br><span class="line">    d = mu.shape[<span class="number">1</span>] <span class="comment"># dimension of each object</span></span><br><span class="line">    gamma = np.zeros((N, C)) <span class="comment"># distribution q(T)</span></span><br><span class="line">    <span class="comment"># compute det of sigma</span></span><br><span class="line">    sigma_det = []</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(C):</span><br><span class="line">        sign, logdet = np.linalg.slogdet(sigma[j])</span><br><span class="line">        sigma_det.append(sign * np.exp(logdet))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(C):</span><br><span class="line">            gamma[i, j] = np.power(sigma_det[j], -<span class="number">0.5</span>) * np.exp(-<span class="number">0.5</span> * np.dot(X[i,:] - mu[j], solve(sigma[j], X[i,:] - mu[j]))) * pi[j]</span><br><span class="line">        gamma[i,:] /= <span class="built_in">sum</span>(gamma[i,:])</span><br><span class="line">    <span class="keyword">return</span> gamma</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">M_step</span>(<span class="params">X, gamma</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Performs M-step on GMM model</span></span><br><span class="line"><span class="string">    Each input is numpy array:</span></span><br><span class="line"><span class="string">    X: (N x d), data points</span></span><br><span class="line"><span class="string">    gamma: (N x C), distribution q(T)</span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">    pi: (C)</span></span><br><span class="line"><span class="string">    mu: (C x d)</span></span><br><span class="line"><span class="string">    sigma: (C x d x d)</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    N = X.shape[<span class="number">0</span>] <span class="comment"># number of objects</span></span><br><span class="line">    C = gamma.shape[<span class="number">1</span>] <span class="comment"># number of clusters</span></span><br><span class="line">    d = X.shape[<span class="number">1</span>] <span class="comment"># dimension of each object</span></span><br><span class="line">    mu = np.zeros((C, d))</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(C):</span><br><span class="line">        mu[j,:] = np.<span class="built_in">sum</span>(np.transpose(np.multiply(gamma[:,j], np.transpose(X))), axis = <span class="number">0</span>)/np.<span class="built_in">sum</span>(gamma[:,j])</span><br><span class="line">    sigma = np.zeros((C, d, d))</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(C):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            sigma[j,:,:] += np.multiply(gamma[i,j], np.outer(X[i,:] - mu[j,:], X[i,:] - mu[j,:]))</span><br><span class="line">        sigma[j,:,:] /= np.<span class="built_in">sum</span>(gamma[:,j])</span><br><span class="line">    pi = np.zeros((C,))</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(C):</span><br><span class="line">        pi[j] = np.<span class="built_in">sum</span>(gamma[:,j])/N</span><br><span class="line">    <span class="keyword">return</span> pi, mu, sigma</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compute_vlb</span>(<span class="params">X, pi, mu, sigma, gamma</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Each input is numpy array:</span></span><br><span class="line"><span class="string">    X: (N x d), data points</span></span><br><span class="line"><span class="string">    gamma: (N x C), distribution q(T)</span></span><br><span class="line"><span class="string">    pi: (C)</span></span><br><span class="line"><span class="string">    mu: (C x d)</span></span><br><span class="line"><span class="string">    sigma: (C x d x d)</span></span><br><span class="line"><span class="string">    Returns value of variational lower bound</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    N = X.shape[<span class="number">0</span>] <span class="comment"># number of objects</span></span><br><span class="line">    C = gamma.shape[<span class="number">1</span>] <span class="comment"># number of clusters</span></span><br><span class="line">    d = X.shape[<span class="number">1</span>] <span class="comment"># dimension of each object</span></span><br><span class="line">    <span class="comment"># compute det of sigma</span></span><br><span class="line">    sigma_det = []</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(C):</span><br><span class="line">        sign, logdet = np.linalg.slogdet(sigma[j])</span><br><span class="line">        sigma_det.append(sign * np.exp(logdet))</span><br><span class="line">    loss = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(C):</span><br><span class="line">            loss += gamma[i ,j] * (np.log(pi[j]) +</span><br><span class="line">                                   np.log(<span class="number">1</span>/np.sqrt(np.power(<span class="number">2</span> * np.pi, d) * sigma_det[j])) -<span class="number">0.5</span> * np.dot(X[i,:] - mu[j], solve(sigma[j], X[i,:] - mu[j])) -</span><br><span class="line">                                   np.log(gamma[i,j]))</span><br><span class="line">    <span class="keyword">return</span> loss</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_EM</span>(<span class="params">X, C, rtol=<span class="number">1e-3</span>, max_iter=<span class="number">100</span>, restarts=<span class="number">10</span></span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    Starts with random initialization *restarts* times</span></span><br><span class="line"><span class="string">    Runs optimization until saturation with *rtol* reached</span></span><br><span class="line"><span class="string">    or *max_iter* iterations were made.</span></span><br><span class="line"><span class="string">    X: (N, d), data points</span></span><br><span class="line"><span class="string">    C: int, number of clusters</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    N = X.shape[<span class="number">0</span>] <span class="comment"># number of objects</span></span><br><span class="line">    d = X.shape[<span class="number">1</span>] <span class="comment"># dimension of each object</span></span><br><span class="line">    best_loss = <span class="number">0</span></span><br><span class="line">    best_pi = np.zeros((C,))</span><br><span class="line">    best_mu = np.zeros((C, d))</span><br><span class="line">    best_sigma = np.zeros((C, d, d))</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(restarts):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            temp = np.random.random(C)</span><br><span class="line">            best_pi = temp/np.<span class="built_in">sum</span>(temp)</span><br><span class="line">            best_sigma[:,:,:] = np.eye(<span class="number">2</span>)</span><br><span class="line">            best_mu = X[np.random.randint(N, size=<span class="number">3</span>),:]</span><br><span class="line">            gamma = E_step(X, best_pi, best_mu, best_sigma)</span><br><span class="line">            best_pi, best_mu, best_sigma = M_step(X, gamma)</span><br><span class="line">            loss_pre = compute_vlb(X, best_pi, best_mu, best_sigma, gamma)</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(max_iter):</span><br><span class="line">                gamma = E_step(X, best_pi, best_mu, best_sigma)</span><br><span class="line">                best_pi, best_mu, best_sigma = M_step(X, gamma)</span><br><span class="line">                best_loss = compute_vlb(X, best_pi, best_mu, best_sigma, gamma)</span><br><span class="line">                <span class="keyword">if</span>(np.<span class="built_in">abs</span>((best_loss - loss_pre)/loss_pre)&lt;rtol):</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                loss_pre = best_loss</span><br><span class="line">        <span class="keyword">except</span> np.linalg.LinAlgError:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Singular matrix: components collapsed&quot;</span>)</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">return</span> best_loss, best_pi, best_mu, best_sigma</span><br><span class="line"></span><br><span class="line">best_loss, best_pi, best_mu, best_sigma = train_EM(X, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">gamma = E_step(X, best_pi, best_mu, best_sigma)</span><br><span class="line">labels = gamma.argmax(<span class="number">1</span>)</span><br><span class="line">plt.figure()</span><br><span class="line">plt.figure(figsize=(<span class="number">16</span>, <span class="number">12</span>))</span><br><span class="line">plt.scatter(X[:, <span class="number">0</span>], X[:, <span class="number">1</span>], c=labels, s=<span class="number">30</span>)</span><br><span class="line">plt.axis(<span class="string">&#x27;equal&#x27;</span>)</span><br><span class="line">plt.savefig(<span class="string">&quot;GMM_EM.png&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+运行结果图如下:
+<div data-align="center">
+<img src="/pictures/bayes in ml/GMM_EM.png" width="80%" height="50%" />
+</div>
+<hr />
+<h2 id="em算法的变体">EM算法的变体</h2>
+<p>事实上,EM算法的E步其实是采用了变分推断的方法, 变分推断又称<a href="https://en.wikipedia.org/wiki/Variational_Bayesian_methods">变分贝叶斯方法</a>, 它是用来计算难以计算积分的一类方法(求期望本质上是求积分):</p>
+<ul>
+<li>在一个给定分布族<span class="math inline">\(Q\)</span>中找到<span class="math inline">\(q(T)\)</span>, 使其逼近<span class="math inline">\(P(T\mid X, \theta)\)</span>, 且一般选用最小化<span class="math inline">\(\mathcal{KL}\)</span>散度<span class="math inline">\(\mathcal{KL}(q(T)\Vert P(T\mid X, \theta))\)</span></li>
+<li>计算目标积分时进行近似计算: <span class="math inline">\(\mathbb{E}_{P(T\mid X, \theta)}\log P(X,T\mid\theta)\approx \mathbb{E}_{q(T)}\log P(X,T\mid\theta)\)</span></li>
+<li>完整版的EM算法则可以视为此时分布族<span class="math inline">\(Q\)</span>取得足够大了, 因而包含<span class="math inline">\(P(T\mid X, \theta)\)</span>, 也就必然有<span class="math inline">\(q(T) = P(T\mid X, \theta)\)</span>; 而一般分布族<span class="math inline">\(Q\)</span>选取可为正态分布, 且其协方差阵为对角阵这样的简单分布.</li>
+<li>此外对变量之间做出额外的独立性假定的方法被称为是平均场近似法, 显然这样的假定能降低计算量, 这种方法、变分推断与EM算法结合可以产生不同的变体, 详见我的另外一篇博文<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/">变分贝叶斯方法</a>.</li>
+</ul>
+<p>除了变分推断, 还有三类非常著名的方法同样能够用来计算难以计算的积分, 分别是: <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">MCMC</a>, <a href="https://en.wikipedia.org/wiki/Expectation_propagation">期望传播</a>(Expectation Propagation: EP)及<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">拉普拉斯近似方法</a>(Laplace Approximation):</p>
+<ul>
+<li>MCMC是一类对分布进行抽样的方法: <span class="math inline">\(T_s \sim P(T\mid X, \theta)\)</span>, 其本质是构建稳态分布恰为所需分布<span class="math inline">\(P(T\mid X, \theta)\)</span>的马尔可夫链. 概率论中的极限理论告诉我们, <span class="math inline">\(\frac{1}{M} \sum_{s=1}^M\log P(X,T_s\mid\Theta)\)</span>会慢慢逼近<span class="math inline">\(\mathbb{E}_{P(T\mid X, \theta)}\log P(X,T\mid\Theta)\)</span>, 因此随着抽样数的增大, 其近似值会越来越精确. 这块内容详见我的另一篇博文<a href="https://msgsxj.cn/2018/09/18/MCMC/">MCMC</a>.</li>
+<li>期望传播方法可以简单理解为变分贝叶斯中最小化的<span class="math inline">\(\mathcal{KL}\)</span>散度逆过来, 即最小化<span class="math inline">\(\mathcal{KL}(P(T\mid X, \theta)\Vert q(T))\)</span>, 见<a href="https://msgsxj.cn/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/">期望传播</a>.</li>
+<li>拉普拉斯近似方法本质上是将被积函数视为正态分布, 见<a href="https://msgsxj.cn/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/">拉普拉斯方法</a>.</li>
+</ul>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>EM算法</tag>
+        <tag>隐变量模型</tag>
+        <tag>Jensen不等式</tag>
       </tags>
   </entry>
   <entry>
@@ -1135,9 +1135,7 @@ t_d^{k+1}&amp;\sim P(T_d\mid T_1=t_1^{k}, T_2=t_2^{k},..., T_{d-1}=t_{d-1}^{k}, 
     <content><![CDATA[<p>本文总结了笔者在机器学习中碰到的各种Trade-Off</p>
 <span id="more"></span>
 <h2 id="模型复杂度的trade-off">模型复杂度的Trade-Off</h2>
-<figure>
-<img src="/pictures/capacity.png" alt="image-20220507163426044" /><figcaption aria-hidden="true">image-20220507163426044</figcaption>
-</figure>
+<p><img src="/pictures/capacity.png" /></p>
 <ul>
 <li>在训练集给定的场景(预定给定一个较大的训练数据集应该是最常见的), 模型的复杂度(capacity)要适中选择. (<strong>p.s.</strong>具体到二分类问题, 最常见模型的复杂度为拉德马赫复杂度<a href="https://msgsxj.cn/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/">Rademacher complexity</a>, 虽然已经有一些依赖于训练集&amp;复杂度的数据相关界去约束住泛化误差(Generalization error), 但仍然缺少更一般的、更容易计算的模型复杂度。)</li>
 <li>过大的模型的复杂度, 容易使得训练好的模型在训练集上过拟合, 对应high bias &amp; low Variance的情况.</li>
@@ -2126,6 +2124,77 @@ cov(v_2,v_1)&amp;=cov(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_2,\
       </tags>
   </entry>
   <entry>
+    <title>拉德马赫复杂度</title>
+    <url>/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/</url>
+    <content><![CDATA[<p>前言: 本文主要讲了拉德马赫复杂度(<a href="https://en.wikipedia.org/wiki/Rademacher_complexity">Rademacher complexity</a>), 主要参考了Understanding machine learning一书26章.</p>
+<span id="more"></span>
+<hr />
+<p>首先应当接触以下几个概念:</p>
+<ul>
+<li>样本空间: 对于监督学习而言为带标签的样本<span class="math inline">\((x,y)\)</span>的取值空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>, 学习的目标是映射<span class="math inline">\(f: \mathcal{X}\to\mathcal{Y}\)</span>, 以用于产生对新样本<span class="math inline">\(x_{new}\)</span>的标签的可靠预测<span class="math inline">\(f(x_{new})\)</span>. <code>p.s.</code>对无监督学习而言为不带标签的样本<span class="math inline">\(x\)</span>的取值空间<span class="math inline">\(\mathcal{X}\)</span>, 学习目标为对<span class="math inline">\(\mathcal{X}\)</span>的可靠分类.</li>
+<li>目标函数: 通常记为<span class="math inline">\(f\)</span>, 即上述监督学习中所说的映射<span class="math inline">\(f\)</span>. 对于分类问题就是我们希望得到的真实的分类函数.</li>
+<li>训练集: 通常记为<span class="math inline">\(S\)</span>, 由定义在样本空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>上的概率分布<span class="math inline">\(\mathcal{D}\)</span>抽样得到 <span class="math display">\[S=\{(x_{1},y_{1}),....,(x_{m},y_{m})\}\]</span></li>
+<li>学习算法: 通常记为<span class="math inline">\(A\)</span>, 即我们构建的、能从数据中学到东西的学习算法, 期望其能从假设类中返回良好的假设.</li>
+<li>假设类: 通常记为<span class="math inline">\(\mathcal{H}\)</span>, 对目标函数<span class="math inline">\(f\)</span>的假设构成的空间, 学习器从中选择.</li>
+<li>预测器(predictor): 或者说分类器(classifier)、假设(hypothesis), 通常记为<span class="math inline">\(h\)</span>, 即学习器输出的一个函数:<span class="math inline">\(h:\mathcal{X}\to\mathcal{Y}\)</span>, 且应当和目标函数<span class="math inline">\(f\)</span>有相近的函数值.</li>
+<li>损失函数: 通常记为<span class="math inline">\(l(h, (x, y))\)</span>, 其定义在预测器<span class="math inline">\(h\)</span>和单个样本<span class="math inline">\((x, y)\)</span>上. 对于二分类问题, 一个常用的损失函数为<span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>, 即分对了就为0, 分错了就为1.</li>
+<li>训练误差: 通常记为<span class="math inline">\(L_{S}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在训练集<span class="math inline">\(S\)</span>上的平均损失<span class="math display">\[L_{S}(h)=\frac{1}{m}\sum_{i=1}^m l(h, (x_i, y_i))\]</span></li>
+<li>泛化误差: 通常记为<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在<span class="math inline">\((\mathcal{X}, \mathcal{Y})\)</span>上的平均损失<span class="math display">\[\mathbb{E}_{(x, y)\sim (\mathcal{X}, \mathcal{Y})}l(h, (x, y))\]</span></li>
+<li><span class="math inline">\(\varepsilon\)</span>-代表性样本: 一个训练集被称为<span class="math inline">\(\varepsilon\)</span>-代表性样本(定义在域<span class="math inline">\(Z\)</span>, 假设类<span class="math inline">\(\mathcal{H}\)</span>, 损失函数<span class="math inline">\(l\)</span>和分布<span class="math inline">\(\mathcal{D}\)</span>上), 如果满足<span class="math display">\[\sup_{h\in\mathcal{H}}|L_{S}(h)-L_{\mathcal{D}}(h)|\le\varepsilon\]</span></li>
+</ul>
+<p>接着应当知道如下基本事实:</p>
+<blockquote>
+<p>如果<span class="math inline">\(S\)</span>是<span class="math inline">\(\varepsilon/2\)</span>-代表性样本, 那么在ERM准则下它是<span class="math inline">\(\varepsilon\)</span>-一致的, 即<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))\le \min_{h\in\mathcal{H}}L_{\mathcal{D}}(h)+\varepsilon\]</span></p>
+</blockquote>
+<hr />
+<h3 id="拉德马赫复杂度">拉德马赫复杂度</h3>
+<p>回顾之前针对二分类问题建立的<a href="https://msgsxj.cn/2018/06/14/VC-bound/">VC bound</a>:<span class="math display">\[
+\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
+\]</span>注意到要定义训练误差与泛化误差必须要定义损失函数, 损失函数实际上选定了二分类问题的常用的损失函数0-1损失: <span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>; 因此上述VC bound又可以写作:<span class="math display">\[
+\sup_{f\in\mathcal{F}}\left|L_{S}(f)-L_{\mathcal{D}}(f)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
+\]</span>这里的<span class="math inline">\(\mathcal{F}\)</span>定义为<span class="math display">\[l \circ \mathcal{H}=\{z\mapsto l(h, z):h\in\mathcal{H}\}\]</span> 相应的<span class="math inline">\(L_{S}(f)=\frac{1}{m}\sum_{i=1}^m f(z_i)\)</span>, <span class="math inline">\(L_{\mathcal{D}}(f)=\mathbb{E}_{z\sim \mathcal{D}}f(z)\)</span>, 当然这里的<span class="math inline">\(l\)</span>已经固定为0-1损失. 定义训练集<span class="math inline">\(S\)</span>在<span class="math inline">\(\mathcal{F}\)</span>上的代表性为:<span class="math display">\[Rep_{\mathcal{D}}(\mathcal{F}, S)\doteq\sup_{f\in\mathcal{F}}(L_{\mathcal{D}}(f)-L_{S}(f))\]</span>一般来说, 训练误差<span class="math inline">\(L_{S}\)</span>能通过优化达到一个非常接近于0的数值, 比如<a href="https://arxiv.org/abs/1811.03804">这篇文章</a>说明了用梯度下降训练ResNet能在多项式时间内达到0训练误差, 即达到全局最优; 泛化误差<span class="math inline">\(L_{\mathcal{D}}\)</span>则会略大于训练误差. 显然当<span class="math inline">\(S\)</span>越能代表<span class="math inline">\(\mathcal{D}\)</span>, 上数值会越接近于0. 现在想要仅仅依靠训练集<span class="math inline">\(S\)</span>本身去估计其代表性, 一个自然地想法是将<span class="math inline">\(S\)</span>分成两个不相交的子集<span class="math inline">\(S=S_1\cup S_2\)</span>, <span class="math inline">\(S_1\)</span>作为验证集, <span class="math inline">\(S_2\)</span>作为训练集, 此时训练集代表性的一个近似为:<span class="math display">\[\sup_{f\in\mathcal{F}}(L_{\mathcal{S_1}}(f)-L_{S_2}(f))\]</span>再设多元随机变量<span class="math display">\[\sigma=(\sigma_1, \sigma_2,...,\sigma_m)\in\{\pm 1\}^m\]</span> 并按如下方式取定随机变量的值<span class="math inline">\(S_1=\{z_i:\sigma_i=1\}\)</span>, <span class="math inline">\(S_2=\{z_i:\sigma_i=-1\}\)</span>, 上式可写成更简单的形式:<span class="math display">\[\frac{1}{m}\sup_{f\in\mathcal{F}}\sum_{i=1}^m \sigma_i f(z_i)\]</span> 此时随机变量的不同的取值代表不同的验证集和训练集的组合, <strong>拉德马赫复杂度</strong>定义为上式近似对随机变量<span class="math inline">\(\sigma\)</span>的期望:<span class="math display">\[R(\mathcal{F}\circ S)\doteq\frac{1}{m}\mathop{\mathbb{E}}_{\sigma\sim\{\pm 1\}^m} [\sup_{f\in\mathcal{F}}\sum_{i=1}^m \sigma_i f(z_i)]\]</span>可以证明, 在期望意义下, 集合<span class="math inline">\(S\)</span>的代表性不超过2倍的拉德马赫复杂度<span class="math display">\[\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[Rep_{\mathcal{D}}(\mathcal{F}, S)]\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(\mathcal{F}\circ S)]\]</span>证明见Understanding machine learning一书引理26.2.</p>
+<hr />
+<h3 id="数据相关界">数据相关界</h3>
+<p>首先来看一个重要的不等式, 有限偏差集中不等式, 又称<a href="https://en.wikipedia.org/wiki/Doob_martingale#McDiarmid&#39;s_inequality">McDiarmid 不等式</a>, 这个不等式可见维基, 这个不等式可用来推出一个与训练集<span class="math inline">\(S\)</span>相关的界:</p>
+<blockquote>
+<p>假设对所有的<span class="math inline">\(z\)</span>和<span class="math inline">\(h\in\mathcal{H}\)</span>, <span class="math inline">\(|l(h, z)|\le c\)</span>, 那么以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(l \circ \mathcal{H}\circ S)]+c\sqrt{\frac{2\log(2/\delta)}{m}}\]</span>以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2R(l \circ \mathcal{H}\circ S)+4c\sqrt{\frac{2\log(4/\delta)}{m}}\]</span> 以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))-L_{\mathcal{D}}(h)\le 2R(l \circ \mathcal{H}\circ S)+5c\sqrt{\frac{2\log(8/\delta)}{m}}\]</span></p>
+</blockquote>
+<p>有兴趣的朋友不妨试着去推一推, 上述1, 2的界的推导类似于西瓜书定理12.5, 唯一不同的是这里满足在常数为<span class="math inline">\(2c/m\)</span>下的有界偏差条件, 而西瓜书直接为1; 第三个不等式则是多一步霍夫丁不等式.</p>
+<ul>
+<li>注意到第2, 3个界实际上由具体的训练集<span class="math inline">\(S\)</span>计算出来的, 因此这两个界被称为是数据相关界, 这也是与VC bound最大的不同之处.</li>
+<li>第二个界可以用来评估当前分类器<span class="math inline">\(h\)</span>在实际数据集<span class="math inline">\(\mathcal{D}\)</span>上的表现, 即<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>.</li>
+<li>第三个界可以用来评估利用ERM原则得到的分类器<span class="math inline">\(h\)</span>与理论最佳分类器的实际差距, 因此希望这个界越小越好; 显然假设类<span class="math inline">\(\mathcal{H}\)</span>越复杂, 这个界越大, 因此某种意义上这个界能用来评估假设类<span class="math inline">\(\mathcal{H}\)</span>的优劣.</li>
+</ul>
+<hr />
+<h3 id="拉德马赫复杂度的性质">拉德马赫复杂度的性质</h3>
+<p>首先给出拉德马赫复杂度的更一般化定义: 给定一个向量集合<span class="math inline">\(A\in\mathbb{R}^m\)</span> <span class="math display">\[R(A)\doteq\frac{1}{m}\mathop{\mathbb{E}}_{\sigma\sim\{\pm 1\}^m} [\sup_{a\in A}\sum_{i=1}^m \sigma_i a_i]\]</span>这里例举拉德马赫复杂度的几条性质, 具体见Understanding machine learning一书26章:</p>
+<ul>
+<li>A的凸包与A具有一样的拉德马赫复杂度.</li>
+<li>一个有限集合的拉德马赫复杂度随着集合大小增长而对数增长.</li>
+<li>如果给集合A作用一个Lipschitz连续的函数, 并不会增大其拉德马赫复杂度.</li>
+</ul>
+<hr />
+<h3 id="线性类的拉德马赫复杂度">线性类的拉德马赫复杂度</h3>
+<p>本节给出两个线性的假设类的拉德马赫复杂度, 假定<span class="math inline">\(x\)</span>的维数为<span class="math inline">\(n\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\mathcal{H}_1=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_1\le 1\}\)</span></li>
+<li><span class="math inline">\(\mathcal{H}_2=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_2\le 1\}\)</span></li>
+</ul>
+<p><span class="math inline">\(\mathcal{H}_1\circ S\)</span>定义为<span class="math inline">\(\{(&lt;\omega, x_i&gt;, i=1...,m):\Vert\omega\Vert_1\le 1\}\)</span>, <span class="math inline">\(\mathcal{H}_2\circ S\)</span>类似的定义, 有如下两个结果, 证明见[UML]一书引理26.10、26.11:</p>
+<ul>
+<li><span class="math inline">\(R(\mathcal{H}_1\circ S) \le \max_i\Vert x_i\Vert_{\infty}\sqrt{\frac{2\log(2n)}{m}}\)</span></li>
+<li><span class="math inline">\(R(\mathcal{H}_2\circ S) \le\frac{\max_i\Vert x_i\Vert_2}{\sqrt{m}}\)</span></li>
+</ul>
+<p><strong>p.s.</strong> 此外还有软硬间隔SVM的泛化误差界的推导, 见26.3, 26.4; 另一种度量集合复杂度的方法为覆盖数, 见27章.</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>拉德马赫复杂度</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>变分贝叶斯方法</title>
     <url>/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p>前言:本文主要是关于变分贝叶斯方法, 这是一类用简单分布去逼近目标分布的方法, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3. <span id="more"></span></p>
@@ -2284,77 +2353,6 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
         <tag>变分推断</tag>
         <tag>平均场近似</tag>
         <tag>KL散度</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>拉德马赫复杂度</title>
-    <url>/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/</url>
-    <content><![CDATA[<p>前言: 本文主要讲了拉德马赫复杂度(<a href="https://en.wikipedia.org/wiki/Rademacher_complexity">Rademacher complexity</a>), 主要参考了Understanding machine learning一书26章.</p>
-<span id="more"></span>
-<hr />
-<p>首先应当接触以下几个概念:</p>
-<ul>
-<li>样本空间: 对于监督学习而言为带标签的样本<span class="math inline">\((x,y)\)</span>的取值空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>, 学习的目标是映射<span class="math inline">\(f: \mathcal{X}\to\mathcal{Y}\)</span>, 以用于产生对新样本<span class="math inline">\(x_{new}\)</span>的标签的可靠预测<span class="math inline">\(f(x_{new})\)</span>. <code>p.s.</code>对无监督学习而言为不带标签的样本<span class="math inline">\(x\)</span>的取值空间<span class="math inline">\(\mathcal{X}\)</span>, 学习目标为对<span class="math inline">\(\mathcal{X}\)</span>的可靠分类.</li>
-<li>目标函数: 通常记为<span class="math inline">\(f\)</span>, 即上述监督学习中所说的映射<span class="math inline">\(f\)</span>. 对于分类问题就是我们希望得到的真实的分类函数.</li>
-<li>训练集: 通常记为<span class="math inline">\(S\)</span>, 由定义在样本空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>上的概率分布<span class="math inline">\(\mathcal{D}\)</span>抽样得到 <span class="math display">\[S=\{(x_{1},y_{1}),....,(x_{m},y_{m})\}\]</span></li>
-<li>学习算法: 通常记为<span class="math inline">\(A\)</span>, 即我们构建的、能从数据中学到东西的学习算法, 期望其能从假设类中返回良好的假设.</li>
-<li>假设类: 通常记为<span class="math inline">\(\mathcal{H}\)</span>, 对目标函数<span class="math inline">\(f\)</span>的假设构成的空间, 学习器从中选择.</li>
-<li>预测器(predictor): 或者说分类器(classifier)、假设(hypothesis), 通常记为<span class="math inline">\(h\)</span>, 即学习器输出的一个函数:<span class="math inline">\(h:\mathcal{X}\to\mathcal{Y}\)</span>, 且应当和目标函数<span class="math inline">\(f\)</span>有相近的函数值.</li>
-<li>损失函数: 通常记为<span class="math inline">\(l(h, (x, y))\)</span>, 其定义在预测器<span class="math inline">\(h\)</span>和单个样本<span class="math inline">\((x, y)\)</span>上. 对于二分类问题, 一个常用的损失函数为<span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>, 即分对了就为0, 分错了就为1.</li>
-<li>训练误差: 通常记为<span class="math inline">\(L_{S}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在训练集<span class="math inline">\(S\)</span>上的平均损失<span class="math display">\[L_{S}(h)=\frac{1}{m}\sum_{i=1}^m l(h, (x_i, y_i))\]</span></li>
-<li>泛化误差: 通常记为<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在<span class="math inline">\((\mathcal{X}, \mathcal{Y})\)</span>上的平均损失<span class="math display">\[\mathbb{E}_{(x, y)\sim (\mathcal{X}, \mathcal{Y})}l(h, (x, y))\]</span></li>
-<li><span class="math inline">\(\varepsilon\)</span>-代表性样本: 一个训练集被称为<span class="math inline">\(\varepsilon\)</span>-代表性样本(定义在域<span class="math inline">\(Z\)</span>, 假设类<span class="math inline">\(\mathcal{H}\)</span>, 损失函数<span class="math inline">\(l\)</span>和分布<span class="math inline">\(\mathcal{D}\)</span>上), 如果满足<span class="math display">\[\sup_{h\in\mathcal{H}}|L_{S}(h)-L_{\mathcal{D}}(h)|\le\varepsilon\]</span></li>
-</ul>
-<p>接着应当知道如下基本事实:</p>
-<blockquote>
-<p>如果<span class="math inline">\(S\)</span>是<span class="math inline">\(\varepsilon/2\)</span>-代表性样本, 那么在ERM准则下它是<span class="math inline">\(\varepsilon\)</span>-一致的, 即<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))\le \min_{h\in\mathcal{H}}L_{\mathcal{D}}(h)+\varepsilon\]</span></p>
-</blockquote>
-<hr />
-<h3 id="拉德马赫复杂度">拉德马赫复杂度</h3>
-<p>回顾之前针对二分类问题建立的<a href="https://msgsxj.cn/2018/06/14/VC-bound/">VC bound</a>:<span class="math display">\[
-\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
-\]</span>注意到要定义训练误差与泛化误差必须要定义损失函数, 损失函数实际上选定了二分类问题的常用的损失函数0-1损失: <span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>; 因此上述VC bound又可以写作:<span class="math display">\[
-\sup_{f\in\mathcal{F}}\left|L_{S}(f)-L_{\mathcal{D}}(f)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
-\]</span>这里的<span class="math inline">\(\mathcal{F}\)</span>定义为<span class="math display">\[l \circ \mathcal{H}=\{z\mapsto l(h, z):h\in\mathcal{H}\}\]</span> 相应的<span class="math inline">\(L_{S}(f)=\frac{1}{m}\sum_{i=1}^m f(z_i)\)</span>, <span class="math inline">\(L_{\mathcal{D}}(f)=\mathbb{E}_{z\sim \mathcal{D}}f(z)\)</span>, 当然这里的<span class="math inline">\(l\)</span>已经固定为0-1损失. 定义训练集<span class="math inline">\(S\)</span>在<span class="math inline">\(\mathcal{F}\)</span>上的代表性为:<span class="math display">\[Rep_{\mathcal{D}}(\mathcal{F}, S)\doteq\sup_{f\in\mathcal{F}}(L_{\mathcal{D}}(f)-L_{S}(f))\]</span>一般来说, 训练误差<span class="math inline">\(L_{S}\)</span>能通过优化达到一个非常接近于0的数值, 比如<a href="https://arxiv.org/abs/1811.03804">这篇文章</a>说明了用梯度下降训练ResNet能在多项式时间内达到0训练误差, 即达到全局最优; 泛化误差<span class="math inline">\(L_{\mathcal{D}}\)</span>则会略大于训练误差. 显然当<span class="math inline">\(S\)</span>越能代表<span class="math inline">\(\mathcal{D}\)</span>, 上数值会越接近于0. 现在想要仅仅依靠训练集<span class="math inline">\(S\)</span>本身去估计其代表性, 一个自然地想法是将<span class="math inline">\(S\)</span>分成两个不相交的子集<span class="math inline">\(S=S_1\cup S_2\)</span>, <span class="math inline">\(S_1\)</span>作为验证集, <span class="math inline">\(S_2\)</span>作为训练集, 此时训练集代表性的一个近似为:<span class="math display">\[\sup_{f\in\mathcal{F}}(L_{\mathcal{S_1}}(f)-L_{S_2}(f))\]</span>再设多元随机变量<span class="math display">\[\sigma=(\sigma_1, \sigma_2,...,\sigma_m)\in\{\pm 1\}^m\]</span> 并按如下方式取定随机变量的值<span class="math inline">\(S_1=\{z_i:\sigma_i=1\}\)</span>, <span class="math inline">\(S_2=\{z_i:\sigma_i=-1\}\)</span>, 上式可写成更简单的形式:<span class="math display">\[\frac{1}{m}\sup_{f\in\mathcal{F}}\sum_{i=1}^m \sigma_i f(z_i)\]</span> 此时随机变量的不同的取值代表不同的验证集和训练集的组合, <strong>拉德马赫复杂度</strong>定义为上式近似对随机变量<span class="math inline">\(\sigma\)</span>的期望:<span class="math display">\[R(\mathcal{F}\circ S)\doteq\frac{1}{m}\mathop{\mathbb{E}}_{\sigma\sim\{\pm 1\}^m} [\sup_{f\in\mathcal{F}}\sum_{i=1}^m \sigma_i f(z_i)]\]</span>可以证明, 在期望意义下, 集合<span class="math inline">\(S\)</span>的代表性不超过2倍的拉德马赫复杂度<span class="math display">\[\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[Rep_{\mathcal{D}}(\mathcal{F}, S)]\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(\mathcal{F}\circ S)]\]</span>证明见Understanding machine learning一书引理26.2.</p>
-<hr />
-<h3 id="数据相关界">数据相关界</h3>
-<p>首先来看一个重要的不等式, 有限偏差集中不等式, 又称<a href="https://en.wikipedia.org/wiki/Doob_martingale#McDiarmid&#39;s_inequality">McDiarmid 不等式</a>, 这个不等式可见维基, 这个不等式可用来推出一个与训练集<span class="math inline">\(S\)</span>相关的界:</p>
-<blockquote>
-<p>假设对所有的<span class="math inline">\(z\)</span>和<span class="math inline">\(h\in\mathcal{H}\)</span>, <span class="math inline">\(|l(h, z)|\le c\)</span>, 那么以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(l \circ \mathcal{H}\circ S)]+c\sqrt{\frac{2\log(2/\delta)}{m}}\]</span>以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2R(l \circ \mathcal{H}\circ S)+4c\sqrt{\frac{2\log(4/\delta)}{m}}\]</span> 以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))-L_{\mathcal{D}}(h)\le 2R(l \circ \mathcal{H}\circ S)+5c\sqrt{\frac{2\log(8/\delta)}{m}}\]</span></p>
-</blockquote>
-<p>有兴趣的朋友不妨试着去推一推, 上述1, 2的界的推导类似于西瓜书定理12.5, 唯一不同的是这里满足在常数为<span class="math inline">\(2c/m\)</span>下的有界偏差条件, 而西瓜书直接为1; 第三个不等式则是多一步霍夫丁不等式.</p>
-<ul>
-<li>注意到第2, 3个界实际上由具体的训练集<span class="math inline">\(S\)</span>计算出来的, 因此这两个界被称为是数据相关界, 这也是与VC bound最大的不同之处.</li>
-<li>第二个界可以用来评估当前分类器<span class="math inline">\(h\)</span>在实际数据集<span class="math inline">\(\mathcal{D}\)</span>上的表现, 即<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>.</li>
-<li>第三个界可以用来评估利用ERM原则得到的分类器<span class="math inline">\(h\)</span>与理论最佳分类器的实际差距, 因此希望这个界越小越好; 显然假设类<span class="math inline">\(\mathcal{H}\)</span>越复杂, 这个界越大, 因此某种意义上这个界能用来评估假设类<span class="math inline">\(\mathcal{H}\)</span>的优劣.</li>
-</ul>
-<hr />
-<h3 id="拉德马赫复杂度的性质">拉德马赫复杂度的性质</h3>
-<p>首先给出拉德马赫复杂度的更一般化定义: 给定一个向量集合<span class="math inline">\(A\in\mathbb{R}^m\)</span> <span class="math display">\[R(A)\doteq\frac{1}{m}\mathop{\mathbb{E}}_{\sigma\sim\{\pm 1\}^m} [\sup_{a\in A}\sum_{i=1}^m \sigma_i a_i]\]</span>这里例举拉德马赫复杂度的几条性质, 具体见Understanding machine learning一书26章:</p>
-<ul>
-<li>A的凸包与A具有一样的拉德马赫复杂度.</li>
-<li>一个有限集合的拉德马赫复杂度随着集合大小增长而对数增长.</li>
-<li>如果给集合A作用一个Lipschitz连续的函数, 并不会增大其拉德马赫复杂度.</li>
-</ul>
-<hr />
-<h3 id="线性类的拉德马赫复杂度">线性类的拉德马赫复杂度</h3>
-<p>本节给出两个线性的假设类的拉德马赫复杂度, 假定<span class="math inline">\(x\)</span>的维数为<span class="math inline">\(n\)</span>:</p>
-<ul>
-<li><span class="math inline">\(\mathcal{H}_1=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_1\le 1\}\)</span></li>
-<li><span class="math inline">\(\mathcal{H}_2=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_2\le 1\}\)</span></li>
-</ul>
-<p><span class="math inline">\(\mathcal{H}_1\circ S\)</span>定义为<span class="math inline">\(\{(&lt;\omega, x_i&gt;, i=1...,m):\Vert\omega\Vert_1\le 1\}\)</span>, <span class="math inline">\(\mathcal{H}_2\circ S\)</span>类似的定义, 有如下两个结果, 证明见[UML]一书引理26.10、26.11:</p>
-<ul>
-<li><span class="math inline">\(R(\mathcal{H}_1\circ S) \le \max_i\Vert x_i\Vert_{\infty}\sqrt{\frac{2\log(2n)}{m}}\)</span></li>
-<li><span class="math inline">\(R(\mathcal{H}_2\circ S) \le\frac{\max_i\Vert x_i\Vert_2}{\sqrt{m}}\)</span></li>
-</ul>
-<p><strong>p.s.</strong> 此外还有软硬间隔SVM的泛化误差界的推导, 见26.3, 26.4; 另一种度量集合复杂度的方法为覆盖数, 见27章.</p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>拉德马赫复杂度</tag>
       </tags>
   </entry>
   <entry>
@@ -3601,52 +3599,6 @@ L_S(\omega)+\alpha\mathcal{R}(\omega) &amp; \leq L_S(\omega_k)+\left\langle\nabl
       </tags>
   </entry>
   <entry>
-    <title>高斯过程的随机模拟(含R实现)</title>
-    <url>/2018/09/24/%E9%AB%98%E6%96%AF%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%A8%A1%E6%8B%9F(%E5%90%ABR%E5%AE%9E%E7%8E%B0)/</url>
-    <content><![CDATA[<p>前言: 读PRML一书的6.4节, 对图6.4中高斯过程的采用不同核函数模拟实现非常好奇, 同时也惊叹于高斯过程看上是几乎处处连续的性质, 于是尝试用R去模拟高斯过程. <span id="more"></span></p>
-<hr />
-<p>首先简单说明几点:</p>
-<ul>
-<li>经典的随机过程(stochastic process)的定义<span class="math inline">\(\{x_t, t\in T\}\)</span>可以简单理解为随机变量加上一个维度(比方说时间), 一般的, 时间视为不可数; 另外随机变量可以取实值, 复值, 向量值等, 但一般还是取实值.</li>
-<li>由随机变量的概率空间及状态空间出发去定义随机过程概率空间却不是那么方便, 这当中用到了Kolmogorov定理, 详见钱敏平的随机过程论1.1及1.2小节.</li>
-<li>另外一个重要定理可分修正表明, 任意随机过程都能修正为一个具有可分性的过程(即两者几乎处处相等), 而可分的随机过程其实带有一些连续性的味道, 可见钱敏平的随机过程论p11.</li>
-<li>高斯过程则是任意有限维时间的联合分布(<span class="math inline">\(\{x_{t_1}, x_{t_2},...,x_{t_k}\}\)</span>, 其中<span class="math inline">\(t_1,..,t_k, k\)</span>均任取)为多元正态分布的随机过程, 可见<a href="https://en.wikipedia.org/wiki/Gaussian_process">维基百科</a>.</li>
-<li>补充一点, 随机场(<a href="https://en.wikipedia.org/wiki/Random_field">random field</a>)则是可以视为随机过程的一般化, 即此时添加的可能不仅仅是一维的时间, 而是多维向量; 而高斯随机场(Gaussian random field)则是有限维联合分布为多元正态分布的随机场.</li>
-<li>在现代数学中, 随机过程这个概念等同于随机场(参见随机场的维基百科).</li>
-</ul>
-<hr />
-<p>容易知道, 多元正态分布仅仅依赖于它的期望<span class="math inline">\(\mu\)</span>与协方差矩阵<span class="math inline">\(\Sigma\)</span>, 因此如果我们能对任意有限维分布给出期望<span class="math inline">\(\mu\)</span>与协方差矩阵<span class="math inline">\(\Sigma\)</span>, 高斯过程也就给定了.</p>
-<p>一种思路是假定<span class="math inline">\(\mu=0\)</span>, <span class="math inline">\(\Sigma=K\)</span>, 其中<span class="math inline">\(K_{ij}=k(t_i, t_j)\)</span>, 下面给出<span class="math inline">\(k(t_i, t_j)\)</span>的三种形式:</p>
-<ul>
-<li><span class="math inline">\(k(t_i, t_j)=\min\{t_i, t_j\}\)</span>, 此时高斯过程即为维纳过程, 或者说布朗运动, 高斯过程的R模拟图像如下:
-<div data-align="center">
-<img src="/pictures/R/R_brown_motion.png" width="80%" />
-</div></li>
-<li><span class="math inline">\(k(t_i, t_j)=\exp(-\Vert t_i-t_j\Vert/2\sigma^2)\)</span>, 这个函数又被称为高斯核, 取<span class="math inline">\(2\sigma^2=1\)</span>, 高斯过程的R模拟图像如下:
-<div data-align="center">
-<img src="/pictures/R/R_gauss_kernel.png" width="80%" />
-</div>
-取<span class="math inline">\(2\sigma^2=1/16\)</span>, 高斯过程的R模拟图像又如下:
-<div data-align="center">
-<img src="/pictures/R/R_gausskernel_2.png" width="80%" />
-</div></li>
-<li><span class="math inline">\(k(t_i, t_j)=\exp(-\theta\Vert t_i-t_j\Vert)\)</span>, 此时高斯过程即为<a href="https://en.wikipedia.org/wiki/Ornstein%E2%80%93Uhlenbeck_process">Ornstein–Uhlenbeck过程</a>, 取<span class="math inline">\(\theta=1\)</span>, 高斯过程的R模拟图像如下:
-<div data-align="center">
-<img src="/pictures/R/R_OUprocess.png" width="80%" />
-</div></li>
-</ul>
-<p>最后附上R代码, 其中核心部分代码即<code>gaussprocess</code>函数, 这个函数即先根据函数<span class="math inline">\(k(,)\)</span>去求对所有时间的协方差矩阵<span class="math inline">\(\Sigma\)</span>(计算机的计算必须离散化, 这里的模拟精度为<span class="math inline">\(t\in [0,1]\)</span>之间有1000个数), 再用<code>MASS</code>包中的<code>mvrnorm</code>函数去从多元正态分布中抽样: <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">library(magrittr)</span><br><span class="line">library(tidyverse)</span><br><span class="line">gaussprocess &lt;- <span class="keyword">function</span>(from = <span class="number">0</span>,</span><br><span class="line">                         to = <span class="number">1</span>,</span><br><span class="line">                         K = <span class="keyword">function</span>(s, t) &#123;<span class="built_in">min</span>(s, t)&#125;,</span><br><span class="line">                         start = <span class="literal">NULL</span>,</span><br><span class="line">                         m = <span class="number">2000</span>) &#123;</span><br><span class="line">    t &lt;- seq(from = from, to = to, length.out = m)</span><br><span class="line">    Sigma &lt;- sapply(t, <span class="keyword">function</span>(s1) &#123;</span><br><span class="line">        sapply(t, <span class="keyword">function</span>(s2) &#123;</span><br><span class="line">            K(s1, s2)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">    path &lt;- MASS::mvrnorm(mu = <span class="built_in">rep</span>(<span class="number">0</span>, times = m), Sigma = Sigma)</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">is.null</span>(start)) &#123;</span><br><span class="line">        path &lt;- path - path[<span class="number">1</span>] + start  <span class="comment"># Must always start at &quot;start&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span>(data.frame(<span class="string">&quot;t&quot;</span> = t, <span class="string">&quot;xt&quot;</span> = path))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">## 维纳过程</span></span><br><span class="line">plot_1 &lt;- <span class="keyword">function</span>(times = <span class="number">5</span>) &#123;</span><br><span class="line">    data &lt;- gaussprocess()</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:(times-<span class="number">1</span>))&#123;</span><br><span class="line">        temp &lt;- gaussprocess()</span><br><span class="line">        temp[<span class="string">&#x27;id&#x27;</span>] = i</span><br><span class="line">        data &lt;- rbind(data, temp)</span><br><span class="line">    &#125;</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">    ggplot(data = data, aes(x = t, y = xt, color = id, group = id)) + geom_line()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">plot_1(times = <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## 高斯过程</span></span><br><span class="line">plot_2 &lt;- <span class="keyword">function</span>(times = <span class="number">5</span>) &#123;</span><br><span class="line">    data &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t) &#123;<span class="built_in">exp</span>(-<span class="number">16</span> * (s - t) ^ <span class="number">2</span>)&#125;)</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:(times-<span class="number">1</span>))&#123;</span><br><span class="line">        temp &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t) &#123;<span class="built_in">exp</span>(-<span class="number">16</span> * (s - t) ^ <span class="number">2</span>)&#125;)</span><br><span class="line">        temp[<span class="string">&#x27;id&#x27;</span>] = i</span><br><span class="line">        data &lt;- rbind(data, temp)</span><br><span class="line">    &#125;</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">    ggplot(data = data, aes(x = t, y = xt, color = id, group = id)) + geom_line()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">plot_2(times = <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## Ornstein-Uhlenbeck过程</span></span><br><span class="line">plot_3 &lt;- <span class="keyword">function</span>(times = <span class="number">5</span>) &#123;</span><br><span class="line">    data &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t)&#123;<span class="built_in">exp</span>(-<span class="built_in">abs</span>(s - t))&#125;)</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:(times-<span class="number">1</span>))&#123;</span><br><span class="line">        temp &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t)&#123;<span class="built_in">exp</span>(-<span class="built_in">abs</span>(s - t))&#125;)</span><br><span class="line">        temp[<span class="string">&#x27;id&#x27;</span>] = i</span><br><span class="line">        data &lt;- rbind(data, temp)</span><br><span class="line">    &#125;</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">    ggplot(data = data, aes(x = t, y = xt, color = id, group = id)) + geom_line()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">plot_3(times = <span class="number">5</span>)</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>R</category>
-      </categories>
-      <tags>
-        <tag>R</tag>
-        <tag>高斯过程</tag>
-        <tag>核函数</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>高效能人士的七个习惯-读书笔记</title>
     <url>/2018/10/23/%E9%AB%98%E6%95%88%E8%83%BD%E4%BA%BA%E5%A3%AB%E7%9A%84%E4%B8%83%E4%B8%AA%E4%B9%A0%E6%83%AF-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>前言: 大部分人在聆听时并不是想理解对方, 而是为了做出回应------习惯五 <span id="more"></span></p>
@@ -3972,6 +3924,52 @@ L_S(\omega)+\alpha\mathcal{R}(\omega) &amp; \leq L_S(\omega_k)+\left\langle\nabl
       </categories>
       <tags>
         <tag>高效能人士的七个习惯</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>高斯过程的随机模拟(含R实现)</title>
+    <url>/2018/09/24/%E9%AB%98%E6%96%AF%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%A8%A1%E6%8B%9F(%E5%90%ABR%E5%AE%9E%E7%8E%B0)/</url>
+    <content><![CDATA[<p>前言: 读PRML一书的6.4节, 对图6.4中高斯过程的采用不同核函数模拟实现非常好奇, 同时也惊叹于高斯过程看上是几乎处处连续的性质, 于是尝试用R去模拟高斯过程. <span id="more"></span></p>
+<hr />
+<p>首先简单说明几点:</p>
+<ul>
+<li>经典的随机过程(stochastic process)的定义<span class="math inline">\(\{x_t, t\in T\}\)</span>可以简单理解为随机变量加上一个维度(比方说时间), 一般的, 时间视为不可数; 另外随机变量可以取实值, 复值, 向量值等, 但一般还是取实值.</li>
+<li>由随机变量的概率空间及状态空间出发去定义随机过程概率空间却不是那么方便, 这当中用到了Kolmogorov定理, 详见钱敏平的随机过程论1.1及1.2小节.</li>
+<li>另外一个重要定理可分修正表明, 任意随机过程都能修正为一个具有可分性的过程(即两者几乎处处相等), 而可分的随机过程其实带有一些连续性的味道, 可见钱敏平的随机过程论p11.</li>
+<li>高斯过程则是任意有限维时间的联合分布(<span class="math inline">\(\{x_{t_1}, x_{t_2},...,x_{t_k}\}\)</span>, 其中<span class="math inline">\(t_1,..,t_k, k\)</span>均任取)为多元正态分布的随机过程, 可见<a href="https://en.wikipedia.org/wiki/Gaussian_process">维基百科</a>.</li>
+<li>补充一点, 随机场(<a href="https://en.wikipedia.org/wiki/Random_field">random field</a>)则是可以视为随机过程的一般化, 即此时添加的可能不仅仅是一维的时间, 而是多维向量; 而高斯随机场(Gaussian random field)则是有限维联合分布为多元正态分布的随机场.</li>
+<li>在现代数学中, 随机过程这个概念等同于随机场(参见随机场的维基百科).</li>
+</ul>
+<hr />
+<p>容易知道, 多元正态分布仅仅依赖于它的期望<span class="math inline">\(\mu\)</span>与协方差矩阵<span class="math inline">\(\Sigma\)</span>, 因此如果我们能对任意有限维分布给出期望<span class="math inline">\(\mu\)</span>与协方差矩阵<span class="math inline">\(\Sigma\)</span>, 高斯过程也就给定了.</p>
+<p>一种思路是假定<span class="math inline">\(\mu=0\)</span>, <span class="math inline">\(\Sigma=K\)</span>, 其中<span class="math inline">\(K_{ij}=k(t_i, t_j)\)</span>, 下面给出<span class="math inline">\(k(t_i, t_j)\)</span>的三种形式:</p>
+<ul>
+<li><span class="math inline">\(k(t_i, t_j)=\min\{t_i, t_j\}\)</span>, 此时高斯过程即为维纳过程, 或者说布朗运动, 高斯过程的R模拟图像如下:
+<div data-align="center">
+<img src="/pictures/R/R_brown_motion.png" width="80%" />
+</div></li>
+<li><span class="math inline">\(k(t_i, t_j)=\exp(-\Vert t_i-t_j\Vert/2\sigma^2)\)</span>, 这个函数又被称为高斯核, 取<span class="math inline">\(2\sigma^2=1\)</span>, 高斯过程的R模拟图像如下:
+<div data-align="center">
+<img src="/pictures/R/R_gauss_kernel.png" width="80%" />
+</div>
+取<span class="math inline">\(2\sigma^2=1/16\)</span>, 高斯过程的R模拟图像又如下:
+<div data-align="center">
+<img src="/pictures/R/R_gausskernel_2.png" width="80%" />
+</div></li>
+<li><span class="math inline">\(k(t_i, t_j)=\exp(-\theta\Vert t_i-t_j\Vert)\)</span>, 此时高斯过程即为<a href="https://en.wikipedia.org/wiki/Ornstein%E2%80%93Uhlenbeck_process">Ornstein–Uhlenbeck过程</a>, 取<span class="math inline">\(\theta=1\)</span>, 高斯过程的R模拟图像如下:
+<div data-align="center">
+<img src="/pictures/R/R_OUprocess.png" width="80%" />
+</div></li>
+</ul>
+<p>最后附上R代码, 其中核心部分代码即<code>gaussprocess</code>函数, 这个函数即先根据函数<span class="math inline">\(k(,)\)</span>去求对所有时间的协方差矩阵<span class="math inline">\(\Sigma\)</span>(计算机的计算必须离散化, 这里的模拟精度为<span class="math inline">\(t\in [0,1]\)</span>之间有1000个数), 再用<code>MASS</code>包中的<code>mvrnorm</code>函数去从多元正态分布中抽样: <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">library(magrittr)</span><br><span class="line">library(tidyverse)</span><br><span class="line">gaussprocess &lt;- <span class="keyword">function</span>(from = <span class="number">0</span>,</span><br><span class="line">                         to = <span class="number">1</span>,</span><br><span class="line">                         K = <span class="keyword">function</span>(s, t) &#123;<span class="built_in">min</span>(s, t)&#125;,</span><br><span class="line">                         start = <span class="literal">NULL</span>,</span><br><span class="line">                         m = <span class="number">2000</span>) &#123;</span><br><span class="line">    t &lt;- seq(from = from, to = to, length.out = m)</span><br><span class="line">    Sigma &lt;- sapply(t, <span class="keyword">function</span>(s1) &#123;</span><br><span class="line">        sapply(t, <span class="keyword">function</span>(s2) &#123;</span><br><span class="line">            K(s1, s2)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">    path &lt;- MASS::mvrnorm(mu = <span class="built_in">rep</span>(<span class="number">0</span>, times = m), Sigma = Sigma)</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">is.null</span>(start)) &#123;</span><br><span class="line">        path &lt;- path - path[<span class="number">1</span>] + start  <span class="comment"># Must always start at &quot;start&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span>(data.frame(<span class="string">&quot;t&quot;</span> = t, <span class="string">&quot;xt&quot;</span> = path))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">## 维纳过程</span></span><br><span class="line">plot_1 &lt;- <span class="keyword">function</span>(times = <span class="number">5</span>) &#123;</span><br><span class="line">    data &lt;- gaussprocess()</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:(times-<span class="number">1</span>))&#123;</span><br><span class="line">        temp &lt;- gaussprocess()</span><br><span class="line">        temp[<span class="string">&#x27;id&#x27;</span>] = i</span><br><span class="line">        data &lt;- rbind(data, temp)</span><br><span class="line">    &#125;</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">    ggplot(data = data, aes(x = t, y = xt, color = id, group = id)) + geom_line()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">plot_1(times = <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## 高斯过程</span></span><br><span class="line">plot_2 &lt;- <span class="keyword">function</span>(times = <span class="number">5</span>) &#123;</span><br><span class="line">    data &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t) &#123;<span class="built_in">exp</span>(-<span class="number">16</span> * (s - t) ^ <span class="number">2</span>)&#125;)</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:(times-<span class="number">1</span>))&#123;</span><br><span class="line">        temp &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t) &#123;<span class="built_in">exp</span>(-<span class="number">16</span> * (s - t) ^ <span class="number">2</span>)&#125;)</span><br><span class="line">        temp[<span class="string">&#x27;id&#x27;</span>] = i</span><br><span class="line">        data &lt;- rbind(data, temp)</span><br><span class="line">    &#125;</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">    ggplot(data = data, aes(x = t, y = xt, color = id, group = id)) + geom_line()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">plot_2(times = <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## Ornstein-Uhlenbeck过程</span></span><br><span class="line">plot_3 &lt;- <span class="keyword">function</span>(times = <span class="number">5</span>) &#123;</span><br><span class="line">    data &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t)&#123;<span class="built_in">exp</span>(-<span class="built_in">abs</span>(s - t))&#125;)</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:(times-<span class="number">1</span>))&#123;</span><br><span class="line">        temp &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t)&#123;<span class="built_in">exp</span>(-<span class="built_in">abs</span>(s - t))&#125;)</span><br><span class="line">        temp[<span class="string">&#x27;id&#x27;</span>] = i</span><br><span class="line">        data &lt;- rbind(data, temp)</span><br><span class="line">    &#125;</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">    ggplot(data = data, aes(x = t, y = xt, color = id, group = id)) + geom_line()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">plot_3(times = <span class="number">5</span>)</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>R</category>
+      </categories>
+      <tags>
+        <tag>R</tag>
+        <tag>高斯过程</tag>
+        <tag>核函数</tag>
       </tags>
   </entry>
 </search>
