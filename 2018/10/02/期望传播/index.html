@@ -309,7 +309,7 @@
 &amp; = \int P\ln Pdx - \int P\ln h(x)dx-\ln g(\tilde{\theta})- \tilde{\theta} ^T \mathbb{E}_{P}T(x) \end{aligned}\]</span> 此时令关于未知参数 <span class="math inline">\(\tilde{\theta}\)</span> 的梯度为<span class="math inline">\(0\)</span>就可以得到<span class="math display">\[-\nabla\ln g(\tilde{\theta})=\mathbb{E}_{P(x\mid X, \theta)}T(x)\]</span>再利用上节中能轻易表示出<span class="math inline">\(T(x)\)</span>各接矩的性质, 这里仅用一阶矩: <span class="math display">\[-\nabla\ln g(\tilde{\theta})=\mathbb{E}_{q(x\mid\tilde{\theta})}T(x)\]</span>得到结论: <span class="math display">\[\mathbb{E}_{P(x\mid X, \theta)}T(x)=\mathbb{E}_{q(x\mid\tilde{\theta})}T(x)\]</span>即<span class="math inline">\(T(x)\)</span>关于目标分布<span class="math inline">\(P(x\mid X, \theta)\)</span>期望的信息能够传递下去. 以正态分布为例, <span class="math inline">\(q(x\mid \mu, \Sigma)=N(\mu, \Sigma)\)</span>:
 <span class="math display">\[\begin{aligned} q(x\mid \mu, \Sigma) &amp; =  {\frac {\exp \left(-{\frac {1}{2}}(x- \mu )^{T }\Sigma ^{-1}(x-\mu)\right)}{\sqrt {(2\pi )^{k}|\Sigma|}}}\\\
 &amp; =  {\frac {\exp \left(-{\frac {1}{2}}x^{ T }\Sigma ^{-1}x+x^{ T }\Sigma ^{-1}\mu-{\frac {1}{2}}\mu^{ T }\Sigma ^{-1}\mu\right)}{\sqrt {(2\pi )^{k}|\Sigma|}}} \end{aligned}\]</span>
-只需考虑<span class="math inline">\(x\)</span>与参数<span class="math inline">\(\mu, \Sigma\)</span>分不开的那些项, 得<span class="math inline">\(T(x)=(x, xx^T)\)</span>(<code>p.s.</code>这里笔者并不是很明白怎么去算, 希望知道多元正态分布充分统计量详细推导的朋友的朋友能给我解惑, 联系方式见关于我 :) )必然是其中一个充分统计量, 用上述结论即为<span class="math display">\[\begin{aligned} \mathbb{E}_{P(x\mid X, \theta)}x &amp; =  \mathbb{E}_{q(x\mid \mu, \Sigma)}x=\mu\\\
+&amp; = {} \end{aligned}只需考虑<span class="math inline">\(x\)</span>与参数<span class="math inline">\(\mu, \Sigma\)</span>分不开的那些项, 得<span class="math inline">\(T(x)=(x, xx^T)\)</span>(<code>p.s.</code>这里笔者并不是很明白怎么去算, 希望知道多元正态分布充分统计量详细推导的朋友的朋友能给我解惑, 联系方式见关于我 :) )必然是其中一个充分统计量, 用上述结论即为<span class="math display">\[\begin{aligned} \mathbb{E}_{P(x\mid X, \theta)}x &amp; =  \mathbb{E}_{q(x\mid \mu, \Sigma)}x=\mu\\\
 \mathbb{E}_{P(x\mid X, \theta)}xx^T&amp; =  \mathbb{E}_{q(x\mid \mu, \Sigma)}xx^T=\Sigma + \mu\mu^T\end{aligned}\]</span>上述思路其实是Assumed Density Filtering(ADF)(或者说在线贝叶斯学习online bayesian leaning, 矩匹配moment matching)的主要思路, 至于在线学习则体现在初始化<span class="math inline">\(q=1\)</span>后对每个样本序列地用上述式子去更新, 详细可见Thomas P Minka的博士论文A family of algorithms for approximate Bayesian inference(百度学术, 谷歌学术均可达)的3.1节.</li>
 </ul>
 <hr />
@@ -461,7 +461,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
