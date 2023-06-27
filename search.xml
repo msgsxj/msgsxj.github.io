@@ -48,6 +48,28 @@
       </tags>
   </entry>
   <entry>
+    <title>2018</title>
+    <url>/2019/01/30/2018/</url>
+    <content><![CDATA[<p>前言: 回顾2018, 为2019立flag</p>
+<span id="more"></span>
+<p><img src="/pictures/2018.jpg" /></p>
+<h2 id="section">2018</h2>
+<p>相比之下, 2018要忙碌一些, 研一下学期先是听老师讲凸优化, 但从8月份开始就是我们4个的讲机器学习和数值优化的讨论班. 机器学习讨论班用的就是周志华老师的西瓜书, 到期末算是堪堪讲完; 数值优化则是用了numberical optimization, 但没来得及讲完, 还剩下一些留给下学期初.</p>
+<p>不得不说讨论班让我收获很多, 以西瓜书为例, 自己第一遍读的时候虽然也是认真仔细的读了, 但讲给人听给出了更高的抠细节的要求, 因此做ppt就花了很多时间, 当然这带来的明显的好处就是对书本的理解加深了许多, 并且latex公式也越打越顺了.</p>
+<p>导师对我们说, 研究生阶段就应该多学一些东西, 听得出来他也很欣赏我们南大数学系不要求发论文的做法(只需毕业论文), 我也乐在其中.</p>
+<p>coursera上, 3月31日结束了吴恩达的deep learning系列课程; 5月份学习了霍普金斯大学的Exploratory Data Analysis; 10月份及12月份学习了俄罗斯国立高等经济学院的Bayesian Methods for Machine Learning和Practical Reinforcement Learning. 不得不说coursera上几乎没有水课, 可以说我在2018年写的大部分博文的出发点都来自于这些课程, 或是这些课程给出的参考文献, 书籍(一般都是某领域的经典之作).</p>
+<p>数据类的比赛方面, 作为萌新的我单枪匹马的参加了腾讯2018广告算法大赛, 没能进复赛; 暑假时参加了天池的阿里巴巴大数据智能云上编程大赛(其实就是在阿里自家的机器学习平台PAI上像搭积木一样做模型的一个比赛), 进了复赛但仍然没进决赛; 至于kaggle则是参加了一个泰坦尼克的新人赛后就没有然后了, 因此2017年末立的flag就这样倒了.</p>
+<h2 id="section-1">2019</h2>
+<p>还是要给自己立个flag: 在比赛中拿个奖.</p>
+]]></content>
+      <categories>
+        <category>聊聊生活</category>
+      </categories>
+      <tags>
+        <tag>回顾</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2018腾讯广告算法大赛初赛lgb</title>
     <url>/2018/05/29/2018%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A%E7%AE%97%E6%B3%95%E5%A4%A7%E8%B5%9B%E5%88%9D%E8%B5%9Blgb/</url>
     <content><![CDATA[<p>前言:最近参加了2018腾讯广告算法大赛,虽然没进复赛,但也花了不少时间,算是为下次参加比赛试试水,最终初赛线上最好成绩是0.745764,特此记录.</p>
@@ -73,19 +95,23 @@
       </tags>
   </entry>
   <entry>
-    <title>2018</title>
-    <url>/2019/01/30/2018/</url>
-    <content><![CDATA[<p>前言: 回顾2018, 为2019立flag</p>
+    <title>2021</title>
+    <url>/2022/01/05/2021/</url>
+    <content><![CDATA[<p>前言:已经好久没立flag了,记录2021,为2022立flag.</p>
 <span id="more"></span>
-<p><img src="/pictures/2018.jpg" /></p>
-<h2 id="section">2018</h2>
-<p>相比之下, 2018要忙碌一些, 研一下学期先是听老师讲凸优化, 但从8月份开始就是我们4个的讲机器学习和数值优化的讨论班. 机器学习讨论班用的就是周志华老师的西瓜书, 到期末算是堪堪讲完; 数值优化则是用了numberical optimization, 但没来得及讲完, 还剩下一些留给下学期初.</p>
-<p>不得不说讨论班让我收获很多, 以西瓜书为例, 自己第一遍读的时候虽然也是认真仔细的读了, 但讲给人听给出了更高的抠细节的要求, 因此做ppt就花了很多时间, 当然这带来的明显的好处就是对书本的理解加深了许多, 并且latex公式也越打越顺了.</p>
-<p>导师对我们说, 研究生阶段就应该多学一些东西, 听得出来他也很欣赏我们南大数学系不要求发论文的做法(只需毕业论文), 我也乐在其中.</p>
-<p>coursera上, 3月31日结束了吴恩达的deep learning系列课程; 5月份学习了霍普金斯大学的Exploratory Data Analysis; 10月份及12月份学习了俄罗斯国立高等经济学院的Bayesian Methods for Machine Learning和Practical Reinforcement Learning. 不得不说coursera上几乎没有水课, 可以说我在2018年写的大部分博文的出发点都来自于这些课程, 或是这些课程给出的参考文献, 书籍(一般都是某领域的经典之作).</p>
-<p>数据类的比赛方面, 作为萌新的我单枪匹马的参加了腾讯2018广告算法大赛, 没能进复赛; 暑假时参加了天池的阿里巴巴大数据智能云上编程大赛(其实就是在阿里自家的机器学习平台PAI上像搭积木一样做模型的一个比赛), 进了复赛但仍然没进决赛; 至于kaggle则是参加了一个泰坦尼克的新人赛后就没有然后了, 因此2017年末立的flag就这样倒了.</p>
-<h2 id="section-1">2019</h2>
-<p>还是要给自己立个flag: 在比赛中拿个奖.</p>
+<p><img src="/pictures/2021.jpeg" /></p>
+<h2 id="section">2021</h2>
+<ol type="1">
+<li>爷爷离开了</li>
+<li>工作地点从常熟的创新中心换到了苏州的思必驰</li>
+<li>逐渐养成习惯在山姆买东西</li>
+<li>在年末遇到了猪猪</li>
+</ol>
+<h2 id="section-1">2022</h2>
+<ol type="1">
+<li>想要保护好自己的牙齿</li>
+<li>想要好好谈恋爱</li>
+</ol>
 ]]></content>
       <categories>
         <category>聊聊生活</category>
@@ -189,29 +215,177 @@
       </tags>
   </entry>
   <entry>
-    <title>2021</title>
-    <url>/2022/01/05/2021/</url>
-    <content><![CDATA[<p>前言:已经好久没立flag了,记录2021,为2022立flag.</p>
-<span id="more"></span>
-<p><img src="/pictures/2021.jpeg" /></p>
-<h2 id="section">2021</h2>
+    <title>Exploratory Data Analysis</title>
+    <url>/2018/04/17/Exploratory-Data-Analysis/</url>
+    <content><![CDATA[<p>来自coursera上约翰霍普金斯大学Data Science系列课程Course4:Exploratory Data Analysis. <span id="more"></span></p>
+<hr />
+<h1 id="princlples-of-analytic-graphics">Princlples of Analytic Graphics</h1>
 <ol type="1">
-<li>爷爷离开了</li>
-<li>工作地点从常熟的创新中心换到了苏州的思必驰</li>
-<li>逐渐养成习惯在山姆买东西</li>
-<li>在年末遇到了猪猪</li>
+<li>Show comparisons compared to what(PM25 in house with aircleaner compared to without aircleaner)</li>
+<li>Show casuality, mechanism, explanation show how you believe the world works(show you believe child living in house with lower pm25 is more likely to be healthy)</li>
+<li>Show multivariate Data more than 2 variables</li>
+<li>Integrate multiple models of evidence don't let the tools drive the analysis(plot depend on your own idea, not the tools)</li>
+<li>Describe and document the evidence</li>
+<li>Content is king</li>
 </ol>
-<h2 id="section-1">2022</h2>
+<hr />
+<h1 id="take-a-look-at-the-data">Take a Look at the Data</h1>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(datasets)</span><br><span class="line">data(airquality)</span><br></pre></td></tr></table></figure>
+<h2 id="one-dimension">One dimension</h2>
 <ol type="1">
-<li>想要保护好自己的牙齿</li>
-<li>想要好好谈恋爱</li>
+<li>Summary <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">summary(airquality$Ozone) <span class="comment"># 臭氧</span></span><br></pre></td></tr></table></figure></li>
+<li>Boxplots <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">boxplot(airquality$Ozone, col = <span class="string">&quot;blue&quot;</span>)</span><br><span class="line">abline(h = <span class="number">100</span>)</span><br></pre></td></tr></table></figure></li>
+<li>Historgrams <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">hist(airquality$Ozone, col = <span class="string">&quot;green&quot;</span>, breaks = <span class="number">100</span>)</span><br><span class="line">abline(v = <span class="number">100</span>, lwd = <span class="number">2</span>)</span><br><span class="line">abline(v = median(airquality$Ozone), col = <span class="string">&quot;magenta&quot;</span>, lwd = <span class="number">4</span>)</span><br><span class="line">rug(airquality$Ozone)</span><br></pre></td></tr></table></figure></li>
+<li>Barplot <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">barplot(table(airquality$Month),col = <span class="string">&quot;wheat&quot;</span>)</span><br></pre></td></tr></table></figure></li>
 </ol>
+<h2 id="two-dimensions">Two dimensions</h2>
+<ol type="1">
+<li>Multiple Boxplots <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">boxplot(Ozone ~ Month, data = airquality, col = <span class="string">&quot;red&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+<li>Multiple Historgrams <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">par(mfrow = <span class="built_in">c</span>(<span class="number">2</span>,<span class="number">1</span>), mar = <span class="built_in">c</span>(<span class="number">4</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>))</span><br><span class="line">hist(subset(airquality, Month == <span class="number">5</span>)$Ozone, col = <span class="string">&quot;green&quot;</span>)</span><br><span class="line">hist(subset(airquality, Month == <span class="number">8</span>)$Ozone, col = <span class="string">&quot;green&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+<li>Scatterplot <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">par(mfrow = <span class="built_in">c</span>(<span class="number">1</span>,<span class="number">1</span>))</span><br><span class="line">with(airquality, plot(Solar.R, Ozone, col = Month))</span><br><span class="line">legend(<span class="string">&quot;topright&quot;</span>, pch = <span class="number">1</span>, col = <span class="built_in">c</span>(<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>), legend = <span class="built_in">c</span>(<span class="string">&quot;5月&quot;</span>, <span class="string">&quot;6月&quot;</span>, <span class="string">&quot;7月&quot;</span>, <span class="string">&quot;8月&quot;</span>, <span class="string">&quot;9月&quot;</span>))</span><br><span class="line">abline(h = <span class="number">100</span>, lwd = <span class="number">2</span>, lty = <span class="number">2</span>)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr />
+<h1 id="plotting-systems-in-r">Plotting Systems in R</h1>
+<h2 id="base-plotting-system">Base Plotting System</h2>
+<ul>
+<li>Base:artist's palette model, and usually needs two steps to create a plot</li>
+<li>representative:plot()</li>
+</ul>
+<h3 id="two-packages">Two packages</h3>
+<ul>
+<li>graphics(including plot, hist, boxplot, etc)</li>
+<li>grDevices(including X11, PDF, PostScript, PNG, etc)</li>
+</ul>
+<h3 id="two-steps-to-create-a-base-plot">Two steps to create a base plot</h3>
+<ul>
+<li>Initializing a new plot <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(datasets)</span><br><span class="line">with(airquality, plot(Wind, Ozone)) <span class="comment"># Scatterplot</span></span><br></pre></td></tr></table></figure></li>
+<li>Annotation an existing plot <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">model &lt;- lm(Ozone ~ Wind, airquality)</span><br><span class="line">abline(model, lwd = <span class="number">2</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="base-plotting-functions">Base Plotting Functions</h3>
+<h4 id="initialize">Initialize</h4>
+<ul>
+<li>plot:initialize a new plot</li>
+<li>hist:initialize a new hist</li>
+<li>boxplot:initialize a new boxplot</li>
+</ul>
+<h4 id="add">Add</h4>
+<ul>
+<li>lines:add lines to a plot</li>
+<li>abline:add lines to a plot</li>
+<li>points:add points to a plot</li>
+<li>text:add text labels to a plot using specified x, y coordinates</li>
+<li>title:add annotations to x, y axis labels, title, subtitle, outer margin</li>
+<li>mtext:add arbitrary text to the margins</li>
+<li>axis:add axis labels</li>
+</ul>
+<h3 id="some-important-base-graphics-parameters">Some Important Base Graphics Parameters</h3>
+<ul>
+<li>pch:the plotting symbol</li>
+<li>lty:the line type</li>
+<li>lwd:the line width</li>
+<li>col:color</li>
+<li>xlab:string for the xlab</li>
+<li>ylab:string for the ylab</li>
+<li>las:the orientation of the axis</li>
+<li>bg:thebackground color</li>
+<li>mar:the margin size</li>
+<li>oma:the outer margin size</li>
+<li>mfrow:number of plots per row, column</li>
+<li>mfcol:number of plots per row, column(differ in order)</li>
+</ul>
+<p>Default parameters:</p>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">par(<span class="string">&quot;bg&quot;</span>) <span class="comment"># &quot;transparent&quot;</span></span><br><span class="line">par(<span class="string">&quot;mar&quot;</span>) <span class="comment"># 4 4 2 1</span></span><br></pre></td></tr></table></figure>
+<h3 id="examples">Examples</h3>
+<h4 id="examplelegend">Example:Legend</h4>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">with(airquality, plot(Wind, Ozone, main = <span class="string">&quot;Ozone and Wind in New York&quot;</span>, type = <span class="string">&quot;n&quot;</span>))</span><br><span class="line">with(subset(airquality, Month == <span class="number">5</span>), points(Wind, Ozone, col = <span class="string">&quot;blue&quot;</span>))</span><br><span class="line">with(subset(airquality, Month != <span class="number">5</span>), points(Wind, Ozone, col = <span class="string">&quot;red&quot;</span>))</span><br><span class="line">legend(<span class="string">&quot;topright&quot;</span>, pch = <span class="number">1</span>, col = <span class="built_in">c</span>(<span class="string">&quot;blue&quot;</span>, <span class="string">&quot;red&quot;</span>), legend = <span class="built_in">c</span>(<span class="string">&quot;May&quot;</span>, <span class="string">&quot;Other Months&quot;</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/base_ex1.png" /></p>
+<h4 id="examplemultiple-base-plots">Example:Multiple Base Plots</h4>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">par(mfrow = <span class="built_in">c</span>(<span class="number">1</span>, <span class="number">3</span>), mar = <span class="built_in">c</span>(<span class="number">4</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>), oma = <span class="built_in">c</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>))</span><br><span class="line">with(airquality, &#123;</span><br><span class="line">    plot(Wind, Ozone, main = <span class="string">&quot;Ozone and Wind&quot;</span>)</span><br><span class="line">    plot(Solar.R, Ozone, main = <span class="string">&quot;Ozone and Solar Radiation&quot;</span>)</span><br><span class="line">    plot(Temp, Ozone, main = <span class="string">&quot;Ozone and Temperature&quot;</span>)</span><br><span class="line">    mtext(<span class="string">&quot;Ozone and Weather in New York&quot;</span>, outer = <span class="literal">TRUE</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/base_ex2.png" /></p>
+<h2 id="the-lattice-system">The Lattice System</h2>
+<ul>
+<li>Lattice:Entire plot specified by one function</li>
+<li>useful for plotting high dimensional data(conditioning plots)</li>
+<li>different from base plot driectly to the graphics device, lattice plot returns an object of class <strong>trellis</strong> (and will be auto-printed)</li>
+<li>representative:xyplot()</li>
+</ul>
+<h3 id="two-packages-1">Two packages</h3>
+<ul>
+<li>lattice(including xyplot bwplot, levelplot, etc)</li>
+<li>grid(usually indirectedly called through lattice or ggplot2)</li>
+</ul>
+<h3 id="lattice-functions">Lattice Functions</h3>
+<ul>
+<li>xplot:create scatterplots</li>
+<li>bwplot:box-and-whiskers plots</li>
+<li>histogram:histograms</li>
+<li>stripplot:like a boxplot but with actual points</li>
+<li>dotplot:plot dots on "violin strings"</li>
+<li>splom:scatterplot matrix(like pairs in base plotting)</li>
+<li>levelplot, contourplot:for plotting "image" data</li>
+</ul>
+<h3 id="examples-1">Examples</h3>
+<h4 id="examplexyplot">Example:xyplot</h4>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(datasets)</span><br><span class="line">library(lattice)</span><br><span class="line">state &lt;- data.frame(state.x77, region = state.region)</span><br><span class="line">xyplot(Life.Exp ~ Income | region, data = state, layout = <span class="built_in">c</span>(<span class="number">4</span>, <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/lattice_ex1.png" /></p>
+<h4 id="exampleplane-functiuon">Example:plane functiuon</h4>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(lattice)</span><br><span class="line">set.seed(<span class="number">10</span>)</span><br><span class="line">x &lt;- rnorm(<span class="number">100</span>)</span><br><span class="line">f &lt;- <span class="built_in">rep</span>(<span class="number">0</span>:<span class="number">1</span>, each = <span class="number">50</span>)</span><br><span class="line">y &lt;- x + f- f * x + rnorm(<span class="number">100</span>, sd = <span class="number">0.5</span>)</span><br><span class="line">f &lt;- factor(f, labels = <span class="built_in">c</span>(<span class="string">&quot;group1&quot;</span>, <span class="string">&quot;group2&quot;</span>))</span><br><span class="line">xyplot(y ~ x | f, panel = <span class="keyword">function</span>(x, y, ...)&#123;</span><br><span class="line">    panel.xyplot(x, y, ...)</span><br><span class="line">    panel.lmline(x, y, col = <span class="number">2</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/lattice_ex2.png" /></p>
+<h2 id="the-ggplot2-system">The ggplot2 System</h2>
+<ul>
+<li>ggplot2:Mixed elements of Base and Lattice</li>
+<li>book<ggplot2>: In brief, thegrammar tells us that a statistical graphic is a mapping from data to aesthetic(美学) attributes(color, shape, size) of geometric objects (points, lines, bars).The plot may also contain statistical transformations of the data and is drawn on a specific corrdinate system.</li>
+<li>representative:qplot(), ggplot()</li>
+</ul>
+<h3 id="basic-components-of-a-ggplot2-plot">Basic Components of a ggplot2 Plot</h3>
+<ul>
+<li>a data frame</li>
+<li>aesthetic mapping:how data are mapped to color, size</li>
+<li>geoms:points, lines, shapes</li>
+<li>facets:for conditional plots</li>
+<li>stats:binning(柱形分析), quantiles, smoothing</li>
+<li>scales:for example:sex</li>
+<li>corrdinate system</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">g &lt;- ggplot(mpg, aes(displ, hwy))</span><br><span class="line">summary(g)</span><br><span class="line">g + geom_point()</span><br></pre></td></tr></table></figure>
+<h3 id="annotation">Annotation</h3>
+<ol type="1">
+<li>labs and theme</li>
+</ol>
+<ul>
+<li>xlab(), ylab(), ggtitle(), labs()</li>
+<li>theme(legend.position = "none")</li>
+<li>theme_gray()</li>
+<li>theme_bw()</li>
+</ul>
+<p><figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">g &lt;- ggplot(mpg, aes(displ, hwy))</span><br><span class="line">g + geom_point(color = <span class="string">&quot;steelblue&quot;</span>, size = <span class="number">3.14</span>, alpha = <span class="number">0.5</span>) + labs(x = <span class="built_in">expression</span>(PM[<span class="number">25</span>]))<span class="comment"># alpha表示透明度</span></span><br><span class="line">g + geom_point(aes(color = drv), size = <span class="number">3.14</span>, alpha = <span class="number">0.5</span>) + ggtitle(<span class="string">&quot;title&quot;</span>) + theme(plot.title = element_text(hjust = <span class="number">0.5</span>))</span><br></pre></td></tr></table></figure> 2. ylim and coord_cartesian - ylim(-3, 3)# 把y限定在(-3, 3) - coord_cartesian(ylim = c(-3, 3))# 显示(-3, 3)的范围</p>
+<p><figure class="highlight r"><table><tr><td class="code"><pre><span class="line">testdata &lt;- data.frame(x = <span class="number">1</span>:<span class="number">100</span>, y = rnorm(<span class="number">100</span>))</span><br><span class="line">testdata[<span class="number">50</span>,<span class="number">2</span>] &lt;- <span class="number">100</span></span><br><span class="line">g &lt;- ggplot(testdata, aes(x = x,y = y))</span><br><span class="line">g + geom_line()</span><br><span class="line">g + geom_line() + ylim(-<span class="number">3</span>, <span class="number">3</span>) <span class="comment"># 把y限定在(-3, 3)</span></span><br><span class="line">g + geom_line() + coord_cartesian(ylim = <span class="built_in">c</span>(-<span class="number">3</span>, <span class="number">3</span>)) <span class="comment"># 显示(-3, 3)的范围</span></span><br></pre></td></tr></table></figure> 3. cut <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">testdata &lt;- data.frame(x = <span class="number">1</span>:<span class="number">100</span>, y = rnorm(<span class="number">100</span>))</span><br><span class="line">testdata[<span class="number">50</span>,<span class="number">2</span>] &lt;- <span class="number">100</span></span><br><span class="line">cutpoints &lt;- quantile(testdata$y, seq(<span class="number">0</span>, <span class="number">1</span>, <span class="built_in">length</span> = <span class="number">4</span>), na.rm = <span class="built_in">T</span>)</span><br><span class="line">testdata$y_new &lt;- cut(testdata$y, cutpoints)</span><br></pre></td></tr></table></figure></p>
+<h3 id="examples-2">Examples</h3>
+<h4 id="examplegeom">Example:geom</h4>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(displ, hwy, data = mpg, geom = <span class="built_in">c</span>(<span class="string">&quot;point&quot;</span>, <span class="string">&quot;smooth&quot;</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/ggplot2_ex1.png" /></p>
+<h4 id="examplefill">Example:fill</h4>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(hwy, data = mpg, fill = drv)</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/ggplot2_ex2.png" /></p>
+<h4 id="examplefacets">Example:facets</h4>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(displ, hwy, data = mpg, facets = .~drv)</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/ggplot2_ex3.png" /> <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(displ, hwy, data = mpg, facets = drv~.)</span><br></pre></td></tr></table></figure> <img src="/pictures/R/ggplot2_ex4.png" /></p>
+<h4 id="exampleboxplot">Example:boxplot</h4>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(drv, hwy, data = mpg, geom = <span class="string">&quot;boxplot&quot;</span>, color = manufacturer)</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/ggplot2_ex5.png" /></p>
+<h4 id="exampleggplot">Example:ggplot</h4>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">g + geom_point() + facet_grid(drv~cyl, margins=<span class="literal">TRUE</span>) + geom_smooth(method=<span class="string">&quot;lm&quot;</span>, size=<span class="number">1</span>, se=<span class="literal">FALSE</span>, color=<span class="string">&quot;pink&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/ggplot2_ex6.png" /></p>
+<hr />
+<h1 id="color">Color</h1>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">p1 &lt;- colorRampPalette(<span class="built_in">c</span>(<span class="string">&quot;red&quot;</span>,<span class="string">&quot;yellow&quot;</span>))</span><br><span class="line">showMe(p1(<span class="number">100</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="/pictures/R/color_1.png" /> <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">p2 &lt;- colorRampPalette(<span class="built_in">c</span>(<span class="string">&quot;orange&quot;</span>,<span class="string">&quot;yellow&quot;</span>,<span class="string">&quot;green&quot;</span>))</span><br><span class="line">showMe(p2(<span class="number">100</span>))</span><br></pre></td></tr></table></figure> <img src="/pictures/R/color_2.png" /> <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">cols &lt;- brewer.pal(<span class="number">3</span>, <span class="string">&quot;BuGn&quot;</span>)</span><br><span class="line">showMe(cols)</span><br><span class="line">pal &lt;- colorRampPalette(cols)</span><br><span class="line">showMe(pal(<span class="number">20</span>))</span><br></pre></td></tr></table></figure> <img src="/pictures/R/color_3.png" /></p>
 ]]></content>
       <categories>
-        <category>聊聊生活</category>
+        <category>R</category>
       </categories>
       <tags>
-        <tag>回顾</tag>
+        <tag>R</tag>
       </tags>
   </entry>
   <entry>
@@ -641,266 +815,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Exploratory Data Analysis</title>
-    <url>/2018/04/17/Exploratory-Data-Analysis/</url>
-    <content><![CDATA[<p>来自coursera上约翰霍普金斯大学Data Science系列课程Course4:Exploratory Data Analysis. <span id="more"></span></p>
-<hr />
-<h1 id="princlples-of-analytic-graphics">Princlples of Analytic Graphics</h1>
-<ol type="1">
-<li>Show comparisons compared to what(PM25 in house with aircleaner compared to without aircleaner)</li>
-<li>Show casuality, mechanism, explanation show how you believe the world works(show you believe child living in house with lower pm25 is more likely to be healthy)</li>
-<li>Show multivariate Data more than 2 variables</li>
-<li>Integrate multiple models of evidence don't let the tools drive the analysis(plot depend on your own idea, not the tools)</li>
-<li>Describe and document the evidence</li>
-<li>Content is king</li>
-</ol>
-<hr />
-<h1 id="take-a-look-at-the-data">Take a Look at the Data</h1>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(datasets)</span><br><span class="line">data(airquality)</span><br></pre></td></tr></table></figure>
-<h2 id="one-dimension">One dimension</h2>
-<ol type="1">
-<li>Summary <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">summary(airquality$Ozone) <span class="comment"># 臭氧</span></span><br></pre></td></tr></table></figure></li>
-<li>Boxplots <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">boxplot(airquality$Ozone, col = <span class="string">&quot;blue&quot;</span>)</span><br><span class="line">abline(h = <span class="number">100</span>)</span><br></pre></td></tr></table></figure></li>
-<li>Historgrams <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">hist(airquality$Ozone, col = <span class="string">&quot;green&quot;</span>, breaks = <span class="number">100</span>)</span><br><span class="line">abline(v = <span class="number">100</span>, lwd = <span class="number">2</span>)</span><br><span class="line">abline(v = median(airquality$Ozone), col = <span class="string">&quot;magenta&quot;</span>, lwd = <span class="number">4</span>)</span><br><span class="line">rug(airquality$Ozone)</span><br></pre></td></tr></table></figure></li>
-<li>Barplot <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">barplot(table(airquality$Month),col = <span class="string">&quot;wheat&quot;</span>)</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="two-dimensions">Two dimensions</h2>
-<ol type="1">
-<li>Multiple Boxplots <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">boxplot(Ozone ~ Month, data = airquality, col = <span class="string">&quot;red&quot;</span>)</span><br></pre></td></tr></table></figure></li>
-<li>Multiple Historgrams <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">par(mfrow = <span class="built_in">c</span>(<span class="number">2</span>,<span class="number">1</span>), mar = <span class="built_in">c</span>(<span class="number">4</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>))</span><br><span class="line">hist(subset(airquality, Month == <span class="number">5</span>)$Ozone, col = <span class="string">&quot;green&quot;</span>)</span><br><span class="line">hist(subset(airquality, Month == <span class="number">8</span>)$Ozone, col = <span class="string">&quot;green&quot;</span>)</span><br></pre></td></tr></table></figure></li>
-<li>Scatterplot <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">par(mfrow = <span class="built_in">c</span>(<span class="number">1</span>,<span class="number">1</span>))</span><br><span class="line">with(airquality, plot(Solar.R, Ozone, col = Month))</span><br><span class="line">legend(<span class="string">&quot;topright&quot;</span>, pch = <span class="number">1</span>, col = <span class="built_in">c</span>(<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>), legend = <span class="built_in">c</span>(<span class="string">&quot;5月&quot;</span>, <span class="string">&quot;6月&quot;</span>, <span class="string">&quot;7月&quot;</span>, <span class="string">&quot;8月&quot;</span>, <span class="string">&quot;9月&quot;</span>))</span><br><span class="line">abline(h = <span class="number">100</span>, lwd = <span class="number">2</span>, lty = <span class="number">2</span>)</span><br></pre></td></tr></table></figure></li>
-</ol>
-<hr />
-<h1 id="plotting-systems-in-r">Plotting Systems in R</h1>
-<h2 id="base-plotting-system">Base Plotting System</h2>
-<ul>
-<li>Base:artist's palette model, and usually needs two steps to create a plot</li>
-<li>representative:plot()</li>
-</ul>
-<h3 id="two-packages">Two packages</h3>
-<ul>
-<li>graphics(including plot, hist, boxplot, etc)</li>
-<li>grDevices(including X11, PDF, PostScript, PNG, etc)</li>
-</ul>
-<h3 id="two-steps-to-create-a-base-plot">Two steps to create a base plot</h3>
-<ul>
-<li>Initializing a new plot <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(datasets)</span><br><span class="line">with(airquality, plot(Wind, Ozone)) <span class="comment"># Scatterplot</span></span><br></pre></td></tr></table></figure></li>
-<li>Annotation an existing plot <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">model &lt;- lm(Ozone ~ Wind, airquality)</span><br><span class="line">abline(model, lwd = <span class="number">2</span>)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="base-plotting-functions">Base Plotting Functions</h3>
-<h4 id="initialize">Initialize</h4>
-<ul>
-<li>plot:initialize a new plot</li>
-<li>hist:initialize a new hist</li>
-<li>boxplot:initialize a new boxplot</li>
-</ul>
-<h4 id="add">Add</h4>
-<ul>
-<li>lines:add lines to a plot</li>
-<li>abline:add lines to a plot</li>
-<li>points:add points to a plot</li>
-<li>text:add text labels to a plot using specified x, y coordinates</li>
-<li>title:add annotations to x, y axis labels, title, subtitle, outer margin</li>
-<li>mtext:add arbitrary text to the margins</li>
-<li>axis:add axis labels</li>
-</ul>
-<h3 id="some-important-base-graphics-parameters">Some Important Base Graphics Parameters</h3>
-<ul>
-<li>pch:the plotting symbol</li>
-<li>lty:the line type</li>
-<li>lwd:the line width</li>
-<li>col:color</li>
-<li>xlab:string for the xlab</li>
-<li>ylab:string for the ylab</li>
-<li>las:the orientation of the axis</li>
-<li>bg:thebackground color</li>
-<li>mar:the margin size</li>
-<li>oma:the outer margin size</li>
-<li>mfrow:number of plots per row, column</li>
-<li>mfcol:number of plots per row, column(differ in order)</li>
-</ul>
-<p>Default parameters:</p>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">par(<span class="string">&quot;bg&quot;</span>) <span class="comment"># &quot;transparent&quot;</span></span><br><span class="line">par(<span class="string">&quot;mar&quot;</span>) <span class="comment"># 4 4 2 1</span></span><br></pre></td></tr></table></figure>
-<h3 id="examples">Examples</h3>
-<h4 id="examplelegend">Example:Legend</h4>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">with(airquality, plot(Wind, Ozone, main = <span class="string">&quot;Ozone and Wind in New York&quot;</span>, type = <span class="string">&quot;n&quot;</span>))</span><br><span class="line">with(subset(airquality, Month == <span class="number">5</span>), points(Wind, Ozone, col = <span class="string">&quot;blue&quot;</span>))</span><br><span class="line">with(subset(airquality, Month != <span class="number">5</span>), points(Wind, Ozone, col = <span class="string">&quot;red&quot;</span>))</span><br><span class="line">legend(<span class="string">&quot;topright&quot;</span>, pch = <span class="number">1</span>, col = <span class="built_in">c</span>(<span class="string">&quot;blue&quot;</span>, <span class="string">&quot;red&quot;</span>), legend = <span class="built_in">c</span>(<span class="string">&quot;May&quot;</span>, <span class="string">&quot;Other Months&quot;</span>))</span><br></pre></td></tr></table></figure>
-<p><img src="/pictures/R/base_ex1.png" /></p>
-<h4 id="examplemultiple-base-plots">Example:Multiple Base Plots</h4>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">par(mfrow = <span class="built_in">c</span>(<span class="number">1</span>, <span class="number">3</span>), mar = <span class="built_in">c</span>(<span class="number">4</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>), oma = <span class="built_in">c</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>))</span><br><span class="line">with(airquality, &#123;</span><br><span class="line">    plot(Wind, Ozone, main = <span class="string">&quot;Ozone and Wind&quot;</span>)</span><br><span class="line">    plot(Solar.R, Ozone, main = <span class="string">&quot;Ozone and Solar Radiation&quot;</span>)</span><br><span class="line">    plot(Temp, Ozone, main = <span class="string">&quot;Ozone and Temperature&quot;</span>)</span><br><span class="line">    mtext(<span class="string">&quot;Ozone and Weather in New York&quot;</span>, outer = <span class="literal">TRUE</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><img src="/pictures/R/base_ex2.png" /></p>
-<h2 id="the-lattice-system">The Lattice System</h2>
-<ul>
-<li>Lattice:Entire plot specified by one function</li>
-<li>useful for plotting high dimensional data(conditioning plots)</li>
-<li>different from base plot driectly to the graphics device, lattice plot returns an object of class <strong>trellis</strong> (and will be auto-printed)</li>
-<li>representative:xyplot()</li>
-</ul>
-<h3 id="two-packages-1">Two packages</h3>
-<ul>
-<li>lattice(including xyplot bwplot, levelplot, etc)</li>
-<li>grid(usually indirectedly called through lattice or ggplot2)</li>
-</ul>
-<h3 id="lattice-functions">Lattice Functions</h3>
-<ul>
-<li>xplot:create scatterplots</li>
-<li>bwplot:box-and-whiskers plots</li>
-<li>histogram:histograms</li>
-<li>stripplot:like a boxplot but with actual points</li>
-<li>dotplot:plot dots on "violin strings"</li>
-<li>splom:scatterplot matrix(like pairs in base plotting)</li>
-<li>levelplot, contourplot:for plotting "image" data</li>
-</ul>
-<h3 id="examples-1">Examples</h3>
-<h4 id="examplexyplot">Example:xyplot</h4>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(datasets)</span><br><span class="line">library(lattice)</span><br><span class="line">state &lt;- data.frame(state.x77, region = state.region)</span><br><span class="line">xyplot(Life.Exp ~ Income | region, data = state, layout = <span class="built_in">c</span>(<span class="number">4</span>, <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-<p><img src="/pictures/R/lattice_ex1.png" /></p>
-<h4 id="exampleplane-functiuon">Example:plane functiuon</h4>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(lattice)</span><br><span class="line">set.seed(<span class="number">10</span>)</span><br><span class="line">x &lt;- rnorm(<span class="number">100</span>)</span><br><span class="line">f &lt;- <span class="built_in">rep</span>(<span class="number">0</span>:<span class="number">1</span>, each = <span class="number">50</span>)</span><br><span class="line">y &lt;- x + f- f * x + rnorm(<span class="number">100</span>, sd = <span class="number">0.5</span>)</span><br><span class="line">f &lt;- factor(f, labels = <span class="built_in">c</span>(<span class="string">&quot;group1&quot;</span>, <span class="string">&quot;group2&quot;</span>))</span><br><span class="line">xyplot(y ~ x | f, panel = <span class="keyword">function</span>(x, y, ...)&#123;</span><br><span class="line">    panel.xyplot(x, y, ...)</span><br><span class="line">    panel.lmline(x, y, col = <span class="number">2</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><img src="/pictures/R/lattice_ex2.png" /></p>
-<h2 id="the-ggplot2-system">The ggplot2 System</h2>
-<ul>
-<li>ggplot2:Mixed elements of Base and Lattice</li>
-<li>book<ggplot2>: In brief, thegrammar tells us that a statistical graphic is a mapping from data to aesthetic(美学) attributes(color, shape, size) of geometric objects (points, lines, bars).The plot may also contain statistical transformations of the data and is drawn on a specific corrdinate system.</li>
-<li>representative:qplot(), ggplot()</li>
-</ul>
-<h3 id="basic-components-of-a-ggplot2-plot">Basic Components of a ggplot2 Plot</h3>
-<ul>
-<li>a data frame</li>
-<li>aesthetic mapping:how data are mapped to color, size</li>
-<li>geoms:points, lines, shapes</li>
-<li>facets:for conditional plots</li>
-<li>stats:binning(柱形分析), quantiles, smoothing</li>
-<li>scales:for example:sex</li>
-<li>corrdinate system</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">g &lt;- ggplot(mpg, aes(displ, hwy))</span><br><span class="line">summary(g)</span><br><span class="line">g + geom_point()</span><br></pre></td></tr></table></figure>
-<h3 id="annotation">Annotation</h3>
-<ol type="1">
-<li>labs and theme</li>
-</ol>
-<ul>
-<li>xlab(), ylab(), ggtitle(), labs()</li>
-<li>theme(legend.position = "none")</li>
-<li>theme_gray()</li>
-<li>theme_bw()</li>
-</ul>
-<p><figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">g &lt;- ggplot(mpg, aes(displ, hwy))</span><br><span class="line">g + geom_point(color = <span class="string">&quot;steelblue&quot;</span>, size = <span class="number">3.14</span>, alpha = <span class="number">0.5</span>) + labs(x = <span class="built_in">expression</span>(PM[<span class="number">25</span>]))<span class="comment"># alpha表示透明度</span></span><br><span class="line">g + geom_point(aes(color = drv), size = <span class="number">3.14</span>, alpha = <span class="number">0.5</span>) + ggtitle(<span class="string">&quot;title&quot;</span>) + theme(plot.title = element_text(hjust = <span class="number">0.5</span>))</span><br></pre></td></tr></table></figure> 2. ylim and coord_cartesian - ylim(-3, 3)# 把y限定在(-3, 3) - coord_cartesian(ylim = c(-3, 3))# 显示(-3, 3)的范围</p>
-<p><figure class="highlight r"><table><tr><td class="code"><pre><span class="line">testdata &lt;- data.frame(x = <span class="number">1</span>:<span class="number">100</span>, y = rnorm(<span class="number">100</span>))</span><br><span class="line">testdata[<span class="number">50</span>,<span class="number">2</span>] &lt;- <span class="number">100</span></span><br><span class="line">g &lt;- ggplot(testdata, aes(x = x,y = y))</span><br><span class="line">g + geom_line()</span><br><span class="line">g + geom_line() + ylim(-<span class="number">3</span>, <span class="number">3</span>) <span class="comment"># 把y限定在(-3, 3)</span></span><br><span class="line">g + geom_line() + coord_cartesian(ylim = <span class="built_in">c</span>(-<span class="number">3</span>, <span class="number">3</span>)) <span class="comment"># 显示(-3, 3)的范围</span></span><br></pre></td></tr></table></figure> 3. cut <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">testdata &lt;- data.frame(x = <span class="number">1</span>:<span class="number">100</span>, y = rnorm(<span class="number">100</span>))</span><br><span class="line">testdata[<span class="number">50</span>,<span class="number">2</span>] &lt;- <span class="number">100</span></span><br><span class="line">cutpoints &lt;- quantile(testdata$y, seq(<span class="number">0</span>, <span class="number">1</span>, <span class="built_in">length</span> = <span class="number">4</span>), na.rm = <span class="built_in">T</span>)</span><br><span class="line">testdata$y_new &lt;- cut(testdata$y, cutpoints)</span><br></pre></td></tr></table></figure></p>
-<h3 id="examples-2">Examples</h3>
-<h4 id="examplegeom">Example:geom</h4>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(displ, hwy, data = mpg, geom = <span class="built_in">c</span>(<span class="string">&quot;point&quot;</span>, <span class="string">&quot;smooth&quot;</span>))</span><br></pre></td></tr></table></figure>
-<p><img src="/pictures/R/ggplot2_ex1.png" /></p>
-<h4 id="examplefill">Example:fill</h4>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(hwy, data = mpg, fill = drv)</span><br></pre></td></tr></table></figure>
-<p><img src="/pictures/R/ggplot2_ex2.png" /></p>
-<h4 id="examplefacets">Example:facets</h4>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(displ, hwy, data = mpg, facets = .~drv)</span><br></pre></td></tr></table></figure>
-<p><img src="/pictures/R/ggplot2_ex3.png" /> <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(displ, hwy, data = mpg, facets = drv~.)</span><br></pre></td></tr></table></figure> <img src="/pictures/R/ggplot2_ex4.png" /></p>
-<h4 id="exampleboxplot">Example:boxplot</h4>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(drv, hwy, data = mpg, geom = <span class="string">&quot;boxplot&quot;</span>, color = manufacturer)</span><br></pre></td></tr></table></figure>
-<p><img src="/pictures/R/ggplot2_ex5.png" /></p>
-<h4 id="exampleggplot">Example:ggplot</h4>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">g + geom_point() + facet_grid(drv~cyl, margins=<span class="literal">TRUE</span>) + geom_smooth(method=<span class="string">&quot;lm&quot;</span>, size=<span class="number">1</span>, se=<span class="literal">FALSE</span>, color=<span class="string">&quot;pink&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/pictures/R/ggplot2_ex6.png" /></p>
-<hr />
-<h1 id="color">Color</h1>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">p1 &lt;- colorRampPalette(<span class="built_in">c</span>(<span class="string">&quot;red&quot;</span>,<span class="string">&quot;yellow&quot;</span>))</span><br><span class="line">showMe(p1(<span class="number">100</span>))</span><br></pre></td></tr></table></figure>
-<p><img src="/pictures/R/color_1.png" /> <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">p2 &lt;- colorRampPalette(<span class="built_in">c</span>(<span class="string">&quot;orange&quot;</span>,<span class="string">&quot;yellow&quot;</span>,<span class="string">&quot;green&quot;</span>))</span><br><span class="line">showMe(p2(<span class="number">100</span>))</span><br></pre></td></tr></table></figure> <img src="/pictures/R/color_2.png" /> <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">cols &lt;- brewer.pal(<span class="number">3</span>, <span class="string">&quot;BuGn&quot;</span>)</span><br><span class="line">showMe(cols)</span><br><span class="line">pal &lt;- colorRampPalette(cols)</span><br><span class="line">showMe(pal(<span class="number">20</span>))</span><br></pre></td></tr></table></figure> <img src="/pictures/R/color_3.png" /></p>
-]]></content>
-      <categories>
-        <category>R</category>
-      </categories>
-      <tags>
-        <tag>R</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Latent Dirichlet Allocation</title>
-    <url>/2018/10/16/Latent-Dirichlet-Allocation/</url>
-    <content><![CDATA[<p>前言: 本文主要是关于Latent Dirichlet Allocation模型, 这是一类能够从文档集合中挖掘出抽象主题的模型, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3. <span id="more"></span></p>
-<hr />
-<h2 id="隐狄利克雷分配模型">隐狄利克雷分配模型</h2>
-<p>以推荐系统为例, 假如我读过东野圭吾的新参者, 我希望推荐系统能把白夜行也推荐给我. 在自然语言处理(Natural Language Processing: NLP)中, 主题模型(Topic Model)是一类能够从文档集合中挖掘出抽象主题的模型, 其中用的最多的大概就是隐狄利克雷分配模型(Latent Dirichlet Allocation: LDA). 比方说给定50个主题数量, 其想法是对每一篇文档给出一个关于50个主题数量的分布, 例如新参者的主题是70%的推理类, 10%的叉叉类等, 因此如果能得到每篇文档的主题分布, 就能给出书之间的相似度.</p>
-<p>下面我们来看什么是LDA模型, 并给出一些记号. 假设有文档<span class="math inline">\(D\)</span>篇, 其中第<span class="math inline">\(d\)</span>篇文档有<span class="math inline">\(N_d\)</span>个单词, 给定主题数量<span class="math inline">\(T\)</span>, 记第<span class="math inline">\(d\)</span>篇文档的主题为<span class="math inline">\(\theta_d\)</span>, 显然<span class="math inline">\(\theta_d\)</span>为一个<span class="math inline">\(T\)</span>维向量, <span class="math inline">\(z_{dn}\)</span>是第<span class="math inline">\(d\)</span>篇文档的第<span class="math inline">\(n\)</span>个单词的主题分布, <span class="math inline">\(w_{dn}\)</span>是第<span class="math inline">\(d\)</span>篇文档的第<span class="math inline">\(n\)</span>个单词本身(一般给长度为<span class="math inline">\(\left|w_{set}\right|\)</span>定词汇表<span class="math inline">\(w_{set}\)</span>后用一个长度为<span class="math inline">\(\left|w_{set}\right|\)</span>的向量去表示).</p>
-<p>给定主题数量<span class="math inline">\(T=50\)</span>, 目前我们有了三个关键要素:</p>
-<ul>
-<li>每篇文档的主题分布:<span class="math inline">\(\theta\)</span></li>
-<li>每篇文档每个单词的主题分布:<span class="math inline">\(z\)</span></li>
-<li>每篇文档每个单词:<span class="math inline">\(w\)</span></li>
-</ul>
-<p>遵循一些直观的假象, 我们分三步尝试去构造模型:</p>
-<ul>
-<li>首先要有每篇文档的主题<span class="math inline">\(\theta_d\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>.</li>
-<li>简单假设每个单词的主题<span class="math inline">\(z_{dn}\)</span>与所在文档的主题<span class="math inline">\(\theta_d\)</span>一致, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
-<li>每个单词确定了主题之后就能按照一定的概率分布从主题中选择单词出来. 比方说给定词汇表<span class="math inline">\(w_{set}\)</span>, 其包含<span class="math inline">\(\left|w_{set}\right|\)</span>个单词, 假设第<span class="math inline">\(t\)</span>主题有一个单词表上的概率分布<span class="math inline">\(\varphi_{\cdot t}\)</span>, 显然<span class="math inline">\(\varphi_{\cdot t}\)</span>为<span class="math inline">\(\left|w_{set}\right|\)</span>维列向量, 那么<span class="math inline">\(\varphi\)</span>为<span class="math inline">\(\left|w_{set}\right|\times T\)</span>的未知参数矩阵.</li>
-</ul>
-<p>将上述三要素视为随机变量, 此时可以写出三者的联合分布函数: <span class="math display">\[P(W, Z, \Theta)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>显然文档主题<span class="math inline">\(\theta_d\)</span>和单词主题<span class="math inline">\(z_{dn}\)</span>是无法观测得到的, 因此作为LDA模型中的L(Lantent), D(Dirichlet)则是指随机变量<span class="math inline">\(\theta_d\)</span>满足Dirichlet分布:</p>
-<ul>
-<li>假定文章的来源一致, 即<span class="math inline">\(\theta_d\)</span>独立同分布: 服从<a href="https://en.wikipedia.org/wiki/Dirichlet_distribution">Dirichlet分布</a><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(\alpha\)</span>为<span class="math inline">\(T\)</span>维列向量; <span class="math inline">\(B(\alpha)\)</span>为多元Beta函数, 可表示为<span class="math inline">\(B(\alpha)=\frac{\prod_{i=1}^{T}\Gamma(\alpha_i)}{\Gamma(\sum_{i=1}^{T}\alpha_i)}\)</span>, <span class="math inline">\(\Gamma\)</span>为<a href="https://en.wikipedia.org/wiki/Gamma_function">Gamma函数</a>, 详见维基百科.</li>
-<li>值得注意的是, <span class="math inline">\(\alpha\)</span>增大能导致每篇文档的话题数量变多(关于这点可以参考维基百科上的一张<a href="https://upload.wikimedia.org/wikipedia/commons/5/54/LogDirichletDensity-alpha_0.3_to_alpha_2.0.gif">动图</a>), 所以另一种思路是把<span class="math inline">\(\alpha\)</span>视为超参去调.</li>
-<li>假定每个单词的主题<span class="math inline">\(z_{dn}\)</span>与所在文档的主题<span class="math inline">\(\theta_d\)</span>一致, 即<span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 写得直观些, 即<span class="math inline">\(P(z_{dn}=t\mid\theta_d)=\theta_{dt}\)</span>, <span class="math inline">\(\theta_{dt}\)</span>表示<span class="math inline">\(\theta_d\)</span>的第<span class="math inline">\(t\)</span>个分量.</li>
-<li><span class="math inline">\(T\)</span>个主题与词汇表<span class="math inline">\(w_{set}\)</span>的分布记为<span class="math inline">\(\phi\)</span>, 这里的<span class="math inline">\(\phi\)</span>为<span class="math inline">\(\left|w_{set}\right|\times T\)</span>的矩阵. 即<span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{z_{dn}w_{dn}}\)</span>, 写得直观些, <span class="math inline">\(v\)</span>为不超过<span class="math inline">\(\left|w_{set}\right|\)</span>的正整数, <span class="math inline">\(P(w_{dn}=v\mid z_{dn})=\varphi_{v z_{dn}}\)</span>.</li>
-</ul>
-<p>若用大小字母表示小写字母的总和, 参数仍简记为小写字母, 我们现有五个关键要素: <span class="math inline">\(W\)</span>为数据集; <span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>为未知参数.</p>
-板表示法(plate notation)是一种表示在图形模型中重复的变量的方法, 下面采用板表示法的贝叶斯网络表达上述模型:
-<div data-align="center">
-<img src="/pictures/bayes in ml/LDA_plate_model_1.png" width="60%"/>
-</div>
-<p>这里的虚线框右下角的字母表示框中的部分应该重复画字母次, 所以板表示法的好处就很明显:</p>
-<ul>
-<li>简化图模型,更美观.</li>
-<li>同时模型表达式变得一模了然.</li>
-</ul>
-<p>最后把该LDA模型用较为简练的语言再写一遍(可以对照图去写): <span class="math display">\[P(W, Z, \Theta\mid \varphi, \alpha)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>其中:</p>
-<ul>
-<li><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>, <span class="math inline">\(T\)</span>给定.</li>
-<li><span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
-<li><span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{w_{dn}z_{dn}}\)</span>, 给定词汇表<span class="math inline">\(w_{set}\)</span>, <span class="math inline">\(w_{dn}\in\{1,2,...,\left|w_{set}\right|\}\)</span>.</li>
-</ul>
-<p>大小字母表示小写字母的总和, 参数仍简记为小写字母, 总结如下:</p>
-<ul>
-<li>未知:<span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>未知参数.</li>
-<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
-<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
-</ul>
-<p>这个模型因为属于隐变量模型, 故可用<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>求解: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:</p>
-<ul>
-<li>E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>.</li>
-<li>M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
-</ul>
-<p>若后验<span class="math inline">\(P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>难以处理, 则可以用一些近似方法取求得期望, 如<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/">变分贝叶斯</a>, <a href="https://msgsxj.cn/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/">Laplace近似方法</a>, <a href="https://msgsxj.cn/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/">期望传播方法</a>, <a href="https://msgsxj.cn/2018/09/18/MCMC/">MCMC方法</a>等</p>
-<hr />
-<h2 id="lda模型的拓展">LDA模型的拓展</h2>
-<h3 id="phi"><span class="math inline">\(\Phi\)</span></h3>
-若把未知参数<span class="math inline">\(\varphi\)</span>视为随机变量, 重新记为<span class="math inline">\(\Phi\)</span>, 假定<span class="math inline">\(\Phi_{i\cdot}\sim Dir(\beta_i)\)</span>, 即假定第<span class="math inline">\(i\)</span>个单词的主题分布满足参数为<span class="math inline">\(\beta_i\)</span>的狄利克雷分布(回忆开头狄利克雷分布的特性), 这里假定<span class="math inline">\(i\)</span>的取值集合<span class="math inline">\(w_{set}\)</span>的大小为<span class="math inline">\(S\)</span>, 上述修改后的模型用板表示法表示如下:
-<div data-align="center">
-<img src="/pictures/bayes in ml/LDA_plate_model_2.png" width="60%"/>
-</div>
-<p><span class="math display">\[P(W, Z, \Theta, \Phi\mid  \alpha, \beta)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}\prod_{i=1}^{S}P(z_{dn}=i\mid\theta_d)P(w_{dn}\mid z_{dn}=i, \Phi_{i\cdot})P(\Phi_{i\cdot})\]</span>与上文的模型相比只是把参数<span class="math inline">\(\varphi\)</span>视为随机变量<span class="math inline">\(\Phi\)</span>, 且<span class="math inline">\(\Phi_{i\cdot}\sim Dir(\beta_i)\)</span>, 其余不变. 总结如下:</p>
-<ul>
-<li>未知:<span class="math inline">\(Z, \Theta, \Phi\)</span>为隐变量; $ , $为未知参数.</li>
-<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
-<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
-</ul>
-<h3 id="logit-normal-distribution">Logit-normal distribution</h3>
-<p><span class="math inline">\(\theta_d\sim Dir(\alpha)\)</span>的一个良好替代是假定<span class="math inline">\(\theta_d\sim \mathcal{P}(N(\mu, \Sigma))\)</span>, 即满足<a href="https://en.wikipedia.org/wiki/Logit-normal_distribution">Logit-normal分布</a>. 逻辑正态分布: 若<span class="math inline">\(Y\sim N(\mu, \Sigma)\)</span>, 则称<span class="math inline">\(X=\mathcal{P}(Y)\)</span>为逻辑正态(Logit-normal)分布, 其中<span class="math inline">\(\mathcal{P}()\)</span>为逻辑函数. 下面来看这两个分布的异同:</p>
-<ul>
-<li>与狄利克雷分布相比, 逻辑正态分布能捕捉<span class="math inline">\(\theta_d\)</span>之间的相关性, 因而更受欢迎.</li>
-<li>虽然任何参数<span class="math inline">\(\mu, \Sigma, \alpha\)</span>的选择都不能让两个的密度函数相等, 但通过最小化<span class="math inline">\(\mathcal{KL}\)</span>散度的方式来让逻辑正态分布去逼近狄利克雷分布的方式, 即最小化<span class="math display">\[\mathcal{KL}(p, q)=\int p(x\mid \alpha)\log\frac{p(x\mid\alpha)}{q(x\mid\mu, \Sigma)}dx\]</span>可以得到关于<span class="math inline">\(\alpha\)</span>的参数<span class="math inline">\(\mu,\Sigma\)</span>在<span class="math inline">\(\mathcal{KL}\)</span>散度意义下的最优选择, 详见<a href="https://en.wikipedia.org/wiki/Logit-normal_distribution">维基百科</a>, 这里要说明的是, 当<span class="math inline">\(\alpha\)</span>的每个分量都趋于无穷, <span class="math inline">\(p(x\mid \alpha)\to q(x\mid\mu, \Sigma)\)</span>, 也就是说<span class="math inline">\(\alpha\)</span>很大时两者可以变得非常靠近.</li>
-</ul>
-<h3 id="dynamic-topic-models">Dynamic Topic Models</h3>
-<p>此外还有动态主题模型, 见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.62.2783&amp;rep=rep1&amp;type=pdf">这篇文章</a></p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>隐变量模型</tag>
-        <tag>LDA模型</tag>
-        <tag>Dirichlet分布</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MCMC</title>
     <url>/2018/09/18/MCMC/</url>
     <content><![CDATA[<p>前言:本文主要是关于MCMC, 这是一类对概率进行采样的方法, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week4. <span id="more"></span></p>
@@ -1162,6 +1076,92 @@ t_d^{k+1}&amp;\sim P(T_d\mid T_1=t_1^{k}, T_2=t_2^{k},..., T_{d-1}=t_{d-1}^{k}, 
       </tags>
   </entry>
   <entry>
+    <title>Latent Dirichlet Allocation</title>
+    <url>/2018/10/16/Latent-Dirichlet-Allocation/</url>
+    <content><![CDATA[<p>前言: 本文主要是关于Latent Dirichlet Allocation模型, 这是一类能够从文档集合中挖掘出抽象主题的模型, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3. <span id="more"></span></p>
+<hr />
+<h2 id="隐狄利克雷分配模型">隐狄利克雷分配模型</h2>
+<p>以推荐系统为例, 假如我读过东野圭吾的新参者, 我希望推荐系统能把白夜行也推荐给我. 在自然语言处理(Natural Language Processing: NLP)中, 主题模型(Topic Model)是一类能够从文档集合中挖掘出抽象主题的模型, 其中用的最多的大概就是隐狄利克雷分配模型(Latent Dirichlet Allocation: LDA). 比方说给定50个主题数量, 其想法是对每一篇文档给出一个关于50个主题数量的分布, 例如新参者的主题是70%的推理类, 10%的叉叉类等, 因此如果能得到每篇文档的主题分布, 就能给出书之间的相似度.</p>
+<p>下面我们来看什么是LDA模型, 并给出一些记号. 假设有文档<span class="math inline">\(D\)</span>篇, 其中第<span class="math inline">\(d\)</span>篇文档有<span class="math inline">\(N_d\)</span>个单词, 给定主题数量<span class="math inline">\(T\)</span>, 记第<span class="math inline">\(d\)</span>篇文档的主题为<span class="math inline">\(\theta_d\)</span>, 显然<span class="math inline">\(\theta_d\)</span>为一个<span class="math inline">\(T\)</span>维向量, <span class="math inline">\(z_{dn}\)</span>是第<span class="math inline">\(d\)</span>篇文档的第<span class="math inline">\(n\)</span>个单词的主题分布, <span class="math inline">\(w_{dn}\)</span>是第<span class="math inline">\(d\)</span>篇文档的第<span class="math inline">\(n\)</span>个单词本身(一般给长度为<span class="math inline">\(\left|w_{set}\right|\)</span>定词汇表<span class="math inline">\(w_{set}\)</span>后用一个长度为<span class="math inline">\(\left|w_{set}\right|\)</span>的向量去表示).</p>
+<p>给定主题数量<span class="math inline">\(T=50\)</span>, 目前我们有了三个关键要素:</p>
+<ul>
+<li>每篇文档的主题分布:<span class="math inline">\(\theta\)</span></li>
+<li>每篇文档每个单词的主题分布:<span class="math inline">\(z\)</span></li>
+<li>每篇文档每个单词:<span class="math inline">\(w\)</span></li>
+</ul>
+<p>遵循一些直观的假象, 我们分三步尝试去构造模型:</p>
+<ul>
+<li>首先要有每篇文档的主题<span class="math inline">\(\theta_d\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>.</li>
+<li>简单假设每个单词的主题<span class="math inline">\(z_{dn}\)</span>与所在文档的主题<span class="math inline">\(\theta_d\)</span>一致, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
+<li>每个单词确定了主题之后就能按照一定的概率分布从主题中选择单词出来. 比方说给定词汇表<span class="math inline">\(w_{set}\)</span>, 其包含<span class="math inline">\(\left|w_{set}\right|\)</span>个单词, 假设第<span class="math inline">\(t\)</span>主题有一个单词表上的概率分布<span class="math inline">\(\varphi_{\cdot t}\)</span>, 显然<span class="math inline">\(\varphi_{\cdot t}\)</span>为<span class="math inline">\(\left|w_{set}\right|\)</span>维列向量, 那么<span class="math inline">\(\varphi\)</span>为<span class="math inline">\(\left|w_{set}\right|\times T\)</span>的未知参数矩阵.</li>
+</ul>
+<p>将上述三要素视为随机变量, 此时可以写出三者的联合分布函数: <span class="math display">\[P(W, Z, \Theta)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>显然文档主题<span class="math inline">\(\theta_d\)</span>和单词主题<span class="math inline">\(z_{dn}\)</span>是无法观测得到的, 因此作为LDA模型中的L(Lantent), D(Dirichlet)则是指随机变量<span class="math inline">\(\theta_d\)</span>满足Dirichlet分布:</p>
+<ul>
+<li>假定文章的来源一致, 即<span class="math inline">\(\theta_d\)</span>独立同分布: 服从<a href="https://en.wikipedia.org/wiki/Dirichlet_distribution">Dirichlet分布</a><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(\alpha\)</span>为<span class="math inline">\(T\)</span>维列向量; <span class="math inline">\(B(\alpha)\)</span>为多元Beta函数, 可表示为<span class="math inline">\(B(\alpha)=\frac{\prod_{i=1}^{T}\Gamma(\alpha_i)}{\Gamma(\sum_{i=1}^{T}\alpha_i)}\)</span>, <span class="math inline">\(\Gamma\)</span>为<a href="https://en.wikipedia.org/wiki/Gamma_function">Gamma函数</a>, 详见维基百科.</li>
+<li>值得注意的是, <span class="math inline">\(\alpha\)</span>增大能导致每篇文档的话题数量变多(关于这点可以参考维基百科上的一张<a href="https://upload.wikimedia.org/wikipedia/commons/5/54/LogDirichletDensity-alpha_0.3_to_alpha_2.0.gif">动图</a>), 所以另一种思路是把<span class="math inline">\(\alpha\)</span>视为超参去调.</li>
+<li>假定每个单词的主题<span class="math inline">\(z_{dn}\)</span>与所在文档的主题<span class="math inline">\(\theta_d\)</span>一致, 即<span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 写得直观些, 即<span class="math inline">\(P(z_{dn}=t\mid\theta_d)=\theta_{dt}\)</span>, <span class="math inline">\(\theta_{dt}\)</span>表示<span class="math inline">\(\theta_d\)</span>的第<span class="math inline">\(t\)</span>个分量.</li>
+<li><span class="math inline">\(T\)</span>个主题与词汇表<span class="math inline">\(w_{set}\)</span>的分布记为<span class="math inline">\(\phi\)</span>, 这里的<span class="math inline">\(\phi\)</span>为<span class="math inline">\(\left|w_{set}\right|\times T\)</span>的矩阵. 即<span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{z_{dn}w_{dn}}\)</span>, 写得直观些, <span class="math inline">\(v\)</span>为不超过<span class="math inline">\(\left|w_{set}\right|\)</span>的正整数, <span class="math inline">\(P(w_{dn}=v\mid z_{dn})=\varphi_{v z_{dn}}\)</span>.</li>
+</ul>
+<p>若用大小字母表示小写字母的总和, 参数仍简记为小写字母, 我们现有五个关键要素: <span class="math inline">\(W\)</span>为数据集; <span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>为未知参数.</p>
+板表示法(plate notation)是一种表示在图形模型中重复的变量的方法, 下面采用板表示法的贝叶斯网络表达上述模型:
+<div data-align="center">
+<img src="/pictures/bayes in ml/LDA_plate_model_1.png" width="60%"/>
+</div>
+<p>这里的虚线框右下角的字母表示框中的部分应该重复画字母次, 所以板表示法的好处就很明显:</p>
+<ul>
+<li>简化图模型,更美观.</li>
+<li>同时模型表达式变得一模了然.</li>
+</ul>
+<p>最后把该LDA模型用较为简练的语言再写一遍(可以对照图去写): <span class="math display">\[P(W, Z, \Theta\mid \varphi, \alpha)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>其中:</p>
+<ul>
+<li><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>, <span class="math inline">\(T\)</span>给定.</li>
+<li><span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
+<li><span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{w_{dn}z_{dn}}\)</span>, 给定词汇表<span class="math inline">\(w_{set}\)</span>, <span class="math inline">\(w_{dn}\in\{1,2,...,\left|w_{set}\right|\}\)</span>.</li>
+</ul>
+<p>大小字母表示小写字母的总和, 参数仍简记为小写字母, 总结如下:</p>
+<ul>
+<li>未知:<span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>未知参数.</li>
+<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
+<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
+</ul>
+<p>这个模型因为属于隐变量模型, 故可用<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>求解: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:</p>
+<ul>
+<li>E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>.</li>
+<li>M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
+</ul>
+<p>若后验<span class="math inline">\(P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>难以处理, 则可以用一些近似方法取求得期望, 如<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/">变分贝叶斯</a>, <a href="https://msgsxj.cn/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/">Laplace近似方法</a>, <a href="https://msgsxj.cn/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/">期望传播方法</a>, <a href="https://msgsxj.cn/2018/09/18/MCMC/">MCMC方法</a>等</p>
+<hr />
+<h2 id="lda模型的拓展">LDA模型的拓展</h2>
+<h3 id="phi"><span class="math inline">\(\Phi\)</span></h3>
+若把未知参数<span class="math inline">\(\varphi\)</span>视为随机变量, 重新记为<span class="math inline">\(\Phi\)</span>, 假定<span class="math inline">\(\Phi_{i\cdot}\sim Dir(\beta_i)\)</span>, 即假定第<span class="math inline">\(i\)</span>个单词的主题分布满足参数为<span class="math inline">\(\beta_i\)</span>的狄利克雷分布(回忆开头狄利克雷分布的特性), 这里假定<span class="math inline">\(i\)</span>的取值集合<span class="math inline">\(w_{set}\)</span>的大小为<span class="math inline">\(S\)</span>, 上述修改后的模型用板表示法表示如下:
+<div data-align="center">
+<img src="/pictures/bayes in ml/LDA_plate_model_2.png" width="60%"/>
+</div>
+<p><span class="math display">\[P(W, Z, \Theta, \Phi\mid  \alpha, \beta)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}\prod_{i=1}^{S}P(z_{dn}=i\mid\theta_d)P(w_{dn}\mid z_{dn}=i, \Phi_{i\cdot})P(\Phi_{i\cdot})\]</span>与上文的模型相比只是把参数<span class="math inline">\(\varphi\)</span>视为随机变量<span class="math inline">\(\Phi\)</span>, 且<span class="math inline">\(\Phi_{i\cdot}\sim Dir(\beta_i)\)</span>, 其余不变. 总结如下:</p>
+<ul>
+<li>未知:<span class="math inline">\(Z, \Theta, \Phi\)</span>为隐变量; $ , $为未知参数.</li>
+<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
+<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
+</ul>
+<h3 id="logit-normal-distribution">Logit-normal distribution</h3>
+<p><span class="math inline">\(\theta_d\sim Dir(\alpha)\)</span>的一个良好替代是假定<span class="math inline">\(\theta_d\sim \mathcal{P}(N(\mu, \Sigma))\)</span>, 即满足<a href="https://en.wikipedia.org/wiki/Logit-normal_distribution">Logit-normal分布</a>. 逻辑正态分布: 若<span class="math inline">\(Y\sim N(\mu, \Sigma)\)</span>, 则称<span class="math inline">\(X=\mathcal{P}(Y)\)</span>为逻辑正态(Logit-normal)分布, 其中<span class="math inline">\(\mathcal{P}()\)</span>为逻辑函数. 下面来看这两个分布的异同:</p>
+<ul>
+<li>与狄利克雷分布相比, 逻辑正态分布能捕捉<span class="math inline">\(\theta_d\)</span>之间的相关性, 因而更受欢迎.</li>
+<li>虽然任何参数<span class="math inline">\(\mu, \Sigma, \alpha\)</span>的选择都不能让两个的密度函数相等, 但通过最小化<span class="math inline">\(\mathcal{KL}\)</span>散度的方式来让逻辑正态分布去逼近狄利克雷分布的方式, 即最小化<span class="math display">\[\mathcal{KL}(p, q)=\int p(x\mid \alpha)\log\frac{p(x\mid\alpha)}{q(x\mid\mu, \Sigma)}dx\]</span>可以得到关于<span class="math inline">\(\alpha\)</span>的参数<span class="math inline">\(\mu,\Sigma\)</span>在<span class="math inline">\(\mathcal{KL}\)</span>散度意义下的最优选择, 详见<a href="https://en.wikipedia.org/wiki/Logit-normal_distribution">维基百科</a>, 这里要说明的是, 当<span class="math inline">\(\alpha\)</span>的每个分量都趋于无穷, <span class="math inline">\(p(x\mid \alpha)\to q(x\mid\mu, \Sigma)\)</span>, 也就是说<span class="math inline">\(\alpha\)</span>很大时两者可以变得非常靠近.</li>
+</ul>
+<h3 id="dynamic-topic-models">Dynamic Topic Models</h3>
+<p>此外还有动态主题模型, 见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.62.2783&amp;rep=rep1&amp;type=pdf">这篇文章</a></p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>隐变量模型</tag>
+        <tag>LDA模型</tag>
+        <tag>Dirichlet分布</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ubuntu16.04下便捷安装tensorflow</title>
     <url>/2018/12/23/Ubuntu1604%E4%B8%8B%E4%BE%BF%E6%8D%B7%E5%AE%89%E8%A3%85tensorflow/</url>
     <content><![CDATA[<p>前言: 这篇博文记载了Ubuntu16.04下便捷安装tensorflow的方法. <span id="more"></span> 摸索了几天, 发现一种Ubuntu下便捷安装tensorflow的方法, 特此分享. 过程大致分为2步:</p>
@@ -1204,6 +1204,53 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
         <tag>Ubuntu</tag>
         <tag>tensorflow</tag>
         <tag>cuda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu食用记录</title>
+    <url>/2018/04/18/Ubuntu%E9%A3%9F%E7%94%A8%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<p>前言:上中国大学MOOC上面的一门慕课(人工智能实践：Tensorflow笔记)时装了Ubuntu16.04,按照课程视屏方法顺利安装,特此开文记录使用中碰到的一些有意思的事. <span id="more"></span></p>
+<hr />
+<p>Q:如何安装Ubuntu?</p>
+<p>A:参见中国大学MOOC北大课程tensorflow笔记的第一周视频.</p>
+<hr />
+<p>Q:如何进入Ubuntu?</p>
+<p>A:开机狂按Esc,然后F9,选择进入Ubuntu.</p>
+<hr />
+<p>Q:Ubuntu默认的python模块有哪些(已安装tensorflow)?</p>
+<p>A： <img src="/pictures/Ubuntu/piplist.png" alt="avatar" /></p>
+<hr />
+<p>Q:Firefox浏览器无法播放中国大学MOOC上的视频怎么办?</p>
+<p>A:为Friefox安装flash插件(Flash Block)然并.</p>
+<hr />
+<p>Q:如何为Ubuntu安装chrome?</p>
+<p>A:参见:https://blog.csdn.net/qq551551/article/details/78885704</p>
+<hr />
+<p>Q:如何在Ubuntu启动root用户?</p>
+<p>A: <img src="/pictures/Ubuntu/root.png" alt="avatar" /></p>
+<hr />
+<p>Q:如何在Ubuntu翻墙?</p>
+<p>A:参见:https://blog.csdn.net/superbfly/article/details/54950451</p>
+<p>SS启动方式为在文档下打开<code>terminal</code>,输入: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sslocal -c SS.JSON</span><br></pre></td></tr></table></figure> ps:SS.JSON为已配置好信息的文件</p>
+<hr />
+<p>Q:怎么解决“The TensorFlow library wasn't compiled to use SSE4.1 instructions”?</p>
+<p>A: <img src="/pictures/Ubuntu/tf_cpp_min_log_level_2.png" alt="avatar" /></p>
+<hr />
+<p>Q:如何将tab键设定为4个空格?</p>
+<p>A:任意目录打开 <code>terminal</code>,输入 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi ~/.vimrc</span><br></pre></td></tr></table></figure> 最后键入以下内容: <img src="/pictures/Ubuntu/tab.png" alt="tab=4" /></p>
+<hr />
+<p>Q:Adam,GD,Momentum三种优化算法实际表现?</p>
+<p>A:一个简单的比较如下,在这个比较中Momentum是收敛最快的,其次是Adam,最慢是GD: 1. Adam <img src="/pictures/Ubuntu/Adam.png" alt="Adam" /> 2. GD <img src="/pictures/Ubuntu/BGD.png" alt="GD" /> 3. Momentum <img src="/pictures/Ubuntu/Momentum.png" alt="Momentum" /></p>
+<hr />
+<p>Q:ubuntu下安装matplotlib模块？</p>
+<p>A: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install python-matplotlib</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>tensorflow</tag>
       </tags>
   </entry>
   <entry>
@@ -1368,96 +1415,6 @@ ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-�
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu食用记录</title>
-    <url>/2018/04/18/Ubuntu%E9%A3%9F%E7%94%A8%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<p>前言:上中国大学MOOC上面的一门慕课(人工智能实践：Tensorflow笔记)时装了Ubuntu16.04,按照课程视屏方法顺利安装,特此开文记录使用中碰到的一些有意思的事. <span id="more"></span></p>
-<hr />
-<p>Q:如何安装Ubuntu?</p>
-<p>A:参见中国大学MOOC北大课程tensorflow笔记的第一周视频.</p>
-<hr />
-<p>Q:如何进入Ubuntu?</p>
-<p>A:开机狂按Esc,然后F9,选择进入Ubuntu.</p>
-<hr />
-<p>Q:Ubuntu默认的python模块有哪些(已安装tensorflow)?</p>
-<p>A： <img src="/pictures/Ubuntu/piplist.png" alt="avatar" /></p>
-<hr />
-<p>Q:Firefox浏览器无法播放中国大学MOOC上的视频怎么办?</p>
-<p>A:为Friefox安装flash插件(Flash Block)然并.</p>
-<hr />
-<p>Q:如何为Ubuntu安装chrome?</p>
-<p>A:参见:https://blog.csdn.net/qq551551/article/details/78885704</p>
-<hr />
-<p>Q:如何在Ubuntu启动root用户?</p>
-<p>A: <img src="/pictures/Ubuntu/root.png" alt="avatar" /></p>
-<hr />
-<p>Q:如何在Ubuntu翻墙?</p>
-<p>A:参见:https://blog.csdn.net/superbfly/article/details/54950451</p>
-<p>SS启动方式为在文档下打开<code>terminal</code>,输入: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sslocal -c SS.JSON</span><br></pre></td></tr></table></figure> ps:SS.JSON为已配置好信息的文件</p>
-<hr />
-<p>Q:怎么解决“The TensorFlow library wasn't compiled to use SSE4.1 instructions”?</p>
-<p>A: <img src="/pictures/Ubuntu/tf_cpp_min_log_level_2.png" alt="avatar" /></p>
-<hr />
-<p>Q:如何将tab键设定为4个空格?</p>
-<p>A:任意目录打开 <code>terminal</code>,输入 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi ~/.vimrc</span><br></pre></td></tr></table></figure> 最后键入以下内容: <img src="/pictures/Ubuntu/tab.png" alt="tab=4" /></p>
-<hr />
-<p>Q:Adam,GD,Momentum三种优化算法实际表现?</p>
-<p>A:一个简单的比较如下,在这个比较中Momentum是收敛最快的,其次是Adam,最慢是GD: 1. Adam <img src="/pictures/Ubuntu/Adam.png" alt="Adam" /> 2. GD <img src="/pictures/Ubuntu/BGD.png" alt="GD" /> 3. Momentum <img src="/pictures/Ubuntu/Momentum.png" alt="Momentum" /></p>
-<hr />
-<p>Q:ubuntu下安装matplotlib模块？</p>
-<p>A: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install python-matplotlib</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>Ubuntu</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>tensorflow</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>典型相关分析</title>
-    <url>/2020/06/20/%E5%85%B8%E5%9E%8B%E7%9B%B8%E5%85%B3%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<p>前言: 最近在读脑磁共振影像数据的时空分析一书, 本文主要关于典型相关分析(CCA)的数学原理介绍 <span id="more"></span></p>
-<h2 id="典型相关分析基本原理">典型相关分析基本原理</h2>
-<p>统计学中, 典型相关分析(canonical correlation analysis, CCA)是研究两组随机变量之间关系的方法, 其本质上是用一对<strong>典型变量</strong>的相关系数去衡量两组随机变量之间的关系, 而这里的典型变量选用<strong>变量的线性组合</strong>的方式去构造. 我们有两组随机变量<span class="math inline">\(X=(x_1,...,x_m)\)</span>, <span class="math inline">\(Y=(y_1,...,y_n)\)</span>, CCA目标是求得向量<span class="math inline">\(a_1\in\mathbb{R}^m\)</span>, <span class="math inline">\(b_1\in\mathbb{R}^n\)</span>, 使得<span class="math inline">\(u_1=a_1^TX\)</span>和<span class="math inline">\(v_1=b_1^TY\)</span>的皮尔逊相关系数</p>
-<p><span class="math display">\[corr(u_1, v_1)=\frac{cov(a_1^TX, b_1^TY)}{\sqrt{cov(a_1^TX,a_1^TX)}\sqrt{cov(b_1^TY,b_1^TY)}}=\frac{a_1^T\Sigma_{X,Y}b_1}{\sqrt{a_1^T\Sigma_{X,X}a_1}\sqrt{b_1^T\Sigma_{Y,Y}b_1}}\]</span> 最大, 其中<span class="math inline">\(\Sigma_{X,Y}=cov(X,Y)\)</span>. 显然<span class="math inline">\(\Sigma_{X,X}\)</span>, <span class="math inline">\(\Sigma_{Y,Y}\)</span>半正定(p.s. 一般可认为是正定的, 只要<span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>中不包含方差为0的随机变量), 因此具有<a href="https://en.wikipedia.org/wiki/Definite_symmetric_matrix">唯一的正定平方根</a><span class="math inline">\(\Sigma_{X,X}^{1/2}\)</span>,<span class="math inline">\(\Sigma_{Y,Y}^{1/2}\)</span>. 如下定义<span class="math inline">\(c_1=\Sigma_{X,X}^{1/2}a_1\)</span>, <span class="math inline">\(d_1=\Sigma_{Y,Y}^{1/2}b_1\)</span>, 问题转化为关于<span class="math inline">\(c_1\in\mathbb{R}^m\)</span>, <span class="math inline">\(d_1\in\mathbb{R}^n\)</span>最大化</p>
-<p><span class="math display">\[\frac{c_1^T\Sigma_{X,X}^{-1/2}\Sigma_{X,Y}\Sigma_{Y,Y}^{-1/2}d_1}{\sqrt{c_1^Tc_1}\sqrt{d_1^Td_1}}\]</span> 由Cauchy-Schwarz不等式可得</p>
-<p><span class="math display">\[c_1^{T}\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1/2}d_1\leq \sqrt{c_1^{T}\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_1}\sqrt{d_1^{T}d_1}\]</span> 即</p>
-<p><span class="math display">\[\frac{c_1^T\Sigma_{X,X}^{-1/2}\Sigma_{X,Y}\Sigma_{Y,Y}^{-1/2}d_1}{\sqrt{c_1^Tc_1}\sqrt{d_1^Td_1}}\le \frac{\sqrt{c_1^{T}\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_1}}{\sqrt{c_1^Tc_1}}\]</span> 且当且仅当<span class="math inline">\(d_1\)</span>与<span class="math inline">\(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_1\)</span>共线时取等号. 而对于不等式的右边, 由下述矩阵的实对称性易得当<span class="math inline">\(c_1\)</span>为矩阵</p>
-<p><span class="math display">\[\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}\]</span> 的最大特征值<span class="math inline">\(\lambda_1\)</span>对应的特征向量时, 不等式右边取最大值<span class="math inline">\(\sqrt{\lambda_m}\)</span>. 我们也可以接着去寻找第二对典型变量, 这里遵循的原则是在<span class="math inline">\(u_2,v_2\)</span>与第一对规范变量不相关的约束下:</p>
-<p><span class="math display">\[cov(u_2,u_1)=0, cov(v_2,v_1)=0\]</span> 寻求使相同的相关性最大化的向量<span class="math inline">\(\alpha_1\)</span>. 注意到<span class="math inline">\(\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}\)</span>为实对称矩阵, 因此其特征值对应的特征向量互相正交(<span class="math inline">\(\alpha_1^T\alpha_2=0\)</span>), 因此只需取<span class="math inline">\(u_2=a_2^TX\)</span>, <span class="math inline">\(a_2=\Sigma_{X,X}^{-1/2}c_2\)</span>, 这里<span class="math inline">\(c_2\)</span>相应取为矩阵第二大的特征值<span class="math inline">\(\lambda_2\)</span>对应的特征向量<span class="math inline">\(\alpha_2\)</span>. 就能轻易验证</p>
-<p><span class="math display">\[cov(u_2,u_1)=cov(a_2^TX,a_1^TX)=a_2^T\Sigma_{X,X}a_1=c_2^Tc_1=\alpha_2^T\alpha_1=0\]</span> 而<span class="math inline">\(v_2\)</span>只需与<span class="math inline">\(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_2\)</span>共线, 也能轻易验证</p>
-<p><span class="math display">\[\begin{aligned}
-cov(v_2,v_1)&amp;=cov(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_2,\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_1)\\
-&amp;=c_2^T\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_1\\
-&amp;=\lambda_1 c_2^Tc_1\\
-&amp;=0
-\end{aligned}\]</span> 上述过程可重复<span class="math inline">\(\min\{m,n\}\)</span>遍, 可得<span class="math inline">\(\min\{m,n\}\)</span>对典型变量. 事实上, 通过简单的变换, 典型变量的参数<span class="math inline">\(a\)</span>只需通过求<span class="math inline">\(\Sigma _{X,X}^{-1}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}\)</span>的特征向量就能得到, 此时<span class="math inline">\(b\)</span>只需与<span class="math inline">\(\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}a\)</span>共线.</p>
-<h2 id="特征向量与svd">特征向量与SVD</h2>
-<p>实际计算时, 要求<span class="math inline">\(AA^T\)</span>的特征向量<span class="math inline">\(u\)</span>, 其实等价于对<span class="math inline">\(A=U\Sigma V^T\)</span>做奇异值分解(SVD), 此时要求的<span class="math inline">\(u\)</span>为<span class="math inline">\(U\)</span>列向量. 这是因为<span class="math inline">\(AA^T=U\Sigma V^*V\Sigma U^*\)</span>, 即</p>
-<p><span class="math display">\[AA^TU=U\Sigma^2\]</span></p>
-<p>因此求<span class="math inline">\(\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}\)</span>的特征向量等价于对<span class="math inline">\(\Sigma_{X,X}^{-1/2}\Sigma_{X,Y}\Sigma_{Y,Y}^{-1/2}\)</span>做奇异值分解(SVD).</p>
-<h2 id="cca与fmri数据">CCA与fMRI数据</h2>
-<p>具体到fMRI数据中, 我们假定观测收集到的数据为一个三维张量<span class="math inline">\(x(t)\)</span>, 其中<span class="math inline">\(t\)</span>为时间变量, 因此输入数据为带时间维度的四维张量. <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.476.486&amp;rep=rep1&amp;type=pdf">这篇文章</a>提出令<span class="math inline">\(y(t)=x(t-1)\)</span>, 因此若我们把CCA应用在<span class="math inline">\(x(t)\)</span>, <span class="math inline">\(y(t)\)</span>上, 此时找出的典型变量不仅是数据数据<span class="math inline">\(x(t)\)</span>的<strong>线性组合</strong>, 而且具有<strong>时间维度上的强自相关性(差分为1)</strong>, 而我们所期望得到的神经响应信号(呼吸产生的噪声等)也具有这样的特征. 当然缺点也显然, 这样的思路没能够用好输入数据的空间结构, 此外, 该文作者还给出一种试图寻求空间维度上的强自相关性的思路, 详见论文链接中的式<span class="math inline">\((15)\)</span>.</p>
-<h2 id="cca-ica和pca">CCA, ICA和PCA</h2>
-<p>换一个角度看, 将CCA应用到<span class="math inline">\(x(t)\)</span>, <span class="math inline">\(x(t-1)\)</span>可视为是在对<span class="math inline">\(x(t)\)</span>进行<strong>线性降维</strong>的操作, 只不过需要满足构造出特征的<strong>时间维度的自相关性</strong>尽可能大且不同的构造特征之间<strong>互不相关</strong>的约束, 这就能很自然的联想到另外两种降维的方法, 这里仅简单介绍:</p>
-<ol type="1">
-<li><a href="https://en.wikipedia.org/wiki/Principal_component_analysis">主成分分析</a>(Principal component analysis, PCA)的出发点为降维后的数据点到新子空间的距离都尽可能的近, 或者等价地, 降维后的数据在新子空间上的投影都尽可能的分散, 其构造出的特征<strong>方差尽可能大</strong>且不同的构造特征之间<strong>互不相关</strong>.</li>
-<li><a href="https://en.wikipedia.org/wiki/Independent_component_analysis">独立成分分析</a>(Independent components analysis, ICA), 多用于<a href="https://en.wikipedia.org/wiki/Signal_separation">盲源分离问题</a>, 比如采集fMRI数据可能会有大脑信号、眼动、呼吸等多个源, 而我们感兴趣的可能只是大脑信号, 因此需要将其分离出来. ICA最大的假设是不同的构造特征之间<strong>相互独立</strong>且构造特征都是<strong>非高斯分布</strong>.</li>
-</ol>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>CCA</tag>
-        <tag>SVD</tag>
-        <tag>特征向量</tag>
-        <tag>ICA</tag>
-        <tag>PCA</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>个人博客进化史</title>
     <url>/2018/03/24/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%BF%9B%E5%8C%96%E5%8F%B2/</url>
     <content><![CDATA[<p>前言:本文记录了本博客的进化史. <span id="more"></span></p>
@@ -1516,6 +1473,281 @@ cov(v_2,v_1)&amp;=cov(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_2,\
         <tag>博客的进化史</tag>
         <tag>latex</tag>
         <tag>加上小锁</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>典型相关分析</title>
+    <url>/2020/06/20/%E5%85%B8%E5%9E%8B%E7%9B%B8%E5%85%B3%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<p>前言: 最近在读脑磁共振影像数据的时空分析一书, 本文主要关于典型相关分析(CCA)的数学原理介绍 <span id="more"></span></p>
+<h2 id="典型相关分析基本原理">典型相关分析基本原理</h2>
+<p>统计学中, 典型相关分析(canonical correlation analysis, CCA)是研究两组随机变量之间关系的方法, 其本质上是用一对<strong>典型变量</strong>的相关系数去衡量两组随机变量之间的关系, 而这里的典型变量选用<strong>变量的线性组合</strong>的方式去构造. 我们有两组随机变量<span class="math inline">\(X=(x_1,...,x_m)\)</span>, <span class="math inline">\(Y=(y_1,...,y_n)\)</span>, CCA目标是求得向量<span class="math inline">\(a_1\in\mathbb{R}^m\)</span>, <span class="math inline">\(b_1\in\mathbb{R}^n\)</span>, 使得<span class="math inline">\(u_1=a_1^TX\)</span>和<span class="math inline">\(v_1=b_1^TY\)</span>的皮尔逊相关系数</p>
+<p><span class="math display">\[corr(u_1, v_1)=\frac{cov(a_1^TX, b_1^TY)}{\sqrt{cov(a_1^TX,a_1^TX)}\sqrt{cov(b_1^TY,b_1^TY)}}=\frac{a_1^T\Sigma_{X,Y}b_1}{\sqrt{a_1^T\Sigma_{X,X}a_1}\sqrt{b_1^T\Sigma_{Y,Y}b_1}}\]</span> 最大, 其中<span class="math inline">\(\Sigma_{X,Y}=cov(X,Y)\)</span>. 显然<span class="math inline">\(\Sigma_{X,X}\)</span>, <span class="math inline">\(\Sigma_{Y,Y}\)</span>半正定(p.s. 一般可认为是正定的, 只要<span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>中不包含方差为0的随机变量), 因此具有<a href="https://en.wikipedia.org/wiki/Definite_symmetric_matrix">唯一的正定平方根</a><span class="math inline">\(\Sigma_{X,X}^{1/2}\)</span>,<span class="math inline">\(\Sigma_{Y,Y}^{1/2}\)</span>. 如下定义<span class="math inline">\(c_1=\Sigma_{X,X}^{1/2}a_1\)</span>, <span class="math inline">\(d_1=\Sigma_{Y,Y}^{1/2}b_1\)</span>, 问题转化为关于<span class="math inline">\(c_1\in\mathbb{R}^m\)</span>, <span class="math inline">\(d_1\in\mathbb{R}^n\)</span>最大化</p>
+<p><span class="math display">\[\frac{c_1^T\Sigma_{X,X}^{-1/2}\Sigma_{X,Y}\Sigma_{Y,Y}^{-1/2}d_1}{\sqrt{c_1^Tc_1}\sqrt{d_1^Td_1}}\]</span> 由Cauchy-Schwarz不等式可得</p>
+<p><span class="math display">\[c_1^{T}\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1/2}d_1\leq \sqrt{c_1^{T}\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_1}\sqrt{d_1^{T}d_1}\]</span> 即</p>
+<p><span class="math display">\[\frac{c_1^T\Sigma_{X,X}^{-1/2}\Sigma_{X,Y}\Sigma_{Y,Y}^{-1/2}d_1}{\sqrt{c_1^Tc_1}\sqrt{d_1^Td_1}}\le \frac{\sqrt{c_1^{T}\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_1}}{\sqrt{c_1^Tc_1}}\]</span> 且当且仅当<span class="math inline">\(d_1\)</span>与<span class="math inline">\(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_1\)</span>共线时取等号. 而对于不等式的右边, 由下述矩阵的实对称性易得当<span class="math inline">\(c_1\)</span>为矩阵</p>
+<p><span class="math display">\[\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}\]</span> 的最大特征值<span class="math inline">\(\lambda_1\)</span>对应的特征向量时, 不等式右边取最大值<span class="math inline">\(\sqrt{\lambda_m}\)</span>. 我们也可以接着去寻找第二对典型变量, 这里遵循的原则是在<span class="math inline">\(u_2,v_2\)</span>与第一对规范变量不相关的约束下:</p>
+<p><span class="math display">\[cov(u_2,u_1)=0, cov(v_2,v_1)=0\]</span> 寻求使相同的相关性最大化的向量<span class="math inline">\(\alpha_1\)</span>. 注意到<span class="math inline">\(\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}\)</span>为实对称矩阵, 因此其特征值对应的特征向量互相正交(<span class="math inline">\(\alpha_1^T\alpha_2=0\)</span>), 因此只需取<span class="math inline">\(u_2=a_2^TX\)</span>, <span class="math inline">\(a_2=\Sigma_{X,X}^{-1/2}c_2\)</span>, 这里<span class="math inline">\(c_2\)</span>相应取为矩阵第二大的特征值<span class="math inline">\(\lambda_2\)</span>对应的特征向量<span class="math inline">\(\alpha_2\)</span>. 就能轻易验证</p>
+<p><span class="math display">\[cov(u_2,u_1)=cov(a_2^TX,a_1^TX)=a_2^T\Sigma_{X,X}a_1=c_2^Tc_1=\alpha_2^T\alpha_1=0\]</span> 而<span class="math inline">\(v_2\)</span>只需与<span class="math inline">\(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_2\)</span>共线, 也能轻易验证</p>
+<p><span class="math display">\[\begin{aligned}
+cov(v_2,v_1)&amp;=cov(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_2,\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_1)\\
+&amp;=c_2^T\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_1\\
+&amp;=\lambda_1 c_2^Tc_1\\
+&amp;=0
+\end{aligned}\]</span> 上述过程可重复<span class="math inline">\(\min\{m,n\}\)</span>遍, 可得<span class="math inline">\(\min\{m,n\}\)</span>对典型变量. 事实上, 通过简单的变换, 典型变量的参数<span class="math inline">\(a\)</span>只需通过求<span class="math inline">\(\Sigma _{X,X}^{-1}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}\)</span>的特征向量就能得到, 此时<span class="math inline">\(b\)</span>只需与<span class="math inline">\(\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}a\)</span>共线.</p>
+<h2 id="特征向量与svd">特征向量与SVD</h2>
+<p>实际计算时, 要求<span class="math inline">\(AA^T\)</span>的特征向量<span class="math inline">\(u\)</span>, 其实等价于对<span class="math inline">\(A=U\Sigma V^T\)</span>做奇异值分解(SVD), 此时要求的<span class="math inline">\(u\)</span>为<span class="math inline">\(U\)</span>列向量. 这是因为<span class="math inline">\(AA^T=U\Sigma V^*V\Sigma U^*\)</span>, 即</p>
+<p><span class="math display">\[AA^TU=U\Sigma^2\]</span></p>
+<p>因此求<span class="math inline">\(\Sigma _{X,X}^{-1/2}\Sigma _{X,Y}\Sigma _{Y,Y}^{-1}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}\)</span>的特征向量等价于对<span class="math inline">\(\Sigma_{X,X}^{-1/2}\Sigma_{X,Y}\Sigma_{Y,Y}^{-1/2}\)</span>做奇异值分解(SVD).</p>
+<h2 id="cca与fmri数据">CCA与fMRI数据</h2>
+<p>具体到fMRI数据中, 我们假定观测收集到的数据为一个三维张量<span class="math inline">\(x(t)\)</span>, 其中<span class="math inline">\(t\)</span>为时间变量, 因此输入数据为带时间维度的四维张量. <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.476.486&amp;rep=rep1&amp;type=pdf">这篇文章</a>提出令<span class="math inline">\(y(t)=x(t-1)\)</span>, 因此若我们把CCA应用在<span class="math inline">\(x(t)\)</span>, <span class="math inline">\(y(t)\)</span>上, 此时找出的典型变量不仅是数据数据<span class="math inline">\(x(t)\)</span>的<strong>线性组合</strong>, 而且具有<strong>时间维度上的强自相关性(差分为1)</strong>, 而我们所期望得到的神经响应信号(呼吸产生的噪声等)也具有这样的特征. 当然缺点也显然, 这样的思路没能够用好输入数据的空间结构, 此外, 该文作者还给出一种试图寻求空间维度上的强自相关性的思路, 详见论文链接中的式<span class="math inline">\((15)\)</span>.</p>
+<h2 id="cca-ica和pca">CCA, ICA和PCA</h2>
+<p>换一个角度看, 将CCA应用到<span class="math inline">\(x(t)\)</span>, <span class="math inline">\(x(t-1)\)</span>可视为是在对<span class="math inline">\(x(t)\)</span>进行<strong>线性降维</strong>的操作, 只不过需要满足构造出特征的<strong>时间维度的自相关性</strong>尽可能大且不同的构造特征之间<strong>互不相关</strong>的约束, 这就能很自然的联想到另外两种降维的方法, 这里仅简单介绍:</p>
+<ol type="1">
+<li><a href="https://en.wikipedia.org/wiki/Principal_component_analysis">主成分分析</a>(Principal component analysis, PCA)的出发点为降维后的数据点到新子空间的距离都尽可能的近, 或者等价地, 降维后的数据在新子空间上的投影都尽可能的分散, 其构造出的特征<strong>方差尽可能大</strong>且不同的构造特征之间<strong>互不相关</strong>.</li>
+<li><a href="https://en.wikipedia.org/wiki/Independent_component_analysis">独立成分分析</a>(Independent components analysis, ICA), 多用于<a href="https://en.wikipedia.org/wiki/Signal_separation">盲源分离问题</a>, 比如采集fMRI数据可能会有大脑信号、眼动、呼吸等多个源, 而我们感兴趣的可能只是大脑信号, 因此需要将其分离出来. ICA最大的假设是不同的构造特征之间<strong>相互独立</strong>且构造特征都是<strong>非高斯分布</strong>.</li>
+</ol>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>CCA</tag>
+        <tag>SVD</tag>
+        <tag>特征向量</tag>
+        <tag>ICA</tag>
+        <tag>PCA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>变分贝叶斯方法</title>
+    <url>/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>前言:本文主要是关于变分贝叶斯方法, 这是一类用简单分布去逼近目标分布的方法, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3. <span id="more"></span></p>
+<hr />
+<p>本文主要是关于变分推断, 或者说<a href="https://en.wikipedia.org/wiki/Variational_Bayesian_methods">变分贝叶斯方法</a>, 它是一类用来计算难以计算积分的方法. 本文的定位是对EM算法的有益补充, 因此会结合EM算法去讲一讲什么是变分推断及平均场近似, 并得到EM算法的三种变体.</p>
+<p>关于EM算法可以参见我的另一篇博文<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>, 简单的说,EM算法是专门处理隐变量模型的算法. 下文我们会以隐狄利克雷分配模型(Latent Dirichlet Allocation: LDA)为例来说明本文的主角, 当然这是一个隐变量模型.</p>
+<hr />
+<h2 id="隐变量模型">隐变量模型</h2>
+<p><a href="https://en.wikipedia.org/wiki/Latent_variable_model">隐变量模型</a>, 隐变量模型含有未观测到值的变量, 且该隐变量解释了观测到的变量之间的相关性(<a href="https://en.wikipedia.org/wiki/Local_independence">局部独立性</a>), 简言之引进的隐变量不能没有用, 举个例子来说明这个性质(来自维基百科):</p>
+<table>
+<thead>
+<tr class="header">
+<th>本科生</th>
+<th>读过机器学习</th>
+<th>没读过机器学习</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>读过凸优化</strong></td>
+<td>260</td>
+<td>140</td>
+</tr>
+<tr class="even">
+<td><strong>没读过凸优化</strong></td>
+<td>240</td>
+<td>360</td>
+</tr>
+</tbody>
+</table>
+<p>容易看到读过机器学习的概率是<span class="math inline">\(\frac{500}{1000}=0.5\)</span>, 读过凸优化的概率是<span class="math inline">\(\frac{400}{1000}=0.4\)</span>, 但是两者都读过的概率是<span class="math inline">\(\frac{260}{1000}=0.26\)</span>, 不等于<span class="math inline">\(\frac{500}{1000}\times\frac{400}{1000}=0.2\)</span>, 因此并不独立. 若我们引进变量本科高年级生和本科低年级生:</p>
+<table>
+<thead>
+<tr class="header">
+<th>高年级/低年级</th>
+<th>读过机器学习</th>
+<th>没读过机器学习</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>读过凸优化</strong></td>
+<td>240/20</td>
+<td>60/80</td>
+</tr>
+<tr class="even">
+<td><strong>没读过凸优化</strong></td>
+<td>160/80</td>
+<td>40/320</td>
+</tr>
+</tbody>
+</table>
+<p>就会发现, 对高年级生<span class="math inline">\(\frac{400}{500}\times\frac{300}{500}=\frac{240}{500}\)</span>; 对低年级生<span class="math inline">\(\frac{100}{500}\times\frac{100}{500}=\frac{20}{500}\)</span>, 此时相关性已经被隐变量解释掉了.</p>
+<hr />
+<h2 id="隐狄利克雷分配模型">隐狄利克雷分配模型</h2>
+<p>下面举个隐变量模型的例子, 隐狄利克雷分配模型. 假如我读过东野圭吾的新参者, 我希望推荐系统能把白夜行也推荐给我. 这里直接给出模型的完整形式, 具体怎么来的请见博文<a href="https://msgsxj.cn/2018/10/16/Latent-Dirichlet-Allocation/">Latent Dirichlet Allocation</a>的第一节. <span class="math display">\[P(W, Z, \Theta\mid \varphi, \alpha)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>其中:</p>
+<ul>
+<li><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>, <span class="math inline">\(T\)</span>给定.</li>
+<li><span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
+<li><span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{w_{dn}z_{dn}}\)</span>, 给定词汇表<span class="math inline">\(w_{set}\)</span>, <span class="math inline">\(w_{dn}\in\{1,2,...,\left|w_{set}\right|\}\)</span>.</li>
+</ul>
+<p>大小字母表示小写字母的总和, 参数仍简记为小写字母, 总结如下:</p>
+<ul>
+<li>未知:<span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>未知参数.</li>
+<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
+<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
+</ul>
+<hr />
+<h2 id="变分贝叶斯方法">变分贝叶斯方法</h2>
+<h3 id="em算法">EM算法</h3>
+<p>下面尝试用4种方法来解决这个模型, 首先从我们最熟悉的EM算法开始(不熟悉的话可以参见我的另一篇博文<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>): EM算法的目标是极大化对数似然函数<span class="math inline">\(\log P(W\mid\varphi, \alpha)\)</span>, 且每一步迭代又给出隐变量<span class="math inline">\(Z, \Theta\)</span>的概率分布以及<span class="math inline">\(\varphi, \alpha\)</span>的点估计. 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:</p>
+<ul>
+<li>E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>.</li>
+<li>M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
+</ul>
+<p><strong>p.s.</strong> EM算法的迭代过程没有涉及参数<span class="math inline">\(\varphi, \alpha\)</span>分布, 且没有引进先验分布, 因而仍然算是频率学派的方法, 下面来看一种明显是属于贝叶斯学派的方法:变分推断</p>
+<h3 id="变分推断">变分推断</h3>
+<p>根据贝叶斯思想, 我们将参数<span class="math inline">\(\varphi, \alpha\)</span>视为随机变量, 因此必须给出参数<span class="math inline">\(\varphi, \alpha\)</span>的先验假设<span class="math inline">\(P(\varphi), P(\alpha)\)</span>, 如果能直接算出隐变量及未知参数<span class="math inline">\(Z, \Theta, \varphi, \alpha\)</span>的概率分布<span class="math inline">\(P(Z, \Theta, \varphi, \alpha\mid W)\)</span>, 那么就能很方便的得到想要的参数值(比如说通过极大后验分布MAP). 事实上, 我们已经有了<span class="math inline">\(P(W, Z, \Theta\mid \varphi, \alpha)\)</span>, 根据贝叶斯公式:<span class="math display">\[P(Z, \Theta, \varphi, \alpha\mid W)=\frac{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}{P(W)}=\frac{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}{\int_{Z, \Theta, \varphi, \alpha} P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}\]</span>通过分析不难发现, 如果给出的参数<span class="math inline">\(\varphi, \alpha\)</span>的先验恰为共轭先验, 那么上式就非常好求, 否则就不可避免的要计算<span class="math inline">\(P(W)\)</span>, 而这事实上相当难处理.</p>
+<p>变分推断则是试图绕过求<span class="math inline">\(P(W)\)</span>, 去找一个对<span class="math inline">\(P(Z, \Theta, \varphi, \alpha\mid W)\)</span>的良好逼近<span class="math inline">\(q(Z, \Theta, \varphi, \alpha)\)</span>, 其中<span class="math inline">\(q(Z, \Theta, \varphi, \alpha)\)</span>会来自一个简单得多的分布族, 比如<span class="math inline">\(Q=N(\mu, \Sigma)\)</span>, 其中<span class="math inline">\(\Sigma\)</span>为对角阵; 而逼近的方法一般则是最小化<span class="math inline">\(\mathcal{KL}\)</span>散度:<span class="math display">\[q=\arg\min_{q\in Q}\mathcal{KL}(q(Z, \Theta, \varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W))\]</span>关于<span class="math inline">\(\mathcal{KL}\)</span>散度的定义见<a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">维基百科</a>, 这里简单理解为衡量两个分布的距离就好. 下式告诉我们, 变分推断确实可以绕开<span class="math inline">\(P(W)\)</span>, 下面把<span class="math inline">\(q(Z, \Theta, \varphi, \alpha)\)</span>简记为<span class="math inline">\(q\)</span>: <span class="math display">\[\begin{aligned} \mathcal{KL}(q\Vert P(Z, \Theta, \varphi, \alpha\mid W)) &amp; =  \mathcal{KL}(q\Vert \frac{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}{P(W)}) \\\
+&amp; =\int  q\log \frac{q}{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)/P(W)} dZd \Theta d\varphi d\alpha\\\
+&amp; = \int \left( q\log \frac{q}{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}dZd \Theta  +  q\log P(W) \right)dZd \Theta d\varphi d\alpha\\\
+&amp; =  \mathcal{KL}(q\Vert P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha))+\log P(W) \end{aligned}\]</span>其中第一个等号为简单带入, 第二个等号由<span class="math inline">\(\mathcal{KL}\)</span>散度的定义, 第三个等号为简单化简, 第四个等号由<span class="math inline">\(\mathcal{KL}\)</span>散度定义. 容易看到, 最后一个等式的后一项<span class="math inline">\(\log P(W)\)</span>与<span class="math inline">\(q\)</span>无关, 因而成功绕开了<span class="math inline">\(P(W)\)</span>, 这便是变分推断.</p>
+<p><strong>p.s.</strong> 变分推断需要给出参数的先验分布和分布族<span class="math inline">\(Q\)</span>. 如果<span class="math inline">\(Q\)</span>足够大, 则有<span class="math display">\[q(Z, \Theta, \varphi, \alpha)=P(Z, \Theta, \varphi, \alpha\mid W)\]</span>并没有简化计算. 所以这个分布族<span class="math inline">\(Q\)</span>的选取也是一件麻烦的事情, 既要考虑<span class="math inline">\(Z, \Theta\)</span>实际上是有关的, 又要考虑参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>是无关的. 一个合理的想法是预先假定<span class="math inline">\(\varphi, \alpha\)</span>与<span class="math inline">\(Z, \Theta\)</span>是无关的, 在变分推断的基础上于是有了平均场近似的变分推断:</p>
+<h3 id="平均场近变分推断">平均场近变分推断</h3>
+<p>其想法很简单, 在变分推断<span class="math display">\[q=\arg\min_{q\in Q}\mathcal{KL}(q(Z, \Theta, \varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W))\]</span>的基础上, 预先假定参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>的独立性, 得到 <span class="math display">\[\begin{aligned}q(Z, \Theta)&amp;=\arg\min_{q(Z, \Theta)\in Q_1}\mathcal{KL}(q(Z, \Theta) q(\varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W)) \\\
+q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \Theta)q(\varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W))\end{aligned}\]</span>这样计算上有了一定程度的减小, 当然准确度也有可能有一定的损失, 但其实际上不失为一个好的假设. 下面来看平均长近似后的形式, 为了表述方便, 记<span class="math inline">\(q(Z, \Theta)=q_1\)</span>, <span class="math inline">\(q(\varphi, \alpha)=q_2\)</span>, <span class="math inline">\(P(Z, \Theta, \varphi, \alpha\mid W)=\hat{P}\)</span>, <span class="math inline">\(dZd \Theta d\varphi d\alpha=d\hat{Z}\)</span>, 目标则简化为<span class="math display">\[q_i=\arg\min_{q_i\in Q_i}\mathcal{KL}(\prod_{i=1}^2 q_i\Vert \hat{P})\]</span>下面来看, 目标是对<span class="math inline">\(q_k\in Q_k\)</span>求最小值点, <span class="math inline">\(k=1, 2\)</span>: <span class="math display">\[\begin{aligned} \mathcal{KL}(\prod_{i=1}^2 q_i\Vert \hat{P}) &amp; =  \int  \prod_{j=1}^2 q_j\log \frac{\prod_{i=1}^2 q_i}{\hat{P}} d\hat{Z} \\\
+&amp; =\sum_{i=1}^2\int   \prod_{j=1}^2q_j\log q_i d\hat{Z}-\int   \prod_{j=1}^2q_j\log \hat{P}d\hat{Z}\\\
+&amp; = \int   \prod_{j=1}^2q_j\log q_k d\hat{Z}+\sum_{i\neq k}^2\int   \prod_{j=1}^2q_j\log q_i d\hat{Z}-\int   \prod_{j=1}^2q_j\log \hat{P} d\hat{Z} \\\
+&amp;=\int   q_k\log q_k d\hat{Z}_k+\sum_{i\neq k}^2\int   \prod_{j\neq k}^2q_j\log q_i d\hat{Z}_{-k}-\int   \prod_{j=1}^2q_j\log \hat{P} d\hat{Z} \\\
+&amp;= \int   q_k\log q_k d\hat{Z}_k-\int q_k\left[\int   \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}\right]d\hat{Z}_k + C\\\
+&amp;=\int   q_k\left[\log q_k -\int   \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}\right]d\hat{Z}_k + C \end{aligned}\]</span>这里的<span class="math inline">\(d\hat{Z}\)</span>为<span class="math inline">\(dZd \Theta d\varphi d\alpha\)</span>, <span class="math inline">\(d\hat{Z}_k\)</span>为对<span class="math inline">\(q_k\)</span>的变量积分, 比方说<span class="math inline">\(k=1\)</span>, 即为<span class="math inline">\(dZ d\Theta\)</span>, <span class="math inline">\(d\hat{Z}_{-k}\)</span>为对除<span class="math inline">\(q_k\)</span>的之外的变量积分.</p>
+<p>稍作解释:第一个等号由<span class="math inline">\(\mathcal{KL}\)</span>散度的定义; 第二个等号为简单化简; 第三个等号为将第一项拆成<span class="math inline">\(i=k\)</span>和<span class="math inline">\(i\neq k\)</span>两项; 第四个等号为对第一第二项中能积分的先积掉; 第五个等号为将第三项对<span class="math inline">\(q_k\)</span>的积分拎到最前面, 且此时第二项与<span class="math inline">\(q_k\)</span>无关, 视为常数<span class="math inline">\(C\)</span>; 第六个等号即为简单合并.</p>
+<p>下面继续, 把我们把<span class="math inline">\(\int \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}=\mathbb{E}_{q_{-k}}\log \hat{P}\)</span>记作<span class="math inline">\(h(\hat{Z}_k)\)</span>, 再令<span class="math inline">\(t(\hat{Z}_k)=\frac{exp(h(\hat{Z}_k))}{\int exp(h(\hat{Z}_k))d\hat{Z}_k}\)</span>, 除以正则项确保是个概率分布, 上式可继续化为: <span class="math display">\[\begin{aligned} \mathcal{KL}(\prod_{i=1}^2 q_i\Vert \hat{P}) &amp; =  \int   q_k\left[\log q_k -\int   \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}\right]d\hat{Z}_k + C\\\
+&amp; =  \int   q_k\left[\log q_k d\hat{Z}_k-h(\hat{Z}_k)\right]d\hat{Z}_k + C\\\
+&amp;=\int   q_k\log \frac{q_k}{t} d\hat{Z}_k + C \end{aligned}\]</span>注意到第一项即为KL散度, 那么此时关于<span class="math inline">\(q_k\)</span>取极小只需令<span class="math inline">\(q_k=t=\frac{exp(h(\hat{Z}_k))}{\int exp(h(\hat{Z}_k))d\hat{Z}_k}\)</span>, 其中<span class="math inline">\(h(\hat{Z}_k)=\mathbb{E}_{q_{-k}}\log \hat{P}\)</span>再取对数得到<span class="math display">\[\log q_k=\mathbb{E}_{q_{-k}}\log \hat{P}+C\]</span>其中<span class="math inline">\(\hat{P}=P(Z, \Theta, \varphi, \alpha\mid W)\)</span>在LDA模型这个例子中, 上述结果化为: <span class="math display">\[\begin{aligned}\log q(Z, \Theta)&amp;=\mathbb{E}_{q(\varphi, \alpha)}\log P(Z, \Theta, \varphi, \alpha\mid W)+C_1  \\\
+\log q(\varphi, \alpha)&amp;=\mathbb{E}_{q(Z, \Theta)}\log P(Z, \Theta, \varphi, \alpha\mid W)+C_2\end{aligned}\]</span></p>
+<p><strong>p.s.</strong> 相比变分推断, 这个平均场近似的变分推断实际是将参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>进行了分开处理, 降低了模型复杂度, 同时明显也降低了计算的维度, 但由于对参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>的独立性假设非常合理, 所以也不会有太多精度上的损失, 甚至会使得模型更稳健. 另外顺便得到了一个非常有用的式子, 这个式子能在<a href="https://en.wikipedia.org/wiki/Variational_Bayesian_methods">变分贝叶斯方法</a> 的维基百科的Mean field approximation一节找到, 只是没有上述的推导过程.</p>
+<p>EM算法也是将参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>进行了分开处理, 并且对隐变量<span class="math inline">\(Z, \Theta\)</span>同样是通过对<span class="math inline">\(\mathcal{KL}\)</span>散度最小化求得分布, 而EM算法对未知参数则是直接采用了点估计的方法而不是变分推断. 因此相比平均场近似的变分推断, EM算法进一步降低了计算复杂度, , 我想这大概就是EM算法流行的理由之一.</p>
+<h3 id="平均场em算法">平均场EM算法</h3>
+<p>平均场EM算法实际上是在EM算法基础上进一步对隐变量<span class="math inline">\(Z, \Theta\)</span>进行了独立性假设. 下面分两步在EM算法的基础上推导出平均场EM算法:</p>
+<ol type="1">
+<li>EM算法: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:
+<ul>
+<li>E步: <span class="math inline">\(q^{k+1}(Z, \Theta)=\arg\min_{q(Z, \Theta)\in Q_1}\mathcal{KL}(q(Z, \Theta)\Vert P(Z, \Theta\mid W, \varphi, \alpha))\)</span>.</li>
+<li>M步: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
+</ul></li>
+<li>假定<span class="math inline">\(q(Z, \Theta)=q(Z)q(\Theta)\)</span>, 由平均场近似得到的公式, 得到平均场EM算法: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:
+<ul>
+<li>E步:<span class="math inline">\(\begin{aligned}\log q^{k+1}(Z)&amp;=\mathbb{E}_{q(\Theta)}\log P(Z, \Theta\mid \varphi^k, \alpha^k, W)+C_1 \\\
+\log q^{k+1}(\Theta)&amp;=\mathbb{E}_{q(Z)}\log P(Z, \Theta\mid \varphi^k, \alpha^k, W)+C_2\end{aligned}\)</span></li>
+<li>M步: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}(Z, \Theta)}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span></li>
+</ul></li>
+</ol>
+<p><strong>p.s.</strong> 平均场EM算法比EM算法多了一个隐变量之间独立的假设, 但一般隐变量之间应该不独立, 比方说这个LDA模型中<span class="math inline">\(Z\)</span>代表每篇文档每个单词的主题分布, <span class="math inline">\(\Theta\)</span>代表每篇文档的主题分布, 两者应该不独立, 所以平均场EM算法不适合这个例子. 另外相比EM算法, 平均场EM算法因为多了一个独立性假设, 模型应该会变得简单一些, 但精度有可能会有些损失.</p>
+<h3 id="总结">总结</h3>
+<p>最后用一张表格总结上述4中算法:</p>
+<table>
+<thead>
+<tr class="header">
+<th>算法</th>
+<th>模型复杂度</th>
+<th>需要的计算资源</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>变分推断</strong></td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td><strong>平均场变分推断</strong></td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td><strong>EM算法</strong></td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td><strong>平均场EM算法</strong></td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>EM算法作为其中比较折中的选择, 兼顾了模型复杂度与计算资源.</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>LDA模型</tag>
+        <tag>变分贝叶斯</tag>
+        <tag>变分推断</tag>
+        <tag>平均场近似</tag>
+        <tag>KL散度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>拉德马赫复杂度</title>
+    <url>/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/</url>
+    <content><![CDATA[<p>前言: 本文主要讲了拉德马赫复杂度(<a href="https://en.wikipedia.org/wiki/Rademacher_complexity">Rademacher complexity</a>), 主要参考了Understanding machine learning一书26章.</p>
+<span id="more"></span>
+<hr />
+<p>首先应当接触以下几个概念:</p>
+<ul>
+<li>样本空间: 对于监督学习而言为带标签的样本<span class="math inline">\((x,y)\)</span>的取值空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>, 学习的目标是映射<span class="math inline">\(f: \mathcal{X}\to\mathcal{Y}\)</span>, 以用于产生对新样本<span class="math inline">\(x_{new}\)</span>的标签的可靠预测<span class="math inline">\(f(x_{new})\)</span>. <code>p.s.</code>对无监督学习而言为不带标签的样本<span class="math inline">\(x\)</span>的取值空间<span class="math inline">\(\mathcal{X}\)</span>, 学习目标为对<span class="math inline">\(\mathcal{X}\)</span>的可靠分类.</li>
+<li>目标函数: 通常记为<span class="math inline">\(f\)</span>, 即上述监督学习中所说的映射<span class="math inline">\(f\)</span>. 对于分类问题就是我们希望得到的真实的分类函数.</li>
+<li>训练集: 通常记为<span class="math inline">\(S\)</span>, 由定义在样本空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>上的概率分布<span class="math inline">\(\mathcal{D}\)</span>抽样得到 <span class="math display">\[S=\{(x_{1},y_{1}),....,(x_{m},y_{m})\}\]</span></li>
+<li>学习算法: 通常记为<span class="math inline">\(A\)</span>, 即我们构建的、能从数据中学到东西的学习算法, 期望其能从假设类中返回良好的假设.</li>
+<li>假设类: 通常记为<span class="math inline">\(\mathcal{H}\)</span>, 对目标函数<span class="math inline">\(f\)</span>的假设构成的空间, 学习器从中选择.</li>
+<li>预测器(predictor): 或者说分类器(classifier)、假设(hypothesis), 通常记为<span class="math inline">\(h\)</span>, 即学习器输出的一个函数:<span class="math inline">\(h:\mathcal{X}\to\mathcal{Y}\)</span>, 且应当和目标函数<span class="math inline">\(f\)</span>有相近的函数值.</li>
+<li>损失函数: 通常记为<span class="math inline">\(l(h, (x, y))\)</span>, 其定义在预测器<span class="math inline">\(h\)</span>和单个样本<span class="math inline">\((x, y)\)</span>上. 对于二分类问题, 一个常用的损失函数为<span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>, 即分对了就为0, 分错了就为1.</li>
+<li>训练误差: 通常记为<span class="math inline">\(L_{S}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在训练集<span class="math inline">\(S\)</span>上的平均损失<span class="math display">\[L_{S}(h)=\frac{1}{m}\sum_{i=1}^m l(h, (x_i, y_i))\]</span></li>
+<li>泛化误差: 通常记为<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在<span class="math inline">\((\mathcal{X}, \mathcal{Y})\)</span>上的平均损失<span class="math display">\[\mathbb{E}_{(x, y)\sim (\mathcal{X}, \mathcal{Y})}l(h, (x, y))\]</span></li>
+<li><span class="math inline">\(\varepsilon\)</span>-代表性样本: 一个训练集被称为<span class="math inline">\(\varepsilon\)</span>-代表性样本(定义在域<span class="math inline">\(Z\)</span>, 假设类<span class="math inline">\(\mathcal{H}\)</span>, 损失函数<span class="math inline">\(l\)</span>和分布<span class="math inline">\(\mathcal{D}\)</span>上), 如果满足<span class="math display">\[\sup_{h\in\mathcal{H}}|L_{S}(h)-L_{\mathcal{D}}(h)|\le\varepsilon\]</span></li>
+</ul>
+<p>接着应当知道如下基本事实:</p>
+<blockquote>
+<p>如果<span class="math inline">\(S\)</span>是<span class="math inline">\(\varepsilon/2\)</span>-代表性样本, 那么在ERM准则下它是<span class="math inline">\(\varepsilon\)</span>-一致的, 即<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))\le \min_{h\in\mathcal{H}}L_{\mathcal{D}}(h)+\varepsilon\]</span></p>
+</blockquote>
+<hr />
+<h3 id="拉德马赫复杂度">拉德马赫复杂度</h3>
+<p>回顾之前针对二分类问题建立的<a href="https://msgsxj.cn/2018/06/14/VC-bound/">VC bound</a>:<span class="math display">\[
+\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
+\]</span>注意到要定义训练误差与泛化误差必须要定义损失函数, 损失函数实际上选定了二分类问题的常用的损失函数0-1损失: <span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>; 因此上述VC bound又可以写作:<span class="math display">\[
+\sup_{f\in\mathcal{F}}\left|L_{S}(f)-L_{\mathcal{D}}(f)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
+\]</span>这里的<span class="math inline">\(\mathcal{F}\)</span>定义为<span class="math display">\[l \circ \mathcal{H}=\{z\mapsto l(h, z):h\in\mathcal{H}\}\]</span> 相应的<span class="math inline">\(L_{S}(f)=\frac{1}{m}\sum_{i=1}^m f(z_i)\)</span>, <span class="math inline">\(L_{\mathcal{D}}(f)=\mathbb{E}_{z\sim \mathcal{D}}f(z)\)</span>, 当然这里的<span class="math inline">\(l\)</span>已经固定为0-1损失. 定义训练集<span class="math inline">\(S\)</span>在<span class="math inline">\(\mathcal{F}\)</span>上的代表性为:<span class="math display">\[Rep_{\mathcal{D}}(\mathcal{F}, S)\doteq\sup_{f\in\mathcal{F}}(L_{\mathcal{D}}(f)-L_{S}(f))\]</span>一般来说, 训练误差<span class="math inline">\(L_{S}\)</span>能通过优化达到一个非常接近于0的数值, 比如<a href="https://arxiv.org/abs/1811.03804">这篇文章</a>说明了用梯度下降训练ResNet能在多项式时间内达到0训练误差, 即达到全局最优; 泛化误差<span class="math inline">\(L_{\mathcal{D}}\)</span>则会略大于训练误差. 显然当<span class="math inline">\(S\)</span>越能代表<span class="math inline">\(\mathcal{D}\)</span>, 上数值会越接近于0. 现在想要仅仅依靠训练集<span class="math inline">\(S\)</span>本身去估计其代表性, 一个自然地想法是将<span class="math inline">\(S\)</span>分成两个不相交的子集<span class="math inline">\(S=S_1\cup S_2\)</span>, <span class="math inline">\(S_1\)</span>作为验证集, <span class="math inline">\(S_2\)</span>作为训练集, 此时训练集代表性的一个近似为:<span class="math display">\[\sup_{f\in\mathcal{F}}(L_{\mathcal{S_1}}(f)-L_{S_2}(f))\]</span>再设多元随机变量<span class="math display">\[\sigma=(\sigma_1, \sigma_2,...,\sigma_m)\in\{\pm 1\}^m\]</span> 并按如下方式取定随机变量的值<span class="math inline">\(S_1=\{z_i:\sigma_i=1\}\)</span>, <span class="math inline">\(S_2=\{z_i:\sigma_i=-1\}\)</span>, 上式可写成更简单的形式:<span class="math display">\[\frac{1}{m}\sup_{f\in\mathcal{F}}\sum_{i=1}^m \sigma_i f(z_i)\]</span> 此时随机变量的不同的取值代表不同的验证集和训练集的组合, <strong>拉德马赫复杂度</strong>定义为上式近似对随机变量<span class="math inline">\(\sigma\)</span>的期望:<span class="math display">\[R(\mathcal{F}\circ S)\doteq\frac{1}{m}\mathop{\mathbb{E}}_{\sigma\sim\{\pm 1\}^m} [\sup_{f\in\mathcal{F}}\sum_{i=1}^m \sigma_i f(z_i)]\]</span>可以证明, 在期望意义下, 集合<span class="math inline">\(S\)</span>的代表性不超过2倍的拉德马赫复杂度<span class="math display">\[\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[Rep_{\mathcal{D}}(\mathcal{F}, S)]\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(\mathcal{F}\circ S)]\]</span>证明见Understanding machine learning一书引理26.2.</p>
+<hr />
+<h3 id="数据相关界">数据相关界</h3>
+<p>首先来看一个重要的不等式, 有限偏差集中不等式, 又称<a href="https://en.wikipedia.org/wiki/Doob_martingale#McDiarmid&#39;s_inequality">McDiarmid 不等式</a>, 这个不等式可见维基, 这个不等式可用来推出一个与训练集<span class="math inline">\(S\)</span>相关的界:</p>
+<blockquote>
+<p>假设对所有的<span class="math inline">\(z\)</span>和<span class="math inline">\(h\in\mathcal{H}\)</span>, <span class="math inline">\(|l(h, z)|\le c\)</span>, 那么以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(l \circ \mathcal{H}\circ S)]+c\sqrt{\frac{2\log(2/\delta)}{m}}\]</span>以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2R(l \circ \mathcal{H}\circ S)+4c\sqrt{\frac{2\log(4/\delta)}{m}}\]</span> 以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))-L_{\mathcal{D}}(h)\le 2R(l \circ \mathcal{H}\circ S)+5c\sqrt{\frac{2\log(8/\delta)}{m}}\]</span></p>
+</blockquote>
+<p>有兴趣的朋友不妨试着去推一推, 上述1, 2的界的推导类似于西瓜书定理12.5, 唯一不同的是这里满足在常数为<span class="math inline">\(2c/m\)</span>下的有界偏差条件, 而西瓜书直接为1; 第三个不等式则是多一步霍夫丁不等式.</p>
+<ul>
+<li>注意到第2, 3个界实际上由具体的训练集<span class="math inline">\(S\)</span>计算出来的, 因此这两个界被称为是数据相关界, 这也是与VC bound最大的不同之处.</li>
+<li>第二个界可以用来评估当前分类器<span class="math inline">\(h\)</span>在实际数据集<span class="math inline">\(\mathcal{D}\)</span>上的表现, 即<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>.</li>
+<li>第三个界可以用来评估利用ERM原则得到的分类器<span class="math inline">\(h\)</span>与理论最佳分类器的实际差距, 因此希望这个界越小越好; 显然假设类<span class="math inline">\(\mathcal{H}\)</span>越复杂, 这个界越大, 因此某种意义上这个界能用来评估假设类<span class="math inline">\(\mathcal{H}\)</span>的优劣.</li>
+</ul>
+<hr />
+<h3 id="拉德马赫复杂度的性质">拉德马赫复杂度的性质</h3>
+<p>首先给出拉德马赫复杂度的更一般化定义: 给定一个向量集合<span class="math inline">\(A\in\mathbb{R}^m\)</span> <span class="math display">\[R(A)\doteq\frac{1}{m}\mathop{\mathbb{E}}_{\sigma\sim\{\pm 1\}^m} [\sup_{a\in A}\sum_{i=1}^m \sigma_i a_i]\]</span>这里例举拉德马赫复杂度的几条性质, 具体见Understanding machine learning一书26章:</p>
+<ul>
+<li>A的凸包与A具有一样的拉德马赫复杂度.</li>
+<li>一个有限集合的拉德马赫复杂度随着集合大小增长而对数增长.</li>
+<li>如果给集合A作用一个Lipschitz连续的函数, 并不会增大其拉德马赫复杂度.</li>
+</ul>
+<hr />
+<h3 id="线性类的拉德马赫复杂度">线性类的拉德马赫复杂度</h3>
+<p>本节给出两个线性的假设类的拉德马赫复杂度, 假定<span class="math inline">\(x\)</span>的维数为<span class="math inline">\(n\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\mathcal{H}_1=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_1\le 1\}\)</span></li>
+<li><span class="math inline">\(\mathcal{H}_2=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_2\le 1\}\)</span></li>
+</ul>
+<p><span class="math inline">\(\mathcal{H}_1\circ S\)</span>定义为<span class="math inline">\(\{(&lt;\omega, x_i&gt;, i=1...,m):\Vert\omega\Vert_1\le 1\}\)</span>, <span class="math inline">\(\mathcal{H}_2\circ S\)</span>类似的定义, 有如下两个结果, 证明见[UML]一书引理26.10、26.11:</p>
+<ul>
+<li><span class="math inline">\(R(\mathcal{H}_1\circ S) \le \max_i\Vert x_i\Vert_{\infty}\sqrt{\frac{2\log(2n)}{m}}\)</span></li>
+<li><span class="math inline">\(R(\mathcal{H}_2\circ S) \le\frac{\max_i\Vert x_i\Vert_2}{\sqrt{m}}\)</span></li>
+</ul>
+<p><strong>p.s.</strong> 此外还有软硬间隔SVM的泛化误差界的推导, 见26.3, 26.4; 另一种度量集合复杂度的方法为覆盖数, 见27章.</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>拉德马赫复杂度</tag>
       </tags>
   </entry>
   <entry>
@@ -2124,277 +2356,29 @@ cov(v_2,v_1)&amp;=cov(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_2,\
       </tags>
   </entry>
   <entry>
-    <title>变分贝叶斯方法</title>
-    <url>/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>前言:本文主要是关于变分贝叶斯方法, 这是一类用简单分布去逼近目标分布的方法, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3. <span id="more"></span></p>
+    <title>拉普拉斯方法</title>
+    <url>/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>前言: 本文主要是关于拉普拉斯近似方法, 这是一种用来近似计算积分的方法, 主要参考了维基百科及PRML一书6.4节. <span id="more"></span></p>
 <hr />
-<p>本文主要是关于变分推断, 或者说<a href="https://en.wikipedia.org/wiki/Variational_Bayesian_methods">变分贝叶斯方法</a>, 它是一类用来计算难以计算积分的方法. 本文的定位是对EM算法的有益补充, 因此会结合EM算法去讲一讲什么是变分推断及平均场近似, 并得到EM算法的三种变体.</p>
-<p>关于EM算法可以参见我的另一篇博文<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>, 简单的说,EM算法是专门处理隐变量模型的算法. 下文我们会以隐狄利克雷分配模型(Latent Dirichlet Allocation: LDA)为例来说明本文的主角, 当然这是一个隐变量模型.</p>
+<h2 id="拉普拉斯近似方法">拉普拉斯近似方法</h2>
+拉普拉斯近似方法(<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">Laplace's method</a>)是一种近似计算积分的方法, 目标积分形如<span class="math display">\[\int_a^be^{Mf(x)}dx\]</span>其中<span class="math inline">\(f(x)\)</span>要求是二次可微的, <span class="math inline">\(M\)</span>要求是一个较大的数. 其想法是假定<span class="math inline">\(x_0\)</span>是<span class="math inline">\(f(x)\)</span>唯一的最大值点, 因此<span class="math inline">\(f(x_0)&gt;f(x)\)</span>, 乘上一个较大的M, 在经过指数函数的作用, 其差值事实上会变得很大, 不难想象随着<span class="math inline">\(M\)</span>的增大积分内的函数会越来越像一个单峰函数, 事实上确实会逼近对一个正态分布进行积分的值. 举个例子<span class="math inline">\(f(x)=sinx/x\)</span>, 分别画出<span class="math inline">\(e^{sinx/x}\)</span>和<span class="math inline">\(e^{3sinx/x}\)</span>的函数图像:
+<div data-align="center">
+<img src="/pictures/laplace_method/exp%283sinx_x%29.png" width="60%" height="50%" />
+</div>
+<div data-align="center">
+<img src="/pictures/laplace_method/exp%28sinx_x%29.png" width="60%" height="50%" />
+</div>
+<p>考虑多元情形, 假定<span class="math inline">\(x_0\)</span>为f(x)的最大值点, 因此有<span class="math inline">\(\nabla f(x_0)=0\)</span>且Hessian矩阵<span class="math inline">\(H(x_0)负定\)</span>. 将<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处泰勒展开得<span class="math display">\[f(x)\approx f(x_0)+\frac{1}{2!}(x-x_0)^TH(x_0)(x-x_0)\]</span>此时积分近似为<span class="math display">\[\int_a^be^{Mf(x)}dx\approx e^{Mf(x_0)}\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\]</span>假设<span class="math inline">\(x_0\)</span>包含在区间<span class="math inline">\([a,b]\)</span>内, 那么右式可以直接视为在<span class="math inline">\((-\infty,+\infty)\)</span>上的积分, 因为随着<span class="math inline">\(M\)</span>的增大区间之外的积分会越来越小. 而此时右边的积分即为一个对多元正态分布的积分, 且该积分可以通过变量代换<span class="math inline">\(t=H(x_0)^{\frac{1}{2}}(x-x_0)\)</span>化成标准的多元正态分布计算出来:<span class="math display">\[\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\approx \int_{-\infty}^{+\infty} e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx=\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里的<span class="math inline">\(d\)</span>指的是自变量<span class="math inline">\(x\)</span>的维度, <span class="math inline">\(H(x_0)\)</span>指<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处的Hessian矩阵. 因此得到结论:<span class="math display">\[\int_a^be^{Mf(x)}dx\approx  e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>本质上来说, 倘若暂时先不考虑<span class="math inline">\(M\)</span>的大小, 用二阶泰勒展开对<span class="math inline">\(f(x)\)</span>进行近似的方法实际上是把被积函数视为多元正态分布. 一元情形的相关定理描述及证明请移步<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">维基百科</a>, 最后来看一个更一般的结论:<span class="math display">\[\int_a^bh(x)e^{Mf(x)}dx\approx  h(x_0)e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里要求<span class="math inline">\(h(x)&gt;0\)</span>.</p>
 <hr />
-<h2 id="隐变量模型">隐变量模型</h2>
-<p><a href="https://en.wikipedia.org/wiki/Latent_variable_model">隐变量模型</a>, 隐变量模型含有未观测到值的变量, 且该隐变量解释了观测到的变量之间的相关性(<a href="https://en.wikipedia.org/wiki/Local_independence">局部独立性</a>), 简言之引进的隐变量不能没有用, 举个例子来说明这个性质(来自维基百科):</p>
-<table>
-<thead>
-<tr class="header">
-<th>本科生</th>
-<th>读过机器学习</th>
-<th>没读过机器学习</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>读过凸优化</strong></td>
-<td>260</td>
-<td>140</td>
-</tr>
-<tr class="even">
-<td><strong>没读过凸优化</strong></td>
-<td>240</td>
-<td>360</td>
-</tr>
-</tbody>
-</table>
-<p>容易看到读过机器学习的概率是<span class="math inline">\(\frac{500}{1000}=0.5\)</span>, 读过凸优化的概率是<span class="math inline">\(\frac{400}{1000}=0.4\)</span>, 但是两者都读过的概率是<span class="math inline">\(\frac{260}{1000}=0.26\)</span>, 不等于<span class="math inline">\(\frac{500}{1000}\times\frac{400}{1000}=0.2\)</span>, 因此并不独立. 若我们引进变量本科高年级生和本科低年级生:</p>
-<table>
-<thead>
-<tr class="header">
-<th>高年级/低年级</th>
-<th>读过机器学习</th>
-<th>没读过机器学习</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>读过凸优化</strong></td>
-<td>240/20</td>
-<td>60/80</td>
-</tr>
-<tr class="even">
-<td><strong>没读过凸优化</strong></td>
-<td>160/80</td>
-<td>40/320</td>
-</tr>
-</tbody>
-</table>
-<p>就会发现, 对高年级生<span class="math inline">\(\frac{400}{500}\times\frac{300}{500}=\frac{240}{500}\)</span>; 对低年级生<span class="math inline">\(\frac{100}{500}\times\frac{100}{500}=\frac{20}{500}\)</span>, 此时相关性已经被隐变量解释掉了.</p>
-<hr />
-<h2 id="隐狄利克雷分配模型">隐狄利克雷分配模型</h2>
-<p>下面举个隐变量模型的例子, 隐狄利克雷分配模型. 假如我读过东野圭吾的新参者, 我希望推荐系统能把白夜行也推荐给我. 这里直接给出模型的完整形式, 具体怎么来的请见博文<a href="https://msgsxj.cn/2018/10/16/Latent-Dirichlet-Allocation/">Latent Dirichlet Allocation</a>的第一节. <span class="math display">\[P(W, Z, \Theta\mid \varphi, \alpha)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>其中:</p>
-<ul>
-<li><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>, <span class="math inline">\(T\)</span>给定.</li>
-<li><span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
-<li><span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{w_{dn}z_{dn}}\)</span>, 给定词汇表<span class="math inline">\(w_{set}\)</span>, <span class="math inline">\(w_{dn}\in\{1,2,...,\left|w_{set}\right|\}\)</span>.</li>
-</ul>
-<p>大小字母表示小写字母的总和, 参数仍简记为小写字母, 总结如下:</p>
-<ul>
-<li>未知:<span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>未知参数.</li>
-<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
-<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
-</ul>
-<hr />
-<h2 id="变分贝叶斯方法">变分贝叶斯方法</h2>
-<h3 id="em算法">EM算法</h3>
-<p>下面尝试用4种方法来解决这个模型, 首先从我们最熟悉的EM算法开始(不熟悉的话可以参见我的另一篇博文<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>): EM算法的目标是极大化对数似然函数<span class="math inline">\(\log P(W\mid\varphi, \alpha)\)</span>, 且每一步迭代又给出隐变量<span class="math inline">\(Z, \Theta\)</span>的概率分布以及<span class="math inline">\(\varphi, \alpha\)</span>的点估计. 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:</p>
-<ul>
-<li>E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>.</li>
-<li>M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
-</ul>
-<p><strong>p.s.</strong> EM算法的迭代过程没有涉及参数<span class="math inline">\(\varphi, \alpha\)</span>分布, 且没有引进先验分布, 因而仍然算是频率学派的方法, 下面来看一种明显是属于贝叶斯学派的方法:变分推断</p>
-<h3 id="变分推断">变分推断</h3>
-<p>根据贝叶斯思想, 我们将参数<span class="math inline">\(\varphi, \alpha\)</span>视为随机变量, 因此必须给出参数<span class="math inline">\(\varphi, \alpha\)</span>的先验假设<span class="math inline">\(P(\varphi), P(\alpha)\)</span>, 如果能直接算出隐变量及未知参数<span class="math inline">\(Z, \Theta, \varphi, \alpha\)</span>的概率分布<span class="math inline">\(P(Z, \Theta, \varphi, \alpha\mid W)\)</span>, 那么就能很方便的得到想要的参数值(比如说通过极大后验分布MAP). 事实上, 我们已经有了<span class="math inline">\(P(W, Z, \Theta\mid \varphi, \alpha)\)</span>, 根据贝叶斯公式:<span class="math display">\[P(Z, \Theta, \varphi, \alpha\mid W)=\frac{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}{P(W)}=\frac{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}{\int_{Z, \Theta, \varphi, \alpha} P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}\]</span>通过分析不难发现, 如果给出的参数<span class="math inline">\(\varphi, \alpha\)</span>的先验恰为共轭先验, 那么上式就非常好求, 否则就不可避免的要计算<span class="math inline">\(P(W)\)</span>, 而这事实上相当难处理.</p>
-<p>变分推断则是试图绕过求<span class="math inline">\(P(W)\)</span>, 去找一个对<span class="math inline">\(P(Z, \Theta, \varphi, \alpha\mid W)\)</span>的良好逼近<span class="math inline">\(q(Z, \Theta, \varphi, \alpha)\)</span>, 其中<span class="math inline">\(q(Z, \Theta, \varphi, \alpha)\)</span>会来自一个简单得多的分布族, 比如<span class="math inline">\(Q=N(\mu, \Sigma)\)</span>, 其中<span class="math inline">\(\Sigma\)</span>为对角阵; 而逼近的方法一般则是最小化<span class="math inline">\(\mathcal{KL}\)</span>散度:<span class="math display">\[q=\arg\min_{q\in Q}\mathcal{KL}(q(Z, \Theta, \varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W))\]</span>关于<span class="math inline">\(\mathcal{KL}\)</span>散度的定义见<a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">维基百科</a>, 这里简单理解为衡量两个分布的距离就好. 下式告诉我们, 变分推断确实可以绕开<span class="math inline">\(P(W)\)</span>, 下面把<span class="math inline">\(q(Z, \Theta, \varphi, \alpha)\)</span>简记为<span class="math inline">\(q\)</span>: <span class="math display">\[\begin{aligned} \mathcal{KL}(q\Vert P(Z, \Theta, \varphi, \alpha\mid W)) &amp; =  \mathcal{KL}(q\Vert \frac{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}{P(W)}) \\\
-&amp; =\int  q\log \frac{q}{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)/P(W)} dZd \Theta d\varphi d\alpha\\\
-&amp; = \int \left( q\log \frac{q}{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}dZd \Theta  +  q\log P(W) \right)dZd \Theta d\varphi d\alpha\\\
-&amp; =  \mathcal{KL}(q\Vert P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha))+\log P(W) \end{aligned}\]</span>其中第一个等号为简单带入, 第二个等号由<span class="math inline">\(\mathcal{KL}\)</span>散度的定义, 第三个等号为简单化简, 第四个等号由<span class="math inline">\(\mathcal{KL}\)</span>散度定义. 容易看到, 最后一个等式的后一项<span class="math inline">\(\log P(W)\)</span>与<span class="math inline">\(q\)</span>无关, 因而成功绕开了<span class="math inline">\(P(W)\)</span>, 这便是变分推断.</p>
-<p><strong>p.s.</strong> 变分推断需要给出参数的先验分布和分布族<span class="math inline">\(Q\)</span>. 如果<span class="math inline">\(Q\)</span>足够大, 则有<span class="math display">\[q(Z, \Theta, \varphi, \alpha)=P(Z, \Theta, \varphi, \alpha\mid W)\]</span>并没有简化计算. 所以这个分布族<span class="math inline">\(Q\)</span>的选取也是一件麻烦的事情, 既要考虑<span class="math inline">\(Z, \Theta\)</span>实际上是有关的, 又要考虑参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>是无关的. 一个合理的想法是预先假定<span class="math inline">\(\varphi, \alpha\)</span>与<span class="math inline">\(Z, \Theta\)</span>是无关的, 在变分推断的基础上于是有了平均场近似的变分推断:</p>
-<h3 id="平均场近变分推断">平均场近变分推断</h3>
-<p>其想法很简单, 在变分推断<span class="math display">\[q=\arg\min_{q\in Q}\mathcal{KL}(q(Z, \Theta, \varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W))\]</span>的基础上, 预先假定参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>的独立性, 得到 <span class="math display">\[\begin{aligned}q(Z, \Theta)&amp;=\arg\min_{q(Z, \Theta)\in Q_1}\mathcal{KL}(q(Z, \Theta) q(\varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W)) \\\
-q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \Theta)q(\varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W))\end{aligned}\]</span>这样计算上有了一定程度的减小, 当然准确度也有可能有一定的损失, 但其实际上不失为一个好的假设. 下面来看平均长近似后的形式, 为了表述方便, 记<span class="math inline">\(q(Z, \Theta)=q_1\)</span>, <span class="math inline">\(q(\varphi, \alpha)=q_2\)</span>, <span class="math inline">\(P(Z, \Theta, \varphi, \alpha\mid W)=\hat{P}\)</span>, <span class="math inline">\(dZd \Theta d\varphi d\alpha=d\hat{Z}\)</span>, 目标则简化为<span class="math display">\[q_i=\arg\min_{q_i\in Q_i}\mathcal{KL}(\prod_{i=1}^2 q_i\Vert \hat{P})\]</span>下面来看, 目标是对<span class="math inline">\(q_k\in Q_k\)</span>求最小值点, <span class="math inline">\(k=1, 2\)</span>: <span class="math display">\[\begin{aligned} \mathcal{KL}(\prod_{i=1}^2 q_i\Vert \hat{P}) &amp; =  \int  \prod_{j=1}^2 q_j\log \frac{\prod_{i=1}^2 q_i}{\hat{P}} d\hat{Z} \\\
-&amp; =\sum_{i=1}^2\int   \prod_{j=1}^2q_j\log q_i d\hat{Z}-\int   \prod_{j=1}^2q_j\log \hat{P}d\hat{Z}\\\
-&amp; = \int   \prod_{j=1}^2q_j\log q_k d\hat{Z}+\sum_{i\neq k}^2\int   \prod_{j=1}^2q_j\log q_i d\hat{Z}-\int   \prod_{j=1}^2q_j\log \hat{P} d\hat{Z} \\\
-&amp;=\int   q_k\log q_k d\hat{Z}_k+\sum_{i\neq k}^2\int   \prod_{j\neq k}^2q_j\log q_i d\hat{Z}_{-k}-\int   \prod_{j=1}^2q_j\log \hat{P} d\hat{Z} \\\
-&amp;= \int   q_k\log q_k d\hat{Z}_k-\int q_k\left[\int   \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}\right]d\hat{Z}_k + C\\\
-&amp;=\int   q_k\left[\log q_k -\int   \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}\right]d\hat{Z}_k + C \end{aligned}\]</span>这里的<span class="math inline">\(d\hat{Z}\)</span>为<span class="math inline">\(dZd \Theta d\varphi d\alpha\)</span>, <span class="math inline">\(d\hat{Z}_k\)</span>为对<span class="math inline">\(q_k\)</span>的变量积分, 比方说<span class="math inline">\(k=1\)</span>, 即为<span class="math inline">\(dZ d\Theta\)</span>, <span class="math inline">\(d\hat{Z}_{-k}\)</span>为对除<span class="math inline">\(q_k\)</span>的之外的变量积分.</p>
-<p>稍作解释:第一个等号由<span class="math inline">\(\mathcal{KL}\)</span>散度的定义; 第二个等号为简单化简; 第三个等号为将第一项拆成<span class="math inline">\(i=k\)</span>和<span class="math inline">\(i\neq k\)</span>两项; 第四个等号为对第一第二项中能积分的先积掉; 第五个等号为将第三项对<span class="math inline">\(q_k\)</span>的积分拎到最前面, 且此时第二项与<span class="math inline">\(q_k\)</span>无关, 视为常数<span class="math inline">\(C\)</span>; 第六个等号即为简单合并.</p>
-<p>下面继续, 把我们把<span class="math inline">\(\int \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}=\mathbb{E}_{q_{-k}}\log \hat{P}\)</span>记作<span class="math inline">\(h(\hat{Z}_k)\)</span>, 再令<span class="math inline">\(t(\hat{Z}_k)=\frac{exp(h(\hat{Z}_k))}{\int exp(h(\hat{Z}_k))d\hat{Z}_k}\)</span>, 除以正则项确保是个概率分布, 上式可继续化为: <span class="math display">\[\begin{aligned} \mathcal{KL}(\prod_{i=1}^2 q_i\Vert \hat{P}) &amp; =  \int   q_k\left[\log q_k -\int   \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}\right]d\hat{Z}_k + C\\\
-&amp; =  \int   q_k\left[\log q_k d\hat{Z}_k-h(\hat{Z}_k)\right]d\hat{Z}_k + C\\\
-&amp;=\int   q_k\log \frac{q_k}{t} d\hat{Z}_k + C \end{aligned}\]</span>注意到第一项即为KL散度, 那么此时关于<span class="math inline">\(q_k\)</span>取极小只需令<span class="math inline">\(q_k=t=\frac{exp(h(\hat{Z}_k))}{\int exp(h(\hat{Z}_k))d\hat{Z}_k}\)</span>, 其中<span class="math inline">\(h(\hat{Z}_k)=\mathbb{E}_{q_{-k}}\log \hat{P}\)</span>再取对数得到<span class="math display">\[\log q_k=\mathbb{E}_{q_{-k}}\log \hat{P}+C\]</span>其中<span class="math inline">\(\hat{P}=P(Z, \Theta, \varphi, \alpha\mid W)\)</span>在LDA模型这个例子中, 上述结果化为: <span class="math display">\[\begin{aligned}\log q(Z, \Theta)&amp;=\mathbb{E}_{q(\varphi, \alpha)}\log P(Z, \Theta, \varphi, \alpha\mid W)+C_1  \\\
-\log q(\varphi, \alpha)&amp;=\mathbb{E}_{q(Z, \Theta)}\log P(Z, \Theta, \varphi, \alpha\mid W)+C_2\end{aligned}\]</span></p>
-<p><strong>p.s.</strong> 相比变分推断, 这个平均场近似的变分推断实际是将参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>进行了分开处理, 降低了模型复杂度, 同时明显也降低了计算的维度, 但由于对参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>的独立性假设非常合理, 所以也不会有太多精度上的损失, 甚至会使得模型更稳健. 另外顺便得到了一个非常有用的式子, 这个式子能在<a href="https://en.wikipedia.org/wiki/Variational_Bayesian_methods">变分贝叶斯方法</a> 的维基百科的Mean field approximation一节找到, 只是没有上述的推导过程.</p>
-<p>EM算法也是将参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>进行了分开处理, 并且对隐变量<span class="math inline">\(Z, \Theta\)</span>同样是通过对<span class="math inline">\(\mathcal{KL}\)</span>散度最小化求得分布, 而EM算法对未知参数则是直接采用了点估计的方法而不是变分推断. 因此相比平均场近似的变分推断, EM算法进一步降低了计算复杂度, , 我想这大概就是EM算法流行的理由之一.</p>
-<h3 id="平均场em算法">平均场EM算法</h3>
-<p>平均场EM算法实际上是在EM算法基础上进一步对隐变量<span class="math inline">\(Z, \Theta\)</span>进行了独立性假设. 下面分两步在EM算法的基础上推导出平均场EM算法:</p>
-<ol type="1">
-<li>EM算法: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:
-<ul>
-<li>E步: <span class="math inline">\(q^{k+1}(Z, \Theta)=\arg\min_{q(Z, \Theta)\in Q_1}\mathcal{KL}(q(Z, \Theta)\Vert P(Z, \Theta\mid W, \varphi, \alpha))\)</span>.</li>
-<li>M步: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
-</ul></li>
-<li>假定<span class="math inline">\(q(Z, \Theta)=q(Z)q(\Theta)\)</span>, 由平均场近似得到的公式, 得到平均场EM算法: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:
-<ul>
-<li>E步:<span class="math inline">\(\begin{aligned}\log q^{k+1}(Z)&amp;=\mathbb{E}_{q(\Theta)}\log P(Z, \Theta\mid \varphi^k, \alpha^k, W)+C_1 \\\
-\log q^{k+1}(\Theta)&amp;=\mathbb{E}_{q(Z)}\log P(Z, \Theta\mid \varphi^k, \alpha^k, W)+C_2\end{aligned}\)</span></li>
-<li>M步: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}(Z, \Theta)}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span></li>
-</ul></li>
-</ol>
-<p><strong>p.s.</strong> 平均场EM算法比EM算法多了一个隐变量之间独立的假设, 但一般隐变量之间应该不独立, 比方说这个LDA模型中<span class="math inline">\(Z\)</span>代表每篇文档每个单词的主题分布, <span class="math inline">\(\Theta\)</span>代表每篇文档的主题分布, 两者应该不独立, 所以平均场EM算法不适合这个例子. 另外相比EM算法, 平均场EM算法因为多了一个独立性假设, 模型应该会变得简单一些, 但精度有可能会有些损失.</p>
-<h3 id="总结">总结</h3>
-<p>最后用一张表格总结上述4中算法:</p>
-<table>
-<thead>
-<tr class="header">
-<th>算法</th>
-<th>模型复杂度</th>
-<th>需要的计算资源</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>变分推断</strong></td>
-<td>4</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td><strong>平均场变分推断</strong></td>
-<td>3</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td><strong>EM算法</strong></td>
-<td>2</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td><strong>平均场EM算法</strong></td>
-<td>1</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<p>EM算法作为其中比较折中的选择, 兼顾了模型复杂度与计算资源.</p>
+<h2 id="例子">例子</h2>
+<p>例子参考了PRML一书6.4节, 来自高斯过程分类中的预测问题, 目标也是求一个积分<span class="math display">\[P(a_{N+1}\mid t_N)=\int P(a_{N+1}\mid a_N)P(a_N\mid t_N)da_N\]</span>这里的目标变量<span class="math inline">\(t\in\{0, 1\}\)</span>为二分变量; 被积函数第一部分<span class="math inline">\(P(a_{N+1}\mid a_N)\)</span>是个正态分布, 即为高斯过程回归做预测时的核心结论. 本质上来说, 拉普拉斯近似方法把被积函数或者是被积函数的一部分代换成多元正态分布<span class="math inline">\(N(\mu, \Sigma)\)</span>, 这里仅把被积函数的第二部分代换掉. 回想多元正态分布的<a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">密度函数</a>, 因此只要计算<span class="math inline">\(\log P(a_N\mid t_N)\)</span>关于变量<span class="math inline">\(a_N\)</span>的梯度<span class="math inline">\(\nabla\)</span>和Hessian矩阵<span class="math inline">\(\nabla^2\)</span>, 此时<span class="math inline">\(\mu\)</span>即为<span class="math inline">\(\nabla=0\)</span>的解, <span class="math inline">\(\Sigma=-\nabla^2\)</span>. 接着由两个正态分布积分的一些性质(PRML一书2.115), 可以得到目标积分的近似结果仍为一个正态分布. 然后我们可以用它来做预测<span class="math display">\[P(t_{N+1}=1\mid t_N)=\int P(t_{N+1}=1\mid a_{N+1})P(a_{N+1}\mid t_N)da_{N+1}\]</span>具体计算时被积函数的第一部分利用自己本身的性质近似成了正态分布的分布函数(而非密度函数)(PRML一书4.153). <code>p.s.</code>: 高斯过程分类中的参数也可以用拉普拉斯近似方法得到, 这里就不再赘述, 最后建议细细读一读PRML一书6.4节.</p>
 ]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>LDA模型</tag>
-        <tag>变分贝叶斯</tag>
-        <tag>变分推断</tag>
-        <tag>平均场近似</tag>
-        <tag>KL散度</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>拉德马赫复杂度</title>
-    <url>/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/</url>
-    <content><![CDATA[<p>前言: 本文主要讲了拉德马赫复杂度(<a href="https://en.wikipedia.org/wiki/Rademacher_complexity">Rademacher complexity</a>), 主要参考了Understanding machine learning一书26章.</p>
-<span id="more"></span>
-<hr />
-<p>首先应当接触以下几个概念:</p>
-<ul>
-<li>样本空间: 对于监督学习而言为带标签的样本<span class="math inline">\((x,y)\)</span>的取值空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>, 学习的目标是映射<span class="math inline">\(f: \mathcal{X}\to\mathcal{Y}\)</span>, 以用于产生对新样本<span class="math inline">\(x_{new}\)</span>的标签的可靠预测<span class="math inline">\(f(x_{new})\)</span>. <code>p.s.</code>对无监督学习而言为不带标签的样本<span class="math inline">\(x\)</span>的取值空间<span class="math inline">\(\mathcal{X}\)</span>, 学习目标为对<span class="math inline">\(\mathcal{X}\)</span>的可靠分类.</li>
-<li>目标函数: 通常记为<span class="math inline">\(f\)</span>, 即上述监督学习中所说的映射<span class="math inline">\(f\)</span>. 对于分类问题就是我们希望得到的真实的分类函数.</li>
-<li>训练集: 通常记为<span class="math inline">\(S\)</span>, 由定义在样本空间<span class="math inline">\(Z=(\mathcal{X}, \mathcal{Y})\)</span>上的概率分布<span class="math inline">\(\mathcal{D}\)</span>抽样得到 <span class="math display">\[S=\{(x_{1},y_{1}),....,(x_{m},y_{m})\}\]</span></li>
-<li>学习算法: 通常记为<span class="math inline">\(A\)</span>, 即我们构建的、能从数据中学到东西的学习算法, 期望其能从假设类中返回良好的假设.</li>
-<li>假设类: 通常记为<span class="math inline">\(\mathcal{H}\)</span>, 对目标函数<span class="math inline">\(f\)</span>的假设构成的空间, 学习器从中选择.</li>
-<li>预测器(predictor): 或者说分类器(classifier)、假设(hypothesis), 通常记为<span class="math inline">\(h\)</span>, 即学习器输出的一个函数:<span class="math inline">\(h:\mathcal{X}\to\mathcal{Y}\)</span>, 且应当和目标函数<span class="math inline">\(f\)</span>有相近的函数值.</li>
-<li>损失函数: 通常记为<span class="math inline">\(l(h, (x, y))\)</span>, 其定义在预测器<span class="math inline">\(h\)</span>和单个样本<span class="math inline">\((x, y)\)</span>上. 对于二分类问题, 一个常用的损失函数为<span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>, 即分对了就为0, 分错了就为1.</li>
-<li>训练误差: 通常记为<span class="math inline">\(L_{S}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在训练集<span class="math inline">\(S\)</span>上的平均损失<span class="math display">\[L_{S}(h)=\frac{1}{m}\sum_{i=1}^m l(h, (x_i, y_i))\]</span></li>
-<li>泛化误差: 通常记为<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>, 其定义为预测器<span class="math inline">\(h\)</span>在<span class="math inline">\((\mathcal{X}, \mathcal{Y})\)</span>上的平均损失<span class="math display">\[\mathbb{E}_{(x, y)\sim (\mathcal{X}, \mathcal{Y})}l(h, (x, y))\]</span></li>
-<li><span class="math inline">\(\varepsilon\)</span>-代表性样本: 一个训练集被称为<span class="math inline">\(\varepsilon\)</span>-代表性样本(定义在域<span class="math inline">\(Z\)</span>, 假设类<span class="math inline">\(\mathcal{H}\)</span>, 损失函数<span class="math inline">\(l\)</span>和分布<span class="math inline">\(\mathcal{D}\)</span>上), 如果满足<span class="math display">\[\sup_{h\in\mathcal{H}}|L_{S}(h)-L_{\mathcal{D}}(h)|\le\varepsilon\]</span></li>
-</ul>
-<p>接着应当知道如下基本事实:</p>
-<blockquote>
-<p>如果<span class="math inline">\(S\)</span>是<span class="math inline">\(\varepsilon/2\)</span>-代表性样本, 那么在ERM准则下它是<span class="math inline">\(\varepsilon\)</span>-一致的, 即<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))\le \min_{h\in\mathcal{H}}L_{\mathcal{D}}(h)+\varepsilon\]</span></p>
-</blockquote>
-<hr />
-<h3 id="拉德马赫复杂度">拉德马赫复杂度</h3>
-<p>回顾之前针对二分类问题建立的<a href="https://msgsxj.cn/2018/06/14/VC-bound/">VC bound</a>:<span class="math display">\[
-\sup_{h\in\mathcal{H}}\left|L_{S}(h)-L_{\mathcal{D}}(h)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
-\]</span>注意到要定义训练误差与泛化误差必须要定义损失函数, 损失函数实际上选定了二分类问题的常用的损失函数0-1损失: <span class="math inline">\(l(h, (x, y))=I\{y\neq h(x)\}\)</span>; 因此上述VC bound又可以写作:<span class="math display">\[
-\sup_{f\in\mathcal{F}}\left|L_{S}(f)-L_{\mathcal{D}}(f)\right|\le \sqrt{\frac{8}{m}\log\left(\frac{4}{\delta}\right)+\frac{8d_{\mathcal{H}}}{m}\log\left(\frac{2em}{d_\mathcal{H}}\right)}
-\]</span>这里的<span class="math inline">\(\mathcal{F}\)</span>定义为<span class="math display">\[l \circ \mathcal{H}=\{z\mapsto l(h, z):h\in\mathcal{H}\}\]</span> 相应的<span class="math inline">\(L_{S}(f)=\frac{1}{m}\sum_{i=1}^m f(z_i)\)</span>, <span class="math inline">\(L_{\mathcal{D}}(f)=\mathbb{E}_{z\sim \mathcal{D}}f(z)\)</span>, 当然这里的<span class="math inline">\(l\)</span>已经固定为0-1损失. 定义训练集<span class="math inline">\(S\)</span>在<span class="math inline">\(\mathcal{F}\)</span>上的代表性为:<span class="math display">\[Rep_{\mathcal{D}}(\mathcal{F}, S)\doteq\sup_{f\in\mathcal{F}}(L_{\mathcal{D}}(f)-L_{S}(f))\]</span>一般来说, 训练误差<span class="math inline">\(L_{S}\)</span>能通过优化达到一个非常接近于0的数值, 比如<a href="https://arxiv.org/abs/1811.03804">这篇文章</a>说明了用梯度下降训练ResNet能在多项式时间内达到0训练误差, 即达到全局最优; 泛化误差<span class="math inline">\(L_{\mathcal{D}}\)</span>则会略大于训练误差. 显然当<span class="math inline">\(S\)</span>越能代表<span class="math inline">\(\mathcal{D}\)</span>, 上数值会越接近于0. 现在想要仅仅依靠训练集<span class="math inline">\(S\)</span>本身去估计其代表性, 一个自然地想法是将<span class="math inline">\(S\)</span>分成两个不相交的子集<span class="math inline">\(S=S_1\cup S_2\)</span>, <span class="math inline">\(S_1\)</span>作为验证集, <span class="math inline">\(S_2\)</span>作为训练集, 此时训练集代表性的一个近似为:<span class="math display">\[\sup_{f\in\mathcal{F}}(L_{\mathcal{S_1}}(f)-L_{S_2}(f))\]</span>再设多元随机变量<span class="math display">\[\sigma=(\sigma_1, \sigma_2,...,\sigma_m)\in\{\pm 1\}^m\]</span> 并按如下方式取定随机变量的值<span class="math inline">\(S_1=\{z_i:\sigma_i=1\}\)</span>, <span class="math inline">\(S_2=\{z_i:\sigma_i=-1\}\)</span>, 上式可写成更简单的形式:<span class="math display">\[\frac{1}{m}\sup_{f\in\mathcal{F}}\sum_{i=1}^m \sigma_i f(z_i)\]</span> 此时随机变量的不同的取值代表不同的验证集和训练集的组合, <strong>拉德马赫复杂度</strong>定义为上式近似对随机变量<span class="math inline">\(\sigma\)</span>的期望:<span class="math display">\[R(\mathcal{F}\circ S)\doteq\frac{1}{m}\mathop{\mathbb{E}}_{\sigma\sim\{\pm 1\}^m} [\sup_{f\in\mathcal{F}}\sum_{i=1}^m \sigma_i f(z_i)]\]</span>可以证明, 在期望意义下, 集合<span class="math inline">\(S\)</span>的代表性不超过2倍的拉德马赫复杂度<span class="math display">\[\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[Rep_{\mathcal{D}}(\mathcal{F}, S)]\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(\mathcal{F}\circ S)]\]</span>证明见Understanding machine learning一书引理26.2.</p>
-<hr />
-<h3 id="数据相关界">数据相关界</h3>
-<p>首先来看一个重要的不等式, 有限偏差集中不等式, 又称<a href="https://en.wikipedia.org/wiki/Doob_martingale#McDiarmid&#39;s_inequality">McDiarmid 不等式</a>, 这个不等式可见维基, 这个不等式可用来推出一个与训练集<span class="math inline">\(S\)</span>相关的界:</p>
-<blockquote>
-<p>假设对所有的<span class="math inline">\(z\)</span>和<span class="math inline">\(h\in\mathcal{H}\)</span>, <span class="math inline">\(|l(h, z)|\le c\)</span>, 那么以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2\mathop{\mathbb{E}}_{S\sim\mathcal{D}^m}[R(l \circ \mathcal{H}\circ S)]+c\sqrt{\frac{2\log(2/\delta)}{m}}\]</span>以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(h)-L_{S}(h)\le 2R(l \circ \mathcal{H}\circ S)+4c\sqrt{\frac{2\log(4/\delta)}{m}}\]</span> 以至少<span class="math inline">\(1-\delta\)</span>的概率, 对所有的<span class="math inline">\(h\in\mathcal{H}\)</span>有<span class="math display">\[L_{\mathcal{D}}(ERM_{\mathcal{H}}(S))-L_{\mathcal{D}}(h)\le 2R(l \circ \mathcal{H}\circ S)+5c\sqrt{\frac{2\log(8/\delta)}{m}}\]</span></p>
-</blockquote>
-<p>有兴趣的朋友不妨试着去推一推, 上述1, 2的界的推导类似于西瓜书定理12.5, 唯一不同的是这里满足在常数为<span class="math inline">\(2c/m\)</span>下的有界偏差条件, 而西瓜书直接为1; 第三个不等式则是多一步霍夫丁不等式.</p>
-<ul>
-<li>注意到第2, 3个界实际上由具体的训练集<span class="math inline">\(S\)</span>计算出来的, 因此这两个界被称为是数据相关界, 这也是与VC bound最大的不同之处.</li>
-<li>第二个界可以用来评估当前分类器<span class="math inline">\(h\)</span>在实际数据集<span class="math inline">\(\mathcal{D}\)</span>上的表现, 即<span class="math inline">\(L_{\mathcal{D}}(h)\)</span>.</li>
-<li>第三个界可以用来评估利用ERM原则得到的分类器<span class="math inline">\(h\)</span>与理论最佳分类器的实际差距, 因此希望这个界越小越好; 显然假设类<span class="math inline">\(\mathcal{H}\)</span>越复杂, 这个界越大, 因此某种意义上这个界能用来评估假设类<span class="math inline">\(\mathcal{H}\)</span>的优劣.</li>
-</ul>
-<hr />
-<h3 id="拉德马赫复杂度的性质">拉德马赫复杂度的性质</h3>
-<p>首先给出拉德马赫复杂度的更一般化定义: 给定一个向量集合<span class="math inline">\(A\in\mathbb{R}^m\)</span> <span class="math display">\[R(A)\doteq\frac{1}{m}\mathop{\mathbb{E}}_{\sigma\sim\{\pm 1\}^m} [\sup_{a\in A}\sum_{i=1}^m \sigma_i a_i]\]</span>这里例举拉德马赫复杂度的几条性质, 具体见Understanding machine learning一书26章:</p>
-<ul>
-<li>A的凸包与A具有一样的拉德马赫复杂度.</li>
-<li>一个有限集合的拉德马赫复杂度随着集合大小增长而对数增长.</li>
-<li>如果给集合A作用一个Lipschitz连续的函数, 并不会增大其拉德马赫复杂度.</li>
-</ul>
-<hr />
-<h3 id="线性类的拉德马赫复杂度">线性类的拉德马赫复杂度</h3>
-<p>本节给出两个线性的假设类的拉德马赫复杂度, 假定<span class="math inline">\(x\)</span>的维数为<span class="math inline">\(n\)</span>:</p>
-<ul>
-<li><span class="math inline">\(\mathcal{H}_1=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_1\le 1\}\)</span></li>
-<li><span class="math inline">\(\mathcal{H}_2=\{x\mapsto&lt;\omega, x&gt;:\Vert\omega\Vert_2\le 1\}\)</span></li>
-</ul>
-<p><span class="math inline">\(\mathcal{H}_1\circ S\)</span>定义为<span class="math inline">\(\{(&lt;\omega, x_i&gt;, i=1...,m):\Vert\omega\Vert_1\le 1\}\)</span>, <span class="math inline">\(\mathcal{H}_2\circ S\)</span>类似的定义, 有如下两个结果, 证明见[UML]一书引理26.10、26.11:</p>
-<ul>
-<li><span class="math inline">\(R(\mathcal{H}_1\circ S) \le \max_i\Vert x_i\Vert_{\infty}\sqrt{\frac{2\log(2n)}{m}}\)</span></li>
-<li><span class="math inline">\(R(\mathcal{H}_2\circ S) \le\frac{\max_i\Vert x_i\Vert_2}{\sqrt{m}}\)</span></li>
-</ul>
-<p><strong>p.s.</strong> 此外还有软硬间隔SVM的泛化误差界的推导, 见26.3, 26.4; 另一种度量集合复杂度的方法为覆盖数, 见27章.</p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>拉德马赫复杂度</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>期望传播</title>
-    <url>/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/</url>
-    <content><![CDATA[<p>前言: 本文主要是关于期望传播, 这是一种用指数族分布去近似复杂目标分布的方法, 其本质上为变分推断逆过来, 主要参考了Thomas P Minka的博士论文A family of algorithms for approximate Bayesian inference、维基百科及PRML一书10.7节.</p>
-<span id="more"></span>
-<hr />
-<h2 id="指数族分布">指数族分布</h2>
-<p>首先来看一个重要概念<a href="https://en.wikipedia.org/wiki/Exponential_family">指数族分布</a>, 称<span class="math inline">\(X\)</span>为指数族分布, 若其密度函数:<span class="math display">\[f(x\mid \theta )=h(x)\exp \left(\eta (\theta )^TT(x)-A(\theta )\right), \theta\in\Theta\]</span>其中:</p>
-<ul>
-<li><span class="math inline">\(T(x)\)</span>为<span class="math inline">\(X\)</span>的充分统计量. 样本<span class="math inline">\(x=\{x_1,..,x_m\}\)</span>, <span class="math inline">\(x_i\sim f(x\mid \theta)\)</span>, 统计量(比方说)<span class="math display">\[T(x)=(\bar{x}, \frac{1}{m}\sum_{i=1}^n (x_i-x)^2)\]</span>可理解为对样本<span class="math inline">\(x\)</span>的粗加工, 其将对样本的信息量由<span class="math inline">\(m\)</span>维降至<span class="math inline">\(2\)</span>维; 而充分统计量<span class="math inline">\(T(x)\)</span>则是那些能够充分说明原样本的统计量, 定义为: 若<span class="math inline">\(x\mid T(x)\)</span>的条件分布与未知参数<span class="math inline">\(\theta\)</span>无关, 则称<span class="math inline">\(T(x)\)</span>为充分统计量. <span class="math inline">\((\bar{x}, \frac{1}{m}\sum_{i=1}^n (x_i-\bar{x})^2)\)</span>就是正态分布的一个充分统计量(充分统计量不唯一).</li>
-<li>当<span class="math inline">\(\eta (\theta )=\theta\)</span>取实值, 此时指数族分布称为是自然形式的指数族分布.</li>
-<li><span class="math inline">\(A(\theta)\)</span>称为是归一化因子<span class="math display">\[A(\theta )=\ln \left(\int h(x)\exp(\theta ^T T(x))\,\mathrm {d} x\right)\]</span>它的存在保证了这个函数是个密度函数. 有时这个归一化因子会写在外面, 因此指数族分布的密度函数有如下等价形式:<span class="math display">\[f(x\mid \theta )=h(x)g(\theta )\exp \left(\theta ^T T(x)\right)\]</span>此时<span class="math inline">\(g(\theta)\)</span>满足<span class="math inline">\(g(\theta)^{-1}=\int h(x)\exp \left(\theta ^T T(x)\right)dx\)</span>.</li>
-<li>参数空间<span class="math inline">\(\Theta\)</span>中的每一个元<span class="math inline">\(\theta\)</span>都应当使得归一化因子为正数: <span class="math inline">\(A(\theta)\in(0,+\infty)\)</span>; 而所使得归一化因子为正数的<span class="math inline">\(\theta\)</span>构成的参数空间<span class="math inline">\(\Theta\)</span>称为是自然参数空间, 且自然形式下的指数族分布的自然参数空间为欧式空间中的凸集.</li>
-</ul>
-<p>指数族分布是一大类分布的集合, 包括正态分布, 指数分布, 二项分布, 泊松分布, Beta分布, Gamma分布, 狄利克雷分布等, 具体见<a href="https://en.wikipedia.org/wiki/Exponential_family#Table_of_distributions">维基百科上的总结</a>, 有兴趣的读者不妨拿一个验证一下. 以密度函数的第二个形式为例, 归一化因子满足条件的等式的两边对参数<span class="math inline">\(\theta\)</span>求导可以得到自然形式指数族分布的一个重要性质, 能轻易表示出<span class="math inline">\(T(x)\)</span>的各阶矩: <span class="math display">\[g(\theta)^{-2}\frac{dg(\theta)}{d\theta} =  \int h(x)\exp \left(\theta ^T T(x)\right)T(x)dx \]</span>两边同乘<span class="math inline">\(g(\theta)\)</span>得:<span class="math display">\[-\nabla\ln g(\theta)=\mathbb{E}_{f(x\mid \theta )}T(x)\]</span>再次对<span class="math inline">\(\theta\)</span>求导可得:<span class="math display">\[-\nabla^2 \ln g(\theta)=\mathbb{E}_{f(x\mid \theta )}T^2(x)\]</span>当然如果此时密度函数取第一个形式, 形式会更简单: <span class="math display">\[\nabla A(\theta)=\mathbb{E}_{f(x\mid \theta )}T(x), \nabla^2 A(\theta)=\mathbb{E}_{f(x\mid \theta )}T^2(x)\]</span>关于更多指数族分布或是统计量可参考数理统计的教材, 比如韦博成的参数统计教程, 陈希孺的高等数理统计学.</p>
-<hr />
-<h2 id="期望传播">期望传播</h2>
-<p>下面来看期望传播:</p>
-<ul>
-<li>首先简单回顾变分推断, 变分推断做的是通过最小化KL散度(以EM算法中E步为例, 详见<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/">贝叶斯方法</a>的3.1节.):<span class="math display">\[\mathcal{KL}(q(T)\Vert P(T\mid X, \theta))\]</span> <span class="math inline">\(\mathcal{KL}\)</span>散度的定义见<a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">维基百科</a>, 这里的<span class="math inline">\(X\)</span>为机器学习中的样本矩阵, 已给定, 不同于变量<span class="math inline">\(x\)</span>; <span class="math inline">\(\theta\)</span>为未知参数; <span class="math inline">\(T\)</span>本为隐变量, 这里为了不和上文<span class="math inline">\(T\)</span>重名, 简记为<span class="math display">\[\mathcal{KL}(q(x)\Vert P(x\mid X, \theta))\]</span>这里做的事情就是从一个相对简单的单分布族<span class="math inline">\(Q\)</span>中找到一个<span class="math inline">\(q(x)\)</span>去逼近复杂分布<span class="math inline">\(P(x\mid X, \theta)\)</span>. 和下文的期望传播以示区别, 这里我们称之为<span class="math inline">\(q(x)\)</span>从左逼近<span class="math inline">\(P(x\mid X, \theta)\)</span>, 这种从左逼近的方法的最大的好处就是不必去考虑关于<span class="math inline">\(X, \theta\)</span>的分布, 即不必计算<span class="math inline">\(P(X, \theta)\)</span>.</li>
-<li>期望传播(Expectation Propagation: EP)做的则是最小化逆过来的KL散度:<span class="math display">\[\mathcal{KL}( P(x\mid X, \theta)\Vert q(x))\]</span>这里我们称之为<span class="math inline">\(q(x)\)</span>从右逼近<span class="math inline">\(P(x\mid X, \theta)\)</span>, 这种从右逼近的方法的好处就是, 若这里的<span class="math inline">\(q(x)\)</span>限定在指数族分布的范围内, 即<span class="math inline">\(q(x\mid\tilde{\theta})=h(x)g(\tilde{\theta} )\exp \left(\tilde{\theta} ^T T(x)\right)\)</span>(<span class="math inline">\(\tilde{\theta}\)</span>与<span class="math inline">\(\theta\)</span>是不同的未知参数), 此时最小化上述<span class="math inline">\(\mathcal{KL}\)</span>散度就等价于充分统计量<span class="math inline">\(T(x)\)</span>关于两个分布<span class="math inline">\(q(x)\)</span>和<span class="math inline">\(P(x\mid X, \theta)\)</span>的期望相等: <span class="math display">\[\begin{aligned} \mathcal{KL}( P(x\mid X, \theta)\Vert q(x)) &amp; =  \int P(x\mid X, \theta)\ln\frac{P(x\mid X, \theta)}{q(x)}dx\\\
-&amp; =  \int P(x\mid X, \theta)\ln\frac{P(x\mid X, \theta)}{h(x)g(\tilde{\theta} )\exp \left(\tilde{\theta} ^T T(x)\right)}dx\\\
-(let \, P=P(x\mid X, \theta)) \,&amp; = \int P\ln Pdx - \int P\ln h(x)dx-\int P\ln g(\tilde{\theta})dx- \int P\tilde{\theta} ^T T(x)dx\\\
-&amp; = \int P\ln Pdx - \int P\ln h(x)dx-\ln g(\tilde{\theta})- \tilde{\theta} ^T \mathbb{E}_{P}T(x) \end{aligned}\]</span> 此时令关于未知参数 <span class="math inline">\(\tilde{\theta}\)</span> 的梯度为<span class="math inline">\(0\)</span>就可以得到<span class="math display">\[-\nabla\ln g(\tilde{\theta})=\mathbb{E}_{P(x\mid X, \theta)}T(x)\]</span>再利用上节中能轻易表示出<span class="math inline">\(T(x)\)</span>各接矩的性质, 这里仅用一阶矩: <span class="math display">\[-\nabla\ln g(\tilde{\theta})=\mathbb{E}_{q(x\mid\tilde{\theta})}T(x)\]</span>得到结论: <span class="math display">\[\mathbb{E}_{P(x\mid X, \theta)}T(x)=\mathbb{E}_{q(x\mid\tilde{\theta})}T(x)\]</span>即<span class="math inline">\(T(x)\)</span>关于目标分布<span class="math inline">\(P(x\mid X, \theta)\)</span>期望的信息能够传递下去. 以正态分布为例, <span class="math inline">\(q(x\mid \mu, \Sigma)=N(\mu, \Sigma)\)</span>:
-<span class="math display">\[\begin{aligned} q(x\mid \mu, \Sigma) &amp; =  {\frac {\exp \left(-{\frac {1}{2}}(x- \mu )^{T }\Sigma ^{-1}(x-\mu)\right)}{\sqrt {(2\pi )^{k}|\Sigma|}}}\\\
-&amp; =  {\frac {\exp \left(-{\frac {1}{2}}x^{ T }\Sigma ^{-1}x+x^{ T }\Sigma ^{-1}\mu-{\frac {1}{2}}\mu^{ T }\Sigma ^{-1}\mu\right)}{\sqrt {(2\pi )^{k}|\Sigma|}}} \end{aligned}\]</span>
-&amp; = {} \end{aligned}只需考虑<span class="math inline">\(x\)</span>与参数<span class="math inline">\(\mu, \Sigma\)</span>分不开的那些项, 得<span class="math inline">\(T(x)=(x, xx^T)\)</span>(<code>p.s.</code>这里笔者并不是很明白怎么去算, 希望知道多元正态分布充分统计量详细推导的朋友的朋友能给我解惑, 联系方式见关于我 :) )必然是其中一个充分统计量, 用上述结论即为<span class="math display">\[\begin{aligned} \mathbb{E}_{P(x\mid X, \theta)}x &amp; =  \mathbb{E}_{q(x\mid \mu, \Sigma)}x=\mu\\\
-\mathbb{E}_{P(x\mid X, \theta)}xx^T&amp; =  \mathbb{E}_{q(x\mid \mu, \Sigma)}xx^T=\Sigma + \mu\mu^T\end{aligned}\]</span>上述思路其实是Assumed Density Filtering(ADF)(或者说在线贝叶斯学习online bayesian leaning, 矩匹配moment matching)的主要思路, 至于在线学习则体现在初始化<span class="math inline">\(q=1\)</span>后对每个样本序列地用上述式子去更新, 详细可见Thomas P Minka的博士论文A family of algorithms for approximate Bayesian inference(百度学术, 谷歌学术均可达)的3.1节.</li>
-</ul>
-<hr />
-<p><code>p.s.</code>这篇论文其实是期望方法传播的提出之作, 其可视为ADF的拓展, 或者说ADF是期望传播的online版本, 两者相同点在于每次都只对一个样本进行更新; 区别则在于逼近目标为batch还是依次来样本; 且期望方法会一直更新直到收敛, 因此很可能每个样本点更新多次, 而ADF对每个样本点只更新一次. 有兴趣的朋友可见Thomas P Minka的那篇论文, 或者见PRML一书p510, 但本质上两者的核心更新式子还是出于期望的传播这样一个想法.</p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>KL散度</tag>
-        <tag>期望传播</tag>
-        <tag>指数族分布</tag>
-        <tag>充分统计量</tag>
+        <tag>拉普拉斯方法</tag>
+        <tag>积分近似</tag>
       </tags>
   </entry>
   <entry>
@@ -2517,32 +2501,6 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
       </tags>
   </entry>
   <entry>
-    <title>拉普拉斯方法</title>
-    <url>/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>前言: 本文主要是关于拉普拉斯近似方法, 这是一种用来近似计算积分的方法, 主要参考了维基百科及PRML一书6.4节. <span id="more"></span></p>
-<hr />
-<h2 id="拉普拉斯近似方法">拉普拉斯近似方法</h2>
-拉普拉斯近似方法(<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">Laplace's method</a>)是一种近似计算积分的方法, 目标积分形如<span class="math display">\[\int_a^be^{Mf(x)}dx\]</span>其中<span class="math inline">\(f(x)\)</span>要求是二次可微的, <span class="math inline">\(M\)</span>要求是一个较大的数. 其想法是假定<span class="math inline">\(x_0\)</span>是<span class="math inline">\(f(x)\)</span>唯一的最大值点, 因此<span class="math inline">\(f(x_0)&gt;f(x)\)</span>, 乘上一个较大的M, 在经过指数函数的作用, 其差值事实上会变得很大, 不难想象随着<span class="math inline">\(M\)</span>的增大积分内的函数会越来越像一个单峰函数, 事实上确实会逼近对一个正态分布进行积分的值. 举个例子<span class="math inline">\(f(x)=sinx/x\)</span>, 分别画出<span class="math inline">\(e^{sinx/x}\)</span>和<span class="math inline">\(e^{3sinx/x}\)</span>的函数图像:
-<div data-align="center">
-<img src="/pictures/laplace_method/exp%283sinx_x%29.png" width="60%" height="50%" />
-</div>
-<div data-align="center">
-<img src="/pictures/laplace_method/exp%28sinx_x%29.png" width="60%" height="50%" />
-</div>
-<p>考虑多元情形, 假定<span class="math inline">\(x_0\)</span>为f(x)的最大值点, 因此有<span class="math inline">\(\nabla f(x_0)=0\)</span>且Hessian矩阵<span class="math inline">\(H(x_0)负定\)</span>. 将<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处泰勒展开得<span class="math display">\[f(x)\approx f(x_0)+\frac{1}{2!}(x-x_0)^TH(x_0)(x-x_0)\]</span>此时积分近似为<span class="math display">\[\int_a^be^{Mf(x)}dx\approx e^{Mf(x_0)}\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\]</span>假设<span class="math inline">\(x_0\)</span>包含在区间<span class="math inline">\([a,b]\)</span>内, 那么右式可以直接视为在<span class="math inline">\((-\infty,+\infty)\)</span>上的积分, 因为随着<span class="math inline">\(M\)</span>的增大区间之外的积分会越来越小. 而此时右边的积分即为一个对多元正态分布的积分, 且该积分可以通过变量代换<span class="math inline">\(t=H(x_0)^{\frac{1}{2}}(x-x_0)\)</span>化成标准的多元正态分布计算出来:<span class="math display">\[\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\approx \int_{-\infty}^{+\infty} e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx=\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里的<span class="math inline">\(d\)</span>指的是自变量<span class="math inline">\(x\)</span>的维度, <span class="math inline">\(H(x_0)\)</span>指<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处的Hessian矩阵. 因此得到结论:<span class="math display">\[\int_a^be^{Mf(x)}dx\approx  e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>本质上来说, 倘若暂时先不考虑<span class="math inline">\(M\)</span>的大小, 用二阶泰勒展开对<span class="math inline">\(f(x)\)</span>进行近似的方法实际上是把被积函数视为多元正态分布. 一元情形的相关定理描述及证明请移步<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">维基百科</a>, 最后来看一个更一般的结论:<span class="math display">\[\int_a^bh(x)e^{Mf(x)}dx\approx  h(x_0)e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里要求<span class="math inline">\(h(x)&gt;0\)</span>.</p>
-<hr />
-<h2 id="例子">例子</h2>
-<p>例子参考了PRML一书6.4节, 来自高斯过程分类中的预测问题, 目标也是求一个积分<span class="math display">\[P(a_{N+1}\mid t_N)=\int P(a_{N+1}\mid a_N)P(a_N\mid t_N)da_N\]</span>这里的目标变量<span class="math inline">\(t\in\{0, 1\}\)</span>为二分变量; 被积函数第一部分<span class="math inline">\(P(a_{N+1}\mid a_N)\)</span>是个正态分布, 即为高斯过程回归做预测时的核心结论. 本质上来说, 拉普拉斯近似方法把被积函数或者是被积函数的一部分代换成多元正态分布<span class="math inline">\(N(\mu, \Sigma)\)</span>, 这里仅把被积函数的第二部分代换掉. 回想多元正态分布的<a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">密度函数</a>, 因此只要计算<span class="math inline">\(\log P(a_N\mid t_N)\)</span>关于变量<span class="math inline">\(a_N\)</span>的梯度<span class="math inline">\(\nabla\)</span>和Hessian矩阵<span class="math inline">\(\nabla^2\)</span>, 此时<span class="math inline">\(\mu\)</span>即为<span class="math inline">\(\nabla=0\)</span>的解, <span class="math inline">\(\Sigma=-\nabla^2\)</span>. 接着由两个正态分布积分的一些性质(PRML一书2.115), 可以得到目标积分的近似结果仍为一个正态分布. 然后我们可以用它来做预测<span class="math display">\[P(t_{N+1}=1\mid t_N)=\int P(t_{N+1}=1\mid a_{N+1})P(a_{N+1}\mid t_N)da_{N+1}\]</span>具体计算时被积函数的第一部分利用自己本身的性质近似成了正态分布的分布函数(而非密度函数)(PRML一书4.153). <code>p.s.</code>: 高斯过程分类中的参数也可以用拉普拉斯近似方法得到, 这里就不再赘述, 最后建议细细读一读PRML一书6.4节.</p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>拉普拉斯方法</tag>
-        <tag>积分近似</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>最小作用量原理</title>
     <url>/2019/03/28/%E6%9C%80%E5%B0%8F%E4%BD%9C%E7%94%A8%E9%87%8F%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<p>前言: 最近在读最佳可能的世界一书, 这里简单分享一下最小作用量原理. <span id="more"></span></p>
@@ -2581,6 +2539,48 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
       </categories>
       <tags>
         <tag>最小作用量原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>期望传播</title>
+    <url>/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/</url>
+    <content><![CDATA[<p>前言: 本文主要是关于期望传播, 这是一种用指数族分布去近似复杂目标分布的方法, 其本质上为变分推断逆过来, 主要参考了Thomas P Minka的博士论文A family of algorithms for approximate Bayesian inference、维基百科及PRML一书10.7节.</p>
+<span id="more"></span>
+<hr />
+<h2 id="指数族分布">指数族分布</h2>
+<p>首先来看一个重要概念<a href="https://en.wikipedia.org/wiki/Exponential_family">指数族分布</a>, 称<span class="math inline">\(X\)</span>为指数族分布, 若其密度函数:<span class="math display">\[f(x\mid \theta )=h(x)\exp \left(\eta (\theta )^TT(x)-A(\theta )\right), \theta\in\Theta\]</span>其中:</p>
+<ul>
+<li><span class="math inline">\(T(x)\)</span>为<span class="math inline">\(X\)</span>的充分统计量. 样本<span class="math inline">\(x=\{x_1,..,x_m\}\)</span>, <span class="math inline">\(x_i\sim f(x\mid \theta)\)</span>, 统计量(比方说)<span class="math display">\[T(x)=(\bar{x}, \frac{1}{m}\sum_{i=1}^n (x_i-x)^2)\]</span>可理解为对样本<span class="math inline">\(x\)</span>的粗加工, 其将对样本的信息量由<span class="math inline">\(m\)</span>维降至<span class="math inline">\(2\)</span>维; 而充分统计量<span class="math inline">\(T(x)\)</span>则是那些能够充分说明原样本的统计量, 定义为: 若<span class="math inline">\(x\mid T(x)\)</span>的条件分布与未知参数<span class="math inline">\(\theta\)</span>无关, 则称<span class="math inline">\(T(x)\)</span>为充分统计量. <span class="math inline">\((\bar{x}, \frac{1}{m}\sum_{i=1}^n (x_i-\bar{x})^2)\)</span>就是正态分布的一个充分统计量(充分统计量不唯一).</li>
+<li>当<span class="math inline">\(\eta (\theta )=\theta\)</span>取实值, 此时指数族分布称为是自然形式的指数族分布.</li>
+<li><span class="math inline">\(A(\theta)\)</span>称为是归一化因子<span class="math display">\[A(\theta )=\ln \left(\int h(x)\exp(\theta ^T T(x))\,\mathrm {d} x\right)\]</span>它的存在保证了这个函数是个密度函数. 有时这个归一化因子会写在外面, 因此指数族分布的密度函数有如下等价形式:<span class="math display">\[f(x\mid \theta )=h(x)g(\theta )\exp \left(\theta ^T T(x)\right)\]</span>此时<span class="math inline">\(g(\theta)\)</span>满足<span class="math inline">\(g(\theta)^{-1}=\int h(x)\exp \left(\theta ^T T(x)\right)dx\)</span>.</li>
+<li>参数空间<span class="math inline">\(\Theta\)</span>中的每一个元<span class="math inline">\(\theta\)</span>都应当使得归一化因子为正数: <span class="math inline">\(A(\theta)\in(0,+\infty)\)</span>; 而所使得归一化因子为正数的<span class="math inline">\(\theta\)</span>构成的参数空间<span class="math inline">\(\Theta\)</span>称为是自然参数空间, 且自然形式下的指数族分布的自然参数空间为欧式空间中的凸集.</li>
+</ul>
+<p>指数族分布是一大类分布的集合, 包括正态分布, 指数分布, 二项分布, 泊松分布, Beta分布, Gamma分布, 狄利克雷分布等, 具体见<a href="https://en.wikipedia.org/wiki/Exponential_family#Table_of_distributions">维基百科上的总结</a>, 有兴趣的读者不妨拿一个验证一下. 以密度函数的第二个形式为例, 归一化因子满足条件的等式的两边对参数<span class="math inline">\(\theta\)</span>求导可以得到自然形式指数族分布的一个重要性质, 能轻易表示出<span class="math inline">\(T(x)\)</span>的各阶矩: <span class="math display">\[g(\theta)^{-2}\frac{dg(\theta)}{d\theta} =  \int h(x)\exp \left(\theta ^T T(x)\right)T(x)dx \]</span>两边同乘<span class="math inline">\(g(\theta)\)</span>得:<span class="math display">\[-\nabla\ln g(\theta)=\mathbb{E}_{f(x\mid \theta )}T(x)\]</span>再次对<span class="math inline">\(\theta\)</span>求导可得:<span class="math display">\[-\nabla^2 \ln g(\theta)=\mathbb{E}_{f(x\mid \theta )}T^2(x)\]</span>当然如果此时密度函数取第一个形式, 形式会更简单: <span class="math display">\[\nabla A(\theta)=\mathbb{E}_{f(x\mid \theta )}T(x), \nabla^2 A(\theta)=\mathbb{E}_{f(x\mid \theta )}T^2(x)\]</span>关于更多指数族分布或是统计量可参考数理统计的教材, 比如韦博成的参数统计教程, 陈希孺的高等数理统计学.</p>
+<hr />
+<h2 id="期望传播">期望传播</h2>
+<p>下面来看期望传播:</p>
+<ul>
+<li>首先简单回顾变分推断, 变分推断做的是通过最小化KL散度(以EM算法中E步为例, 详见<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/">贝叶斯方法</a>的3.1节.):<span class="math display">\[\mathcal{KL}(q(T)\Vert P(T\mid X, \theta))\]</span> <span class="math inline">\(\mathcal{KL}\)</span>散度的定义见<a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">维基百科</a>, 这里的<span class="math inline">\(X\)</span>为机器学习中的样本矩阵, 已给定, 不同于变量<span class="math inline">\(x\)</span>; <span class="math inline">\(\theta\)</span>为未知参数; <span class="math inline">\(T\)</span>本为隐变量, 这里为了不和上文<span class="math inline">\(T\)</span>重名, 简记为<span class="math display">\[\mathcal{KL}(q(x)\Vert P(x\mid X, \theta))\]</span>这里做的事情就是从一个相对简单的单分布族<span class="math inline">\(Q\)</span>中找到一个<span class="math inline">\(q(x)\)</span>去逼近复杂分布<span class="math inline">\(P(x\mid X, \theta)\)</span>. 和下文的期望传播以示区别, 这里我们称之为<span class="math inline">\(q(x)\)</span>从左逼近<span class="math inline">\(P(x\mid X, \theta)\)</span>, 这种从左逼近的方法的最大的好处就是不必去考虑关于<span class="math inline">\(X, \theta\)</span>的分布, 即不必计算<span class="math inline">\(P(X, \theta)\)</span>.</li>
+<li>期望传播(Expectation Propagation: EP)做的则是最小化逆过来的KL散度:<span class="math display">\[\mathcal{KL}( P(x\mid X, \theta)\Vert q(x))\]</span>这里我们称之为<span class="math inline">\(q(x)\)</span>从右逼近<span class="math inline">\(P(x\mid X, \theta)\)</span>, 这种从右逼近的方法的好处就是, 若这里的<span class="math inline">\(q(x)\)</span>限定在指数族分布的范围内, 即<span class="math inline">\(q(x\mid\tilde{\theta})=h(x)g(\tilde{\theta} )\exp \left(\tilde{\theta} ^T T(x)\right)\)</span>(<span class="math inline">\(\tilde{\theta}\)</span>与<span class="math inline">\(\theta\)</span>是不同的未知参数), 此时最小化上述<span class="math inline">\(\mathcal{KL}\)</span>散度就等价于充分统计量<span class="math inline">\(T(x)\)</span>关于两个分布<span class="math inline">\(q(x)\)</span>和<span class="math inline">\(P(x\mid X, \theta)\)</span>的期望相等: <span class="math display">\[\begin{aligned} \mathcal{KL}( P(x\mid X, \theta)\Vert q(x)) &amp; =  \int P(x\mid X, \theta)\ln\frac{P(x\mid X, \theta)}{q(x)}dx\\\
+&amp; =  \int P(x\mid X, \theta)\ln\frac{P(x\mid X, \theta)}{h(x)g(\tilde{\theta} )\exp \left(\tilde{\theta} ^T T(x)\right)}dx\\\
+(let \, P=P(x\mid X, \theta)) \,&amp; = \int P\ln Pdx - \int P\ln h(x)dx-\int P\ln g(\tilde{\theta})dx- \int P\tilde{\theta} ^T T(x)dx\\\
+&amp; = \int P\ln Pdx - \int P\ln h(x)dx-\ln g(\tilde{\theta})- \tilde{\theta} ^T \mathbb{E}_{P}T(x) \end{aligned}\]</span> 此时令关于未知参数 <span class="math inline">\(\tilde{\theta}\)</span> 的梯度为<span class="math inline">\(0\)</span>就可以得到<span class="math display">\[-\nabla\ln g(\tilde{\theta})=\mathbb{E}_{P(x\mid X, \theta)}T(x)\]</span>再利用上节中能轻易表示出<span class="math inline">\(T(x)\)</span>各接矩的性质, 这里仅用一阶矩: <span class="math display">\[-\nabla\ln g(\tilde{\theta})=\mathbb{E}_{q(x\mid\tilde{\theta})}T(x)\]</span>得到结论: <span class="math display">\[\mathbb{E}_{P(x\mid X, \theta)}T(x)=\mathbb{E}_{q(x\mid\tilde{\theta})}T(x)\]</span>即<span class="math inline">\(T(x)\)</span>关于目标分布<span class="math inline">\(P(x\mid X, \theta)\)</span>期望的信息能够传递下去. 以正态分布为例, <span class="math inline">\(q(x\mid \mu, \Sigma)=N(\mu, \Sigma)\)</span>:
+<span class="math display">\[\begin{aligned} q(x\mid \mu, \Sigma) &amp; =  {\frac {\exp \left(-{\frac {1}{2}}(x- \mu )^{T }\Sigma ^{-1}(x-\mu)\right)}{\sqrt {(2\pi )^{k}|\Sigma|}}}\\\
+&amp; =  {\frac {\exp \left(-{\frac {1}{2}}x^{ T }\Sigma ^{-1}x+x^{ T }\Sigma ^{-1}\mu-{\frac {1}{2}}\mu^{ T }\Sigma ^{-1}\mu\right)}{\sqrt {(2\pi )^{k}|\Sigma|}}} \end{aligned}\]</span>
+&amp; = {} \end{aligned}只需考虑<span class="math inline">\(x\)</span>与参数<span class="math inline">\(\mu, \Sigma\)</span>分不开的那些项, 得<span class="math inline">\(T(x)=(x, xx^T)\)</span>(<code>p.s.</code>这里笔者并不是很明白怎么去算, 希望知道多元正态分布充分统计量详细推导的朋友的朋友能给我解惑, 联系方式见关于我 :) )必然是其中一个充分统计量, 用上述结论即为<span class="math display">\[\begin{aligned} \mathbb{E}_{P(x\mid X, \theta)}x &amp; =  \mathbb{E}_{q(x\mid \mu, \Sigma)}x=\mu\\\
+\mathbb{E}_{P(x\mid X, \theta)}xx^T&amp; =  \mathbb{E}_{q(x\mid \mu, \Sigma)}xx^T=\Sigma + \mu\mu^T\end{aligned}\]</span>上述思路其实是Assumed Density Filtering(ADF)(或者说在线贝叶斯学习online bayesian leaning, 矩匹配moment matching)的主要思路, 至于在线学习则体现在初始化<span class="math inline">\(q=1\)</span>后对每个样本序列地用上述式子去更新, 详细可见Thomas P Minka的博士论文A family of algorithms for approximate Bayesian inference(百度学术, 谷歌学术均可达)的3.1节.</li>
+</ul>
+<hr />
+<p><code>p.s.</code>这篇论文其实是期望方法传播的提出之作, 其可视为ADF的拓展, 或者说ADF是期望传播的online版本, 两者相同点在于每次都只对一个样本进行更新; 区别则在于逼近目标为batch还是依次来样本; 且期望方法会一直更新直到收敛, 因此很可能每个样本点更新多次, 而ADF对每个样本点只更新一次. 有兴趣的朋友可见Thomas P Minka的那篇论文, 或者见PRML一书p510, 但本质上两者的核心更新式子还是出于期望的传播这样一个想法.</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>KL散度</tag>
+        <tag>期望传播</tag>
+        <tag>指数族分布</tag>
+        <tag>充分统计量</tag>
       </tags>
   </entry>
   <entry>
@@ -3119,6 +3119,68 @@ y[t]=V^T[t]\mathbf{r}[t]
       </tags>
   </entry>
   <entry>
+    <title>自然梯度</title>
+    <url>/2019/07/06/%E8%87%AA%E7%84%B6%E6%A2%AF%E5%BA%A6/</url>
+    <content><![CDATA[<p>前言: 本文介绍自然梯度算法, 这种方法考虑到许多问题的参数空间具有某种结构, 因此考虑放在非欧式空间中优化(但实际优化计算过程仍然在欧式空间), 有兴趣的同学可以读一读原论文<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient</a>. <span id="more"></span></p>
+<h2 id="欧式空间与黎曼空间">欧式空间与黎曼空间</h2>
+<p>什么是欧式空间?</p>
+<blockquote>
+<p>A finite dimensional real vector space equipped with an inner product <span class="math inline">\(\left&lt; x,y \right&gt;\)</span>, is called a <strong>Eulidean space</strong>, if it is endowed with the norm <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}\)</span>, which is referred to as <strong>Eulidean norm</strong>.</p>
+</blockquote>
+<p>通俗的讲, 首先得有一个向量空间<span class="math inline">\(\mathbb{R}^n\)</span>, 接着在这个空间上定义内积(inner product), 这个内积可以是常见的内积点乘, 也可以是其它内积:</p>
+<ul>
+<li>dot product: <span class="math inline">\(\left&lt; x,y \right&gt;=\sum_{i=1}^nx_iy_i\)</span>, 其中<span class="math inline">\(x_i\)</span>为<span class="math inline">\(x\)</span>的第<span class="math inline">\(i\)</span>个分量.</li>
+<li><span class="math inline">\(Q\)</span> inner: <span class="math inline">\(\left&lt; x,y \right&gt;=x^TQy\)</span>, 其<span class="math inline">\(Q\)</span>为<span class="math inline">\(n\)</span>阶正定阵.</li>
+</ul>
+<p>然后由内积可以诱导出对应的范数:</p>
+<ul>
+<li><span class="math inline">\(l_2\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{ \sum_{i=1}^n x_i^2 }\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_2\)</span>.</li>
+<li><span class="math inline">\(Q\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{x^TQx}\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_Q\)</span>.</li>
+</ul>
+<p>有了范数, 我们就可以度量两个点<span class="math inline">\(x,x+dx\)</span>之间的距离(点乘内积): <span class="math display">\[\Vert x + dx-x\Vert=\Vert dx\Vert=\sqrt{ \sum_{i=1}^n dx_i^2 }.\]</span></p>
+<p>小结一下:</p>
+<ul>
+<li>欧式空间是一个向量空间, 且带有内积和范数;</li>
+<li>最重要的是, 该范数一定是要由内积根据上式诱导出来的.</li>
+</ul>
+<p>什么是黎曼空间?</p>
+<blockquote>
+<p>A differentiable manifold provided with a <strong>Riemannian metric</strong>.</p>
+</blockquote>
+<p>微分流形(differentiable manifold又名光滑流形, 其最简单的例子就是三维空间中的球面, 在这里可简单理解为向量空间; 黎曼度量(Riemannian metric.)又名<a href="https://zh.wikipedia.org/wiki/%E5%BA%A6%E9%87%8F%E5%BC%A0%E9%87%8F">度量张量</a>, 黎曼度量张量或是度规张量, 这里可简单理解为某<span class="math inline">\(n\)</span>阶方阵<span class="math inline">\(G\)</span>或是<span class="math inline">\((g_{ij})\)</span>. 有了它我们就可以用它来度量空间中两点<span class="math inline">\(x,x+dx\)</span>之间的距离: <span class="math display">\[dx^2=\sum_{ij}g_{ij}dx_i dx_j=dx^TGdx\]</span>其中<span class="math inline">\(dx_i\)</span>为<span class="math inline">\(dx\)</span>的第<span class="math inline">\(i\)</span>个分量. 特别的, 若取<span class="math inline">\(G\)</span>为<span class="math inline">\(n\)</span>阶单位阵(对角线上元素为1, 其余为0), 此时<span class="math inline">\(dx^2=\sum_{i}^ndx_i^2\)</span>. 这就与带有正交坐标系的欧式空间一致了(点乘内积). 小结一下:</p>
+<ul>
+<li>黎曼空间可视为欧式空间的推广, 但一般情况下, 黎曼空间为非欧空间.</li>
+<li>确定了<span class="math inline">\(G\)</span>就相当于确定了一个黎曼空间, 另外形式上类似欧式空间中的<span class="math inline">\(Q\)</span> norm但没有正定性的要求.</li>
+</ul>
+<h2 id="自然梯度">自然梯度</h2>
+<p>带正交坐标系的欧式空间中, 我们知道负梯度方向<span class="math inline">\(-\nabla L(w)\)</span>为<span class="math inline">\(L(w)\)</span>的最速下降方向; 类似的, 黎曼空间中的<span class="math inline">\(L(w)\)</span>最速下降方向为<span class="math inline">\(-G^{-1}(w)\nabla L(w)\)</span>, 这被称为是自然梯度, 证明可见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient Works Efficiently in Learning</a>的定理1. 下面举个例子加以说明:</p>
+<ul>
+<li>现有一族带参的分布族<span class="math inline">\(\{p(z\mid w)\}\)</span>, 目标是找到最优参数<span class="math inline">\(w=w^*\)</span>使得<span class="math inline">\(p(z\mid w)\)</span>尽可能的接近未知的密度函数<span class="math inline">\(q(z)\)</span>.</li>
+<li>事实上, 很多机器学习任务可归结为上述问题, 比方说<span class="math inline">\(q(z)=q(x,y)\)</span>表示某监督学习任务的样本真实分布, <span class="math inline">\(w\)</span>表示某个NN的参数.</li>
+<li>一个常用的损失函数就是最小化交叉熵的负数:<span class="math display">\[L(w)=-\mathbb{E}_{q(z)}[\log p(z\mid w)]=\mathcal{KL}(q(z)\Vert p(z\mid w))-\mathbb{E}_{q(z)}[\log q(z)]\]</span>其中<span class="math inline">\(\mathcal{KL}(q(z)\Vert p(z\mid w))=\mathbb{E}_{q(z)}[\log\frac{q(z)}{p(z\mid w)}]=\int q(z)\log\frac{q(z)}{p(z\mid w)}dz\)</span>, 且第二项与<span class="math inline">\(w\)</span>无关.</li>
+<li>Information geometry (Amari, 1985)给出了利用<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>定义<span class="math inline">\(G\)</span>(概率密度函数族可以看做与参数空间同胚的黎曼流形, Fisher信息矩阵可以看做是该流形上的黎曼度量, 可以证明这一度量是外围欧式空间在该流形上的诱导度量): <span class="math display">\[G_{ij}(w)=I_{ij}(w)=-\mathbb{E}_{p(z\mid w)}\left [\frac{\partial \log p(z\mid w)}{\partial w_i}\frac{\partial \log p(z\mid w)}{\partial w_j}\right]\]</span></li>
+<li>最后假设有一堆独立同分布样本<span class="math inline">\(z_i \sim p(z)\)</span>, 就可用stochastic或batch的思路去优化. 此时<span class="math inline">\(L(w)\)</span>的自然梯度方向即为<span class="math inline">\(-I^{-1}(w)\nabla L(w)\)</span>, 这又被称为是<strong>Fisher scoring algorithm</strong>.</li>
+</ul>
+<p>回过头来看, 对<span class="math inline">\(q(z)\)</span>的参数化近似<span class="math inline">\(p(z,w)\)</span>必定赋予了它某种结构(比方说对<span class="math inline">\(w\)</span>迈出一大步未必能导致<span class="math inline">\(p(z,w)\)</span>的大的变化), 而要想利用这种结构, 最大的难点就是如何找到对应的黎曼空间, 或者说<span class="math inline">\(G\)</span>.</p>
+<ul>
+<li>第6节给出了<strong>感知机模型</strong>的参数空间的相对应<span class="math inline">\(G, G^{-1}\)</span>的详细求解过程, 同时还有<strong>多层感知机模型</strong>的<span class="math inline">\(G\)</span>.</li>
+<li>第7节给出了<span class="math inline">\(m\)</span>阶非奇异方阵构成的空间中自然梯度的求法; 第8节给出了系统空间中的自然梯度.</li>
+</ul>
+<h2 id="自然梯度与牛顿类法">自然梯度与牛顿类法</h2>
+<p>形式上, 自然梯度法类似于牛顿法: <span class="math display">\[G(w)=-\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right], \nabla ^2L (w)=-\mathbb{E}_{q(z)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]\]</span>且随着优化算法的进行, <span class="math inline">\(p(z\mid w)\)</span>会越来越接近<span class="math inline">\(q(z)\)</span>, 此时两者的表现会相近.当然, 实际任务中因为实际分布一般不知道因此再多一层近似, 即用batch或是stochastic近似上述右式. 最后, 由于<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>的一个特殊性质, 在满足<a href="https://en.wikipedia.org/wiki/Cram%C3%A9r%E2%80%93Rao_bound#Regularity_conditions">CR条件</a>的前提下, 有<span class="math display">\[\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]=\mathbb{E}_{p(z\mid w)}\left[ (\frac{\partial\log p(z\mid w)}{\partial w})(\frac{\partial\log p(z\mid w)}{\partial w})^T\right]\]</span>若我把上式中的<span class="math inline">\(p(z\mid w)\)</span>换成<span class="math inline">\(q(z)\)</span>, <a href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm">Gauss-Newton法</a>就跃然纸上.</p>
+]]></content>
+      <categories>
+        <category>优化算法</category>
+      </categories>
+      <tags>
+        <tag>优化</tag>
+        <tag>黎曼空间</tag>
+        <tag>欧式空间</tag>
+        <tag>Fisher信息</tag>
+        <tag>自然梯度</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>统计学习的基本定理</title>
     <url>/2017/08/13/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/</url>
     <content><![CDATA[<p>本文主要参考了Shai Shalev-Shwartz的深入理解机器学习第2-7章以及coursera上林轩田的机器学习基石课程,这部分内容较为详细的描述了机器学习的理论部分,主要包括以下三部分内容:</p>
@@ -3408,68 +3470,6 @@ y[t]=V^T[t]\mathbf{r}[t]
       </tags>
   </entry>
   <entry>
-    <title>自然梯度</title>
-    <url>/2019/07/06/%E8%87%AA%E7%84%B6%E6%A2%AF%E5%BA%A6/</url>
-    <content><![CDATA[<p>前言: 本文介绍自然梯度算法, 这种方法考虑到许多问题的参数空间具有某种结构, 因此考虑放在非欧式空间中优化(但实际优化计算过程仍然在欧式空间), 有兴趣的同学可以读一读原论文<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient</a>. <span id="more"></span></p>
-<h2 id="欧式空间与黎曼空间">欧式空间与黎曼空间</h2>
-<p>什么是欧式空间?</p>
-<blockquote>
-<p>A finite dimensional real vector space equipped with an inner product <span class="math inline">\(\left&lt; x,y \right&gt;\)</span>, is called a <strong>Eulidean space</strong>, if it is endowed with the norm <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}\)</span>, which is referred to as <strong>Eulidean norm</strong>.</p>
-</blockquote>
-<p>通俗的讲, 首先得有一个向量空间<span class="math inline">\(\mathbb{R}^n\)</span>, 接着在这个空间上定义内积(inner product), 这个内积可以是常见的内积点乘, 也可以是其它内积:</p>
-<ul>
-<li>dot product: <span class="math inline">\(\left&lt; x,y \right&gt;=\sum_{i=1}^nx_iy_i\)</span>, 其中<span class="math inline">\(x_i\)</span>为<span class="math inline">\(x\)</span>的第<span class="math inline">\(i\)</span>个分量.</li>
-<li><span class="math inline">\(Q\)</span> inner: <span class="math inline">\(\left&lt; x,y \right&gt;=x^TQy\)</span>, 其<span class="math inline">\(Q\)</span>为<span class="math inline">\(n\)</span>阶正定阵.</li>
-</ul>
-<p>然后由内积可以诱导出对应的范数:</p>
-<ul>
-<li><span class="math inline">\(l_2\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{ \sum_{i=1}^n x_i^2 }\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_2\)</span>.</li>
-<li><span class="math inline">\(Q\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{x^TQx}\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_Q\)</span>.</li>
-</ul>
-<p>有了范数, 我们就可以度量两个点<span class="math inline">\(x,x+dx\)</span>之间的距离(点乘内积): <span class="math display">\[\Vert x + dx-x\Vert=\Vert dx\Vert=\sqrt{ \sum_{i=1}^n dx_i^2 }.\]</span></p>
-<p>小结一下:</p>
-<ul>
-<li>欧式空间是一个向量空间, 且带有内积和范数;</li>
-<li>最重要的是, 该范数一定是要由内积根据上式诱导出来的.</li>
-</ul>
-<p>什么是黎曼空间?</p>
-<blockquote>
-<p>A differentiable manifold provided with a <strong>Riemannian metric</strong>.</p>
-</blockquote>
-<p>微分流形(differentiable manifold又名光滑流形, 其最简单的例子就是三维空间中的球面, 在这里可简单理解为向量空间; 黎曼度量(Riemannian metric.)又名<a href="https://zh.wikipedia.org/wiki/%E5%BA%A6%E9%87%8F%E5%BC%A0%E9%87%8F">度量张量</a>, 黎曼度量张量或是度规张量, 这里可简单理解为某<span class="math inline">\(n\)</span>阶方阵<span class="math inline">\(G\)</span>或是<span class="math inline">\((g_{ij})\)</span>. 有了它我们就可以用它来度量空间中两点<span class="math inline">\(x,x+dx\)</span>之间的距离: <span class="math display">\[dx^2=\sum_{ij}g_{ij}dx_i dx_j=dx^TGdx\]</span>其中<span class="math inline">\(dx_i\)</span>为<span class="math inline">\(dx\)</span>的第<span class="math inline">\(i\)</span>个分量. 特别的, 若取<span class="math inline">\(G\)</span>为<span class="math inline">\(n\)</span>阶单位阵(对角线上元素为1, 其余为0), 此时<span class="math inline">\(dx^2=\sum_{i}^ndx_i^2\)</span>. 这就与带有正交坐标系的欧式空间一致了(点乘内积). 小结一下:</p>
-<ul>
-<li>黎曼空间可视为欧式空间的推广, 但一般情况下, 黎曼空间为非欧空间.</li>
-<li>确定了<span class="math inline">\(G\)</span>就相当于确定了一个黎曼空间, 另外形式上类似欧式空间中的<span class="math inline">\(Q\)</span> norm但没有正定性的要求.</li>
-</ul>
-<h2 id="自然梯度">自然梯度</h2>
-<p>带正交坐标系的欧式空间中, 我们知道负梯度方向<span class="math inline">\(-\nabla L(w)\)</span>为<span class="math inline">\(L(w)\)</span>的最速下降方向; 类似的, 黎曼空间中的<span class="math inline">\(L(w)\)</span>最速下降方向为<span class="math inline">\(-G^{-1}(w)\nabla L(w)\)</span>, 这被称为是自然梯度, 证明可见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient Works Efficiently in Learning</a>的定理1. 下面举个例子加以说明:</p>
-<ul>
-<li>现有一族带参的分布族<span class="math inline">\(\{p(z\mid w)\}\)</span>, 目标是找到最优参数<span class="math inline">\(w=w^*\)</span>使得<span class="math inline">\(p(z\mid w)\)</span>尽可能的接近未知的密度函数<span class="math inline">\(q(z)\)</span>.</li>
-<li>事实上, 很多机器学习任务可归结为上述问题, 比方说<span class="math inline">\(q(z)=q(x,y)\)</span>表示某监督学习任务的样本真实分布, <span class="math inline">\(w\)</span>表示某个NN的参数.</li>
-<li>一个常用的损失函数就是最小化交叉熵的负数:<span class="math display">\[L(w)=-\mathbb{E}_{q(z)}[\log p(z\mid w)]=\mathcal{KL}(q(z)\Vert p(z\mid w))-\mathbb{E}_{q(z)}[\log q(z)]\]</span>其中<span class="math inline">\(\mathcal{KL}(q(z)\Vert p(z\mid w))=\mathbb{E}_{q(z)}[\log\frac{q(z)}{p(z\mid w)}]=\int q(z)\log\frac{q(z)}{p(z\mid w)}dz\)</span>, 且第二项与<span class="math inline">\(w\)</span>无关.</li>
-<li>Information geometry (Amari, 1985)给出了利用<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>定义<span class="math inline">\(G\)</span>(概率密度函数族可以看做与参数空间同胚的黎曼流形, Fisher信息矩阵可以看做是该流形上的黎曼度量, 可以证明这一度量是外围欧式空间在该流形上的诱导度量): <span class="math display">\[G_{ij}(w)=I_{ij}(w)=-\mathbb{E}_{p(z\mid w)}\left [\frac{\partial \log p(z\mid w)}{\partial w_i}\frac{\partial \log p(z\mid w)}{\partial w_j}\right]\]</span></li>
-<li>最后假设有一堆独立同分布样本<span class="math inline">\(z_i \sim p(z)\)</span>, 就可用stochastic或batch的思路去优化. 此时<span class="math inline">\(L(w)\)</span>的自然梯度方向即为<span class="math inline">\(-I^{-1}(w)\nabla L(w)\)</span>, 这又被称为是<strong>Fisher scoring algorithm</strong>.</li>
-</ul>
-<p>回过头来看, 对<span class="math inline">\(q(z)\)</span>的参数化近似<span class="math inline">\(p(z,w)\)</span>必定赋予了它某种结构(比方说对<span class="math inline">\(w\)</span>迈出一大步未必能导致<span class="math inline">\(p(z,w)\)</span>的大的变化), 而要想利用这种结构, 最大的难点就是如何找到对应的黎曼空间, 或者说<span class="math inline">\(G\)</span>.</p>
-<ul>
-<li>第6节给出了<strong>感知机模型</strong>的参数空间的相对应<span class="math inline">\(G, G^{-1}\)</span>的详细求解过程, 同时还有<strong>多层感知机模型</strong>的<span class="math inline">\(G\)</span>.</li>
-<li>第7节给出了<span class="math inline">\(m\)</span>阶非奇异方阵构成的空间中自然梯度的求法; 第8节给出了系统空间中的自然梯度.</li>
-</ul>
-<h2 id="自然梯度与牛顿类法">自然梯度与牛顿类法</h2>
-<p>形式上, 自然梯度法类似于牛顿法: <span class="math display">\[G(w)=-\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right], \nabla ^2L (w)=-\mathbb{E}_{q(z)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]\]</span>且随着优化算法的进行, <span class="math inline">\(p(z\mid w)\)</span>会越来越接近<span class="math inline">\(q(z)\)</span>, 此时两者的表现会相近.当然, 实际任务中因为实际分布一般不知道因此再多一层近似, 即用batch或是stochastic近似上述右式. 最后, 由于<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>的一个特殊性质, 在满足<a href="https://en.wikipedia.org/wiki/Cram%C3%A9r%E2%80%93Rao_bound#Regularity_conditions">CR条件</a>的前提下, 有<span class="math display">\[\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]=\mathbb{E}_{p(z\mid w)}\left[ (\frac{\partial\log p(z\mid w)}{\partial w})(\frac{\partial\log p(z\mid w)}{\partial w})^T\right]\]</span>若我把上式中的<span class="math inline">\(p(z\mid w)\)</span>换成<span class="math inline">\(q(z)\)</span>, <a href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm">Gauss-Newton法</a>就跃然纸上.</p>
-]]></content>
-      <categories>
-        <category>优化算法</category>
-      </categories>
-      <tags>
-        <tag>优化</tag>
-        <tag>黎曼空间</tag>
-        <tag>欧式空间</tag>
-        <tag>Fisher信息</tag>
-        <tag>自然梯度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>近端梯度方法</title>
     <url>/2021/01/19/%E8%BF%91%E7%AB%AF%E6%A2%AF%E5%BA%A6%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p>前言: 本文的主角是近端梯度方法(Proximal Gradient Method), 这是一个在数学优化领域广为人知，在机器学习领域却很少看到的数学优化方法，它在非光滑优化领域发挥着巨大的作用，下面我们从一个机器学习问题开始了解它能够解决什么问题。 <span id="more"></span></p>
@@ -3596,52 +3596,6 @@ L_S(\omega)+\alpha\mathcal{R}(\omega) &amp; \leq L_S(\omega_k)+\left\langle\nabl
       </categories>
       <tags>
         <tag>SG</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>高斯过程的随机模拟(含R实现)</title>
-    <url>/2018/09/24/%E9%AB%98%E6%96%AF%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%A8%A1%E6%8B%9F(%E5%90%ABR%E5%AE%9E%E7%8E%B0)/</url>
-    <content><![CDATA[<p>前言: 读PRML一书的6.4节, 对图6.4中高斯过程的采用不同核函数模拟实现非常好奇, 同时也惊叹于高斯过程看上是几乎处处连续的性质, 于是尝试用R去模拟高斯过程. <span id="more"></span></p>
-<hr />
-<p>首先简单说明几点:</p>
-<ul>
-<li>经典的随机过程(stochastic process)的定义<span class="math inline">\(\{x_t, t\in T\}\)</span>可以简单理解为随机变量加上一个维度(比方说时间), 一般的, 时间视为不可数; 另外随机变量可以取实值, 复值, 向量值等, 但一般还是取实值.</li>
-<li>由随机变量的概率空间及状态空间出发去定义随机过程概率空间却不是那么方便, 这当中用到了Kolmogorov定理, 详见钱敏平的随机过程论1.1及1.2小节.</li>
-<li>另外一个重要定理可分修正表明, 任意随机过程都能修正为一个具有可分性的过程(即两者几乎处处相等), 而可分的随机过程其实带有一些连续性的味道, 可见钱敏平的随机过程论p11.</li>
-<li>高斯过程则是任意有限维时间的联合分布(<span class="math inline">\(\{x_{t_1}, x_{t_2},...,x_{t_k}\}\)</span>, 其中<span class="math inline">\(t_1,..,t_k, k\)</span>均任取)为多元正态分布的随机过程, 可见<a href="https://en.wikipedia.org/wiki/Gaussian_process">维基百科</a>.</li>
-<li>补充一点, 随机场(<a href="https://en.wikipedia.org/wiki/Random_field">random field</a>)则是可以视为随机过程的一般化, 即此时添加的可能不仅仅是一维的时间, 而是多维向量; 而高斯随机场(Gaussian random field)则是有限维联合分布为多元正态分布的随机场.</li>
-<li>在现代数学中, 随机过程这个概念等同于随机场(参见随机场的维基百科).</li>
-</ul>
-<hr />
-<p>容易知道, 多元正态分布仅仅依赖于它的期望<span class="math inline">\(\mu\)</span>与协方差矩阵<span class="math inline">\(\Sigma\)</span>, 因此如果我们能对任意有限维分布给出期望<span class="math inline">\(\mu\)</span>与协方差矩阵<span class="math inline">\(\Sigma\)</span>, 高斯过程也就给定了.</p>
-<p>一种思路是假定<span class="math inline">\(\mu=0\)</span>, <span class="math inline">\(\Sigma=K\)</span>, 其中<span class="math inline">\(K_{ij}=k(t_i, t_j)\)</span>, 下面给出<span class="math inline">\(k(t_i, t_j)\)</span>的三种形式:</p>
-<ul>
-<li><span class="math inline">\(k(t_i, t_j)=\min\{t_i, t_j\}\)</span>, 此时高斯过程即为维纳过程, 或者说布朗运动, 高斯过程的R模拟图像如下:
-<div data-align="center">
-<img src="/pictures/R/R_brown_motion.png" width="80%" />
-</div></li>
-<li><span class="math inline">\(k(t_i, t_j)=\exp(-\Vert t_i-t_j\Vert/2\sigma^2)\)</span>, 这个函数又被称为高斯核, 取<span class="math inline">\(2\sigma^2=1\)</span>, 高斯过程的R模拟图像如下:
-<div data-align="center">
-<img src="/pictures/R/R_gauss_kernel.png" width="80%" />
-</div>
-取<span class="math inline">\(2\sigma^2=1/16\)</span>, 高斯过程的R模拟图像又如下:
-<div data-align="center">
-<img src="/pictures/R/R_gausskernel_2.png" width="80%" />
-</div></li>
-<li><span class="math inline">\(k(t_i, t_j)=\exp(-\theta\Vert t_i-t_j\Vert)\)</span>, 此时高斯过程即为<a href="https://en.wikipedia.org/wiki/Ornstein%E2%80%93Uhlenbeck_process">Ornstein–Uhlenbeck过程</a>, 取<span class="math inline">\(\theta=1\)</span>, 高斯过程的R模拟图像如下:
-<div data-align="center">
-<img src="/pictures/R/R_OUprocess.png" width="80%" />
-</div></li>
-</ul>
-<p>最后附上R代码, 其中核心部分代码即<code>gaussprocess</code>函数, 这个函数即先根据函数<span class="math inline">\(k(,)\)</span>去求对所有时间的协方差矩阵<span class="math inline">\(\Sigma\)</span>(计算机的计算必须离散化, 这里的模拟精度为<span class="math inline">\(t\in [0,1]\)</span>之间有1000个数), 再用<code>MASS</code>包中的<code>mvrnorm</code>函数去从多元正态分布中抽样: <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">library(magrittr)</span><br><span class="line">library(tidyverse)</span><br><span class="line">gaussprocess &lt;- <span class="keyword">function</span>(from = <span class="number">0</span>,</span><br><span class="line">                         to = <span class="number">1</span>,</span><br><span class="line">                         K = <span class="keyword">function</span>(s, t) &#123;<span class="built_in">min</span>(s, t)&#125;,</span><br><span class="line">                         start = <span class="literal">NULL</span>,</span><br><span class="line">                         m = <span class="number">2000</span>) &#123;</span><br><span class="line">    t &lt;- seq(from = from, to = to, length.out = m)</span><br><span class="line">    Sigma &lt;- sapply(t, <span class="keyword">function</span>(s1) &#123;</span><br><span class="line">        sapply(t, <span class="keyword">function</span>(s2) &#123;</span><br><span class="line">            K(s1, s2)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">    path &lt;- MASS::mvrnorm(mu = <span class="built_in">rep</span>(<span class="number">0</span>, times = m), Sigma = Sigma)</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">is.null</span>(start)) &#123;</span><br><span class="line">        path &lt;- path - path[<span class="number">1</span>] + start  <span class="comment"># Must always start at &quot;start&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span>(data.frame(<span class="string">&quot;t&quot;</span> = t, <span class="string">&quot;xt&quot;</span> = path))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">## 维纳过程</span></span><br><span class="line">plot_1 &lt;- <span class="keyword">function</span>(times = <span class="number">5</span>) &#123;</span><br><span class="line">    data &lt;- gaussprocess()</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:(times-<span class="number">1</span>))&#123;</span><br><span class="line">        temp &lt;- gaussprocess()</span><br><span class="line">        temp[<span class="string">&#x27;id&#x27;</span>] = i</span><br><span class="line">        data &lt;- rbind(data, temp)</span><br><span class="line">    &#125;</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">    ggplot(data = data, aes(x = t, y = xt, color = id, group = id)) + geom_line()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">plot_1(times = <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## 高斯过程</span></span><br><span class="line">plot_2 &lt;- <span class="keyword">function</span>(times = <span class="number">5</span>) &#123;</span><br><span class="line">    data &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t) &#123;<span class="built_in">exp</span>(-<span class="number">16</span> * (s - t) ^ <span class="number">2</span>)&#125;)</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:(times-<span class="number">1</span>))&#123;</span><br><span class="line">        temp &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t) &#123;<span class="built_in">exp</span>(-<span class="number">16</span> * (s - t) ^ <span class="number">2</span>)&#125;)</span><br><span class="line">        temp[<span class="string">&#x27;id&#x27;</span>] = i</span><br><span class="line">        data &lt;- rbind(data, temp)</span><br><span class="line">    &#125;</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">    ggplot(data = data, aes(x = t, y = xt, color = id, group = id)) + geom_line()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">plot_2(times = <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## Ornstein-Uhlenbeck过程</span></span><br><span class="line">plot_3 &lt;- <span class="keyword">function</span>(times = <span class="number">5</span>) &#123;</span><br><span class="line">    data &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t)&#123;<span class="built_in">exp</span>(-<span class="built_in">abs</span>(s - t))&#125;)</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:(times-<span class="number">1</span>))&#123;</span><br><span class="line">        temp &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t)&#123;<span class="built_in">exp</span>(-<span class="built_in">abs</span>(s - t))&#125;)</span><br><span class="line">        temp[<span class="string">&#x27;id&#x27;</span>] = i</span><br><span class="line">        data &lt;- rbind(data, temp)</span><br><span class="line">    &#125;</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">    ggplot(data = data, aes(x = t, y = xt, color = id, group = id)) + geom_line()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">plot_3(times = <span class="number">5</span>)</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>R</category>
-      </categories>
-      <tags>
-        <tag>R</tag>
-        <tag>高斯过程</tag>
-        <tag>核函数</tag>
       </tags>
   </entry>
   <entry>
@@ -3970,6 +3924,52 @@ L_S(\omega)+\alpha\mathcal{R}(\omega) &amp; \leq L_S(\omega_k)+\left\langle\nabl
       </categories>
       <tags>
         <tag>高效能人士的七个习惯</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>高斯过程的随机模拟(含R实现)</title>
+    <url>/2018/09/24/%E9%AB%98%E6%96%AF%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%A8%A1%E6%8B%9F(%E5%90%ABR%E5%AE%9E%E7%8E%B0)/</url>
+    <content><![CDATA[<p>前言: 读PRML一书的6.4节, 对图6.4中高斯过程的采用不同核函数模拟实现非常好奇, 同时也惊叹于高斯过程看上是几乎处处连续的性质, 于是尝试用R去模拟高斯过程. <span id="more"></span></p>
+<hr />
+<p>首先简单说明几点:</p>
+<ul>
+<li>经典的随机过程(stochastic process)的定义<span class="math inline">\(\{x_t, t\in T\}\)</span>可以简单理解为随机变量加上一个维度(比方说时间), 一般的, 时间视为不可数; 另外随机变量可以取实值, 复值, 向量值等, 但一般还是取实值.</li>
+<li>由随机变量的概率空间及状态空间出发去定义随机过程概率空间却不是那么方便, 这当中用到了Kolmogorov定理, 详见钱敏平的随机过程论1.1及1.2小节.</li>
+<li>另外一个重要定理可分修正表明, 任意随机过程都能修正为一个具有可分性的过程(即两者几乎处处相等), 而可分的随机过程其实带有一些连续性的味道, 可见钱敏平的随机过程论p11.</li>
+<li>高斯过程则是任意有限维时间的联合分布(<span class="math inline">\(\{x_{t_1}, x_{t_2},...,x_{t_k}\}\)</span>, 其中<span class="math inline">\(t_1,..,t_k, k\)</span>均任取)为多元正态分布的随机过程, 可见<a href="https://en.wikipedia.org/wiki/Gaussian_process">维基百科</a>.</li>
+<li>补充一点, 随机场(<a href="https://en.wikipedia.org/wiki/Random_field">random field</a>)则是可以视为随机过程的一般化, 即此时添加的可能不仅仅是一维的时间, 而是多维向量; 而高斯随机场(Gaussian random field)则是有限维联合分布为多元正态分布的随机场.</li>
+<li>在现代数学中, 随机过程这个概念等同于随机场(参见随机场的维基百科).</li>
+</ul>
+<hr />
+<p>容易知道, 多元正态分布仅仅依赖于它的期望<span class="math inline">\(\mu\)</span>与协方差矩阵<span class="math inline">\(\Sigma\)</span>, 因此如果我们能对任意有限维分布给出期望<span class="math inline">\(\mu\)</span>与协方差矩阵<span class="math inline">\(\Sigma\)</span>, 高斯过程也就给定了.</p>
+<p>一种思路是假定<span class="math inline">\(\mu=0\)</span>, <span class="math inline">\(\Sigma=K\)</span>, 其中<span class="math inline">\(K_{ij}=k(t_i, t_j)\)</span>, 下面给出<span class="math inline">\(k(t_i, t_j)\)</span>的三种形式:</p>
+<ul>
+<li><span class="math inline">\(k(t_i, t_j)=\min\{t_i, t_j\}\)</span>, 此时高斯过程即为维纳过程, 或者说布朗运动, 高斯过程的R模拟图像如下:
+<div data-align="center">
+<img src="/pictures/R/R_brown_motion.png" width="80%" />
+</div></li>
+<li><span class="math inline">\(k(t_i, t_j)=\exp(-\Vert t_i-t_j\Vert/2\sigma^2)\)</span>, 这个函数又被称为高斯核, 取<span class="math inline">\(2\sigma^2=1\)</span>, 高斯过程的R模拟图像如下:
+<div data-align="center">
+<img src="/pictures/R/R_gauss_kernel.png" width="80%" />
+</div>
+取<span class="math inline">\(2\sigma^2=1/16\)</span>, 高斯过程的R模拟图像又如下:
+<div data-align="center">
+<img src="/pictures/R/R_gausskernel_2.png" width="80%" />
+</div></li>
+<li><span class="math inline">\(k(t_i, t_j)=\exp(-\theta\Vert t_i-t_j\Vert)\)</span>, 此时高斯过程即为<a href="https://en.wikipedia.org/wiki/Ornstein%E2%80%93Uhlenbeck_process">Ornstein–Uhlenbeck过程</a>, 取<span class="math inline">\(\theta=1\)</span>, 高斯过程的R模拟图像如下:
+<div data-align="center">
+<img src="/pictures/R/R_OUprocess.png" width="80%" />
+</div></li>
+</ul>
+<p>最后附上R代码, 其中核心部分代码即<code>gaussprocess</code>函数, 这个函数即先根据函数<span class="math inline">\(k(,)\)</span>去求对所有时间的协方差矩阵<span class="math inline">\(\Sigma\)</span>(计算机的计算必须离散化, 这里的模拟精度为<span class="math inline">\(t\in [0,1]\)</span>之间有1000个数), 再用<code>MASS</code>包中的<code>mvrnorm</code>函数去从多元正态分布中抽样: <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">library(magrittr)</span><br><span class="line">library(tidyverse)</span><br><span class="line">gaussprocess &lt;- <span class="keyword">function</span>(from = <span class="number">0</span>,</span><br><span class="line">                         to = <span class="number">1</span>,</span><br><span class="line">                         K = <span class="keyword">function</span>(s, t) &#123;<span class="built_in">min</span>(s, t)&#125;,</span><br><span class="line">                         start = <span class="literal">NULL</span>,</span><br><span class="line">                         m = <span class="number">2000</span>) &#123;</span><br><span class="line">    t &lt;- seq(from = from, to = to, length.out = m)</span><br><span class="line">    Sigma &lt;- sapply(t, <span class="keyword">function</span>(s1) &#123;</span><br><span class="line">        sapply(t, <span class="keyword">function</span>(s2) &#123;</span><br><span class="line">            K(s1, s2)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">    path &lt;- MASS::mvrnorm(mu = <span class="built_in">rep</span>(<span class="number">0</span>, times = m), Sigma = Sigma)</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">is.null</span>(start)) &#123;</span><br><span class="line">        path &lt;- path - path[<span class="number">1</span>] + start  <span class="comment"># Must always start at &quot;start&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span>(data.frame(<span class="string">&quot;t&quot;</span> = t, <span class="string">&quot;xt&quot;</span> = path))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">## 维纳过程</span></span><br><span class="line">plot_1 &lt;- <span class="keyword">function</span>(times = <span class="number">5</span>) &#123;</span><br><span class="line">    data &lt;- gaussprocess()</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:(times-<span class="number">1</span>))&#123;</span><br><span class="line">        temp &lt;- gaussprocess()</span><br><span class="line">        temp[<span class="string">&#x27;id&#x27;</span>] = i</span><br><span class="line">        data &lt;- rbind(data, temp)</span><br><span class="line">    &#125;</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">    ggplot(data = data, aes(x = t, y = xt, color = id, group = id)) + geom_line()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">plot_1(times = <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## 高斯过程</span></span><br><span class="line">plot_2 &lt;- <span class="keyword">function</span>(times = <span class="number">5</span>) &#123;</span><br><span class="line">    data &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t) &#123;<span class="built_in">exp</span>(-<span class="number">16</span> * (s - t) ^ <span class="number">2</span>)&#125;)</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:(times-<span class="number">1</span>))&#123;</span><br><span class="line">        temp &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t) &#123;<span class="built_in">exp</span>(-<span class="number">16</span> * (s - t) ^ <span class="number">2</span>)&#125;)</span><br><span class="line">        temp[<span class="string">&#x27;id&#x27;</span>] = i</span><br><span class="line">        data &lt;- rbind(data, temp)</span><br><span class="line">    &#125;</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">    ggplot(data = data, aes(x = t, y = xt, color = id, group = id)) + geom_line()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">plot_2(times = <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## Ornstein-Uhlenbeck过程</span></span><br><span class="line">plot_3 &lt;- <span class="keyword">function</span>(times = <span class="number">5</span>) &#123;</span><br><span class="line">    data &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t)&#123;<span class="built_in">exp</span>(-<span class="built_in">abs</span>(s - t))&#125;)</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:(times-<span class="number">1</span>))&#123;</span><br><span class="line">        temp &lt;- gaussprocess(K = <span class="keyword">function</span>(s, t)&#123;<span class="built_in">exp</span>(-<span class="built_in">abs</span>(s - t))&#125;)</span><br><span class="line">        temp[<span class="string">&#x27;id&#x27;</span>] = i</span><br><span class="line">        data &lt;- rbind(data, temp)</span><br><span class="line">    &#125;</span><br><span class="line">    data[<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">    ggplot(data = data, aes(x = t, y = xt, color = id, group = id)) + geom_line()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">plot_3(times = <span class="number">5</span>)</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>R</category>
+      </categories>
+      <tags>
+        <tag>R</tag>
+        <tag>高斯过程</tag>
+        <tag>核函数</tag>
       </tags>
   </entry>
 </search>
