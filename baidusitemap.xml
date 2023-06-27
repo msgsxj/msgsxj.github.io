@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2023-06-27</lastmod>
+  </url>
+  <url>
     <loc>https://msgsxj.cn/2022/05/07/Trade-Off%20in%20Machine%20Learning/</loc>
     <lastmod>2022-05-07</lastmod>
   </url>
@@ -35,10 +39,6 @@
   <url>
     <loc>https://msgsxj.cn/2018/06/14/VC-bound/</loc>
     <lastmod>2020-09-27</lastmod>
-  </url>
-  <url>
-    <loc>https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2020-06-03</lastmod>
   </url>
   <url>
     <loc>https://msgsxj.cn/2018/10/16/Latent-Dirichlet-Allocation/</loc>
