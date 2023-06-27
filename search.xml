@@ -48,6 +48,28 @@
       </tags>
   </entry>
   <entry>
+    <title>2018</title>
+    <url>/2019/01/30/2018/</url>
+    <content><![CDATA[<p>前言: 回顾2018, 为2019立flag</p>
+<span id="more"></span>
+<p><img src="/pictures/2018.jpg" /></p>
+<h2 id="section">2018</h2>
+<p>相比之下, 2018要忙碌一些, 研一下学期先是听老师讲凸优化, 但从8月份开始就是我们4个的讲机器学习和数值优化的讨论班. 机器学习讨论班用的就是周志华老师的西瓜书, 到期末算是堪堪讲完; 数值优化则是用了numberical optimization, 但没来得及讲完, 还剩下一些留给下学期初.</p>
+<p>不得不说讨论班让我收获很多, 以西瓜书为例, 自己第一遍读的时候虽然也是认真仔细的读了, 但讲给人听给出了更高的抠细节的要求, 因此做ppt就花了很多时间, 当然这带来的明显的好处就是对书本的理解加深了许多, 并且latex公式也越打越顺了.</p>
+<p>导师对我们说, 研究生阶段就应该多学一些东西, 听得出来他也很欣赏我们南大数学系不要求发论文的做法(只需毕业论文), 我也乐在其中.</p>
+<p>coursera上, 3月31日结束了吴恩达的deep learning系列课程; 5月份学习了霍普金斯大学的Exploratory Data Analysis; 10月份及12月份学习了俄罗斯国立高等经济学院的Bayesian Methods for Machine Learning和Practical Reinforcement Learning. 不得不说coursera上几乎没有水课, 可以说我在2018年写的大部分博文的出发点都来自于这些课程, 或是这些课程给出的参考文献, 书籍(一般都是某领域的经典之作).</p>
+<p>数据类的比赛方面, 作为萌新的我单枪匹马的参加了腾讯2018广告算法大赛, 没能进复赛; 暑假时参加了天池的阿里巴巴大数据智能云上编程大赛(其实就是在阿里自家的机器学习平台PAI上像搭积木一样做模型的一个比赛), 进了复赛但仍然没进决赛; 至于kaggle则是参加了一个泰坦尼克的新人赛后就没有然后了, 因此2017年末立的flag就这样倒了.</p>
+<h2 id="section-1">2019</h2>
+<p>还是要给自己立个flag: 在比赛中拿个奖.</p>
+]]></content>
+      <categories>
+        <category>聊聊生活</category>
+      </categories>
+      <tags>
+        <tag>回顾</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2018腾讯广告算法大赛初赛lgb</title>
     <url>/2018/05/29/2018%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A%E7%AE%97%E6%B3%95%E5%A4%A7%E8%B5%9B%E5%88%9D%E8%B5%9Blgb/</url>
     <content><![CDATA[<p>前言:最近参加了2018腾讯广告算法大赛,虽然没进复赛,但也花了不少时间,算是为下次参加比赛试试水,最终初赛线上最好成绩是0.745764,特此记录.</p>
@@ -70,28 +92,6 @@
       </categories>
       <tags>
         <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2018</title>
-    <url>/2019/01/30/2018/</url>
-    <content><![CDATA[<p>前言: 回顾2018, 为2019立flag</p>
-<span id="more"></span>
-<p><img src="/pictures/2018.jpg" /></p>
-<h2 id="section">2018</h2>
-<p>相比之下, 2018要忙碌一些, 研一下学期先是听老师讲凸优化, 但从8月份开始就是我们4个的讲机器学习和数值优化的讨论班. 机器学习讨论班用的就是周志华老师的西瓜书, 到期末算是堪堪讲完; 数值优化则是用了numberical optimization, 但没来得及讲完, 还剩下一些留给下学期初.</p>
-<p>不得不说讨论班让我收获很多, 以西瓜书为例, 自己第一遍读的时候虽然也是认真仔细的读了, 但讲给人听给出了更高的抠细节的要求, 因此做ppt就花了很多时间, 当然这带来的明显的好处就是对书本的理解加深了许多, 并且latex公式也越打越顺了.</p>
-<p>导师对我们说, 研究生阶段就应该多学一些东西, 听得出来他也很欣赏我们南大数学系不要求发论文的做法(只需毕业论文), 我也乐在其中.</p>
-<p>coursera上, 3月31日结束了吴恩达的deep learning系列课程; 5月份学习了霍普金斯大学的Exploratory Data Analysis; 10月份及12月份学习了俄罗斯国立高等经济学院的Bayesian Methods for Machine Learning和Practical Reinforcement Learning. 不得不说coursera上几乎没有水课, 可以说我在2018年写的大部分博文的出发点都来自于这些课程, 或是这些课程给出的参考文献, 书籍(一般都是某领域的经典之作).</p>
-<p>数据类的比赛方面, 作为萌新的我单枪匹马的参加了腾讯2018广告算法大赛, 没能进复赛; 暑假时参加了天池的阿里巴巴大数据智能云上编程大赛(其实就是在阿里自家的机器学习平台PAI上像搭积木一样做模型的一个比赛), 进了复赛但仍然没进决赛; 至于kaggle则是参加了一个泰坦尼克的新人赛后就没有然后了, 因此2017年末立的flag就这样倒了.</p>
-<h2 id="section-1">2019</h2>
-<p>还是要给自己立个flag: 在比赛中拿个奖.</p>
-]]></content>
-      <categories>
-        <category>聊聊生活</category>
-      </categories>
-      <tags>
-        <tag>回顾</tag>
       </tags>
   </entry>
   <entry>
@@ -1018,6 +1018,38 @@ t_d^{k+1}&amp;\sim P(T_d\mid T_1=t_1^{k}, T_2=t_2^{k},..., T_{d-1}=t_{d-1}^{k}, 
       </tags>
   </entry>
   <entry>
+    <title>Trade-Off in Machine Learning</title>
+    <url>/2022/05/07/Trade-Off%20in%20Machine%20Learning/</url>
+    <content><![CDATA[<p>本文总结了笔者在机器学习中碰到的各种Trade-Off</p>
+<span id="more"></span>
+<h2 id="模型复杂度的trade-off">模型复杂度的Trade-Off</h2>
+<p><img src="/pictures/capacity.png" /></p>
+<ul>
+<li>在训练集给定的场景(预定给定一个较大的训练数据集应该是最常见的), 模型的复杂度(capacity)要适中选择. (<strong>p.s.</strong>具体到二分类问题, 最常见模型的复杂度为拉德马赫复杂度<a href="https://msgsxj.cn/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/">Rademacher complexity</a>, 虽然已经有一些依赖于训练集&amp;复杂度的数据相关界去约束住泛化误差(Generalization error), 但仍然缺少更一般的、更容易计算的模型复杂度。)</li>
+<li>过大的模型的复杂度, 容易使得训练好的模型在训练集上过拟合, 对应high bias &amp; low Variance的情况.</li>
+<li>过大的模型的复杂度, 容易使得训练好的模型在训练集上欠拟合, 对应low bias &amp; high Variance的情况.</li>
+</ul>
+<h2 id="验证集大小的trade-off">验证集大小的Trade-Off</h2>
+<ul>
+<li>为了衡量泛化误差, 最常见的做法是取一个与训练集同分布、相对较小的数据比例(从以前的20%到现在的1%) 作为验证集, 来粗略的评估泛化误差, 从而根据泛化误差的最小值来给出结束训练的建议.</li>
+<li>过大的验证集带来可用训练集的缩小与额外计算量的增大.</li>
+<li>过小的验证集容易使得验证集损失的波动, 从而降低了结束训练建议的可靠度.</li>
+</ul>
+<h2 id="损失函数的trade-off">损失函数的Trade-Off</h2>
+<ul>
+<li>损失函数的往往在人们用的最多的那几个loss中选取, 但未必是那个ground truth.(<strong>p.s.</strong> 以语音领域的信号处理为例, 信号处理会服务于下游的唤醒识别, 因此信号处理的AI模型的真正目标往往是唤醒识别率)</li>
+<li>损失函数的选取越靠近ground truth, 往往越难以去执行最优化算法. (<strong>p.s.</strong> 直接选择唤醒识别率作为损失函数必然是难以优化)</li>
+<li>损失函数的选取越远离ground truth, 训练之后模型越不容易达到我们想要的模型效果. (<strong>p.s.</strong> 选择语音领域更为流行的sisnr、mse损失, 会使得最优化算法容易执行, 但唤醒识别的最好的模型需要通过手动测唤醒识别挑选得到)</li>
+</ul>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>Trade-Off</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SciPy中的经典优化算法</title>
     <url>/2019/02/20/SciPy%E4%B8%AD%E7%9A%84%E7%BB%8F%E5%85%B8%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<p>前言: 本文的初衷是试图用尽量简明形象的语言说一说<code>scipy.optimize.minimize</code>函数涉及到的经典优化算法的特点, 方便速查与快速回忆; 严格理论的部分可见<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize">官方文档</a>Notes部分的内容, 其对每一种方法都给出了参考论文, 而笔者关于这些算法的理解大多来自于Jorge Nocedal的Numerical Optimization. <span id="more"></span></p>
@@ -1127,38 +1159,6 @@ t_d^{k+1}&amp;\sim P(T_d\mid T_1=t_1^{k}, T_2=t_2^{k},..., T_{d-1}=t_{d-1}^{k}, 
         <tag>Python</tag>
         <tag>SciPy</tag>
         <tag>优化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Trade-Off in Machine Learning</title>
-    <url>/2022/05/07/Trade-Off%20in%20Machine%20Learning/</url>
-    <content><![CDATA[<p>本文总结了笔者在机器学习中碰到的各种Trade-Off</p>
-<span id="more"></span>
-<h2 id="模型复杂度的trade-off">模型复杂度的Trade-Off</h2>
-<p><img src="/pictures/capacity.png" /></p>
-<ul>
-<li>在训练集给定的场景(预定给定一个较大的训练数据集应该是最常见的), 模型的复杂度(capacity)要适中选择. (<strong>p.s.</strong>具体到二分类问题, 最常见模型的复杂度为拉德马赫复杂度<a href="https://msgsxj.cn/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/">Rademacher complexity</a>, 虽然已经有一些依赖于训练集&amp;复杂度的数据相关界去约束住泛化误差(Generalization error), 但仍然缺少更一般的、更容易计算的模型复杂度。)</li>
-<li>过大的模型的复杂度, 容易使得训练好的模型在训练集上过拟合, 对应high bias &amp; low Variance的情况.</li>
-<li>过大的模型的复杂度, 容易使得训练好的模型在训练集上欠拟合, 对应low bias &amp; high Variance的情况.</li>
-</ul>
-<h2 id="验证集大小的trade-off">验证集大小的Trade-Off</h2>
-<ul>
-<li>为了衡量泛化误差, 最常见的做法是取一个与训练集同分布、相对较小的数据比例(从以前的20%到现在的1%) 作为验证集, 来粗略的评估泛化误差, 从而根据泛化误差的最小值来给出结束训练的建议.</li>
-<li>过大的验证集带来可用训练集的缩小与额外计算量的增大.</li>
-<li>过小的验证集容易使得验证集损失的波动, 从而降低了结束训练建议的可靠度.</li>
-</ul>
-<h2 id="损失函数的trade-off">损失函数的Trade-Off</h2>
-<ul>
-<li>损失函数的往往在人们用的最多的那几个loss中选取, 但未必是那个ground truth.(<strong>p.s.</strong> 以语音领域的信号处理为例, 信号处理会服务于下游的唤醒识别, 因此信号处理的AI模型的真正目标往往是唤醒识别率)</li>
-<li>损失函数的选取越靠近ground truth, 往往越难以去执行最优化算法. (<strong>p.s.</strong> 直接选择唤醒识别率作为损失函数必然是难以优化)</li>
-<li>损失函数的选取越远离ground truth, 训练之后模型越不容易达到我们想要的模型效果. (<strong>p.s.</strong> 选择语音领域更为流行的sisnr、mse损失, 会使得最优化算法容易执行, 但唤醒识别的最好的模型需要通过手动测唤醒识别挑选得到)</li>
-</ul>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>Trade-Off</tag>
       </tags>
   </entry>
   <entry>
@@ -1748,32 +1748,6 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
       </categories>
       <tags>
         <tag>拉德马赫复杂度</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>拉普拉斯方法</title>
-    <url>/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>前言: 本文主要是关于拉普拉斯近似方法, 这是一种用来近似计算积分的方法, 主要参考了维基百科及PRML一书6.4节. <span id="more"></span></p>
-<hr />
-<h2 id="拉普拉斯近似方法">拉普拉斯近似方法</h2>
-拉普拉斯近似方法(<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">Laplace's method</a>)是一种近似计算积分的方法, 目标积分形如<span class="math display">\[\int_a^be^{Mf(x)}dx\]</span>其中<span class="math inline">\(f(x)\)</span>要求是二次可微的, <span class="math inline">\(M\)</span>要求是一个较大的数. 其想法是假定<span class="math inline">\(x_0\)</span>是<span class="math inline">\(f(x)\)</span>唯一的最大值点, 因此<span class="math inline">\(f(x_0)&gt;f(x)\)</span>, 乘上一个较大的M, 在经过指数函数的作用, 其差值事实上会变得很大, 不难想象随着<span class="math inline">\(M\)</span>的增大积分内的函数会越来越像一个单峰函数, 事实上确实会逼近对一个正态分布进行积分的值. 举个例子<span class="math inline">\(f(x)=sinx/x\)</span>, 分别画出<span class="math inline">\(e^{sinx/x}\)</span>和<span class="math inline">\(e^{3sinx/x}\)</span>的函数图像:
-<div data-align="center">
-<img src="/pictures/laplace_method/exp%283sinx_x%29.png" width="60%" height="50%" />
-</div>
-<div data-align="center">
-<img src="/pictures/laplace_method/exp%28sinx_x%29.png" width="60%" height="50%" />
-</div>
-<p>考虑多元情形, 假定<span class="math inline">\(x_0\)</span>为f(x)的最大值点, 因此有<span class="math inline">\(\nabla f(x_0)=0\)</span>且Hessian矩阵<span class="math inline">\(H(x_0)负定\)</span>. 将<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处泰勒展开得<span class="math display">\[f(x)\approx f(x_0)+\frac{1}{2!}(x-x_0)^TH(x_0)(x-x_0)\]</span>此时积分近似为<span class="math display">\[\int_a^be^{Mf(x)}dx\approx e^{Mf(x_0)}\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\]</span>假设<span class="math inline">\(x_0\)</span>包含在区间<span class="math inline">\([a,b]\)</span>内, 那么右式可以直接视为在<span class="math inline">\((-\infty,+\infty)\)</span>上的积分, 因为随着<span class="math inline">\(M\)</span>的增大区间之外的积分会越来越小. 而此时右边的积分即为一个对多元正态分布的积分, 且该积分可以通过变量代换<span class="math inline">\(t=H(x_0)^{\frac{1}{2}}(x-x_0)\)</span>化成标准的多元正态分布计算出来:<span class="math display">\[\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\approx \int_{-\infty}^{+\infty} e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx=\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里的<span class="math inline">\(d\)</span>指的是自变量<span class="math inline">\(x\)</span>的维度, <span class="math inline">\(H(x_0)\)</span>指<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处的Hessian矩阵. 因此得到结论:<span class="math display">\[\int_a^be^{Mf(x)}dx\approx  e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>本质上来说, 倘若暂时先不考虑<span class="math inline">\(M\)</span>的大小, 用二阶泰勒展开对<span class="math inline">\(f(x)\)</span>进行近似的方法实际上是把被积函数视为多元正态分布. 一元情形的相关定理描述及证明请移步<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">维基百科</a>, 最后来看一个更一般的结论:<span class="math display">\[\int_a^bh(x)e^{Mf(x)}dx\approx  h(x_0)e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里要求<span class="math inline">\(h(x)&gt;0\)</span>.</p>
-<hr />
-<h2 id="例子">例子</h2>
-<p>例子参考了PRML一书6.4节, 来自高斯过程分类中的预测问题, 目标也是求一个积分<span class="math display">\[P(a_{N+1}\mid t_N)=\int P(a_{N+1}\mid a_N)P(a_N\mid t_N)da_N\]</span>这里的目标变量<span class="math inline">\(t\in\{0, 1\}\)</span>为二分变量; 被积函数第一部分<span class="math inline">\(P(a_{N+1}\mid a_N)\)</span>是个正态分布, 即为高斯过程回归做预测时的核心结论. 本质上来说, 拉普拉斯近似方法把被积函数或者是被积函数的一部分代换成多元正态分布<span class="math inline">\(N(\mu, \Sigma)\)</span>, 这里仅把被积函数的第二部分代换掉. 回想多元正态分布的<a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">密度函数</a>, 因此只要计算<span class="math inline">\(\log P(a_N\mid t_N)\)</span>关于变量<span class="math inline">\(a_N\)</span>的梯度<span class="math inline">\(\nabla\)</span>和Hessian矩阵<span class="math inline">\(\nabla^2\)</span>, 此时<span class="math inline">\(\mu\)</span>即为<span class="math inline">\(\nabla=0\)</span>的解, <span class="math inline">\(\Sigma=-\nabla^2\)</span>. 接着由两个正态分布积分的一些性质(PRML一书2.115), 可以得到目标积分的近似结果仍为一个正态分布. 然后我们可以用它来做预测<span class="math display">\[P(t_{N+1}=1\mid t_N)=\int P(t_{N+1}=1\mid a_{N+1})P(a_{N+1}\mid t_N)da_{N+1}\]</span>具体计算时被积函数的第一部分利用自己本身的性质近似成了正态分布的分布函数(而非密度函数)(PRML一书4.153). <code>p.s.</code>: 高斯过程分类中的参数也可以用拉普拉斯近似方法得到, 这里就不再赘述, 最后建议细细读一读PRML一书6.4节.</p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>拉普拉斯方法</tag>
-        <tag>积分近似</tag>
       </tags>
   </entry>
   <entry>
@@ -2382,6 +2356,32 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
       </tags>
   </entry>
   <entry>
+    <title>拉普拉斯方法</title>
+    <url>/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>前言: 本文主要是关于拉普拉斯近似方法, 这是一种用来近似计算积分的方法, 主要参考了维基百科及PRML一书6.4节. <span id="more"></span></p>
+<hr />
+<h2 id="拉普拉斯近似方法">拉普拉斯近似方法</h2>
+拉普拉斯近似方法(<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">Laplace's method</a>)是一种近似计算积分的方法, 目标积分形如<span class="math display">\[\int_a^be^{Mf(x)}dx\]</span>其中<span class="math inline">\(f(x)\)</span>要求是二次可微的, <span class="math inline">\(M\)</span>要求是一个较大的数. 其想法是假定<span class="math inline">\(x_0\)</span>是<span class="math inline">\(f(x)\)</span>唯一的最大值点, 因此<span class="math inline">\(f(x_0)&gt;f(x)\)</span>, 乘上一个较大的M, 在经过指数函数的作用, 其差值事实上会变得很大, 不难想象随着<span class="math inline">\(M\)</span>的增大积分内的函数会越来越像一个单峰函数, 事实上确实会逼近对一个正态分布进行积分的值. 举个例子<span class="math inline">\(f(x)=sinx/x\)</span>, 分别画出<span class="math inline">\(e^{sinx/x}\)</span>和<span class="math inline">\(e^{3sinx/x}\)</span>的函数图像:
+<div data-align="center">
+<img src="/pictures/laplace_method/exp%283sinx_x%29.png" width="60%" height="50%" />
+</div>
+<div data-align="center">
+<img src="/pictures/laplace_method/exp%28sinx_x%29.png" width="60%" height="50%" />
+</div>
+<p>考虑多元情形, 假定<span class="math inline">\(x_0\)</span>为f(x)的最大值点, 因此有<span class="math inline">\(\nabla f(x_0)=0\)</span>且Hessian矩阵<span class="math inline">\(H(x_0)负定\)</span>. 将<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处泰勒展开得<span class="math display">\[f(x)\approx f(x_0)+\frac{1}{2!}(x-x_0)^TH(x_0)(x-x_0)\]</span>此时积分近似为<span class="math display">\[\int_a^be^{Mf(x)}dx\approx e^{Mf(x_0)}\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\]</span>假设<span class="math inline">\(x_0\)</span>包含在区间<span class="math inline">\([a,b]\)</span>内, 那么右式可以直接视为在<span class="math inline">\((-\infty,+\infty)\)</span>上的积分, 因为随着<span class="math inline">\(M\)</span>的增大区间之外的积分会越来越小. 而此时右边的积分即为一个对多元正态分布的积分, 且该积分可以通过变量代换<span class="math inline">\(t=H(x_0)^{\frac{1}{2}}(x-x_0)\)</span>化成标准的多元正态分布计算出来:<span class="math display">\[\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\approx \int_{-\infty}^{+\infty} e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx=\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里的<span class="math inline">\(d\)</span>指的是自变量<span class="math inline">\(x\)</span>的维度, <span class="math inline">\(H(x_0)\)</span>指<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处的Hessian矩阵. 因此得到结论:<span class="math display">\[\int_a^be^{Mf(x)}dx\approx  e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>本质上来说, 倘若暂时先不考虑<span class="math inline">\(M\)</span>的大小, 用二阶泰勒展开对<span class="math inline">\(f(x)\)</span>进行近似的方法实际上是把被积函数视为多元正态分布. 一元情形的相关定理描述及证明请移步<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">维基百科</a>, 最后来看一个更一般的结论:<span class="math display">\[\int_a^bh(x)e^{Mf(x)}dx\approx  h(x_0)e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里要求<span class="math inline">\(h(x)&gt;0\)</span>.</p>
+<hr />
+<h2 id="例子">例子</h2>
+<p>例子参考了PRML一书6.4节, 来自高斯过程分类中的预测问题, 目标也是求一个积分<span class="math display">\[P(a_{N+1}\mid t_N)=\int P(a_{N+1}\mid a_N)P(a_N\mid t_N)da_N\]</span>这里的目标变量<span class="math inline">\(t\in\{0, 1\}\)</span>为二分变量; 被积函数第一部分<span class="math inline">\(P(a_{N+1}\mid a_N)\)</span>是个正态分布, 即为高斯过程回归做预测时的核心结论. 本质上来说, 拉普拉斯近似方法把被积函数或者是被积函数的一部分代换成多元正态分布<span class="math inline">\(N(\mu, \Sigma)\)</span>, 这里仅把被积函数的第二部分代换掉. 回想多元正态分布的<a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">密度函数</a>, 因此只要计算<span class="math inline">\(\log P(a_N\mid t_N)\)</span>关于变量<span class="math inline">\(a_N\)</span>的梯度<span class="math inline">\(\nabla\)</span>和Hessian矩阵<span class="math inline">\(\nabla^2\)</span>, 此时<span class="math inline">\(\mu\)</span>即为<span class="math inline">\(\nabla=0\)</span>的解, <span class="math inline">\(\Sigma=-\nabla^2\)</span>. 接着由两个正态分布积分的一些性质(PRML一书2.115), 可以得到目标积分的近似结果仍为一个正态分布. 然后我们可以用它来做预测<span class="math display">\[P(t_{N+1}=1\mid t_N)=\int P(t_{N+1}=1\mid a_{N+1})P(a_{N+1}\mid t_N)da_{N+1}\]</span>具体计算时被积函数的第一部分利用自己本身的性质近似成了正态分布的分布函数(而非密度函数)(PRML一书4.153). <code>p.s.</code>: 高斯过程分类中的参数也可以用拉普拉斯近似方法得到, 这里就不再赘述, 最后建议细细读一读PRML一书6.4节.</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>拉普拉斯方法</tag>
+        <tag>积分近似</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>智能时代-读书笔记</title>
     <url>/2018/05/02/%E6%99%BA%E8%83%BD%E6%97%B6%E4%BB%A3-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>前言:之前读过吴军博士的浪潮之巅,让我对各大IT企业有了一个了解,这次又买了吴博士的智能时代,特此记录我的一些读书笔记. ps:由于笔者从本科到研究生都在数学系,所以习惯用从定义到例子这样的方式去理解一个概念,定义内容主要参考了维基百科.</p>
@@ -2581,81 +2581,6 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
         <tag>期望传播</tag>
         <tag>指数族分布</tag>
         <tag>充分统计量</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>机器学习中的贝叶斯思想</title>
-    <url>/2018/08/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%80%9D%E6%83%B3/</url>
-    <content><![CDATA[<p>前言:本文主要是关于机器学习中的贝叶斯思想的一些简单认识, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week1. <span id="more"></span></p>
-<hr />
-<h2 id="引言">引言</h2>
-<p>我们先来直观感受一下贝叶斯思想, 首先来看一道选择题, 在灭霸还没有诞生的时间节点, 纽约街头有一人在跑步, 你觉得?</p>
-<ol type="1">
-<li>他看到了灭霸.</li>
-<li>他想跑步就跑了.</li>
-<li>他一直喜欢跑步.</li>
-</ol>
-<p>答案是B. 事实上, 使用先验信息可以排除A, 而C做了额外的假设. A.B.C.分别对应贝叶斯三条原则:</p>
-<ul>
-<li>使用先验信息.</li>
-<li>选择最能解释现象的答案.</li>
-<li>避免做出额外的假设.</li>
-</ul>
-<p>希望你们喜欢这道选择题,下面进入正题, 本文的主角是机器学习, 所以符号的选取会尽可能的采用机器学习中的惯用符号.</p>
-<hr />
-<h2 id="贝叶斯学派与频率学派">贝叶斯学派与频率学派</h2>
-<p>贝叶斯学派与频率学派是统计学的两大学派, 他们主要有如下两大不同:</p>
-<ul>
-<li>贝叶斯学派将参数<span class="math inline">\(\theta\)</span>视为变量, 数据<span class="math inline">\(X\)</span>固定; 频率学派将参数<span class="math inline">\(\theta\)</span>固定, 数据<span class="math inline">\(X\)</span>视为变量.</li>
-<li>贝叶斯学派: 得到关于参数的分布<span class="math inline">\(P(\theta\mid X)\)</span>; 频率学派: 得到参数值<span class="math inline">\(\hat{\theta}=\arg\max_{\theta}P(X\mid \theta)\)</span></li>
-</ul>
-<p>贝叶斯思想最大的特点就是把参数<span class="math inline">\(\theta\)</span>视为变量, 所以得到的结果也是关于参数<span class="math inline">\(\theta\)</span>的分布, 更加一般化. 若要向得到参数值, 最简单的可以对后验分布求概率值最大的点(maximum a posterior):<span class="math display">\[\theta_{MAP}=\arg\max_{\theta}P(\theta\mid X)\]</span></p>
-<hr />
-<h2 id="贝叶斯公式">贝叶斯公式</h2>
-<p>贝叶斯公式想必大家都熟悉<span class="math display">\[P(\theta\mid X)=\frac{P(X,\theta)}{P(X)}={\frac {P(X\mid \theta)\,P(\theta)}{P(X)}}\]</span>其中<span class="math inline">\(P(\theta)\)</span>称为先验分布, <span class="math inline">\(P(X\mid \theta)\)</span>称为似然函数, 或者理解为模型, <span class="math inline">\(X\)</span>为所得到的数据集, 或者说evidence, <span class="math inline">\(P(\theta\mid X)\)</span>称为后验分布.</p>
-<p>简单举两个例子说明贝叶斯公式在机器学习中的应用:</p>
-<ul>
-<li>在线学习做的就是用数据<span class="math inline">\(X\)</span>对<span class="math inline">\(P(\theta)\)</span>进行更新得到<span class="math inline">\(P(\theta\mid X)\)</span>, 因为不知道新的样本到达时间, 所以基本上就是每来一个样本<span class="math inline">\(x_k\)</span>就对参数进行一次更新: <span class="math display">\[P_k(\theta)=P(\theta\mid x_k)=\frac {P(x_k\mid \theta)\,P_{k-1}(\theta)}{P(x_k)}\]</span>比方说假定模型满足正态分布<span class="math inline">\(P(x\mid \theta)= N(\theta, 1)= \frac{1}{\sqrt{2\pi}} e^{-\frac{(x-\theta)^2}{2}}\)</span>, 假定先验<span class="math inline">\(P_0(\theta)=N(0,1)\)</span>, 将数据<span class="math inline">\(x_1=1\)</span>喂给它, 容易得到<span class="math display">\[P_1(\theta)=\frac{1}{2\pi} e^{-\frac{(1-\theta)^2}{2}} e^{-\frac{\theta^2}{2}}/P(x_k)\propto N(\frac{1}{2},\frac{1}{2}) \]</span>注意到<span class="math inline">\(P(x_k)\)</span>与<span class="math inline">\(\theta\)</span>无关所以不在乎,另外容易看到<span class="math inline">\(\theta\)</span>的后验的期望向1迈出了一步.</li>
-<li>将贝叶斯公式应用到监督学习中,记参数为<span class="math inline">\(\omega\)</span>: <span class="math display">\[P(\omega\mid X, y)=\frac {P(\omega, y\mid X)}{P(y\mid X)}=\frac {P(y\mid X, \omega)\,P(\omega)}{P(y\mid X)}\]</span>其中<span class="math inline">\(P(y\mid X, \omega)\)</span>为模型的基本结构,比方说<span class="math inline">\(P(y\mid X, \omega)=N(X\omega, \sigma^2 I)\)</span>, 协方差阵固定位单位阵的倍数, 这实际上假定了样本之间的独立性, 若还假定参数<span class="math inline">\(\omega\)</span>满足正态分布, 则在线性模型中可以得到<strong>最小二乘法加L2正则项</strong>的结果(下文会加以详细说明). 有了模型<span class="math inline">\(P(y\mid X, \omega)\)</span>和参数<span class="math inline">\(P(\omega\mid X, y)\)</span>, 我们可以通过下式在测试集上进行预测:<span class="math display">\[P(y_{test}\mid X_{test}, X ,y)=\int P(y_{test}\mid X_{test}, \omega)P(\omega\mid X, y) d\omega\]</span></li>
-</ul>
-<p>有了上述两个例子, 想必大家都有了自己的理解, 在机器学习中, 模型<span class="math inline">\(P(y\mid X, \omega)\)</span>的选取与先验<span class="math inline">\(P(\omega)\)</span>成为了两个最关键的要素, 而模型<span class="math inline">\(P(y\mid X, \omega)\)</span>的选取是我们首先要考虑的,下面来看:</p>
-<hr />
-<h2 id="如何定义一个模型">如何定义一个模型</h2>
-一般的监督学习任务, 我们所有的是一堆互相相关的特征, 目标是试图从中找出一些因果关系, 一个自然地想法就是试图用一些箭头来表示这种因果关系, 图片来自<a href="https://en.wikipedia.org/wiki/Bayesian_network">贝叶斯网络</a>的维基百科:
-<div data-align="center">
-<img src="/pictures/bayes in ml/SimpleBayesNepng.png" width="80%" height="50%" />
-</div>
-<p>这里我们关心这样一个问题,看到草坪湿了, 想知道有没有下过雨. 由常识容易知道:下雨能导致草坪湿掉, 喷洒器也能导致草坪湿掉, 且下雨天喷洒器往往不会运作, 有了这张图, 我们也就能轻易的表示出<span class="math inline">\(P(Rain\mid Grass)\)</span>, 这样的有向非循环的图模型被称为是贝叶斯网络.</p>
-再来看一个贝叶斯网络的简单例子:贝叶斯分类器, 图片来自周志华的机器学习:
-<div data-align="center">
-<img src="/pictures/bayes in ml/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8.png" width="80%" height="50%" />
-</div>
-<p>(a)是朴素贝叶斯, 想法也非常朴素, 特征<span class="math inline">\(x_i\)</span>仅仅由<span class="math inline">\(y\)</span>所决定, (b)、(c)则是考虑了特征之间的依赖关系.</p>
-这里提一下板表示法, 板表示法(plate notation)是一种表示在图形模型中重复的变量的方法, 比方说朴素贝叶斯分类器(a)可以简画为:
-<div data-align="center">
-<img src="/pictures/bayes in ml/plate_notation.png" width="50%" height="50%" />
-</div>
-<p>图中的d表示将方形区域重复d遍, 也就是(a)中图形的样子. 模型的选取先说这么多, 下面考虑先验<span class="math inline">\(P(\omega)\)</span>的选取, 事实上, 为了计算简单, 一般选取共轭先验分布.</p>
-<hr />
-<h2 id="共轭先验">共轭先验</h2>
-<p>关于贝叶斯公式,还有一个重要概念:<strong>共轭先验</strong>, 是指先验分布和后验分布同属某个分布的先验分布,这里举三个重要的共轭先验的例子:</p>
-<ul>
-<li>假定模型满足正态分布<span class="math inline">\(P(X\mid \theta)= N(\theta, \sigma^2)\)</span>, 其中<span class="math inline">\(\sigma^2\)</span>为给定值. 给定先验<span class="math inline">\(P(\theta)= N(0, 1)\)</span>满足标准正态分布. 此时后验分布:<span class="math display">\[ P(\theta\mid X) \propto  e^{-\frac{(x-\theta)^2}{2\sigma^2}} e^{-\frac{\theta^2}{2}}\propto N(\frac{x}{1+\sigma^2}, \frac{\sigma^2}{1+\sigma^2})\]</span>这个例子实际上在贝叶斯公式一节中讲到了,不难发现,若喂给它的数据是<span class="math inline">\(x=0\)</span>, 那么<span class="math inline">\(\theta\)</span>的后验分布第一个参数不变,第二根参数减小了些,也即期望值不变,方差减小了些.</li>
-<li>假定模型满足正态分布<span class="math inline">\(P(X\mid \gamma)=N(\mu, \gamma^{-1})\)</span>, 其中<span class="math inline">\(\mu\)</span>为给定值,<span class="math inline">\(\gamma=\frac{1}{\sigma^2}\)</span>称为准确度,方差越小,准确度越高.给定先验<span class="math inline">\(P(\gamma)= \Gamma(a,b)\propto\gamma^{a-1}e^{-b\gamma}\)</span>满足参数为<span class="math inline">\(a,b\)</span>的Gamma分布.此时后验分布:<span class="math display">\[ P(\gamma\mid X) \propto \gamma^{\frac{1}{2}+a-1} e^{-(b+\frac{(x-\mu)^2}{2})\gamma} \propto \Gamma(\frac{1}{2}+a, b+\frac{(x-\mu)^2}{2})\]</span>不难发现,若喂给它的数据是<span class="math inline">\(x=\mu\)</span>, 那么<span class="math inline">\(\gamma\)</span>的后验分布第一个参数增大了<span class="math inline">\(\frac{1}{2}\)</span>,第二个参数不变,注意到Gamma分布的期望<span class="math inline">\(E[\Gamma(a,b)]=\frac{a}{b}\)</span>, 也即准确度<span class="math inline">\(\gamma\)</span>的期望变大了些, 若一直喂给它相同的数据<span class="math inline">\(x=\mu\)</span>, 可以看到准确度<span class="math inline">\(\gamma\)</span>的期望会一直上涨, 这也与我们的想象相符合.</li>
-<li>假定模型满足二项分布<span class="math inline">\(P(X\mid \theta)= \theta^x(1-\theta)^{(1-x)}\)</span>. 给定先验<span class="math inline">\(P(\theta)=Be(a,b) \propto\theta^{a-1}(1-\theta)^{b-1}\)</span>满足参数为<span class="math inline">\(a,b\)</span>的Beta分布.此时后验分布:<span class="math display">\[ P(\theta\mid X) \propto \theta^{x+a-1}(1-\theta)^{1-x+b-1} \propto Be(x+a, 1-x+b)\]</span>若喂给它的数据是<span class="math inline">\(x=1\)</span>, 那么<span class="math inline">\(\theta\)</span>的后验分布第一个参数增大了<span class="math inline">\(1\)</span>,第二个参数不变,注意到Beta分布的期望<span class="math inline">\(E[Be(a,b)]=\frac{a}{a+b}\)</span>, 也即<span class="math inline">\(\theta\)</span>的期望向<span class="math inline">\(1\)</span>迈出了一小步, 这也与我们的想象相符.</li>
-</ul>
-<hr />
-<h2 id="贝叶斯视角下的线性回归与最小二乘线性回归">贝叶斯视角下的线性回归与最小二乘线性回归</h2>
-<p>考虑线性回归模型<span class="math inline">\(y=X\omega\)</span>, 这里的<span class="math inline">\(y\)</span>为<span class="math inline">\(m\)</span>维列向量, <span class="math inline">\(\omega\)</span>为<span class="math inline">\(n\)</span>维列向量, 假定模型满足正态分布<span class="math inline">\(P(y\mid X, \omega)=N(X\omega, \sigma^2I)\)</span>, 先验也满足正态分布<span class="math inline">\(P(\omega)=N(0, \gamma^2I)\)</span>, 容易得到:<span class="math display">\[P(\omega\mid X, y)=\frac {P(\omega, y\mid X)}{P(y\mid X)}=\frac {P(y\mid X, \omega)\,P(\omega)}{P(y\mid X)}\propto e^{-\frac{1}{2\sigma^2}(y-X\omega)^T(y-X\omega)}e^{-\frac{1}{2\gamma^2}\omega^T\omega}\]</span>可以通过PRML一书2.3.3节最后的公式给出后验的正态分布的参数, 这里仅求该后验分布的概率最大值点: <span class="math inline">\(\omega_{MAP}=\arg\max_{\omega}P(\omega\mid X, y)\)</span>, 易知取<span class="math inline">\(\log\)</span>不影响求最大值:<span class="math display">\[\log P(\omega\mid X, y)=-\frac{1}{2\sigma^2}(y-X\omega)^T(y-X\omega)-\frac{1}{2\gamma^2}\omega^T\omega=-\frac{1}{2\sigma^2}(\left\Vert y-X\omega\right\Vert^2+\frac{\sigma^2}{\gamma^2}\left\Vert \omega\right\Vert^2)\]</span>对其求最大值即为<strong>最小二乘方法加L2正则项</strong>的结果. 如果有兴趣, 不妨将上面对<span class="math inline">\(\omega\)</span>的先验分布替换成参数为<span class="math inline">\(0,b\)</span>的拉普拉斯分布<span class="math inline">\(P(\omega)=\frac{1}{(2b)^n} \prod_ {i=1}^n\exp\left(-\frac{|\omega_i|}{b}\right)\)</span>, 可以得到<strong>最小二乘方法加L1正则项</strong>的结果.</p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>贝叶斯</tag>
-        <tag>共轭先验</tag>
-        <tag>机器学习</tag>
-        <tag>线性回归</tag>
       </tags>
   </entry>
   <entry>
@@ -3046,6 +2971,81 @@ y[t]=V^T[t]\mathbf{r}[t]
       </tags>
   </entry>
   <entry>
+    <title>机器学习中的贝叶斯思想</title>
+    <url>/2018/08/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%80%9D%E6%83%B3/</url>
+    <content><![CDATA[<p>前言:本文主要是关于机器学习中的贝叶斯思想的一些简单认识, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week1. <span id="more"></span></p>
+<hr />
+<h2 id="引言">引言</h2>
+<p>我们先来直观感受一下贝叶斯思想, 首先来看一道选择题, 在灭霸还没有诞生的时间节点, 纽约街头有一人在跑步, 你觉得?</p>
+<ol type="1">
+<li>他看到了灭霸.</li>
+<li>他想跑步就跑了.</li>
+<li>他一直喜欢跑步.</li>
+</ol>
+<p>答案是B. 事实上, 使用先验信息可以排除A, 而C做了额外的假设. A.B.C.分别对应贝叶斯三条原则:</p>
+<ul>
+<li>使用先验信息.</li>
+<li>选择最能解释现象的答案.</li>
+<li>避免做出额外的假设.</li>
+</ul>
+<p>希望你们喜欢这道选择题,下面进入正题, 本文的主角是机器学习, 所以符号的选取会尽可能的采用机器学习中的惯用符号.</p>
+<hr />
+<h2 id="贝叶斯学派与频率学派">贝叶斯学派与频率学派</h2>
+<p>贝叶斯学派与频率学派是统计学的两大学派, 他们主要有如下两大不同:</p>
+<ul>
+<li>贝叶斯学派将参数<span class="math inline">\(\theta\)</span>视为变量, 数据<span class="math inline">\(X\)</span>固定; 频率学派将参数<span class="math inline">\(\theta\)</span>固定, 数据<span class="math inline">\(X\)</span>视为变量.</li>
+<li>贝叶斯学派: 得到关于参数的分布<span class="math inline">\(P(\theta\mid X)\)</span>; 频率学派: 得到参数值<span class="math inline">\(\hat{\theta}=\arg\max_{\theta}P(X\mid \theta)\)</span></li>
+</ul>
+<p>贝叶斯思想最大的特点就是把参数<span class="math inline">\(\theta\)</span>视为变量, 所以得到的结果也是关于参数<span class="math inline">\(\theta\)</span>的分布, 更加一般化. 若要向得到参数值, 最简单的可以对后验分布求概率值最大的点(maximum a posterior):<span class="math display">\[\theta_{MAP}=\arg\max_{\theta}P(\theta\mid X)\]</span></p>
+<hr />
+<h2 id="贝叶斯公式">贝叶斯公式</h2>
+<p>贝叶斯公式想必大家都熟悉<span class="math display">\[P(\theta\mid X)=\frac{P(X,\theta)}{P(X)}={\frac {P(X\mid \theta)\,P(\theta)}{P(X)}}\]</span>其中<span class="math inline">\(P(\theta)\)</span>称为先验分布, <span class="math inline">\(P(X\mid \theta)\)</span>称为似然函数, 或者理解为模型, <span class="math inline">\(X\)</span>为所得到的数据集, 或者说evidence, <span class="math inline">\(P(\theta\mid X)\)</span>称为后验分布.</p>
+<p>简单举两个例子说明贝叶斯公式在机器学习中的应用:</p>
+<ul>
+<li>在线学习做的就是用数据<span class="math inline">\(X\)</span>对<span class="math inline">\(P(\theta)\)</span>进行更新得到<span class="math inline">\(P(\theta\mid X)\)</span>, 因为不知道新的样本到达时间, 所以基本上就是每来一个样本<span class="math inline">\(x_k\)</span>就对参数进行一次更新: <span class="math display">\[P_k(\theta)=P(\theta\mid x_k)=\frac {P(x_k\mid \theta)\,P_{k-1}(\theta)}{P(x_k)}\]</span>比方说假定模型满足正态分布<span class="math inline">\(P(x\mid \theta)= N(\theta, 1)= \frac{1}{\sqrt{2\pi}} e^{-\frac{(x-\theta)^2}{2}}\)</span>, 假定先验<span class="math inline">\(P_0(\theta)=N(0,1)\)</span>, 将数据<span class="math inline">\(x_1=1\)</span>喂给它, 容易得到<span class="math display">\[P_1(\theta)=\frac{1}{2\pi} e^{-\frac{(1-\theta)^2}{2}} e^{-\frac{\theta^2}{2}}/P(x_k)\propto N(\frac{1}{2},\frac{1}{2}) \]</span>注意到<span class="math inline">\(P(x_k)\)</span>与<span class="math inline">\(\theta\)</span>无关所以不在乎,另外容易看到<span class="math inline">\(\theta\)</span>的后验的期望向1迈出了一步.</li>
+<li>将贝叶斯公式应用到监督学习中,记参数为<span class="math inline">\(\omega\)</span>: <span class="math display">\[P(\omega\mid X, y)=\frac {P(\omega, y\mid X)}{P(y\mid X)}=\frac {P(y\mid X, \omega)\,P(\omega)}{P(y\mid X)}\]</span>其中<span class="math inline">\(P(y\mid X, \omega)\)</span>为模型的基本结构,比方说<span class="math inline">\(P(y\mid X, \omega)=N(X\omega, \sigma^2 I)\)</span>, 协方差阵固定位单位阵的倍数, 这实际上假定了样本之间的独立性, 若还假定参数<span class="math inline">\(\omega\)</span>满足正态分布, 则在线性模型中可以得到<strong>最小二乘法加L2正则项</strong>的结果(下文会加以详细说明). 有了模型<span class="math inline">\(P(y\mid X, \omega)\)</span>和参数<span class="math inline">\(P(\omega\mid X, y)\)</span>, 我们可以通过下式在测试集上进行预测:<span class="math display">\[P(y_{test}\mid X_{test}, X ,y)=\int P(y_{test}\mid X_{test}, \omega)P(\omega\mid X, y) d\omega\]</span></li>
+</ul>
+<p>有了上述两个例子, 想必大家都有了自己的理解, 在机器学习中, 模型<span class="math inline">\(P(y\mid X, \omega)\)</span>的选取与先验<span class="math inline">\(P(\omega)\)</span>成为了两个最关键的要素, 而模型<span class="math inline">\(P(y\mid X, \omega)\)</span>的选取是我们首先要考虑的,下面来看:</p>
+<hr />
+<h2 id="如何定义一个模型">如何定义一个模型</h2>
+一般的监督学习任务, 我们所有的是一堆互相相关的特征, 目标是试图从中找出一些因果关系, 一个自然地想法就是试图用一些箭头来表示这种因果关系, 图片来自<a href="https://en.wikipedia.org/wiki/Bayesian_network">贝叶斯网络</a>的维基百科:
+<div data-align="center">
+<img src="/pictures/bayes in ml/SimpleBayesNepng.png" width="80%" height="50%" />
+</div>
+<p>这里我们关心这样一个问题,看到草坪湿了, 想知道有没有下过雨. 由常识容易知道:下雨能导致草坪湿掉, 喷洒器也能导致草坪湿掉, 且下雨天喷洒器往往不会运作, 有了这张图, 我们也就能轻易的表示出<span class="math inline">\(P(Rain\mid Grass)\)</span>, 这样的有向非循环的图模型被称为是贝叶斯网络.</p>
+再来看一个贝叶斯网络的简单例子:贝叶斯分类器, 图片来自周志华的机器学习:
+<div data-align="center">
+<img src="/pictures/bayes in ml/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8.png" width="80%" height="50%" />
+</div>
+<p>(a)是朴素贝叶斯, 想法也非常朴素, 特征<span class="math inline">\(x_i\)</span>仅仅由<span class="math inline">\(y\)</span>所决定, (b)、(c)则是考虑了特征之间的依赖关系.</p>
+这里提一下板表示法, 板表示法(plate notation)是一种表示在图形模型中重复的变量的方法, 比方说朴素贝叶斯分类器(a)可以简画为:
+<div data-align="center">
+<img src="/pictures/bayes in ml/plate_notation.png" width="50%" height="50%" />
+</div>
+<p>图中的d表示将方形区域重复d遍, 也就是(a)中图形的样子. 模型的选取先说这么多, 下面考虑先验<span class="math inline">\(P(\omega)\)</span>的选取, 事实上, 为了计算简单, 一般选取共轭先验分布.</p>
+<hr />
+<h2 id="共轭先验">共轭先验</h2>
+<p>关于贝叶斯公式,还有一个重要概念:<strong>共轭先验</strong>, 是指先验分布和后验分布同属某个分布的先验分布,这里举三个重要的共轭先验的例子:</p>
+<ul>
+<li>假定模型满足正态分布<span class="math inline">\(P(X\mid \theta)= N(\theta, \sigma^2)\)</span>, 其中<span class="math inline">\(\sigma^2\)</span>为给定值. 给定先验<span class="math inline">\(P(\theta)= N(0, 1)\)</span>满足标准正态分布. 此时后验分布:<span class="math display">\[ P(\theta\mid X) \propto  e^{-\frac{(x-\theta)^2}{2\sigma^2}} e^{-\frac{\theta^2}{2}}\propto N(\frac{x}{1+\sigma^2}, \frac{\sigma^2}{1+\sigma^2})\]</span>这个例子实际上在贝叶斯公式一节中讲到了,不难发现,若喂给它的数据是<span class="math inline">\(x=0\)</span>, 那么<span class="math inline">\(\theta\)</span>的后验分布第一个参数不变,第二根参数减小了些,也即期望值不变,方差减小了些.</li>
+<li>假定模型满足正态分布<span class="math inline">\(P(X\mid \gamma)=N(\mu, \gamma^{-1})\)</span>, 其中<span class="math inline">\(\mu\)</span>为给定值,<span class="math inline">\(\gamma=\frac{1}{\sigma^2}\)</span>称为准确度,方差越小,准确度越高.给定先验<span class="math inline">\(P(\gamma)= \Gamma(a,b)\propto\gamma^{a-1}e^{-b\gamma}\)</span>满足参数为<span class="math inline">\(a,b\)</span>的Gamma分布.此时后验分布:<span class="math display">\[ P(\gamma\mid X) \propto \gamma^{\frac{1}{2}+a-1} e^{-(b+\frac{(x-\mu)^2}{2})\gamma} \propto \Gamma(\frac{1}{2}+a, b+\frac{(x-\mu)^2}{2})\]</span>不难发现,若喂给它的数据是<span class="math inline">\(x=\mu\)</span>, 那么<span class="math inline">\(\gamma\)</span>的后验分布第一个参数增大了<span class="math inline">\(\frac{1}{2}\)</span>,第二个参数不变,注意到Gamma分布的期望<span class="math inline">\(E[\Gamma(a,b)]=\frac{a}{b}\)</span>, 也即准确度<span class="math inline">\(\gamma\)</span>的期望变大了些, 若一直喂给它相同的数据<span class="math inline">\(x=\mu\)</span>, 可以看到准确度<span class="math inline">\(\gamma\)</span>的期望会一直上涨, 这也与我们的想象相符合.</li>
+<li>假定模型满足二项分布<span class="math inline">\(P(X\mid \theta)= \theta^x(1-\theta)^{(1-x)}\)</span>. 给定先验<span class="math inline">\(P(\theta)=Be(a,b) \propto\theta^{a-1}(1-\theta)^{b-1}\)</span>满足参数为<span class="math inline">\(a,b\)</span>的Beta分布.此时后验分布:<span class="math display">\[ P(\theta\mid X) \propto \theta^{x+a-1}(1-\theta)^{1-x+b-1} \propto Be(x+a, 1-x+b)\]</span>若喂给它的数据是<span class="math inline">\(x=1\)</span>, 那么<span class="math inline">\(\theta\)</span>的后验分布第一个参数增大了<span class="math inline">\(1\)</span>,第二个参数不变,注意到Beta分布的期望<span class="math inline">\(E[Be(a,b)]=\frac{a}{a+b}\)</span>, 也即<span class="math inline">\(\theta\)</span>的期望向<span class="math inline">\(1\)</span>迈出了一小步, 这也与我们的想象相符.</li>
+</ul>
+<hr />
+<h2 id="贝叶斯视角下的线性回归与最小二乘线性回归">贝叶斯视角下的线性回归与最小二乘线性回归</h2>
+<p>考虑线性回归模型<span class="math inline">\(y=X\omega\)</span>, 这里的<span class="math inline">\(y\)</span>为<span class="math inline">\(m\)</span>维列向量, <span class="math inline">\(\omega\)</span>为<span class="math inline">\(n\)</span>维列向量, 假定模型满足正态分布<span class="math inline">\(P(y\mid X, \omega)=N(X\omega, \sigma^2I)\)</span>, 先验也满足正态分布<span class="math inline">\(P(\omega)=N(0, \gamma^2I)\)</span>, 容易得到:<span class="math display">\[P(\omega\mid X, y)=\frac {P(\omega, y\mid X)}{P(y\mid X)}=\frac {P(y\mid X, \omega)\,P(\omega)}{P(y\mid X)}\propto e^{-\frac{1}{2\sigma^2}(y-X\omega)^T(y-X\omega)}e^{-\frac{1}{2\gamma^2}\omega^T\omega}\]</span>可以通过PRML一书2.3.3节最后的公式给出后验的正态分布的参数, 这里仅求该后验分布的概率最大值点: <span class="math inline">\(\omega_{MAP}=\arg\max_{\omega}P(\omega\mid X, y)\)</span>, 易知取<span class="math inline">\(\log\)</span>不影响求最大值:<span class="math display">\[\log P(\omega\mid X, y)=-\frac{1}{2\sigma^2}(y-X\omega)^T(y-X\omega)-\frac{1}{2\gamma^2}\omega^T\omega=-\frac{1}{2\sigma^2}(\left\Vert y-X\omega\right\Vert^2+\frac{\sigma^2}{\gamma^2}\left\Vert \omega\right\Vert^2)\]</span>对其求最大值即为<strong>最小二乘方法加L2正则项</strong>的结果. 如果有兴趣, 不妨将上面对<span class="math inline">\(\omega\)</span>的先验分布替换成参数为<span class="math inline">\(0,b\)</span>的拉普拉斯分布<span class="math inline">\(P(\omega)=\frac{1}{(2b)^n} \prod_ {i=1}^n\exp\left(-\frac{|\omega_i|}{b}\right)\)</span>, 可以得到<strong>最小二乘方法加L1正则项</strong>的结果.</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>贝叶斯</tag>
+        <tag>共轭先验</tag>
+        <tag>机器学习</tag>
+        <tag>线性回归</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>统计学习中的几个概率不等式</title>
     <url>/2019/10/23/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%A6%82%E7%8E%87%E4%B8%8D%E7%AD%89%E5%BC%8F/</url>
     <content><![CDATA[<p>前言: 福特的实习总算快结束了, 忙里偷闲写博客. 本文的初衷用简明扼要的语言说一说统计学习理论中的常见的概率不等式, 证明过程略, 只为了方便快速回忆. 主要参考了Shai Shalev-Shwartz的Understanding machine learning一书、<a href="https://murongxixi.github.io/2013/10/26/%E5%87%A0%E4%B8%AA%E6%A6%82%E7%8E%87%E4%B8%8D%E7%AD%89%E5%BC%8F/">这篇博客</a>以及维基百科.</p>
@@ -3116,6 +3116,139 @@ y[t]=V^T[t]\mathbf{r}[t]
         <tag>统计学习</tag>
         <tag>概率论</tag>
         <tag>不等式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>近端梯度方法</title>
+    <url>/2021/01/19/%E8%BF%91%E7%AB%AF%E6%A2%AF%E5%BA%A6%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>前言: 本文的主角是近端梯度方法(Proximal Gradient Method), 这是一个在数学优化领域广为人知，在机器学习领域却很少看到的数学优化方法，它在非光滑优化领域发挥着巨大的作用，下面我们从一个机器学习问题开始了解它能够解决什么问题。 <span id="more"></span></p>
+<h3 id="正则化损失最小化">正则化损失最小化</h3>
+<p>正则化损失最小化(Regularized Loss Minimization, RLM)是机 器学习领域中一种联合最小化经验⻛险和正则化函数的学习范式，其形式如下: <span class="math display">\[
+\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)
+\]</span></p>
+<p>这里假定<span class="math inline">\(L_S(\omega)\)</span>表示关于训练样本集<span class="math inline">\(S\)</span>和模型系数<span class="math inline">\(\omega\)</span>的经验⻛险项，代表模型对训练 样本集<span class="math inline">\(S\)</span>拟合的好坏程度;<span class="math inline">\(\mathcal{R}(\omega)\)</span>表示关于模型系数<span class="math inline">\(\omega\)</span>的正则项，代表我们 对模型的额外偏好;正则项系数<span class="math inline">\(\alpha\)</span>用于控制正则ß程度。以回归为例，当经验⻛险项为最小二乘损 失<span class="math inline">\(L_S(\omega)=(X\omega-Y)^T(X\omega-Y)\)</span>时，若正则项为<span class="math inline">\(\ell_2\)</span>正则<span class="math inline">\(\mathcal{R} (\omega)=\Vert\omega\Vert_2^2\)</span>，此时RLM问题为 <span class="math display">\[
+\min_{\omega}(X\omega-Y)^T(X\omega-Y)+\alpha\Vert\omega\Vert_2^2
+\]</span></p>
+<p>其有闭式解<span class="math inline">\(\omega_*=(X^TX+\alpha I)^{-1}X^TY\)</span>; 若正则项为<span class="math inline">\(\ell_1\)</span>正则<span class="math inline">\(\mathcal{R}(\omega)=\Vert\omega\Vert_1\)</span>，此时RLM问题为</p>
+<p><span class="math display">\[\min_{\omega}(X\omega-Y)^T(X\omega-Y)+\alpha\Vert\omega\Vert_1\]</span> 上述问题又名Lasso问题，可以采用坐标下降方法、近端梯度方法(Proximal Gradient Method, PGM)去解决，且相比<span class="math inline">\(\ell_2\)</span>正则，<span class="math inline">\(\ell_1\)</span>正则得到的解更为稀疏。</p>
+<h3 id="近端梯度方法解决ell_1正则化问题">近端梯度方法解决<span class="math inline">\(\ell_1\)</span>正则化问题</h3>
+<p>一般的，考虑如下问题带正则项的机器学习问题</p>
+<p><span class="math display">\[\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)\]</span> 其中<span class="math inline">\(L_S(\omega)\)</span>具有L-smooth性质，即<span class="math inline">\(\Vert\nabla_\omega L_S(x)-\nabla_\omega L_S(y)\Vert_2\le L\Vert x-y\Vert_2\)</span>。近端梯度方法处理的方式为迭代地进行如下计算</p>
+<ol type="1">
+<li>计算</li>
+</ol>
+<p><span class="math display">\[
+z_k=\omega_k-\frac{1}{L}\nabla L_S(\omega_k)
+\]</span></p>
+<ol start="2" type="1">
+<li>求解</li>
+</ol>
+<p><span class="math display">\[
+\begin{aligned}
+\omega_{k+1} &amp;= \arg\min_\omega\ \frac{L}{2}\Vert \omega-z_k\Vert_2^2+\alpha \mathcal{R}(\omega) \\
+&amp;=\arg\min_\omega\ \frac{1}{2}\Vert \omega-z_k\Vert_2^2+\frac{\alpha}{L} \mathcal{R}(\omega)\\
+\end{aligned}
+\]</span></p>
+<p>第一步中的 <span class="math inline">\(\nabla L_S(\omega_k)\)</span> 表示<span class="math inline">\(L_S(\omega)\)</span>在<span class="math inline">\(\omega=\omega_k\)</span>处的梯度；第二步的计算复杂度则依赖于<span class="math inline">\(\mathcal{R}(\omega)\)</span>的选取。接下来我们从第二步的计算中抽象出近端算子<span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>的概念</p>
+<p><span class="math display">\[
+\operatorname{prox}_{h}(z)=\underset{\omega \in \mathbb{R}^{n}}{\arg \min }\ \frac{1}{2}\|\omega-z\|_{2}^{2}+h(\omega)
+\]</span></p>
+<p>当<span class="math inline">\(h(\omega)=\lambda\|\omega\|_{1}\)</span>，<span class="math inline">\(\lambda&gt;0\)</span>，<span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>恰为软阈值算子(Soft Thresholding)[1]</p>
+<p><span class="math display">\[
+\left[\operatorname{prox}_{h}(z)\right]_{i}=\left\{\begin{array}{ll}
+0 &amp; \text { if }\left|z_{i}\right| \leq \lambda \\
+z_{i}-\lambda &amp; \text { if } z_{i}&gt;\lambda \\
+z_{i}+\lambda &amp; \text { if } z_{i}&lt;-\lambda
+\end{array} \quad i=1, \ldots, n\right.;
+\]</span></p>
+<p>上述闭式解意味着对于正则项为<span class="math inline">\(\ell_1\)</span>的RLM问题，近端梯度方法能够高效的解决。</p>
+<h3 id="近端梯度方法解决其它正则问题">近端梯度方法解决其它正则问题</h3>
+<p>当<span class="math inline">\(h(\omega)=\sum_{i=1}^{n}\left(\lambda^{2}-\left(\left|\omega_{i}\right|-\lambda\right)^{2} \mathbb{I}\left(\left|\omega_{i}\right|&lt;\lambda\right)\right)\)</span>, <span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>恰为硬阈值算子(Hard Thresholding)[2]; 当<span class="math inline">\(h(\omega)=\|\omega\|_{1}-\lambda\|\omega\|_{2}\)</span>, [3]给出了闭式解。因此，对于上述两种正则的RLM问题而言，近端梯度方法也能够高效的解决。</p>
+<h3 id="近端梯度方法的一种直观理解">近端梯度方法的一种直观理解</h3>
+<p>回到近端梯度方法处理的问题上来</p>
+<p><span class="math display">\[
+\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)
+\]</span></p>
+<p>近端梯度方法做的事可以理解为分步最优化原目标函数的一个上界 <span class="math display">\[
+\begin{aligned}
+L_S(\omega)+\alpha\mathcal{R}(\omega) &amp; \leq L_S(\omega_k)+\left\langle\nabla L_S(\omega_k), \omega-\omega_k\right\rangle+\frac{L}{2}\left\|\omega-\omega_k\right\|_{2}^{2}+\alpha\mathcal{R}(\omega) \\
+&amp;=\frac{L}{2}\left\|\omega-\left(\omega_k-\frac{1}{L} \nabla L_S(\omega_k)\right)\right\|_{2}^{2}+\alpha\mathcal{R}(\omega) \\
+\end{aligned}
+\]</span> 第一个不等式可由L-smooth性质得到，而近端梯度方法等价于最小化上式。</p>
+<hr />
+<p>[1] Boyd, Stephen, Stephen P. Boyd, and Lieven Vandenberghe. Convex optimization. Cambridge university press, 2004.</p>
+<p>[2] Antoniadis, Anestis. "Wavelets in statistics: a review." Journal of the Italian Statistical Society 6.2 (1997): 97.</p>
+<p>[3] Lou, Yifei, and Ming Yan. "Fast L1–L2 minimization via a proximal operator." Journal of Scientific Computing 74.2 (2018): 767-785.</p>
+]]></content>
+      <categories>
+        <category>优化算法</category>
+      </categories>
+      <tags>
+        <tag>近端</tag>
+        <tag>近端梯度</tag>
+        <tag>正则</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自然梯度</title>
+    <url>/2019/07/06/%E8%87%AA%E7%84%B6%E6%A2%AF%E5%BA%A6/</url>
+    <content><![CDATA[<p>前言: 本文介绍自然梯度算法, 这种方法考虑到许多问题的参数空间具有某种结构, 因此考虑放在非欧式空间中优化(但实际优化计算过程仍然在欧式空间), 有兴趣的同学可以读一读原论文<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient</a>. <span id="more"></span></p>
+<h2 id="欧式空间与黎曼空间">欧式空间与黎曼空间</h2>
+<p>什么是欧式空间?</p>
+<blockquote>
+<p>A finite dimensional real vector space equipped with an inner product <span class="math inline">\(\left&lt; x,y \right&gt;\)</span>, is called a <strong>Eulidean space</strong>, if it is endowed with the norm <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}\)</span>, which is referred to as <strong>Eulidean norm</strong>.</p>
+</blockquote>
+<p>通俗的讲, 首先得有一个向量空间<span class="math inline">\(\mathbb{R}^n\)</span>, 接着在这个空间上定义内积(inner product), 这个内积可以是常见的内积点乘, 也可以是其它内积:</p>
+<ul>
+<li>dot product: <span class="math inline">\(\left&lt; x,y \right&gt;=\sum_{i=1}^nx_iy_i\)</span>, 其中<span class="math inline">\(x_i\)</span>为<span class="math inline">\(x\)</span>的第<span class="math inline">\(i\)</span>个分量.</li>
+<li><span class="math inline">\(Q\)</span> inner: <span class="math inline">\(\left&lt; x,y \right&gt;=x^TQy\)</span>, 其<span class="math inline">\(Q\)</span>为<span class="math inline">\(n\)</span>阶正定阵.</li>
+</ul>
+<p>然后由内积可以诱导出对应的范数:</p>
+<ul>
+<li><span class="math inline">\(l_2\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{ \sum_{i=1}^n x_i^2 }\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_2\)</span>.</li>
+<li><span class="math inline">\(Q\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{x^TQx}\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_Q\)</span>.</li>
+</ul>
+<p>有了范数, 我们就可以度量两个点<span class="math inline">\(x,x+dx\)</span>之间的距离(点乘内积): <span class="math display">\[\Vert x + dx-x\Vert=\Vert dx\Vert=\sqrt{ \sum_{i=1}^n dx_i^2 }.\]</span></p>
+<p>小结一下:</p>
+<ul>
+<li>欧式空间是一个向量空间, 且带有内积和范数;</li>
+<li>最重要的是, 该范数一定是要由内积根据上式诱导出来的.</li>
+</ul>
+<p>什么是黎曼空间?</p>
+<blockquote>
+<p>A differentiable manifold provided with a <strong>Riemannian metric</strong>.</p>
+</blockquote>
+<p>微分流形(differentiable manifold又名光滑流形, 其最简单的例子就是三维空间中的球面, 在这里可简单理解为向量空间; 黎曼度量(Riemannian metric.)又名<a href="https://zh.wikipedia.org/wiki/%E5%BA%A6%E9%87%8F%E5%BC%A0%E9%87%8F">度量张量</a>, 黎曼度量张量或是度规张量, 这里可简单理解为某<span class="math inline">\(n\)</span>阶方阵<span class="math inline">\(G\)</span>或是<span class="math inline">\((g_{ij})\)</span>. 有了它我们就可以用它来度量空间中两点<span class="math inline">\(x,x+dx\)</span>之间的距离: <span class="math display">\[dx^2=\sum_{ij}g_{ij}dx_i dx_j=dx^TGdx\]</span>其中<span class="math inline">\(dx_i\)</span>为<span class="math inline">\(dx\)</span>的第<span class="math inline">\(i\)</span>个分量. 特别的, 若取<span class="math inline">\(G\)</span>为<span class="math inline">\(n\)</span>阶单位阵(对角线上元素为1, 其余为0), 此时<span class="math inline">\(dx^2=\sum_{i}^ndx_i^2\)</span>. 这就与带有正交坐标系的欧式空间一致了(点乘内积). 小结一下:</p>
+<ul>
+<li>黎曼空间可视为欧式空间的推广, 但一般情况下, 黎曼空间为非欧空间.</li>
+<li>确定了<span class="math inline">\(G\)</span>就相当于确定了一个黎曼空间, 另外形式上类似欧式空间中的<span class="math inline">\(Q\)</span> norm但没有正定性的要求.</li>
+</ul>
+<h2 id="自然梯度">自然梯度</h2>
+<p>带正交坐标系的欧式空间中, 我们知道负梯度方向<span class="math inline">\(-\nabla L(w)\)</span>为<span class="math inline">\(L(w)\)</span>的最速下降方向; 类似的, 黎曼空间中的<span class="math inline">\(L(w)\)</span>最速下降方向为<span class="math inline">\(-G^{-1}(w)\nabla L(w)\)</span>, 这被称为是自然梯度, 证明可见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient Works Efficiently in Learning</a>的定理1. 下面举个例子加以说明:</p>
+<ul>
+<li>现有一族带参的分布族<span class="math inline">\(\{p(z\mid w)\}\)</span>, 目标是找到最优参数<span class="math inline">\(w=w^*\)</span>使得<span class="math inline">\(p(z\mid w)\)</span>尽可能的接近未知的密度函数<span class="math inline">\(q(z)\)</span>.</li>
+<li>事实上, 很多机器学习任务可归结为上述问题, 比方说<span class="math inline">\(q(z)=q(x,y)\)</span>表示某监督学习任务的样本真实分布, <span class="math inline">\(w\)</span>表示某个NN的参数.</li>
+<li>一个常用的损失函数就是最小化交叉熵的负数:<span class="math display">\[L(w)=-\mathbb{E}_{q(z)}[\log p(z\mid w)]=\mathcal{KL}(q(z)\Vert p(z\mid w))-\mathbb{E}_{q(z)}[\log q(z)]\]</span>其中<span class="math inline">\(\mathcal{KL}(q(z)\Vert p(z\mid w))=\mathbb{E}_{q(z)}[\log\frac{q(z)}{p(z\mid w)}]=\int q(z)\log\frac{q(z)}{p(z\mid w)}dz\)</span>, 且第二项与<span class="math inline">\(w\)</span>无关.</li>
+<li>Information geometry (Amari, 1985)给出了利用<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>定义<span class="math inline">\(G\)</span>(概率密度函数族可以看做与参数空间同胚的黎曼流形, Fisher信息矩阵可以看做是该流形上的黎曼度量, 可以证明这一度量是外围欧式空间在该流形上的诱导度量): <span class="math display">\[G_{ij}(w)=I_{ij}(w)=-\mathbb{E}_{p(z\mid w)}\left [\frac{\partial \log p(z\mid w)}{\partial w_i}\frac{\partial \log p(z\mid w)}{\partial w_j}\right]\]</span></li>
+<li>最后假设有一堆独立同分布样本<span class="math inline">\(z_i \sim p(z)\)</span>, 就可用stochastic或batch的思路去优化. 此时<span class="math inline">\(L(w)\)</span>的自然梯度方向即为<span class="math inline">\(-I^{-1}(w)\nabla L(w)\)</span>, 这又被称为是<strong>Fisher scoring algorithm</strong>.</li>
+</ul>
+<p>回过头来看, 对<span class="math inline">\(q(z)\)</span>的参数化近似<span class="math inline">\(p(z,w)\)</span>必定赋予了它某种结构(比方说对<span class="math inline">\(w\)</span>迈出一大步未必能导致<span class="math inline">\(p(z,w)\)</span>的大的变化), 而要想利用这种结构, 最大的难点就是如何找到对应的黎曼空间, 或者说<span class="math inline">\(G\)</span>.</p>
+<ul>
+<li>第6节给出了<strong>感知机模型</strong>的参数空间的相对应<span class="math inline">\(G, G^{-1}\)</span>的详细求解过程, 同时还有<strong>多层感知机模型</strong>的<span class="math inline">\(G\)</span>.</li>
+<li>第7节给出了<span class="math inline">\(m\)</span>阶非奇异方阵构成的空间中自然梯度的求法; 第8节给出了系统空间中的自然梯度.</li>
+</ul>
+<h2 id="自然梯度与牛顿类法">自然梯度与牛顿类法</h2>
+<p>形式上, 自然梯度法类似于牛顿法: <span class="math display">\[G(w)=-\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right], \nabla ^2L (w)=-\mathbb{E}_{q(z)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]\]</span>且随着优化算法的进行, <span class="math inline">\(p(z\mid w)\)</span>会越来越接近<span class="math inline">\(q(z)\)</span>, 此时两者的表现会相近.当然, 实际任务中因为实际分布一般不知道因此再多一层近似, 即用batch或是stochastic近似上述右式. 最后, 由于<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>的一个特殊性质, 在满足<a href="https://en.wikipedia.org/wiki/Cram%C3%A9r%E2%80%93Rao_bound#Regularity_conditions">CR条件</a>的前提下, 有<span class="math display">\[\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]=\mathbb{E}_{p(z\mid w)}\left[ (\frac{\partial\log p(z\mid w)}{\partial w})(\frac{\partial\log p(z\mid w)}{\partial w})^T\right]\]</span>若我把上式中的<span class="math inline">\(p(z\mid w)\)</span>换成<span class="math inline">\(q(z)\)</span>, <a href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm">Gauss-Newton法</a>就跃然纸上.</p>
+]]></content>
+      <categories>
+        <category>优化算法</category>
+      </categories>
+      <tags>
+        <tag>优化</tag>
+        <tag>黎曼空间</tag>
+        <tag>欧式空间</tag>
+        <tag>Fisher信息</tag>
+        <tag>自然梯度</tag>
       </tags>
   </entry>
   <entry>
@@ -3405,197 +3538,6 @@ y[t]=V^T[t]\mathbf{r}[t]
         <tag>SRM</tag>
         <tag>MDL</tag>
         <tag>奥卡姆剃刀</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>自然梯度</title>
-    <url>/2019/07/06/%E8%87%AA%E7%84%B6%E6%A2%AF%E5%BA%A6/</url>
-    <content><![CDATA[<p>前言: 本文介绍自然梯度算法, 这种方法考虑到许多问题的参数空间具有某种结构, 因此考虑放在非欧式空间中优化(但实际优化计算过程仍然在欧式空间), 有兴趣的同学可以读一读原论文<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient</a>. <span id="more"></span></p>
-<h2 id="欧式空间与黎曼空间">欧式空间与黎曼空间</h2>
-<p>什么是欧式空间?</p>
-<blockquote>
-<p>A finite dimensional real vector space equipped with an inner product <span class="math inline">\(\left&lt; x,y \right&gt;\)</span>, is called a <strong>Eulidean space</strong>, if it is endowed with the norm <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}\)</span>, which is referred to as <strong>Eulidean norm</strong>.</p>
-</blockquote>
-<p>通俗的讲, 首先得有一个向量空间<span class="math inline">\(\mathbb{R}^n\)</span>, 接着在这个空间上定义内积(inner product), 这个内积可以是常见的内积点乘, 也可以是其它内积:</p>
-<ul>
-<li>dot product: <span class="math inline">\(\left&lt; x,y \right&gt;=\sum_{i=1}^nx_iy_i\)</span>, 其中<span class="math inline">\(x_i\)</span>为<span class="math inline">\(x\)</span>的第<span class="math inline">\(i\)</span>个分量.</li>
-<li><span class="math inline">\(Q\)</span> inner: <span class="math inline">\(\left&lt; x,y \right&gt;=x^TQy\)</span>, 其<span class="math inline">\(Q\)</span>为<span class="math inline">\(n\)</span>阶正定阵.</li>
-</ul>
-<p>然后由内积可以诱导出对应的范数:</p>
-<ul>
-<li><span class="math inline">\(l_2\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{ \sum_{i=1}^n x_i^2 }\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_2\)</span>.</li>
-<li><span class="math inline">\(Q\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{x^TQx}\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_Q\)</span>.</li>
-</ul>
-<p>有了范数, 我们就可以度量两个点<span class="math inline">\(x,x+dx\)</span>之间的距离(点乘内积): <span class="math display">\[\Vert x + dx-x\Vert=\Vert dx\Vert=\sqrt{ \sum_{i=1}^n dx_i^2 }.\]</span></p>
-<p>小结一下:</p>
-<ul>
-<li>欧式空间是一个向量空间, 且带有内积和范数;</li>
-<li>最重要的是, 该范数一定是要由内积根据上式诱导出来的.</li>
-</ul>
-<p>什么是黎曼空间?</p>
-<blockquote>
-<p>A differentiable manifold provided with a <strong>Riemannian metric</strong>.</p>
-</blockquote>
-<p>微分流形(differentiable manifold又名光滑流形, 其最简单的例子就是三维空间中的球面, 在这里可简单理解为向量空间; 黎曼度量(Riemannian metric.)又名<a href="https://zh.wikipedia.org/wiki/%E5%BA%A6%E9%87%8F%E5%BC%A0%E9%87%8F">度量张量</a>, 黎曼度量张量或是度规张量, 这里可简单理解为某<span class="math inline">\(n\)</span>阶方阵<span class="math inline">\(G\)</span>或是<span class="math inline">\((g_{ij})\)</span>. 有了它我们就可以用它来度量空间中两点<span class="math inline">\(x,x+dx\)</span>之间的距离: <span class="math display">\[dx^2=\sum_{ij}g_{ij}dx_i dx_j=dx^TGdx\]</span>其中<span class="math inline">\(dx_i\)</span>为<span class="math inline">\(dx\)</span>的第<span class="math inline">\(i\)</span>个分量. 特别的, 若取<span class="math inline">\(G\)</span>为<span class="math inline">\(n\)</span>阶单位阵(对角线上元素为1, 其余为0), 此时<span class="math inline">\(dx^2=\sum_{i}^ndx_i^2\)</span>. 这就与带有正交坐标系的欧式空间一致了(点乘内积). 小结一下:</p>
-<ul>
-<li>黎曼空间可视为欧式空间的推广, 但一般情况下, 黎曼空间为非欧空间.</li>
-<li>确定了<span class="math inline">\(G\)</span>就相当于确定了一个黎曼空间, 另外形式上类似欧式空间中的<span class="math inline">\(Q\)</span> norm但没有正定性的要求.</li>
-</ul>
-<h2 id="自然梯度">自然梯度</h2>
-<p>带正交坐标系的欧式空间中, 我们知道负梯度方向<span class="math inline">\(-\nabla L(w)\)</span>为<span class="math inline">\(L(w)\)</span>的最速下降方向; 类似的, 黎曼空间中的<span class="math inline">\(L(w)\)</span>最速下降方向为<span class="math inline">\(-G^{-1}(w)\nabla L(w)\)</span>, 这被称为是自然梯度, 证明可见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient Works Efficiently in Learning</a>的定理1. 下面举个例子加以说明:</p>
-<ul>
-<li>现有一族带参的分布族<span class="math inline">\(\{p(z\mid w)\}\)</span>, 目标是找到最优参数<span class="math inline">\(w=w^*\)</span>使得<span class="math inline">\(p(z\mid w)\)</span>尽可能的接近未知的密度函数<span class="math inline">\(q(z)\)</span>.</li>
-<li>事实上, 很多机器学习任务可归结为上述问题, 比方说<span class="math inline">\(q(z)=q(x,y)\)</span>表示某监督学习任务的样本真实分布, <span class="math inline">\(w\)</span>表示某个NN的参数.</li>
-<li>一个常用的损失函数就是最小化交叉熵的负数:<span class="math display">\[L(w)=-\mathbb{E}_{q(z)}[\log p(z\mid w)]=\mathcal{KL}(q(z)\Vert p(z\mid w))-\mathbb{E}_{q(z)}[\log q(z)]\]</span>其中<span class="math inline">\(\mathcal{KL}(q(z)\Vert p(z\mid w))=\mathbb{E}_{q(z)}[\log\frac{q(z)}{p(z\mid w)}]=\int q(z)\log\frac{q(z)}{p(z\mid w)}dz\)</span>, 且第二项与<span class="math inline">\(w\)</span>无关.</li>
-<li>Information geometry (Amari, 1985)给出了利用<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>定义<span class="math inline">\(G\)</span>(概率密度函数族可以看做与参数空间同胚的黎曼流形, Fisher信息矩阵可以看做是该流形上的黎曼度量, 可以证明这一度量是外围欧式空间在该流形上的诱导度量): <span class="math display">\[G_{ij}(w)=I_{ij}(w)=-\mathbb{E}_{p(z\mid w)}\left [\frac{\partial \log p(z\mid w)}{\partial w_i}\frac{\partial \log p(z\mid w)}{\partial w_j}\right]\]</span></li>
-<li>最后假设有一堆独立同分布样本<span class="math inline">\(z_i \sim p(z)\)</span>, 就可用stochastic或batch的思路去优化. 此时<span class="math inline">\(L(w)\)</span>的自然梯度方向即为<span class="math inline">\(-I^{-1}(w)\nabla L(w)\)</span>, 这又被称为是<strong>Fisher scoring algorithm</strong>.</li>
-</ul>
-<p>回过头来看, 对<span class="math inline">\(q(z)\)</span>的参数化近似<span class="math inline">\(p(z,w)\)</span>必定赋予了它某种结构(比方说对<span class="math inline">\(w\)</span>迈出一大步未必能导致<span class="math inline">\(p(z,w)\)</span>的大的变化), 而要想利用这种结构, 最大的难点就是如何找到对应的黎曼空间, 或者说<span class="math inline">\(G\)</span>.</p>
-<ul>
-<li>第6节给出了<strong>感知机模型</strong>的参数空间的相对应<span class="math inline">\(G, G^{-1}\)</span>的详细求解过程, 同时还有<strong>多层感知机模型</strong>的<span class="math inline">\(G\)</span>.</li>
-<li>第7节给出了<span class="math inline">\(m\)</span>阶非奇异方阵构成的空间中自然梯度的求法; 第8节给出了系统空间中的自然梯度.</li>
-</ul>
-<h2 id="自然梯度与牛顿类法">自然梯度与牛顿类法</h2>
-<p>形式上, 自然梯度法类似于牛顿法: <span class="math display">\[G(w)=-\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right], \nabla ^2L (w)=-\mathbb{E}_{q(z)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]\]</span>且随着优化算法的进行, <span class="math inline">\(p(z\mid w)\)</span>会越来越接近<span class="math inline">\(q(z)\)</span>, 此时两者的表现会相近.当然, 实际任务中因为实际分布一般不知道因此再多一层近似, 即用batch或是stochastic近似上述右式. 最后, 由于<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>的一个特殊性质, 在满足<a href="https://en.wikipedia.org/wiki/Cram%C3%A9r%E2%80%93Rao_bound#Regularity_conditions">CR条件</a>的前提下, 有<span class="math display">\[\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]=\mathbb{E}_{p(z\mid w)}\left[ (\frac{\partial\log p(z\mid w)}{\partial w})(\frac{\partial\log p(z\mid w)}{\partial w})^T\right]\]</span>若我把上式中的<span class="math inline">\(p(z\mid w)\)</span>换成<span class="math inline">\(q(z)\)</span>, <a href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm">Gauss-Newton法</a>就跃然纸上.</p>
-]]></content>
-      <categories>
-        <category>优化算法</category>
-      </categories>
-      <tags>
-        <tag>优化</tag>
-        <tag>黎曼空间</tag>
-        <tag>欧式空间</tag>
-        <tag>Fisher信息</tag>
-        <tag>自然梯度</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>近端梯度方法</title>
-    <url>/2021/01/19/%E8%BF%91%E7%AB%AF%E6%A2%AF%E5%BA%A6%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>前言: 本文的主角是近端梯度方法(Proximal Gradient Method), 这是一个在数学优化领域广为人知，在机器学习领域却很少看到的数学优化方法，它在非光滑优化领域发挥着巨大的作用，下面我们从一个机器学习问题开始了解它能够解决什么问题。 <span id="more"></span></p>
-<h3 id="正则化损失最小化">正则化损失最小化</h3>
-<p>正则化损失最小化(Regularized Loss Minimization, RLM)是机 器学习领域中一种联合最小化经验⻛险和正则化函数的学习范式，其形式如下: <span class="math display">\[
-\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)
-\]</span></p>
-<p>这里假定<span class="math inline">\(L_S(\omega)\)</span>表示关于训练样本集<span class="math inline">\(S\)</span>和模型系数<span class="math inline">\(\omega\)</span>的经验⻛险项，代表模型对训练 样本集<span class="math inline">\(S\)</span>拟合的好坏程度;<span class="math inline">\(\mathcal{R}(\omega)\)</span>表示关于模型系数<span class="math inline">\(\omega\)</span>的正则项，代表我们 对模型的额外偏好;正则项系数<span class="math inline">\(\alpha\)</span>用于控制正则ß程度。以回归为例，当经验⻛险项为最小二乘损 失<span class="math inline">\(L_S(\omega)=(X\omega-Y)^T(X\omega-Y)\)</span>时，若正则项为<span class="math inline">\(\ell_2\)</span>正则<span class="math inline">\(\mathcal{R} (\omega)=\Vert\omega\Vert_2^2\)</span>，此时RLM问题为 <span class="math display">\[
-\min_{\omega}(X\omega-Y)^T(X\omega-Y)+\alpha\Vert\omega\Vert_2^2
-\]</span></p>
-<p>其有闭式解<span class="math inline">\(\omega_*=(X^TX+\alpha I)^{-1}X^TY\)</span>; 若正则项为<span class="math inline">\(\ell_1\)</span>正则<span class="math inline">\(\mathcal{R}(\omega)=\Vert\omega\Vert_1\)</span>，此时RLM问题为</p>
-<p><span class="math display">\[\min_{\omega}(X\omega-Y)^T(X\omega-Y)+\alpha\Vert\omega\Vert_1\]</span> 上述问题又名Lasso问题，可以采用坐标下降方法、近端梯度方法(Proximal Gradient Method, PGM)去解决，且相比<span class="math inline">\(\ell_2\)</span>正则，<span class="math inline">\(\ell_1\)</span>正则得到的解更为稀疏。</p>
-<h3 id="近端梯度方法解决ell_1正则化问题">近端梯度方法解决<span class="math inline">\(\ell_1\)</span>正则化问题</h3>
-<p>一般的，考虑如下问题带正则项的机器学习问题</p>
-<p><span class="math display">\[\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)\]</span> 其中<span class="math inline">\(L_S(\omega)\)</span>具有L-smooth性质，即<span class="math inline">\(\Vert\nabla_\omega L_S(x)-\nabla_\omega L_S(y)\Vert_2\le L\Vert x-y\Vert_2\)</span>。近端梯度方法处理的方式为迭代地进行如下计算</p>
-<ol type="1">
-<li>计算</li>
-</ol>
-<p><span class="math display">\[
-z_k=\omega_k-\frac{1}{L}\nabla L_S(\omega_k)
-\]</span></p>
-<ol start="2" type="1">
-<li>求解</li>
-</ol>
-<p><span class="math display">\[
-\begin{aligned}
-\omega_{k+1} &amp;= \arg\min_\omega\ \frac{L}{2}\Vert \omega-z_k\Vert_2^2+\alpha \mathcal{R}(\omega) \\
-&amp;=\arg\min_\omega\ \frac{1}{2}\Vert \omega-z_k\Vert_2^2+\frac{\alpha}{L} \mathcal{R}(\omega)\\
-\end{aligned}
-\]</span></p>
-<p>第一步中的 <span class="math inline">\(\nabla L_S(\omega_k)\)</span> 表示<span class="math inline">\(L_S(\omega)\)</span>在<span class="math inline">\(\omega=\omega_k\)</span>处的梯度；第二步的计算复杂度则依赖于<span class="math inline">\(\mathcal{R}(\omega)\)</span>的选取。接下来我们从第二步的计算中抽象出近端算子<span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>的概念</p>
-<p><span class="math display">\[
-\operatorname{prox}_{h}(z)=\underset{\omega \in \mathbb{R}^{n}}{\arg \min }\ \frac{1}{2}\|\omega-z\|_{2}^{2}+h(\omega)
-\]</span></p>
-<p>当<span class="math inline">\(h(\omega)=\lambda\|\omega\|_{1}\)</span>，<span class="math inline">\(\lambda&gt;0\)</span>，<span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>恰为软阈值算子(Soft Thresholding)[1]</p>
-<p><span class="math display">\[
-\left[\operatorname{prox}_{h}(z)\right]_{i}=\left\{\begin{array}{ll}
-0 &amp; \text { if }\left|z_{i}\right| \leq \lambda \\
-z_{i}-\lambda &amp; \text { if } z_{i}&gt;\lambda \\
-z_{i}+\lambda &amp; \text { if } z_{i}&lt;-\lambda
-\end{array} \quad i=1, \ldots, n\right.;
-\]</span></p>
-<p>上述闭式解意味着对于正则项为<span class="math inline">\(\ell_1\)</span>的RLM问题，近端梯度方法能够高效的解决。</p>
-<h3 id="近端梯度方法解决其它正则问题">近端梯度方法解决其它正则问题</h3>
-<p>当<span class="math inline">\(h(\omega)=\sum_{i=1}^{n}\left(\lambda^{2}-\left(\left|\omega_{i}\right|-\lambda\right)^{2} \mathbb{I}\left(\left|\omega_{i}\right|&lt;\lambda\right)\right)\)</span>, <span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>恰为硬阈值算子(Hard Thresholding)[2]; 当<span class="math inline">\(h(\omega)=\|\omega\|_{1}-\lambda\|\omega\|_{2}\)</span>, [3]给出了闭式解。因此，对于上述两种正则的RLM问题而言，近端梯度方法也能够高效的解决。</p>
-<h3 id="近端梯度方法的一种直观理解">近端梯度方法的一种直观理解</h3>
-<p>回到近端梯度方法处理的问题上来</p>
-<p><span class="math display">\[
-\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)
-\]</span></p>
-<p>近端梯度方法做的事可以理解为分步最优化原目标函数的一个上界 <span class="math display">\[
-\begin{aligned}
-L_S(\omega)+\alpha\mathcal{R}(\omega) &amp; \leq L_S(\omega_k)+\left\langle\nabla L_S(\omega_k), \omega-\omega_k\right\rangle+\frac{L}{2}\left\|\omega-\omega_k\right\|_{2}^{2}+\alpha\mathcal{R}(\omega) \\
-&amp;=\frac{L}{2}\left\|\omega-\left(\omega_k-\frac{1}{L} \nabla L_S(\omega_k)\right)\right\|_{2}^{2}+\alpha\mathcal{R}(\omega) \\
-\end{aligned}
-\]</span> 第一个不等式可由L-smooth性质得到，而近端梯度方法等价于最小化上式。</p>
-<hr />
-<p>[1] Boyd, Stephen, Stephen P. Boyd, and Lieven Vandenberghe. Convex optimization. Cambridge university press, 2004.</p>
-<p>[2] Antoniadis, Anestis. "Wavelets in statistics: a review." Journal of the Italian Statistical Society 6.2 (1997): 97.</p>
-<p>[3] Lou, Yifei, and Ming Yan. "Fast L1–L2 minimization via a proximal operator." Journal of Scientific Computing 74.2 (2018): 767-785.</p>
-]]></content>
-      <categories>
-        <category>优化算法</category>
-      </categories>
-      <tags>
-        <tag>近端</tag>
-        <tag>近端梯度</tag>
-        <tag>正则</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>随机梯度法中的噪声减小方法</title>
-    <url>/2019/10/28/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%AD%E7%9A%84%E5%99%AA%E5%A3%B0%E5%87%8F%E5%B0%8F%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>前言: 本文从优化的角度整理了随机梯度法中的常用的一类算法: 噪声缩减方法, 这里的噪声指的是对随机样本计算梯度带来的噪声. 主要参考了Léon Bottou的综述<a href="https://arxiv.org/pdf/1606.04838.pdf">Optimization Methods for Large-Scale Machine Learning</a>、Jorge Nocedal的Numerical Optimization(2nd edition)以及<a href="http://caoxiaoqing.github.io/2018/05/11/SVRG%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">这篇博客</a>. <span id="more"></span></p>
-<h2 id="机器学习中的优化">机器学习中的优化</h2>
-<h3 id="一些记号">一些记号</h3>
-<p>首先给出两个基本记号, 这是机器学习中要考虑的两种优化基本函数, 前者是定义在<span class="math inline">\(n\)</span>个样本上的函数, 而后者是定义在样本的概率空间上的函数.</p>
-<ul>
-<li><span class="math inline">\(R_n(w)=\frac{1}{n}\sum_{i=1}^nf_i(w)\)</span>表示经验风险.</li>
-<li><span class="math inline">\(R(w)=\mathbb{E}[f(w;\xi)]\)</span>表示期望风险.</li>
-</ul>
-<p>而关于最优解<span class="math inline">\(w\)</span>有三种:</p>
-<ul>
-<li>第一种是<span class="math inline">\(w_{*}\in \arg\min R(w)\)</span>.</li>
-<li>第二种是<span class="math inline">\(w_{n}\in \arg\min R_n(w)\)</span>.</li>
-<li>第三种是实际运行算法返回的最优解<span class="math inline">\(\tilde{w}_n\)</span>, 其受制于具体优化算法的计算.</li>
-</ul>
-<p><strong>注意</strong>: 下面用<span class="math inline">\(F(w)\)</span>表示<span class="math inline">\(R_n(w)\)</span>或者<span class="math inline">\(R(w)\)</span>, 意在区分只适用<span class="math inline">\(R_n(w)\)</span>和<span class="math inline">\(R_n(w), R(w)\)</span>均适用的算法</p>
-<h3 id="梯度下降法">梯度下降法</h3>
-<p>梯度下降法(gradient descent, GD), 只适用于<span class="math inline">\(R_n(w)\)</span>, 在强凸前提下其收敛速度为线性[Numerical Optimization TH3.4]:<span class="math display">\[R_n(w_k)-R_*\le O(\rho^k)\]</span>其中<span class="math inline">\(\rho\in(0,1)\)</span>. 因此GD的计算复杂度为:<span class="math display">\[O(n\kappa\log(1/\epsilon))\]</span>因为<span class="math inline">\(O(\rho^k)=\epsilon \Rightarrow k=O(\log(1/\epsilon))\)</span>且每次迭代要计算<span class="math inline">\(n\)</span>个样本的梯度.</p>
-<p><strong>注意</strong>: <span class="math inline">\(\kappa=L/\mu\)</span>为优化中常用的常数, 类比于二次情形的条件数. 可参见[leon bottou]中的Assumption4.1 4.3</p>
-<h3 id="随机梯度">随机梯度</h3>
-<p>随机梯度(stochastic gradient, SG), 为梯度下降法的随机版本, 但因为每次迭代不能保证下降, 因此没有descent的字眼, 它是适用于<span class="math inline">\(F(w)\)</span>的算法. 在强凸(步长满足<span class="math inline">\(\alpha_k=\frac{\beta}{\gamma+k}\)</span>)及期望的意义下其收敛速率为次线性[leon bottou TH4.7] :<span class="math display">\[\mathbb{E}[F(w_k)-F_*]\le \frac{\nu}{\gamma+k}\]</span>其中<span class="math inline">\(\beta, \nu\)</span>为常数. 因此SG的计算复杂度为:<span class="math display">\[O(\kappa/\epsilon)\]</span>因为<span class="math inline">\(\frac{\nu}{\gamma+k}=\epsilon \Rightarrow k=\frac{\nu}{\epsilon}-\gamma\)</span></p>
-<h2 id="噪声减小方法">噪声减小方法</h2>
-<h3 id="迭代平均方法">迭代平均方法</h3>
-<p>先来看最容易想到的一类方法, 迭代平均方法, 它直接基于SG因此适用<span class="math inline">\(F(w)\)</span>. 考虑SG迭代序列<span class="math display">\[w_{k+1}\leftarrow w_k-\alpha_k g(w_k,\xi_k)\]</span>这里的<span class="math inline">\(\xi_k\)</span>为随机变量, 指代第<span class="math inline">\(k\)</span>步随机抽取的样本, <span class="math inline">\(g(w_k,\xi_k)\)</span>表示样本<span class="math inline">\(\xi_k\)</span>对应的梯度. 迭代平均法新建了一个序列:<span class="math display">\[\tilde{w}_{k+1}\leftarrow \frac{1}{k+1}\sum_{j=1}^{k+1}w_{j}\]</span>若步长衰减速度为<span class="math inline">\(O(1/k^a)\)</span>, <span class="math inline">\(a\in(\frac{1}{2},1)\)</span>. 在强凸的前提下有:<span class="math display">\[\mathbb{E}[\Vert w_k-w_+\Vert_2^2] = O(1/k^a)\]</span>且(注:这里的<span class="math inline">\(w_+\)</span>指<span class="math inline">\(w\)</span>的最优值点)<span class="math display">\[\mathbb{E}[\Vert \tilde{w}_k-w_+\Vert_2^2] = O(1/k)\]</span></p>
-<h3 id="动态样本大小方法">动态样本大小方法</h3>
-<p>动态样本大小方法同样直接基于SG因此适用<span class="math inline">\(F(w)\)</span>. 下面介绍一个核心的结果, 简言之就是, 若能把每步迭代的方向的方差控制住:<span class="math display">\[\mathbb{V}_{\xi_k}[g(w_k, \xi_k)]\le M \zeta^{k-1}\]</span>在强凸(步长固定)的前提下, 可得到线性收敛[leon bottou TH5.1]:<span class="math display">\[\mathbb{E}[F(w_k)-F_*]\le \omega\rho^{k-1}\]</span>其中<span class="math inline">\(\rho&lt;1, \omega\)</span>为常数. 再结合统计中的一个结果: <span class="math inline">\(n_k\)</span>个独立同分布样本的方差为单个样本的方差的<span class="math inline">\(1/n_k\)</span>. 因此只需要动态改变每次迭代所用样本个数, 使其控制在定理条件下<span class="math display">\[\mathbb{V}_{\xi_k}[g(w_k, \xi_k)]\le\frac{C}{n_k}\le M\zeta^{k-1}\Rightarrow n_k\ge\frac{C}{M}(\frac{1}{\zeta})^{k-1}\]</span>(这里假定所有样本的梯度的方差有一致的上界, 记为<span class="math inline">\(C\)</span>) 就能得到线性收敛的结果. 然而虽有线性收敛的速度, 但每次迭代所需样本也是指数级增长, 因此动态样本大小方法的计算复杂度为[leon bottou TH5.3]:<span class="math display">\[O(1/\epsilon)\]</span>由于样本集是有限的, 在某一步中必然会出现样本不够用的情况, 一种可行的做法是转而要求每步迭代的方向产生了足够多的下降, 而不管上述样本量指数级增长的要求.</p>
-<h3 id="梯度聚合">梯度聚合</h3>
-<p>这类方法着重于利用先前迭代中计算得到的样本的梯度信息, 其包括SVGR、SAG/SAGA等.</p>
-<h4 id="svrg">SVRG</h4>
-<p><img src="/pictures/SVRG.png" /></p>
-<p>SVGA只适用于<span class="math inline">\(R_n(w)\)</span>. 如上图算法所示, 相比SG, SVGA多了抽取<span class="math inline">\(m\)</span>个样本的内层循环, 再用内层循环产生的子序列<span class="math inline">\(\{\tilde{w}_j\}\)</span>,<span class="math inline">\({j=1,...,m}\)</span>去生成高质量的<span class="math inline">\(w_{k+1}\)</span>, 方式比如说(a),(b),(c). 核心式子为:<span class="math display">\[\tilde{g}_j\leftarrow \nabla f_{i_{j}}(\tilde{w}_j)-(\nabla f_{i_{j}}(w_k)-\nabla R_n(w_k))\]</span>它可以从两个角度去理解:</p>
-<ol type="1">
-<li><span class="math inline">\((\nabla f_{i_{j}}(w_k)-\nabla R_n(w_k))\)</span>可视为从单个样本<span class="math inline">\(i_j\)</span>到<span class="math inline">\(n\)</span>个样本的修正, 因此<span class="math inline">\(\tilde{g}_j\)</span>可近似视为<span class="math inline">\(\nabla R_n(\tilde{w}_j)\)</span>.</li>
-<li>若<span class="math inline">\(m\)</span>取的不是特别大, <span class="math inline">\(\nabla f_{i_{j}}(\tilde{w}_j)\)</span>显然与<span class="math inline">\(\nabla f_{i_{j}}(w_k)\)</span>强相关, 而<span class="math inline">\(\nabla f_{i_{j}}(w_k)\)</span>的期望恰为<span class="math inline">\(\nabla R_n(w_k)\)</span>, 此时上述形如<span class="math display">\[\tilde{g}_j\leftarrow X-(Y-\mathbb{E}[Y])\]</span>此时<span class="math inline">\(\mathbb{E}[\tilde{g}_j]=\mathbb{E}[X]\)</span>, <span class="math inline">\(\mathbb{V}[\tilde{g}_j]=\mathbb{V}[X]+\mathbb{V}[Y]-2Cov(X, Y)\)</span>. 再加上强相关的假设, 确实能取到Variance Reduced(VR)的效果, <a href="https://papers.nips.cc/paper/4937-accelerating-stochastic-gradient-descent-using-predictive-variance-reduction.pdf">SVRG原论文</a>在Experiments中说明了这一点.</li>
-</ol>
-<p>在强凸前提下其收敛速度为线性[SVRG TH1]<span class="math display">\[\mathbb{E}[R_n(w_{k})-R_*]\le\omega\rho^{k-1}\]</span>其中<span class="math inline">\(\rho\in(0,1)\)</span>. SVRG的计算复杂度为:<span class="math display">\[O((n+\kappa)\log(1/\epsilon))\]</span></p>
-<h4 id="sagasag">SAGA/SAG</h4>
-<p><img src="/pictures/SAGA.png" /></p>
-<p>SAGA只适用于<span class="math inline">\(R_n(w)\)</span>, 显然算法部分第一块为初始化所有样本梯度值并存储, 第二个循环才是算法循环. 其中<span class="math inline">\(\nabla f_j(w_{[j]})\)</span>表示第<span class="math inline">\(j\)</span>个样本最近一次存储着的梯度值. 比如说对于第<span class="math inline">\(1\)</span>个样本, 初始化时<span class="math inline">\(\nabla f_1(w_{[1]})\leftarrow \nabla f_1(w_{1})\)</span>, 剩下涉第<span class="math inline">\(1\)</span>个样本的梯度的更新就只有靠算法循环中的<code>Choose j uniformly in &#123;1,...,n&#125;</code>抽到再用<span class="math inline">\(\nabla f_1(w_k)\)</span>更新. 因此可以看出, SAGA本着<strong>能不计算梯度就不计算</strong>的原则(每步迭代只计算一个样本的梯度, 从这个角度看更接近SG), 而其核心式子为:<span class="math display">\[g_k\leftarrow \nabla f_{j}(w_k)-\nabla f_{j}(w_{[j]})+\frac{1}{n}\sum_{i=1}^n\nabla f_i(w_{[i]})\]</span>它同样可以从两个角度去理解:</p>
-<ol type="1">
-<li><span class="math inline">\(\nabla f_{j}(w_{[j]})-\frac{1}{n}\sum_{i=1}^n\nabla f_i(w_{[i]})\)</span>视为单样本到<span class="math inline">\(n\)</span>个样本的修正, <span class="math inline">\(g_k\)</span>可近似视为<span class="math inline">\(\nabla R_n(w_k)\)</span>.</li>
-<li><span class="math inline">\(\nabla f_{j}(w_{[j]})\)</span>的期望为<span class="math inline">\(\frac{1}{n}\sum_{i=1}^n\nabla f_i(w_{[i]})\)</span>, 但<span class="math inline">\(\nabla f_{j}(w_k)\)</span>与<span class="math inline">\(\nabla f_{j}(w_{[j]})\)</span>未必强相关.</li>
-</ol>
-<p>SAGA起源自SAG, 它们唯一的不同在于核心式子, SAG的核心式子如下:<span class="math display">\[g_k\leftarrow \frac{1}{n}(\nabla f_{j}(w_k)-\nabla f_{j}(w_{[j]})+\sum_{i=1}^n\nabla f_i(w_{[i]}))\]</span>与SAGA不同的是, 此时<span class="math inline">\(g_k\)</span>不是<span class="math inline">\(\nabla R_n(w_k)\)</span>的无偏估计.在强凸前提下, SAGA与SAG均能线性收敛, 且计算复杂度与SVRG一样均为:<span class="math display">\[O((n+\kappa)\log(1/\epsilon))\]</span></p>
-<h3 id="其它">其它</h3>
-<h4 id="sarah">SARAH</h4>
-<p><img src="/pictures/SARAH.png" width = "488" height = "459" div align=center /></p>
-<p><a href="https://arxiv.org/pdf/1703.00102.pdf">SARAH</a>只适用于<span class="math inline">\(R_n(w)\)</span>, 它与SVGR一样有内圈循环, 不同的是核心迭代式子中把<span class="math inline">\(\nabla R_n(w_k)\)</span>替换成了上一步的迭代方向. 且此时无偏性不再保持. 在强凸前提下, SARAH线性收敛 且计算复杂度与SVRG一样均为:<span class="math display">\[O((n+\kappa)\log(1/\epsilon))\]</span>注意到SARAH与SVRG中的<span class="math inline">\(m\)</span>均为超参, SARAH原论文中还提出了以<span class="math inline">\(\Vert v_{t-1}\Vert_2^2\le\gamma \Vert v_0\Vert_2^2\)</span>为内圈循环停止条件的实用版算法SARAH+. <img src="/pictures/SARAH+.png" width = "450" height = "421" div align=center /></p>
-]]></content>
-      <categories>
-        <category>优化算法</category>
-      </categories>
-      <tags>
-        <tag>SG</tag>
       </tags>
   </entry>
   <entry>
@@ -3970,6 +3912,64 @@ L_S(\omega)+\alpha\mathcal{R}(\omega) &amp; \leq L_S(\omega_k)+\left\langle\nabl
         <tag>R</tag>
         <tag>高斯过程</tag>
         <tag>核函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>随机梯度法中的噪声减小方法</title>
+    <url>/2019/10/28/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%AD%E7%9A%84%E5%99%AA%E5%A3%B0%E5%87%8F%E5%B0%8F%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>前言: 本文从优化的角度整理了随机梯度法中的常用的一类算法: 噪声缩减方法, 这里的噪声指的是对随机样本计算梯度带来的噪声. 主要参考了Léon Bottou的综述<a href="https://arxiv.org/pdf/1606.04838.pdf">Optimization Methods for Large-Scale Machine Learning</a>、Jorge Nocedal的Numerical Optimization(2nd edition)以及<a href="http://caoxiaoqing.github.io/2018/05/11/SVRG%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">这篇博客</a>. <span id="more"></span></p>
+<h2 id="机器学习中的优化">机器学习中的优化</h2>
+<h3 id="一些记号">一些记号</h3>
+<p>首先给出两个基本记号, 这是机器学习中要考虑的两种优化基本函数, 前者是定义在<span class="math inline">\(n\)</span>个样本上的函数, 而后者是定义在样本的概率空间上的函数.</p>
+<ul>
+<li><span class="math inline">\(R_n(w)=\frac{1}{n}\sum_{i=1}^nf_i(w)\)</span>表示经验风险.</li>
+<li><span class="math inline">\(R(w)=\mathbb{E}[f(w;\xi)]\)</span>表示期望风险.</li>
+</ul>
+<p>而关于最优解<span class="math inline">\(w\)</span>有三种:</p>
+<ul>
+<li>第一种是<span class="math inline">\(w_{*}\in \arg\min R(w)\)</span>.</li>
+<li>第二种是<span class="math inline">\(w_{n}\in \arg\min R_n(w)\)</span>.</li>
+<li>第三种是实际运行算法返回的最优解<span class="math inline">\(\tilde{w}_n\)</span>, 其受制于具体优化算法的计算.</li>
+</ul>
+<p><strong>注意</strong>: 下面用<span class="math inline">\(F(w)\)</span>表示<span class="math inline">\(R_n(w)\)</span>或者<span class="math inline">\(R(w)\)</span>, 意在区分只适用<span class="math inline">\(R_n(w)\)</span>和<span class="math inline">\(R_n(w), R(w)\)</span>均适用的算法</p>
+<h3 id="梯度下降法">梯度下降法</h3>
+<p>梯度下降法(gradient descent, GD), 只适用于<span class="math inline">\(R_n(w)\)</span>, 在强凸前提下其收敛速度为线性[Numerical Optimization TH3.4]:<span class="math display">\[R_n(w_k)-R_*\le O(\rho^k)\]</span>其中<span class="math inline">\(\rho\in(0,1)\)</span>. 因此GD的计算复杂度为:<span class="math display">\[O(n\kappa\log(1/\epsilon))\]</span>因为<span class="math inline">\(O(\rho^k)=\epsilon \Rightarrow k=O(\log(1/\epsilon))\)</span>且每次迭代要计算<span class="math inline">\(n\)</span>个样本的梯度.</p>
+<p><strong>注意</strong>: <span class="math inline">\(\kappa=L/\mu\)</span>为优化中常用的常数, 类比于二次情形的条件数. 可参见[leon bottou]中的Assumption4.1 4.3</p>
+<h3 id="随机梯度">随机梯度</h3>
+<p>随机梯度(stochastic gradient, SG), 为梯度下降法的随机版本, 但因为每次迭代不能保证下降, 因此没有descent的字眼, 它是适用于<span class="math inline">\(F(w)\)</span>的算法. 在强凸(步长满足<span class="math inline">\(\alpha_k=\frac{\beta}{\gamma+k}\)</span>)及期望的意义下其收敛速率为次线性[leon bottou TH4.7] :<span class="math display">\[\mathbb{E}[F(w_k)-F_*]\le \frac{\nu}{\gamma+k}\]</span>其中<span class="math inline">\(\beta, \nu\)</span>为常数. 因此SG的计算复杂度为:<span class="math display">\[O(\kappa/\epsilon)\]</span>因为<span class="math inline">\(\frac{\nu}{\gamma+k}=\epsilon \Rightarrow k=\frac{\nu}{\epsilon}-\gamma\)</span></p>
+<h2 id="噪声减小方法">噪声减小方法</h2>
+<h3 id="迭代平均方法">迭代平均方法</h3>
+<p>先来看最容易想到的一类方法, 迭代平均方法, 它直接基于SG因此适用<span class="math inline">\(F(w)\)</span>. 考虑SG迭代序列<span class="math display">\[w_{k+1}\leftarrow w_k-\alpha_k g(w_k,\xi_k)\]</span>这里的<span class="math inline">\(\xi_k\)</span>为随机变量, 指代第<span class="math inline">\(k\)</span>步随机抽取的样本, <span class="math inline">\(g(w_k,\xi_k)\)</span>表示样本<span class="math inline">\(\xi_k\)</span>对应的梯度. 迭代平均法新建了一个序列:<span class="math display">\[\tilde{w}_{k+1}\leftarrow \frac{1}{k+1}\sum_{j=1}^{k+1}w_{j}\]</span>若步长衰减速度为<span class="math inline">\(O(1/k^a)\)</span>, <span class="math inline">\(a\in(\frac{1}{2},1)\)</span>. 在强凸的前提下有:<span class="math display">\[\mathbb{E}[\Vert w_k-w_+\Vert_2^2] = O(1/k^a)\]</span>且(注:这里的<span class="math inline">\(w_+\)</span>指<span class="math inline">\(w\)</span>的最优值点)<span class="math display">\[\mathbb{E}[\Vert \tilde{w}_k-w_+\Vert_2^2] = O(1/k)\]</span></p>
+<h3 id="动态样本大小方法">动态样本大小方法</h3>
+<p>动态样本大小方法同样直接基于SG因此适用<span class="math inline">\(F(w)\)</span>. 下面介绍一个核心的结果, 简言之就是, 若能把每步迭代的方向的方差控制住:<span class="math display">\[\mathbb{V}_{\xi_k}[g(w_k, \xi_k)]\le M \zeta^{k-1}\]</span>在强凸(步长固定)的前提下, 可得到线性收敛[leon bottou TH5.1]:<span class="math display">\[\mathbb{E}[F(w_k)-F_*]\le \omega\rho^{k-1}\]</span>其中<span class="math inline">\(\rho&lt;1, \omega\)</span>为常数. 再结合统计中的一个结果: <span class="math inline">\(n_k\)</span>个独立同分布样本的方差为单个样本的方差的<span class="math inline">\(1/n_k\)</span>. 因此只需要动态改变每次迭代所用样本个数, 使其控制在定理条件下<span class="math display">\[\mathbb{V}_{\xi_k}[g(w_k, \xi_k)]\le\frac{C}{n_k}\le M\zeta^{k-1}\Rightarrow n_k\ge\frac{C}{M}(\frac{1}{\zeta})^{k-1}\]</span>(这里假定所有样本的梯度的方差有一致的上界, 记为<span class="math inline">\(C\)</span>) 就能得到线性收敛的结果. 然而虽有线性收敛的速度, 但每次迭代所需样本也是指数级增长, 因此动态样本大小方法的计算复杂度为[leon bottou TH5.3]:<span class="math display">\[O(1/\epsilon)\]</span>由于样本集是有限的, 在某一步中必然会出现样本不够用的情况, 一种可行的做法是转而要求每步迭代的方向产生了足够多的下降, 而不管上述样本量指数级增长的要求.</p>
+<h3 id="梯度聚合">梯度聚合</h3>
+<p>这类方法着重于利用先前迭代中计算得到的样本的梯度信息, 其包括SVGR、SAG/SAGA等.</p>
+<h4 id="svrg">SVRG</h4>
+<p><img src="/pictures/SVRG.png" /></p>
+<p>SVGA只适用于<span class="math inline">\(R_n(w)\)</span>. 如上图算法所示, 相比SG, SVGA多了抽取<span class="math inline">\(m\)</span>个样本的内层循环, 再用内层循环产生的子序列<span class="math inline">\(\{\tilde{w}_j\}\)</span>,<span class="math inline">\({j=1,...,m}\)</span>去生成高质量的<span class="math inline">\(w_{k+1}\)</span>, 方式比如说(a),(b),(c). 核心式子为:<span class="math display">\[\tilde{g}_j\leftarrow \nabla f_{i_{j}}(\tilde{w}_j)-(\nabla f_{i_{j}}(w_k)-\nabla R_n(w_k))\]</span>它可以从两个角度去理解:</p>
+<ol type="1">
+<li><span class="math inline">\((\nabla f_{i_{j}}(w_k)-\nabla R_n(w_k))\)</span>可视为从单个样本<span class="math inline">\(i_j\)</span>到<span class="math inline">\(n\)</span>个样本的修正, 因此<span class="math inline">\(\tilde{g}_j\)</span>可近似视为<span class="math inline">\(\nabla R_n(\tilde{w}_j)\)</span>.</li>
+<li>若<span class="math inline">\(m\)</span>取的不是特别大, <span class="math inline">\(\nabla f_{i_{j}}(\tilde{w}_j)\)</span>显然与<span class="math inline">\(\nabla f_{i_{j}}(w_k)\)</span>强相关, 而<span class="math inline">\(\nabla f_{i_{j}}(w_k)\)</span>的期望恰为<span class="math inline">\(\nabla R_n(w_k)\)</span>, 此时上述形如<span class="math display">\[\tilde{g}_j\leftarrow X-(Y-\mathbb{E}[Y])\]</span>此时<span class="math inline">\(\mathbb{E}[\tilde{g}_j]=\mathbb{E}[X]\)</span>, <span class="math inline">\(\mathbb{V}[\tilde{g}_j]=\mathbb{V}[X]+\mathbb{V}[Y]-2Cov(X, Y)\)</span>. 再加上强相关的假设, 确实能取到Variance Reduced(VR)的效果, <a href="https://papers.nips.cc/paper/4937-accelerating-stochastic-gradient-descent-using-predictive-variance-reduction.pdf">SVRG原论文</a>在Experiments中说明了这一点.</li>
+</ol>
+<p>在强凸前提下其收敛速度为线性[SVRG TH1]<span class="math display">\[\mathbb{E}[R_n(w_{k})-R_*]\le\omega\rho^{k-1}\]</span>其中<span class="math inline">\(\rho\in(0,1)\)</span>. SVRG的计算复杂度为:<span class="math display">\[O((n+\kappa)\log(1/\epsilon))\]</span></p>
+<h4 id="sagasag">SAGA/SAG</h4>
+<p><img src="/pictures/SAGA.png" /></p>
+<p>SAGA只适用于<span class="math inline">\(R_n(w)\)</span>, 显然算法部分第一块为初始化所有样本梯度值并存储, 第二个循环才是算法循环. 其中<span class="math inline">\(\nabla f_j(w_{[j]})\)</span>表示第<span class="math inline">\(j\)</span>个样本最近一次存储着的梯度值. 比如说对于第<span class="math inline">\(1\)</span>个样本, 初始化时<span class="math inline">\(\nabla f_1(w_{[1]})\leftarrow \nabla f_1(w_{1})\)</span>, 剩下涉第<span class="math inline">\(1\)</span>个样本的梯度的更新就只有靠算法循环中的<code>Choose j uniformly in &#123;1,...,n&#125;</code>抽到再用<span class="math inline">\(\nabla f_1(w_k)\)</span>更新. 因此可以看出, SAGA本着<strong>能不计算梯度就不计算</strong>的原则(每步迭代只计算一个样本的梯度, 从这个角度看更接近SG), 而其核心式子为:<span class="math display">\[g_k\leftarrow \nabla f_{j}(w_k)-\nabla f_{j}(w_{[j]})+\frac{1}{n}\sum_{i=1}^n\nabla f_i(w_{[i]})\]</span>它同样可以从两个角度去理解:</p>
+<ol type="1">
+<li><span class="math inline">\(\nabla f_{j}(w_{[j]})-\frac{1}{n}\sum_{i=1}^n\nabla f_i(w_{[i]})\)</span>视为单样本到<span class="math inline">\(n\)</span>个样本的修正, <span class="math inline">\(g_k\)</span>可近似视为<span class="math inline">\(\nabla R_n(w_k)\)</span>.</li>
+<li><span class="math inline">\(\nabla f_{j}(w_{[j]})\)</span>的期望为<span class="math inline">\(\frac{1}{n}\sum_{i=1}^n\nabla f_i(w_{[i]})\)</span>, 但<span class="math inline">\(\nabla f_{j}(w_k)\)</span>与<span class="math inline">\(\nabla f_{j}(w_{[j]})\)</span>未必强相关.</li>
+</ol>
+<p>SAGA起源自SAG, 它们唯一的不同在于核心式子, SAG的核心式子如下:<span class="math display">\[g_k\leftarrow \frac{1}{n}(\nabla f_{j}(w_k)-\nabla f_{j}(w_{[j]})+\sum_{i=1}^n\nabla f_i(w_{[i]}))\]</span>与SAGA不同的是, 此时<span class="math inline">\(g_k\)</span>不是<span class="math inline">\(\nabla R_n(w_k)\)</span>的无偏估计.在强凸前提下, SAGA与SAG均能线性收敛, 且计算复杂度与SVRG一样均为:<span class="math display">\[O((n+\kappa)\log(1/\epsilon))\]</span></p>
+<h3 id="其它">其它</h3>
+<h4 id="sarah">SARAH</h4>
+<p><img src="/pictures/SARAH.png" width = "488" height = "459" div align=center /></p>
+<p><a href="https://arxiv.org/pdf/1703.00102.pdf">SARAH</a>只适用于<span class="math inline">\(R_n(w)\)</span>, 它与SVGR一样有内圈循环, 不同的是核心迭代式子中把<span class="math inline">\(\nabla R_n(w_k)\)</span>替换成了上一步的迭代方向. 且此时无偏性不再保持. 在强凸前提下, SARAH线性收敛 且计算复杂度与SVRG一样均为:<span class="math display">\[O((n+\kappa)\log(1/\epsilon))\]</span>注意到SARAH与SVRG中的<span class="math inline">\(m\)</span>均为超参, SARAH原论文中还提出了以<span class="math inline">\(\Vert v_{t-1}\Vert_2^2\le\gamma \Vert v_0\Vert_2^2\)</span>为内圈循环停止条件的实用版算法SARAH+. <img src="/pictures/SARAH+.png" width = "450" height = "421" div align=center /></p>
+]]></content>
+      <categories>
+        <category>优化算法</category>
+      </categories>
+      <tags>
+        <tag>SG</tag>
       </tags>
   </entry>
 </search>
