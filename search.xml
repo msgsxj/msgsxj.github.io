@@ -48,28 +48,6 @@
       </tags>
   </entry>
   <entry>
-    <title>2018</title>
-    <url>/2019/01/30/2018/</url>
-    <content><![CDATA[<p>前言: 回顾2018, 为2019立flag</p>
-<span id="more"></span>
-<p><img src="/pictures/2018.jpg" /></p>
-<h2 id="section">2018</h2>
-<p>相比之下, 2018要忙碌一些, 研一下学期先是听老师讲凸优化, 但从8月份开始就是我们4个的讲机器学习和数值优化的讨论班. 机器学习讨论班用的就是周志华老师的西瓜书, 到期末算是堪堪讲完; 数值优化则是用了numberical optimization, 但没来得及讲完, 还剩下一些留给下学期初.</p>
-<p>不得不说讨论班让我收获很多, 以西瓜书为例, 自己第一遍读的时候虽然也是认真仔细的读了, 但讲给人听给出了更高的抠细节的要求, 因此做ppt就花了很多时间, 当然这带来的明显的好处就是对书本的理解加深了许多, 并且latex公式也越打越顺了.</p>
-<p>导师对我们说, 研究生阶段就应该多学一些东西, 听得出来他也很欣赏我们南大数学系不要求发论文的做法(只需毕业论文), 我也乐在其中.</p>
-<p>coursera上, 3月31日结束了吴恩达的deep learning系列课程; 5月份学习了霍普金斯大学的Exploratory Data Analysis; 10月份及12月份学习了俄罗斯国立高等经济学院的Bayesian Methods for Machine Learning和Practical Reinforcement Learning. 不得不说coursera上几乎没有水课, 可以说我在2018年写的大部分博文的出发点都来自于这些课程, 或是这些课程给出的参考文献, 书籍(一般都是某领域的经典之作).</p>
-<p>数据类的比赛方面, 作为萌新的我单枪匹马的参加了腾讯2018广告算法大赛, 没能进复赛; 暑假时参加了天池的阿里巴巴大数据智能云上编程大赛(其实就是在阿里自家的机器学习平台PAI上像搭积木一样做模型的一个比赛), 进了复赛但仍然没进决赛; 至于kaggle则是参加了一个泰坦尼克的新人赛后就没有然后了, 因此2017年末立的flag就这样倒了.</p>
-<h2 id="section-1">2019</h2>
-<p>还是要给自己立个flag: 在比赛中拿个奖.</p>
-]]></content>
-      <categories>
-        <category>聊聊生活</category>
-      </categories>
-      <tags>
-        <tag>回顾</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2018腾讯广告算法大赛初赛lgb</title>
     <url>/2018/05/29/2018%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A%E7%AE%97%E6%B3%95%E5%A4%A7%E8%B5%9B%E5%88%9D%E8%B5%9Blgb/</url>
     <content><![CDATA[<p>前言:最近参加了2018腾讯广告算法大赛,虽然没进复赛,但也花了不少时间,算是为下次参加比赛试试水,最终初赛线上最好成绩是0.745764,特此记录.</p>
@@ -92,6 +70,28 @@
       </categories>
       <tags>
         <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2018</title>
+    <url>/2019/01/30/2018/</url>
+    <content><![CDATA[<p>前言: 回顾2018, 为2019立flag</p>
+<span id="more"></span>
+<p><img src="/pictures/2018.jpg" /></p>
+<h2 id="section">2018</h2>
+<p>相比之下, 2018要忙碌一些, 研一下学期先是听老师讲凸优化, 但从8月份开始就是我们4个的讲机器学习和数值优化的讨论班. 机器学习讨论班用的就是周志华老师的西瓜书, 到期末算是堪堪讲完; 数值优化则是用了numberical optimization, 但没来得及讲完, 还剩下一些留给下学期初.</p>
+<p>不得不说讨论班让我收获很多, 以西瓜书为例, 自己第一遍读的时候虽然也是认真仔细的读了, 但讲给人听给出了更高的抠细节的要求, 因此做ppt就花了很多时间, 当然这带来的明显的好处就是对书本的理解加深了许多, 并且latex公式也越打越顺了.</p>
+<p>导师对我们说, 研究生阶段就应该多学一些东西, 听得出来他也很欣赏我们南大数学系不要求发论文的做法(只需毕业论文), 我也乐在其中.</p>
+<p>coursera上, 3月31日结束了吴恩达的deep learning系列课程; 5月份学习了霍普金斯大学的Exploratory Data Analysis; 10月份及12月份学习了俄罗斯国立高等经济学院的Bayesian Methods for Machine Learning和Practical Reinforcement Learning. 不得不说coursera上几乎没有水课, 可以说我在2018年写的大部分博文的出发点都来自于这些课程, 或是这些课程给出的参考文献, 书籍(一般都是某领域的经典之作).</p>
+<p>数据类的比赛方面, 作为萌新的我单枪匹马的参加了腾讯2018广告算法大赛, 没能进复赛; 暑假时参加了天池的阿里巴巴大数据智能云上编程大赛(其实就是在阿里自家的机器学习平台PAI上像搭积木一样做模型的一个比赛), 进了复赛但仍然没进决赛; 至于kaggle则是参加了一个泰坦尼克的新人赛后就没有然后了, 因此2017年末立的flag就这样倒了.</p>
+<h2 id="section-1">2019</h2>
+<p>还是要给自己立个flag: 在比赛中拿个奖.</p>
+]]></content>
+      <categories>
+        <category>聊聊生活</category>
+      </categories>
+      <tags>
+        <tag>回顾</tag>
       </tags>
   </entry>
   <entry>
@@ -815,6 +815,92 @@
       </tags>
   </entry>
   <entry>
+    <title>Latent Dirichlet Allocation</title>
+    <url>/2018/10/16/Latent-Dirichlet-Allocation/</url>
+    <content><![CDATA[<p>前言: 本文主要是关于Latent Dirichlet Allocation模型, 这是一类能够从文档集合中挖掘出抽象主题的模型, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3. <span id="more"></span></p>
+<hr />
+<h2 id="隐狄利克雷分配模型">隐狄利克雷分配模型</h2>
+<p>以推荐系统为例, 假如我读过东野圭吾的新参者, 我希望推荐系统能把白夜行也推荐给我. 在自然语言处理(Natural Language Processing: NLP)中, 主题模型(Topic Model)是一类能够从文档集合中挖掘出抽象主题的模型, 其中用的最多的大概就是隐狄利克雷分配模型(Latent Dirichlet Allocation: LDA). 比方说给定50个主题数量, 其想法是对每一篇文档给出一个关于50个主题数量的分布, 例如新参者的主题是70%的推理类, 10%的叉叉类等, 因此如果能得到每篇文档的主题分布, 就能给出书之间的相似度.</p>
+<p>下面我们来看什么是LDA模型, 并给出一些记号. 假设有文档<span class="math inline">\(D\)</span>篇, 其中第<span class="math inline">\(d\)</span>篇文档有<span class="math inline">\(N_d\)</span>个单词, 给定主题数量<span class="math inline">\(T\)</span>, 记第<span class="math inline">\(d\)</span>篇文档的主题为<span class="math inline">\(\theta_d\)</span>, 显然<span class="math inline">\(\theta_d\)</span>为一个<span class="math inline">\(T\)</span>维向量, <span class="math inline">\(z_{dn}\)</span>是第<span class="math inline">\(d\)</span>篇文档的第<span class="math inline">\(n\)</span>个单词的主题分布, <span class="math inline">\(w_{dn}\)</span>是第<span class="math inline">\(d\)</span>篇文档的第<span class="math inline">\(n\)</span>个单词本身(一般给长度为<span class="math inline">\(\left|w_{set}\right|\)</span>定词汇表<span class="math inline">\(w_{set}\)</span>后用一个长度为<span class="math inline">\(\left|w_{set}\right|\)</span>的向量去表示).</p>
+<p>给定主题数量<span class="math inline">\(T=50\)</span>, 目前我们有了三个关键要素:</p>
+<ul>
+<li>每篇文档的主题分布:<span class="math inline">\(\theta\)</span></li>
+<li>每篇文档每个单词的主题分布:<span class="math inline">\(z\)</span></li>
+<li>每篇文档每个单词:<span class="math inline">\(w\)</span></li>
+</ul>
+<p>遵循一些直观的假象, 我们分三步尝试去构造模型:</p>
+<ul>
+<li>首先要有每篇文档的主题<span class="math inline">\(\theta_d\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>.</li>
+<li>简单假设每个单词的主题<span class="math inline">\(z_{dn}\)</span>与所在文档的主题<span class="math inline">\(\theta_d\)</span>一致, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
+<li>每个单词确定了主题之后就能按照一定的概率分布从主题中选择单词出来. 比方说给定词汇表<span class="math inline">\(w_{set}\)</span>, 其包含<span class="math inline">\(\left|w_{set}\right|\)</span>个单词, 假设第<span class="math inline">\(t\)</span>主题有一个单词表上的概率分布<span class="math inline">\(\varphi_{\cdot t}\)</span>, 显然<span class="math inline">\(\varphi_{\cdot t}\)</span>为<span class="math inline">\(\left|w_{set}\right|\)</span>维列向量, 那么<span class="math inline">\(\varphi\)</span>为<span class="math inline">\(\left|w_{set}\right|\times T\)</span>的未知参数矩阵.</li>
+</ul>
+<p>将上述三要素视为随机变量, 此时可以写出三者的联合分布函数: <span class="math display">\[P(W, Z, \Theta)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>显然文档主题<span class="math inline">\(\theta_d\)</span>和单词主题<span class="math inline">\(z_{dn}\)</span>是无法观测得到的, 因此作为LDA模型中的L(Lantent), D(Dirichlet)则是指随机变量<span class="math inline">\(\theta_d\)</span>满足Dirichlet分布:</p>
+<ul>
+<li>假定文章的来源一致, 即<span class="math inline">\(\theta_d\)</span>独立同分布: 服从<a href="https://en.wikipedia.org/wiki/Dirichlet_distribution">Dirichlet分布</a><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(\alpha\)</span>为<span class="math inline">\(T\)</span>维列向量; <span class="math inline">\(B(\alpha)\)</span>为多元Beta函数, 可表示为<span class="math inline">\(B(\alpha)=\frac{\prod_{i=1}^{T}\Gamma(\alpha_i)}{\Gamma(\sum_{i=1}^{T}\alpha_i)}\)</span>, <span class="math inline">\(\Gamma\)</span>为<a href="https://en.wikipedia.org/wiki/Gamma_function">Gamma函数</a>, 详见维基百科.</li>
+<li>值得注意的是, <span class="math inline">\(\alpha\)</span>增大能导致每篇文档的话题数量变多(关于这点可以参考维基百科上的一张<a href="https://upload.wikimedia.org/wikipedia/commons/5/54/LogDirichletDensity-alpha_0.3_to_alpha_2.0.gif">动图</a>), 所以另一种思路是把<span class="math inline">\(\alpha\)</span>视为超参去调.</li>
+<li>假定每个单词的主题<span class="math inline">\(z_{dn}\)</span>与所在文档的主题<span class="math inline">\(\theta_d\)</span>一致, 即<span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 写得直观些, 即<span class="math inline">\(P(z_{dn}=t\mid\theta_d)=\theta_{dt}\)</span>, <span class="math inline">\(\theta_{dt}\)</span>表示<span class="math inline">\(\theta_d\)</span>的第<span class="math inline">\(t\)</span>个分量.</li>
+<li><span class="math inline">\(T\)</span>个主题与词汇表<span class="math inline">\(w_{set}\)</span>的分布记为<span class="math inline">\(\phi\)</span>, 这里的<span class="math inline">\(\phi\)</span>为<span class="math inline">\(\left|w_{set}\right|\times T\)</span>的矩阵. 即<span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{z_{dn}w_{dn}}\)</span>, 写得直观些, <span class="math inline">\(v\)</span>为不超过<span class="math inline">\(\left|w_{set}\right|\)</span>的正整数, <span class="math inline">\(P(w_{dn}=v\mid z_{dn})=\varphi_{v z_{dn}}\)</span>.</li>
+</ul>
+<p>若用大小字母表示小写字母的总和, 参数仍简记为小写字母, 我们现有五个关键要素: <span class="math inline">\(W\)</span>为数据集; <span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>为未知参数.</p>
+板表示法(plate notation)是一种表示在图形模型中重复的变量的方法, 下面采用板表示法的贝叶斯网络表达上述模型:
+<div data-align="center">
+<img src="/pictures/bayes in ml/LDA_plate_model_1.png" width="60%"/>
+</div>
+<p>这里的虚线框右下角的字母表示框中的部分应该重复画字母次, 所以板表示法的好处就很明显:</p>
+<ul>
+<li>简化图模型,更美观.</li>
+<li>同时模型表达式变得一模了然.</li>
+</ul>
+<p>最后把该LDA模型用较为简练的语言再写一遍(可以对照图去写): <span class="math display">\[P(W, Z, \Theta\mid \varphi, \alpha)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>其中:</p>
+<ul>
+<li><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>, <span class="math inline">\(T\)</span>给定.</li>
+<li><span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
+<li><span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{w_{dn}z_{dn}}\)</span>, 给定词汇表<span class="math inline">\(w_{set}\)</span>, <span class="math inline">\(w_{dn}\in\{1,2,...,\left|w_{set}\right|\}\)</span>.</li>
+</ul>
+<p>大小字母表示小写字母的总和, 参数仍简记为小写字母, 总结如下:</p>
+<ul>
+<li>未知:<span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>未知参数.</li>
+<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
+<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
+</ul>
+<p>这个模型因为属于隐变量模型, 故可用<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>求解: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:</p>
+<ul>
+<li>E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>.</li>
+<li>M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
+</ul>
+<p>若后验<span class="math inline">\(P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>难以处理, 则可以用一些近似方法取求得期望, 如<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/">变分贝叶斯</a>, <a href="https://msgsxj.cn/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/">Laplace近似方法</a>, <a href="https://msgsxj.cn/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/">期望传播方法</a>, <a href="https://msgsxj.cn/2018/09/18/MCMC/">MCMC方法</a>等</p>
+<hr />
+<h2 id="lda模型的拓展">LDA模型的拓展</h2>
+<h3 id="phi"><span class="math inline">\(\Phi\)</span></h3>
+若把未知参数<span class="math inline">\(\varphi\)</span>视为随机变量, 重新记为<span class="math inline">\(\Phi\)</span>, 假定<span class="math inline">\(\Phi_{i\cdot}\sim Dir(\beta_i)\)</span>, 即假定第<span class="math inline">\(i\)</span>个单词的主题分布满足参数为<span class="math inline">\(\beta_i\)</span>的狄利克雷分布(回忆开头狄利克雷分布的特性), 这里假定<span class="math inline">\(i\)</span>的取值集合<span class="math inline">\(w_{set}\)</span>的大小为<span class="math inline">\(S\)</span>, 上述修改后的模型用板表示法表示如下:
+<div data-align="center">
+<img src="/pictures/bayes in ml/LDA_plate_model_2.png" width="60%"/>
+</div>
+<p><span class="math display">\[P(W, Z, \Theta, \Phi\mid  \alpha, \beta)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}\prod_{i=1}^{S}P(z_{dn}=i\mid\theta_d)P(w_{dn}\mid z_{dn}=i, \Phi_{i\cdot})P(\Phi_{i\cdot})\]</span>与上文的模型相比只是把参数<span class="math inline">\(\varphi\)</span>视为随机变量<span class="math inline">\(\Phi\)</span>, 且<span class="math inline">\(\Phi_{i\cdot}\sim Dir(\beta_i)\)</span>, 其余不变. 总结如下:</p>
+<ul>
+<li>未知:<span class="math inline">\(Z, \Theta, \Phi\)</span>为隐变量; $ , $为未知参数.</li>
+<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
+<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
+</ul>
+<h3 id="logit-normal-distribution">Logit-normal distribution</h3>
+<p><span class="math inline">\(\theta_d\sim Dir(\alpha)\)</span>的一个良好替代是假定<span class="math inline">\(\theta_d\sim \mathcal{P}(N(\mu, \Sigma))\)</span>, 即满足<a href="https://en.wikipedia.org/wiki/Logit-normal_distribution">Logit-normal分布</a>. 逻辑正态分布: 若<span class="math inline">\(Y\sim N(\mu, \Sigma)\)</span>, 则称<span class="math inline">\(X=\mathcal{P}(Y)\)</span>为逻辑正态(Logit-normal)分布, 其中<span class="math inline">\(\mathcal{P}()\)</span>为逻辑函数. 下面来看这两个分布的异同:</p>
+<ul>
+<li>与狄利克雷分布相比, 逻辑正态分布能捕捉<span class="math inline">\(\theta_d\)</span>之间的相关性, 因而更受欢迎.</li>
+<li>虽然任何参数<span class="math inline">\(\mu, \Sigma, \alpha\)</span>的选择都不能让两个的密度函数相等, 但通过最小化<span class="math inline">\(\mathcal{KL}\)</span>散度的方式来让逻辑正态分布去逼近狄利克雷分布的方式, 即最小化<span class="math display">\[\mathcal{KL}(p, q)=\int p(x\mid \alpha)\log\frac{p(x\mid\alpha)}{q(x\mid\mu, \Sigma)}dx\]</span>可以得到关于<span class="math inline">\(\alpha\)</span>的参数<span class="math inline">\(\mu,\Sigma\)</span>在<span class="math inline">\(\mathcal{KL}\)</span>散度意义下的最优选择, 详见<a href="https://en.wikipedia.org/wiki/Logit-normal_distribution">维基百科</a>, 这里要说明的是, 当<span class="math inline">\(\alpha\)</span>的每个分量都趋于无穷, <span class="math inline">\(p(x\mid \alpha)\to q(x\mid\mu, \Sigma)\)</span>, 也就是说<span class="math inline">\(\alpha\)</span>很大时两者可以变得非常靠近.</li>
+</ul>
+<h3 id="dynamic-topic-models">Dynamic Topic Models</h3>
+<p>此外还有动态主题模型, 见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.62.2783&amp;rep=rep1&amp;type=pdf">这篇文章</a></p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>隐变量模型</tag>
+        <tag>LDA模型</tag>
+        <tag>Dirichlet分布</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MCMC</title>
     <url>/2018/09/18/MCMC/</url>
     <content><![CDATA[<p>前言:本文主要是关于MCMC, 这是一类对概率进行采样的方法, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week4. <span id="more"></span></p>
@@ -1073,92 +1159,6 @@ t_d^{k+1}&amp;\sim P(T_d\mid T_1=t_1^{k}, T_2=t_2^{k},..., T_{d-1}=t_{d-1}^{k}, 
       </categories>
       <tags>
         <tag>Trade-Off</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Latent Dirichlet Allocation</title>
-    <url>/2018/10/16/Latent-Dirichlet-Allocation/</url>
-    <content><![CDATA[<p>前言: 本文主要是关于Latent Dirichlet Allocation模型, 这是一类能够从文档集合中挖掘出抽象主题的模型, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3. <span id="more"></span></p>
-<hr />
-<h2 id="隐狄利克雷分配模型">隐狄利克雷分配模型</h2>
-<p>以推荐系统为例, 假如我读过东野圭吾的新参者, 我希望推荐系统能把白夜行也推荐给我. 在自然语言处理(Natural Language Processing: NLP)中, 主题模型(Topic Model)是一类能够从文档集合中挖掘出抽象主题的模型, 其中用的最多的大概就是隐狄利克雷分配模型(Latent Dirichlet Allocation: LDA). 比方说给定50个主题数量, 其想法是对每一篇文档给出一个关于50个主题数量的分布, 例如新参者的主题是70%的推理类, 10%的叉叉类等, 因此如果能得到每篇文档的主题分布, 就能给出书之间的相似度.</p>
-<p>下面我们来看什么是LDA模型, 并给出一些记号. 假设有文档<span class="math inline">\(D\)</span>篇, 其中第<span class="math inline">\(d\)</span>篇文档有<span class="math inline">\(N_d\)</span>个单词, 给定主题数量<span class="math inline">\(T\)</span>, 记第<span class="math inline">\(d\)</span>篇文档的主题为<span class="math inline">\(\theta_d\)</span>, 显然<span class="math inline">\(\theta_d\)</span>为一个<span class="math inline">\(T\)</span>维向量, <span class="math inline">\(z_{dn}\)</span>是第<span class="math inline">\(d\)</span>篇文档的第<span class="math inline">\(n\)</span>个单词的主题分布, <span class="math inline">\(w_{dn}\)</span>是第<span class="math inline">\(d\)</span>篇文档的第<span class="math inline">\(n\)</span>个单词本身(一般给长度为<span class="math inline">\(\left|w_{set}\right|\)</span>定词汇表<span class="math inline">\(w_{set}\)</span>后用一个长度为<span class="math inline">\(\left|w_{set}\right|\)</span>的向量去表示).</p>
-<p>给定主题数量<span class="math inline">\(T=50\)</span>, 目前我们有了三个关键要素:</p>
-<ul>
-<li>每篇文档的主题分布:<span class="math inline">\(\theta\)</span></li>
-<li>每篇文档每个单词的主题分布:<span class="math inline">\(z\)</span></li>
-<li>每篇文档每个单词:<span class="math inline">\(w\)</span></li>
-</ul>
-<p>遵循一些直观的假象, 我们分三步尝试去构造模型:</p>
-<ul>
-<li>首先要有每篇文档的主题<span class="math inline">\(\theta_d\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>.</li>
-<li>简单假设每个单词的主题<span class="math inline">\(z_{dn}\)</span>与所在文档的主题<span class="math inline">\(\theta_d\)</span>一致, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
-<li>每个单词确定了主题之后就能按照一定的概率分布从主题中选择单词出来. 比方说给定词汇表<span class="math inline">\(w_{set}\)</span>, 其包含<span class="math inline">\(\left|w_{set}\right|\)</span>个单词, 假设第<span class="math inline">\(t\)</span>主题有一个单词表上的概率分布<span class="math inline">\(\varphi_{\cdot t}\)</span>, 显然<span class="math inline">\(\varphi_{\cdot t}\)</span>为<span class="math inline">\(\left|w_{set}\right|\)</span>维列向量, 那么<span class="math inline">\(\varphi\)</span>为<span class="math inline">\(\left|w_{set}\right|\times T\)</span>的未知参数矩阵.</li>
-</ul>
-<p>将上述三要素视为随机变量, 此时可以写出三者的联合分布函数: <span class="math display">\[P(W, Z, \Theta)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>显然文档主题<span class="math inline">\(\theta_d\)</span>和单词主题<span class="math inline">\(z_{dn}\)</span>是无法观测得到的, 因此作为LDA模型中的L(Lantent), D(Dirichlet)则是指随机变量<span class="math inline">\(\theta_d\)</span>满足Dirichlet分布:</p>
-<ul>
-<li>假定文章的来源一致, 即<span class="math inline">\(\theta_d\)</span>独立同分布: 服从<a href="https://en.wikipedia.org/wiki/Dirichlet_distribution">Dirichlet分布</a><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(\alpha\)</span>为<span class="math inline">\(T\)</span>维列向量; <span class="math inline">\(B(\alpha)\)</span>为多元Beta函数, 可表示为<span class="math inline">\(B(\alpha)=\frac{\prod_{i=1}^{T}\Gamma(\alpha_i)}{\Gamma(\sum_{i=1}^{T}\alpha_i)}\)</span>, <span class="math inline">\(\Gamma\)</span>为<a href="https://en.wikipedia.org/wiki/Gamma_function">Gamma函数</a>, 详见维基百科.</li>
-<li>值得注意的是, <span class="math inline">\(\alpha\)</span>增大能导致每篇文档的话题数量变多(关于这点可以参考维基百科上的一张<a href="https://upload.wikimedia.org/wikipedia/commons/5/54/LogDirichletDensity-alpha_0.3_to_alpha_2.0.gif">动图</a>), 所以另一种思路是把<span class="math inline">\(\alpha\)</span>视为超参去调.</li>
-<li>假定每个单词的主题<span class="math inline">\(z_{dn}\)</span>与所在文档的主题<span class="math inline">\(\theta_d\)</span>一致, 即<span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 写得直观些, 即<span class="math inline">\(P(z_{dn}=t\mid\theta_d)=\theta_{dt}\)</span>, <span class="math inline">\(\theta_{dt}\)</span>表示<span class="math inline">\(\theta_d\)</span>的第<span class="math inline">\(t\)</span>个分量.</li>
-<li><span class="math inline">\(T\)</span>个主题与词汇表<span class="math inline">\(w_{set}\)</span>的分布记为<span class="math inline">\(\phi\)</span>, 这里的<span class="math inline">\(\phi\)</span>为<span class="math inline">\(\left|w_{set}\right|\times T\)</span>的矩阵. 即<span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{z_{dn}w_{dn}}\)</span>, 写得直观些, <span class="math inline">\(v\)</span>为不超过<span class="math inline">\(\left|w_{set}\right|\)</span>的正整数, <span class="math inline">\(P(w_{dn}=v\mid z_{dn})=\varphi_{v z_{dn}}\)</span>.</li>
-</ul>
-<p>若用大小字母表示小写字母的总和, 参数仍简记为小写字母, 我们现有五个关键要素: <span class="math inline">\(W\)</span>为数据集; <span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>为未知参数.</p>
-板表示法(plate notation)是一种表示在图形模型中重复的变量的方法, 下面采用板表示法的贝叶斯网络表达上述模型:
-<div data-align="center">
-<img src="/pictures/bayes in ml/LDA_plate_model_1.png" width="60%"/>
-</div>
-<p>这里的虚线框右下角的字母表示框中的部分应该重复画字母次, 所以板表示法的好处就很明显:</p>
-<ul>
-<li>简化图模型,更美观.</li>
-<li>同时模型表达式变得一模了然.</li>
-</ul>
-<p>最后把该LDA模型用较为简练的语言再写一遍(可以对照图去写): <span class="math display">\[P(W, Z, \Theta\mid \varphi, \alpha)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>其中:</p>
-<ul>
-<li><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>, <span class="math inline">\(T\)</span>给定.</li>
-<li><span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
-<li><span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{w_{dn}z_{dn}}\)</span>, 给定词汇表<span class="math inline">\(w_{set}\)</span>, <span class="math inline">\(w_{dn}\in\{1,2,...,\left|w_{set}\right|\}\)</span>.</li>
-</ul>
-<p>大小字母表示小写字母的总和, 参数仍简记为小写字母, 总结如下:</p>
-<ul>
-<li>未知:<span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>未知参数.</li>
-<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
-<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
-</ul>
-<p>这个模型因为属于隐变量模型, 故可用<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>求解: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:</p>
-<ul>
-<li>E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>.</li>
-<li>M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
-</ul>
-<p>若后验<span class="math inline">\(P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>难以处理, 则可以用一些近似方法取求得期望, 如<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/">变分贝叶斯</a>, <a href="https://msgsxj.cn/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/">Laplace近似方法</a>, <a href="https://msgsxj.cn/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/">期望传播方法</a>, <a href="https://msgsxj.cn/2018/09/18/MCMC/">MCMC方法</a>等</p>
-<hr />
-<h2 id="lda模型的拓展">LDA模型的拓展</h2>
-<h3 id="phi"><span class="math inline">\(\Phi\)</span></h3>
-若把未知参数<span class="math inline">\(\varphi\)</span>视为随机变量, 重新记为<span class="math inline">\(\Phi\)</span>, 假定<span class="math inline">\(\Phi_{i\cdot}\sim Dir(\beta_i)\)</span>, 即假定第<span class="math inline">\(i\)</span>个单词的主题分布满足参数为<span class="math inline">\(\beta_i\)</span>的狄利克雷分布(回忆开头狄利克雷分布的特性), 这里假定<span class="math inline">\(i\)</span>的取值集合<span class="math inline">\(w_{set}\)</span>的大小为<span class="math inline">\(S\)</span>, 上述修改后的模型用板表示法表示如下:
-<div data-align="center">
-<img src="/pictures/bayes in ml/LDA_plate_model_2.png" width="60%"/>
-</div>
-<p><span class="math display">\[P(W, Z, \Theta, \Phi\mid  \alpha, \beta)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}\prod_{i=1}^{S}P(z_{dn}=i\mid\theta_d)P(w_{dn}\mid z_{dn}=i, \Phi_{i\cdot})P(\Phi_{i\cdot})\]</span>与上文的模型相比只是把参数<span class="math inline">\(\varphi\)</span>视为随机变量<span class="math inline">\(\Phi\)</span>, 且<span class="math inline">\(\Phi_{i\cdot}\sim Dir(\beta_i)\)</span>, 其余不变. 总结如下:</p>
-<ul>
-<li>未知:<span class="math inline">\(Z, \Theta, \Phi\)</span>为隐变量; $ , $为未知参数.</li>
-<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
-<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
-</ul>
-<h3 id="logit-normal-distribution">Logit-normal distribution</h3>
-<p><span class="math inline">\(\theta_d\sim Dir(\alpha)\)</span>的一个良好替代是假定<span class="math inline">\(\theta_d\sim \mathcal{P}(N(\mu, \Sigma))\)</span>, 即满足<a href="https://en.wikipedia.org/wiki/Logit-normal_distribution">Logit-normal分布</a>. 逻辑正态分布: 若<span class="math inline">\(Y\sim N(\mu, \Sigma)\)</span>, 则称<span class="math inline">\(X=\mathcal{P}(Y)\)</span>为逻辑正态(Logit-normal)分布, 其中<span class="math inline">\(\mathcal{P}()\)</span>为逻辑函数. 下面来看这两个分布的异同:</p>
-<ul>
-<li>与狄利克雷分布相比, 逻辑正态分布能捕捉<span class="math inline">\(\theta_d\)</span>之间的相关性, 因而更受欢迎.</li>
-<li>虽然任何参数<span class="math inline">\(\mu, \Sigma, \alpha\)</span>的选择都不能让两个的密度函数相等, 但通过最小化<span class="math inline">\(\mathcal{KL}\)</span>散度的方式来让逻辑正态分布去逼近狄利克雷分布的方式, 即最小化<span class="math display">\[\mathcal{KL}(p, q)=\int p(x\mid \alpha)\log\frac{p(x\mid\alpha)}{q(x\mid\mu, \Sigma)}dx\]</span>可以得到关于<span class="math inline">\(\alpha\)</span>的参数<span class="math inline">\(\mu,\Sigma\)</span>在<span class="math inline">\(\mathcal{KL}\)</span>散度意义下的最优选择, 详见<a href="https://en.wikipedia.org/wiki/Logit-normal_distribution">维基百科</a>, 这里要说明的是, 当<span class="math inline">\(\alpha\)</span>的每个分量都趋于无穷, <span class="math inline">\(p(x\mid \alpha)\to q(x\mid\mu, \Sigma)\)</span>, 也就是说<span class="math inline">\(\alpha\)</span>很大时两者可以变得非常靠近.</li>
-</ul>
-<h3 id="dynamic-topic-models">Dynamic Topic Models</h3>
-<p>此外还有动态主题模型, 见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.62.2783&amp;rep=rep1&amp;type=pdf">这篇文章</a></p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>隐变量模型</tag>
-        <tag>LDA模型</tag>
-        <tag>Dirichlet分布</tag>
       </tags>
   </entry>
   <entry>
@@ -1748,6 +1748,32 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
       </categories>
       <tags>
         <tag>拉德马赫复杂度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>拉普拉斯方法</title>
+    <url>/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>前言: 本文主要是关于拉普拉斯近似方法, 这是一种用来近似计算积分的方法, 主要参考了维基百科及PRML一书6.4节. <span id="more"></span></p>
+<hr />
+<h2 id="拉普拉斯近似方法">拉普拉斯近似方法</h2>
+拉普拉斯近似方法(<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">Laplace's method</a>)是一种近似计算积分的方法, 目标积分形如<span class="math display">\[\int_a^be^{Mf(x)}dx\]</span>其中<span class="math inline">\(f(x)\)</span>要求是二次可微的, <span class="math inline">\(M\)</span>要求是一个较大的数. 其想法是假定<span class="math inline">\(x_0\)</span>是<span class="math inline">\(f(x)\)</span>唯一的最大值点, 因此<span class="math inline">\(f(x_0)&gt;f(x)\)</span>, 乘上一个较大的M, 在经过指数函数的作用, 其差值事实上会变得很大, 不难想象随着<span class="math inline">\(M\)</span>的增大积分内的函数会越来越像一个单峰函数, 事实上确实会逼近对一个正态分布进行积分的值. 举个例子<span class="math inline">\(f(x)=sinx/x\)</span>, 分别画出<span class="math inline">\(e^{sinx/x}\)</span>和<span class="math inline">\(e^{3sinx/x}\)</span>的函数图像:
+<div data-align="center">
+<img src="/pictures/laplace_method/exp%283sinx_x%29.png" width="60%" height="50%" />
+</div>
+<div data-align="center">
+<img src="/pictures/laplace_method/exp%28sinx_x%29.png" width="60%" height="50%" />
+</div>
+<p>考虑多元情形, 假定<span class="math inline">\(x_0\)</span>为f(x)的最大值点, 因此有<span class="math inline">\(\nabla f(x_0)=0\)</span>且Hessian矩阵<span class="math inline">\(H(x_0)负定\)</span>. 将<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处泰勒展开得<span class="math display">\[f(x)\approx f(x_0)+\frac{1}{2!}(x-x_0)^TH(x_0)(x-x_0)\]</span>此时积分近似为<span class="math display">\[\int_a^be^{Mf(x)}dx\approx e^{Mf(x_0)}\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\]</span>假设<span class="math inline">\(x_0\)</span>包含在区间<span class="math inline">\([a,b]\)</span>内, 那么右式可以直接视为在<span class="math inline">\((-\infty,+\infty)\)</span>上的积分, 因为随着<span class="math inline">\(M\)</span>的增大区间之外的积分会越来越小. 而此时右边的积分即为一个对多元正态分布的积分, 且该积分可以通过变量代换<span class="math inline">\(t=H(x_0)^{\frac{1}{2}}(x-x_0)\)</span>化成标准的多元正态分布计算出来:<span class="math display">\[\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\approx \int_{-\infty}^{+\infty} e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx=\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里的<span class="math inline">\(d\)</span>指的是自变量<span class="math inline">\(x\)</span>的维度, <span class="math inline">\(H(x_0)\)</span>指<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处的Hessian矩阵. 因此得到结论:<span class="math display">\[\int_a^be^{Mf(x)}dx\approx  e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>本质上来说, 倘若暂时先不考虑<span class="math inline">\(M\)</span>的大小, 用二阶泰勒展开对<span class="math inline">\(f(x)\)</span>进行近似的方法实际上是把被积函数视为多元正态分布. 一元情形的相关定理描述及证明请移步<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">维基百科</a>, 最后来看一个更一般的结论:<span class="math display">\[\int_a^bh(x)e^{Mf(x)}dx\approx  h(x_0)e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里要求<span class="math inline">\(h(x)&gt;0\)</span>.</p>
+<hr />
+<h2 id="例子">例子</h2>
+<p>例子参考了PRML一书6.4节, 来自高斯过程分类中的预测问题, 目标也是求一个积分<span class="math display">\[P(a_{N+1}\mid t_N)=\int P(a_{N+1}\mid a_N)P(a_N\mid t_N)da_N\]</span>这里的目标变量<span class="math inline">\(t\in\{0, 1\}\)</span>为二分变量; 被积函数第一部分<span class="math inline">\(P(a_{N+1}\mid a_N)\)</span>是个正态分布, 即为高斯过程回归做预测时的核心结论. 本质上来说, 拉普拉斯近似方法把被积函数或者是被积函数的一部分代换成多元正态分布<span class="math inline">\(N(\mu, \Sigma)\)</span>, 这里仅把被积函数的第二部分代换掉. 回想多元正态分布的<a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">密度函数</a>, 因此只要计算<span class="math inline">\(\log P(a_N\mid t_N)\)</span>关于变量<span class="math inline">\(a_N\)</span>的梯度<span class="math inline">\(\nabla\)</span>和Hessian矩阵<span class="math inline">\(\nabla^2\)</span>, 此时<span class="math inline">\(\mu\)</span>即为<span class="math inline">\(\nabla=0\)</span>的解, <span class="math inline">\(\Sigma=-\nabla^2\)</span>. 接着由两个正态分布积分的一些性质(PRML一书2.115), 可以得到目标积分的近似结果仍为一个正态分布. 然后我们可以用它来做预测<span class="math display">\[P(t_{N+1}=1\mid t_N)=\int P(t_{N+1}=1\mid a_{N+1})P(a_{N+1}\mid t_N)da_{N+1}\]</span>具体计算时被积函数的第一部分利用自己本身的性质近似成了正态分布的分布函数(而非密度函数)(PRML一书4.153). <code>p.s.</code>: 高斯过程分类中的参数也可以用拉普拉斯近似方法得到, 这里就不再赘述, 最后建议细细读一读PRML一书6.4节.</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>拉普拉斯方法</tag>
+        <tag>积分近似</tag>
       </tags>
   </entry>
   <entry>
@@ -2353,32 +2379,6 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
       </categories>
       <tags>
         <tag>凸优化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>拉普拉斯方法</title>
-    <url>/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>前言: 本文主要是关于拉普拉斯近似方法, 这是一种用来近似计算积分的方法, 主要参考了维基百科及PRML一书6.4节. <span id="more"></span></p>
-<hr />
-<h2 id="拉普拉斯近似方法">拉普拉斯近似方法</h2>
-拉普拉斯近似方法(<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">Laplace's method</a>)是一种近似计算积分的方法, 目标积分形如<span class="math display">\[\int_a^be^{Mf(x)}dx\]</span>其中<span class="math inline">\(f(x)\)</span>要求是二次可微的, <span class="math inline">\(M\)</span>要求是一个较大的数. 其想法是假定<span class="math inline">\(x_0\)</span>是<span class="math inline">\(f(x)\)</span>唯一的最大值点, 因此<span class="math inline">\(f(x_0)&gt;f(x)\)</span>, 乘上一个较大的M, 在经过指数函数的作用, 其差值事实上会变得很大, 不难想象随着<span class="math inline">\(M\)</span>的增大积分内的函数会越来越像一个单峰函数, 事实上确实会逼近对一个正态分布进行积分的值. 举个例子<span class="math inline">\(f(x)=sinx/x\)</span>, 分别画出<span class="math inline">\(e^{sinx/x}\)</span>和<span class="math inline">\(e^{3sinx/x}\)</span>的函数图像:
-<div data-align="center">
-<img src="/pictures/laplace_method/exp%283sinx_x%29.png" width="60%" height="50%" />
-</div>
-<div data-align="center">
-<img src="/pictures/laplace_method/exp%28sinx_x%29.png" width="60%" height="50%" />
-</div>
-<p>考虑多元情形, 假定<span class="math inline">\(x_0\)</span>为f(x)的最大值点, 因此有<span class="math inline">\(\nabla f(x_0)=0\)</span>且Hessian矩阵<span class="math inline">\(H(x_0)负定\)</span>. 将<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处泰勒展开得<span class="math display">\[f(x)\approx f(x_0)+\frac{1}{2!}(x-x_0)^TH(x_0)(x-x_0)\]</span>此时积分近似为<span class="math display">\[\int_a^be^{Mf(x)}dx\approx e^{Mf(x_0)}\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\]</span>假设<span class="math inline">\(x_0\)</span>包含在区间<span class="math inline">\([a,b]\)</span>内, 那么右式可以直接视为在<span class="math inline">\((-\infty,+\infty)\)</span>上的积分, 因为随着<span class="math inline">\(M\)</span>的增大区间之外的积分会越来越小. 而此时右边的积分即为一个对多元正态分布的积分, 且该积分可以通过变量代换<span class="math inline">\(t=H(x_0)^{\frac{1}{2}}(x-x_0)\)</span>化成标准的多元正态分布计算出来:<span class="math display">\[\int_a^b e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx\approx \int_{-\infty}^{+\infty} e^{\frac{M}{2}(x-x_0)^TH(x_0)(x-x_0)}dx=\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里的<span class="math inline">\(d\)</span>指的是自变量<span class="math inline">\(x\)</span>的维度, <span class="math inline">\(H(x_0)\)</span>指<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_0\)</span>处的Hessian矩阵. 因此得到结论:<span class="math display">\[\int_a^be^{Mf(x)}dx\approx  e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>本质上来说, 倘若暂时先不考虑<span class="math inline">\(M\)</span>的大小, 用二阶泰勒展开对<span class="math inline">\(f(x)\)</span>进行近似的方法实际上是把被积函数视为多元正态分布. 一元情形的相关定理描述及证明请移步<a href="https://en.wikipedia.org/wiki/Laplace%27s_method">维基百科</a>, 最后来看一个更一般的结论:<span class="math display">\[\int_a^bh(x)e^{Mf(x)}dx\approx  h(x_0)e^{Mf(x_0)}\left(\frac{2\pi}{M}\right)^\frac{d}{2}\left|-H(x_0)\right|^{-\frac{1}{2}}(M\to+\infty)\]</span>这里要求<span class="math inline">\(h(x)&gt;0\)</span>.</p>
-<hr />
-<h2 id="例子">例子</h2>
-<p>例子参考了PRML一书6.4节, 来自高斯过程分类中的预测问题, 目标也是求一个积分<span class="math display">\[P(a_{N+1}\mid t_N)=\int P(a_{N+1}\mid a_N)P(a_N\mid t_N)da_N\]</span>这里的目标变量<span class="math inline">\(t\in\{0, 1\}\)</span>为二分变量; 被积函数第一部分<span class="math inline">\(P(a_{N+1}\mid a_N)\)</span>是个正态分布, 即为高斯过程回归做预测时的核心结论. 本质上来说, 拉普拉斯近似方法把被积函数或者是被积函数的一部分代换成多元正态分布<span class="math inline">\(N(\mu, \Sigma)\)</span>, 这里仅把被积函数的第二部分代换掉. 回想多元正态分布的<a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">密度函数</a>, 因此只要计算<span class="math inline">\(\log P(a_N\mid t_N)\)</span>关于变量<span class="math inline">\(a_N\)</span>的梯度<span class="math inline">\(\nabla\)</span>和Hessian矩阵<span class="math inline">\(\nabla^2\)</span>, 此时<span class="math inline">\(\mu\)</span>即为<span class="math inline">\(\nabla=0\)</span>的解, <span class="math inline">\(\Sigma=-\nabla^2\)</span>. 接着由两个正态分布积分的一些性质(PRML一书2.115), 可以得到目标积分的近似结果仍为一个正态分布. 然后我们可以用它来做预测<span class="math display">\[P(t_{N+1}=1\mid t_N)=\int P(t_{N+1}=1\mid a_{N+1})P(a_{N+1}\mid t_N)da_{N+1}\]</span>具体计算时被积函数的第一部分利用自己本身的性质近似成了正态分布的分布函数(而非密度函数)(PRML一书4.153). <code>p.s.</code>: 高斯过程分类中的参数也可以用拉普拉斯近似方法得到, 这里就不再赘述, 最后建议细细读一读PRML一书6.4节.</p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>拉普拉斯方法</tag>
-        <tag>积分近似</tag>
       </tags>
   </entry>
   <entry>
@@ -3119,68 +3119,6 @@ y[t]=V^T[t]\mathbf{r}[t]
       </tags>
   </entry>
   <entry>
-    <title>自然梯度</title>
-    <url>/2019/07/06/%E8%87%AA%E7%84%B6%E6%A2%AF%E5%BA%A6/</url>
-    <content><![CDATA[<p>前言: 本文介绍自然梯度算法, 这种方法考虑到许多问题的参数空间具有某种结构, 因此考虑放在非欧式空间中优化(但实际优化计算过程仍然在欧式空间), 有兴趣的同学可以读一读原论文<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient</a>. <span id="more"></span></p>
-<h2 id="欧式空间与黎曼空间">欧式空间与黎曼空间</h2>
-<p>什么是欧式空间?</p>
-<blockquote>
-<p>A finite dimensional real vector space equipped with an inner product <span class="math inline">\(\left&lt; x,y \right&gt;\)</span>, is called a <strong>Eulidean space</strong>, if it is endowed with the norm <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}\)</span>, which is referred to as <strong>Eulidean norm</strong>.</p>
-</blockquote>
-<p>通俗的讲, 首先得有一个向量空间<span class="math inline">\(\mathbb{R}^n\)</span>, 接着在这个空间上定义内积(inner product), 这个内积可以是常见的内积点乘, 也可以是其它内积:</p>
-<ul>
-<li>dot product: <span class="math inline">\(\left&lt; x,y \right&gt;=\sum_{i=1}^nx_iy_i\)</span>, 其中<span class="math inline">\(x_i\)</span>为<span class="math inline">\(x\)</span>的第<span class="math inline">\(i\)</span>个分量.</li>
-<li><span class="math inline">\(Q\)</span> inner: <span class="math inline">\(\left&lt; x,y \right&gt;=x^TQy\)</span>, 其<span class="math inline">\(Q\)</span>为<span class="math inline">\(n\)</span>阶正定阵.</li>
-</ul>
-<p>然后由内积可以诱导出对应的范数:</p>
-<ul>
-<li><span class="math inline">\(l_2\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{ \sum_{i=1}^n x_i^2 }\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_2\)</span>.</li>
-<li><span class="math inline">\(Q\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{x^TQx}\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_Q\)</span>.</li>
-</ul>
-<p>有了范数, 我们就可以度量两个点<span class="math inline">\(x,x+dx\)</span>之间的距离(点乘内积): <span class="math display">\[\Vert x + dx-x\Vert=\Vert dx\Vert=\sqrt{ \sum_{i=1}^n dx_i^2 }.\]</span></p>
-<p>小结一下:</p>
-<ul>
-<li>欧式空间是一个向量空间, 且带有内积和范数;</li>
-<li>最重要的是, 该范数一定是要由内积根据上式诱导出来的.</li>
-</ul>
-<p>什么是黎曼空间?</p>
-<blockquote>
-<p>A differentiable manifold provided with a <strong>Riemannian metric</strong>.</p>
-</blockquote>
-<p>微分流形(differentiable manifold又名光滑流形, 其最简单的例子就是三维空间中的球面, 在这里可简单理解为向量空间; 黎曼度量(Riemannian metric.)又名<a href="https://zh.wikipedia.org/wiki/%E5%BA%A6%E9%87%8F%E5%BC%A0%E9%87%8F">度量张量</a>, 黎曼度量张量或是度规张量, 这里可简单理解为某<span class="math inline">\(n\)</span>阶方阵<span class="math inline">\(G\)</span>或是<span class="math inline">\((g_{ij})\)</span>. 有了它我们就可以用它来度量空间中两点<span class="math inline">\(x,x+dx\)</span>之间的距离: <span class="math display">\[dx^2=\sum_{ij}g_{ij}dx_i dx_j=dx^TGdx\]</span>其中<span class="math inline">\(dx_i\)</span>为<span class="math inline">\(dx\)</span>的第<span class="math inline">\(i\)</span>个分量. 特别的, 若取<span class="math inline">\(G\)</span>为<span class="math inline">\(n\)</span>阶单位阵(对角线上元素为1, 其余为0), 此时<span class="math inline">\(dx^2=\sum_{i}^ndx_i^2\)</span>. 这就与带有正交坐标系的欧式空间一致了(点乘内积). 小结一下:</p>
-<ul>
-<li>黎曼空间可视为欧式空间的推广, 但一般情况下, 黎曼空间为非欧空间.</li>
-<li>确定了<span class="math inline">\(G\)</span>就相当于确定了一个黎曼空间, 另外形式上类似欧式空间中的<span class="math inline">\(Q\)</span> norm但没有正定性的要求.</li>
-</ul>
-<h2 id="自然梯度">自然梯度</h2>
-<p>带正交坐标系的欧式空间中, 我们知道负梯度方向<span class="math inline">\(-\nabla L(w)\)</span>为<span class="math inline">\(L(w)\)</span>的最速下降方向; 类似的, 黎曼空间中的<span class="math inline">\(L(w)\)</span>最速下降方向为<span class="math inline">\(-G^{-1}(w)\nabla L(w)\)</span>, 这被称为是自然梯度, 证明可见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient Works Efficiently in Learning</a>的定理1. 下面举个例子加以说明:</p>
-<ul>
-<li>现有一族带参的分布族<span class="math inline">\(\{p(z\mid w)\}\)</span>, 目标是找到最优参数<span class="math inline">\(w=w^*\)</span>使得<span class="math inline">\(p(z\mid w)\)</span>尽可能的接近未知的密度函数<span class="math inline">\(q(z)\)</span>.</li>
-<li>事实上, 很多机器学习任务可归结为上述问题, 比方说<span class="math inline">\(q(z)=q(x,y)\)</span>表示某监督学习任务的样本真实分布, <span class="math inline">\(w\)</span>表示某个NN的参数.</li>
-<li>一个常用的损失函数就是最小化交叉熵的负数:<span class="math display">\[L(w)=-\mathbb{E}_{q(z)}[\log p(z\mid w)]=\mathcal{KL}(q(z)\Vert p(z\mid w))-\mathbb{E}_{q(z)}[\log q(z)]\]</span>其中<span class="math inline">\(\mathcal{KL}(q(z)\Vert p(z\mid w))=\mathbb{E}_{q(z)}[\log\frac{q(z)}{p(z\mid w)}]=\int q(z)\log\frac{q(z)}{p(z\mid w)}dz\)</span>, 且第二项与<span class="math inline">\(w\)</span>无关.</li>
-<li>Information geometry (Amari, 1985)给出了利用<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>定义<span class="math inline">\(G\)</span>(概率密度函数族可以看做与参数空间同胚的黎曼流形, Fisher信息矩阵可以看做是该流形上的黎曼度量, 可以证明这一度量是外围欧式空间在该流形上的诱导度量): <span class="math display">\[G_{ij}(w)=I_{ij}(w)=-\mathbb{E}_{p(z\mid w)}\left [\frac{\partial \log p(z\mid w)}{\partial w_i}\frac{\partial \log p(z\mid w)}{\partial w_j}\right]\]</span></li>
-<li>最后假设有一堆独立同分布样本<span class="math inline">\(z_i \sim p(z)\)</span>, 就可用stochastic或batch的思路去优化. 此时<span class="math inline">\(L(w)\)</span>的自然梯度方向即为<span class="math inline">\(-I^{-1}(w)\nabla L(w)\)</span>, 这又被称为是<strong>Fisher scoring algorithm</strong>.</li>
-</ul>
-<p>回过头来看, 对<span class="math inline">\(q(z)\)</span>的参数化近似<span class="math inline">\(p(z,w)\)</span>必定赋予了它某种结构(比方说对<span class="math inline">\(w\)</span>迈出一大步未必能导致<span class="math inline">\(p(z,w)\)</span>的大的变化), 而要想利用这种结构, 最大的难点就是如何找到对应的黎曼空间, 或者说<span class="math inline">\(G\)</span>.</p>
-<ul>
-<li>第6节给出了<strong>感知机模型</strong>的参数空间的相对应<span class="math inline">\(G, G^{-1}\)</span>的详细求解过程, 同时还有<strong>多层感知机模型</strong>的<span class="math inline">\(G\)</span>.</li>
-<li>第7节给出了<span class="math inline">\(m\)</span>阶非奇异方阵构成的空间中自然梯度的求法; 第8节给出了系统空间中的自然梯度.</li>
-</ul>
-<h2 id="自然梯度与牛顿类法">自然梯度与牛顿类法</h2>
-<p>形式上, 自然梯度法类似于牛顿法: <span class="math display">\[G(w)=-\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right], \nabla ^2L (w)=-\mathbb{E}_{q(z)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]\]</span>且随着优化算法的进行, <span class="math inline">\(p(z\mid w)\)</span>会越来越接近<span class="math inline">\(q(z)\)</span>, 此时两者的表现会相近.当然, 实际任务中因为实际分布一般不知道因此再多一层近似, 即用batch或是stochastic近似上述右式. 最后, 由于<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>的一个特殊性质, 在满足<a href="https://en.wikipedia.org/wiki/Cram%C3%A9r%E2%80%93Rao_bound#Regularity_conditions">CR条件</a>的前提下, 有<span class="math display">\[\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]=\mathbb{E}_{p(z\mid w)}\left[ (\frac{\partial\log p(z\mid w)}{\partial w})(\frac{\partial\log p(z\mid w)}{\partial w})^T\right]\]</span>若我把上式中的<span class="math inline">\(p(z\mid w)\)</span>换成<span class="math inline">\(q(z)\)</span>, <a href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm">Gauss-Newton法</a>就跃然纸上.</p>
-]]></content>
-      <categories>
-        <category>优化算法</category>
-      </categories>
-      <tags>
-        <tag>优化</tag>
-        <tag>黎曼空间</tag>
-        <tag>欧式空间</tag>
-        <tag>Fisher信息</tag>
-        <tag>自然梯度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>统计学习的基本定理</title>
     <url>/2017/08/13/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/</url>
     <content><![CDATA[<p>本文主要参考了Shai Shalev-Shwartz的深入理解机器学习第2-7章以及coursera上林轩田的机器学习基石课程,这部分内容较为详细的描述了机器学习的理论部分,主要包括以下三部分内容:</p>
@@ -3467,6 +3405,68 @@ y[t]=V^T[t]\mathbf{r}[t]
         <tag>SRM</tag>
         <tag>MDL</tag>
         <tag>奥卡姆剃刀</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自然梯度</title>
+    <url>/2019/07/06/%E8%87%AA%E7%84%B6%E6%A2%AF%E5%BA%A6/</url>
+    <content><![CDATA[<p>前言: 本文介绍自然梯度算法, 这种方法考虑到许多问题的参数空间具有某种结构, 因此考虑放在非欧式空间中优化(但实际优化计算过程仍然在欧式空间), 有兴趣的同学可以读一读原论文<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient</a>. <span id="more"></span></p>
+<h2 id="欧式空间与黎曼空间">欧式空间与黎曼空间</h2>
+<p>什么是欧式空间?</p>
+<blockquote>
+<p>A finite dimensional real vector space equipped with an inner product <span class="math inline">\(\left&lt; x,y \right&gt;\)</span>, is called a <strong>Eulidean space</strong>, if it is endowed with the norm <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}\)</span>, which is referred to as <strong>Eulidean norm</strong>.</p>
+</blockquote>
+<p>通俗的讲, 首先得有一个向量空间<span class="math inline">\(\mathbb{R}^n\)</span>, 接着在这个空间上定义内积(inner product), 这个内积可以是常见的内积点乘, 也可以是其它内积:</p>
+<ul>
+<li>dot product: <span class="math inline">\(\left&lt; x,y \right&gt;=\sum_{i=1}^nx_iy_i\)</span>, 其中<span class="math inline">\(x_i\)</span>为<span class="math inline">\(x\)</span>的第<span class="math inline">\(i\)</span>个分量.</li>
+<li><span class="math inline">\(Q\)</span> inner: <span class="math inline">\(\left&lt; x,y \right&gt;=x^TQy\)</span>, 其<span class="math inline">\(Q\)</span>为<span class="math inline">\(n\)</span>阶正定阵.</li>
+</ul>
+<p>然后由内积可以诱导出对应的范数:</p>
+<ul>
+<li><span class="math inline">\(l_2\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{ \sum_{i=1}^n x_i^2 }\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_2\)</span>.</li>
+<li><span class="math inline">\(Q\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{x^TQx}\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_Q\)</span>.</li>
+</ul>
+<p>有了范数, 我们就可以度量两个点<span class="math inline">\(x,x+dx\)</span>之间的距离(点乘内积): <span class="math display">\[\Vert x + dx-x\Vert=\Vert dx\Vert=\sqrt{ \sum_{i=1}^n dx_i^2 }.\]</span></p>
+<p>小结一下:</p>
+<ul>
+<li>欧式空间是一个向量空间, 且带有内积和范数;</li>
+<li>最重要的是, 该范数一定是要由内积根据上式诱导出来的.</li>
+</ul>
+<p>什么是黎曼空间?</p>
+<blockquote>
+<p>A differentiable manifold provided with a <strong>Riemannian metric</strong>.</p>
+</blockquote>
+<p>微分流形(differentiable manifold又名光滑流形, 其最简单的例子就是三维空间中的球面, 在这里可简单理解为向量空间; 黎曼度量(Riemannian metric.)又名<a href="https://zh.wikipedia.org/wiki/%E5%BA%A6%E9%87%8F%E5%BC%A0%E9%87%8F">度量张量</a>, 黎曼度量张量或是度规张量, 这里可简单理解为某<span class="math inline">\(n\)</span>阶方阵<span class="math inline">\(G\)</span>或是<span class="math inline">\((g_{ij})\)</span>. 有了它我们就可以用它来度量空间中两点<span class="math inline">\(x,x+dx\)</span>之间的距离: <span class="math display">\[dx^2=\sum_{ij}g_{ij}dx_i dx_j=dx^TGdx\]</span>其中<span class="math inline">\(dx_i\)</span>为<span class="math inline">\(dx\)</span>的第<span class="math inline">\(i\)</span>个分量. 特别的, 若取<span class="math inline">\(G\)</span>为<span class="math inline">\(n\)</span>阶单位阵(对角线上元素为1, 其余为0), 此时<span class="math inline">\(dx^2=\sum_{i}^ndx_i^2\)</span>. 这就与带有正交坐标系的欧式空间一致了(点乘内积). 小结一下:</p>
+<ul>
+<li>黎曼空间可视为欧式空间的推广, 但一般情况下, 黎曼空间为非欧空间.</li>
+<li>确定了<span class="math inline">\(G\)</span>就相当于确定了一个黎曼空间, 另外形式上类似欧式空间中的<span class="math inline">\(Q\)</span> norm但没有正定性的要求.</li>
+</ul>
+<h2 id="自然梯度">自然梯度</h2>
+<p>带正交坐标系的欧式空间中, 我们知道负梯度方向<span class="math inline">\(-\nabla L(w)\)</span>为<span class="math inline">\(L(w)\)</span>的最速下降方向; 类似的, 黎曼空间中的<span class="math inline">\(L(w)\)</span>最速下降方向为<span class="math inline">\(-G^{-1}(w)\nabla L(w)\)</span>, 这被称为是自然梯度, 证明可见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient Works Efficiently in Learning</a>的定理1. 下面举个例子加以说明:</p>
+<ul>
+<li>现有一族带参的分布族<span class="math inline">\(\{p(z\mid w)\}\)</span>, 目标是找到最优参数<span class="math inline">\(w=w^*\)</span>使得<span class="math inline">\(p(z\mid w)\)</span>尽可能的接近未知的密度函数<span class="math inline">\(q(z)\)</span>.</li>
+<li>事实上, 很多机器学习任务可归结为上述问题, 比方说<span class="math inline">\(q(z)=q(x,y)\)</span>表示某监督学习任务的样本真实分布, <span class="math inline">\(w\)</span>表示某个NN的参数.</li>
+<li>一个常用的损失函数就是最小化交叉熵的负数:<span class="math display">\[L(w)=-\mathbb{E}_{q(z)}[\log p(z\mid w)]=\mathcal{KL}(q(z)\Vert p(z\mid w))-\mathbb{E}_{q(z)}[\log q(z)]\]</span>其中<span class="math inline">\(\mathcal{KL}(q(z)\Vert p(z\mid w))=\mathbb{E}_{q(z)}[\log\frac{q(z)}{p(z\mid w)}]=\int q(z)\log\frac{q(z)}{p(z\mid w)}dz\)</span>, 且第二项与<span class="math inline">\(w\)</span>无关.</li>
+<li>Information geometry (Amari, 1985)给出了利用<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>定义<span class="math inline">\(G\)</span>(概率密度函数族可以看做与参数空间同胚的黎曼流形, Fisher信息矩阵可以看做是该流形上的黎曼度量, 可以证明这一度量是外围欧式空间在该流形上的诱导度量): <span class="math display">\[G_{ij}(w)=I_{ij}(w)=-\mathbb{E}_{p(z\mid w)}\left [\frac{\partial \log p(z\mid w)}{\partial w_i}\frac{\partial \log p(z\mid w)}{\partial w_j}\right]\]</span></li>
+<li>最后假设有一堆独立同分布样本<span class="math inline">\(z_i \sim p(z)\)</span>, 就可用stochastic或batch的思路去优化. 此时<span class="math inline">\(L(w)\)</span>的自然梯度方向即为<span class="math inline">\(-I^{-1}(w)\nabla L(w)\)</span>, 这又被称为是<strong>Fisher scoring algorithm</strong>.</li>
+</ul>
+<p>回过头来看, 对<span class="math inline">\(q(z)\)</span>的参数化近似<span class="math inline">\(p(z,w)\)</span>必定赋予了它某种结构(比方说对<span class="math inline">\(w\)</span>迈出一大步未必能导致<span class="math inline">\(p(z,w)\)</span>的大的变化), 而要想利用这种结构, 最大的难点就是如何找到对应的黎曼空间, 或者说<span class="math inline">\(G\)</span>.</p>
+<ul>
+<li>第6节给出了<strong>感知机模型</strong>的参数空间的相对应<span class="math inline">\(G, G^{-1}\)</span>的详细求解过程, 同时还有<strong>多层感知机模型</strong>的<span class="math inline">\(G\)</span>.</li>
+<li>第7节给出了<span class="math inline">\(m\)</span>阶非奇异方阵构成的空间中自然梯度的求法; 第8节给出了系统空间中的自然梯度.</li>
+</ul>
+<h2 id="自然梯度与牛顿类法">自然梯度与牛顿类法</h2>
+<p>形式上, 自然梯度法类似于牛顿法: <span class="math display">\[G(w)=-\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right], \nabla ^2L (w)=-\mathbb{E}_{q(z)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]\]</span>且随着优化算法的进行, <span class="math inline">\(p(z\mid w)\)</span>会越来越接近<span class="math inline">\(q(z)\)</span>, 此时两者的表现会相近.当然, 实际任务中因为实际分布一般不知道因此再多一层近似, 即用batch或是stochastic近似上述右式. 最后, 由于<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>的一个特殊性质, 在满足<a href="https://en.wikipedia.org/wiki/Cram%C3%A9r%E2%80%93Rao_bound#Regularity_conditions">CR条件</a>的前提下, 有<span class="math display">\[\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]=\mathbb{E}_{p(z\mid w)}\left[ (\frac{\partial\log p(z\mid w)}{\partial w})(\frac{\partial\log p(z\mid w)}{\partial w})^T\right]\]</span>若我把上式中的<span class="math inline">\(p(z\mid w)\)</span>换成<span class="math inline">\(q(z)\)</span>, <a href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm">Gauss-Newton法</a>就跃然纸上.</p>
+]]></content>
+      <categories>
+        <category>优化算法</category>
+      </categories>
+      <tags>
+        <tag>优化</tag>
+        <tag>黎曼空间</tag>
+        <tag>欧式空间</tag>
+        <tag>Fisher信息</tag>
+        <tag>自然梯度</tag>
       </tags>
   </entry>
   <entry>
