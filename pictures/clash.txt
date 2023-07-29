@@ -85,7 +85,7 @@ proxies:
   # Shadowsocks
   - name: "jms-s1"
     type: ss
-    server: c6s1.jjvip8.com
+    server: c6s1.jjcruises.com
     port: 57863
     cipher: aes-256-gcm
     password: "URBk4HJoBMehtDon"
@@ -93,7 +93,7 @@ proxies:
   # Shadowsocks
   - name: "jms-s2"
     type: ss
-    server: c6s2.jjvip8.com
+    server: c6s2.jjcruises.com
     port: 57863
     cipher: aes-256-gcm
     password: "URBk4HJoBMehtDon"
@@ -101,7 +101,7 @@ proxies:
   # VMess
   - name: "jms-s3"
     type: vmess
-    server: c6s3.jjvip8.com
+    server: c6s3.jjcruises.com
     port: 57863
     uuid: 007c612e-2bf1-4c35-8492-b75d41390464
     alterId: 0
@@ -110,7 +110,7 @@ proxies:
   # VMess
   - name: "jms-s4"
     type: vmess
-    server: c6s4.jjvip8.com
+    server: c6s4.jjcruises.com
     port: 57863
     uuid: 007c612e-2bf1-4c35-8492-b75d41390464
     alterId: 0
@@ -119,7 +119,7 @@ proxies:
   # VMess
   - name: "jms-s5"
     type: vmess
-    server: c6s5.jjvip8.com
+    server: c6s5.jjcruises.com
     port: 57863
     uuid: 007c612e-2bf1-4c35-8492-b75d41390464
     alterId: 0
@@ -128,7 +128,7 @@ proxies:
   # VMess
   - name: "jms-s801"
     type: vmess
-    server: c6s801.jjvip8.com
+    server: c6s801.jjcruises.com
     port: 57863
     uuid: 007c612e-2bf1-4c35-8492-b75d41390464
     alterId: 0
