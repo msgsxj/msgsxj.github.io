@@ -48,6 +48,28 @@
       </tags>
   </entry>
   <entry>
+    <title>2018</title>
+    <url>/2019/01/30/2018/</url>
+    <content><![CDATA[<p>前言: 回顾2018, 为2019立flag</p>
+<span id="more"></span>
+<p><img src="/pictures/2018.jpg" /></p>
+<h2 id="section">2018</h2>
+<p>相比之下, 2018要忙碌一些, 研一下学期先是听老师讲凸优化, 但从8月份开始就是我们4个的讲机器学习和数值优化的讨论班. 机器学习讨论班用的就是周志华老师的西瓜书, 到期末算是堪堪讲完; 数值优化则是用了numberical optimization, 但没来得及讲完, 还剩下一些留给下学期初.</p>
+<p>不得不说讨论班让我收获很多, 以西瓜书为例, 自己第一遍读的时候虽然也是认真仔细的读了, 但讲给人听给出了更高的抠细节的要求, 因此做ppt就花了很多时间, 当然这带来的明显的好处就是对书本的理解加深了许多, 并且latex公式也越打越顺了.</p>
+<p>导师对我们说, 研究生阶段就应该多学一些东西, 听得出来他也很欣赏我们南大数学系不要求发论文的做法(只需毕业论文), 我也乐在其中.</p>
+<p>coursera上, 3月31日结束了吴恩达的deep learning系列课程; 5月份学习了霍普金斯大学的Exploratory Data Analysis; 10月份及12月份学习了俄罗斯国立高等经济学院的Bayesian Methods for Machine Learning和Practical Reinforcement Learning. 不得不说coursera上几乎没有水课, 可以说我在2018年写的大部分博文的出发点都来自于这些课程, 或是这些课程给出的参考文献, 书籍(一般都是某领域的经典之作).</p>
+<p>数据类的比赛方面, 作为萌新的我单枪匹马的参加了腾讯2018广告算法大赛, 没能进复赛; 暑假时参加了天池的阿里巴巴大数据智能云上编程大赛(其实就是在阿里自家的机器学习平台PAI上像搭积木一样做模型的一个比赛), 进了复赛但仍然没进决赛; 至于kaggle则是参加了一个泰坦尼克的新人赛后就没有然后了, 因此2017年末立的flag就这样倒了.</p>
+<h2 id="section-1">2019</h2>
+<p>还是要给自己立个flag: 在比赛中拿个奖.</p>
+]]></content>
+      <categories>
+        <category>聊聊生活</category>
+      </categories>
+      <tags>
+        <tag>回顾</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2018腾讯广告算法大赛初赛lgb</title>
     <url>/2018/05/29/2018%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A%E7%AE%97%E6%B3%95%E5%A4%A7%E8%B5%9B%E5%88%9D%E8%B5%9Blgb/</url>
     <content><![CDATA[<p>前言:最近参加了2018腾讯广告算法大赛,虽然没进复赛,但也花了不少时间,算是为下次参加比赛试试水,最终初赛线上最好成绩是0.745764,特此记录.</p>
@@ -90,28 +112,6 @@
 <li>想要保护好自己的牙齿</li>
 <li>想要好好谈恋爱</li>
 </ol>
-]]></content>
-      <categories>
-        <category>聊聊生活</category>
-      </categories>
-      <tags>
-        <tag>回顾</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2018</title>
-    <url>/2019/01/30/2018/</url>
-    <content><![CDATA[<p>前言: 回顾2018, 为2019立flag</p>
-<span id="more"></span>
-<p><img src="/pictures/2018.jpg" /></p>
-<h2 id="section">2018</h2>
-<p>相比之下, 2018要忙碌一些, 研一下学期先是听老师讲凸优化, 但从8月份开始就是我们4个的讲机器学习和数值优化的讨论班. 机器学习讨论班用的就是周志华老师的西瓜书, 到期末算是堪堪讲完; 数值优化则是用了numberical optimization, 但没来得及讲完, 还剩下一些留给下学期初.</p>
-<p>不得不说讨论班让我收获很多, 以西瓜书为例, 自己第一遍读的时候虽然也是认真仔细的读了, 但讲给人听给出了更高的抠细节的要求, 因此做ppt就花了很多时间, 当然这带来的明显的好处就是对书本的理解加深了许多, 并且latex公式也越打越顺了.</p>
-<p>导师对我们说, 研究生阶段就应该多学一些东西, 听得出来他也很欣赏我们南大数学系不要求发论文的做法(只需毕业论文), 我也乐在其中.</p>
-<p>coursera上, 3月31日结束了吴恩达的deep learning系列课程; 5月份学习了霍普金斯大学的Exploratory Data Analysis; 10月份及12月份学习了俄罗斯国立高等经济学院的Bayesian Methods for Machine Learning和Practical Reinforcement Learning. 不得不说coursera上几乎没有水课, 可以说我在2018年写的大部分博文的出发点都来自于这些课程, 或是这些课程给出的参考文献, 书籍(一般都是某领域的经典之作).</p>
-<p>数据类的比赛方面, 作为萌新的我单枪匹马的参加了腾讯2018广告算法大赛, 没能进复赛; 暑假时参加了天池的阿里巴巴大数据智能云上编程大赛(其实就是在阿里自家的机器学习平台PAI上像搭积木一样做模型的一个比赛), 进了复赛但仍然没进决赛; 至于kaggle则是参加了一个泰坦尼克的新人赛后就没有然后了, 因此2017年末立的flag就这样倒了.</p>
-<h2 id="section-1">2019</h2>
-<p>还是要给自己立个flag: 在比赛中拿个奖.</p>
 ]]></content>
       <categories>
         <category>聊聊生活</category>
@@ -386,92 +386,6 @@
       </categories>
       <tags>
         <tag>R</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Latent Dirichlet Allocation</title>
-    <url>/2018/10/16/Latent-Dirichlet-Allocation/</url>
-    <content><![CDATA[<p>前言: 本文主要是关于Latent Dirichlet Allocation模型, 这是一类能够从文档集合中挖掘出抽象主题的模型, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3. <span id="more"></span></p>
-<hr />
-<h2 id="隐狄利克雷分配模型">隐狄利克雷分配模型</h2>
-<p>以推荐系统为例, 假如我读过东野圭吾的新参者, 我希望推荐系统能把白夜行也推荐给我. 在自然语言处理(Natural Language Processing: NLP)中, 主题模型(Topic Model)是一类能够从文档集合中挖掘出抽象主题的模型, 其中用的最多的大概就是隐狄利克雷分配模型(Latent Dirichlet Allocation: LDA). 比方说给定50个主题数量, 其想法是对每一篇文档给出一个关于50个主题数量的分布, 例如新参者的主题是70%的推理类, 10%的叉叉类等, 因此如果能得到每篇文档的主题分布, 就能给出书之间的相似度.</p>
-<p>下面我们来看什么是LDA模型, 并给出一些记号. 假设有文档<span class="math inline">\(D\)</span>篇, 其中第<span class="math inline">\(d\)</span>篇文档有<span class="math inline">\(N_d\)</span>个单词, 给定主题数量<span class="math inline">\(T\)</span>, 记第<span class="math inline">\(d\)</span>篇文档的主题为<span class="math inline">\(\theta_d\)</span>, 显然<span class="math inline">\(\theta_d\)</span>为一个<span class="math inline">\(T\)</span>维向量, <span class="math inline">\(z_{dn}\)</span>是第<span class="math inline">\(d\)</span>篇文档的第<span class="math inline">\(n\)</span>个单词的主题分布, <span class="math inline">\(w_{dn}\)</span>是第<span class="math inline">\(d\)</span>篇文档的第<span class="math inline">\(n\)</span>个单词本身(一般给长度为<span class="math inline">\(\left|w_{set}\right|\)</span>定词汇表<span class="math inline">\(w_{set}\)</span>后用一个长度为<span class="math inline">\(\left|w_{set}\right|\)</span>的向量去表示).</p>
-<p>给定主题数量<span class="math inline">\(T=50\)</span>, 目前我们有了三个关键要素:</p>
-<ul>
-<li>每篇文档的主题分布:<span class="math inline">\(\theta\)</span></li>
-<li>每篇文档每个单词的主题分布:<span class="math inline">\(z\)</span></li>
-<li>每篇文档每个单词:<span class="math inline">\(w\)</span></li>
-</ul>
-<p>遵循一些直观的假象, 我们分三步尝试去构造模型:</p>
-<ul>
-<li>首先要有每篇文档的主题<span class="math inline">\(\theta_d\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>.</li>
-<li>简单假设每个单词的主题<span class="math inline">\(z_{dn}\)</span>与所在文档的主题<span class="math inline">\(\theta_d\)</span>一致, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
-<li>每个单词确定了主题之后就能按照一定的概率分布从主题中选择单词出来. 比方说给定词汇表<span class="math inline">\(w_{set}\)</span>, 其包含<span class="math inline">\(\left|w_{set}\right|\)</span>个单词, 假设第<span class="math inline">\(t\)</span>主题有一个单词表上的概率分布<span class="math inline">\(\varphi_{\cdot t}\)</span>, 显然<span class="math inline">\(\varphi_{\cdot t}\)</span>为<span class="math inline">\(\left|w_{set}\right|\)</span>维列向量, 那么<span class="math inline">\(\varphi\)</span>为<span class="math inline">\(\left|w_{set}\right|\times T\)</span>的未知参数矩阵.</li>
-</ul>
-<p>将上述三要素视为随机变量, 此时可以写出三者的联合分布函数: <span class="math display">\[P(W, Z, \Theta)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>显然文档主题<span class="math inline">\(\theta_d\)</span>和单词主题<span class="math inline">\(z_{dn}\)</span>是无法观测得到的, 因此作为LDA模型中的L(Lantent), D(Dirichlet)则是指随机变量<span class="math inline">\(\theta_d\)</span>满足Dirichlet分布:</p>
-<ul>
-<li>假定文章的来源一致, 即<span class="math inline">\(\theta_d\)</span>独立同分布: 服从<a href="https://en.wikipedia.org/wiki/Dirichlet_distribution">Dirichlet分布</a><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(\alpha\)</span>为<span class="math inline">\(T\)</span>维列向量; <span class="math inline">\(B(\alpha)\)</span>为多元Beta函数, 可表示为<span class="math inline">\(B(\alpha)=\frac{\prod_{i=1}^{T}\Gamma(\alpha_i)}{\Gamma(\sum_{i=1}^{T}\alpha_i)}\)</span>, <span class="math inline">\(\Gamma\)</span>为<a href="https://en.wikipedia.org/wiki/Gamma_function">Gamma函数</a>, 详见维基百科.</li>
-<li>值得注意的是, <span class="math inline">\(\alpha\)</span>增大能导致每篇文档的话题数量变多(关于这点可以参考维基百科上的一张<a href="https://upload.wikimedia.org/wikipedia/commons/5/54/LogDirichletDensity-alpha_0.3_to_alpha_2.0.gif">动图</a>), 所以另一种思路是把<span class="math inline">\(\alpha\)</span>视为超参去调.</li>
-<li>假定每个单词的主题<span class="math inline">\(z_{dn}\)</span>与所在文档的主题<span class="math inline">\(\theta_d\)</span>一致, 即<span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 写得直观些, 即<span class="math inline">\(P(z_{dn}=t\mid\theta_d)=\theta_{dt}\)</span>, <span class="math inline">\(\theta_{dt}\)</span>表示<span class="math inline">\(\theta_d\)</span>的第<span class="math inline">\(t\)</span>个分量.</li>
-<li><span class="math inline">\(T\)</span>个主题与词汇表<span class="math inline">\(w_{set}\)</span>的分布记为<span class="math inline">\(\phi\)</span>, 这里的<span class="math inline">\(\phi\)</span>为<span class="math inline">\(\left|w_{set}\right|\times T\)</span>的矩阵. 即<span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{z_{dn}w_{dn}}\)</span>, 写得直观些, <span class="math inline">\(v\)</span>为不超过<span class="math inline">\(\left|w_{set}\right|\)</span>的正整数, <span class="math inline">\(P(w_{dn}=v\mid z_{dn})=\varphi_{v z_{dn}}\)</span>.</li>
-</ul>
-<p>若用大小字母表示小写字母的总和, 参数仍简记为小写字母, 我们现有五个关键要素: <span class="math inline">\(W\)</span>为数据集; <span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>为未知参数.</p>
-板表示法(plate notation)是一种表示在图形模型中重复的变量的方法, 下面采用板表示法的贝叶斯网络表达上述模型:
-<div data-align="center">
-<img src="/pictures/bayes in ml/LDA_plate_model_1.png" width="60%"/>
-</div>
-<p>这里的虚线框右下角的字母表示框中的部分应该重复画字母次, 所以板表示法的好处就很明显:</p>
-<ul>
-<li>简化图模型,更美观.</li>
-<li>同时模型表达式变得一模了然.</li>
-</ul>
-<p>最后把该LDA模型用较为简练的语言再写一遍(可以对照图去写): <span class="math display">\[P(W, Z, \Theta\mid \varphi, \alpha)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>其中:</p>
-<ul>
-<li><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>, <span class="math inline">\(T\)</span>给定.</li>
-<li><span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
-<li><span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{w_{dn}z_{dn}}\)</span>, 给定词汇表<span class="math inline">\(w_{set}\)</span>, <span class="math inline">\(w_{dn}\in\{1,2,...,\left|w_{set}\right|\}\)</span>.</li>
-</ul>
-<p>大小字母表示小写字母的总和, 参数仍简记为小写字母, 总结如下:</p>
-<ul>
-<li>未知:<span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>未知参数.</li>
-<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
-<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
-</ul>
-<p>这个模型因为属于隐变量模型, 故可用<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>求解: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:</p>
-<ul>
-<li>E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>.</li>
-<li>M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
-</ul>
-<p>若后验<span class="math inline">\(P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>难以处理, 则可以用一些近似方法取求得期望, 如<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/">变分贝叶斯</a>, <a href="https://msgsxj.cn/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/">Laplace近似方法</a>, <a href="https://msgsxj.cn/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/">期望传播方法</a>, <a href="https://msgsxj.cn/2018/09/18/MCMC/">MCMC方法</a>等</p>
-<hr />
-<h2 id="lda模型的拓展">LDA模型的拓展</h2>
-<h3 id="phi"><span class="math inline">\(\Phi\)</span></h3>
-若把未知参数<span class="math inline">\(\varphi\)</span>视为随机变量, 重新记为<span class="math inline">\(\Phi\)</span>, 假定<span class="math inline">\(\Phi_{i\cdot}\sim Dir(\beta_i)\)</span>, 即假定第<span class="math inline">\(i\)</span>个单词的主题分布满足参数为<span class="math inline">\(\beta_i\)</span>的狄利克雷分布(回忆开头狄利克雷分布的特性), 这里假定<span class="math inline">\(i\)</span>的取值集合<span class="math inline">\(w_{set}\)</span>的大小为<span class="math inline">\(S\)</span>, 上述修改后的模型用板表示法表示如下:
-<div data-align="center">
-<img src="/pictures/bayes in ml/LDA_plate_model_2.png" width="60%"/>
-</div>
-<p><span class="math display">\[P(W, Z, \Theta, \Phi\mid  \alpha, \beta)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}\prod_{i=1}^{S}P(z_{dn}=i\mid\theta_d)P(w_{dn}\mid z_{dn}=i, \Phi_{i\cdot})P(\Phi_{i\cdot})\]</span>与上文的模型相比只是把参数<span class="math inline">\(\varphi\)</span>视为随机变量<span class="math inline">\(\Phi\)</span>, 且<span class="math inline">\(\Phi_{i\cdot}\sim Dir(\beta_i)\)</span>, 其余不变. 总结如下:</p>
-<ul>
-<li>未知:<span class="math inline">\(Z, \Theta, \Phi\)</span>为隐变量; $ , $为未知参数.</li>
-<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
-<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
-</ul>
-<h3 id="logit-normal-distribution">Logit-normal distribution</h3>
-<p><span class="math inline">\(\theta_d\sim Dir(\alpha)\)</span>的一个良好替代是假定<span class="math inline">\(\theta_d\sim \mathcal{P}(N(\mu, \Sigma))\)</span>, 即满足<a href="https://en.wikipedia.org/wiki/Logit-normal_distribution">Logit-normal分布</a>. 逻辑正态分布: 若<span class="math inline">\(Y\sim N(\mu, \Sigma)\)</span>, 则称<span class="math inline">\(X=\mathcal{P}(Y)\)</span>为逻辑正态(Logit-normal)分布, 其中<span class="math inline">\(\mathcal{P}()\)</span>为逻辑函数. 下面来看这两个分布的异同:</p>
-<ul>
-<li>与狄利克雷分布相比, 逻辑正态分布能捕捉<span class="math inline">\(\theta_d\)</span>之间的相关性, 因而更受欢迎.</li>
-<li>虽然任何参数<span class="math inline">\(\mu, \Sigma, \alpha\)</span>的选择都不能让两个的密度函数相等, 但通过最小化<span class="math inline">\(\mathcal{KL}\)</span>散度的方式来让逻辑正态分布去逼近狄利克雷分布的方式, 即最小化<span class="math display">\[\mathcal{KL}(p, q)=\int p(x\mid \alpha)\log\frac{p(x\mid\alpha)}{q(x\mid\mu, \Sigma)}dx\]</span>可以得到关于<span class="math inline">\(\alpha\)</span>的参数<span class="math inline">\(\mu,\Sigma\)</span>在<span class="math inline">\(\mathcal{KL}\)</span>散度意义下的最优选择, 详见<a href="https://en.wikipedia.org/wiki/Logit-normal_distribution">维基百科</a>, 这里要说明的是, 当<span class="math inline">\(\alpha\)</span>的每个分量都趋于无穷, <span class="math inline">\(p(x\mid \alpha)\to q(x\mid\mu, \Sigma)\)</span>, 也就是说<span class="math inline">\(\alpha\)</span>很大时两者可以变得非常靠近.</li>
-</ul>
-<h3 id="dynamic-topic-models">Dynamic Topic Models</h3>
-<p>此外还有动态主题模型, 见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.62.2783&amp;rep=rep1&amp;type=pdf">这篇文章</a></p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>隐变量模型</tag>
-        <tag>LDA模型</tag>
-        <tag>Dirichlet分布</tag>
       </tags>
   </entry>
   <entry>
@@ -901,25 +815,89 @@
       </tags>
   </entry>
   <entry>
-    <title>Python食用记录</title>
-    <url>/2018/04/19/Python%E9%A3%9F%E7%94%A8%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<p>前言:记录使用Python中一些有意思的事情. <span id="more"></span></p>
-<h2 id="python读取.data数据占用的内存">Python读取.data数据占用的内存</h2>
-<h3 id="记录">2018/4/19记录</h3>
-<p>昨天是腾讯广告算法大赛第一天,本咸鱼本着试水的心态下载了数据集,数据大小如下: <img src="/pictures/Python/%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F.png" /> 其中最大的文件userFeature.data有4075MB,用Sublime Text3打开,发现其占用了7914MB大小的内存,这和2倍大小的内存原则完全一致: <img src="/pictures/Python/%E6%8E%A7%E5%88%B6%E9%9D%A2%E6%9D%BF.png" /> 尝试执行以下Python代码读取该.data文件,代码参考了<a href="https://github.com/YouChouNoBB/2018-tencent-ad-competition-baseline/blob/master/baseline.py">这个baseline</a>: <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> gc</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getdata</span>():</span></span><br><span class="line">    time1 = time.time()</span><br><span class="line">    homedir = os.getcwd()</span><br><span class="line">    adFeature = pd.read_csv(homedir + <span class="string">&#x27;\\data\\adFeature.csv&#x27;</span>) <span class="comment">#7KB</span></span><br><span class="line">    test1 = pd.read_csv(homedir + <span class="string">&#x27;\\data\\test1.csv&#x27;</span>)<span class="comment"># 29MB</span></span><br><span class="line">    train = pd.read_csv(homedir + <span class="string">&#x27;\\data\\train.csv&#x27;</span>) <span class="comment"># 140MB</span></span><br><span class="line">    <span class="keyword">if</span> os.path.exists(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_11.csv&#x27;</span>):</span><br><span class="line">        userFeature = pd.read_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_0.csv&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;read one million&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">11</span>):</span><br><span class="line">            userFeature = userFeature.append(pd.read_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_&#x27;</span> + <span class="built_in">str</span>(i+<span class="number">1</span>) + <span class="string">&#x27;.csv&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;read one million&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        userFeature_list = []</span><br><span class="line">        userFeature = []</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(homedir + <span class="string">&#x27;\\data\\userFeature.data&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f: <span class="comment"># 4173MB</span></span><br><span class="line">            <span class="keyword">for</span> i, line <span class="keyword">in</span> <span class="built_in">enumerate</span>(f):</span><br><span class="line">                line = line.strip().split(<span class="string">&#x27;|&#x27;</span>)</span><br><span class="line">                userFeature_dict = &#123;&#125;</span><br><span class="line">                <span class="keyword">for</span> each <span class="keyword">in</span> line:</span><br><span class="line">                    each_list = each.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">                    userFeature_dict[each_list[<span class="number">0</span>]] = <span class="string">&#x27; &#x27;</span>.join(each_list[<span class="number">1</span>:])</span><br><span class="line">                userFeature_list.append(userFeature_dict)</span><br><span class="line">                <span class="keyword">if</span> i % <span class="number">100000</span> == <span class="number">0</span>:</span><br><span class="line">                    <span class="built_in">print</span>(i)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">11</span>):</span><br><span class="line">            userFeature_temp = pd.DataFrame(userFeature_list[i*<span class="number">1000000</span>:(i+<span class="number">1</span>)*<span class="number">1000000</span>])</span><br><span class="line">            userFeature_temp.to_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_&#x27;</span> + <span class="built_in">str</span>(i) + <span class="string">&#x27;.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;save one million&quot;</span>)</span><br><span class="line">            <span class="keyword">del</span> userFeature_temp</span><br><span class="line">            gc.collect()</span><br><span class="line">        userFeature_temp = pd.DataFrame(userFeature_list[<span class="number">11000000</span>:])</span><br><span class="line">        userFeature_temp.to_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_11.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;save as csv successfully&quot;</span>)</span><br><span class="line">        <span class="keyword">del</span> userFeature_temp</span><br><span class="line">        gc.collect()</span><br><span class="line">    time2 = time.time()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;get data cost&quot;</span>,time2 - time1,<span class="string">&quot;s&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> adFeature, test1, train, userFeature</span><br><span class="line"></span><br><span class="line">adFeature, test1, train, userFeature = getdata()</span><br></pre></td></tr></table></figure> 第一次执行上述代码,即逐行读取.data数据,每100w条数据转存DataFrame性数据,执行过程中到440w左右的数据量会导致内存占用率达到95%,12G左右的量时就不会上涨,猜测是内存保护机制,并且注意到固态盘C剩余空间慢慢减少. 执行到with open()函数结束,将userFeature_list转为DataFrame型数据之前,此时内存占用12308MB约为12G: <img src="/pictures/Python/%E6%8E%A7%E5%88%B6%E9%9D%A2%E6%9D%BF2.png" /> 外加征用了固态盘C的13.3G的容量,(征用前剩26.2G,征用后剩12.9G): <img src="/pictures/Python/C_1.png" /> <img src="/pictures/Python/C_2.png" /> 所以4G大小的数据用Python导入一共会产生25.3G的内存占用.(Why? :) ) 执行以下代码会返回此时局部变量占用空间大小:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">locals</span>().keys()</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">locals</span>().keys():</span><br><span class="line">    <span class="built_in">print</span>(x, getsizeof(<span class="built_in">locals</span>()[x]))</span><br></pre></td></tr></table></figure>
-<p>发现占用最大的就是userFeature_list,大概10.9G的样子.(So why 25.3G? :) )此时若是把想把userFeature_list转为DataFrame型数据则会抛出MemoryError,故只能分批次转DataFrame并保存为csv,最后在执行一遍会把csv文件读入:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">11</span>):</span><br><span class="line">    userFeature_temp = pd.DataFrame(userFeature_list[i*<span class="number">1000000</span>:(i+<span class="number">1</span>)*<span class="number">1000000</span>])</span><br><span class="line">    userFeature_temp.to_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_&#x27;</span> + <span class="built_in">str</span>(i) + <span class="string">&#x27;.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;save one million&quot;</span>)</span><br><span class="line">    <span class="keyword">del</span> userFeature_temp</span><br><span class="line">    gc.collect()</span><br><span class="line">userFeature_temp = pd.DataFrame(userFeature_list[<span class="number">11000000</span>:])</span><br><span class="line">userFeature_temp.to_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_11.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;save as csv successfully&quot;</span>)</span><br><span class="line"><span class="keyword">del</span> userFeature_temp</span><br><span class="line">gc.collect()</span><br></pre></td></tr></table></figure>
-<p>第一次执行结果图如下: <img src="/pictures/Python/firsttime.png" /> 第二次执行因为已经有了csv文件,所以直接读入csv就好,执行结果图如下: <img src="/pictures/Python/second_time.png" /></p>
-<h3 id="记录-1">2018/5/25记录</h3>
-<p>此时初赛已经结束了,最好成绩为0.745764,没能进复赛. 初赛阶段都结束时才发现一种流式逐行读取数据,填充缺失数据为-1,逐行保存为csv文件的方法,特此补充:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getdata</span>():</span></span><br><span class="line">    time1 = time.time()</span><br><span class="line">    homedir = os.getcwd()</span><br><span class="line">    adFeature = pd.read_csv(homedir + <span class="string">&#x27;\\data\\adFeature.csv&#x27;</span>) <span class="comment">#7KB</span></span><br><span class="line">    test1 = pd.read_csv(homedir + <span class="string">&#x27;\\data\\test1.csv&#x27;</span>)<span class="comment"># 29MB</span></span><br><span class="line">    train = pd.read_csv(homedir + <span class="string">&#x27;\\data\\train.csv&#x27;</span>) <span class="comment"># 140MB</span></span><br><span class="line">    <span class="keyword">if</span> os.path.exists(homedir + <span class="string">&#x27;\\data\\userFeature.csv&#x27;</span>):</span><br><span class="line">        userFeature = pd.read_csv(homedir + <span class="string">&#x27;\\data\\userFeature.csv&#x27;</span>, sep=<span class="string">&#x27;delimiter&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        userFeature = []</span><br><span class="line">        f_csv = <span class="built_in">open</span>(homedir + <span class="string">&#x27;\\data\\userFeature.csv&#x27;</span>, <span class="string">&quot;w&quot;</span>)</span><br><span class="line">        name = <span class="string">&#x27;uid,age,gender,marriageStatus,education,consumptionAbility,LBS,interest1,interest2,interest5,kw1,kw2,topic1,topic2,ct,os,carrier&#x27;</span></span><br><span class="line">        f_csv.write(name)</span><br><span class="line">        names = name.split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(homedir + <span class="string">&#x27;\\data\\userFeature.data&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f_data: <span class="comment"># 4173MB</span></span><br><span class="line">            <span class="keyword">for</span> i, line <span class="keyword">in</span> <span class="built_in">enumerate</span>(f_data):</span><br><span class="line">                line = line.strip().split(<span class="string">&#x27;|&#x27;</span>)</span><br><span class="line">                userFeature_dict = <span class="built_in">dict</span>.fromkeys(names)</span><br><span class="line">                <span class="keyword">for</span> each <span class="keyword">in</span> line:</span><br><span class="line">                    each_list = each.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">                    userFeature_dict[each_list[<span class="number">0</span>]] = <span class="string">&#x27; &#x27;</span>.join(each_list[<span class="number">1</span>:])</span><br><span class="line">                value = []</span><br><span class="line">                <span class="keyword">for</span> (k, v) <span class="keyword">in</span> userFeature_dict.items():</span><br><span class="line">                    <span class="keyword">if</span> v == <span class="literal">None</span>:</span><br><span class="line">                        value.append(<span class="string">&#x27;-1&#x27;</span>)</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        value.append(v)</span><br><span class="line">                value = <span class="string">&#x27;\n&#x27;</span> + <span class="string">&#x27;,&#x27;</span>.join(value)</span><br><span class="line">                <span class="keyword">if</span> i % <span class="number">100000</span> == <span class="number">0</span>:</span><br><span class="line">                    <span class="built_in">print</span>(i)</span><br><span class="line">                f_csv.write(value)</span><br><span class="line">        f_csv.close()</span><br><span class="line">        userFeature = pd.read_csv(homedir + <span class="string">&#x27;\\data\\userFeature.csv&#x27;</span>, sep=<span class="string">&#x27;delimiter&#x27;</span>)</span><br><span class="line">    time2 = time.time()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;get data cost&quot;</span>,time2 - time1,<span class="string">&quot;s&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> adFeature, test1, train, userFeature</span><br><span class="line"></span><br><span class="line">adFeature, test1, train, userFeature = getdata()</span><br></pre></td></tr></table></figure>
+    <title>Latent Dirichlet Allocation</title>
+    <url>/2018/10/16/Latent-Dirichlet-Allocation/</url>
+    <content><![CDATA[<p>前言: 本文主要是关于Latent Dirichlet Allocation模型, 这是一类能够从文档集合中挖掘出抽象主题的模型, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3. <span id="more"></span></p>
+<hr />
+<h2 id="隐狄利克雷分配模型">隐狄利克雷分配模型</h2>
+<p>以推荐系统为例, 假如我读过东野圭吾的新参者, 我希望推荐系统能把白夜行也推荐给我. 在自然语言处理(Natural Language Processing: NLP)中, 主题模型(Topic Model)是一类能够从文档集合中挖掘出抽象主题的模型, 其中用的最多的大概就是隐狄利克雷分配模型(Latent Dirichlet Allocation: LDA). 比方说给定50个主题数量, 其想法是对每一篇文档给出一个关于50个主题数量的分布, 例如新参者的主题是70%的推理类, 10%的叉叉类等, 因此如果能得到每篇文档的主题分布, 就能给出书之间的相似度.</p>
+<p>下面我们来看什么是LDA模型, 并给出一些记号. 假设有文档<span class="math inline">\(D\)</span>篇, 其中第<span class="math inline">\(d\)</span>篇文档有<span class="math inline">\(N_d\)</span>个单词, 给定主题数量<span class="math inline">\(T\)</span>, 记第<span class="math inline">\(d\)</span>篇文档的主题为<span class="math inline">\(\theta_d\)</span>, 显然<span class="math inline">\(\theta_d\)</span>为一个<span class="math inline">\(T\)</span>维向量, <span class="math inline">\(z_{dn}\)</span>是第<span class="math inline">\(d\)</span>篇文档的第<span class="math inline">\(n\)</span>个单词的主题分布, <span class="math inline">\(w_{dn}\)</span>是第<span class="math inline">\(d\)</span>篇文档的第<span class="math inline">\(n\)</span>个单词本身(一般给长度为<span class="math inline">\(\left|w_{set}\right|\)</span>定词汇表<span class="math inline">\(w_{set}\)</span>后用一个长度为<span class="math inline">\(\left|w_{set}\right|\)</span>的向量去表示).</p>
+<p>给定主题数量<span class="math inline">\(T=50\)</span>, 目前我们有了三个关键要素:</p>
+<ul>
+<li>每篇文档的主题分布:<span class="math inline">\(\theta\)</span></li>
+<li>每篇文档每个单词的主题分布:<span class="math inline">\(z\)</span></li>
+<li>每篇文档每个单词:<span class="math inline">\(w\)</span></li>
+</ul>
+<p>遵循一些直观的假象, 我们分三步尝试去构造模型:</p>
+<ul>
+<li>首先要有每篇文档的主题<span class="math inline">\(\theta_d\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>.</li>
+<li>简单假设每个单词的主题<span class="math inline">\(z_{dn}\)</span>与所在文档的主题<span class="math inline">\(\theta_d\)</span>一致, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
+<li>每个单词确定了主题之后就能按照一定的概率分布从主题中选择单词出来. 比方说给定词汇表<span class="math inline">\(w_{set}\)</span>, 其包含<span class="math inline">\(\left|w_{set}\right|\)</span>个单词, 假设第<span class="math inline">\(t\)</span>主题有一个单词表上的概率分布<span class="math inline">\(\varphi_{\cdot t}\)</span>, 显然<span class="math inline">\(\varphi_{\cdot t}\)</span>为<span class="math inline">\(\left|w_{set}\right|\)</span>维列向量, 那么<span class="math inline">\(\varphi\)</span>为<span class="math inline">\(\left|w_{set}\right|\times T\)</span>的未知参数矩阵.</li>
+</ul>
+<p>将上述三要素视为随机变量, 此时可以写出三者的联合分布函数: <span class="math display">\[P(W, Z, \Theta)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>显然文档主题<span class="math inline">\(\theta_d\)</span>和单词主题<span class="math inline">\(z_{dn}\)</span>是无法观测得到的, 因此作为LDA模型中的L(Lantent), D(Dirichlet)则是指随机变量<span class="math inline">\(\theta_d\)</span>满足Dirichlet分布:</p>
+<ul>
+<li>假定文章的来源一致, 即<span class="math inline">\(\theta_d\)</span>独立同分布: 服从<a href="https://en.wikipedia.org/wiki/Dirichlet_distribution">Dirichlet分布</a><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(\alpha\)</span>为<span class="math inline">\(T\)</span>维列向量; <span class="math inline">\(B(\alpha)\)</span>为多元Beta函数, 可表示为<span class="math inline">\(B(\alpha)=\frac{\prod_{i=1}^{T}\Gamma(\alpha_i)}{\Gamma(\sum_{i=1}^{T}\alpha_i)}\)</span>, <span class="math inline">\(\Gamma\)</span>为<a href="https://en.wikipedia.org/wiki/Gamma_function">Gamma函数</a>, 详见维基百科.</li>
+<li>值得注意的是, <span class="math inline">\(\alpha\)</span>增大能导致每篇文档的话题数量变多(关于这点可以参考维基百科上的一张<a href="https://upload.wikimedia.org/wikipedia/commons/5/54/LogDirichletDensity-alpha_0.3_to_alpha_2.0.gif">动图</a>), 所以另一种思路是把<span class="math inline">\(\alpha\)</span>视为超参去调.</li>
+<li>假定每个单词的主题<span class="math inline">\(z_{dn}\)</span>与所在文档的主题<span class="math inline">\(\theta_d\)</span>一致, 即<span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 写得直观些, 即<span class="math inline">\(P(z_{dn}=t\mid\theta_d)=\theta_{dt}\)</span>, <span class="math inline">\(\theta_{dt}\)</span>表示<span class="math inline">\(\theta_d\)</span>的第<span class="math inline">\(t\)</span>个分量.</li>
+<li><span class="math inline">\(T\)</span>个主题与词汇表<span class="math inline">\(w_{set}\)</span>的分布记为<span class="math inline">\(\phi\)</span>, 这里的<span class="math inline">\(\phi\)</span>为<span class="math inline">\(\left|w_{set}\right|\times T\)</span>的矩阵. 即<span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{z_{dn}w_{dn}}\)</span>, 写得直观些, <span class="math inline">\(v\)</span>为不超过<span class="math inline">\(\left|w_{set}\right|\)</span>的正整数, <span class="math inline">\(P(w_{dn}=v\mid z_{dn})=\varphi_{v z_{dn}}\)</span>.</li>
+</ul>
+<p>若用大小字母表示小写字母的总和, 参数仍简记为小写字母, 我们现有五个关键要素: <span class="math inline">\(W\)</span>为数据集; <span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>为未知参数.</p>
+板表示法(plate notation)是一种表示在图形模型中重复的变量的方法, 下面采用板表示法的贝叶斯网络表达上述模型:
+<div data-align="center">
+<img src="/pictures/bayes in ml/LDA_plate_model_1.png" width="60%"/>
+</div>
+<p>这里的虚线框右下角的字母表示框中的部分应该重复画字母次, 所以板表示法的好处就很明显:</p>
+<ul>
+<li>简化图模型,更美观.</li>
+<li>同时模型表达式变得一模了然.</li>
+</ul>
+<p>最后把该LDA模型用较为简练的语言再写一遍(可以对照图去写): <span class="math display">\[P(W, Z, \Theta\mid \varphi, \alpha)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>其中:</p>
+<ul>
+<li><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>, <span class="math inline">\(T\)</span>给定.</li>
+<li><span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
+<li><span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{w_{dn}z_{dn}}\)</span>, 给定词汇表<span class="math inline">\(w_{set}\)</span>, <span class="math inline">\(w_{dn}\in\{1,2,...,\left|w_{set}\right|\}\)</span>.</li>
+</ul>
+<p>大小字母表示小写字母的总和, 参数仍简记为小写字母, 总结如下:</p>
+<ul>
+<li>未知:<span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>未知参数.</li>
+<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
+<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
+</ul>
+<p>这个模型因为属于隐变量模型, 故可用<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>求解: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:</p>
+<ul>
+<li>E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>.</li>
+<li>M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
+</ul>
+<p>若后验<span class="math inline">\(P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>难以处理, 则可以用一些近似方法取求得期望, 如<a href="https://msgsxj.cn/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/">变分贝叶斯</a>, <a href="https://msgsxj.cn/2018/09/28/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%96%B9%E6%B3%95/">Laplace近似方法</a>, <a href="https://msgsxj.cn/2018/10/02/%E6%9C%9F%E6%9C%9B%E4%BC%A0%E6%92%AD/">期望传播方法</a>, <a href="https://msgsxj.cn/2018/09/18/MCMC/">MCMC方法</a>等</p>
+<hr />
+<h2 id="lda模型的拓展">LDA模型的拓展</h2>
+<h3 id="phi"><span class="math inline">\(\Phi\)</span></h3>
+若把未知参数<span class="math inline">\(\varphi\)</span>视为随机变量, 重新记为<span class="math inline">\(\Phi\)</span>, 假定<span class="math inline">\(\Phi_{i\cdot}\sim Dir(\beta_i)\)</span>, 即假定第<span class="math inline">\(i\)</span>个单词的主题分布满足参数为<span class="math inline">\(\beta_i\)</span>的狄利克雷分布(回忆开头狄利克雷分布的特性), 这里假定<span class="math inline">\(i\)</span>的取值集合<span class="math inline">\(w_{set}\)</span>的大小为<span class="math inline">\(S\)</span>, 上述修改后的模型用板表示法表示如下:
+<div data-align="center">
+<img src="/pictures/bayes in ml/LDA_plate_model_2.png" width="60%"/>
+</div>
+<p><span class="math display">\[P(W, Z, \Theta, \Phi\mid  \alpha, \beta)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}\prod_{i=1}^{S}P(z_{dn}=i\mid\theta_d)P(w_{dn}\mid z_{dn}=i, \Phi_{i\cdot})P(\Phi_{i\cdot})\]</span>与上文的模型相比只是把参数<span class="math inline">\(\varphi\)</span>视为随机变量<span class="math inline">\(\Phi\)</span>, 且<span class="math inline">\(\Phi_{i\cdot}\sim Dir(\beta_i)\)</span>, 其余不变. 总结如下:</p>
+<ul>
+<li>未知:<span class="math inline">\(Z, \Theta, \Phi\)</span>为隐变量; $ , $为未知参数.</li>
+<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
+<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
+</ul>
+<h3 id="logit-normal-distribution">Logit-normal distribution</h3>
+<p><span class="math inline">\(\theta_d\sim Dir(\alpha)\)</span>的一个良好替代是假定<span class="math inline">\(\theta_d\sim \mathcal{P}(N(\mu, \Sigma))\)</span>, 即满足<a href="https://en.wikipedia.org/wiki/Logit-normal_distribution">Logit-normal分布</a>. 逻辑正态分布: 若<span class="math inline">\(Y\sim N(\mu, \Sigma)\)</span>, 则称<span class="math inline">\(X=\mathcal{P}(Y)\)</span>为逻辑正态(Logit-normal)分布, 其中<span class="math inline">\(\mathcal{P}()\)</span>为逻辑函数. 下面来看这两个分布的异同:</p>
+<ul>
+<li>与狄利克雷分布相比, 逻辑正态分布能捕捉<span class="math inline">\(\theta_d\)</span>之间的相关性, 因而更受欢迎.</li>
+<li>虽然任何参数<span class="math inline">\(\mu, \Sigma, \alpha\)</span>的选择都不能让两个的密度函数相等, 但通过最小化<span class="math inline">\(\mathcal{KL}\)</span>散度的方式来让逻辑正态分布去逼近狄利克雷分布的方式, 即最小化<span class="math display">\[\mathcal{KL}(p, q)=\int p(x\mid \alpha)\log\frac{p(x\mid\alpha)}{q(x\mid\mu, \Sigma)}dx\]</span>可以得到关于<span class="math inline">\(\alpha\)</span>的参数<span class="math inline">\(\mu,\Sigma\)</span>在<span class="math inline">\(\mathcal{KL}\)</span>散度意义下的最优选择, 详见<a href="https://en.wikipedia.org/wiki/Logit-normal_distribution">维基百科</a>, 这里要说明的是, 当<span class="math inline">\(\alpha\)</span>的每个分量都趋于无穷, <span class="math inline">\(p(x\mid \alpha)\to q(x\mid\mu, \Sigma)\)</span>, 也就是说<span class="math inline">\(\alpha\)</span>很大时两者可以变得非常靠近.</li>
+</ul>
+<h3 id="dynamic-topic-models">Dynamic Topic Models</h3>
+<p>此外还有动态主题模型, 见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.62.2783&amp;rep=rep1&amp;type=pdf">这篇文章</a></p>
 ]]></content>
       <categories>
-        <category>Python</category>
+        <category>机器学习</category>
       </categories>
       <tags>
-        <tag>Python</tag>
+        <tag>隐变量模型</tag>
+        <tag>LDA模型</tag>
+        <tag>Dirichlet分布</tag>
       </tags>
   </entry>
   <entry>
@@ -1015,6 +993,28 @@ t_d^{k+1}&amp;\sim P(T_d\mid T_1=t_1^{k}, T_2=t_2^{k},..., T_{d-1}=t_{d-1}^{k}, 
         <tag>MCMC</tag>
         <tag>Gibbs</tag>
         <tag>Metropolis–Hastings算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python食用记录</title>
+    <url>/2018/04/19/Python%E9%A3%9F%E7%94%A8%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<p>前言:记录使用Python中一些有意思的事情. <span id="more"></span></p>
+<h2 id="python读取.data数据占用的内存">Python读取.data数据占用的内存</h2>
+<h3 id="记录">2018/4/19记录</h3>
+<p>昨天是腾讯广告算法大赛第一天,本咸鱼本着试水的心态下载了数据集,数据大小如下: <img src="/pictures/Python/%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F.png" /> 其中最大的文件userFeature.data有4075MB,用Sublime Text3打开,发现其占用了7914MB大小的内存,这和2倍大小的内存原则完全一致: <img src="/pictures/Python/%E6%8E%A7%E5%88%B6%E9%9D%A2%E6%9D%BF.png" /> 尝试执行以下Python代码读取该.data文件,代码参考了<a href="https://github.com/YouChouNoBB/2018-tencent-ad-competition-baseline/blob/master/baseline.py">这个baseline</a>: <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> gc</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getdata</span>():</span></span><br><span class="line">    time1 = time.time()</span><br><span class="line">    homedir = os.getcwd()</span><br><span class="line">    adFeature = pd.read_csv(homedir + <span class="string">&#x27;\\data\\adFeature.csv&#x27;</span>) <span class="comment">#7KB</span></span><br><span class="line">    test1 = pd.read_csv(homedir + <span class="string">&#x27;\\data\\test1.csv&#x27;</span>)<span class="comment"># 29MB</span></span><br><span class="line">    train = pd.read_csv(homedir + <span class="string">&#x27;\\data\\train.csv&#x27;</span>) <span class="comment"># 140MB</span></span><br><span class="line">    <span class="keyword">if</span> os.path.exists(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_11.csv&#x27;</span>):</span><br><span class="line">        userFeature = pd.read_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_0.csv&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;read one million&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">11</span>):</span><br><span class="line">            userFeature = userFeature.append(pd.read_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_&#x27;</span> + <span class="built_in">str</span>(i+<span class="number">1</span>) + <span class="string">&#x27;.csv&#x27;</span>))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;read one million&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        userFeature_list = []</span><br><span class="line">        userFeature = []</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(homedir + <span class="string">&#x27;\\data\\userFeature.data&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f: <span class="comment"># 4173MB</span></span><br><span class="line">            <span class="keyword">for</span> i, line <span class="keyword">in</span> <span class="built_in">enumerate</span>(f):</span><br><span class="line">                line = line.strip().split(<span class="string">&#x27;|&#x27;</span>)</span><br><span class="line">                userFeature_dict = &#123;&#125;</span><br><span class="line">                <span class="keyword">for</span> each <span class="keyword">in</span> line:</span><br><span class="line">                    each_list = each.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">                    userFeature_dict[each_list[<span class="number">0</span>]] = <span class="string">&#x27; &#x27;</span>.join(each_list[<span class="number">1</span>:])</span><br><span class="line">                userFeature_list.append(userFeature_dict)</span><br><span class="line">                <span class="keyword">if</span> i % <span class="number">100000</span> == <span class="number">0</span>:</span><br><span class="line">                    <span class="built_in">print</span>(i)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">11</span>):</span><br><span class="line">            userFeature_temp = pd.DataFrame(userFeature_list[i*<span class="number">1000000</span>:(i+<span class="number">1</span>)*<span class="number">1000000</span>])</span><br><span class="line">            userFeature_temp.to_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_&#x27;</span> + <span class="built_in">str</span>(i) + <span class="string">&#x27;.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;save one million&quot;</span>)</span><br><span class="line">            <span class="keyword">del</span> userFeature_temp</span><br><span class="line">            gc.collect()</span><br><span class="line">        userFeature_temp = pd.DataFrame(userFeature_list[<span class="number">11000000</span>:])</span><br><span class="line">        userFeature_temp.to_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_11.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;save as csv successfully&quot;</span>)</span><br><span class="line">        <span class="keyword">del</span> userFeature_temp</span><br><span class="line">        gc.collect()</span><br><span class="line">    time2 = time.time()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;get data cost&quot;</span>,time2 - time1,<span class="string">&quot;s&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> adFeature, test1, train, userFeature</span><br><span class="line"></span><br><span class="line">adFeature, test1, train, userFeature = getdata()</span><br></pre></td></tr></table></figure> 第一次执行上述代码,即逐行读取.data数据,每100w条数据转存DataFrame性数据,执行过程中到440w左右的数据量会导致内存占用率达到95%,12G左右的量时就不会上涨,猜测是内存保护机制,并且注意到固态盘C剩余空间慢慢减少. 执行到with open()函数结束,将userFeature_list转为DataFrame型数据之前,此时内存占用12308MB约为12G: <img src="/pictures/Python/%E6%8E%A7%E5%88%B6%E9%9D%A2%E6%9D%BF2.png" /> 外加征用了固态盘C的13.3G的容量,(征用前剩26.2G,征用后剩12.9G): <img src="/pictures/Python/C_1.png" /> <img src="/pictures/Python/C_2.png" /> 所以4G大小的数据用Python导入一共会产生25.3G的内存占用.(Why? :) ) 执行以下代码会返回此时局部变量占用空间大小:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">locals</span>().keys()</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">locals</span>().keys():</span><br><span class="line">    <span class="built_in">print</span>(x, getsizeof(<span class="built_in">locals</span>()[x]))</span><br></pre></td></tr></table></figure>
+<p>发现占用最大的就是userFeature_list,大概10.9G的样子.(So why 25.3G? :) )此时若是把想把userFeature_list转为DataFrame型数据则会抛出MemoryError,故只能分批次转DataFrame并保存为csv,最后在执行一遍会把csv文件读入:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">11</span>):</span><br><span class="line">    userFeature_temp = pd.DataFrame(userFeature_list[i*<span class="number">1000000</span>:(i+<span class="number">1</span>)*<span class="number">1000000</span>])</span><br><span class="line">    userFeature_temp.to_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_&#x27;</span> + <span class="built_in">str</span>(i) + <span class="string">&#x27;.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;save one million&quot;</span>)</span><br><span class="line">    <span class="keyword">del</span> userFeature_temp</span><br><span class="line">    gc.collect()</span><br><span class="line">userFeature_temp = pd.DataFrame(userFeature_list[<span class="number">11000000</span>:])</span><br><span class="line">userFeature_temp.to_csv(homedir + <span class="string">&#x27;\\data\\userFeature_csv\\userFeature_11.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;save as csv successfully&quot;</span>)</span><br><span class="line"><span class="keyword">del</span> userFeature_temp</span><br><span class="line">gc.collect()</span><br></pre></td></tr></table></figure>
+<p>第一次执行结果图如下: <img src="/pictures/Python/firsttime.png" /> 第二次执行因为已经有了csv文件,所以直接读入csv就好,执行结果图如下: <img src="/pictures/Python/second_time.png" /></p>
+<h3 id="记录-1">2018/5/25记录</h3>
+<p>此时初赛已经结束了,最好成绩为0.745764,没能进复赛. 初赛阶段都结束时才发现一种流式逐行读取数据,填充缺失数据为-1,逐行保存为csv文件的方法,特此补充:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getdata</span>():</span></span><br><span class="line">    time1 = time.time()</span><br><span class="line">    homedir = os.getcwd()</span><br><span class="line">    adFeature = pd.read_csv(homedir + <span class="string">&#x27;\\data\\adFeature.csv&#x27;</span>) <span class="comment">#7KB</span></span><br><span class="line">    test1 = pd.read_csv(homedir + <span class="string">&#x27;\\data\\test1.csv&#x27;</span>)<span class="comment"># 29MB</span></span><br><span class="line">    train = pd.read_csv(homedir + <span class="string">&#x27;\\data\\train.csv&#x27;</span>) <span class="comment"># 140MB</span></span><br><span class="line">    <span class="keyword">if</span> os.path.exists(homedir + <span class="string">&#x27;\\data\\userFeature.csv&#x27;</span>):</span><br><span class="line">        userFeature = pd.read_csv(homedir + <span class="string">&#x27;\\data\\userFeature.csv&#x27;</span>, sep=<span class="string">&#x27;delimiter&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        userFeature = []</span><br><span class="line">        f_csv = <span class="built_in">open</span>(homedir + <span class="string">&#x27;\\data\\userFeature.csv&#x27;</span>, <span class="string">&quot;w&quot;</span>)</span><br><span class="line">        name = <span class="string">&#x27;uid,age,gender,marriageStatus,education,consumptionAbility,LBS,interest1,interest2,interest5,kw1,kw2,topic1,topic2,ct,os,carrier&#x27;</span></span><br><span class="line">        f_csv.write(name)</span><br><span class="line">        names = name.split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(homedir + <span class="string">&#x27;\\data\\userFeature.data&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f_data: <span class="comment"># 4173MB</span></span><br><span class="line">            <span class="keyword">for</span> i, line <span class="keyword">in</span> <span class="built_in">enumerate</span>(f_data):</span><br><span class="line">                line = line.strip().split(<span class="string">&#x27;|&#x27;</span>)</span><br><span class="line">                userFeature_dict = <span class="built_in">dict</span>.fromkeys(names)</span><br><span class="line">                <span class="keyword">for</span> each <span class="keyword">in</span> line:</span><br><span class="line">                    each_list = each.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">                    userFeature_dict[each_list[<span class="number">0</span>]] = <span class="string">&#x27; &#x27;</span>.join(each_list[<span class="number">1</span>:])</span><br><span class="line">                value = []</span><br><span class="line">                <span class="keyword">for</span> (k, v) <span class="keyword">in</span> userFeature_dict.items():</span><br><span class="line">                    <span class="keyword">if</span> v == <span class="literal">None</span>:</span><br><span class="line">                        value.append(<span class="string">&#x27;-1&#x27;</span>)</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        value.append(v)</span><br><span class="line">                value = <span class="string">&#x27;\n&#x27;</span> + <span class="string">&#x27;,&#x27;</span>.join(value)</span><br><span class="line">                <span class="keyword">if</span> i % <span class="number">100000</span> == <span class="number">0</span>:</span><br><span class="line">                    <span class="built_in">print</span>(i)</span><br><span class="line">                f_csv.write(value)</span><br><span class="line">        f_csv.close()</span><br><span class="line">        userFeature = pd.read_csv(homedir + <span class="string">&#x27;\\data\\userFeature.csv&#x27;</span>, sep=<span class="string">&#x27;delimiter&#x27;</span>)</span><br><span class="line">    time2 = time.time()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;get data cost&quot;</span>,time2 - time1,<span class="string">&quot;s&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> adFeature, test1, train, userFeature</span><br><span class="line"></span><br><span class="line">adFeature, test1, train, userFeature = getdata()</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1159,6 +1159,51 @@ t_d^{k+1}&amp;\sim P(T_d\mid T_1=t_1^{k}, T_2=t_2^{k},..., T_{d-1}=t_{d-1}^{k}, 
       </categories>
       <tags>
         <tag>Trade-Off</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu16.04下便捷安装tensorflow</title>
+    <url>/2018/12/23/Ubuntu1604%E4%B8%8B%E4%BE%BF%E6%8D%B7%E5%AE%89%E8%A3%85tensorflow/</url>
+    <content><![CDATA[<p>前言: 这篇博文记载了Ubuntu16.04下便捷安装tensorflow的方法. <span id="more"></span> 摸索了几天, 发现一种Ubuntu下便捷安装tensorflow的方法, 特此分享. 过程大致分为2步:</p>
+<ol type="1">
+<li>安装显卡驱动</li>
+<li>安装anaconda, 并conda一个新环境, 装入tensorflow</li>
+</ol>
+<h3 id="安装显卡驱动">安装显卡驱动</h3>
+ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-软件和更新-附加驱动-nvidia410-应用更改
+<div data-align="center">
+<img src="/pictures/Ubuntu/tensorflow/1.png" width="80%" />
+</div>
+安装完成后需要重启一次, 不出意外打开终端输入<code>nvidia-smi</code>就能看到下图:
+<div data-align="center">
+<img src="/pictures/Ubuntu/tensorflow/2.png" width="80%" />
+</div>
+<p>可以看到<code>cuda 10.0</code>(安装驱动会自动安装cuda?), 1066的显卡型号, 320MiB的显存占用, 43度的显卡温度, 9W的功耗等信息.</p>
+<h3 id="安装tensorflow">安装tensorflow</h3>
+首先是安装anaconda, 这个请移步<a href="https://www.anaconda.com/">官网</a>, 安装最新版本的即可; 接着<code>conda</code>一个新环境, 且包含最新版<code>tensorflow-gpu</code>, 这里笔者命名为<code>tf_gpu</code>
+<div data-align="center">
+<img src="/pictures/Ubuntu/tensorflow/3.png" width="80%" />
+</div>
+正常安装需要耗费一些时间, 这里笔者已经装过了, 进入这个环境后, 可以看到其默认安装了 <code>python 3.6.7</code>以及<code>tensorflow-gpu 1.12.0</code>
+<div data-align="center">
+<img src="/pictures/Ubuntu/tensorflow/4.png" width="80%" />
+</div>
+<h3 id="测试">测试</h3>
+进入python测试一下, 成功.
+<div data-align="center">
+<img src="/pictures/Ubuntu/tensorflow/5.png" width="80%" />
+</div>
+<div data-align="center">
+<img src="/pictures/Ubuntu/tensorflow/6.png" width="80%" />
+</div>
+]]></content>
+      <categories>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>tensorflow</tag>
+        <tag>cuda</tag>
       </tags>
   </entry>
   <entry>
@@ -1370,51 +1415,6 @@ t_d^{k+1}&amp;\sim P(T_d\mid T_1=t_1^{k}, T_2=t_2^{k},..., T_{d-1}=t_{d-1}^{k}, 
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu16.04下便捷安装tensorflow</title>
-    <url>/2018/12/23/Ubuntu1604%E4%B8%8B%E4%BE%BF%E6%8D%B7%E5%AE%89%E8%A3%85tensorflow/</url>
-    <content><![CDATA[<p>前言: 这篇博文记载了Ubuntu16.04下便捷安装tensorflow的方法. <span id="more"></span> 摸索了几天, 发现一种Ubuntu下便捷安装tensorflow的方法, 特此分享. 过程大致分为2步:</p>
-<ol type="1">
-<li>安装显卡驱动</li>
-<li>安装anaconda, 并conda一个新环境, 装入tensorflow</li>
-</ol>
-<h3 id="安装显卡驱动">安装显卡驱动</h3>
-ubuntu下最方便的安装显卡驱动的方式如下图所示, 系统设置-软件和更新-附加驱动-nvidia410-应用更改
-<div data-align="center">
-<img src="/pictures/Ubuntu/tensorflow/1.png" width="80%" />
-</div>
-安装完成后需要重启一次, 不出意外打开终端输入<code>nvidia-smi</code>就能看到下图:
-<div data-align="center">
-<img src="/pictures/Ubuntu/tensorflow/2.png" width="80%" />
-</div>
-<p>可以看到<code>cuda 10.0</code>(安装驱动会自动安装cuda?), 1066的显卡型号, 320MiB的显存占用, 43度的显卡温度, 9W的功耗等信息.</p>
-<h3 id="安装tensorflow">安装tensorflow</h3>
-首先是安装anaconda, 这个请移步<a href="https://www.anaconda.com/">官网</a>, 安装最新版本的即可; 接着<code>conda</code>一个新环境, 且包含最新版<code>tensorflow-gpu</code>, 这里笔者命名为<code>tf_gpu</code>
-<div data-align="center">
-<img src="/pictures/Ubuntu/tensorflow/3.png" width="80%" />
-</div>
-正常安装需要耗费一些时间, 这里笔者已经装过了, 进入这个环境后, 可以看到其默认安装了 <code>python 3.6.7</code>以及<code>tensorflow-gpu 1.12.0</code>
-<div data-align="center">
-<img src="/pictures/Ubuntu/tensorflow/4.png" width="80%" />
-</div>
-<h3 id="测试">测试</h3>
-进入python测试一下, 成功.
-<div data-align="center">
-<img src="/pictures/Ubuntu/tensorflow/5.png" width="80%" />
-</div>
-<div data-align="center">
-<img src="/pictures/Ubuntu/tensorflow/6.png" width="80%" />
-</div>
-]]></content>
-      <categories>
-        <category>Ubuntu</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>tensorflow</tag>
-        <tag>cuda</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>个人博客进化史</title>
     <url>/2018/03/24/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%BF%9B%E5%8C%96%E5%8F%B2/</url>
     <content><![CDATA[<p>前言:本文记录了本博客的进化史. <span id="more"></span></p>
@@ -1516,6 +1516,167 @@ cov(v_2,v_1)&amp;=cov(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_2,\
         <tag>特征向量</tag>
         <tag>ICA</tag>
         <tag>PCA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>变分贝叶斯方法</title>
+    <url>/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>前言:本文主要是关于变分贝叶斯方法, 这是一类用简单分布去逼近目标分布的方法, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3. <span id="more"></span></p>
+<hr />
+<p>本文主要是关于变分推断, 或者说<a href="https://en.wikipedia.org/wiki/Variational_Bayesian_methods">变分贝叶斯方法</a>, 它是一类用来计算难以计算积分的方法. 本文的定位是对EM算法的有益补充, 因此会结合EM算法去讲一讲什么是变分推断及平均场近似, 并得到EM算法的三种变体.</p>
+<p>关于EM算法可以参见我的另一篇博文<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>, 简单的说,EM算法是专门处理隐变量模型的算法. 下文我们会以隐狄利克雷分配模型(Latent Dirichlet Allocation: LDA)为例来说明本文的主角, 当然这是一个隐变量模型.</p>
+<hr />
+<h2 id="隐变量模型">隐变量模型</h2>
+<p><a href="https://en.wikipedia.org/wiki/Latent_variable_model">隐变量模型</a>, 隐变量模型含有未观测到值的变量, 且该隐变量解释了观测到的变量之间的相关性(<a href="https://en.wikipedia.org/wiki/Local_independence">局部独立性</a>), 简言之引进的隐变量不能没有用, 举个例子来说明这个性质(来自维基百科):</p>
+<table>
+<thead>
+<tr class="header">
+<th>本科生</th>
+<th>读过机器学习</th>
+<th>没读过机器学习</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>读过凸优化</strong></td>
+<td>260</td>
+<td>140</td>
+</tr>
+<tr class="even">
+<td><strong>没读过凸优化</strong></td>
+<td>240</td>
+<td>360</td>
+</tr>
+</tbody>
+</table>
+<p>容易看到读过机器学习的概率是<span class="math inline">\(\frac{500}{1000}=0.5\)</span>, 读过凸优化的概率是<span class="math inline">\(\frac{400}{1000}=0.4\)</span>, 但是两者都读过的概率是<span class="math inline">\(\frac{260}{1000}=0.26\)</span>, 不等于<span class="math inline">\(\frac{500}{1000}\times\frac{400}{1000}=0.2\)</span>, 因此并不独立. 若我们引进变量本科高年级生和本科低年级生:</p>
+<table>
+<thead>
+<tr class="header">
+<th>高年级/低年级</th>
+<th>读过机器学习</th>
+<th>没读过机器学习</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>读过凸优化</strong></td>
+<td>240/20</td>
+<td>60/80</td>
+</tr>
+<tr class="even">
+<td><strong>没读过凸优化</strong></td>
+<td>160/80</td>
+<td>40/320</td>
+</tr>
+</tbody>
+</table>
+<p>就会发现, 对高年级生<span class="math inline">\(\frac{400}{500}\times\frac{300}{500}=\frac{240}{500}\)</span>; 对低年级生<span class="math inline">\(\frac{100}{500}\times\frac{100}{500}=\frac{20}{500}\)</span>, 此时相关性已经被隐变量解释掉了.</p>
+<hr />
+<h2 id="隐狄利克雷分配模型">隐狄利克雷分配模型</h2>
+<p>下面举个隐变量模型的例子, 隐狄利克雷分配模型. 假如我读过东野圭吾的新参者, 我希望推荐系统能把白夜行也推荐给我. 这里直接给出模型的完整形式, 具体怎么来的请见博文<a href="https://msgsxj.cn/2018/10/16/Latent-Dirichlet-Allocation/">Latent Dirichlet Allocation</a>的第一节. <span class="math display">\[P(W, Z, \Theta\mid \varphi, \alpha)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>其中:</p>
+<ul>
+<li><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>, <span class="math inline">\(T\)</span>给定.</li>
+<li><span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
+<li><span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{w_{dn}z_{dn}}\)</span>, 给定词汇表<span class="math inline">\(w_{set}\)</span>, <span class="math inline">\(w_{dn}\in\{1,2,...,\left|w_{set}\right|\}\)</span>.</li>
+</ul>
+<p>大小字母表示小写字母的总和, 参数仍简记为小写字母, 总结如下:</p>
+<ul>
+<li>未知:<span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>未知参数.</li>
+<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
+<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
+</ul>
+<hr />
+<h2 id="变分贝叶斯方法">变分贝叶斯方法</h2>
+<h3 id="em算法">EM算法</h3>
+<p>下面尝试用4种方法来解决这个模型, 首先从我们最熟悉的EM算法开始(不熟悉的话可以参见我的另一篇博文<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>): EM算法的目标是极大化对数似然函数<span class="math inline">\(\log P(W\mid\varphi, \alpha)\)</span>, 且每一步迭代又给出隐变量<span class="math inline">\(Z, \Theta\)</span>的概率分布以及<span class="math inline">\(\varphi, \alpha\)</span>的点估计. 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:</p>
+<ul>
+<li>E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>.</li>
+<li>M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
+</ul>
+<p><strong>p.s.</strong> EM算法的迭代过程没有涉及参数<span class="math inline">\(\varphi, \alpha\)</span>分布, 且没有引进先验分布, 因而仍然算是频率学派的方法, 下面来看一种明显是属于贝叶斯学派的方法:变分推断</p>
+<h3 id="变分推断">变分推断</h3>
+<p>根据贝叶斯思想, 我们将参数<span class="math inline">\(\varphi, \alpha\)</span>视为随机变量, 因此必须给出参数<span class="math inline">\(\varphi, \alpha\)</span>的先验假设<span class="math inline">\(P(\varphi), P(\alpha)\)</span>, 如果能直接算出隐变量及未知参数<span class="math inline">\(Z, \Theta, \varphi, \alpha\)</span>的概率分布<span class="math inline">\(P(Z, \Theta, \varphi, \alpha\mid W)\)</span>, 那么就能很方便的得到想要的参数值(比如说通过极大后验分布MAP). 事实上, 我们已经有了<span class="math inline">\(P(W, Z, \Theta\mid \varphi, \alpha)\)</span>, 根据贝叶斯公式:<span class="math display">\[P(Z, \Theta, \varphi, \alpha\mid W)=\frac{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}{P(W)}=\frac{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}{\int_{Z, \Theta, \varphi, \alpha} P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}\]</span>通过分析不难发现, 如果给出的参数<span class="math inline">\(\varphi, \alpha\)</span>的先验恰为共轭先验, 那么上式就非常好求, 否则就不可避免的要计算<span class="math inline">\(P(W)\)</span>, 而这事实上相当难处理.</p>
+<p>变分推断则是试图绕过求<span class="math inline">\(P(W)\)</span>, 去找一个对<span class="math inline">\(P(Z, \Theta, \varphi, \alpha\mid W)\)</span>的良好逼近<span class="math inline">\(q(Z, \Theta, \varphi, \alpha)\)</span>, 其中<span class="math inline">\(q(Z, \Theta, \varphi, \alpha)\)</span>会来自一个简单得多的分布族, 比如<span class="math inline">\(Q=N(\mu, \Sigma)\)</span>, 其中<span class="math inline">\(\Sigma\)</span>为对角阵; 而逼近的方法一般则是最小化<span class="math inline">\(\mathcal{KL}\)</span>散度:<span class="math display">\[q=\arg\min_{q\in Q}\mathcal{KL}(q(Z, \Theta, \varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W))\]</span>关于<span class="math inline">\(\mathcal{KL}\)</span>散度的定义见<a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">维基百科</a>, 这里简单理解为衡量两个分布的距离就好. 下式告诉我们, 变分推断确实可以绕开<span class="math inline">\(P(W)\)</span>, 下面把<span class="math inline">\(q(Z, \Theta, \varphi, \alpha)\)</span>简记为<span class="math inline">\(q\)</span>: <span class="math display">\[\begin{aligned} \mathcal{KL}(q\Vert P(Z, \Theta, \varphi, \alpha\mid W)) &amp; =  \mathcal{KL}(q\Vert \frac{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}{P(W)}) \\\
+&amp; =\int  q\log \frac{q}{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)/P(W)} dZd \Theta d\varphi d\alpha\\\
+&amp; = \int \left( q\log \frac{q}{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}dZd \Theta  +  q\log P(W) \right)dZd \Theta d\varphi d\alpha\\\
+&amp; =  \mathcal{KL}(q\Vert P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha))+\log P(W) \end{aligned}\]</span>其中第一个等号为简单带入, 第二个等号由<span class="math inline">\(\mathcal{KL}\)</span>散度的定义, 第三个等号为简单化简, 第四个等号由<span class="math inline">\(\mathcal{KL}\)</span>散度定义. 容易看到, 最后一个等式的后一项<span class="math inline">\(\log P(W)\)</span>与<span class="math inline">\(q\)</span>无关, 因而成功绕开了<span class="math inline">\(P(W)\)</span>, 这便是变分推断.</p>
+<p><strong>p.s.</strong> 变分推断需要给出参数的先验分布和分布族<span class="math inline">\(Q\)</span>. 如果<span class="math inline">\(Q\)</span>足够大, 则有<span class="math display">\[q(Z, \Theta, \varphi, \alpha)=P(Z, \Theta, \varphi, \alpha\mid W)\]</span>并没有简化计算. 所以这个分布族<span class="math inline">\(Q\)</span>的选取也是一件麻烦的事情, 既要考虑<span class="math inline">\(Z, \Theta\)</span>实际上是有关的, 又要考虑参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>是无关的. 一个合理的想法是预先假定<span class="math inline">\(\varphi, \alpha\)</span>与<span class="math inline">\(Z, \Theta\)</span>是无关的, 在变分推断的基础上于是有了平均场近似的变分推断:</p>
+<h3 id="平均场近变分推断">平均场近变分推断</h3>
+<p>其想法很简单, 在变分推断<span class="math display">\[q=\arg\min_{q\in Q}\mathcal{KL}(q(Z, \Theta, \varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W))\]</span>的基础上, 预先假定参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>的独立性, 得到 <span class="math display">\[\begin{aligned}q(Z, \Theta)&amp;=\arg\min_{q(Z, \Theta)\in Q_1}\mathcal{KL}(q(Z, \Theta) q(\varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W)) \\\
+q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \Theta)q(\varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W))\end{aligned}\]</span>这样计算上有了一定程度的减小, 当然准确度也有可能有一定的损失, 但其实际上不失为一个好的假设. 下面来看平均长近似后的形式, 为了表述方便, 记<span class="math inline">\(q(Z, \Theta)=q_1\)</span>, <span class="math inline">\(q(\varphi, \alpha)=q_2\)</span>, <span class="math inline">\(P(Z, \Theta, \varphi, \alpha\mid W)=\hat{P}\)</span>, <span class="math inline">\(dZd \Theta d\varphi d\alpha=d\hat{Z}\)</span>, 目标则简化为<span class="math display">\[q_i=\arg\min_{q_i\in Q_i}\mathcal{KL}(\prod_{i=1}^2 q_i\Vert \hat{P})\]</span>下面来看, 目标是对<span class="math inline">\(q_k\in Q_k\)</span>求最小值点, <span class="math inline">\(k=1, 2\)</span>: <span class="math display">\[\begin{aligned} \mathcal{KL}(\prod_{i=1}^2 q_i\Vert \hat{P}) &amp; =  \int  \prod_{j=1}^2 q_j\log \frac{\prod_{i=1}^2 q_i}{\hat{P}} d\hat{Z} \\\
+&amp; =\sum_{i=1}^2\int   \prod_{j=1}^2q_j\log q_i d\hat{Z}-\int   \prod_{j=1}^2q_j\log \hat{P}d\hat{Z}\\\
+&amp; = \int   \prod_{j=1}^2q_j\log q_k d\hat{Z}+\sum_{i\neq k}^2\int   \prod_{j=1}^2q_j\log q_i d\hat{Z}-\int   \prod_{j=1}^2q_j\log \hat{P} d\hat{Z} \\\
+&amp;=\int   q_k\log q_k d\hat{Z}_k+\sum_{i\neq k}^2\int   \prod_{j\neq k}^2q_j\log q_i d\hat{Z}_{-k}-\int   \prod_{j=1}^2q_j\log \hat{P} d\hat{Z} \\\
+&amp;= \int   q_k\log q_k d\hat{Z}_k-\int q_k\left[\int   \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}\right]d\hat{Z}_k + C\\\
+&amp;=\int   q_k\left[\log q_k -\int   \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}\right]d\hat{Z}_k + C \end{aligned}\]</span>这里的<span class="math inline">\(d\hat{Z}\)</span>为<span class="math inline">\(dZd \Theta d\varphi d\alpha\)</span>, <span class="math inline">\(d\hat{Z}_k\)</span>为对<span class="math inline">\(q_k\)</span>的变量积分, 比方说<span class="math inline">\(k=1\)</span>, 即为<span class="math inline">\(dZ d\Theta\)</span>, <span class="math inline">\(d\hat{Z}_{-k}\)</span>为对除<span class="math inline">\(q_k\)</span>的之外的变量积分.</p>
+<p>稍作解释:第一个等号由<span class="math inline">\(\mathcal{KL}\)</span>散度的定义; 第二个等号为简单化简; 第三个等号为将第一项拆成<span class="math inline">\(i=k\)</span>和<span class="math inline">\(i\neq k\)</span>两项; 第四个等号为对第一第二项中能积分的先积掉; 第五个等号为将第三项对<span class="math inline">\(q_k\)</span>的积分拎到最前面, 且此时第二项与<span class="math inline">\(q_k\)</span>无关, 视为常数<span class="math inline">\(C\)</span>; 第六个等号即为简单合并.</p>
+<p>下面继续, 把我们把<span class="math inline">\(\int \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}=\mathbb{E}_{q_{-k}}\log \hat{P}\)</span>记作<span class="math inline">\(h(\hat{Z}_k)\)</span>, 再令<span class="math inline">\(t(\hat{Z}_k)=\frac{exp(h(\hat{Z}_k))}{\int exp(h(\hat{Z}_k))d\hat{Z}_k}\)</span>, 除以正则项确保是个概率分布, 上式可继续化为: <span class="math display">\[\begin{aligned} \mathcal{KL}(\prod_{i=1}^2 q_i\Vert \hat{P}) &amp; =  \int   q_k\left[\log q_k -\int   \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}\right]d\hat{Z}_k + C\\\
+&amp; =  \int   q_k\left[\log q_k d\hat{Z}_k-h(\hat{Z}_k)\right]d\hat{Z}_k + C\\\
+&amp;=\int   q_k\log \frac{q_k}{t} d\hat{Z}_k + C \end{aligned}\]</span>注意到第一项即为KL散度, 那么此时关于<span class="math inline">\(q_k\)</span>取极小只需令<span class="math inline">\(q_k=t=\frac{exp(h(\hat{Z}_k))}{\int exp(h(\hat{Z}_k))d\hat{Z}_k}\)</span>, 其中<span class="math inline">\(h(\hat{Z}_k)=\mathbb{E}_{q_{-k}}\log \hat{P}\)</span>再取对数得到<span class="math display">\[\log q_k=\mathbb{E}_{q_{-k}}\log \hat{P}+C\]</span>其中<span class="math inline">\(\hat{P}=P(Z, \Theta, \varphi, \alpha\mid W)\)</span>在LDA模型这个例子中, 上述结果化为: <span class="math display">\[\begin{aligned}\log q(Z, \Theta)&amp;=\mathbb{E}_{q(\varphi, \alpha)}\log P(Z, \Theta, \varphi, \alpha\mid W)+C_1  \\\
+\log q(\varphi, \alpha)&amp;=\mathbb{E}_{q(Z, \Theta)}\log P(Z, \Theta, \varphi, \alpha\mid W)+C_2\end{aligned}\]</span></p>
+<p><strong>p.s.</strong> 相比变分推断, 这个平均场近似的变分推断实际是将参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>进行了分开处理, 降低了模型复杂度, 同时明显也降低了计算的维度, 但由于对参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>的独立性假设非常合理, 所以也不会有太多精度上的损失, 甚至会使得模型更稳健. 另外顺便得到了一个非常有用的式子, 这个式子能在<a href="https://en.wikipedia.org/wiki/Variational_Bayesian_methods">变分贝叶斯方法</a> 的维基百科的Mean field approximation一节找到, 只是没有上述的推导过程.</p>
+<p>EM算法也是将参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>进行了分开处理, 并且对隐变量<span class="math inline">\(Z, \Theta\)</span>同样是通过对<span class="math inline">\(\mathcal{KL}\)</span>散度最小化求得分布, 而EM算法对未知参数则是直接采用了点估计的方法而不是变分推断. 因此相比平均场近似的变分推断, EM算法进一步降低了计算复杂度, , 我想这大概就是EM算法流行的理由之一.</p>
+<h3 id="平均场em算法">平均场EM算法</h3>
+<p>平均场EM算法实际上是在EM算法基础上进一步对隐变量<span class="math inline">\(Z, \Theta\)</span>进行了独立性假设. 下面分两步在EM算法的基础上推导出平均场EM算法:</p>
+<ol type="1">
+<li>EM算法: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:
+<ul>
+<li>E步: <span class="math inline">\(q^{k+1}(Z, \Theta)=\arg\min_{q(Z, \Theta)\in Q_1}\mathcal{KL}(q(Z, \Theta)\Vert P(Z, \Theta\mid W, \varphi, \alpha))\)</span>.</li>
+<li>M步: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
+</ul></li>
+<li>假定<span class="math inline">\(q(Z, \Theta)=q(Z)q(\Theta)\)</span>, 由平均场近似得到的公式, 得到平均场EM算法: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:
+<ul>
+<li>E步:<span class="math inline">\(\begin{aligned}\log q^{k+1}(Z)&amp;=\mathbb{E}_{q(\Theta)}\log P(Z, \Theta\mid \varphi^k, \alpha^k, W)+C_1 \\\
+\log q^{k+1}(\Theta)&amp;=\mathbb{E}_{q(Z)}\log P(Z, \Theta\mid \varphi^k, \alpha^k, W)+C_2\end{aligned}\)</span></li>
+<li>M步: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}(Z, \Theta)}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span></li>
+</ul></li>
+</ol>
+<p><strong>p.s.</strong> 平均场EM算法比EM算法多了一个隐变量之间独立的假设, 但一般隐变量之间应该不独立, 比方说这个LDA模型中<span class="math inline">\(Z\)</span>代表每篇文档每个单词的主题分布, <span class="math inline">\(\Theta\)</span>代表每篇文档的主题分布, 两者应该不独立, 所以平均场EM算法不适合这个例子. 另外相比EM算法, 平均场EM算法因为多了一个独立性假设, 模型应该会变得简单一些, 但精度有可能会有些损失.</p>
+<h3 id="总结">总结</h3>
+<p>最后用一张表格总结上述4中算法:</p>
+<table>
+<thead>
+<tr class="header">
+<th>算法</th>
+<th>模型复杂度</th>
+<th>需要的计算资源</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>变分推断</strong></td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td><strong>平均场变分推断</strong></td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td><strong>EM算法</strong></td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td><strong>平均场EM算法</strong></td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>EM算法作为其中比较折中的选择, 兼顾了模型复杂度与计算资源.</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>LDA模型</tag>
+        <tag>变分贝叶斯</tag>
+        <tag>变分推断</tag>
+        <tag>平均场近似</tag>
+        <tag>KL散度</tag>
       </tags>
   </entry>
   <entry>
@@ -2124,167 +2285,6 @@ cov(v_2,v_1)&amp;=cov(\Sigma _{Y,Y}^{-1/2}\Sigma _{Y,X}\Sigma _{X,X}^{-1/2}c_2,\
       </tags>
   </entry>
   <entry>
-    <title>变分贝叶斯方法</title>
-    <url>/2018/09/05/%E5%8F%98%E5%88%86%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>前言:本文主要是关于变分贝叶斯方法, 这是一类用简单分布去逼近目标分布的方法, 主要参考了Coursera上国立高等经济大学Advanced Machine Learning系列课程Course3: Bayesian Methods for Machine Learning Week3. <span id="more"></span></p>
-<hr />
-<p>本文主要是关于变分推断, 或者说<a href="https://en.wikipedia.org/wiki/Variational_Bayesian_methods">变分贝叶斯方法</a>, 它是一类用来计算难以计算积分的方法. 本文的定位是对EM算法的有益补充, 因此会结合EM算法去讲一讲什么是变分推断及平均场近似, 并得到EM算法的三种变体.</p>
-<p>关于EM算法可以参见我的另一篇博文<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>, 简单的说,EM算法是专门处理隐变量模型的算法. 下文我们会以隐狄利克雷分配模型(Latent Dirichlet Allocation: LDA)为例来说明本文的主角, 当然这是一个隐变量模型.</p>
-<hr />
-<h2 id="隐变量模型">隐变量模型</h2>
-<p><a href="https://en.wikipedia.org/wiki/Latent_variable_model">隐变量模型</a>, 隐变量模型含有未观测到值的变量, 且该隐变量解释了观测到的变量之间的相关性(<a href="https://en.wikipedia.org/wiki/Local_independence">局部独立性</a>), 简言之引进的隐变量不能没有用, 举个例子来说明这个性质(来自维基百科):</p>
-<table>
-<thead>
-<tr class="header">
-<th>本科生</th>
-<th>读过机器学习</th>
-<th>没读过机器学习</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>读过凸优化</strong></td>
-<td>260</td>
-<td>140</td>
-</tr>
-<tr class="even">
-<td><strong>没读过凸优化</strong></td>
-<td>240</td>
-<td>360</td>
-</tr>
-</tbody>
-</table>
-<p>容易看到读过机器学习的概率是<span class="math inline">\(\frac{500}{1000}=0.5\)</span>, 读过凸优化的概率是<span class="math inline">\(\frac{400}{1000}=0.4\)</span>, 但是两者都读过的概率是<span class="math inline">\(\frac{260}{1000}=0.26\)</span>, 不等于<span class="math inline">\(\frac{500}{1000}\times\frac{400}{1000}=0.2\)</span>, 因此并不独立. 若我们引进变量本科高年级生和本科低年级生:</p>
-<table>
-<thead>
-<tr class="header">
-<th>高年级/低年级</th>
-<th>读过机器学习</th>
-<th>没读过机器学习</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>读过凸优化</strong></td>
-<td>240/20</td>
-<td>60/80</td>
-</tr>
-<tr class="even">
-<td><strong>没读过凸优化</strong></td>
-<td>160/80</td>
-<td>40/320</td>
-</tr>
-</tbody>
-</table>
-<p>就会发现, 对高年级生<span class="math inline">\(\frac{400}{500}\times\frac{300}{500}=\frac{240}{500}\)</span>; 对低年级生<span class="math inline">\(\frac{100}{500}\times\frac{100}{500}=\frac{20}{500}\)</span>, 此时相关性已经被隐变量解释掉了.</p>
-<hr />
-<h2 id="隐狄利克雷分配模型">隐狄利克雷分配模型</h2>
-<p>下面举个隐变量模型的例子, 隐狄利克雷分配模型. 假如我读过东野圭吾的新参者, 我希望推荐系统能把白夜行也推荐给我. 这里直接给出模型的完整形式, 具体怎么来的请见博文<a href="https://msgsxj.cn/2018/10/16/Latent-Dirichlet-Allocation/">Latent Dirichlet Allocation</a>的第一节. <span class="math display">\[P(W, Z, \Theta\mid \varphi, \alpha)=\prod_{d=1}^{D}P(\theta_d)\prod_{n=1}^{N_d}P(z_{dn}\mid\theta_d)P(w_{dn}\mid z_{dn})\]</span>其中:</p>
-<ul>
-<li><span class="math inline">\(\theta_d\sim Dir(\alpha)=\frac{1}{B(\alpha)}\prod_{t=1}^{T}\theta_{dt}^{\alpha_t-1}\)</span>, 其中<span class="math inline">\(d\in\{1,2,...,D\}\)</span>, <span class="math inline">\(T\)</span>给定.</li>
-<li><span class="math inline">\(P(z_{dn}\mid\theta_d)=\theta_{dz_{dn}}\)</span>, 其中<span class="math inline">\(n\in\{1,2,...,N_d\}\)</span>.</li>
-<li><span class="math inline">\(P(w_{dn}\mid z_{dn})=\varphi_{w_{dn}z_{dn}}\)</span>, 给定词汇表<span class="math inline">\(w_{set}\)</span>, <span class="math inline">\(w_{dn}\in\{1,2,...,\left|w_{set}\right|\}\)</span>.</li>
-</ul>
-<p>大小字母表示小写字母的总和, 参数仍简记为小写字母, 总结如下:</p>
-<ul>
-<li>未知:<span class="math inline">\(Z, \Theta\)</span>为隐变量; <span class="math inline">\(\varphi, \alpha\)</span>未知参数.</li>
-<li>已知:<span class="math inline">\(W\)</span>为数据集, <span class="math inline">\(D\)</span>为文档数量, <span class="math inline">\(N_d\)</span>为每篇文档单词数.</li>
-<li>超参:主题数<span class="math inline">\(T\)</span>, 词汇表<span class="math inline">\(w_{set}\)</span>(可以取为这些文档出现过的单词组成的集合).</li>
-</ul>
-<hr />
-<h2 id="变分贝叶斯方法">变分贝叶斯方法</h2>
-<h3 id="em算法">EM算法</h3>
-<p>下面尝试用4种方法来解决这个模型, 首先从我们最熟悉的EM算法开始(不熟悉的话可以参见我的另一篇博文<a href="https://msgsxj.cn/2018/09/02/EM%E7%AE%97%E6%B3%95/">EM算法</a>): EM算法的目标是极大化对数似然函数<span class="math inline">\(\log P(W\mid\varphi, \alpha)\)</span>, 且每一步迭代又给出隐变量<span class="math inline">\(Z, \Theta\)</span>的概率分布以及<span class="math inline">\(\varphi, \alpha\)</span>的点估计. 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:</p>
-<ul>
-<li>E步求期望:求<span class="math inline">\(\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>, 其中<span class="math inline">\(q^{k+1}(Z, \Theta)=P(Z, \Theta\mid W, \varphi^k, \alpha^k)\)</span>.</li>
-<li>M步求max: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
-</ul>
-<p><strong>p.s.</strong> EM算法的迭代过程没有涉及参数<span class="math inline">\(\varphi, \alpha\)</span>分布, 且没有引进先验分布, 因而仍然算是频率学派的方法, 下面来看一种明显是属于贝叶斯学派的方法:变分推断</p>
-<h3 id="变分推断">变分推断</h3>
-<p>根据贝叶斯思想, 我们将参数<span class="math inline">\(\varphi, \alpha\)</span>视为随机变量, 因此必须给出参数<span class="math inline">\(\varphi, \alpha\)</span>的先验假设<span class="math inline">\(P(\varphi), P(\alpha)\)</span>, 如果能直接算出隐变量及未知参数<span class="math inline">\(Z, \Theta, \varphi, \alpha\)</span>的概率分布<span class="math inline">\(P(Z, \Theta, \varphi, \alpha\mid W)\)</span>, 那么就能很方便的得到想要的参数值(比如说通过极大后验分布MAP). 事实上, 我们已经有了<span class="math inline">\(P(W, Z, \Theta\mid \varphi, \alpha)\)</span>, 根据贝叶斯公式:<span class="math display">\[P(Z, \Theta, \varphi, \alpha\mid W)=\frac{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}{P(W)}=\frac{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}{\int_{Z, \Theta, \varphi, \alpha} P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}\]</span>通过分析不难发现, 如果给出的参数<span class="math inline">\(\varphi, \alpha\)</span>的先验恰为共轭先验, 那么上式就非常好求, 否则就不可避免的要计算<span class="math inline">\(P(W)\)</span>, 而这事实上相当难处理.</p>
-<p>变分推断则是试图绕过求<span class="math inline">\(P(W)\)</span>, 去找一个对<span class="math inline">\(P(Z, \Theta, \varphi, \alpha\mid W)\)</span>的良好逼近<span class="math inline">\(q(Z, \Theta, \varphi, \alpha)\)</span>, 其中<span class="math inline">\(q(Z, \Theta, \varphi, \alpha)\)</span>会来自一个简单得多的分布族, 比如<span class="math inline">\(Q=N(\mu, \Sigma)\)</span>, 其中<span class="math inline">\(\Sigma\)</span>为对角阵; 而逼近的方法一般则是最小化<span class="math inline">\(\mathcal{KL}\)</span>散度:<span class="math display">\[q=\arg\min_{q\in Q}\mathcal{KL}(q(Z, \Theta, \varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W))\]</span>关于<span class="math inline">\(\mathcal{KL}\)</span>散度的定义见<a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">维基百科</a>, 这里简单理解为衡量两个分布的距离就好. 下式告诉我们, 变分推断确实可以绕开<span class="math inline">\(P(W)\)</span>, 下面把<span class="math inline">\(q(Z, \Theta, \varphi, \alpha)\)</span>简记为<span class="math inline">\(q\)</span>: <span class="math display">\[\begin{aligned} \mathcal{KL}(q\Vert P(Z, \Theta, \varphi, \alpha\mid W)) &amp; =  \mathcal{KL}(q\Vert \frac{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}{P(W)}) \\\
-&amp; =\int  q\log \frac{q}{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)/P(W)} dZd \Theta d\varphi d\alpha\\\
-&amp; = \int \left( q\log \frac{q}{P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha)}dZd \Theta  +  q\log P(W) \right)dZd \Theta d\varphi d\alpha\\\
-&amp; =  \mathcal{KL}(q\Vert P(W, Z, \Theta\mid \varphi, \alpha)P(\varphi, \alpha))+\log P(W) \end{aligned}\]</span>其中第一个等号为简单带入, 第二个等号由<span class="math inline">\(\mathcal{KL}\)</span>散度的定义, 第三个等号为简单化简, 第四个等号由<span class="math inline">\(\mathcal{KL}\)</span>散度定义. 容易看到, 最后一个等式的后一项<span class="math inline">\(\log P(W)\)</span>与<span class="math inline">\(q\)</span>无关, 因而成功绕开了<span class="math inline">\(P(W)\)</span>, 这便是变分推断.</p>
-<p><strong>p.s.</strong> 变分推断需要给出参数的先验分布和分布族<span class="math inline">\(Q\)</span>. 如果<span class="math inline">\(Q\)</span>足够大, 则有<span class="math display">\[q(Z, \Theta, \varphi, \alpha)=P(Z, \Theta, \varphi, \alpha\mid W)\]</span>并没有简化计算. 所以这个分布族<span class="math inline">\(Q\)</span>的选取也是一件麻烦的事情, 既要考虑<span class="math inline">\(Z, \Theta\)</span>实际上是有关的, 又要考虑参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>是无关的. 一个合理的想法是预先假定<span class="math inline">\(\varphi, \alpha\)</span>与<span class="math inline">\(Z, \Theta\)</span>是无关的, 在变分推断的基础上于是有了平均场近似的变分推断:</p>
-<h3 id="平均场近变分推断">平均场近变分推断</h3>
-<p>其想法很简单, 在变分推断<span class="math display">\[q=\arg\min_{q\in Q}\mathcal{KL}(q(Z, \Theta, \varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W))\]</span>的基础上, 预先假定参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>的独立性, 得到 <span class="math display">\[\begin{aligned}q(Z, \Theta)&amp;=\arg\min_{q(Z, \Theta)\in Q_1}\mathcal{KL}(q(Z, \Theta) q(\varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W)) \\\
-q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \Theta)q(\varphi, \alpha)\Vert P(Z, \Theta, \varphi, \alpha\mid W))\end{aligned}\]</span>这样计算上有了一定程度的减小, 当然准确度也有可能有一定的损失, 但其实际上不失为一个好的假设. 下面来看平均长近似后的形式, 为了表述方便, 记<span class="math inline">\(q(Z, \Theta)=q_1\)</span>, <span class="math inline">\(q(\varphi, \alpha)=q_2\)</span>, <span class="math inline">\(P(Z, \Theta, \varphi, \alpha\mid W)=\hat{P}\)</span>, <span class="math inline">\(dZd \Theta d\varphi d\alpha=d\hat{Z}\)</span>, 目标则简化为<span class="math display">\[q_i=\arg\min_{q_i\in Q_i}\mathcal{KL}(\prod_{i=1}^2 q_i\Vert \hat{P})\]</span>下面来看, 目标是对<span class="math inline">\(q_k\in Q_k\)</span>求最小值点, <span class="math inline">\(k=1, 2\)</span>: <span class="math display">\[\begin{aligned} \mathcal{KL}(\prod_{i=1}^2 q_i\Vert \hat{P}) &amp; =  \int  \prod_{j=1}^2 q_j\log \frac{\prod_{i=1}^2 q_i}{\hat{P}} d\hat{Z} \\\
-&amp; =\sum_{i=1}^2\int   \prod_{j=1}^2q_j\log q_i d\hat{Z}-\int   \prod_{j=1}^2q_j\log \hat{P}d\hat{Z}\\\
-&amp; = \int   \prod_{j=1}^2q_j\log q_k d\hat{Z}+\sum_{i\neq k}^2\int   \prod_{j=1}^2q_j\log q_i d\hat{Z}-\int   \prod_{j=1}^2q_j\log \hat{P} d\hat{Z} \\\
-&amp;=\int   q_k\log q_k d\hat{Z}_k+\sum_{i\neq k}^2\int   \prod_{j\neq k}^2q_j\log q_i d\hat{Z}_{-k}-\int   \prod_{j=1}^2q_j\log \hat{P} d\hat{Z} \\\
-&amp;= \int   q_k\log q_k d\hat{Z}_k-\int q_k\left[\int   \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}\right]d\hat{Z}_k + C\\\
-&amp;=\int   q_k\left[\log q_k -\int   \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}\right]d\hat{Z}_k + C \end{aligned}\]</span>这里的<span class="math inline">\(d\hat{Z}\)</span>为<span class="math inline">\(dZd \Theta d\varphi d\alpha\)</span>, <span class="math inline">\(d\hat{Z}_k\)</span>为对<span class="math inline">\(q_k\)</span>的变量积分, 比方说<span class="math inline">\(k=1\)</span>, 即为<span class="math inline">\(dZ d\Theta\)</span>, <span class="math inline">\(d\hat{Z}_{-k}\)</span>为对除<span class="math inline">\(q_k\)</span>的之外的变量积分.</p>
-<p>稍作解释:第一个等号由<span class="math inline">\(\mathcal{KL}\)</span>散度的定义; 第二个等号为简单化简; 第三个等号为将第一项拆成<span class="math inline">\(i=k\)</span>和<span class="math inline">\(i\neq k\)</span>两项; 第四个等号为对第一第二项中能积分的先积掉; 第五个等号为将第三项对<span class="math inline">\(q_k\)</span>的积分拎到最前面, 且此时第二项与<span class="math inline">\(q_k\)</span>无关, 视为常数<span class="math inline">\(C\)</span>; 第六个等号即为简单合并.</p>
-<p>下面继续, 把我们把<span class="math inline">\(\int \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}=\mathbb{E}_{q_{-k}}\log \hat{P}\)</span>记作<span class="math inline">\(h(\hat{Z}_k)\)</span>, 再令<span class="math inline">\(t(\hat{Z}_k)=\frac{exp(h(\hat{Z}_k))}{\int exp(h(\hat{Z}_k))d\hat{Z}_k}\)</span>, 除以正则项确保是个概率分布, 上式可继续化为: <span class="math display">\[\begin{aligned} \mathcal{KL}(\prod_{i=1}^2 q_i\Vert \hat{P}) &amp; =  \int   q_k\left[\log q_k -\int   \prod_{j\neq k}^2q_j\log \hat{P} d\hat{Z}_{-k}\right]d\hat{Z}_k + C\\\
-&amp; =  \int   q_k\left[\log q_k d\hat{Z}_k-h(\hat{Z}_k)\right]d\hat{Z}_k + C\\\
-&amp;=\int   q_k\log \frac{q_k}{t} d\hat{Z}_k + C \end{aligned}\]</span>注意到第一项即为KL散度, 那么此时关于<span class="math inline">\(q_k\)</span>取极小只需令<span class="math inline">\(q_k=t=\frac{exp(h(\hat{Z}_k))}{\int exp(h(\hat{Z}_k))d\hat{Z}_k}\)</span>, 其中<span class="math inline">\(h(\hat{Z}_k)=\mathbb{E}_{q_{-k}}\log \hat{P}\)</span>再取对数得到<span class="math display">\[\log q_k=\mathbb{E}_{q_{-k}}\log \hat{P}+C\]</span>其中<span class="math inline">\(\hat{P}=P(Z, \Theta, \varphi, \alpha\mid W)\)</span>在LDA模型这个例子中, 上述结果化为: <span class="math display">\[\begin{aligned}\log q(Z, \Theta)&amp;=\mathbb{E}_{q(\varphi, \alpha)}\log P(Z, \Theta, \varphi, \alpha\mid W)+C_1  \\\
-\log q(\varphi, \alpha)&amp;=\mathbb{E}_{q(Z, \Theta)}\log P(Z, \Theta, \varphi, \alpha\mid W)+C_2\end{aligned}\]</span></p>
-<p><strong>p.s.</strong> 相比变分推断, 这个平均场近似的变分推断实际是将参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>进行了分开处理, 降低了模型复杂度, 同时明显也降低了计算的维度, 但由于对参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>的独立性假设非常合理, 所以也不会有太多精度上的损失, 甚至会使得模型更稳健. 另外顺便得到了一个非常有用的式子, 这个式子能在<a href="https://en.wikipedia.org/wiki/Variational_Bayesian_methods">变分贝叶斯方法</a> 的维基百科的Mean field approximation一节找到, 只是没有上述的推导过程.</p>
-<p>EM算法也是将参数<span class="math inline">\(\varphi, \alpha\)</span>与隐变量<span class="math inline">\(Z, \Theta\)</span>进行了分开处理, 并且对隐变量<span class="math inline">\(Z, \Theta\)</span>同样是通过对<span class="math inline">\(\mathcal{KL}\)</span>散度最小化求得分布, 而EM算法对未知参数则是直接采用了点估计的方法而不是变分推断. 因此相比平均场近似的变分推断, EM算法进一步降低了计算复杂度, , 我想这大概就是EM算法流行的理由之一.</p>
-<h3 id="平均场em算法">平均场EM算法</h3>
-<p>平均场EM算法实际上是在EM算法基础上进一步对隐变量<span class="math inline">\(Z, \Theta\)</span>进行了独立性假设. 下面分两步在EM算法的基础上推导出平均场EM算法:</p>
-<ol type="1">
-<li>EM算法: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:
-<ul>
-<li>E步: <span class="math inline">\(q^{k+1}(Z, \Theta)=\arg\min_{q(Z, \Theta)\in Q_1}\mathcal{KL}(q(Z, \Theta)\Vert P(Z, \Theta\mid W, \varphi, \alpha))\)</span>.</li>
-<li>M步: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span>.</li>
-</ul></li>
-<li>假定<span class="math inline">\(q(Z, \Theta)=q(Z)q(\Theta)\)</span>, 由平均场近似得到的公式, 得到平均场EM算法: 第k+1次迭代, 当前参数为<span class="math inline">\(\varphi^k, \alpha^k\)</span>:
-<ul>
-<li>E步:<span class="math inline">\(\begin{aligned}\log q^{k+1}(Z)&amp;=\mathbb{E}_{q(\Theta)}\log P(Z, \Theta\mid \varphi^k, \alpha^k, W)+C_1 \\\
-\log q^{k+1}(\Theta)&amp;=\mathbb{E}_{q(Z)}\log P(Z, \Theta\mid \varphi^k, \alpha^k, W)+C_2\end{aligned}\)</span></li>
-<li>M步: <span class="math inline">\((\varphi^{k+1}, \alpha^{k+1})=\arg\max_{(\varphi, \alpha)}\mathbb{E}_{q^{k+1}(Z, \Theta)}\log P(W, Z, \Theta\mid\varphi, \alpha)\)</span></li>
-</ul></li>
-</ol>
-<p><strong>p.s.</strong> 平均场EM算法比EM算法多了一个隐变量之间独立的假设, 但一般隐变量之间应该不独立, 比方说这个LDA模型中<span class="math inline">\(Z\)</span>代表每篇文档每个单词的主题分布, <span class="math inline">\(\Theta\)</span>代表每篇文档的主题分布, 两者应该不独立, 所以平均场EM算法不适合这个例子. 另外相比EM算法, 平均场EM算法因为多了一个独立性假设, 模型应该会变得简单一些, 但精度有可能会有些损失.</p>
-<h3 id="总结">总结</h3>
-<p>最后用一张表格总结上述4中算法:</p>
-<table>
-<thead>
-<tr class="header">
-<th>算法</th>
-<th>模型复杂度</th>
-<th>需要的计算资源</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>变分推断</strong></td>
-<td>4</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td><strong>平均场变分推断</strong></td>
-<td>3</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td><strong>EM算法</strong></td>
-<td>2</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td><strong>平均场EM算法</strong></td>
-<td>1</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<p>EM算法作为其中比较折中的选择, 兼顾了模型复杂度与计算资源.</p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>LDA模型</tag>
-        <tag>变分贝叶斯</tag>
-        <tag>变分推断</tag>
-        <tag>平均场近似</tag>
-        <tag>KL散度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>拉德马赫复杂度</title>
     <url>/2018/11/09/%E6%8B%89%E5%BE%B7%E9%A9%AC%E8%B5%AB%E5%A4%8D%E6%9D%82%E5%BA%A6/</url>
     <content><![CDATA[<p>前言: 本文主要讲了拉德马赫复杂度(<a href="https://en.wikipedia.org/wiki/Rademacher_complexity">Rademacher complexity</a>), 主要参考了Understanding machine learning一书26章.</p>
@@ -2379,47 +2379,6 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
       <tags>
         <tag>拉普拉斯方法</tag>
         <tag>积分近似</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>最小作用量原理</title>
-    <url>/2019/03/28/%E6%9C%80%E5%B0%8F%E4%BD%9C%E7%94%A8%E9%87%8F%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<p>前言: 最近在读最佳可能的世界一书, 这里简单分享一下最小作用量原理. <span id="more"></span></p>
-<hr />
-<h3 id="hero-of-alexandria-自然将永远选择最短的路线">Hero of Alexandria: 自然将永远选择最短的路线</h3>
-<p>Hero of Alexandria(希罗)是公元后10年-70年时期来自亚历山大的数学家和工程师, 他的作品被Marin Cureau de la Chambre(马林·库若)读到; 1657年, 库若写了一篇论文"关于光"并把它寄给了Pierre de Fermat(皮埃尔·德·费马), 这篇文章陈述了反射定律, 根据这个原理, "自然将永远选择最短的路线", 正如下图所示: <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Reflection_angles.svg/800px-Reflection_angles.svg.png" width="50%" /></p>
-<hr />
-<h3 id="pierre-de-fermat-光沿着最快的路线传播">Pierre de Fermat: 光沿着最快的路线传播</h3>
-<p>费马在给库若的回信表示了对希罗的观点的认同, 并在对光的折射的研究中提出了新的描述: 光沿着最快的路线传播; 5年后的1662年, 费马给出了他的结果, 并成功导出了Descartes(笛卡尔)在1637年推导出的正弦定律, 只不过笛卡尔认为光在水中比在空气中的传播速度快, 而费马的想法与此相反.</p>
-<hr />
-<h3 id="calude-clerselier-自然没有意识-假设自然致力于减少某种转化时间不是一种科学解释">Calude Clerselier: 自然没有意识, 假设自然致力于减少某种转化时间不是一种科学解释</h3>
-<p>同年1662年5月, 已经是笛卡尔学派的领袖的Calude Clerselier(克莱尔塞利埃)在给费马的回信中表达了如下反对: 自然不会在一些可能性中选择要走的路, 任何时候, 它只会发现一扇敞开的门, 并且穿过那扇门. 这种世界观被称为<strong>决定主义</strong>, 简言之, 在穿过第一扇门时, 整条路就已经决定了. 决定主义后来被Isaac Newton(艾萨克·牛顿)发现, Albert Einstein(爱因斯坦)也从未放弃这一观点: 上帝不玩骰子.</p>
-<blockquote>
-<p>费马回应: 光就想有那种渴望和方法一样, 而数学问题可能不是对现实的某些更深层次发生问题的确切描述, 至于它代表什么是应该留给哲学家考虑的问题.</p>
-</blockquote>
-<p>费马的回应也被Niels Bohr(尼尔斯·玻尔)用来反对爱因斯坦:</p>
-<blockquote>
-<p>我不知道; 我正在说的是, 使用量子力学和概率论, 我可以做出非常精确地预测.</p>
-</blockquote>
-<hr />
-<h3 id="maupertuis-光选择了一条具有真正好处的路线-它走的路线作用量最小">Maupertuis: 光选择了一条具有真正好处的路线: 它走的路线作用量最小</h3>
-<p>1744年, Maupertuis(莫培督)提出: 既然光不能同时选择最短的和最快的路线, 那它为什么选择这条路而不是那条路呢? 光实际上选择了最小化作用量<span class="math inline">\(lvm\)</span>的线路, 这里<span class="math inline">\(l\)</span>表示距离, <span class="math inline">\(v\)</span>表示速度, <span class="math inline">\(m\)</span>表示物体质量; 1751年, 一位叫Koenig(科尼格)的提到Gottfried Wilhelm Leibniz(弗里德·威廉·莱布尼兹)在1707年所写的信中提出过作用量的概念, 其应当是距离, 时间和质量的乘积<span class="math inline">\(ltm\)</span>, 科尼格因此却被莫培督控告造假; 1752年, 莫培督在他的论宇宙一书声称了一个物理学同形而上学甚至道德的统一: 由最小作用量原理统治的世界一定是最好的.</p>
-<blockquote>
-<p>Voltaire: "圣马洛本地人早就染上了一种慢性疾病, 有人把这种病称为是追命惴栗, 也有人把它称为喜好权利." 他病得很重, 他写文章攻击医药和上帝的存在的证明. 他最后达到认为它比前一世纪的某个巨人莱布尼兹更伟大.</p>
-</blockquote>
-<p>Voltaire(伏尔泰)的文章迅速获得成功, 莫培督在欧洲受尽嘲讽, 并于1759年落魄去世; 而伏尔泰于1759年出版的小说Candide(老实人)至今仍被人阅读.</p>
-<hr />
-<h3 id="william-rowan-hamilton-作用量不是尽可能的小或尽可能的大-而是稳定">William Rowan Hamilton: 作用量不是尽可能的小或尽可能的大, 而是稳定</h3>
-<p>哈密顿为最小作用量原理找到了正确的数学框架, 至此, 关于最小作用量原理才有了一个完全正确的论述, 这也意味着最小作用量原理最后成为了形而上学的工具. 直到20世纪, 它的有用性才被人们逐渐发现.</p>
-<hr />
-<h3 id="写在最后">写在最后</h3>
-<p>如今最小作用量原理早已不再被认为是自然界的法则, 而是被当成了探索世界的一个数学工具, 比如说最优化, 变分学. 事实上, 最佳可能的世界这本科普书也是上学期变分学老师推荐给我们看的, 这里我强烈推荐一下此书.</p>
-]]></content>
-      <categories>
-        <category>读书笔记</category>
-      </categories>
-      <tags>
-        <tag>最小作用量原理</tag>
       </tags>
   </entry>
   <entry>
@@ -2539,6 +2498,47 @@ q(\varphi, \alpha)&amp;=\arg\min_{q(\varphi, \alpha)\in Q_2}\mathcal{KL}(q(Z, \T
       </categories>
       <tags>
         <tag>智能时代</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>最小作用量原理</title>
+    <url>/2019/03/28/%E6%9C%80%E5%B0%8F%E4%BD%9C%E7%94%A8%E9%87%8F%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<p>前言: 最近在读最佳可能的世界一书, 这里简单分享一下最小作用量原理. <span id="more"></span></p>
+<hr />
+<h3 id="hero-of-alexandria-自然将永远选择最短的路线">Hero of Alexandria: 自然将永远选择最短的路线</h3>
+<p>Hero of Alexandria(希罗)是公元后10年-70年时期来自亚历山大的数学家和工程师, 他的作品被Marin Cureau de la Chambre(马林·库若)读到; 1657年, 库若写了一篇论文"关于光"并把它寄给了Pierre de Fermat(皮埃尔·德·费马), 这篇文章陈述了反射定律, 根据这个原理, "自然将永远选择最短的路线", 正如下图所示: <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Reflection_angles.svg/800px-Reflection_angles.svg.png" width="50%" /></p>
+<hr />
+<h3 id="pierre-de-fermat-光沿着最快的路线传播">Pierre de Fermat: 光沿着最快的路线传播</h3>
+<p>费马在给库若的回信表示了对希罗的观点的认同, 并在对光的折射的研究中提出了新的描述: 光沿着最快的路线传播; 5年后的1662年, 费马给出了他的结果, 并成功导出了Descartes(笛卡尔)在1637年推导出的正弦定律, 只不过笛卡尔认为光在水中比在空气中的传播速度快, 而费马的想法与此相反.</p>
+<hr />
+<h3 id="calude-clerselier-自然没有意识-假设自然致力于减少某种转化时间不是一种科学解释">Calude Clerselier: 自然没有意识, 假设自然致力于减少某种转化时间不是一种科学解释</h3>
+<p>同年1662年5月, 已经是笛卡尔学派的领袖的Calude Clerselier(克莱尔塞利埃)在给费马的回信中表达了如下反对: 自然不会在一些可能性中选择要走的路, 任何时候, 它只会发现一扇敞开的门, 并且穿过那扇门. 这种世界观被称为<strong>决定主义</strong>, 简言之, 在穿过第一扇门时, 整条路就已经决定了. 决定主义后来被Isaac Newton(艾萨克·牛顿)发现, Albert Einstein(爱因斯坦)也从未放弃这一观点: 上帝不玩骰子.</p>
+<blockquote>
+<p>费马回应: 光就想有那种渴望和方法一样, 而数学问题可能不是对现实的某些更深层次发生问题的确切描述, 至于它代表什么是应该留给哲学家考虑的问题.</p>
+</blockquote>
+<p>费马的回应也被Niels Bohr(尼尔斯·玻尔)用来反对爱因斯坦:</p>
+<blockquote>
+<p>我不知道; 我正在说的是, 使用量子力学和概率论, 我可以做出非常精确地预测.</p>
+</blockquote>
+<hr />
+<h3 id="maupertuis-光选择了一条具有真正好处的路线-它走的路线作用量最小">Maupertuis: 光选择了一条具有真正好处的路线: 它走的路线作用量最小</h3>
+<p>1744年, Maupertuis(莫培督)提出: 既然光不能同时选择最短的和最快的路线, 那它为什么选择这条路而不是那条路呢? 光实际上选择了最小化作用量<span class="math inline">\(lvm\)</span>的线路, 这里<span class="math inline">\(l\)</span>表示距离, <span class="math inline">\(v\)</span>表示速度, <span class="math inline">\(m\)</span>表示物体质量; 1751年, 一位叫Koenig(科尼格)的提到Gottfried Wilhelm Leibniz(弗里德·威廉·莱布尼兹)在1707年所写的信中提出过作用量的概念, 其应当是距离, 时间和质量的乘积<span class="math inline">\(ltm\)</span>, 科尼格因此却被莫培督控告造假; 1752年, 莫培督在他的论宇宙一书声称了一个物理学同形而上学甚至道德的统一: 由最小作用量原理统治的世界一定是最好的.</p>
+<blockquote>
+<p>Voltaire: "圣马洛本地人早就染上了一种慢性疾病, 有人把这种病称为是追命惴栗, 也有人把它称为喜好权利." 他病得很重, 他写文章攻击医药和上帝的存在的证明. 他最后达到认为它比前一世纪的某个巨人莱布尼兹更伟大.</p>
+</blockquote>
+<p>Voltaire(伏尔泰)的文章迅速获得成功, 莫培督在欧洲受尽嘲讽, 并于1759年落魄去世; 而伏尔泰于1759年出版的小说Candide(老实人)至今仍被人阅读.</p>
+<hr />
+<h3 id="william-rowan-hamilton-作用量不是尽可能的小或尽可能的大-而是稳定">William Rowan Hamilton: 作用量不是尽可能的小或尽可能的大, 而是稳定</h3>
+<p>哈密顿为最小作用量原理找到了正确的数学框架, 至此, 关于最小作用量原理才有了一个完全正确的论述, 这也意味着最小作用量原理最后成为了形而上学的工具. 直到20世纪, 它的有用性才被人们逐渐发现.</p>
+<hr />
+<h3 id="写在最后">写在最后</h3>
+<p>如今最小作用量原理早已不再被认为是自然界的法则, 而是被当成了探索世界的一个数学工具, 比如说最优化, 变分学. 事实上, 最佳可能的世界这本科普书也是上学期变分学老师推荐给我们看的, 这里我强烈推荐一下此书.</p>
+]]></content>
+      <categories>
+        <category>读书笔记</category>
+      </categories>
+      <tags>
+        <tag>最小作用量原理</tag>
       </tags>
   </entry>
   <entry>
@@ -3119,139 +3119,6 @@ y[t]=V^T[t]\mathbf{r}[t]
       </tags>
   </entry>
   <entry>
-    <title>自然梯度</title>
-    <url>/2019/07/06/%E8%87%AA%E7%84%B6%E6%A2%AF%E5%BA%A6/</url>
-    <content><![CDATA[<p>前言: 本文介绍自然梯度算法, 这种方法考虑到许多问题的参数空间具有某种结构, 因此考虑放在非欧式空间中优化(但实际优化计算过程仍然在欧式空间), 有兴趣的同学可以读一读原论文<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient</a>. <span id="more"></span></p>
-<h2 id="欧式空间与黎曼空间">欧式空间与黎曼空间</h2>
-<p>什么是欧式空间?</p>
-<blockquote>
-<p>A finite dimensional real vector space equipped with an inner product <span class="math inline">\(\left&lt; x,y \right&gt;\)</span>, is called a <strong>Eulidean space</strong>, if it is endowed with the norm <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}\)</span>, which is referred to as <strong>Eulidean norm</strong>.</p>
-</blockquote>
-<p>通俗的讲, 首先得有一个向量空间<span class="math inline">\(\mathbb{R}^n\)</span>, 接着在这个空间上定义内积(inner product), 这个内积可以是常见的内积点乘, 也可以是其它内积:</p>
-<ul>
-<li>dot product: <span class="math inline">\(\left&lt; x,y \right&gt;=\sum_{i=1}^nx_iy_i\)</span>, 其中<span class="math inline">\(x_i\)</span>为<span class="math inline">\(x\)</span>的第<span class="math inline">\(i\)</span>个分量.</li>
-<li><span class="math inline">\(Q\)</span> inner: <span class="math inline">\(\left&lt; x,y \right&gt;=x^TQy\)</span>, 其<span class="math inline">\(Q\)</span>为<span class="math inline">\(n\)</span>阶正定阵.</li>
-</ul>
-<p>然后由内积可以诱导出对应的范数:</p>
-<ul>
-<li><span class="math inline">\(l_2\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{ \sum_{i=1}^n x_i^2 }\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_2\)</span>.</li>
-<li><span class="math inline">\(Q\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{x^TQx}\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_Q\)</span>.</li>
-</ul>
-<p>有了范数, 我们就可以度量两个点<span class="math inline">\(x,x+dx\)</span>之间的距离(点乘内积): <span class="math display">\[\Vert x + dx-x\Vert=\Vert dx\Vert=\sqrt{ \sum_{i=1}^n dx_i^2 }.\]</span></p>
-<p>小结一下:</p>
-<ul>
-<li>欧式空间是一个向量空间, 且带有内积和范数;</li>
-<li>最重要的是, 该范数一定是要由内积根据上式诱导出来的.</li>
-</ul>
-<p>什么是黎曼空间?</p>
-<blockquote>
-<p>A differentiable manifold provided with a <strong>Riemannian metric</strong>.</p>
-</blockquote>
-<p>微分流形(differentiable manifold又名光滑流形, 其最简单的例子就是三维空间中的球面, 在这里可简单理解为向量空间; 黎曼度量(Riemannian metric.)又名<a href="https://zh.wikipedia.org/wiki/%E5%BA%A6%E9%87%8F%E5%BC%A0%E9%87%8F">度量张量</a>, 黎曼度量张量或是度规张量, 这里可简单理解为某<span class="math inline">\(n\)</span>阶方阵<span class="math inline">\(G\)</span>或是<span class="math inline">\((g_{ij})\)</span>. 有了它我们就可以用它来度量空间中两点<span class="math inline">\(x,x+dx\)</span>之间的距离: <span class="math display">\[dx^2=\sum_{ij}g_{ij}dx_i dx_j=dx^TGdx\]</span>其中<span class="math inline">\(dx_i\)</span>为<span class="math inline">\(dx\)</span>的第<span class="math inline">\(i\)</span>个分量. 特别的, 若取<span class="math inline">\(G\)</span>为<span class="math inline">\(n\)</span>阶单位阵(对角线上元素为1, 其余为0), 此时<span class="math inline">\(dx^2=\sum_{i}^ndx_i^2\)</span>. 这就与带有正交坐标系的欧式空间一致了(点乘内积). 小结一下:</p>
-<ul>
-<li>黎曼空间可视为欧式空间的推广, 但一般情况下, 黎曼空间为非欧空间.</li>
-<li>确定了<span class="math inline">\(G\)</span>就相当于确定了一个黎曼空间, 另外形式上类似欧式空间中的<span class="math inline">\(Q\)</span> norm但没有正定性的要求.</li>
-</ul>
-<h2 id="自然梯度">自然梯度</h2>
-<p>带正交坐标系的欧式空间中, 我们知道负梯度方向<span class="math inline">\(-\nabla L(w)\)</span>为<span class="math inline">\(L(w)\)</span>的最速下降方向; 类似的, 黎曼空间中的<span class="math inline">\(L(w)\)</span>最速下降方向为<span class="math inline">\(-G^{-1}(w)\nabla L(w)\)</span>, 这被称为是自然梯度, 证明可见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient Works Efficiently in Learning</a>的定理1. 下面举个例子加以说明:</p>
-<ul>
-<li>现有一族带参的分布族<span class="math inline">\(\{p(z\mid w)\}\)</span>, 目标是找到最优参数<span class="math inline">\(w=w^*\)</span>使得<span class="math inline">\(p(z\mid w)\)</span>尽可能的接近未知的密度函数<span class="math inline">\(q(z)\)</span>.</li>
-<li>事实上, 很多机器学习任务可归结为上述问题, 比方说<span class="math inline">\(q(z)=q(x,y)\)</span>表示某监督学习任务的样本真实分布, <span class="math inline">\(w\)</span>表示某个NN的参数.</li>
-<li>一个常用的损失函数就是最小化交叉熵的负数:<span class="math display">\[L(w)=-\mathbb{E}_{q(z)}[\log p(z\mid w)]=\mathcal{KL}(q(z)\Vert p(z\mid w))-\mathbb{E}_{q(z)}[\log q(z)]\]</span>其中<span class="math inline">\(\mathcal{KL}(q(z)\Vert p(z\mid w))=\mathbb{E}_{q(z)}[\log\frac{q(z)}{p(z\mid w)}]=\int q(z)\log\frac{q(z)}{p(z\mid w)}dz\)</span>, 且第二项与<span class="math inline">\(w\)</span>无关.</li>
-<li>Information geometry (Amari, 1985)给出了利用<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>定义<span class="math inline">\(G\)</span>(概率密度函数族可以看做与参数空间同胚的黎曼流形, Fisher信息矩阵可以看做是该流形上的黎曼度量, 可以证明这一度量是外围欧式空间在该流形上的诱导度量): <span class="math display">\[G_{ij}(w)=I_{ij}(w)=-\mathbb{E}_{p(z\mid w)}\left [\frac{\partial \log p(z\mid w)}{\partial w_i}\frac{\partial \log p(z\mid w)}{\partial w_j}\right]\]</span></li>
-<li>最后假设有一堆独立同分布样本<span class="math inline">\(z_i \sim p(z)\)</span>, 就可用stochastic或batch的思路去优化. 此时<span class="math inline">\(L(w)\)</span>的自然梯度方向即为<span class="math inline">\(-I^{-1}(w)\nabla L(w)\)</span>, 这又被称为是<strong>Fisher scoring algorithm</strong>.</li>
-</ul>
-<p>回过头来看, 对<span class="math inline">\(q(z)\)</span>的参数化近似<span class="math inline">\(p(z,w)\)</span>必定赋予了它某种结构(比方说对<span class="math inline">\(w\)</span>迈出一大步未必能导致<span class="math inline">\(p(z,w)\)</span>的大的变化), 而要想利用这种结构, 最大的难点就是如何找到对应的黎曼空间, 或者说<span class="math inline">\(G\)</span>.</p>
-<ul>
-<li>第6节给出了<strong>感知机模型</strong>的参数空间的相对应<span class="math inline">\(G, G^{-1}\)</span>的详细求解过程, 同时还有<strong>多层感知机模型</strong>的<span class="math inline">\(G\)</span>.</li>
-<li>第7节给出了<span class="math inline">\(m\)</span>阶非奇异方阵构成的空间中自然梯度的求法; 第8节给出了系统空间中的自然梯度.</li>
-</ul>
-<h2 id="自然梯度与牛顿类法">自然梯度与牛顿类法</h2>
-<p>形式上, 自然梯度法类似于牛顿法: <span class="math display">\[G(w)=-\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right], \nabla ^2L (w)=-\mathbb{E}_{q(z)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]\]</span>且随着优化算法的进行, <span class="math inline">\(p(z\mid w)\)</span>会越来越接近<span class="math inline">\(q(z)\)</span>, 此时两者的表现会相近.当然, 实际任务中因为实际分布一般不知道因此再多一层近似, 即用batch或是stochastic近似上述右式. 最后, 由于<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>的一个特殊性质, 在满足<a href="https://en.wikipedia.org/wiki/Cram%C3%A9r%E2%80%93Rao_bound#Regularity_conditions">CR条件</a>的前提下, 有<span class="math display">\[\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]=\mathbb{E}_{p(z\mid w)}\left[ (\frac{\partial\log p(z\mid w)}{\partial w})(\frac{\partial\log p(z\mid w)}{\partial w})^T\right]\]</span>若我把上式中的<span class="math inline">\(p(z\mid w)\)</span>换成<span class="math inline">\(q(z)\)</span>, <a href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm">Gauss-Newton法</a>就跃然纸上.</p>
-]]></content>
-      <categories>
-        <category>优化算法</category>
-      </categories>
-      <tags>
-        <tag>优化</tag>
-        <tag>黎曼空间</tag>
-        <tag>欧式空间</tag>
-        <tag>Fisher信息</tag>
-        <tag>自然梯度</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>近端梯度方法</title>
-    <url>/2021/01/19/%E8%BF%91%E7%AB%AF%E6%A2%AF%E5%BA%A6%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>前言: 本文的主角是近端梯度方法(Proximal Gradient Method), 这是一个在数学优化领域广为人知，在机器学习领域却很少看到的数学优化方法，它在非光滑优化领域发挥着巨大的作用，下面我们从一个机器学习问题开始了解它能够解决什么问题。 <span id="more"></span></p>
-<h3 id="正则化损失最小化">正则化损失最小化</h3>
-<p>正则化损失最小化(Regularized Loss Minimization, RLM)是机 器学习领域中一种联合最小化经验⻛险和正则化函数的学习范式，其形式如下: <span class="math display">\[
-\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)
-\]</span></p>
-<p>这里假定<span class="math inline">\(L_S(\omega)\)</span>表示关于训练样本集<span class="math inline">\(S\)</span>和模型系数<span class="math inline">\(\omega\)</span>的经验⻛险项，代表模型对训练 样本集<span class="math inline">\(S\)</span>拟合的好坏程度;<span class="math inline">\(\mathcal{R}(\omega)\)</span>表示关于模型系数<span class="math inline">\(\omega\)</span>的正则项，代表我们 对模型的额外偏好;正则项系数<span class="math inline">\(\alpha\)</span>用于控制正则ß程度。以回归为例，当经验⻛险项为最小二乘损 失<span class="math inline">\(L_S(\omega)=(X\omega-Y)^T(X\omega-Y)\)</span>时，若正则项为<span class="math inline">\(\ell_2\)</span>正则<span class="math inline">\(\mathcal{R} (\omega)=\Vert\omega\Vert_2^2\)</span>，此时RLM问题为 <span class="math display">\[
-\min_{\omega}(X\omega-Y)^T(X\omega-Y)+\alpha\Vert\omega\Vert_2^2
-\]</span></p>
-<p>其有闭式解<span class="math inline">\(\omega_*=(X^TX+\alpha I)^{-1}X^TY\)</span>; 若正则项为<span class="math inline">\(\ell_1\)</span>正则<span class="math inline">\(\mathcal{R}(\omega)=\Vert\omega\Vert_1\)</span>，此时RLM问题为</p>
-<p><span class="math display">\[\min_{\omega}(X\omega-Y)^T(X\omega-Y)+\alpha\Vert\omega\Vert_1\]</span> 上述问题又名Lasso问题，可以采用坐标下降方法、近端梯度方法(Proximal Gradient Method, PGM)去解决，且相比<span class="math inline">\(\ell_2\)</span>正则，<span class="math inline">\(\ell_1\)</span>正则得到的解更为稀疏。</p>
-<h3 id="近端梯度方法解决ell_1正则化问题">近端梯度方法解决<span class="math inline">\(\ell_1\)</span>正则化问题</h3>
-<p>一般的，考虑如下问题带正则项的机器学习问题</p>
-<p><span class="math display">\[\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)\]</span> 其中<span class="math inline">\(L_S(\omega)\)</span>具有L-smooth性质，即<span class="math inline">\(\Vert\nabla_\omega L_S(x)-\nabla_\omega L_S(y)\Vert_2\le L\Vert x-y\Vert_2\)</span>。近端梯度方法处理的方式为迭代地进行如下计算</p>
-<ol type="1">
-<li>计算</li>
-</ol>
-<p><span class="math display">\[
-z_k=\omega_k-\frac{1}{L}\nabla L_S(\omega_k)
-\]</span></p>
-<ol start="2" type="1">
-<li>求解</li>
-</ol>
-<p><span class="math display">\[
-\begin{aligned}
-\omega_{k+1} &amp;= \arg\min_\omega\ \frac{L}{2}\Vert \omega-z_k\Vert_2^2+\alpha \mathcal{R}(\omega) \\
-&amp;=\arg\min_\omega\ \frac{1}{2}\Vert \omega-z_k\Vert_2^2+\frac{\alpha}{L} \mathcal{R}(\omega)\\
-\end{aligned}
-\]</span></p>
-<p>第一步中的 <span class="math inline">\(\nabla L_S(\omega_k)\)</span> 表示<span class="math inline">\(L_S(\omega)\)</span>在<span class="math inline">\(\omega=\omega_k\)</span>处的梯度；第二步的计算复杂度则依赖于<span class="math inline">\(\mathcal{R}(\omega)\)</span>的选取。接下来我们从第二步的计算中抽象出近端算子<span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>的概念</p>
-<p><span class="math display">\[
-\operatorname{prox}_{h}(z)=\underset{\omega \in \mathbb{R}^{n}}{\arg \min }\ \frac{1}{2}\|\omega-z\|_{2}^{2}+h(\omega)
-\]</span></p>
-<p>当<span class="math inline">\(h(\omega)=\lambda\|\omega\|_{1}\)</span>，<span class="math inline">\(\lambda&gt;0\)</span>，<span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>恰为软阈值算子(Soft Thresholding)[1]</p>
-<p><span class="math display">\[
-\left[\operatorname{prox}_{h}(z)\right]_{i}=\left\{\begin{array}{ll}
-0 &amp; \text { if }\left|z_{i}\right| \leq \lambda \\
-z_{i}-\lambda &amp; \text { if } z_{i}&gt;\lambda \\
-z_{i}+\lambda &amp; \text { if } z_{i}&lt;-\lambda
-\end{array} \quad i=1, \ldots, n\right.;
-\]</span></p>
-<p>上述闭式解意味着对于正则项为<span class="math inline">\(\ell_1\)</span>的RLM问题，近端梯度方法能够高效的解决。</p>
-<h3 id="近端梯度方法解决其它正则问题">近端梯度方法解决其它正则问题</h3>
-<p>当<span class="math inline">\(h(\omega)=\sum_{i=1}^{n}\left(\lambda^{2}-\left(\left|\omega_{i}\right|-\lambda\right)^{2} \mathbb{I}\left(\left|\omega_{i}\right|&lt;\lambda\right)\right)\)</span>, <span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>恰为硬阈值算子(Hard Thresholding)[2]; 当<span class="math inline">\(h(\omega)=\|\omega\|_{1}-\lambda\|\omega\|_{2}\)</span>, [3]给出了闭式解。因此，对于上述两种正则的RLM问题而言，近端梯度方法也能够高效的解决。</p>
-<h3 id="近端梯度方法的一种直观理解">近端梯度方法的一种直观理解</h3>
-<p>回到近端梯度方法处理的问题上来</p>
-<p><span class="math display">\[
-\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)
-\]</span></p>
-<p>近端梯度方法做的事可以理解为分步最优化原目标函数的一个上界 <span class="math display">\[
-\begin{aligned}
-L_S(\omega)+\alpha\mathcal{R}(\omega) &amp; \leq L_S(\omega_k)+\left\langle\nabla L_S(\omega_k), \omega-\omega_k\right\rangle+\frac{L}{2}\left\|\omega-\omega_k\right\|_{2}^{2}+\alpha\mathcal{R}(\omega) \\
-&amp;=\frac{L}{2}\left\|\omega-\left(\omega_k-\frac{1}{L} \nabla L_S(\omega_k)\right)\right\|_{2}^{2}+\alpha\mathcal{R}(\omega) \\
-\end{aligned}
-\]</span> 第一个不等式可由L-smooth性质得到，而近端梯度方法等价于最小化上式。</p>
-<hr />
-<p>[1] Boyd, Stephen, Stephen P. Boyd, and Lieven Vandenberghe. Convex optimization. Cambridge university press, 2004.</p>
-<p>[2] Antoniadis, Anestis. "Wavelets in statistics: a review." Journal of the Italian Statistical Society 6.2 (1997): 97.</p>
-<p>[3] Lou, Yifei, and Ming Yan. "Fast L1–L2 minimization via a proximal operator." Journal of Scientific Computing 74.2 (2018): 767-785.</p>
-]]></content>
-      <categories>
-        <category>优化算法</category>
-      </categories>
-      <tags>
-        <tag>近端</tag>
-        <tag>近端梯度</tag>
-        <tag>正则</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>统计学习的基本定理</title>
     <url>/2017/08/13/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/</url>
     <content><![CDATA[<p>本文主要参考了Shai Shalev-Shwartz的深入理解机器学习第2-7章以及coursera上林轩田的机器学习基石课程,这部分内容较为详细的描述了机器学习的理论部分,主要包括以下三部分内容:</p>
@@ -3538,6 +3405,139 @@ L_S(\omega)+\alpha\mathcal{R}(\omega) &amp; \leq L_S(\omega_k)+\left\langle\nabl
         <tag>SRM</tag>
         <tag>MDL</tag>
         <tag>奥卡姆剃刀</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自然梯度</title>
+    <url>/2019/07/06/%E8%87%AA%E7%84%B6%E6%A2%AF%E5%BA%A6/</url>
+    <content><![CDATA[<p>前言: 本文介绍自然梯度算法, 这种方法考虑到许多问题的参数空间具有某种结构, 因此考虑放在非欧式空间中优化(但实际优化计算过程仍然在欧式空间), 有兴趣的同学可以读一读原论文<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient</a>. <span id="more"></span></p>
+<h2 id="欧式空间与黎曼空间">欧式空间与黎曼空间</h2>
+<p>什么是欧式空间?</p>
+<blockquote>
+<p>A finite dimensional real vector space equipped with an inner product <span class="math inline">\(\left&lt; x,y \right&gt;\)</span>, is called a <strong>Eulidean space</strong>, if it is endowed with the norm <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}\)</span>, which is referred to as <strong>Eulidean norm</strong>.</p>
+</blockquote>
+<p>通俗的讲, 首先得有一个向量空间<span class="math inline">\(\mathbb{R}^n\)</span>, 接着在这个空间上定义内积(inner product), 这个内积可以是常见的内积点乘, 也可以是其它内积:</p>
+<ul>
+<li>dot product: <span class="math inline">\(\left&lt; x,y \right&gt;=\sum_{i=1}^nx_iy_i\)</span>, 其中<span class="math inline">\(x_i\)</span>为<span class="math inline">\(x\)</span>的第<span class="math inline">\(i\)</span>个分量.</li>
+<li><span class="math inline">\(Q\)</span> inner: <span class="math inline">\(\left&lt; x,y \right&gt;=x^TQy\)</span>, 其<span class="math inline">\(Q\)</span>为<span class="math inline">\(n\)</span>阶正定阵.</li>
+</ul>
+<p>然后由内积可以诱导出对应的范数:</p>
+<ul>
+<li><span class="math inline">\(l_2\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{ \sum_{i=1}^n x_i^2 }\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_2\)</span>.</li>
+<li><span class="math inline">\(Q\)</span> norm: <span class="math inline">\(\left\Vert x\right\Vert=\sqrt{\left&lt; x,x \right&gt;}=\sqrt{x^TQx}\)</span>, 一般记为<span class="math inline">\(\left\Vert x\right\Vert_Q\)</span>.</li>
+</ul>
+<p>有了范数, 我们就可以度量两个点<span class="math inline">\(x,x+dx\)</span>之间的距离(点乘内积): <span class="math display">\[\Vert x + dx-x\Vert=\Vert dx\Vert=\sqrt{ \sum_{i=1}^n dx_i^2 }.\]</span></p>
+<p>小结一下:</p>
+<ul>
+<li>欧式空间是一个向量空间, 且带有内积和范数;</li>
+<li>最重要的是, 该范数一定是要由内积根据上式诱导出来的.</li>
+</ul>
+<p>什么是黎曼空间?</p>
+<blockquote>
+<p>A differentiable manifold provided with a <strong>Riemannian metric</strong>.</p>
+</blockquote>
+<p>微分流形(differentiable manifold又名光滑流形, 其最简单的例子就是三维空间中的球面, 在这里可简单理解为向量空间; 黎曼度量(Riemannian metric.)又名<a href="https://zh.wikipedia.org/wiki/%E5%BA%A6%E9%87%8F%E5%BC%A0%E9%87%8F">度量张量</a>, 黎曼度量张量或是度规张量, 这里可简单理解为某<span class="math inline">\(n\)</span>阶方阵<span class="math inline">\(G\)</span>或是<span class="math inline">\((g_{ij})\)</span>. 有了它我们就可以用它来度量空间中两点<span class="math inline">\(x,x+dx\)</span>之间的距离: <span class="math display">\[dx^2=\sum_{ij}g_{ij}dx_i dx_j=dx^TGdx\]</span>其中<span class="math inline">\(dx_i\)</span>为<span class="math inline">\(dx\)</span>的第<span class="math inline">\(i\)</span>个分量. 特别的, 若取<span class="math inline">\(G\)</span>为<span class="math inline">\(n\)</span>阶单位阵(对角线上元素为1, 其余为0), 此时<span class="math inline">\(dx^2=\sum_{i}^ndx_i^2\)</span>. 这就与带有正交坐标系的欧式空间一致了(点乘内积). 小结一下:</p>
+<ul>
+<li>黎曼空间可视为欧式空间的推广, 但一般情况下, 黎曼空间为非欧空间.</li>
+<li>确定了<span class="math inline">\(G\)</span>就相当于确定了一个黎曼空间, 另外形式上类似欧式空间中的<span class="math inline">\(Q\)</span> norm但没有正定性的要求.</li>
+</ul>
+<h2 id="自然梯度">自然梯度</h2>
+<p>带正交坐标系的欧式空间中, 我们知道负梯度方向<span class="math inline">\(-\nabla L(w)\)</span>为<span class="math inline">\(L(w)\)</span>的最速下降方向; 类似的, 黎曼空间中的<span class="math inline">\(L(w)\)</span>最速下降方向为<span class="math inline">\(-G^{-1}(w)\nabla L(w)\)</span>, 这被称为是自然梯度, 证明可见<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.452.7280&amp;rep=rep1&amp;type=pdf">Natural Gradient Works Efficiently in Learning</a>的定理1. 下面举个例子加以说明:</p>
+<ul>
+<li>现有一族带参的分布族<span class="math inline">\(\{p(z\mid w)\}\)</span>, 目标是找到最优参数<span class="math inline">\(w=w^*\)</span>使得<span class="math inline">\(p(z\mid w)\)</span>尽可能的接近未知的密度函数<span class="math inline">\(q(z)\)</span>.</li>
+<li>事实上, 很多机器学习任务可归结为上述问题, 比方说<span class="math inline">\(q(z)=q(x,y)\)</span>表示某监督学习任务的样本真实分布, <span class="math inline">\(w\)</span>表示某个NN的参数.</li>
+<li>一个常用的损失函数就是最小化交叉熵的负数:<span class="math display">\[L(w)=-\mathbb{E}_{q(z)}[\log p(z\mid w)]=\mathcal{KL}(q(z)\Vert p(z\mid w))-\mathbb{E}_{q(z)}[\log q(z)]\]</span>其中<span class="math inline">\(\mathcal{KL}(q(z)\Vert p(z\mid w))=\mathbb{E}_{q(z)}[\log\frac{q(z)}{p(z\mid w)}]=\int q(z)\log\frac{q(z)}{p(z\mid w)}dz\)</span>, 且第二项与<span class="math inline">\(w\)</span>无关.</li>
+<li>Information geometry (Amari, 1985)给出了利用<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>定义<span class="math inline">\(G\)</span>(概率密度函数族可以看做与参数空间同胚的黎曼流形, Fisher信息矩阵可以看做是该流形上的黎曼度量, 可以证明这一度量是外围欧式空间在该流形上的诱导度量): <span class="math display">\[G_{ij}(w)=I_{ij}(w)=-\mathbb{E}_{p(z\mid w)}\left [\frac{\partial \log p(z\mid w)}{\partial w_i}\frac{\partial \log p(z\mid w)}{\partial w_j}\right]\]</span></li>
+<li>最后假设有一堆独立同分布样本<span class="math inline">\(z_i \sim p(z)\)</span>, 就可用stochastic或batch的思路去优化. 此时<span class="math inline">\(L(w)\)</span>的自然梯度方向即为<span class="math inline">\(-I^{-1}(w)\nabla L(w)\)</span>, 这又被称为是<strong>Fisher scoring algorithm</strong>.</li>
+</ul>
+<p>回过头来看, 对<span class="math inline">\(q(z)\)</span>的参数化近似<span class="math inline">\(p(z,w)\)</span>必定赋予了它某种结构(比方说对<span class="math inline">\(w\)</span>迈出一大步未必能导致<span class="math inline">\(p(z,w)\)</span>的大的变化), 而要想利用这种结构, 最大的难点就是如何找到对应的黎曼空间, 或者说<span class="math inline">\(G\)</span>.</p>
+<ul>
+<li>第6节给出了<strong>感知机模型</strong>的参数空间的相对应<span class="math inline">\(G, G^{-1}\)</span>的详细求解过程, 同时还有<strong>多层感知机模型</strong>的<span class="math inline">\(G\)</span>.</li>
+<li>第7节给出了<span class="math inline">\(m\)</span>阶非奇异方阵构成的空间中自然梯度的求法; 第8节给出了系统空间中的自然梯度.</li>
+</ul>
+<h2 id="自然梯度与牛顿类法">自然梯度与牛顿类法</h2>
+<p>形式上, 自然梯度法类似于牛顿法: <span class="math display">\[G(w)=-\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right], \nabla ^2L (w)=-\mathbb{E}_{q(z)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]\]</span>且随着优化算法的进行, <span class="math inline">\(p(z\mid w)\)</span>会越来越接近<span class="math inline">\(q(z)\)</span>, 此时两者的表现会相近.当然, 实际任务中因为实际分布一般不知道因此再多一层近似, 即用batch或是stochastic近似上述右式. 最后, 由于<a href="https://en.wikipedia.org/wiki/Fisher_information">Fisher信息阵</a>的一个特殊性质, 在满足<a href="https://en.wikipedia.org/wiki/Cram%C3%A9r%E2%80%93Rao_bound#Regularity_conditions">CR条件</a>的前提下, 有<span class="math display">\[\mathbb{E}_{p(z\mid w)}\left[ \frac{\partial^2\log p(z\mid w)}{\partial w^2}\right]=\mathbb{E}_{p(z\mid w)}\left[ (\frac{\partial\log p(z\mid w)}{\partial w})(\frac{\partial\log p(z\mid w)}{\partial w})^T\right]\]</span>若我把上式中的<span class="math inline">\(p(z\mid w)\)</span>换成<span class="math inline">\(q(z)\)</span>, <a href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm">Gauss-Newton法</a>就跃然纸上.</p>
+]]></content>
+      <categories>
+        <category>优化算法</category>
+      </categories>
+      <tags>
+        <tag>优化</tag>
+        <tag>黎曼空间</tag>
+        <tag>欧式空间</tag>
+        <tag>Fisher信息</tag>
+        <tag>自然梯度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>近端梯度方法</title>
+    <url>/2021/01/19/%E8%BF%91%E7%AB%AF%E6%A2%AF%E5%BA%A6%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>前言: 本文的主角是近端梯度方法(Proximal Gradient Method), 这是一个在数学优化领域广为人知，在机器学习领域却很少看到的数学优化方法，它在非光滑优化领域发挥着巨大的作用，下面我们从一个机器学习问题开始了解它能够解决什么问题。 <span id="more"></span></p>
+<h3 id="正则化损失最小化">正则化损失最小化</h3>
+<p>正则化损失最小化(Regularized Loss Minimization, RLM)是机 器学习领域中一种联合最小化经验⻛险和正则化函数的学习范式，其形式如下: <span class="math display">\[
+\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)
+\]</span></p>
+<p>这里假定<span class="math inline">\(L_S(\omega)\)</span>表示关于训练样本集<span class="math inline">\(S\)</span>和模型系数<span class="math inline">\(\omega\)</span>的经验⻛险项，代表模型对训练 样本集<span class="math inline">\(S\)</span>拟合的好坏程度;<span class="math inline">\(\mathcal{R}(\omega)\)</span>表示关于模型系数<span class="math inline">\(\omega\)</span>的正则项，代表我们 对模型的额外偏好;正则项系数<span class="math inline">\(\alpha\)</span>用于控制正则ß程度。以回归为例，当经验⻛险项为最小二乘损 失<span class="math inline">\(L_S(\omega)=(X\omega-Y)^T(X\omega-Y)\)</span>时，若正则项为<span class="math inline">\(\ell_2\)</span>正则<span class="math inline">\(\mathcal{R} (\omega)=\Vert\omega\Vert_2^2\)</span>，此时RLM问题为 <span class="math display">\[
+\min_{\omega}(X\omega-Y)^T(X\omega-Y)+\alpha\Vert\omega\Vert_2^2
+\]</span></p>
+<p>其有闭式解<span class="math inline">\(\omega_*=(X^TX+\alpha I)^{-1}X^TY\)</span>; 若正则项为<span class="math inline">\(\ell_1\)</span>正则<span class="math inline">\(\mathcal{R}(\omega)=\Vert\omega\Vert_1\)</span>，此时RLM问题为</p>
+<p><span class="math display">\[\min_{\omega}(X\omega-Y)^T(X\omega-Y)+\alpha\Vert\omega\Vert_1\]</span> 上述问题又名Lasso问题，可以采用坐标下降方法、近端梯度方法(Proximal Gradient Method, PGM)去解决，且相比<span class="math inline">\(\ell_2\)</span>正则，<span class="math inline">\(\ell_1\)</span>正则得到的解更为稀疏。</p>
+<h3 id="近端梯度方法解决ell_1正则化问题">近端梯度方法解决<span class="math inline">\(\ell_1\)</span>正则化问题</h3>
+<p>一般的，考虑如下问题带正则项的机器学习问题</p>
+<p><span class="math display">\[\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)\]</span> 其中<span class="math inline">\(L_S(\omega)\)</span>具有L-smooth性质，即<span class="math inline">\(\Vert\nabla_\omega L_S(x)-\nabla_\omega L_S(y)\Vert_2\le L\Vert x-y\Vert_2\)</span>。近端梯度方法处理的方式为迭代地进行如下计算</p>
+<ol type="1">
+<li>计算</li>
+</ol>
+<p><span class="math display">\[
+z_k=\omega_k-\frac{1}{L}\nabla L_S(\omega_k)
+\]</span></p>
+<ol start="2" type="1">
+<li>求解</li>
+</ol>
+<p><span class="math display">\[
+\begin{aligned}
+\omega_{k+1} &amp;= \arg\min_\omega\ \frac{L}{2}\Vert \omega-z_k\Vert_2^2+\alpha \mathcal{R}(\omega) \\
+&amp;=\arg\min_\omega\ \frac{1}{2}\Vert \omega-z_k\Vert_2^2+\frac{\alpha}{L} \mathcal{R}(\omega)\\
+\end{aligned}
+\]</span></p>
+<p>第一步中的 <span class="math inline">\(\nabla L_S(\omega_k)\)</span> 表示<span class="math inline">\(L_S(\omega)\)</span>在<span class="math inline">\(\omega=\omega_k\)</span>处的梯度；第二步的计算复杂度则依赖于<span class="math inline">\(\mathcal{R}(\omega)\)</span>的选取。接下来我们从第二步的计算中抽象出近端算子<span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>的概念</p>
+<p><span class="math display">\[
+\operatorname{prox}_{h}(z)=\underset{\omega \in \mathbb{R}^{n}}{\arg \min }\ \frac{1}{2}\|\omega-z\|_{2}^{2}+h(\omega)
+\]</span></p>
+<p>当<span class="math inline">\(h(\omega)=\lambda\|\omega\|_{1}\)</span>，<span class="math inline">\(\lambda&gt;0\)</span>，<span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>恰为软阈值算子(Soft Thresholding)[1]</p>
+<p><span class="math display">\[
+\left[\operatorname{prox}_{h}(z)\right]_{i}=\left\{\begin{array}{ll}
+0 &amp; \text { if }\left|z_{i}\right| \leq \lambda \\
+z_{i}-\lambda &amp; \text { if } z_{i}&gt;\lambda \\
+z_{i}+\lambda &amp; \text { if } z_{i}&lt;-\lambda
+\end{array} \quad i=1, \ldots, n\right.;
+\]</span></p>
+<p>上述闭式解意味着对于正则项为<span class="math inline">\(\ell_1\)</span>的RLM问题，近端梯度方法能够高效的解决。</p>
+<h3 id="近端梯度方法解决其它正则问题">近端梯度方法解决其它正则问题</h3>
+<p>当<span class="math inline">\(h(\omega)=\sum_{i=1}^{n}\left(\lambda^{2}-\left(\left|\omega_{i}\right|-\lambda\right)^{2} \mathbb{I}\left(\left|\omega_{i}\right|&lt;\lambda\right)\right)\)</span>, <span class="math inline">\(\operatorname{prox}_{h}(x)\)</span>恰为硬阈值算子(Hard Thresholding)[2]; 当<span class="math inline">\(h(\omega)=\|\omega\|_{1}-\lambda\|\omega\|_{2}\)</span>, [3]给出了闭式解。因此，对于上述两种正则的RLM问题而言，近端梯度方法也能够高效的解决。</p>
+<h3 id="近端梯度方法的一种直观理解">近端梯度方法的一种直观理解</h3>
+<p>回到近端梯度方法处理的问题上来</p>
+<p><span class="math display">\[
+\min_{\omega}L_S(\omega)+\alpha\mathcal{R}(\omega)
+\]</span></p>
+<p>近端梯度方法做的事可以理解为分步最优化原目标函数的一个上界 <span class="math display">\[
+\begin{aligned}
+L_S(\omega)+\alpha\mathcal{R}(\omega) &amp; \leq L_S(\omega_k)+\left\langle\nabla L_S(\omega_k), \omega-\omega_k\right\rangle+\frac{L}{2}\left\|\omega-\omega_k\right\|_{2}^{2}+\alpha\mathcal{R}(\omega) \\
+&amp;=\frac{L}{2}\left\|\omega-\left(\omega_k-\frac{1}{L} \nabla L_S(\omega_k)\right)\right\|_{2}^{2}+\alpha\mathcal{R}(\omega) \\
+\end{aligned}
+\]</span> 第一个不等式可由L-smooth性质得到，而近端梯度方法等价于最小化上式。</p>
+<hr />
+<p>[1] Boyd, Stephen, Stephen P. Boyd, and Lieven Vandenberghe. Convex optimization. Cambridge university press, 2004.</p>
+<p>[2] Antoniadis, Anestis. "Wavelets in statistics: a review." Journal of the Italian Statistical Society 6.2 (1997): 97.</p>
+<p>[3] Lou, Yifei, and Ming Yan. "Fast L1–L2 minimization via a proximal operator." Journal of Scientific Computing 74.2 (2018): 767-785.</p>
+]]></content>
+      <categories>
+        <category>优化算法</category>
+      </categories>
+      <tags>
+        <tag>近端</tag>
+        <tag>近端梯度</tag>
+        <tag>正则</tag>
       </tags>
   </entry>
   <entry>
