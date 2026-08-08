@@ -60,14 +60,11 @@
 <meta property="og:image" content="https://msgsxj.cn/pictures/R/ggplot2_ex1.png">
 <meta property="og:image" content="https://msgsxj.cn/pictures/R/ggplot2_ex2.png">
 <meta property="og:image" content="https://msgsxj.cn/pictures/R/ggplot2_ex3.png">
-<meta property="og:image" content="https://msgsxj.cn/pictures/R/ggplot2_ex4.png">
 <meta property="og:image" content="https://msgsxj.cn/pictures/R/ggplot2_ex5.png">
 <meta property="og:image" content="https://msgsxj.cn/pictures/R/ggplot2_ex6.png">
 <meta property="og:image" content="https://msgsxj.cn/pictures/R/color_1.png">
-<meta property="og:image" content="https://msgsxj.cn/pictures/R/color_2.png">
-<meta property="og:image" content="https://msgsxj.cn/pictures/R/color_3.png">
 <meta property="article:published_time" content="2018-04-17T13:54:40.000Z">
-<meta property="article:modified_time" content="2020-01-01T07:31:48.694Z">
+<meta property="article:modified_time" content="2026-08-07T14:58:54.683Z">
 <meta property="article:author" content="msgsxj">
 <meta property="article:tag" content="R">
 <meta name="twitter:card" content="summary">
@@ -272,7 +269,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-01 15:31:48" itemprop="dateModified" datetime="2020-01-01T15:31:48+08:00">2020-01-01</time>
+                <time title="修改时间：2026-08-07 22:58:54" itemprop="dateModified" datetime="2026-08-07T22:58:54+08:00">2026-08-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -297,14 +294,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>来自coursera上约翰霍普金斯大学Data Science系列课程Course4:Exploratory Data Analysis. <span id="more"></span></p>
+        <p>来自coursera上约翰霍普金斯大学Data Science系列课程Course4:Exploratory
+Data Analysis. <span id="more"></span></p>
 <hr />
-<h1 id="princlples-of-analytic-graphics">Princlples of Analytic Graphics</h1>
+<h1 id="princlples-of-analytic-graphics">Princlples of Analytic
+Graphics</h1>
 <ol type="1">
-<li>Show comparisons compared to what(PM25 in house with aircleaner compared to without aircleaner)</li>
-<li>Show casuality, mechanism, explanation show how you believe the world works(show you believe child living in house with lower pm25 is more likely to be healthy)</li>
+<li>Show comparisons compared to what(PM25 in house with aircleaner
+compared to without aircleaner)</li>
+<li>Show casuality, mechanism, explanation show how you believe the
+world works(show you believe child living in house with lower pm25 is
+more likely to be healthy)</li>
 <li>Show multivariate Data more than 2 variables</li>
-<li>Integrate multiple models of evidence don't let the tools drive the analysis(plot depend on your own idea, not the tools)</li>
+<li>Integrate multiple models of evidence don't let the tools drive the
+analysis(plot depend on your own idea, not the tools)</li>
 <li>Describe and document the evidence</li>
 <li>Content is king</li>
 </ol>
@@ -328,7 +331,8 @@
 <h1 id="plotting-systems-in-r">Plotting Systems in R</h1>
 <h2 id="base-plotting-system">Base Plotting System</h2>
 <ul>
-<li>Base:artist's palette model, and usually needs two steps to create a plot</li>
+<li>Base:artist's palette model, and usually needs two steps to create a
+plot</li>
 <li>representative:plot()</li>
 </ul>
 <h3 id="two-packages">Two packages</h3>
@@ -336,7 +340,8 @@
 <li>graphics(including plot, hist, boxplot, etc)</li>
 <li>grDevices(including X11, PDF, PostScript, PNG, etc)</li>
 </ul>
-<h3 id="two-steps-to-create-a-base-plot">Two steps to create a base plot</h3>
+<h3 id="two-steps-to-create-a-base-plot">Two steps to create a base
+plot</h3>
 <ul>
 <li>Initializing a new plot <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">library(datasets)</span><br><span class="line">with(airquality, plot(Wind, Ozone)) <span class="comment"># Scatterplot</span></span><br></pre></td></tr></table></figure></li>
 <li>Annotation an existing plot <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">model &lt;- lm(Ozone ~ Wind, airquality)</span><br><span class="line">abline(model, lwd = <span class="number">2</span>)</span><br></pre></td></tr></table></figure></li>
@@ -354,11 +359,13 @@
 <li>abline:add lines to a plot</li>
 <li>points:add points to a plot</li>
 <li>text:add text labels to a plot using specified x, y coordinates</li>
-<li>title:add annotations to x, y axis labels, title, subtitle, outer margin</li>
+<li>title:add annotations to x, y axis labels, title, subtitle, outer
+margin</li>
 <li>mtext:add arbitrary text to the margins</li>
 <li>axis:add axis labels</li>
 </ul>
-<h3 id="some-important-base-graphics-parameters">Some Important Base Graphics Parameters</h3>
+<h3 id="some-important-base-graphics-parameters">Some Important Base
+Graphics Parameters</h3>
 <ul>
 <li>pch:the plotting symbol</li>
 <li>lty:the line type</li>
@@ -386,7 +393,9 @@
 <ul>
 <li>Lattice:Entire plot specified by one function</li>
 <li>useful for plotting high dimensional data(conditioning plots)</li>
-<li>different from base plot driectly to the graphics device, lattice plot returns an object of class <strong>trellis</strong> (and will be auto-printed)</li>
+<li>different from base plot driectly to the graphics device, lattice
+plot returns an object of class <strong>trellis</strong> (and will be
+auto-printed)</li>
 <li>representative:xyplot()</li>
 </ul>
 <h3 id="two-packages-1">Two packages</h3>
@@ -414,10 +423,15 @@
 <h2 id="the-ggplot2-system">The ggplot2 System</h2>
 <ul>
 <li>ggplot2:Mixed elements of Base and Lattice</li>
-<li>book<ggplot2>: In brief, thegrammar tells us that a statistical graphic is a mapping from data to aesthetic(美学) attributes(color, shape, size) of geometric objects (points, lines, bars).The plot may also contain statistical transformations of the data and is drawn on a specific corrdinate system.</li>
+<li>book<ggplot2>: In brief, thegrammar tells us that a statistical
+graphic is a mapping from data to aesthetic(美学) attributes(color,
+shape, size) of geometric objects (points, lines, bars).The plot may
+also contain statistical transformations of the data and is drawn on a
+specific corrdinate system.</li>
 <li>representative:qplot(), ggplot()</li>
 </ul>
-<h3 id="basic-components-of-a-ggplot2-plot">Basic Components of a ggplot2 Plot</h3>
+<h3 id="basic-components-of-a-ggplot2-plot">Basic Components of a
+ggplot2 Plot</h3>
 <ul>
 <li>a data frame</li>
 <li>aesthetic mapping:how data are mapped to color, size</li>
@@ -438,7 +452,9 @@
 <li>theme_gray()</li>
 <li>theme_bw()</li>
 </ul>
-<p><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">g &lt;- ggplot(mpg, aes(displ, hwy))</span><br><span class="line">g + geom_point(color = <span class="string">&quot;steelblue&quot;</span>, size = <span class="number">3.14</span>, alpha = <span class="number">0.5</span>) + labs(x = <span class="built_in">expression</span>(PM[<span class="number">25</span>]))<span class="comment"># alpha表示透明度</span></span><br><span class="line">g + geom_point(aes(color = drv), size = <span class="number">3.14</span>, alpha = <span class="number">0.5</span>) + ggtitle(<span class="string">&quot;title&quot;</span>) + theme(plot.title = element_text(hjust = <span class="number">0.5</span>))</span><br></pre></td></tr></table></figure> 2. ylim and coord_cartesian - ylim(-3, 3)# 把y限定在(-3, 3) - coord_cartesian(ylim = c(-3, 3))# 显示(-3, 3)的范围</p>
+<p><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">g &lt;- ggplot(mpg, aes(displ, hwy))</span><br><span class="line">g + geom_point(color = <span class="string">&quot;steelblue&quot;</span>, size = <span class="number">3.14</span>, alpha = <span class="number">0.5</span>) + labs(x = <span class="built_in">expression</span>(PM[<span class="number">25</span>]))<span class="comment"># alpha表示透明度</span></span><br><span class="line">g + geom_point(aes(color = drv), size = <span class="number">3.14</span>, alpha = <span class="number">0.5</span>) + ggtitle(<span class="string">&quot;title&quot;</span>) + theme(plot.title = element_text(hjust = <span class="number">0.5</span>))</span><br></pre></td></tr></table></figure> 2. ylim and coord_cartesian - ylim(-3, 3)#
+把y限定在(-3, 3) - coord_cartesian(ylim = c(-3, 3))# 显示(-3,
+3)的范围</p>
 <p><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">testdata &lt;- data.frame(x = <span class="number">1</span>:<span class="number">100</span>, y = rnorm(<span class="number">100</span>))</span><br><span class="line">testdata[<span class="number">50</span>,<span class="number">2</span>] &lt;- <span class="number">100</span></span><br><span class="line">g &lt;- ggplot(testdata, aes(x = x,y = y))</span><br><span class="line">g + geom_line()</span><br><span class="line">g + geom_line() + ylim(-<span class="number">3</span>, <span class="number">3</span>) <span class="comment"># 把y限定在(-3, 3)</span></span><br><span class="line">g + geom_line() + coord_cartesian(ylim = <span class="built_in">c</span>(-<span class="number">3</span>, <span class="number">3</span>)) <span class="comment"># 显示(-3, 3)的范围</span></span><br></pre></td></tr></table></figure> 3. cut <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">testdata &lt;- data.frame(x = <span class="number">1</span>:<span class="number">100</span>, y = rnorm(<span class="number">100</span>))</span><br><span class="line">testdata[<span class="number">50</span>,<span class="number">2</span>] &lt;- <span class="number">100</span></span><br><span class="line">cutpoints &lt;- quantile(testdata$y, seq(<span class="number">0</span>, <span class="number">1</span>, <span class="built_in">length</span> = <span class="number">4</span>), na.rm = <span class="built_in">T</span>)</span><br><span class="line">testdata$y_new &lt;- cut(testdata$y, cutpoints)</span><br></pre></td></tr></table></figure></p>
 <h3 id="examples-2">Examples</h3>
 <h4 id="examplegeom">Example:geom</h4>
@@ -449,7 +465,8 @@
 <p><img src="/pictures/R/ggplot2_ex2.png" /></p>
 <h4 id="examplefacets">Example:facets</h4>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(displ, hwy, data = mpg, facets = .~drv)</span><br></pre></td></tr></table></figure>
-<p><img src="/pictures/R/ggplot2_ex3.png" /> <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(displ, hwy, data = mpg, facets = drv~.)</span><br></pre></td></tr></table></figure> <img src="/pictures/R/ggplot2_ex4.png" /></p>
+<p><img src="/pictures/R/ggplot2_ex3.png" /> <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(displ, hwy, data = mpg, facets = drv~.)</span><br></pre></td></tr></table></figure> <img
+src="/pictures/R/ggplot2_ex4.png" /></p>
 <h4 id="exampleboxplot">Example:boxplot</h4>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">data(mpg)</span><br><span class="line">qplot(drv, hwy, data = mpg, geom = <span class="string">&quot;boxplot&quot;</span>, color = manufacturer)</span><br></pre></td></tr></table></figure>
 <p><img src="/pictures/R/ggplot2_ex5.png" /></p>
@@ -459,7 +476,9 @@
 <hr />
 <h1 id="color">Color</h1>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p1 &lt;- colorRampPalette(<span class="built_in">c</span>(<span class="string">&quot;red&quot;</span>,<span class="string">&quot;yellow&quot;</span>))</span><br><span class="line">showMe(p1(<span class="number">100</span>))</span><br></pre></td></tr></table></figure>
-<p><img src="/pictures/R/color_1.png" /> <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p2 &lt;- colorRampPalette(<span class="built_in">c</span>(<span class="string">&quot;orange&quot;</span>,<span class="string">&quot;yellow&quot;</span>,<span class="string">&quot;green&quot;</span>))</span><br><span class="line">showMe(p2(<span class="number">100</span>))</span><br></pre></td></tr></table></figure> <img src="/pictures/R/color_2.png" /> <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cols &lt;- brewer.pal(<span class="number">3</span>, <span class="string">&quot;BuGn&quot;</span>)</span><br><span class="line">showMe(cols)</span><br><span class="line">pal &lt;- colorRampPalette(cols)</span><br><span class="line">showMe(pal(<span class="number">20</span>))</span><br></pre></td></tr></table></figure> <img src="/pictures/R/color_3.png" /></p>
+<p><img src="/pictures/R/color_1.png" /> <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p2 &lt;- colorRampPalette(<span class="built_in">c</span>(<span class="string">&quot;orange&quot;</span>,<span class="string">&quot;yellow&quot;</span>,<span class="string">&quot;green&quot;</span>))</span><br><span class="line">showMe(p2(<span class="number">100</span>))</span><br></pre></td></tr></table></figure> <img
+src="/pictures/R/color_2.png" /> <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cols &lt;- brewer.pal(<span class="number">3</span>, <span class="string">&quot;BuGn&quot;</span>)</span><br><span class="line">showMe(cols)</span><br><span class="line">pal &lt;- colorRampPalette(cols)</span><br><span class="line">showMe(pal(<span class="number">20</span>))</span><br></pre></td></tr></table></figure> <img
+src="/pictures/R/color_3.png" /></p>
 
     </div>
 
@@ -544,7 +563,11 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#princlples-of-analytic-graphics"><span class="nav-number">1.</span> <span class="nav-text">Princlples of Analytic Graphics</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#take-a-look-at-the-data"><span class="nav-number">2.</span> <span class="nav-text">Take a Look at the Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#one-dimension"><span class="nav-number">2.1.</span> <span class="nav-text">One dimension</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#two-dimensions"><span class="nav-number">2.2.</span> <span class="nav-text">Two dimensions</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#plotting-systems-in-r"><span class="nav-number">3.</span> <span class="nav-text">Plotting Systems in R</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#base-plotting-system"><span class="nav-number">3.1.</span> <span class="nav-text">Base Plotting System</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#two-packages"><span class="nav-number">3.1.1.</span> <span class="nav-text">Two packages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#two-steps-to-create-a-base-plot"><span class="nav-number">3.1.2.</span> <span class="nav-text">Two steps to create a base plot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#base-plotting-functions"><span class="nav-number">3.1.3.</span> <span class="nav-text">Base Plotting Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#initialize"><span class="nav-number">3.1.3.1.</span> <span class="nav-text">Initialize</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#add"><span class="nav-number">3.1.3.2.</span> <span class="nav-text">Add</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#some-important-base-graphics-parameters"><span class="nav-number">3.1.4.</span> <span class="nav-text">Some Important Base Graphics Parameters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#examples"><span class="nav-number">3.1.5.</span> <span class="nav-text">Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#examplelegend"><span class="nav-number">3.1.5.1.</span> <span class="nav-text">Example:Legend</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#examplemultiple-base-plots"><span class="nav-number">3.1.5.2.</span> <span class="nav-text">Example:Multiple Base Plots</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-lattice-system"><span class="nav-number">3.2.</span> <span class="nav-text">The Lattice System</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#two-packages-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">Two packages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lattice-functions"><span class="nav-number">3.2.2.</span> <span class="nav-text">Lattice Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#examples-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#examplexyplot"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">Example:xyplot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exampleplane-functiuon"><span class="nav-number">3.2.3.2.</span> <span class="nav-text">Example:plane functiuon</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-ggplot2-system"><span class="nav-number">3.3.</span> <span class="nav-text">The ggplot2 System</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#basic-components-of-a-ggplot2-plot"><span class="nav-number">3.3.1.</span> <span class="nav-text">Basic Components of a ggplot2 Plot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#annotation"><span class="nav-number">3.3.2.</span> <span class="nav-text">Annotation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#examples-2"><span class="nav-number">3.3.3.</span> <span class="nav-text">Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#examplegeom"><span class="nav-number">3.3.3.1.</span> <span class="nav-text">Example:geom</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#examplefill"><span class="nav-number">3.3.3.2.</span> <span class="nav-text">Example:fill</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#examplefacets"><span class="nav-number">3.3.3.3.</span> <span class="nav-text">Example:facets</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exampleboxplot"><span class="nav-number">3.3.3.4.</span> <span class="nav-text">Example:boxplot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exampleggplot"><span class="nav-number">3.3.3.5.</span> <span class="nav-text">Example:ggplot</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#color"><span class="nav-number">4.</span> <span class="nav-text">Color</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#princlples-of-analytic-graphics"><span class="nav-number">1.</span> <span class="nav-text">Princlples of Analytic
+Graphics</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#take-a-look-at-the-data"><span class="nav-number">2.</span> <span class="nav-text">Take a Look at the Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#one-dimension"><span class="nav-number">2.1.</span> <span class="nav-text">One dimension</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#two-dimensions"><span class="nav-number">2.2.</span> <span class="nav-text">Two dimensions</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#plotting-systems-in-r"><span class="nav-number">3.</span> <span class="nav-text">Plotting Systems in R</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#base-plotting-system"><span class="nav-number">3.1.</span> <span class="nav-text">Base Plotting System</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#two-packages"><span class="nav-number">3.1.1.</span> <span class="nav-text">Two packages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#two-steps-to-create-a-base-plot"><span class="nav-number">3.1.2.</span> <span class="nav-text">Two steps to create a base
+plot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#base-plotting-functions"><span class="nav-number">3.1.3.</span> <span class="nav-text">Base Plotting Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#initialize"><span class="nav-number">3.1.3.1.</span> <span class="nav-text">Initialize</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#add"><span class="nav-number">3.1.3.2.</span> <span class="nav-text">Add</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#some-important-base-graphics-parameters"><span class="nav-number">3.1.4.</span> <span class="nav-text">Some Important Base
+Graphics Parameters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#examples"><span class="nav-number">3.1.5.</span> <span class="nav-text">Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#examplelegend"><span class="nav-number">3.1.5.1.</span> <span class="nav-text">Example:Legend</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#examplemultiple-base-plots"><span class="nav-number">3.1.5.2.</span> <span class="nav-text">Example:Multiple Base Plots</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-lattice-system"><span class="nav-number">3.2.</span> <span class="nav-text">The Lattice System</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#two-packages-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">Two packages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lattice-functions"><span class="nav-number">3.2.2.</span> <span class="nav-text">Lattice Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#examples-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#examplexyplot"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">Example:xyplot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exampleplane-functiuon"><span class="nav-number">3.2.3.2.</span> <span class="nav-text">Example:plane functiuon</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-ggplot2-system"><span class="nav-number">3.3.</span> <span class="nav-text">The ggplot2 System</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#basic-components-of-a-ggplot2-plot"><span class="nav-number">3.3.1.</span> <span class="nav-text">Basic Components of a
+ggplot2 Plot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#annotation"><span class="nav-number">3.3.2.</span> <span class="nav-text">Annotation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#examples-2"><span class="nav-number">3.3.3.</span> <span class="nav-text">Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#examplegeom"><span class="nav-number">3.3.3.1.</span> <span class="nav-text">Example:geom</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#examplefill"><span class="nav-number">3.3.3.2.</span> <span class="nav-text">Example:fill</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#examplefacets"><span class="nav-number">3.3.3.3.</span> <span class="nav-text">Example:facets</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exampleboxplot"><span class="nav-number">3.3.3.4.</span> <span class="nav-text">Example:boxplot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exampleggplot"><span class="nav-number">3.3.3.5.</span> <span class="nav-text">Example:ggplot</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#color"><span class="nav-number">4.</span> <span class="nav-text">Color</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -604,7 +627,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2025</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
